@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="privacyModel" nsURI="http://privacymodel" nsPrefix="privacyModel">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrivacyPolicy" eSuperTypes="#//NamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UniquePolicyStatementName UniquePrincipalNamePerType UniquePrivacyDataName UniqueServiceName UniqueProviderName UniqueLocationPerType ProtectionControlShouldExistsInConfiguration PrivacyStatementAsTypeNotifyAboutErasureShouldBeDefined PrivacyStatementAsTypeNotifyAboutRectificationShouldBeDefined"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="UniquePolicyStatementName" value="Tuple {&#xA;&#x9;message : String = 'PolicyStatement name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2)&#xA;}.status"/>
+      <details key="UniquePrincipalNamePerType" value="Tuple {&#xA;&#x9;message : String = 'Principal name per type is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.allPrincipals->forAll(pr1:Principal,pr2:Principal| &#xA;&#x9;&#x9;&#x9;if(pr1.type = pr2.type) then &#xA;&#x9;&#x9;&#x9;pr1.name = pr2.name implies pr1 = pr2&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;)&#xA;}.status"/>
+      <details key="UniquePrivacyDataName" value="Tuple {&#xA;&#x9;message : String = 'PrivacyData name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.allDatas->forAll(data1:PrivacyData,data2:PrivacyData| data1.name = data2.name implies data1 = data2)&#xA;}.status"/>
+      <details key="UniqueServiceName" value="Tuple {&#xA;&#x9;message : String = 'Service name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)&#xA;}.status"/>
+      <details key="UniqueProviderName" value="Tuple {&#xA;&#x9;message : String = 'Provider name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.allProviders->forAll(provider1:Provider,provider2:Provider| provider1.name = provider2.name implies provider1 = provider2)&#xA;}.status"/>
+      <details key="UniqueLocationPerType" value="Tuple {&#xA;&#x9;message : String = 'Location name per type is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.locations->forAll(loc1:Location,loc2:Location| &#xA;&#x9;&#x9;&#x9;if(loc1.type = loc2.type) then &#xA;&#x9;&#x9;&#x9;&#x9;loc1.name = loc2.name implies loc1 = loc2&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;)&#xA;}.status"/>
+      <details key="ProtectionControlShouldExistsInConfiguration" value="Tuple {&#xA;&#x9;message : String = 'Protection controls should be defined in configuration.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.defaultProtectionControls->forAll(protectionControl:String|&#xA;&#x9;&#x9;&#x9;&#x9;self.privacyPolicyHelper.isPolicyControlValid(protectionControl)&#xA;&#x9;&#x9;&#x9;)&#xA;}.status"/>
+      <details key="PrivacyStatementAsTypeNotifyAboutErasureShouldBeDefined" value="&#xA;&#x9;&#x9;&#x9;self.dataSubjectComplaints->forAll(complaint:Complaint|&#xA;&#x9;&#x9;&#x9;&#x9;if(complaint.action = ComplaintAction::Erasure) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.policyStatements.what->exists(w | w.actions->exists(act| act = Action::NotifyAboutErasure) and w.datas->includesAll(complaint.subject))&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;)"/>
+      <details key="PrivacyStatementAsTypeNotifyAboutRectificationShouldBeDefined"
+          value="&#xA;&#x9;&#x9;&#x9;self.dataSubjectComplaints->forAll(complaint:Complaint|&#xA;&#x9;&#x9;&#x9;&#x9;if(complaint.action = ComplaintAction::Rectification) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.policyStatements.what->exists(w | w.actions->exists(act| act = Action::NotifyAboutRectification) and w.datas->includesAll(complaint.subject))&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;)"/>
+    </eAnnotations>
+    <eOperations name="getPolicyStatementWithConstraint" eType="#//PolicyStatement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="let stet : PolicyStatement[*|?] = self.policyStatements->select(st: PolicyStatement| st.causedBy = complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(stet = null or stet->isEmpty()) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;null&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;stet->asSequence()->first()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="complaint" eType="#//Complaint"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="policyStatements" upperBound="-1"
+        eType="#//PolicyStatement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Principal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allPrincipals" upperBound="-1"
+        eType="#//Principal" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="locations" upperBound="-1"
+        eType="#//Location" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultProtectionControls"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allServices" upperBound="-1"
+        eType="#//Service" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allProviders" upperBound="-1"
+        eType="#//Provider" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configurationManager" lowerBound="1"
+        eType="#//ConfigurationManager" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allDatas" upperBound="-1"
+        eType="#//PrivacyData" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataSubjectComplaints"
+        upperBound="-1" eType="#//Complaint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="privacyPolicyHelper" lowerBound="1"
+        eType="#//PrivacyPolicyHelper" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PolicyStatement" eSuperTypes="#//NamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="InvalidActionComplaintAlreadyExists DataExchangeProhibited MissingApprovalForActionOnPrivacyData UndefinedPurposeForAccess DateShoudBeDefinedForAccessAction DateShoudBeDefinedForStoreAction ShouldDefineCauseByForNotifyErasure ShouldDefineCauseByForNotifyAboutRectification"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="InvalidActionComplaintAlreadyExists" value="Tuple {&#xA;&#x9;message : String = 'Complaint on this privacy data already exists.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(self.what.actions->size() = 1 and (self.what.actions->exists(a | a = Action::NotifyAboutErasure) or self.what.actions->exists(a | a = Action::NotifyAboutRectification))) then&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else if(PrivacyPolicy.allInstances()->asSequence()->first().dataSubjectComplaints->exists(complaint| complaint.subject->includesAll(self.what.datas))) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().dataSubjectComplaints->select(complaint:Complaint| complaint.subject->includesAll(self.what.datas))->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;forAll(complaint:Complaint|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let st : PolicyStatement = PrivacyPolicy.allInstances()->asSequence()->first().getPolicyStatementWithConstraint(complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(st = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, st.when.intervals->at(1).dateTime)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateInInterval(self.when, complaint.when))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="DataExchangeProhibited" value="Tuple {&#xA;&#x9;message : String = 'Exchange of data with this Provider is prohibited because of location',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;self.what.providers->forAll(provider:Provider|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.datas->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;forAll(whatData:PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().allDatas->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;forAll(data:PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(whatData.name = data.name) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.actions -> forAll(act:Action|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;data.accessConstraints->forAll(dataconstraint:DataConstraint|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(dataconstraint.key = act) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;dataconstraint.value -> forAll(constraint:Constraint|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isValidPrincipalScope(self.whose, constraint.dataOwnerScope)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isValidPrincipalScope(self.who, constraint.dataControllerScope)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isValidPrincipalScope(self.whom, constraint.dataRecipientScope)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;constraint.required->forAll(r:Restriction| &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(r.notAllowed->includes(provider.located)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.how -> oclIsUndefined()) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.how.attached->forAll(approval: Approval|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, approval.startDate)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateAfterInterval(self.when, approval.terminationDate)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;approval.restrictionType = r.restrictionType&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;approval.allowed->includes(provider.located)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;)))&#xA;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="MissingApprovalForActionOnPrivacyData" value="Tuple {&#xA;&#x9;message : String = 'This action requires approval',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;&#x9;self.what.datas->&#xA;&#x9;&#x9;&#x9;&#x9;forAll(whatData:PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().allDatas->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;forAll(data:PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(whatData.name = data.name) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.actions -> forAll(act:Action|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;data.accessConstraints->forAll(dataconstraint:DataConstraint|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(dataconstraint.key = act) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;dataconstraint.value -> forAll(constraint:Constraint|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isValidPrincipalScope(self.whose, constraint.dataOwnerScope)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isValidPrincipalScope(self.who, constraint.dataControllerScope)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isValidPrincipalScope(self.whom, constraint.dataRecipientScope)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;constraint.required->forAll(r:Restriction|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.how -> oclIsUndefined()) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(not(self.how.attached->size() > 0)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.how.attached->forAll(approval: Approval|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, approval.startDate)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateAfterInterval(self.when, approval.terminationDate)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;approval.restrictionType = r.restrictionType&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif)&#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;}.status"/>
+      <details key="UndefinedPurposeForAccess" value="Tuple {&#xA;&#x9;message : String = 'Purpose is not define when data is collected',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;&#x9;if(not(self.what = null) and self.what.actions->exists(act| act = Action::Access)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.datas->forAll(data: PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let statements : PolicyStatement[*|?] = PrivacyPolicy.allInstances()->asSequence()->first().policyStatements->select(st: PolicyStatement| &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(st.what = null) and st.what.actions->exists(act| act = Action::Store) and st.what.datas->exists(d| d = data))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(statements->isEmpty()) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;statements -> forAll(st: PolicyStatement|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;st.isPurposeValid(self.why)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="DateShoudBeDefinedForAccessAction" value="Tuple {&#xA;&#x9;message : String = 'Date shoud be defined',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;dateShouldBeDefinedForType(Action::Access)&#xA;}.status"/>
+      <details key="DateShoudBeDefinedForStoreAction" value="Tuple {&#xA;&#x9;message : String = 'Date shoud be defined',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;dateShouldBeDefinedForType(Action::Store)&#xA;}.status"/>
+      <details key="ShouldDefineCauseByForNotifyErasure" value="Tuple {&#xA;&#x9;message : String = 'Acton NotifyAboutErasure should contain causedBy with complaint Erasure',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.actionContainsCausedByAsType(Action::NotifyAboutErasure, ComplaintAction::Erasure)&#xA;}.status"/>
+      <details key="ShouldDefineCauseByForNotifyAboutRectification" value="Tuple {&#xA;&#x9;message : String = 'Acton NotifyAboutRectification should contain causedBy with complaint Rectification',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.actionContainsCausedByAsType(Action::NotifyAboutRectification, ComplaintAction::Rectification)&#xA;}.status"/>
+    </eAnnotations>
+    <eOperations name="actionContainsCausedByAsType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.actions->forAll(action:Action|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(action = actionType) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.causedBy = null or self.whose = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.causedBy.action = complaintType and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.datas->includesAll(self.causedBy.subject) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.whose = self.causedBy.who) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="actionType" lowerBound="1" eType="#//Action"/>
+      <eParameters name="complaintType" lowerBound="1" eType="#//ComplaintAction"/>
+    </eOperations>
+    <eOperations name="isPurposeValid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.why = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.why.isValid(purpose)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="purpose" eType="#//Purpose"/>
+    </eOperations>
+    <eOperations name="dateShouldBeDefinedForType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.what.actions->exists(act| act = actionType)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(self.when = null)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="actionType" lowerBound="1" eType="#//Action"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//PrivacyStatementType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="when" eType="#//TimeInterval"
+        containment="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="name" value="when"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="who" eType="#//Principal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="why" eType="#//Purpose"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="what" lowerBound="1" eType="#//What"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="how" eType="#//How" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="whose" eType="#//Principal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="whom" eType="#//Principal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cause" eType="#//PolicyStatement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="causedBy" eType="#//Complaint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrivacyData" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accessConstraints" upperBound="-1"
+        eType="#//DataConstraint" containment="true" eKeys="#//DataConstraint/key">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attribute"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//DataType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//NamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UniqueSubserviceName"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="UniqueSubserviceName" value="Tuple {&#xA;&#x9;message : String = 'Subservice name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.subservices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)&#xA;}.status"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subservices" upperBound="-1"
+        eType="#//Service" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Provider" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="provide" upperBound="-1"
+        eType="#//Service"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="located" lowerBound="1"
+        eType="#//Location"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Principal" eSuperTypes="#//NamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UniquePrincipalNamePerType"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="UniquePrincipalNamePerType" value="Tuple {&#xA;&#x9;message : String = 'Principal name per type is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.subPrincipals->forAll(pr1:Principal,pr2:Principal| &#xA;&#x9;&#x9;&#x9;if(pr1.type = pr2.type) then &#xA;&#x9;&#x9;&#x9;pr1.name = pr2.name implies pr1 = pr2&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;)&#xA;}.status"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subPrincipals" upperBound="-1"
+        eType="#//Principal" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//PrincipalType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" lowerBound="1" eType="#//PrincipalScope"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PrivacyStatementType">
+    <eLiterals name="Permission"/>
+    <eLiterals name="Obligation" value="1"/>
+    <eLiterals name="Information" value="2"/>
+    <eLiterals name="Optional" value="3"/>
+    <eLiterals name="Prohibition" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DataType">
+    <eLiterals name="Biometric"/>
+    <eLiterals name="General" value="1"/>
+    <eLiterals name="Genetic" value="2"/>
+    <eLiterals name="PoliticalOpinion" value="3"/>
+    <eLiterals name="RacialEthnicOrigin" value="4"/>
+    <eLiterals name="Beliefs" value="5"/>
+    <eLiterals name="SexLife" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Location" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEUMember" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//LocationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subLocations" upperBound="-1"
+        eType="#//Location" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RestrictionType">
+    <eLiterals name="Juvenile"/>
+    <eLiterals name="ExplicitConsent" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataOwnerScope" eType="#//ConstraintScope"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataControllerScope" eType="#//ConstraintScope"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="required" upperBound="-1"
+        eType="#//Restriction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataRecipientScope" eType="#//ConstraintScope"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeInterval">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="OnlyBeforeOrBeforeWithAfter OnlyAfterOrAfterWithBefore OnlyFromOrFromWithTo OnlyToOrToWithFrom AtTypeShouldBeDefinedAlone UntilTypeShouldBeDefinedAlone AfterStatementBeforeBeforeStatement FromStatementBeforeToStatement"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="OnlyBeforeOrBeforeWithAfter" value="Tuple {&#xA;&#x9;message : String = 'Before interval should be defined alone or with after interval',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.isTypeDefinedAloneOrWithOtherType(TimePreposition::before, TimePreposition::after)&#xA;}.status"/>
+      <details key="OnlyAfterOrAfterWithBefore" value="Tuple {&#xA;&#x9;message : String = 'After interval should be defined alone or with before interval',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.isTypeDefinedAloneOrWithOtherType(TimePreposition::after, TimePreposition::before)&#xA;}.status"/>
+      <details key="OnlyFromOrFromWithTo" value="Tuple {&#xA;&#x9;message : String = 'From interval should be defined alone or with to interval',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.isTypeDefinedAloneOrWithOtherType(TimePreposition::from, TimePreposition::to)&#xA;}.status"/>
+      <details key="OnlyToOrToWithFrom" value="Tuple {&#xA;&#x9;message : String = 'To interval should be defined alone or with from interval',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.isTypeDefinedAloneOrWithOtherType(TimePreposition::to, TimePreposition::from)&#xA;}.status"/>
+      <details key="AtTypeShouldBeDefinedAlone" value="Tuple {&#xA;&#x9;message : String = 'At statement should be defined alone',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.isTypeDefinedAlone(TimePreposition::at)&#xA;}.status"/>
+      <details key="UntilTypeShouldBeDefinedAlone" value="Tuple {&#xA;&#x9;message : String = 'Until statement should be defined alone',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.isTypeDefinedAlone(TimePreposition::until)&#xA;}.status"/>
+      <details key="AfterStatementBeforeBeforeStatement" value="Tuple {&#xA;&#x9;message : String = 'After interval should be defined before before interval',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.isIntervalValid(TimePreposition::after, TimePreposition::before)&#xA;}.status"/>
+      <details key="FromStatementBeforeToStatement" value="Tuple {&#xA;&#x9;message : String = 'From interval should be defined before to interval',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.isIntervalValid(TimePreposition::from, TimePreposition::to)&#xA;}.status"/>
+    </eAnnotations>
+    <eOperations name="isTypeDefinedAloneOrWithOtherType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.intervals->forAll(tsFirst:TimeStatement| &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(tsFirst.preposition = firstPrepositionType) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.intervals->size() = 2) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.intervals->exists(interval| interval.preposition = secondPrepositionType)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else if(self.intervals->size() > 2) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)"/>
+      </eAnnotations>
+      <eParameters name="firstPrepositionType" lowerBound="1" eType="#//TimePreposition"/>
+      <eParameters name="secondPrepositionType" lowerBound="1" eType="#//TimePreposition"/>
+    </eOperations>
+    <eOperations name="isTypeDefinedAlone" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.intervals->exists(interval| interval.preposition = prepositionType)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.intervals->size() = 1&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="prepositionType" lowerBound="1" eType="#//TimePreposition"/>
+    </eOperations>
+    <eOperations name="isIntervalValid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.intervals->exists(interval| interval.preposition = firstPrepositionType) and self.intervals->size() = 2) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.getStatementWithPreposition(firstPrepositionType).dateTime &lt; self.getStatementWithPreposition(secondPrepositionType).dateTime&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="firstPrepositionType" lowerBound="1" eType="#//TimePreposition"/>
+      <eParameters name="secondPrepositionType" lowerBound="1" eType="#//TimePreposition"/>
+    </eOperations>
+    <eOperations name="getStatementWithPreposition" lowerBound="1" eType="#//TimeStatement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.intervals->select(interval| interval.preposition = prepositionType)->at(1)"/>
+      </eAnnotations>
+      <eParameters name="prepositionType" lowerBound="1" eType="#//TimePreposition"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="intervals" lowerBound="1"
+        upperBound="-1" eType="#//TimeStatement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeStatement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="preposition" lowerBound="1"
+        eType="#//TimePreposition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dateTime" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimePreposition">
+    <eLiterals name="from"/>
+    <eLiterals name="to" value="1"/>
+    <eLiterals name="at" value="2"/>
+    <eLiterals name="until" value="3"/>
+    <eLiterals name="before" value="4"/>
+    <eLiterals name="after" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PrincipalType">
+    <eLiterals name="Organization"/>
+    <eLiterals name="Group" value="1"/>
+    <eLiterals name="Individual" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PrincipalScope">
+    <eLiterals name="In"/>
+    <eLiterals name="Out" value="1"/>
+    <eLiterals name="Unknown" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Action">
+    <eLiterals name="Store"/>
+    <eLiterals name="Access" value="1"/>
+    <eLiterals name="Collecting" value="2"/>
+    <eLiterals name="Retrieval" value="2"/>
+    <eLiterals name="NotifyAboutErasure" value="3"/>
+    <eLiterals name="NotifyAboutRectification" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LocationType">
+    <eLiterals name="Union"/>
+    <eLiterals name="Country" value="1"/>
+    <eLiterals name="Region" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Purpose">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ProtectionControlShouldExistsInConfiguration ResearchShouldNotContainSubReason PublicHealthShouldNotContainSubReason OutOfScopeCannotContainsThisSubReason PublicInterestShouldNotContainSubReason StatisticalPurposesShouldNotContainSubReason ExercisingSpecificRightsPurposesShouldNotContainSubReason MarketingShouldNotContainSubReason TestingShouldNotContainSubReason ProfilingShouldNotContainSubReason"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ProtectionControlShouldExistsInConfiguration" value="Tuple {&#xA;&#x9;message : String = 'Protection controls should be defined in configuration.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.additionalProtectionControls->forAll(protectionControl:String|&#xA;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isPolicyControlValid(protectionControl)&#xA;&#x9;&#x9;&#x9;)&#xA;}.status"/>
+      <details key="ResearchShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::Research, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None}, &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
+      <details key="PublicHealthShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::PublicHealth, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None}, &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
+      <details key="OutOfScopeCannotContainsThisSubReason" value="&#xA;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::OutOfScope, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats, ProcessingReasonSubtype::OutOfEU,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ProcessingReasonSubtype::PersonalActivity, ProcessingReasonSubtype::SpecialScopeOfActivity, ProcessingReasonSubtype::None&#xA;&#x9;&#x9;&#x9;&#x9;} , &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
+      <details key="PublicInterestShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::PublicInterest, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None}, &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
+      <details key="StatisticalPurposesShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::StatisticalPurposes, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None}, &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
+      <details key="ExercisingSpecificRightsPurposesShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::ExercisingSpecificRights, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::Employment, ProcessingReasonSubtype::SocialSecurity,ProcessingReasonSubtype::SocialProtection, ProcessingReasonSubtype::None}, &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
+      <details key="MarketingShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::Marketing, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None}, &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
+      <details key="TestingShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::Testing, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None}, &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
+      <details key="ProfilingShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::Profiling, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None}, &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
+    </eAnnotations>
+    <eOperations name="isValid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.processingReason = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else if(self.processingReasonSubtype = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(not(purpose.processingReason = null) and self.processingReason = purpose.processingReason) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;or&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(self.subPurposes->notEmpty() and self.subPurposes->exists(s| s.isValid(purpose)))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(not(purpose.processingReason = null) and not(purpose.processingReasonSubtype = null) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and self.processingReason = purpose.processingReason and self.processingReasonSubtype = purpose.processingReasonSubtype)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;or &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(self.subPurposes->notEmpty() and self.subPurposes->exists(s| s.isValid(purpose)))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="purpose" eType="#//Purpose"/>
+    </eOperations>
+    <eOperations name="isSubPurposeValid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if(purpose.processingReason = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;  else &#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;if(purpose.processingReason = reason) then&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;&#x9;if(purpose.processingReasonSubtype = null) then&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;&#x9;&#x9;subreasons->exists(r| r = purpose.processingReasonSubtype)&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;  endif"/>
+      </eAnnotations>
+      <eParameters name="reason" eType="#//ProcessingReason"/>
+      <eParameters name="subreasons" unique="false" upperBound="-1" eType="#//ProcessingReasonSubtype"/>
+      <eParameters name="purpose" eType="#//Purpose"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="additionalProtectionControls"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingReason" lowerBound="1"
+        eType="#//ProcessingReason"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingReasonSubtype"
+        lowerBound="1" eType="#//ProcessingReasonSubtype"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subPurposes" upperBound="-1"
+        eType="#//Purpose" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ProcessingReason">
+    <eLiterals name="Research"/>
+    <eLiterals name="PublicHealth" value="1"/>
+    <eLiterals name="OutOfScope" value="2"/>
+    <eLiterals name="PublicInterest" value="3"/>
+    <eLiterals name="StatisticalPurposes" value="4"/>
+    <eLiterals name="ExercisingSpecificRights" value="5"/>
+    <eLiterals name="Marketing" value="6"/>
+    <eLiterals name="Testing" value="7"/>
+    <eLiterals name="Profiling" value="8"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ProcessingReasonSubtype">
+    <eLiterals name="None"/>
+    <eLiterals name="Prevention" value="1"/>
+    <eLiterals name="Investigation" value="2"/>
+    <eLiterals name="Detection" value="3"/>
+    <eLiterals name="Prosecution" value="4"/>
+    <eLiterals name="PreventionOfThreats" value="5"/>
+    <eLiterals name="OutOfEU" value="6"/>
+    <eLiterals name="PersonalActivity" value="7"/>
+    <eLiterals name="SpecialScopeOfActivity" value="8"/>
+    <eLiterals name="Employment" value="9"/>
+    <eLiterals name="SocialSecurity" value="10"/>
+    <eLiterals name="SocialProtection" value="11"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="What">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actions" upperBound="-1"
+        eType="#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="providers" upperBound="-1"
+        eType="#//Provider"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datas" upperBound="-1"
+        eType="#//PrivacyData"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ConstraintScope">
+    <eLiterals name="In"/>
+    <eLiterals name="Out" value="1"/>
+    <eLiterals name="All" value="2"/>
+    <eLiterals name="None" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataConstraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
+        eType="#//Constraint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Restriction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="restrictionType" eType="#//RestrictionType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="notAllowed" upperBound="-1"
+        eType="#//Location"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="How">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="DataSourceShouldExistsInConfiguration"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="DataSourceShouldExistsInConfiguration" value="Tuple {&#xA;&#x9;message : String = 'Data source should be defined in configuration.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDataSourceValid(self.dataSource)&#xA;}.status"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attached" upperBound="-1"
+        eType="#//Approval" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Approval" eSuperTypes="#//Restriction">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="StartDateShouldBeBeforeTerminationDate"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="StartDateShouldBeBeforeTerminationDate" value="Tuple {&#xA;&#x9;message : String = 'Terminationdate is after startdate!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;not(self.startDate > self.terminationDate)&#xA;}.status"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="terminationExplanation"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allowed" upperBound="-1"
+        eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="terminationDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationManager">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSources" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="protectionControlMethods"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Complaint" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="who" lowerBound="1" eType="#//Principal"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//ComplaintAction"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subject" lowerBound="1"
+        upperBound="-1" eType="#//PrivacyData"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="when" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ComplaintAction">
+    <eLiterals name="Erasure"/>
+    <eLiterals name="Rectification" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrivacyPolicyHelper">
+    <eOperations name="isPolicyControlValid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="PrivacyPolicy.allInstances()->asSequence()->first().configurationManager.protectionControlMethods->exists(q | q = policyControl)"/>
+      </eAnnotations>
+      <eParameters name="policyControl" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="isDataSourceValid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="PrivacyPolicy.allInstances()->asSequence()->first().configurationManager.dataSources->exists(q | q = dataSource)"/>
+      </eAnnotations>
+      <eParameters name="dataSource" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="areIntervalsOverlap" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if(interval2.intervals->size() = 1) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval2.intervals->at(1).preposition = TimePreposition::from or interval2.intervals->at(1).preposition = TimePreposition::after or interval2.intervals->at(1).preposition = TimePreposition::at) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;areDatesOverlap(interval1, interval2.intervals->at(1).dateTime)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(areDatesOverlap(interval1, interval2.intervals->at(1).dateTime))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;  else&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;if(interval2.intervals->size() = 2) then&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;&#x9;if(interval2.intervals->at(1).preposition = TimePreposition::from or interval2.intervals->at(1).preposition = TimePreposition::after or interval2.intervals->at(1).preposition = TimePreposition::at) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;areDatesOverlap(interval1, interval2.intervals->at(1).dateTime) and not(areDatesOverlap(interval1, interval2.intervals->at(2).dateTime))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(areDatesOverlap(interval1, interval2.intervals->at(1).dateTime)) and areDatesOverlap(interval1, interval2.intervals->at(2).dateTime)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;  endif"/>
+      </eAnnotations>
+      <eParameters name="interval1" lowerBound="1" eType="#//TimeInterval"/>
+      <eParameters name="interval2" lowerBound="1" eType="#//TimeInterval"/>
+    </eOperations>
+    <eOperations name="areDatesOverlap" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->size() = 1) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).preposition = TimePreposition::from or interval.intervals->at(1).preposition = TimePreposition::after or interval.intervals->at(1).preposition = TimePreposition::at) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(interval.intervals->at(1).dateTime &lt; date)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(interval.intervals->at(1).dateTime > date)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).preposition = TimePreposition::from or interval.intervals->at(1).preposition = TimePreposition::after) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(interval.intervals->at(1).dateTime &lt; date) and (not(interval.intervals->at(2).dateTime > date))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(interval.intervals->at(1).dateTime > date) and (not(interval.intervals->at(2).dateTime &lt; date))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="interval" lowerBound="1" eType="#//TimeInterval"/>
+      <eParameters name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </eOperations>
+    <eOperations name="isDateBeforeInterval" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->size() = 1) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).preposition = TimePreposition::from or interval.intervals->at(1).preposition = TimePreposition::after or interval.intervals->at(1).preposition = TimePreposition::at) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.intervals->at(1).dateTime > date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.intervals->at(1).dateTime &lt; date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).preposition = TimePreposition::from or interval.intervals->at(1).preposition = TimePreposition::after) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).dateTime &lt; interval.intervals->at(2).dateTime) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.intervals->at(1).dateTime > date and interval.intervals->at(2).dateTime > date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(2).dateTime &lt; interval.intervals->at(1).dateTime) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.intervals->at(1).dateTime > date and interval.intervals->at(2).dateTime > date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="interval" lowerBound="1" eType="#//TimeInterval"/>
+      <eParameters name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </eOperations>
+    <eOperations name="isDateAfterInterval" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->size() = 1) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).preposition = TimePreposition::to or interval.intervals->at(1).preposition = TimePreposition::before or interval.intervals->at(1).preposition = TimePreposition::until) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.intervals->at(1).dateTime > date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.intervals->at(1).dateTime &lt; date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).preposition = TimePreposition::from or interval.intervals->at(1).preposition = TimePreposition::after) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).dateTime &lt; interval.intervals->at(2).dateTime) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.intervals->at(1).dateTime &lt; date and interval.intervals->at(2).dateTime &lt; date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(2).dateTime &lt; interval.intervals->at(1).dateTime) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.intervals->at(1).dateTime &lt; date and interval.intervals->at(2).dateTime &lt; date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="interval" lowerBound="1" eType="#//TimeInterval"/>
+      <eParameters name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </eOperations>
+    <eOperations name="isDateInInterval" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->size() = 1) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).preposition = TimePreposition::at) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.intervals->at(1).dateTime = date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else if(interval.intervals->at(1).preposition = TimePreposition::to or interval.intervals->at(1).preposition = TimePreposition::before or interval.intervals->at(1).preposition = TimePreposition::until) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(interval.intervals->at(1).dateTime > date)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(interval.intervals->at(1).dateTime &lt; date)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).preposition = TimePreposition::from or interval.intervals->at(1).preposition = TimePreposition::after) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(1).dateTime &lt; interval.intervals->at(2).dateTime) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(interval.intervals->at(1).dateTime &lt; date) and not(interval.intervals->at(2).dateTime > date)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(date &lt; interval.intervals->at(2).dateTime) and not(date > interval.intervals->at(1).dateTime)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.intervals->at(2).dateTime &lt; interval.intervals->at(1).dateTime) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(interval.intervals->at(2).dateTime &lt; date) and not(interval.intervals->at(1).dateTime > date)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(date &lt; interval.intervals->at(1).dateTime) and not(date > interval.intervals->at(2).dateTime)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="interval" lowerBound="1" eType="#//TimeInterval"/>
+      <eParameters name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </eOperations>
+    <eOperations name="isValidPrincipalScope" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(principal = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;conScope = ConstraintScope::None&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else if(conScope = ConstraintScope::All) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else if(conScope = ConstraintScope::In and principal.scope = PrincipalScope::In) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;conScope = ConstraintScope::Out and principal.scope = PrincipalScope::Out&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="principal" eType="#//Principal"/>
+      <eParameters name="conScope" lowerBound="1" eType="#//ConstraintScope"/>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>
