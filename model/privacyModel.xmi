@@ -7,113 +7,14 @@
     xsi:schemaLocation="http://privacymodel privacyModel.ecore"
     name="Policy">
   <policyStatements
-      name="p1"
-      whose="//@allPrincipals.0">
-    <when>
-      <intervals
-          dateTime="2001-09-27T00:00:00.000+0200"/>
-      <intervals
-          preposition="to"
-          dateTime="2002-09-30T00:00:00.000+0200"/>
+      name="p1">
+    <when xsi:type="privacyModel:TimeInterval">
+      <start
+          dateTime="2011-01-01T00:00:00.000+0100"/>
+      <end preposition="to"
+          dateTime="2011-01-01T00:00:00.000+0100"/>
     </when>
-    <what datas="//@allDatas.0">
-      <actions>NotifyAboutErasure</actions>
-      <actions>Access</actions>
-    </what>
   </policyStatements>
-  <policyStatements
-      name="p2">
-    <when>
-      <intervals
-          preposition="after"
-          dateTime="2002-09-29T00:00:00.000+0200"/>
-    </when>
-    <why>
-      <subPurposes
-          processingReason="OutOfScope"
-          processingReasonSubtype="OutOfEU"/>
-      <subPurposes
-          processingReason="PublicHealth">
-        <subPurposes
-            processingReason="StatisticalPurposes">
-          <subPurposes
-              processingReason="Profiling"/>
-          <subPurposes
-              processingReason="OutOfScope"
-              processingReasonSubtype="Detection"/>
-          <subPurposes/>
-        </subPurposes>
-      </subPurposes>
-    </why>
-    <what datas="//@allDatas.0">
-      <actions>Store</actions>
-    </what>
-    <how dataSource="test">
-      <attached
-          terminationExplanation="PEra"
-          startDate="1985-09-29T01:00:00.000+0200"
-          terminationDate="1989-11-17T00:00:00.000+0100"/>
-    </how>
-  </policyStatements>
-  <policyStatements
-      name="p3"
-      whose="//@allPrincipals.1">
-    <what datas="//@allDatas.1">
-      <actions>Access</actions>
-    </what>
-  </policyStatements>
-  <policyStatements
-      name="p4">
-    <when>
-      <intervals
-          preposition="until"
-          dateTime="1999-08-29T00:00:00.000+0200"/>
-    </when>
-    <why processingReason="OutOfScope"
-        processingReasonSubtype="Detection"/>
-    <what datas="//@allDatas.0">
-      <actions>Access</actions>
-    </what>
-    <how dataSource="test">
-      <attached
-          terminationExplanation="PEra"
-          startDate="1985-09-29T01:00:00.000+0200"
-          terminationDate="1989-11-17T00:00:00.000+0100"/>
-    </how>
-  </policyStatements>
-  <policyStatements
-      name="p5"
-      whose="//@allPrincipals.0"
-      whom="//@allPrincipals.1">
-    <when>
-      <intervals
-          preposition="at"
-          dateTime="2020-08-30T00:00:00.000+0200"/>
-    </when>
-    <what providers="//@allProviders.0"
-        datas="//@allDatas.0">
-      <actions>Store</actions>
-    </what>
-    <how dataSource="test">
-      <attached
-          restrictionType="ExplicitConsent"
-          allowed="//@locations.1 //@locations.0"
-          startDate="2020-08-29T00:00:00.000+0200"
-          terminationDate="2020-10-28T23:00:00.000+0100"/>
-    </how>
-  </policyStatements>
-  <policyStatements
-      name="p6"
-      whose="//@allPrincipals.1">
-    <when>
-      <intervals
-          dateTime="2007-08-29T00:00:00.000+0200"/>
-    </when>
-    <what datas="//@allDatas.1">
-      <actions>Access</actions>
-    </what>
-  </policyStatements>
-  <policyStatements/>
   <allPrincipals
       name="Tijana"
       type="Group"/>
@@ -134,22 +35,8 @@
     <protectionControlMethods>tommo</protectionControlMethods>
   </configurationManager>
   <allDatas
-      name="hight">
-    <accessConstraints>
-      <value
-          dataControllerScope="None"
-          dataRecipientScope="All">
-        <required
-            notAllowed="//@locations.0"/>
-      </value>
-    </accessConstraints>
-  </allDatas>
+      name="hight"/>
   <allDatas
       name="weight"/>
-  <dataSubjectComplaints
-      name="c2"
-      who="//@allPrincipals.1"
-      subject="//@allDatas.1"
-      when="1999-08-29T00:00:00.000+0200"/>
   <privacyPolicyHelper/>
 </privacyModel:PrivacyPolicy>
