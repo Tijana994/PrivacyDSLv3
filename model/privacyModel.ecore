@@ -34,6 +34,27 @@
       </eAnnotations>
       <eParameters name="complaint" eType="#//Complaint"/>
     </eOperations>
+    <eOperations name="FindPolicyStatementsWithType" upperBound="-1" eType="#//PolicyStatement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.policyStatements->select(stmt:PolicyStatement | stmt.type = stmtType)"/>
+      </eAnnotations>
+      <eParameters name="stmtType" lowerBound="1" eType="#//PrivacyStatementType"/>
+    </eOperations>
+    <eOperations name="FindOppositePolicyStatementForStatement" upperBound="-1" eType="#//PolicyStatement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.FindPolicyStatementsWithType(stmtType)->select(ps:PolicyStatement | ps.equalWhatPart(stmt.what) = true)"/>
+      </eAnnotations>
+      <eParameters name="stmtType" lowerBound="1" eType="#//PrivacyStatementType"/>
+      <eParameters name="stmt" lowerBound="1" eType="#//PolicyStatement"/>
+    </eOperations>
+    <eOperations name="FindOppositePolicyStatementBeforeInterval" upperBound="-1"
+        eType="#//PolicyStatement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="stmts->select(ps:PolicyStatement| self.privacyPolicyHelper.doesIntervalStartBeforeInterval(ps.when, interval)=true)"/>
+      </eAnnotations>
+      <eParameters name="stmts" upperBound="-1" eType="#//PolicyStatement"/>
+      <eParameters name="interval" lowerBound="1" eType="#//AbstractTime"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="policyStatements" upperBound="-1"
         eType="#//PolicyStatement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Principal"/>
@@ -58,7 +79,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PolicyStatement" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="InvalidActionComplaintAlreadyExists UndefinedPurposeForAccess DateShoudBeDefinedForAccessAction DateShoudBeDefinedForStoreAction ShouldDefineCauseByForNotifyErasure ShouldDefineCauseByForNotifyAboutRectification"/>
+      <details key="constraints" value="InvalidActionComplaintAlreadyExists UndefinedPurposeForAccess DateShoudBeDefinedForAccessAction DateShoudBeDefinedForStoreAction ShouldDefineCauseByForNotifyErasure ShouldDefineCauseByForNotifyAboutRectification ObligationMissingPermission ObligationHasProhibition OptionalMissingPermision"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="InvalidActionComplaintAlreadyExists" value="Tuple {&#xA;&#x9;message : String = 'Complaint on this privacy data already exists.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(self.what.actions->size() = 1 and (self.what.actions->exists(a | a = Action::NotifyAboutErasure) or self.what.actions->exists(a | a = Action::NotifyAboutRectification))) then&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else if(PrivacyPolicy.allInstances()->asSequence()->first().dataSubjectComplaints->exists(complaint| complaint.subject->includesAll(self.what.datas))) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().dataSubjectComplaints->select(complaint:Complaint| complaint.subject->includesAll(self.what.datas))->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;forAll(complaint:Complaint|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let st : PolicyStatement = PrivacyPolicy.allInstances()->asSequence()->first().getPolicyStatementWithConstraint(complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(st = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.startTime(st.when))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateInInterval(self.when, complaint.when))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
@@ -67,7 +88,16 @@
       <details key="DateShoudBeDefinedForStoreAction" value="Tuple {&#xA;&#x9;message : String = 'Date shoud be defined',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;dateShouldBeDefinedForType(Action::Store)&#xA;}.status"/>
       <details key="ShouldDefineCauseByForNotifyErasure" value="Tuple {&#xA;&#x9;message : String = 'Acton NotifyAboutErasure should contain causedBy with complaint Erasure',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.actionContainsCausedByAsType(Action::NotifyAboutErasure, ComplaintAction::Erasure)&#xA;}.status"/>
       <details key="ShouldDefineCauseByForNotifyAboutRectification" value="Tuple {&#xA;&#x9;message : String = 'Acton NotifyAboutRectification should contain causedBy with complaint Rectification',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.actionContainsCausedByAsType(Action::NotifyAboutRectification, ComplaintAction::Rectification)&#xA;}.status"/>
+      <details key="ObligationMissingPermission" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Obligation) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Permission, self), self.when)->size() > 0) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
+      <details key="ObligationHasProhibition" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Obligation) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Prohibition, self), self.when)->size() > 0) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
+      <details key="OptionalMissingPermision" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Optional) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Permission, self), self.when)->size() > 0) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;endif"/>
     </eAnnotations>
+    <eOperations name="equalWhatPart" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.what.actions->intersection(whatPart.actions)->size() > 0 and self.what.providers->intersection(whatPart.providers)->size() > 0"/>
+      </eAnnotations>
+      <eParameters name="whatPart" lowerBound="1" eType="#//What"/>
+    </eOperations>
     <eOperations name="actionContainsCausedByAsType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.actions->forAll(action:Action|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(action = actionType) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.causedBy = null or self.whose = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.causedBy.action = complaintType and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.datas->includesAll(self.causedBy.subject) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.whose = self.causedBy.who) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
@@ -97,7 +127,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="who" eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="why" eType="#//Purpose"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//Where"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="what" lowerBound="1" eType="#//What"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="how" eType="#//How" containment="true"/>
@@ -392,9 +422,16 @@
       <eParameters name="time" lowerBound="1" eType="#//AbstractTime"/>
       <eParameters name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     </eOperations>
+    <eOperations name="doesIntervalStartBeforeInterval" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if(startInterval.oclIsKindOf(TimeStatement)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let timestmt : TimeStatement = startInterval.oclAsType(TimeStatement) in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(timestmt.preposition = TimePreposition::from or timestmt.preposition = TimePreposition::after or timestmt.preposition = TimePreposition::at) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;isDateBeforeInterval(finishInterval, timestmt.dateTime)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(isDateBeforeInterval(finishInterval, timestmt.dateTime))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;  else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let interval : TimeInterval = startInterval.oclAsType(TimeInterval) in&#xA;&#x9;&#x9;&#x9;  &#x9;&#x9;if(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after or interval.start.preposition = TimePreposition::at) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;isDateBeforeInterval(finishInterval, interval.start.dateTime) and not(isDateBeforeInterval(finishInterval, interval.end.dateTime))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(isDateBeforeInterval(finishInterval, interval.start.dateTime)) and isDateBeforeInterval(finishInterval, interval.end.dateTime)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;  endif"/>
+      </eAnnotations>
+      <eParameters name="startInterval" lowerBound="1" eType="#//AbstractTime"/>
+      <eParameters name="finishInterval" lowerBound="1" eType="#//AbstractTime"/>
+    </eOperations>
     <eOperations name="isDateBeforeInterval" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(time.oclIsKindOf(TimeStatement)) then&#xA;&#x9;&#x9;&#x9;&#x9;let timestmt : TimeStatement = time.oclAsType(TimeStatement) in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(timestmt.preposition = TimePreposition::from or timestmt.preposition = TimePreposition::after or timestmt.preposition = TimePreposition::at) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;timestmt.dateTime > date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;timestmt.dateTime &lt; date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let interval : TimeInterval = time.oclAsType(TimeInterval) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.start.dateTime &lt; interval.end.dateTime) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.start.dateTime > date and interval.end.dateTime > date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.end.dateTime &lt; interval.start.dateTime) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.start.dateTime > date and interval.end.dateTime > date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(time.oclIsKindOf(TimeStatement)) then&#xA;&#x9;&#x9;&#x9;&#x9;let timestmt : TimeStatement = time.oclAsType(TimeStatement) in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(timestmt.preposition = TimePreposition::from or timestmt.preposition = TimePreposition::after or timestmt.preposition = TimePreposition::at) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;date &lt; timestmt.dateTime&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;timestmt.dateTime &lt; date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let interval : TimeInterval = time.oclAsType(TimeInterval) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.start.dateTime &lt; interval.end.dateTime) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.start.dateTime > date and interval.end.dateTime > date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(interval.end.dateTime &lt; interval.start.dateTime) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;interval.start.dateTime > date and interval.end.dateTime > date&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
       </eAnnotations>
       <eParameters name="time" lowerBound="1" eType="#//AbstractTime"/>
       <eParameters name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
@@ -426,5 +463,9 @@
       <eParameters name="principal" eType="#//Principal"/>
       <eParameters name="conScope" lowerBound="1" eType="#//ConstraintScope"/>
     </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Where">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//Location"/>
   </eClassifiers>
 </ecore:EPackage>

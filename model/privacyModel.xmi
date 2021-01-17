@@ -7,13 +7,33 @@
     xsi:schemaLocation="http://privacymodel privacyModel.ecore"
     name="Policy">
   <policyStatements
-      name="p1">
-    <when xsi:type="privacyModel:TimeInterval">
-      <start
-          dateTime="2011-01-01T00:00:00.000+0100"/>
-      <end preposition="to"
-          dateTime="2011-01-01T00:00:00.000+0100"/>
-    </when>
+      name="p1"
+      type="Obligation">
+    <when xsi:type="privacyModel:TimeStatement"
+        dateTime="2021-01-01T00:00:00.000+0100"/>
+    <what providers="//@allProviders.0"
+        datas="//@allDatas.0">
+      <actions>Store</actions>
+    </what>
+  </policyStatements>
+  <policyStatements
+      name="p2">
+    <when xsi:type="privacyModel:TimeStatement"
+        dateTime="2020-01-01T00:00:00.000+0100"/>
+    <what providers="//@allProviders.0"
+        datas="//@allDatas.0 //@allDatas.1">
+      <actions>Store</actions>
+    </what>
+  </policyStatements>
+  <policyStatements
+      name="p3"
+      type="Prohibition">
+    <when xsi:type="privacyModel:TimeStatement"
+        dateTime="2020-07-01T01:00:00.000+0200"/>
+    <what providers="//@allProviders.0"
+        datas="//@allDatas.0">
+      <actions>Store</actions>
+    </what>
   </policyStatements>
   <allPrincipals
       name="Tijana"

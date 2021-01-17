@@ -113,6 +113,9 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicy/getPolicyStatementWithConstraint">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/getPolicyStatementWithConstraint/complaint"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicy/FindPolicyStatementsWithType">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/FindPolicyStatementsWithType/stmtType"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PolicyStatement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//PolicyStatement/type"/>
@@ -254,6 +257,10 @@
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isValidPrincipalScope/principal"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isValidPrincipalScope/conScope"/>
       </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="privacyModel.ecore#//Where">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/from"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/to"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
