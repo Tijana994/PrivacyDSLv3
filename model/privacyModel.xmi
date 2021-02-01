@@ -8,22 +8,32 @@
     name="Policy">
   <policyStatements
       name="p1"
-      type="Obligation">
+      type="Obligation"
+      who="//@allPrincipals.0"
+      whose="//@allPrincipals.1"
+      whom="//@allPrincipals.1/@subPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         dateTime="2021-01-01T00:00:00.000+0100"/>
     <what providers="//@allProviders.0"
         datas="//@allDatas.0">
       <actions>Store</actions>
     </what>
+    <where source="//@locations.0/@subLocations.0"
+        destination="//@locations.0/@subLocations.0"/>
   </policyStatements>
   <policyStatements
-      name="p2">
+      name="p2"
+      who="//@allPrincipals.0"
+      whose="//@allPrincipals.1"
+      whom="//@allPrincipals.1">
     <when xsi:type="privacyModel:TimeStatement"
         dateTime="2020-01-01T00:00:00.000+0100"/>
     <what providers="//@allProviders.0"
         datas="//@allDatas.0 //@allDatas.1">
       <actions>Store</actions>
     </what>
+    <where source="//@locations.0/@subLocations.0"
+        destination="//@locations.1"/>
   </policyStatements>
   <policyStatements
       name="p3"
@@ -34,14 +44,23 @@
         datas="//@allDatas.0">
       <actions>Store</actions>
     </what>
+    <where source="//@locations.0"
+        destination="//@locations.0"/>
   </policyStatements>
   <allPrincipals
-      name="Tijana"
+      name="Tijano"
       type="Group"/>
   <allPrincipals
-      name="TijanaOrg"/>
+      name="Schneider">
+    <subPrincipals
+        name="Tijana"/>
+  </allPrincipals>
   <locations
-      name="Serbia"/>
+      name="Serbia">
+    <subLocations
+        name="Beograd"
+        type="Region"/>
+  </locations>
   <locations
       name="Madjarska"
       isEUMember="true"/>

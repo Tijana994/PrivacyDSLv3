@@ -116,18 +116,29 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicy/FindPolicyStatementsWithType">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/FindPolicyStatementsWithType/stmtType"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementForStatement">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementForStatement/stmtType"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementForStatement/stmt"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementBeforeInterval">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementBeforeInterval/stmts"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementBeforeInterval/interval"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PolicyStatement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//PolicyStatement/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/when"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/who"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/why"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/where"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/what"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/how"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/whose"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/whom"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/causedBy"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/where"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/equalWhatPart">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/equalWhatPart/whatPart"/>
+      </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/actionContainsCausedByAsType">
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/actionContainsCausedByAsType/actionType"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/actionContainsCausedByAsType/complaintType"/>
@@ -137,6 +148,10 @@
       </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/dateShouldBeDefinedForType">
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/dateShouldBeDefinedForType/actionType"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/arePrincipalsEqual">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/arePrincipalsEqual/observablePrincipal"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/arePrincipalsEqual/targetPrincipal"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PrivacyData">
@@ -153,11 +168,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Principal/subPrincipals"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Principal/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Principal/scope"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//Principal/areEquals">
+        <genParameters ecoreParameter="privacyModel.ecore#//Principal/areEquals/observed"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Location">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Location/isEUMember"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Location/type"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Location/subLocations"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//Location/areEquals">
+        <genParameters ecoreParameter="privacyModel.ecore#//Location/areEquals/observed"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//AbstractTime"/>
     <genClasses ecoreClass="privacyModel.ecore#//TimeInterval">
@@ -238,6 +259,10 @@
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/areDatesOverlap/time"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/areDatesOverlap/date"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/doesIntervalStartBeforeInterval">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/doesIntervalStartBeforeInterval/startInterval"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/doesIntervalStartBeforeInterval/finishInterval"/>
+      </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/isDateBeforeInterval">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isDateBeforeInterval/time"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isDateBeforeInterval/date"/>
@@ -259,8 +284,8 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Where">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/from"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/to"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/target"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

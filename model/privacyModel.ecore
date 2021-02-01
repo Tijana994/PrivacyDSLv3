@@ -42,7 +42,7 @@
     </eOperations>
     <eOperations name="FindOppositePolicyStatementForStatement" upperBound="-1" eType="#//PolicyStatement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.FindPolicyStatementsWithType(stmtType)->select(ps:PolicyStatement | ps.equalWhatPart(stmt.what) = true)"/>
+        <details key="body" value="self.FindPolicyStatementsWithType(stmtType)->select(ps:PolicyStatement | ps.equalWhatPart(stmt.what) = true &#xA;&#x9;&#x9;&#x9;&#x9;and ps.arePrincipalsEqual(stmt.who, ps.who) and ps.arePrincipalsEqual(stmt.whom,ps.whom) and ps.arePrincipalsEqual(stmt.whose,ps.whose)&#xA;&#x9;&#x9;&#x9;&#x9;and ps.areWheresEqual(stmt.where, ps.where)&#xA;&#x9;&#x9;&#x9;&#x9;)"/>
       </eAnnotations>
       <eParameters name="stmtType" lowerBound="1" eType="#//PrivacyStatementType"/>
       <eParameters name="stmt" lowerBound="1" eType="#//PolicyStatement"/>
@@ -88,9 +88,9 @@
       <details key="DateShoudBeDefinedForStoreAction" value="Tuple {&#xA;&#x9;message : String = 'Date shoud be defined',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;dateShouldBeDefinedForType(Action::Store)&#xA;}.status"/>
       <details key="ShouldDefineCauseByForNotifyErasure" value="Tuple {&#xA;&#x9;message : String = 'Acton NotifyAboutErasure should contain causedBy with complaint Erasure',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.actionContainsCausedByAsType(Action::NotifyAboutErasure, ComplaintAction::Erasure)&#xA;}.status"/>
       <details key="ShouldDefineCauseByForNotifyAboutRectification" value="Tuple {&#xA;&#x9;message : String = 'Acton NotifyAboutRectification should contain causedBy with complaint Rectification',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.actionContainsCausedByAsType(Action::NotifyAboutRectification, ComplaintAction::Rectification)&#xA;}.status"/>
-      <details key="ObligationMissingPermission" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Obligation) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Permission, self), self.when)->size() > 0) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
-      <details key="ObligationHasProhibition" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Obligation) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Prohibition, self), self.when)->size() > 0) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
-      <details key="OptionalMissingPermision" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Optional) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Permission, self), self.when)->size() > 0) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;endif"/>
+      <details key="ObligationMissingPermission" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Obligation) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Permission, self), self.when)->size() > 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
+      <details key="ObligationHasProhibition" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Obligation) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Prohibition, self), self.when)->size() > 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
+      <details key="OptionalMissingPermision" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Optional) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Permission, self), self.when)->size() > 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;endif"/>
     </eAnnotations>
     <eOperations name="equalWhatPart" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -117,6 +117,20 @@
       </eAnnotations>
       <eParameters name="actionType" lowerBound="1" eType="#//Action"/>
     </eOperations>
+    <eOperations name="arePrincipalsEqual" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if(targetPrincipal = null) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else if(observablePrincipal = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;targetPrincipal.areEquals(observablePrincipal)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="observablePrincipal" eType="#//Principal"/>
+      <eParameters name="targetPrincipal" eType="#//Principal"/>
+    </eOperations>
+    <eOperations name="areWheresEqual" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if(target = null) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else if(observable = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;target.areEquals(observable)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="observable" eType="#//Where"/>
+      <eParameters name="target" eType="#//Where"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//PrivacyStatementType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="when" eType="#//AbstractTime"
         containment="true">
@@ -127,13 +141,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="who" eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="why" eType="#//Purpose"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//Where"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="what" lowerBound="1" eType="#//What"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="how" eType="#//How" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="whose" eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="whom" eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="causedBy" eType="#//Complaint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//Where"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrivacyData" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//DataType"/>
@@ -161,6 +176,12 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="UniquePrincipalNamePerType" value="Tuple {&#xA;&#x9;message : String = 'Principal name per type is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.subPrincipals->forAll(pr1:Principal,pr2:Principal| &#xA;&#x9;&#x9;&#x9;if(pr1.type = pr2.type) then &#xA;&#x9;&#x9;&#x9;pr1.name = pr2.name implies pr1 = pr2&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;)&#xA;}.status"/>
     </eAnnotations>
+    <eOperations name="areEquals" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if(self = observed) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;  else &#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;self.subPrincipals->notEmpty() and self.subPrincipals->exists(s| s.areEquals(observed))&#xA;&#x9;&#x9;&#x9;&#x9;  endif"/>
+      </eAnnotations>
+      <eParameters name="observed" eType="#//Principal"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subPrincipals" upperBound="-1"
         eType="#//Principal" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//PrincipalType"/>
@@ -183,6 +204,12 @@
     <eLiterals name="SexLife" value="6"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Location" eSuperTypes="#//NamedElement">
+    <eOperations name="areEquals" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="if(self = observed) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;  else &#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;self.subLocations->notEmpty() and self.subLocations->exists(s| s.areEquals(observed))&#xA;&#x9;&#x9;&#x9;&#x9;  endif"/>
+      </eAnnotations>
+      <eParameters name="observed" eType="#//Location"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEUMember" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//LocationType"/>
@@ -465,7 +492,13 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Where">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//Location"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//Location"/>
+    <eOperations name="areEquals" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.source = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.destination = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(observed.destination = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.destination.areEquals(observed.destination)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.destination = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(observed.source = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.source.areEquals(observed.source)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(observed.destination = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(observed.source = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.source.areEquals(observed.source) and self.destination.areEquals(observed.destination)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="observed" eType="#//Where"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//Location"/>
   </eClassifiers>
 </ecore:EPackage>
