@@ -47,6 +47,13 @@
       <eParameters name="stmtType" lowerBound="1" eType="#//PrivacyStatementType"/>
       <eParameters name="stmt" lowerBound="1" eType="#//PolicyStatement"/>
     </eOperations>
+    <eOperations name="findAlreadyDefinedRules" upperBound="-1" eType="#//PolicyStatement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.FindPolicyStatementsWithType(stmtType)->select(ps:PolicyStatement | &#xA;&#x9;&#x9;&#x9;&#x9;if(ps.equalActionsAndDatas(stmt.what) and ps.arePrincipalsEqual(stmt.whose, ps.whose)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;(ps.equalsProviders(stmt.what) and stmt.arePrincipalsEqual(stmt.who, ps.who)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and stmt.arePrincipalsEqual(stmt.whom, ps.whom) and ps.areWheresEqual(stmt.where, ps.where)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;) = false&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;)"/>
+      </eAnnotations>
+      <eParameters name="stmtType" lowerBound="1" eType="#//PrivacyStatementType"/>
+      <eParameters name="stmt" lowerBound="1" eType="#//PolicyStatement"/>
+    </eOperations>
     <eOperations name="FindOppositePolicyStatementBeforeInterval" upperBound="-1"
         eType="#//PolicyStatement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -79,7 +86,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PolicyStatement" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="InvalidActionComplaintAlreadyExists UndefinedPurposeForAccess DateShoudBeDefinedForAccessAction DateShoudBeDefinedForStoreAction ShouldDefineCauseByForNotifyErasure ShouldDefineCauseByForNotifyAboutRectification ObligationMissingPermission ObligationHasProhibition OptionalMissingPermision"/>
+      <details key="constraints" value="InvalidActionComplaintAlreadyExists UndefinedPurposeForAccess DateShoudBeDefinedForAccessAction DateShoudBeDefinedForStoreAction ShouldDefineCauseByForNotifyErasure ShouldDefineCauseByForNotifyAboutRectification ObligationMissingPermission ObligationHasProhibition OptionalMissingPermision OptionalHasProhibition OptionalHasOtherObligation"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="InvalidActionComplaintAlreadyExists" value="Tuple {&#xA;&#x9;message : String = 'Complaint on this privacy data already exists.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(self.what.actions->size() = 1 and (self.what.actions->exists(a | a = Action::NotifyAboutErasure) or self.what.actions->exists(a | a = Action::NotifyAboutRectification))) then&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else if(PrivacyPolicy.allInstances()->asSequence()->first().dataSubjectComplaints->exists(complaint| complaint.subject->includesAll(self.what.datas))) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().dataSubjectComplaints->select(complaint:Complaint| complaint.subject->includesAll(self.what.datas))->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;forAll(complaint:Complaint|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let st : PolicyStatement = PrivacyPolicy.allInstances()->asSequence()->first().getPolicyStatementWithConstraint(complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(st = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.startTime(st.when))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateInInterval(self.when, complaint.when))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
@@ -88,13 +95,27 @@
       <details key="DateShoudBeDefinedForStoreAction" value="Tuple {&#xA;&#x9;message : String = 'Date shoud be defined',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;dateShouldBeDefinedForType(Action::Store)&#xA;}.status"/>
       <details key="ShouldDefineCauseByForNotifyErasure" value="Tuple {&#xA;&#x9;message : String = 'Acton NotifyAboutErasure should contain causedBy with complaint Erasure',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.actionContainsCausedByAsType(Action::NotifyAboutErasure, ComplaintAction::Erasure)&#xA;}.status"/>
       <details key="ShouldDefineCauseByForNotifyAboutRectification" value="Tuple {&#xA;&#x9;message : String = 'Acton NotifyAboutRectification should contain causedBy with complaint Rectification',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.actionContainsCausedByAsType(Action::NotifyAboutRectification, ComplaintAction::Rectification)&#xA;}.status"/>
-      <details key="ObligationMissingPermission" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Obligation) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Permission, self), self.when)->size() > 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
-      <details key="ObligationHasProhibition" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Obligation) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Prohibition, self), self.when)->size() > 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
-      <details key="OptionalMissingPermision" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = PrivacyStatementType::Optional) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(PrivacyStatementType::Permission, self), self.when)->size() > 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;endif"/>
+      <details key="ObligationMissingPermission" value="&#xA;&#x9;&#x9;&#x9;doesOperationMissingOppositeOperation(PrivacyStatementType::Obligation, PrivacyStatementType::Permission)"/>
+      <details key="ObligationHasProhibition" value="&#xA;&#x9;&#x9;&#x9;doesOperationNotHaveOppositeOperation(PrivacyStatementType::Obligation,PrivacyStatementType::Prohibition)"/>
+      <details key="OptionalMissingPermision" value="&#xA;&#x9;&#x9;&#x9;doesOperationMissingOppositeOperation(PrivacyStatementType::Optional, PrivacyStatementType::Permission)"/>
+      <details key="OptionalHasProhibition" value="&#xA;&#x9;&#x9;&#x9;doesOperationNotHaveOppositeOperation(PrivacyStatementType::Optional,PrivacyStatementType::Prohibition)"/>
+      <details key="OptionalHasOtherObligation" value="&#xA;&#x9;&#x9;&#x9;doesOperationNotHaveOppositeOperationWithDifferentParts(PrivacyStatementType::Optional,PrivacyStatementType::Obligation)"/>
     </eAnnotations>
     <eOperations name="equalWhatPart" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.what.actions->intersection(whatPart.actions)->size() > 0 and self.what.providers->intersection(whatPart.providers)->size() > 0"/>
+        <details key="body" value="self.what.actions->intersection(whatPart.actions)->size() > 0 and self.what.datas->intersection(whatPart.datas)->size() > 0&#xA;&#x9;&#x9;&#x9; and self.what.providers->intersection(whatPart.providers)->size() > 0"/>
+      </eAnnotations>
+      <eParameters name="whatPart" lowerBound="1" eType="#//What"/>
+    </eOperations>
+    <eOperations name="equalActionsAndDatas" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.what.actions->intersection(whatPart.actions)->size() > 0 and self.what.datas->intersection(whatPart.datas)->size() > 0"/>
+      </eAnnotations>
+      <eParameters name="whatPart" lowerBound="1" eType="#//What"/>
+    </eOperations>
+    <eOperations name="equalsProviders" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.what.providers->intersection(whatPart.providers)->size() > 0"/>
       </eAnnotations>
       <eParameters name="whatPart" lowerBound="1" eType="#//What"/>
     </eOperations>
@@ -128,8 +149,29 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="if(target = null) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else if(observable = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;target.areEquals(observable)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
       </eAnnotations>
-      <eParameters name="observable" eType="#//Where"/>
-      <eParameters name="target" eType="#//Where"/>
+      <eParameters name="observable" lowerBound="1" eType="#//Where"/>
+      <eParameters name="target" lowerBound="1" eType="#//Where"/>
+    </eOperations>
+    <eOperations name="doesOperationMissingOppositeOperation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = observed) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(target, self), self.when)->size() > 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="observed" eType="#//PrivacyStatementType"/>
+      <eParameters name="target" eType="#//PrivacyStatementType"/>
+    </eOperations>
+    <eOperations name="doesOperationNotHaveOppositeOperation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = observed) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FindOppositePolicyStatementForStatement(target, self), self.when)->size() = 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="observed" eType="#//PrivacyStatementType"/>
+      <eParameters name="target" eType="#//PrivacyStatementType"/>
+    </eOperations>
+    <eOperations name="doesOperationNotHaveOppositeOperationWithDifferentParts" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = observed) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().FindOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;findAlreadyDefinedRules(target, self), self.when)->size() = 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
+      </eAnnotations>
+      <eParameters name="observed" eType="#//PrivacyStatementType"/>
+      <eParameters name="target" eType="#//PrivacyStatementType"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//PrivacyStatementType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="when" eType="#//AbstractTime"

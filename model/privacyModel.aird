@@ -301,6 +301,10 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_ka70IVXREeuWYrZ9ZDIkdw" fontName="Segoe UI" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_ka70IlXREeuWYrZ9ZDIkdw"/>
             </children>
+            <children xmi:type="notation:Node" xmi:id="_3rXwwGleEeuxFbB_t63mkg" type="3010" element="_3p-poGleEeuxFbB_t63mkg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_3rXwwWleEeuxFbB_t63mkg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_3rXwwmleEeuxFbB_t63mkg"/>
+            </children>
             <children xmi:type="notation:Node" xmi:id="_SDz1UCg-Eeu3XdDcotsorQ" type="3010" element="_R7wskCg-Eeu3XdDcotsorQ">
               <styles xmi:type="notation:FontStyle" xmi:id="_SDz1USg-Eeu3XdDcotsorQ" fontName="Segoe UI" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_SDz1Uig-Eeu3XdDcotsorQ"/>
@@ -320,6 +324,18 @@
             <children xmi:type="notation:Node" xmi:id="_3srwAF2EEeu3AMBD5obNCw" type="3010" element="_3sPrIF2EEeu3AMBD5obNCw">
               <styles xmi:type="notation:FontStyle" xmi:id="_3srwAV2EEeu3AMBD5obNCw" fontName="Segoe UI" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_3srwAl2EEeu3AMBD5obNCw"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_iWFjMGh3EeuLo4LIYXu9UQ" type="3010" element="_iSgDsGh3EeuLo4LIYXu9UQ">
+              <styles xmi:type="notation:FontStyle" xmi:id="_iWFjMWh3EeuLo4LIYXu9UQ" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_iWFjMmh3EeuLo4LIYXu9UQ"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_-x6DsGlgEeuxFbB_t63mkg" type="3010" element="_-w4wAGlgEeuxFbB_t63mkg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_-x6DsWlgEeuxFbB_t63mkg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_-x6DsmlgEeuxFbB_t63mkg"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_xyCegGlhEeuxFbB_t63mkg" type="3010" element="_xxP0UGlhEeuxFbB_t63mkg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_xyCegWlhEeuxFbB_t63mkg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_xyCegmlhEeuxFbB_t63mkg"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_i-IXgSg1Eeu3XdDcotsorQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_i-IXgig1Eeu3XdDcotsorQ"/>
@@ -421,6 +437,10 @@
             <children xmi:type="notation:Node" xmi:id="_CRrP0FXREeuWYrZ9ZDIkdw" type="3010" element="_CQe9AFXREeuWYrZ9ZDIkdw">
               <styles xmi:type="notation:FontStyle" xmi:id="_CRrP0VXREeuWYrZ9ZDIkdw" fontName="Segoe UI" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_CRrP0lXREeuWYrZ9ZDIkdw"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_Aw9uMGldEeuxFbB_t63mkg" type="3010" element="_AvLlgGldEeuxFbB_t63mkg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_Aw-VQGldEeuxFbB_t63mkg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_Aw-VQWldEeuxFbB_t63mkg"/>
             </children>
             <children xmi:type="notation:Node" xmi:id="_iDNjAFjrEeuoOsOUYg1eag" type="3010" element="_iBkkQFjrEeuoOsOUYg1eag">
               <styles xmi:type="notation:FontStyle" xmi:id="_iDNjAVjrEeuoOsOUYg1eag" fontName="Segoe UI" fontHeight="8"/>
@@ -1410,7 +1430,7 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="__tqz8EYXEeupP96SMHDlgQ" type="4001" element="__svm4EYXEeupP96SMHDlgQ" source="_i-HJYyg1Eeu3XdDcotsorQ" target="_7vSS0EYXEeupP96SMHDlgQ">
           <children xmi:type="notation:Node" xmi:id="__tspIEYXEeupP96SMHDlgQ" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="__tspIUYXEeupP96SMHDlgQ" x="27" y="-65"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="__tspIUYXEeupP96SMHDlgQ" x="-42" y="-7"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="__ttQMEYXEeupP96SMHDlgQ" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="__ttQMUYXEeupP96SMHDlgQ" x="8" y="10"/>
@@ -1948,7 +1968,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_iioHQCg1Eeu3XdDcotsorQ" name="PolicyStatement" tooltipText="&#xA;WARNING : The «invariant» 'privacyModel::PolicyStatement' is invalid: '&quot;Tuple {\n\tmessage : String = \'Purpose is not define when data is collected\',\n\tstatus : Boolean = \n\t\t\t\tif(not(self.what = null) and self.what.actions->exists(act| act = Action::Access)) then\n\t\t\t\t\tself.what.datas->forAll(data: PrivacyData|\n\t\t\t\t\t\tlet statements : PolicyStatement[*|?] = PrivacyPolicy.allInstances()->asSequence()->first().policyStatements->select(st: PolicyStatement| \n\t\t\t\t\t\t\tnot(st.what = null) and st.what.actions->exists(act| act = Action::Store) and st.what.datas->exists(d| d = data))\n\t\t\t\t\t\t\tin \n\t\t\t\t\t\t\tif(statements->isEmpty()) then \n\t\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tstatements -> forAll(st: PolicyStatement|\n\t\t\t\t\t\t\t\t\tif(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\t\tst.isPurposeValid(self.why)\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\t\tendif\n}.status&quot;&#xA;&#x9;The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'org.eclipse.ocl.pivot.internal.LetVariableImpl@1f656121{platform:/resource/PrivacyModel/model/privacyModel.ecore.oclas#JjeZ,}''&#xA;WARNING : The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'LetVariable{platform:/resource/PrivacyModel/model/privacyModel.ecore.oclas#JjeZ,}'" outgoingEdges="_i9GcwCg1Eeu3XdDcotsorQ _i9Hq4Cg1Eeu3XdDcotsorQ _i9KHIyg1Eeu3XdDcotsorQ _i9LVQCg1Eeu3XdDcotsorQ _i9MjYCg1Eeu3XdDcotsorQ _i9NKcCg1Eeu3XdDcotsorQ _i9pPUCg1Eeu3XdDcotsorQ __svm4EYXEeupP96SMHDlgQ _SSniwFKCEeuqH6bDKS6CDQ _guRTgF2EEeu3AMBD5obNCw" incomingEdges="_i9TREyg1Eeu3XdDcotsorQ" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_iioHQCg1Eeu3XdDcotsorQ" name="PolicyStatement" tooltipText="&#xA;WARNING : The «invariant» 'privacyModel::PolicyStatement' is invalid: '&quot;Tuple {\n\tmessage : String = \'Purpose is not define when data is collected\',\n\tstatus : Boolean = \n\t\t\t\tif(not(self.what = null) and self.what.actions->exists(act| act = Action::Access)) then\n\t\t\t\t\tself.what.datas->forAll(data: PrivacyData|\n\t\t\t\t\t\tlet statements : PolicyStatement[*|?] = PrivacyPolicy.allInstances()->asSequence()->first().policyStatements->select(st: PolicyStatement| \n\t\t\t\t\t\t\tnot(st.what = null) and st.what.actions->exists(act| act = Action::Store) and st.what.datas->exists(d| d = data))\n\t\t\t\t\t\t\tin \n\t\t\t\t\t\t\tif(statements->isEmpty()) then \n\t\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tstatements -> forAll(st: PolicyStatement|\n\t\t\t\t\t\t\t\t\tif(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\t\tst.isPurposeValid(self.why)\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\t\tendif\n}.status&quot;&#xA;&#x9;The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'org.eclipse.ocl.pivot.internal.LetVariableImpl@2664707a{platform:/resource/PrivacyModel/model/privacyModel.ecore.oclas#JjeZ,}''&#xA;WARNING : The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'LetVariable{platform:/resource/PrivacyModel/model/privacyModel.ecore.oclas#JjeZ,}'" outgoingEdges="_i9GcwCg1Eeu3XdDcotsorQ _i9Hq4Cg1Eeu3XdDcotsorQ _i9KHIyg1Eeu3XdDcotsorQ _i9LVQCg1Eeu3XdDcotsorQ _i9MjYCg1Eeu3XdDcotsorQ _i9NKcCg1Eeu3XdDcotsorQ _i9pPUCg1Eeu3XdDcotsorQ __svm4EYXEeupP96SMHDlgQ _SSniwFKCEeuqH6bDKS6CDQ _guRTgF2EEeu3AMBD5obNCw" incomingEdges="_i9TREyg1Eeu3XdDcotsorQ" width="12" height="10">
       <target xmi:type="ecore:EClass" href="privacyModel.ecore#//PolicyStatement"/>
       <semanticElements xmi:type="ecore:EClass" href="privacyModel.ecore#//PolicyStatement"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1971,6 +1991,15 @@
         <semanticElements xmi:type="ecore:EOperation" href="privacyModel.ecore#//PolicyStatement/equalWhatPart"/>
         <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PolicyStatement/equalWhatPart/whatPart"/>
         <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_kaHUwFXREeuWYrZ9ZDIkdw" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_3p-poGleEeuxFbB_t63mkg" name="equalActionsAndNotEqualOtherPart(whatPart What) : EBoolean" tooltipText="equalActionsAndNotEqualOtherPart(whatPart) : EBoolean">
+        <target xmi:type="ecore:EOperation" href="privacyModel.ecore#//PolicyStatement/equalActionsAndNotEqualOtherPart"/>
+        <semanticElements xmi:type="ecore:EOperation" href="privacyModel.ecore#//PolicyStatement/equalActionsAndNotEqualOtherPart"/>
+        <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PolicyStatement/equalActionsAndNotEqualOtherPart/whatPart"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_3p_QsGleEeuxFbB_t63mkg" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
@@ -2019,6 +2048,36 @@
         <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PolicyStatement/areWheresEqual/observable"/>
         <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PolicyStatement/areWheresEqual/target"/>
         <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_3sQSMF2EEeu3AMBD5obNCw" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_iSgDsGh3EeuLo4LIYXu9UQ" name="doesOperationMissingOppositeOperation(observed PrivacyStatementType, target PrivacyStatementType) : EBooleanObject" tooltipText="doesOperationMissingOppositeOperation(observed, target) : EBooleanObject">
+        <target xmi:type="ecore:EOperation" href="privacyModel.ecore#//PolicyStatement/doesOperationMissingOppositeOperation"/>
+        <semanticElements xmi:type="ecore:EOperation" href="privacyModel.ecore#//PolicyStatement/doesOperationMissingOppositeOperation"/>
+        <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PolicyStatement/doesOperationMissingOppositeOperation/observed"/>
+        <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PolicyStatement/doesOperationMissingOppositeOperation/target"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_iSh44Gh3EeuLo4LIYXu9UQ" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_-w4wAGlgEeuxFbB_t63mkg" name="doesOperationNotHaveOppositeOperation(observed PrivacyStatementType, target PrivacyStatementType) : EBooleanObject" tooltipText="doesOperationNotHaveOppositeOperation(observed, target) : EBooleanObject">
+        <target xmi:type="ecore:EOperation" href="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperation"/>
+        <semanticElements xmi:type="ecore:EOperation" href="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperation"/>
+        <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperation/observed"/>
+        <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperation/target"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_-w5XEGlgEeuxFbB_t63mkg" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_xxP0UGlhEeuxFbB_t63mkg" name="doesOperationNotHaveOppositeOperationWithDifferentParts(observed PrivacyStatementType, target PrivacyStatementType) : EBooleanObject" tooltipText="doesOperationNotHaveOppositeOperationWithDifferentParts(observed, target) : EBooleanObject">
+        <target xmi:type="ecore:EOperation" href="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperationWithDifferentParts"/>
+        <semanticElements xmi:type="ecore:EOperation" href="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperationWithDifferentParts"/>
+        <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperationWithDifferentParts/observed"/>
+        <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperationWithDifferentParts/target"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_xxQbYGlhEeuxFbB_t63mkg" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
@@ -2149,7 +2208,7 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_itvLECg1Eeu3XdDcotsorQ" name="PrivacyPolicy" tooltipText="&#xA;WARNING : The «body» 'privacyModel::PrivacyPolicy::getPolicyStatementWithConstraint' is invalid: '&quot;let stet : PolicyStatement[*|?] = self.policyStatements->select(st: PolicyStatement| st.causedBy = complaint) in\n\t\t\t\t\t\t\tif(stet = null or stet->isEmpty()) then\n\t\t\t\t\t\t\t\tnull\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tstet->asSequence()->first()\n\t\t\t\t\t\t\tendif&quot;&#xA;&#x9;The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'org.eclipse.ocl.pivot.internal.LetVariableImpl@329035a7{platform:/resource/PrivacyModel/model/privacyModel.ecore.oclas#4jxZI}''&#xA;WARNING : The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'LetVariable{platform:/resource/PrivacyModel/model/privacyModel.ecore.oclas#4jxZI}'" outgoingEdges="_i9TREyg1Eeu3XdDcotsorQ _i9UfMyg1Eeu3XdDcotsorQ _i9VtUCg1Eeu3XdDcotsorQ _i9WUYyg1Eeu3XdDcotsorQ _i9XigCg1Eeu3XdDcotsorQ _i9YJkyg1Eeu3XdDcotsorQ _i9ZXsCg1Eeu3XdDcotsorQ _i9Z-wyg1Eeu3XdDcotsorQ _i9bM4Cg1Eeu3XdDcotsorQ _i9rEgCg1Eeu3XdDcotsorQ _y-m2YCv3EeuVweutS60jjA" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_itvLECg1Eeu3XdDcotsorQ" name="PrivacyPolicy" tooltipText="&#xA;WARNING : The «body» 'privacyModel::PrivacyPolicy::getPolicyStatementWithConstraint' is invalid: '&quot;let stet : PolicyStatement[*|?] = self.policyStatements->select(st: PolicyStatement| st.causedBy = complaint) in\n\t\t\t\t\t\t\tif(stet = null or stet->isEmpty()) then\n\t\t\t\t\t\t\t\tnull\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tstet->asSequence()->first()\n\t\t\t\t\t\t\tendif&quot;&#xA;&#x9;The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'org.eclipse.ocl.pivot.internal.LetVariableImpl@5930c5cb{platform:/resource/PrivacyModel/model/privacyModel.ecore.oclas#4jxZI}''&#xA;WARNING : The 'LetVariable::CompatibleTypeForInitializer' constraint is violated for 'LetVariable{platform:/resource/PrivacyModel/model/privacyModel.ecore.oclas#4jxZI}'" outgoingEdges="_i9TREyg1Eeu3XdDcotsorQ _i9UfMyg1Eeu3XdDcotsorQ _i9VtUCg1Eeu3XdDcotsorQ _i9WUYyg1Eeu3XdDcotsorQ _i9XigCg1Eeu3XdDcotsorQ _i9YJkyg1Eeu3XdDcotsorQ _i9ZXsCg1Eeu3XdDcotsorQ _i9Z-wyg1Eeu3XdDcotsorQ _i9bM4Cg1Eeu3XdDcotsorQ _i9rEgCg1Eeu3XdDcotsorQ _y-m2YCv3EeuVweutS60jjA" width="12" height="10">
       <target xmi:type="ecore:EClass" href="privacyModel.ecore#//PrivacyPolicy"/>
       <semanticElements xmi:type="ecore:EClass" href="privacyModel.ecore#//PrivacyPolicy"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -2191,6 +2250,16 @@
         <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementForStatement/stmt"/>
         <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementForStatement/stmtType"/>
         <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_CQfkEFXREeuWYrZ9ZDIkdw" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_AvLlgGldEeuxFbB_t63mkg" name="findAlreadyDefinedRules(stmtType PrivacyStatementType, stmt PolicyStatement) : PolicyStatement" tooltipText="findAlreadyDefinedRules(stmtType, stmt) : PolicyStatement">
+        <target xmi:type="ecore:EOperation" href="privacyModel.ecore#//PrivacyPolicy/findAlreadyDefinedRules"/>
+        <semanticElements xmi:type="ecore:EOperation" href="privacyModel.ecore#//PrivacyPolicy/findAlreadyDefinedRules"/>
+        <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PrivacyPolicy/findAlreadyDefinedRules/stmt"/>
+        <semanticElements xmi:type="ecore:EParameter" href="privacyModel.ecore#//PrivacyPolicy/findAlreadyDefinedRules/stmtType"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_AvMzoGldEeuxFbB_t63mkg" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='Operation']"/>
