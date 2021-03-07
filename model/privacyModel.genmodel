@@ -25,9 +25,9 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/Beliefs"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/SexLife"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//RestrictionType">
-      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//RestrictionType/Juvenile"/>
-      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//RestrictionType/ExplicitConsent"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//DocumentType">
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/Juvenile"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/ExplicitConsent"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//TimePreposition">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//TimePreposition/from"/>
@@ -38,9 +38,8 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//TimePreposition/after"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//PrincipalType">
-      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//PrincipalType/Organization"/>
-      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//PrincipalType/Group"/>
-      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//PrincipalType/Individual"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//PrincipalType/LegalEntity"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//PrincipalType/NaturalPerson"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//PrincipalScope">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//PrincipalScope/In"/>
@@ -120,6 +119,10 @@
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementForStatement/stmtType"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementForStatement/stmt"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicy/findAlreadyDefinedRules">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/findAlreadyDefinedRules/stmtType"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/findAlreadyDefinedRules/stmt"/>
+      </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementBeforeInterval">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementBeforeInterval/stmts"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicy/FindOppositePolicyStatementBeforeInterval/interval"/>
@@ -139,6 +142,12 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/equalWhatPart">
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/equalWhatPart/whatPart"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/equalActionsAndDatas">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/equalActionsAndDatas/whatPart"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/equalsProviders">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/equalsProviders/whatPart"/>
+      </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/actionContainsCausedByAsType">
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/actionContainsCausedByAsType/actionType"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/actionContainsCausedByAsType/complaintType"/>
@@ -153,6 +162,22 @@
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/arePrincipalsEqual/observablePrincipal"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/arePrincipalsEqual/targetPrincipal"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/areWheresEqual">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/areWheresEqual/observable"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/areWheresEqual/target"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/doesOperationMissingOppositeOperation">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/doesOperationMissingOppositeOperation/observed"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/doesOperationMissingOppositeOperation/target"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperation">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperation/observed"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperation/target"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperationWithDifferentParts">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperationWithDifferentParts/observed"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/doesOperationNotHaveOppositeOperationWithDifferentParts/target"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PrivacyData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//PrivacyData/type"/>
@@ -165,9 +190,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Provider/located"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Principal">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Principal/subPrincipals"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference privacyModel.ecore#//Principal/subPrincipals"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Principal/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Principal/scope"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Principal/birthDate"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Principal/responsiblePersons"/>
       <genOperations ecoreOperation="privacyModel.ecore#//Principal/areEquals">
         <genParameters ecoreParameter="privacyModel.ecore#//Principal/areEquals/observed"/>
       </genOperations>
@@ -201,7 +228,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//TimeStatement/dateTime"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Purpose">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/additionalProtectionControls"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/processingReason"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/processingReasonSubtype"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Purpose/subPurposes"/>
@@ -219,20 +245,22 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//What/providers"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//What/datas"/>
     </genClasses>
-    <genClasses ecoreClass="privacyModel.ecore#//Restriction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Restriction/restrictionType"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Restriction/value"/>
+    <genClasses ecoreClass="privacyModel.ecore#//Document">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Document/typeOfDocument"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//How">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//How/dataSource"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//How/attached"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//How/required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//How/additionalProtectionControls"/>
     </genClasses>
-    <genClasses ecoreClass="privacyModel.ecore#//Approval">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Approval/terminationExplanation"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Approval/allowed"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Approval/startDate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Approval/terminationDate"/>
+    <genClasses ecoreClass="privacyModel.ecore#//Consent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Consent/terminationExplanation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Consent/allowed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Consent/startDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Consent/terminationDate"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Consent/providedBy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Consent/fileLocation"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//ConfigurationManager">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//ConfigurationManager/dataSources"/>
@@ -285,7 +313,66 @@
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Where">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/target"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/destination"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//Where/areEquals">
+        <genParameters ecoreParameter="privacyModel.ecore#//Where/areEquals/observed"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Oclstdlib" ecorePackage="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#/">
+    <genDataTypes ecoreDataType="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Boolean"/>
+    <genDataTypes ecoreDataType="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Integer"/>
+    <genDataTypes ecoreDataType="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Real"/>
+    <genDataTypes ecoreDataType="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//String"/>
+    <genDataTypes ecoreDataType="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//UnlimitedNatural"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Bag">
+      <genTypeParameters ecoreTypeParameter="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Bag/T"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Collection">
+      <genTypeParameters ecoreTypeParameter="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Collection/T"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Collection/elementType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Collection/lower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Collection/upper"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Map">
+      <genTypeParameters ecoreTypeParameter="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Map/K"/>
+      <genTypeParameters ecoreTypeParameter="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Map/V"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Map/keyType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Map/valueType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclAny"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclComparable"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclElement/oclContainer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclElement/oclContents"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclEnumeration"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclInvalid">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclInvalid/oclBadProperty"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclLambda"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclMessage"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclSelf"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclState"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclStereotype"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclSummable"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclTuple"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclType"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OclVoid"/>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OrderedCollection">
+      <genTypeParameters ecoreTypeParameter="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OrderedCollection/T"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OrderedSet">
+      <genTypeParameters ecoreTypeParameter="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//OrderedSet/T"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Sequence">
+      <genTypeParameters ecoreTypeParameter="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Sequence/T"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Set">
+      <genTypeParameters ecoreTypeParameter="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//Set/T"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//UniqueCollection">
+      <genTypeParameters ecoreTypeParameter="platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore#//UniqueCollection/T"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

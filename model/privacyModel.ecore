@@ -225,9 +225,12 @@
       <eParameters name="observed" eType="#//Principal"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subPrincipals" upperBound="-1"
-        eType="#//Principal" containment="true"/>
+        eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//PrincipalType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="scope" lowerBound="1" eType="#//PrincipalScope"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="birthDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="responsiblePersons" upperBound="-1"
+        eType="#//Principal"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PrivacyStatementType">
     <eLiterals name="Permission"/>
@@ -258,7 +261,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subLocations" upperBound="-1"
         eType="#//Location" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="RestrictionType">
+  <eClassifiers xsi:type="ecore:EEnum" name="DocumentType">
     <eLiterals name="Juvenile"/>
     <eLiterals name="ExplicitConsent" value="1"/>
   </eClassifiers>
@@ -315,9 +318,8 @@
     <eLiterals name="after" value="5"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PrincipalType">
-    <eLiterals name="Organization"/>
-    <eLiterals name="Group" value="1"/>
-    <eLiterals name="Individual" value="2"/>
+    <eLiterals name="LegalEntity"/>
+    <eLiterals name="NaturalPerson" value="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PrincipalScope">
     <eLiterals name="In"/>
@@ -339,10 +341,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Purpose">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ProtectionControlShouldExistsInConfiguration ResearchShouldNotContainSubReason PublicHealthShouldNotContainSubReason OutOfScopeCannotContainsThisSubReason PublicInterestShouldNotContainSubReason StatisticalPurposesShouldNotContainSubReason ExercisingSpecificRightsPurposesShouldNotContainSubReason MarketingShouldNotContainSubReason TestingShouldNotContainSubReason ProfilingShouldNotContainSubReason"/>
+      <details key="constraints" value="ResearchShouldNotContainSubReason PublicHealthShouldNotContainSubReason OutOfScopeCannotContainsThisSubReason PublicInterestShouldNotContainSubReason StatisticalPurposesShouldNotContainSubReason ExercisingSpecificRightsPurposesShouldNotContainSubReason MarketingShouldNotContainSubReason TestingShouldNotContainSubReason ProfilingShouldNotContainSubReason"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="ProtectionControlShouldExistsInConfiguration" value="Tuple {&#xA;&#x9;message : String = 'Protection controls should be defined in configuration.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.additionalProtectionControls->forAll(protectionControl:String|&#xA;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isPolicyControlValid(protectionControl)&#xA;&#x9;&#x9;&#x9;)&#xA;}.status"/>
       <details key="ResearchShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::Research, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None}, &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
       <details key="PublicHealthShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::PublicHealth, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None}, &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
       <details key="OutOfScopeCannotContainsThisSubReason" value="&#xA;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::OutOfScope, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats, ProcessingReasonSubtype::OutOfEU,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ProcessingReasonSubtype::PersonalActivity, ProcessingReasonSubtype::SpecialScopeOfActivity, ProcessingReasonSubtype::None&#xA;&#x9;&#x9;&#x9;&#x9;} , &#xA;&#x9;&#x9;&#x9;&#x9;self)"/>
@@ -367,8 +368,6 @@
       <eParameters name="subreasons" unique="false" upperBound="-1" eType="#//ProcessingReasonSubtype"/>
       <eParameters name="purpose" eType="#//Purpose"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="additionalProtectionControls"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingReason" lowerBound="1"
         eType="#//ProcessingReason"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingReasonSubtype"
@@ -415,24 +414,26 @@
     <eLiterals name="All" value="2"/>
     <eLiterals name="None" value="3"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Restriction">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="restrictionType" eType="#//RestrictionType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Document">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeOfDocument" eType="#//DocumentType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="How">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="DataSourceShouldExistsInConfiguration"/>
+      <details key="constraints" value="DataSourceShouldExistsInConfiguration ProtectionControlShouldExistsInConfiguration"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="DataSourceShouldExistsInConfiguration" value="Tuple {&#xA;&#x9;message : String = 'Data source should be defined in configuration.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDataSourceValid(self.dataSource)&#xA;}.status"/>
+      <details key="ProtectionControlShouldExistsInConfiguration" value="Tuple {&#xA;&#x9;message : String = 'Protection controls should be defined in configuration.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.additionalProtectionControls->forAll(protectionControl:String|&#xA;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isPolicyControlValid(protectionControl)&#xA;&#x9;&#x9;&#x9;)&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attached" upperBound="-1"
-        eType="#//Approval" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="required" eType="#//Restriction"
+        eType="#//Consent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="required" eType="#//Document"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="additionalProtectionControls"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Approval" eSuperTypes="#//Restriction">
+  <eClassifiers xsi:type="ecore:EClass" name="Consent" eSuperTypes="#//Document">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="StartDateShouldBeBeforeTerminationDate"/>
     </eAnnotations>
@@ -446,6 +447,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="terminationDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="providedBy" eType="#//Principal"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileLocation" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigurationManager">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSources" upperBound="-1"
