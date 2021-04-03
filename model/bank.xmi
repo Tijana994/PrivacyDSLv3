@@ -7,27 +7,12 @@
     xsi:schemaLocation="http://privacymodel privacyModel.ecore"
     name="Policy">
   <policyStatements>
-    <why/>
-    <what datas="//@allDatas.0">
-      <actions>Store</actions>
-    </what>
-    <how/>
+    <what/>
   </policyStatements>
-  <policyStatements>
-    <what datas="//@allDatas.0">
-      <actions>Access</actions>
-    </what>
-  </policyStatements>
-  <allPrincipals
-      name="p1"/>
   <configurationManager>
     <dataSources>test</dataSources>
     <protectionControlMethods>tomo</protectionControlMethods>
     <protectionControlMethods>tommo</protectionControlMethods>
   </configurationManager>
-  <allDatas
-      name="hight"/>
-  <allDatas
-      name="weight"/>
   <privacyPolicyHelper/>
 </privacyModel:PrivacyPolicy>
