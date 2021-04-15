@@ -5,29 +5,52 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:privacyModel="http://privacymodel"
     xsi:schemaLocation="http://privacymodel privacyModel.ecore"
-    name="Policy">
-  <policyStatements>
+    name="Policy"
+    owner="//@allPrincipals.0">
+  <policyStatements
+      whose="//@allPrincipals.0">
     <why/>
-    <what datas="//@allDatas.0">
+    <what>
       <actions>Store</actions>
+      <datas
+          xsi:type="privacyModel:PrivacyData"
+          name="hight"/>
     </what>
-    <how/>
+    <how documents="//@allDocuments.0"/>
   </policyStatements>
-  <policyStatements>
-    <what datas="//@allDatas.0">
+  <policyStatements
+      whose="//@allPrincipals.1">
+    <what>
       <actions>Access</actions>
+      <datas
+          xsi:type="privacyModel:PrivacyData"
+          name="weight"/>
     </what>
+    <how documents="//@allDocuments.0"
+        consent="//@allConsents.0"/>
   </policyStatements>
   <allPrincipals
-      name="p1"/>
+      name="p1"
+      inhabits="//@locations.0"/>
+  <allPrincipals
+      name="child"
+      type="NaturalPerson"
+      responsiblePersons="//@allPrincipals.2"
+      age="5"/>
+  <allPrincipals
+      name="parent"/>
+  <locations
+      name="Serbia"
+      legalAgeLimit="18"/>
   <configurationManager>
     <dataSources>test</dataSources>
     <protectionControlMethods>tomo</protectionControlMethods>
     <protectionControlMethods>tommo</protectionControlMethods>
   </configurationManager>
-  <allDatas
-      name="hight"/>
-  <allDatas
-      name="weight"/>
   <privacyPolicyHelper/>
+  <allConsents
+      providedBy="//@allPrincipals.2"/>
+  <allDocuments
+      name="custody for child"
+      providedBy="//@allPrincipals.2"/>
 </privacyModel:PrivacyPolicy>

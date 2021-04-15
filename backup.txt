@@ -1,0 +1,987 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore';
+
+package privacyModel : privacyModel = 'http://privacymodel'
+{
+	class NamedElement
+	{
+		attribute name : String[1];
+	}
+	class PrivacyPolicy extends NamedElement
+	{
+		operation getPolicyStatementWithConstraint(complaint : Complaint[?]) : PolicyStatement[?]
+		{
+			body: let stet : PolicyStatement[*|?] = self.policyStatements->select(st: PolicyStatement| st.causedBy = complaint) in
+							if(stet = null or stet->isEmpty()) then
+								null
+							else
+								stet->asSequence()->first()
+							endif;
+		}
+		operation findPolicyStatementsWithType(stmtType : PrivacyStatementType[1]) : PolicyStatement[*|1] { ordered }
+		{
+			body: self.policyStatements->select(stmt:PolicyStatement | stmt.type = stmtType);
+		}
+		operation findOppositePolicyStatementForStatement(stmtType : PrivacyStatementType[1], stmt : PolicyStatement[1]) :
+		PolicyStatement[*|1] { ordered }
+		{
+			body: self.findPolicyStatementsWithType(stmtType)->select(ps:PolicyStatement | ps.equalWhatPart(stmt.what) = true 
+				and ps.arePrincipalsEqual(stmt.who, ps.who) and ps.arePrincipalsEqual(stmt.whom,ps.whom) and ps.arePrincipalsEqual(stmt.whose,ps.whose)
+				and ps.areWheresEqual(stmt.where, ps.where)
+				);
+		}
+		operation findAlreadyDefinedRules(stmtType : PrivacyStatementType[1], stmt : PolicyStatement[1]) :
+		PolicyStatement[*|1] { ordered }
+		{
+			body: self.findPolicyStatementsWithType(stmtType)->select(ps:PolicyStatement | 
+				if(ps.equalActionsAndDatas(stmt.what) and ps.arePrincipalsEqual(stmt.whose, ps.whose)) then
+					(ps.equalsProviders(stmt.what) and stmt.arePrincipalsEqual(stmt.who, ps.who)
+						and stmt.arePrincipalsEqual(stmt.whom, ps.whom) and ps.areWheresEqual(stmt.where, ps.where)
+					) = false
+				else
+					false
+				endif
+				);
+		}
+		operation findOppositePolicyStatementBeforeInterval(stmts : PolicyStatement[*|1] { ordered }, interval :
+			AbstractTime[1]) : PolicyStatement[*|1] { ordered }
+		{
+			body: stmts->select(ps:PolicyStatement| self.privacyPolicyHelper.doesIntervalStartBeforeInterval(ps.when, interval)=true);
+		}
+		property policyStatements : PolicyStatement[*|1] { ordered composes };
+		property owner : Principal[?];
+		property allPrincipals : Principal[*|1] { ordered composes };
+		property locations : Location[*|1] { ordered composes };
+		attribute defaultProtectionControls : String[*|1] { ordered };
+		property allServices : Service[*|1] { ordered composes };
+		property allProviders : Provider[*|1] { ordered composes };
+		property configurationManager : ConfigurationManager[1] { composes };
+		property allDatas : PrivacyData[*|1] { ordered composes };
+		property dataSubjectComplaints : Complaint[*|1] { ordered composes };
+		property privacyPolicyHelper : PrivacyPolicyHelper[1] { composes };
+		property allDenials : Denial[*|1] { ordered composes };
+		invariant
+		UniquePolicyStatementName('PolicyStatement name is unique'): 
+			self.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2);
+		invariant
+		UniquePrincipalNamePerType('Principal name per type is unique'): 
+		self.allPrincipals->forAll(pr1:Principal,pr2:Principal| 
+			if(pr1.type = pr2.type) then 
+			pr1.name = pr2.name implies pr1 = pr2
+			else
+				true
+			endif
+		);
+		invariant
+		UniquePrivacyDataName('PrivacyData name is unique'): 
+		self.allDatas->forAll(data1:PrivacyData,data2:PrivacyData| data1.name = data2.name implies data1 = data2);
+		invariant
+		UniqueServiceName('Service name is unique'): 
+		self.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2);
+		invariant
+		UniqueProviderName('Provider name is unique'): 
+		self.allProviders->forAll(provider1:Provider,provider2:Provider| provider1.name = provider2.name implies provider1 = provider2);
+		invariant
+		UniqueLocationPerType('Location name per type is unique'): 
+		self.locations->forAll(loc1:Location,loc2:Location| 
+			if(loc1.type = loc2.type) then 
+				loc1.name = loc2.name implies loc1 = loc2
+			else
+				true
+			endif
+		);
+		invariant
+		ProtectionControlShouldExistsInConfiguration('Protection controls should be defined in configuration.'): 
+			self.defaultProtectionControls->forAll(protectionControl:String|
+				self.privacyPolicyHelper.isPolicyControlValid(protectionControl)
+			);
+		invariant
+		PrivacyStatementAsTypeNotifyAboutErasureShouldBeDefined: 
+			self.dataSubjectComplaints->forAll(complaint:Complaint|
+				if(complaint.action.oclIsKindOf(Erasure)) then
+					let erasure : Erasure = complaint.action.oclAsType(Erasure) in 
+					self.policyStatements.what->exists(w | w.actions->exists(act| act = Action::NotifyAboutErasure) and w.datas->includesAll(erasure.subject))
+				else
+					true
+				endif
+			);
+		invariant
+		PrivacyStatementAsTypeNotifyAboutRectificationShouldBeDefined: 
+			self.dataSubjectComplaints->forAll(complaint:Complaint|
+				if(complaint.action.oclIsKindOf(Rectification)) then
+				let rectification : Rectification = complaint.action.oclAsType(Rectification) in 
+					self.policyStatements.what->exists(w | w.actions->exists(act| act = Action::NotifyAboutRectification) and w.datas->includesAll(rectification.subject))
+				else
+					true
+				endif
+			);
+	}
+	class PolicyStatement extends NamedElement
+	{
+		operation equalWhatPart(whatPart : What[1]) : Boolean[1]
+		{
+			body: self.what.actions->intersection(whatPart.actions)->size() > 0 and self.what.datas->intersection(whatPart.datas)->size() > 0
+			 and self.what.providers->intersection(whatPart.providers)->size() > 0;
+		}
+		operation equalActionsAndDatas(whatPart : What[1]) : Boolean[1]
+		{
+			body: self.what.actions->intersection(whatPart.actions)->size() > 0 and self.what.datas->intersection(whatPart.datas)->size() > 0;
+		}
+		operation equalsProviders(whatPart : What[1]) : Boolean[1]
+		{
+			body: self.what.providers->intersection(whatPart.providers)->size() > 0;
+		}
+		operation actionContainsCausedByAsType(actionType : Action[1], complaintType : String[1]) : Boolean[1]
+		{
+			body: 
+				if(self.what = null) then
+					true
+				else
+					self.what.actions->forAll(action:Action|
+						if(action = actionType) then
+							if(self.causedBy = null or self.whose = null) then
+								false
+							else
+								if(((complaintType = 'Erasure' and self.causedBy.action.oclIsKindOf(Erasure)) or (complaintType = 'Rectification' and self.causedBy.action.oclIsKindOf(Rectification))) and
+									let complaintOnData : BaseComplaintOnData = self.causedBy.oclAsType(BaseComplaintOnData) in
+									self.what.datas->includesAll(complaintOnData.subject) and 
+									self.whose = self.causedBy.who) then
+									true
+								else
+									false
+								endif
+							endif
+						else
+							true
+						endif
+					)
+				endif;
+		}
+		operation isPurposeValid(purpose : Purpose[?]) : Boolean[1]
+		{
+			body: 
+					if(self.why = null) then
+						true
+					else
+						self.why.isValid(purpose)
+					endif;
+		}
+		operation isConsentValid(howConsent : How[?]) : Boolean[1]
+		{
+			body: 
+					if(self.how = null) then
+						true
+					else
+						self.how.isConsentValid(howConsent)
+					endif;
+		}
+		operation dateShouldBeDefinedForType(actionType : Action[1]) : Boolean[1]
+		{
+			body: 
+					if(self.what = null) then
+						true
+					else
+						if(self.what.actions->exists(act| act = actionType)) then
+							not(self.when = null)
+						else
+							true
+						endif
+					endif;
+		}
+		operation arePrincipalsEqual(observablePrincipal : Principal[?], targetPrincipal : Principal[?]) : Boolean[1]
+		{
+			body: if(targetPrincipal = null) then 
+						true
+					else if(observablePrincipal = null) then
+						false
+					else
+						targetPrincipal.areEquals(observablePrincipal)
+					endif
+					endif;
+		}
+		operation areWheresEqual(observable : Where[1], target : Where[1]) : Boolean[1]
+		{
+			body: if(target = null) then 
+						true
+					else if(observable = null) then
+						false
+					else
+						target.areEquals(observable)
+					endif
+					endif;
+		}
+		operation doesOperationMissingOppositeOperation(observed : PrivacyStatementType[?], target :
+			PrivacyStatementType[?]) : Boolean[?]
+		{
+			body: 
+			if(self.what = null) then
+			   true
+			else
+				if(self.type = observed) then
+					PrivacyPolicy.allInstances()->asSequence()->first().findOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().
+							findOppositePolicyStatementForStatement(target, self), self.when)->size() > 0
+				else
+					true
+				endif
+			endif;
+		}
+		operation doesOperationNotHaveOppositeOperation(observed : PrivacyStatementType[?], target :
+			PrivacyStatementType[?]) : Boolean[?]
+		{
+			body: 
+			if(self.what = null) then
+			   true
+			else
+				if(self.type = observed) then
+					PrivacyPolicy.allInstances()->asSequence()->first().findOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().
+							findOppositePolicyStatementForStatement(target, self), self.when)->size() = 0
+				else
+					true
+				endif
+			endif;
+		}
+		operation doesOperationNotHaveOppositeOperationWithDifferentParts(observed : PrivacyStatementType[?], target :
+			PrivacyStatementType[?]) : Boolean[?]
+		{
+			body: 
+			if(self.what = null) then
+			   true
+			else
+				if(self.type = observed) then
+					PrivacyPolicy.allInstances()->asSequence()->first().findOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().
+							findAlreadyDefinedRules(target, self), self.when)->size() = 0
+				else
+					true
+				endif
+			endif;
+		}
+		attribute type : PrivacyStatementType[1];
+		property when : AbstractTime[?] { composes }
+		{
+			annotation _'http:///org/eclipse/emf/ecore/util/ExtendedMetaData'
+			(
+				name = 'when'
+			);
+		}
+		property who : Principal[?];
+		property why : Purpose[?] { composes };
+		property what : What[1] { composes };
+		property how : How[?] { composes };
+		property whose : Principal[?];
+		property whom : Principal[?];
+		property causedBy : Complaint[?];
+		property where : Where[?] { composes };
+		invariant
+		InvalidActionComplaintAlreadyExists('Complaint on this privacy data already exists.'): 
+			if(self.what.actions->size() = 1 and (self.what.actions->exists(a | a = Action::NotifyAboutErasure) or self.what.actions->exists(a | a = Action::NotifyAboutRectification))) then
+				true
+			else if(PrivacyPolicy.allInstances()->asSequence()->first().dataSubjectComplaints->exists(complaint| complaint.oclIsKindOf(BaseComplaintOnData) and 
+				let basecomplaint : BaseComplaintOnData = complaint.oclAsType(BaseComplaintOnData) in basecomplaint.subject->includesAll(self.what.datas)
+			)) then
+					PrivacyPolicy.allInstances()->asSequence()->first().dataSubjectComplaints->select(complaint:Complaint| complaint.oclIsKindOf(BaseComplaintOnData) and
+						let basecomplaint : BaseComplaintOnData = complaint.oclAsType(BaseComplaintOnData) in basecomplaint.subject->includesAll(self.what.datas)
+					)->
+					forAll(complaint:Complaint|
+						if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when)) then
+							let st : PolicyStatement = PrivacyPolicy.allInstances()->asSequence()->first().getPolicyStatementWithConstraint(complaint) in
+							if(st = null) then
+								false
+							else
+								PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.startTime(st.when))
+							endif
+						else 
+							not(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateInInterval(self.when, complaint.when))
+						endif
+					)
+				else
+					true
+				endif
+			endif;
+		invariant
+		UndefinedPurposeForAccess('Purpose is not define when data is collected'): 
+				if(not(self.what = null) and self.what.actions->exists(act| act = Action::Access)) then
+					self.what.datas->forAll(data: PrivacyData|
+						let statements : PolicyStatement[*|?] = PrivacyPolicy.allInstances()->asSequence()->first().policyStatements->select(st: PolicyStatement| 
+							not(st.what = null) and st.what.actions->exists(act| act = Action::Store) and st.what.datas->exists(d| d = data))
+							in 
+							if(statements->isEmpty()) then 
+								true
+							else
+								statements -> forAll(st: PolicyStatement|
+									if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then
+										st.isPurposeValid(self.why)
+									else
+										false
+									endif
+								)
+							endif
+					)
+				else
+					true
+				endif;
+		invariant
+		UndefinedConsentForAccess: 
+				if(not(self.what = null) and self.what.actions->exists(act| act = Action::Access)) then
+					self.what.datas->forAll(data: PrivacyData|
+						let statements : PolicyStatement[*|?] = PrivacyPolicy.allInstances()->asSequence()->first().policyStatements->select(st: PolicyStatement| 
+							not(st.what = null) and st.what.actions->exists(act| act = Action::Store) and st.what.datas->exists(d| d = data))
+							in 
+							if(statements->isEmpty()) then 
+								true
+							else
+								statements -> forAll(st: PolicyStatement|
+									if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then
+										st.isPurposeValid(self.why) and st.isConsentValid(self.how)
+									else
+										false
+									endif
+								)
+							endif
+					)
+				else
+					true
+				endif;
+		invariant
+		DateShoudBeDefinedForAccessAction('Date shoud be defined'): 
+			dateShouldBeDefinedForType(Action::Access);
+		invariant DateShoudBeDefinedForStoreAction('Date shoud be defined'): 
+			dateShouldBeDefinedForType(Action::Store);
+		invariant
+		ShouldDefineCauseByForNotifyErasure('Acton NotifyAboutErasure should contain causedBy with complaint Erasure'): 
+			self.actionContainsCausedByAsType(Action::NotifyAboutErasure, 'Erasure');
+		invariant
+		ShouldDefineCauseByForNotifyAboutRectification('Acton NotifyAboutRectification should contain causedBy with complaint Rectification'): 
+			self.actionContainsCausedByAsType(Action::NotifyAboutRectification, 'Rectification');
+		invariant
+		ObligationMissingPermission: 
+			doesOperationMissingOppositeOperation(PrivacyStatementType::Obligation, PrivacyStatementType::Permission);
+		invariant
+		ObligationHasProhibition: 
+			doesOperationNotHaveOppositeOperation(PrivacyStatementType::Obligation,PrivacyStatementType::Prohibition);
+		invariant
+		OptionalMissingPermision: 
+			doesOperationMissingOppositeOperation(PrivacyStatementType::Optional, PrivacyStatementType::Permission);
+		invariant
+		OptionalHasProhibition: 
+			doesOperationNotHaveOppositeOperation(PrivacyStatementType::Optional,PrivacyStatementType::Prohibition);
+		invariant
+		OptionalHasOtherObligation: 
+			doesOperationNotHaveOppositeOperationWithDifferentParts(PrivacyStatementType::Optional,PrivacyStatementType::Obligation);
+	}
+	class PrivacyData extends NamedElement
+	{
+		attribute type : DataType[1];
+	}
+	class Service extends NamedElement
+	{
+		property subservices : Service[*|1] { ordered };
+		invariant
+		UniqueSubserviceName('Subservice name is unique'): 
+		self.subservices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2);
+	}
+	class Provider extends NamedElement
+	{
+		property provide : Service[*|1] { ordered };
+		property located : Location[1];
+	}
+	class Principal extends NamedElement
+	{
+		operation areEquals(observed : Principal[?]) : Boolean[1]
+		{
+			body: if(self = observed) then
+						true
+				  else 
+				  	self.subPrincipals->notEmpty() and self.subPrincipals->exists(s| s.areEquals(observed))
+				  endif;
+		}
+		property subPrincipals : Principal[*|1] { ordered };
+		attribute type : PrincipalType[1];
+		attribute scope : PrincipalScope[1];
+		property responsiblePersons : Principal[*|1] { ordered };
+		property inhabits : Location[?];
+		attribute birthdate : ecore::EDate[?];
+		attribute age : ecore::EInt[1] { derived };
+		invariant
+		UniquePrincipalNamePerType('Principal name per type is unique'): 
+		self.subPrincipals->forAll(pr1:Principal,pr2:Principal| 
+			if(pr1.type = pr2.type) then 
+			pr1.name = pr2.name implies pr1 = pr2
+			else
+				true
+			endif
+		);
+	}
+	enum PrivacyStatementType { serializable }
+	{
+		literal Permission;
+		literal Obligation = 1;
+		literal Information = 2;
+		literal Optional = 3;
+		literal Prohibition = 4;
+	}
+	enum DataType { serializable }
+	{
+		literal Biometric;
+		literal General = 1;
+		literal Genetic = 2;
+		literal PoliticalOpinion = 3;
+		literal RacialEthnicOrigin = 4;
+		literal Beliefs = 5;
+		literal SexLife = 6;
+	}
+	class Location extends NamedElement
+	{
+		operation areEquals(observed : Location[?]) : Boolean[1]
+		{
+			body: if(self = observed) then
+						true
+				  else 
+				  	self.subLocations->notEmpty() and self.subLocations->exists(s| s.areEquals(observed))
+				  endif;
+		}
+		attribute isEUMember : Boolean[1];
+		attribute type : LocationType[1];
+		property subLocations : Location[*|1] { ordered };
+		attribute legalAgeLimit : ecore::EInt[1];
+	}
+	enum DocumentType { serializable }
+	{
+		literal ChildCustody;
+		literal CourtApproval = 1;
+	}
+	abstract class AbstractTime;
+	class TimeInterval extends AbstractTime
+	{
+		operation isTypeDefinedWithOtherType(firstPrepositionType : TimePreposition[1], secondPrepositionType :
+			TimePreposition[1]) : Boolean[1]
+		{
+			body: 
+				if(self.start.preposition = firstPrepositionType) then
+					self.end.preposition = secondPrepositionType
+				else
+					true
+				endif;
+		}
+		operation isTypeForbidden(prepositionType : TimePreposition[1]) : Boolean[1]
+		{
+			body: 
+					if(self.start.preposition = prepositionType or self.end.preposition = prepositionType) then
+						false
+					else 
+						true
+					endif;
+		}
+		operation isIntervalValid(firstPrepositionType : TimePreposition[1], secondPrepositionType : TimePreposition[1]) :
+		Boolean[1]
+		{
+			body: 
+					if(self.start.preposition = firstPrepositionType and self.end.preposition = secondPrepositionType) then
+						self.start.dateTime < self.end.dateTime
+					else 
+						if(self.end.preposition = firstPrepositionType and self.start.preposition = secondPrepositionType) then
+							false
+						else
+							true
+						endif
+					endif;
+		}
+		property start : TimeStatement[1] { composes };
+		property end : TimeStatement[1] { composes };
+		invariant
+		OnlyAfterOrAfterWithBefore('After interval should be defined alone or with before interval'): 
+			self.isTypeDefinedWithOtherType(TimePreposition::after, TimePreposition::before);
+		invariant
+		OnlyFromOrFromWithTo('From interval should be defined alone or with to interval'): 
+			self.isTypeDefinedWithOtherType(TimePreposition::from, TimePreposition::to);
+		invariant
+		AtTypeShouldBeDefinedAlone('At statement should be defined alone'): 
+			self.isTypeForbidden(TimePreposition::at);
+		invariant
+		UntilTypeShouldBeDefinedAlone('Until statement should be defined alone'): 
+			self.isTypeForbidden(TimePreposition::until);
+		invariant
+		AfterStatementBeforeBeforeStatement('After interval should be defined before before interval'): 
+			self.isIntervalValid(TimePreposition::after, TimePreposition::before);
+		invariant
+		FromStatementBeforeToStatement('From interval should be defined before to interval'): 
+			self.isIntervalValid(TimePreposition::from, TimePreposition::to);
+	}
+	class TimeStatement extends AbstractTime
+	{
+		attribute preposition : TimePreposition[1];
+		attribute dateTime : ecore::EDate[1];
+	}
+	enum TimePreposition { serializable }
+	{
+		literal from;
+		literal to = 1;
+		literal at = 2;
+		literal until = 3;
+		literal before = 4;
+		literal after = 5;
+	}
+	enum PrincipalType { serializable }
+	{
+		literal LegalEntity;
+		literal NaturalPerson = 1;
+	}
+	enum PrincipalScope { serializable }
+	{
+		literal In;
+		literal Out = 1;
+		literal Unknown = 2;
+	}
+	enum Action { serializable }
+	{
+		literal Store;
+		literal Access = 1;
+		literal Collecting = 2;
+		literal Retrieval = 2;
+		literal NotifyAboutErasure = 3;
+		literal NotifyAboutRectification = 4;
+		literal Profiling = 6;
+		literal Erasure = 7;
+		literal Rectification = 8;
+	}
+	enum LocationType { serializable }
+	{
+		literal Union;
+		literal Country = 1;
+		literal Region = 2;
+	}
+	class Purpose
+	{
+		operation isValid(purpose : Purpose[?]) : Boolean[1]
+		{
+			body: 
+					if(self.processingReason = null) then
+						true
+					else if(self.processingReasonSubtype = null) then
+							(not(purpose.processingReason = null) and self.processingReason = purpose.processingReason) 
+							or
+							(self.subPurposes->notEmpty() and self.subPurposes->exists(s| s.isValid(purpose)))
+						else
+							(not(purpose.processingReason = null) and not(purpose.processingReasonSubtype = null) 
+							and self.processingReason = purpose.processingReason and self.processingReasonSubtype = purpose.processingReasonSubtype)
+							or 
+							(self.subPurposes->notEmpty() and self.subPurposes->exists(s| s.isValid(purpose)))
+						endif
+					endif;
+		}
+		operation isSubPurposeValid(reason : ProcessingReason[?], subreasons : ProcessingReasonSubtype[*|1] { ordered
+			!unique }, purpose : Purpose[?]) : Boolean[1]
+		{
+			body: if(purpose.processingReason = null) then
+					true
+				  else 
+				  	if(purpose.processingReason = reason) then
+				  		if(purpose.processingReasonSubtype = null) then
+				  			true
+				  		else
+				  			subreasons->exists(r| r = purpose.processingReasonSubtype)
+				  		endif
+				  	else
+				  		true
+				  	endif
+				  endif;
+		}
+		attribute processingReason : ProcessingReason[1];
+		attribute processingReasonSubtype : ProcessingReasonSubtype[1];
+		property subPurposes : Purpose[*|1] { ordered composes };
+		invariant
+		ResearchShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::Research, 
+				Sequence{ProcessingReasonSubtype::None}, 
+				self);
+		invariant
+		PublicHealthShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::PublicHealth, 
+				Sequence{ProcessingReasonSubtype::None}, 
+				self);
+		invariant
+		OutOfScopeCannotContainsThisSubReason: 
+			isSubPurposeValid(ProcessingReason::OutOfScope, 
+				Sequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,
+					ProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats, ProcessingReasonSubtype::OutOfEU,
+					ProcessingReasonSubtype::PersonalActivity, ProcessingReasonSubtype::SpecialScopeOfActivity, ProcessingReasonSubtype::None
+				} , 
+				self);
+		invariant
+		PublicInterestShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::PublicInterest, 
+				Sequence{ProcessingReasonSubtype::None}, 
+				self);
+		invariant
+		StatisticalPurposesShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::StatisticalPurposes, 
+				Sequence{ProcessingReasonSubtype::None}, 
+				self);
+		invariant
+		ExercisingSpecificRightsPurposesShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::ExercisingSpecificRights, 
+				Sequence{ProcessingReasonSubtype::Employment, ProcessingReasonSubtype::SocialSecurity,ProcessingReasonSubtype::SocialProtection, ProcessingReasonSubtype::None}, 
+				self);
+		invariant
+		MarketingShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::Marketing, 
+				Sequence{ProcessingReasonSubtype::None}, 
+				self);
+		invariant
+		TestingShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::Testing, 
+				Sequence{ProcessingReasonSubtype::None}, 
+				self);
+		invariant
+		ProfilingShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::Profiling, 
+				Sequence{ProcessingReasonSubtype::None}, 
+				self);
+		invariant
+		ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason: 
+			isSubPurposeValid(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, 
+				Sequence{ProcessingReasonSubtype::PhisicallyIncapable,ProcessingReasonSubtype::LegallyIncapable}, 
+				self);
+	}
+	enum ProcessingReason { serializable }
+	{
+		literal Research;
+		literal PublicHealth = 1;
+		literal OutOfScope = 2;
+		literal PublicInterest = 3;
+		literal StatisticalPurposes = 4;
+		literal ExercisingSpecificRights = 5;
+		literal Marketing = 6;
+		literal Testing = 7;
+		literal Profiling = 8;
+		literal ProtectTheVitalInterestsOfTheDataSubject = 9;
+	}
+	enum ProcessingReasonSubtype { serializable }
+	{
+		literal None;
+		literal Prevention = 1;
+		literal Investigation = 2;
+		literal Detection = 3;
+		literal Prosecution = 4;
+		literal PreventionOfThreats = 5;
+		literal OutOfEU = 6;
+		literal PersonalActivity = 7;
+		literal SpecialScopeOfActivity = 8;
+		literal Employment = 9;
+		literal SocialSecurity = 10;
+		literal SocialProtection = 11;
+		literal PhisicallyIncapable = 12;
+		literal LegallyIncapable = 13;
+	}
+	class What
+	{
+		attribute actions : Action[*|1] { ordered };
+		property providers : Provider[*|1] { ordered };
+		property datas : SharedPrivacyData[*|1] { ordered composes };
+	}
+	class How
+	{
+		operation isConsentValid(howConsent : How[?]) : Boolean[1]
+		{
+			body: 
+					if(self.consent = null) then
+						true
+					else if(howConsent.consent = null) then
+						false
+					else
+						self.consent = howConsent.consent
+					endif
+					endif;
+		}
+		property documents : Document[*|1] { ordered composes };
+		property consent : Consent[?] { composes };
+		attribute dataSource : String[?];
+		invariant
+		DataSourceShouldExistsInConfiguration('Data source should be defined in configuration.'): 
+			PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDataSourceValid(self.dataSource);
+	}
+	class Consent extends AbstractPaper
+	{
+		attribute format : ConsentFormat[?];
+		attribute type : ConsentType[?];
+		invariant
+		StartDateShouldBeBeforeTerminationDate('Terminationdate is after startdate!'): 
+			not(self.startDate > self.terminationDate);
+	}
+	class ConfigurationManager
+	{
+		attribute dataSources : String[*|1] { ordered };
+		attribute protectionControlMethods : String[*|1] { ordered };
+	}
+	class Complaint extends NamedElement
+	{
+		property who : Principal[1];
+		attribute when : ecore::EDate[1];
+		attribute reason : String[?];
+		property action : AbstractComplaintAction[1];
+	}
+	class PrivacyPolicyHelper
+	{
+		operation isPolicyControlValid(policyControl : String[1]) : Boolean[1]
+		{
+			body: PrivacyPolicy.allInstances()->asSequence()->first().configurationManager.protectionControlMethods->exists(q | q = policyControl);
+		}
+		operation isDataSourceValid(dataSource : String[1]) : Boolean[1]
+		{
+			body: PrivacyPolicy.allInstances()->asSequence()->first().configurationManager.dataSources->exists(q | q = dataSource);
+		}
+		operation areIntervalsOverlap(time1 : AbstractTime[1], time2 : AbstractTime[1]) : Boolean[1]
+		{
+			body: if(time2.oclIsKindOf(TimeStatement)) then
+					let timestmt : TimeStatement = time2.oclAsType(TimeStatement) in 
+					if(timestmt.preposition = TimePreposition::from or timestmt.preposition = TimePreposition::after or timestmt.preposition = TimePreposition::at) then
+						areDatesOverlap(time1, timestmt.dateTime)
+					else
+						not(areDatesOverlap(time1, timestmt.dateTime))
+					endif
+				  else
+					let interval : TimeInterval = time2.oclAsType(TimeInterval) in
+			  		if(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after or interval.start.preposition = TimePreposition::at) then
+						areDatesOverlap(time1, interval.start.dateTime) and not(areDatesOverlap(time1, interval.end.dateTime))
+					else
+						not(areDatesOverlap(time1, interval.start.dateTime)) and areDatesOverlap(time1, interval.end.dateTime)
+					endif
+				  endif;
+		}
+		operation areDatesOverlap(time : AbstractTime[1], date : ecore::EDate[1]) : Boolean[1]
+		{
+			body: 
+				if(time.oclIsKindOf(TimeStatement)) then
+				let timestmt : TimeStatement = time.oclAsType(TimeStatement) in 
+					if(timestmt.preposition = TimePreposition::from or timestmt.preposition = TimePreposition::after or timestmt.preposition = TimePreposition::at) then
+						not(timestmt.dateTime < date)
+					else 
+						not(timestmt.dateTime > date)
+					endif
+				else
+				let interval : TimeInterval = time.oclAsType(TimeInterval) in
+					if(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then
+						not(interval.start.dateTime < date) and (not(interval.end.dateTime > date))
+					else 
+						not(interval.start.dateTime > date) and (not(interval.end.dateTime < date))
+					endif
+				endif;
+		}
+		operation doesIntervalStartBeforeInterval(startInterval : AbstractTime[1], finishInterval : AbstractTime[1]) :
+		Boolean[1]
+		{
+			body: if(startInterval.oclIsKindOf(TimeStatement)) then
+					let timestmt : TimeStatement = startInterval.oclAsType(TimeStatement) in 
+					if(timestmt.preposition = TimePreposition::from or timestmt.preposition = TimePreposition::after or timestmt.preposition = TimePreposition::at) then
+						isDateBeforeInterval(finishInterval, timestmt.dateTime)
+					else
+						not(isDateBeforeInterval(finishInterval, timestmt.dateTime))
+					endif
+				  else
+					let interval : TimeInterval = startInterval.oclAsType(TimeInterval) in
+			  		if(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after or interval.start.preposition = TimePreposition::at) then
+						isDateBeforeInterval(finishInterval, interval.start.dateTime) and not(isDateBeforeInterval(finishInterval, interval.end.dateTime))
+					else
+						not(isDateBeforeInterval(finishInterval, interval.start.dateTime)) and isDateBeforeInterval(finishInterval, interval.end.dateTime)
+					endif
+				  endif;
+		}
+		operation isDateBeforeInterval(time : AbstractTime[1], date : ecore::EDate[1]) : Boolean[1]
+		{
+			body: 
+				if(time.oclIsKindOf(TimeStatement)) then
+				let timestmt : TimeStatement = time.oclAsType(TimeStatement) in 
+					if(timestmt.preposition = TimePreposition::from or timestmt.preposition = TimePreposition::after or timestmt.preposition = TimePreposition::at) then
+						date < timestmt.dateTime
+					else 
+						timestmt.dateTime < date
+					endif
+				else
+					let interval : TimeInterval = time.oclAsType(TimeInterval) in
+					if(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then
+						if(interval.start.dateTime < interval.end.dateTime) then
+							interval.start.dateTime > date and interval.end.dateTime > date
+						else
+							false
+						endif
+					else 
+						if(interval.end.dateTime < interval.start.dateTime) then
+							interval.start.dateTime > date and interval.end.dateTime > date
+						else
+							false
+						endif
+					endif
+				endif;
+		}
+		operation isDateAfterInterval(time : AbstractTime[1], date : ecore::EDate[1]) : Boolean[1]
+		{
+			body: 
+				if(time.oclIsKindOf(TimeStatement)) then
+					let timestmt : TimeStatement = time.oclAsType(TimeStatement) in 
+					if(timestmt.preposition = TimePreposition::to or timestmt.preposition = TimePreposition::before or timestmt.preposition = TimePreposition::until) then
+						timestmt.dateTime > date
+					else 
+						timestmt.dateTime < date
+					endif
+				else
+					let interval : TimeInterval = time.oclAsType(TimeInterval) in
+					if(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then
+						if(interval.start.dateTime < interval.end.dateTime) then
+							interval.start.dateTime < date and interval.end.dateTime < date
+						else
+							false
+						endif
+					else 
+						if(interval.end.dateTime < interval.start.dateTime) then
+							interval.start.dateTime < date and interval.end.dateTime < date
+						else
+							false
+						endif
+					endif
+				endif;
+		}
+		operation isDateInInterval(time : AbstractTime[1], date : ecore::EDate[1]) : Boolean[1]
+		{
+			body: 
+				if(time.oclIsKindOf(TimeStatement)) then
+					let timestmt : TimeStatement = time.oclAsType(TimeStatement) in 
+					if(timestmt.preposition = TimePreposition::at) then
+						timestmt.dateTime = date
+					else if(timestmt.preposition = TimePreposition::to or timestmt.preposition = TimePreposition::before or timestmt.preposition = TimePreposition::until) then
+							not(timestmt.dateTime > date)
+						else 
+							not(timestmt.dateTime < date)
+						endif
+					endif
+				else
+					let interval : TimeInterval = time.oclAsType(TimeInterval) in 
+					if(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then
+						if(interval.start.dateTime < interval.end.dateTime) then
+							not(interval.start.dateTime < date) and not(interval.end.dateTime > date)
+						else
+							not(date < interval.end.dateTime) and not(date > interval.start.dateTime)
+						endif
+					else 
+						if(interval.end.dateTime < interval.start.dateTime) then
+							not(interval.end.dateTime < date) and not(interval.start.dateTime > date)
+						else
+							not(date < interval.start.dateTime) and not(date > interval.end.dateTime)
+						endif
+					endif
+				endif;
+		}
+		operation startTime(time : AbstractTime[1]) : ecore::EDate[1]
+		{
+			body: if(time.oclIsKindOf(TimeStatement)) then
+					let timestmt : TimeStatement = time.oclAsType(TimeStatement) in timestmt.dateTime
+				 else
+				 	let interval : TimeInterval = time.oclAsType(TimeInterval) in interval.start.dateTime
+				 	endif;
+		}
+	}
+	class Where
+	{
+		operation areEquals(observed : Where[?]) : Boolean[1]
+		{
+			body: 
+					if(self.source = null) then
+						if(self.destination = null) then
+							true
+						else
+							if(observed.destination = null) then
+								false
+							else
+								self.destination.areEquals(observed.destination)
+							endif
+						endif
+					
+					else
+						if(self.destination = null) then
+							if(observed.source = null) then
+								false
+							else
+								self.source.areEquals(observed.source)
+							endif
+						else
+							if(observed.destination = null) then
+								false
+							else
+								if(observed.source = null) then
+								false
+							else
+								self.source.areEquals(observed.source) and self.destination.areEquals(observed.destination)
+							endif
+							endif
+						endif
+					endif;
+		}
+		property source : Location[?];
+		property destination : Location[?];
+	}
+	enum ConsentFormat { serializable }
+	{
+		literal Written;
+		literal Verbal = 1;
+		literal NonVerbal = 2;
+	}
+	class Document extends AbstractPaper
+	{
+		attribute documentType : DocumentType[?];
+	}
+	abstract class AbstractPaper extends NamedElement
+	{
+		property providedBy : Principal[?];
+		attribute terminationExplanation : String[?];
+		attribute startDate : ecore::EDate[1];
+		attribute terminationDate : ecore::EDate[?];
+		attribute fileLocation : String[1];
+		attribute description : String[?];
+	}
+	abstract class AbstractComplaintAction;
+	class Withdraw extends AbstractComplaintAction
+	{
+		property subject : Consent[1];
+	}
+	class ComplaintBasedOnData extends AbstractComplaintAction
+	{
+		operation execute();
+		property subject : PrivacyData[+|1] { ordered };
+		attribute type : ComplaintBasedOnDataType[1];
+		attribute isExecuted : Boolean[1];
+		property denialReason : Denial[?];
+	}
+	enum ConsentType { serializable }
+	{
+		literal Explicit;
+		literal Implied = 1;
+		literal Informed = 2;
+		literal Unanomius : 'Unanomius' = 3;
+		literal Substituted : 'Substituted' = 4;
+	}
+	class DateTime
+	{
+		attribute day : ecore::EInt[1];
+		attribute month : ecore::EInt[1];
+		attribute year : ecore::EInt[1];
+	}
+	class SharedPrivacyData
+	{
+		attribute additionalProtectionControls : String[*|1] { ordered };
+		property privacydata : PrivacyData[?];
+		invariant
+		ProtectionControlShouldExistsInConfiguration('Protection controls should be defined in configuration.'): 
+			self.additionalProtectionControls->forAll(protectionControl:String|
+				PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isPolicyControlValid(protectionControl)
+			);
+	}
+	class Denial
+	{
+		attribute date : ecore::EDate[1];
+		property approvedBy : Principal[1];
+		attribute reason : String[?];
+		property basedOnStatements : PolicyStatement[*|1] { ordered };
+	}
+	enum ComplaintBasedOnDataType { serializable }
+	{
+		literal Erasure;
+		literal Rectification = 1;
+	}
+}

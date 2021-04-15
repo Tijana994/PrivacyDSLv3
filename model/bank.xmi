@@ -6,9 +6,6 @@
     xmlns:privacyModel="http://privacymodel"
     xsi:schemaLocation="http://privacymodel privacyModel.ecore"
     name="Policy">
-  <policyStatements>
-    <what/>
-  </policyStatements>
   <configurationManager>
     <dataSources>test</dataSources>
     <protectionControlMethods>tomo</protectionControlMethods>

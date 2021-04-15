@@ -9,12 +9,12 @@
     <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
     <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrivacyPolicy" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniquePolicyStatementName UniquePrincipalNamePerType UniquePrivacyDataName UniqueServiceName UniqueProviderName UniqueLocationPerType ProtectionControlShouldExistsInConfiguration PrivacyStatementAsTypeNotifyAboutErasureShouldBeDefined PrivacyStatementAsTypeNotifyAboutRectificationShouldBeDefined"/>
+      <details key="constraints" value="UniquePolicyStatementName UniquePrincipalNamePerType UniquePrivacyDataName UniqueServiceName UniqueProviderName UniqueDocumentName UniqueConsentName UniqueLocationPerType ProtectionControlShouldExistsInConfiguration OwnerShouldHaveDefinedInhabits"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="UniquePolicyStatementName" value="Tuple {&#xA;&#x9;message : String = 'PolicyStatement name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2)&#xA;}.status"/>
@@ -22,49 +22,15 @@
       <details key="UniquePrivacyDataName" value="Tuple {&#xA;&#x9;message : String = 'PrivacyData name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.allDatas->forAll(data1:PrivacyData,data2:PrivacyData| data1.name = data2.name implies data1 = data2)&#xA;}.status"/>
       <details key="UniqueServiceName" value="Tuple {&#xA;&#x9;message : String = 'Service name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)&#xA;}.status"/>
       <details key="UniqueProviderName" value="Tuple {&#xA;&#x9;message : String = 'Provider name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.allProviders->forAll(provider1:Provider,provider2:Provider| provider1.name = provider2.name implies provider1 = provider2)&#xA;}.status"/>
+      <details key="UniqueDocumentName" value="Tuple {&#xA;&#x9;message : String = 'Document name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.allDocuments->forAll(document1:Document,document2:Document| document1.name = document2.name implies document1 = document2)&#xA;}.status"/>
+      <details key="UniqueConsentName" value="Tuple {&#xA;&#x9;message : String = 'Consent name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.allConsents->forAll(consent1:Consent,consent2:Consent| consent1.name = consent2.name implies consent1 = consent2)&#xA;}.status"/>
       <details key="UniqueLocationPerType" value="Tuple {&#xA;&#x9;message : String = 'Location name per type is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.locations->forAll(loc1:Location,loc2:Location| &#xA;&#x9;&#x9;&#x9;if(loc1.type = loc2.type) then &#xA;&#x9;&#x9;&#x9;&#x9;loc1.name = loc2.name implies loc1 = loc2&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;)&#xA;}.status"/>
       <details key="ProtectionControlShouldExistsInConfiguration" value="Tuple {&#xA;&#x9;message : String = 'Protection controls should be defined in configuration.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.defaultProtectionControls->forAll(protectionControl:String|&#xA;&#x9;&#x9;&#x9;&#x9;self.privacyPolicyHelper.isPolicyControlValid(protectionControl)&#xA;&#x9;&#x9;&#x9;)&#xA;}.status"/>
-      <details key="PrivacyStatementAsTypeNotifyAboutErasureShouldBeDefined" value="&#xA;&#x9;&#x9;&#x9;self.dataSubjectComplaints->forAll(complaint:Complaint|&#xA;&#x9;&#x9;&#x9;&#x9;if(complaint.action.oclIsKindOf(Erasure)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let erasure : Erasure = complaint.action.oclAsType(Erasure) in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.policyStatements.what->exists(w | w.actions->exists(act| act = Action::NotifyAboutErasure) and w.datas->includesAll(erasure.subject))&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;)"/>
-      <details key="PrivacyStatementAsTypeNotifyAboutRectificationShouldBeDefined"
-          value="&#xA;&#x9;&#x9;&#x9;self.dataSubjectComplaints->forAll(complaint:Complaint|&#xA;&#x9;&#x9;&#x9;&#x9;if(complaint.action.oclIsKindOf(Rectification)) then&#xA;&#x9;&#x9;&#x9;&#x9;let rectification : Rectification = complaint.action.oclAsType(Rectification) in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.policyStatements.what->exists(w | w.actions->exists(act| act = Action::NotifyAboutRectification) and w.datas->includesAll(rectification.subject))&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;)"/>
+      <details key="OwnerShouldHaveDefinedInhabits" value="Tuple {&#xA;&#x9;message : String = 'Based on Art 3',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;not(self.owner.inhabits = null)&#xA;}.status"/>
     </eAnnotations>
-    <eOperations name="getPolicyStatementWithConstraint" eType="#//PolicyStatement">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="let stet : PolicyStatement[*|?] = self.policyStatements->select(st: PolicyStatement| st.causedBy = complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(stet = null or stet->isEmpty()) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;null&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;stet->asSequence()->first()&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="complaint" eType="#//Complaint"/>
-    </eOperations>
-    <eOperations name="findPolicyStatementsWithType" upperBound="-1" eType="#//PolicyStatement">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.policyStatements->select(stmt:PolicyStatement | stmt.type = stmtType)"/>
-      </eAnnotations>
-      <eParameters name="stmtType" lowerBound="1" eType="#//PrivacyStatementType"/>
-    </eOperations>
-    <eOperations name="findOppositePolicyStatementForStatement" upperBound="-1" eType="#//PolicyStatement">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.findPolicyStatementsWithType(stmtType)->select(ps:PolicyStatement | ps.equalWhatPart(stmt.what) = true &#xA;&#x9;&#x9;&#x9;&#x9;and ps.arePrincipalsEqual(stmt.who, ps.who) and ps.arePrincipalsEqual(stmt.whom,ps.whom) and ps.arePrincipalsEqual(stmt.whose,ps.whose)&#xA;&#x9;&#x9;&#x9;&#x9;and ps.areWheresEqual(stmt.where, ps.where)&#xA;&#x9;&#x9;&#x9;&#x9;)"/>
-      </eAnnotations>
-      <eParameters name="stmtType" lowerBound="1" eType="#//PrivacyStatementType"/>
-      <eParameters name="stmt" lowerBound="1" eType="#//PolicyStatement"/>
-    </eOperations>
-    <eOperations name="findAlreadyDefinedRules" upperBound="-1" eType="#//PolicyStatement">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.findPolicyStatementsWithType(stmtType)->select(ps:PolicyStatement | &#xA;&#x9;&#x9;&#x9;&#x9;if(ps.equalActionsAndDatas(stmt.what) and ps.arePrincipalsEqual(stmt.whose, ps.whose)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;(ps.equalsProviders(stmt.what) and stmt.arePrincipalsEqual(stmt.who, ps.who)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and stmt.arePrincipalsEqual(stmt.whom, ps.whom) and ps.areWheresEqual(stmt.where, ps.where)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;) = false&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;)"/>
-      </eAnnotations>
-      <eParameters name="stmtType" lowerBound="1" eType="#//PrivacyStatementType"/>
-      <eParameters name="stmt" lowerBound="1" eType="#//PolicyStatement"/>
-    </eOperations>
-    <eOperations name="findOppositePolicyStatementBeforeInterval" upperBound="-1"
-        eType="#//PolicyStatement">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="stmts->select(ps:PolicyStatement| self.privacyPolicyHelper.doesIntervalStartBeforeInterval(ps.when, interval)=true)"/>
-      </eAnnotations>
-      <eParameters name="stmts" upperBound="-1" eType="#//PolicyStatement"/>
-      <eParameters name="interval" lowerBound="1" eType="#//AbstractTime"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="policyStatements" upperBound="-1"
         eType="#//PolicyStatement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Principal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allPrincipals" upperBound="-1"
         eType="#//Principal" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="locations" upperBound="-1"
@@ -85,102 +51,31 @@
         eType="#//PrivacyPolicyHelper" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="allDenials" upperBound="-1"
         eType="#//Denial" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allConsents" upperBound="-1"
+        eType="#//Consent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="allDocuments" upperBound="-1"
+        eType="#//Document" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
+        eType="#//Notification" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PolicyStatement" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PolicyStatement" eSuperTypes="#//NamedElement #//NotificationInfo">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="InvalidActionComplaintAlreadyExists UndefinedPurposeForAccess UndefinedConsentForAccess DateShoudBeDefinedForAccessAction DateShoudBeDefinedForStoreAction ShouldDefineCauseByForNotifyErasure ShouldDefineCauseByForNotifyAboutRectification ObligationMissingPermission ObligationHasProhibition OptionalMissingPermision OptionalHasProhibition OptionalHasOtherObligation"/>
+      <details key="constraints" value="DateShoudBeDefinedForAccessAction DateShoudBeDefinedForStoreAction JuvenileDataShouldBeUsedWithConsent JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson JuvenileShouldHaveResponsiblePerson SubjectShouldBeNotifiedAboutCollecting"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="InvalidActionComplaintAlreadyExists" value="Tuple {&#xA;&#x9;message : String = 'Complaint on this privacy data already exists.',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(self.what.actions->size() = 1 and (self.what.actions->exists(a | a = Action::NotifyAboutErasure) or self.what.actions->exists(a | a = Action::NotifyAboutRectification))) then&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else if(PrivacyPolicy.allInstances()->asSequence()->first().dataSubjectComplaints->exists(complaint| complaint.oclIsKindOf(BaseComplaintOnData) and &#xA;&#x9;&#x9;&#x9;&#x9;let basecomplaint : BaseComplaintOnData = complaint.oclAsType(BaseComplaintOnData) in basecomplaint.subject->includesAll(self.what.datas)&#xA;&#x9;&#x9;&#x9;)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().dataSubjectComplaints->select(complaint:Complaint| complaint.oclIsKindOf(BaseComplaintOnData) and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let basecomplaint : BaseComplaintOnData = complaint.oclAsType(BaseComplaintOnData) in basecomplaint.subject->includesAll(self.what.datas)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;forAll(complaint:Complaint|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let st : PolicyStatement = PrivacyPolicy.allInstances()->asSequence()->first().getPolicyStatementWithConstraint(complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(st = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateBeforeInterval(self.when, PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.startTime(st.when))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDateInInterval(self.when, complaint.when))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
-      <details key="UndefinedPurposeForAccess" value="Tuple {&#xA;&#x9;message : String = 'Purpose is not define when data is collected',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;&#x9;if(not(self.what = null) and self.what.actions->exists(act| act = Action::Access)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.datas->forAll(data: PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let statements : PolicyStatement[*|?] = PrivacyPolicy.allInstances()->asSequence()->first().policyStatements->select(st: PolicyStatement| &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(st.what = null) and st.what.actions->exists(act| act = Action::Store) and st.what.datas->exists(d| d = data))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(statements->isEmpty()) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;statements -> forAll(st: PolicyStatement|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;st.isPurposeValid(self.why)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
-      <details key="UndefinedConsentForAccess" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(not(self.what = null) and self.what.actions->exists(act| act = Action::Access)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.datas->forAll(data: PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let statements : PolicyStatement[*|?] = PrivacyPolicy.allInstances()->asSequence()->first().policyStatements->select(st: PolicyStatement| &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(st.what = null) and st.what.actions->exists(act| act = Action::Store) and st.what.datas->exists(d| d = data))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;in &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(statements->isEmpty()) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;statements -> forAll(st: PolicyStatement|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;st.isPurposeValid(self.why) and st.isConsentValid(self.how)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
       <details key="DateShoudBeDefinedForAccessAction" value="Tuple {&#xA;&#x9;message : String = 'Date shoud be defined',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;dateShouldBeDefinedForType(Action::Access)&#xA;}.status"/>
       <details key="DateShoudBeDefinedForStoreAction" value="Tuple {&#xA;&#x9;message : String = 'Date shoud be defined',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;dateShouldBeDefinedForType(Action::Store)&#xA;}.status"/>
-      <details key="ShouldDefineCauseByForNotifyErasure" value="Tuple {&#xA;&#x9;message : String = 'Acton NotifyAboutErasure should contain causedBy with complaint Erasure',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.actionContainsCausedByAsType(Action::NotifyAboutErasure, 'Erasure')&#xA;}.status"/>
-      <details key="ShouldDefineCauseByForNotifyAboutRectification" value="Tuple {&#xA;&#x9;message : String = 'Acton NotifyAboutRectification should contain causedBy with complaint Rectification',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;self.actionContainsCausedByAsType(Action::NotifyAboutRectification, 'Rectification')&#xA;}.status"/>
-      <details key="ObligationMissingPermission" value="&#xA;&#x9;&#x9;&#x9;doesOperationMissingOppositeOperation(PrivacyStatementType::Obligation, PrivacyStatementType::Permission)"/>
-      <details key="ObligationHasProhibition" value="&#xA;&#x9;&#x9;&#x9;doesOperationNotHaveOppositeOperation(PrivacyStatementType::Obligation,PrivacyStatementType::Prohibition)"/>
-      <details key="OptionalMissingPermision" value="&#xA;&#x9;&#x9;&#x9;doesOperationMissingOppositeOperation(PrivacyStatementType::Optional, PrivacyStatementType::Permission)"/>
-      <details key="OptionalHasProhibition" value="&#xA;&#x9;&#x9;&#x9;doesOperationNotHaveOppositeOperation(PrivacyStatementType::Optional,PrivacyStatementType::Prohibition)"/>
-      <details key="OptionalHasOtherObligation" value="&#xA;&#x9;&#x9;&#x9;doesOperationNotHaveOppositeOperationWithDifferentParts(PrivacyStatementType::Optional,PrivacyStatementType::Obligation)"/>
+      <details key="JuvenileDataShouldBeUsedWithConsent" value="Tuple {&#xA;&#x9;message : String = 'Based on Art8',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(self.whose = null) then&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age &lt; PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then&#xA;&#x9;&#x9;&#x9;&#x9;if(self.how = null or self.how.consent = null &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;or self.whose.responsiblePersons->isEmpty() or not(self.whose.responsiblePersons->exists(p|p=self.how.consent.providedBy))) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson"
+          value="Tuple {&#xA;&#x9;message : String = 'Based on Art8',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(self.whose = null) then&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age &lt; PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then&#xA;&#x9;&#x9;&#x9;&#x9;if(self.how = null or self.whose.responsiblePersons->isEmpty() or self.how.documents->isEmpty() or &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;not(self.how.documents->exists(document| document.documentType = DocumentType::ChildCustody and self.whose.responsiblePersons->exists(p|p=document.providedBy)))&#xA;&#x9;&#x9;&#x9;&#x9;) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="JuvenileShouldHaveResponsiblePerson" value="Tuple {&#xA;&#x9;message : String = 'Based on Art8',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(self.whose = null) then&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age &lt; PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then&#xA;&#x9;&#x9;&#x9;&#x9;not(self.whose.responsiblePersons->isEmpty())&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="SubjectShouldBeNotifiedAboutCollecting" value="Tuple {&#xA;&#x9;message : String = 'Based on Art14',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(what.actions->exists(action| action = Action::Collecting) and what.datas->exists(data| data.colllectedFromSubject = false)) then&#xA;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self)&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
     </eAnnotations>
-    <eOperations name="equalWhatPart" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.what.actions->intersection(whatPart.actions)->size() > 0 and self.what.datas->intersection(whatPart.datas)->size() > 0&#xA;&#x9;&#x9;&#x9; and self.what.providers->intersection(whatPart.providers)->size() > 0"/>
-      </eAnnotations>
-      <eParameters name="whatPart" lowerBound="1" eType="#//What"/>
-    </eOperations>
-    <eOperations name="equalActionsAndDatas" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.what.actions->intersection(whatPart.actions)->size() > 0 and self.what.datas->intersection(whatPart.datas)->size() > 0"/>
-      </eAnnotations>
-      <eParameters name="whatPart" lowerBound="1" eType="#//What"/>
-    </eOperations>
-    <eOperations name="equalsProviders" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.what.providers->intersection(whatPart.providers)->size() > 0"/>
-      </eAnnotations>
-      <eParameters name="whatPart" lowerBound="1" eType="#//What"/>
-    </eOperations>
-    <eOperations name="actionContainsCausedByAsType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.actions->forAll(action:Action|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(action = actionType) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.causedBy = null or self.whose = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(((complaintType = 'Erasure' and self.causedBy.action.oclIsKindOf(Erasure)) or (complaintType = 'Rectification' and self.causedBy.action.oclIsKindOf(Rectification))) and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let complaintOnData : BaseComplaintOnData = self.causedBy.oclAsType(BaseComplaintOnData) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.what.datas->includesAll(complaintOnData.subject) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.whose = self.causedBy.who) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="actionType" lowerBound="1" eType="#//Action"/>
-      <eParameters name="complaintType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eOperations>
-    <eOperations name="isPurposeValid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.why = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.why.isValid(purpose)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="purpose" eType="#//Purpose"/>
-    </eOperations>
-    <eOperations name="isConsentValid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.how = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;self.how.isConsentValid(howConsent)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="howConsent" eType="#//How"/>
-    </eOperations>
     <eOperations name="dateShouldBeDefinedForType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;if(self.what.actions->exists(act| act = actionType)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(self.when = null)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
       </eAnnotations>
       <eParameters name="actionType" lowerBound="1" eType="#//Action"/>
-    </eOperations>
-    <eOperations name="arePrincipalsEqual" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if(targetPrincipal = null) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else if(observablePrincipal = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;targetPrincipal.areEquals(observablePrincipal)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="observablePrincipal" eType="#//Principal"/>
-      <eParameters name="targetPrincipal" eType="#//Principal"/>
-    </eOperations>
-    <eOperations name="areWheresEqual" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if(target = null) then &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else if(observable = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;target.areEquals(observable)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="observable" lowerBound="1" eType="#//Where"/>
-      <eParameters name="target" lowerBound="1" eType="#//Where"/>
-    </eOperations>
-    <eOperations name="doesOperationMissingOppositeOperation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = observed) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().findOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;findOppositePolicyStatementForStatement(target, self), self.when)->size() > 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="observed" eType="#//PrivacyStatementType"/>
-      <eParameters name="target" eType="#//PrivacyStatementType"/>
-    </eOperations>
-    <eOperations name="doesOperationNotHaveOppositeOperation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = observed) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().findOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;findOppositePolicyStatementForStatement(target, self), self.when)->size() = 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="observed" eType="#//PrivacyStatementType"/>
-      <eParameters name="target" eType="#//PrivacyStatementType"/>
-    </eOperations>
-    <eOperations name="doesOperationNotHaveOppositeOperationWithDifferentParts" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;if(self.what = null) then&#xA;&#x9;&#x9;&#x9;   true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;if(self.type = observed) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().findOppositePolicyStatementBeforeInterval(PrivacyPolicy.allInstances()->asSequence()->first().&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;findAlreadyDefinedRules(target, self), self.when)->size() = 0&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif"/>
-      </eAnnotations>
-      <eParameters name="observed" eType="#//PrivacyStatementType"/>
-      <eParameters name="target" eType="#//PrivacyStatementType"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//PrivacyStatementType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="when" eType="#//AbstractTime"
@@ -189,7 +84,7 @@
         <details key="name" value="when"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="who" eType="#//Principal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="who" lowerBound="1" eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="why" eType="#//Purpose"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="what" lowerBound="1" eType="#//What"
@@ -197,20 +92,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="how" eType="#//How" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="whose" eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="whom" eType="#//Principal"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="causedBy" eType="#//Complaint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="where" eType="#//Where"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="causedBy" eType="#//Complaint"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrivacyData" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//DataType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//NamedElement">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniqueSubserviceName"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="UniqueSubserviceName" value="Tuple {&#xA;&#x9;message : String = 'Subservice name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.subservices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)&#xA;}.status"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subservices" upperBound="-1"
         eType="#//Service"/>
   </eClassifiers>
@@ -221,18 +110,6 @@
         eType="#//Location"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Principal" eSuperTypes="#//NamedElement">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniquePrincipalNamePerType"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="UniquePrincipalNamePerType" value="Tuple {&#xA;&#x9;message : String = 'Principal name per type is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.subPrincipals->forAll(pr1:Principal,pr2:Principal| &#xA;&#x9;&#x9;&#x9;if(pr1.type = pr2.type) then &#xA;&#x9;&#x9;&#x9;pr1.name = pr2.name implies pr1 = pr2&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;)&#xA;}.status"/>
-    </eAnnotations>
-    <eOperations name="areEquals" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="if(self = observed) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;  else &#xA;&#x9;&#x9;&#x9;&#x9;  &#x9;self.subPrincipals->notEmpty() and self.subPrincipals->exists(s| s.areEquals(observed))&#xA;&#x9;&#x9;&#x9;&#x9;  endif"/>
-      </eAnnotations>
-      <eParameters name="observed" eType="#//Principal"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subPrincipals" upperBound="-1"
         eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//PrincipalType"/>
@@ -273,7 +150,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subLocations" upperBound="-1"
         eType="#//Location"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="legalAgeLimit" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="16"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="DocumentType">
     <eLiterals name="ChildCustody"/>
@@ -344,9 +221,6 @@
     <eLiterals name="Store"/>
     <eLiterals name="Access" value="1"/>
     <eLiterals name="Collecting" value="2"/>
-    <eLiterals name="Retrieval" value="2"/>
-    <eLiterals name="NotifyAboutErasure" value="3"/>
-    <eLiterals name="NotifyAboutRectification" value="4"/>
     <eLiterals name="Profiling" value="6"/>
     <eLiterals name="Erasure" value="7"/>
     <eLiterals name="Rectification" value="8"/>
@@ -423,8 +297,8 @@
     <eLiterals name="LegallyIncapable" value="13"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="What">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actions" upperBound="-1"
-        eType="#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actions" lowerBound="1"
+        upperBound="-1" eType="#//Action"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="providers" upperBound="-1"
         eType="#//Provider"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="datas" upperBound="-1"
@@ -444,18 +318,11 @@
       <eParameters name="howConsent" eType="#//How"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="documents" upperBound="-1"
-        eType="#//Document" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="consent" eType="#//Consent"
-        containment="true"/>
+        eType="#//Document"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consent" eType="#//Consent"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Consent" eSuperTypes="#//AbstractPaper">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="StartDateShouldBeBeforeTerminationDate"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="StartDateShouldBeBeforeTerminationDate" value="Tuple {&#xA;&#x9;message : String = 'Terminationdate is after startdate!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;not(self.startDate > self.terminationDate)&#xA;}.status"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" eType="#//ConsentFormat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ConsentType"/>
   </eClassifiers>
@@ -465,12 +332,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="protectionControlMethods"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Complaint" eSuperTypes="#//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Complaint" eSuperTypes="#//NamedElement #//NotificationInfo">
     <eStructuralFeatures xsi:type="ecore:EReference" name="who" lowerBound="1" eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="when" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="action" lowerBound="1"
-        eType="#//AbstractComplaintAction"/>
+        eType="#//AbstractComplaintAction" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrivacyPolicyHelper">
     <eOperations name="isPolicyControlValid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -553,7 +420,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentType" eType="#//DocumentType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractPaper" abstract="true" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="providedBy" eType="#//Principal"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="StartDateShouldBeBeforeTerminationDate"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="StartDateShouldBeBeforeTerminationDate" value="Tuple {&#xA;&#x9;message : String = 'Terminationdate is after startdate!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;not(self.startDate > self.terminationDate)&#xA;}.status"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="providedBy" lowerBound="1"
+        eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="terminationExplanation"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" lowerBound="1"
@@ -569,6 +443,12 @@
         eType="#//Consent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComplaintBasedOnData" eSuperTypes="#//AbstractComplaintAction">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ComplaintShouldBeExecutedAsSoonAsPossible"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ComplaintShouldBeExecutedAsSoonAsPossible" value="Tuple {&#xA;&#x9;message : String = 'Based on Art16 and Art17',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;(isExecuted or not(denialReason = null))&#xA;}.status"/>
+    </eAnnotations>
     <eOperations name="execute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subject" lowerBound="1"
         upperBound="-1" eType="#//PrivacyData"/>
@@ -581,13 +461,8 @@
     <eLiterals name="Explicit"/>
     <eLiterals name="Implied" value="1"/>
     <eLiterals name="Informed" value="2"/>
-    <eLiterals name="Unanomius" value="3" literal="Unanomius"/>
-    <eLiterals name="Substituted" value="4" literal="Substituted"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DateTime">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="day" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="month" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="year" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eLiterals name="Unanomius" value="3"/>
+    <eLiterals name="Substituted" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SharedPrivacyData">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -598,7 +473,11 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="additionalProtectionControls"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="privacydata" eType="#//PrivacyData"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="privacydata" lowerBound="1"
+        eType="#//PrivacyData"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="colllectedFromSubject"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Denial">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
@@ -612,4 +491,30 @@
     <eLiterals name="Erasure"/>
     <eLiterals name="Rectification" value="1"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="NotificationType">
+    <eLiterals name="Erasure"/>
+    <eLiterals name="Withdraw" value="1"/>
+    <eLiterals name="Rectification" value="2"/>
+    <eLiterals name="DataCollecting" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Notification">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ShouldDefineCausedByAsWithdraw ShouldDefineCausedByAsErasure ShouldDefineCausedByAsRectification ShouldDefineCausedByAsPrivacyPolicy"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ShouldDefineCausedByAsWithdraw" value="Tuple {&#xA;&#x9;message : String = 'NotifyAboutWithdraw should contain causedBy with complaint Withraw',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(type = NotificationType::Withdraw) then&#xA;&#x9;&#x9;&#x9;&#x9;if(causedBy.oclIsKindOf(Complaint)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let complaint : Complaint = causedBy.oclAsType(Complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;complaint.action.oclIsKindOf(Withdraw)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="ShouldDefineCausedByAsErasure" value="Tuple {&#xA;&#x9;message : String = 'NotifyAboutErasure should contain causedBy with complaint Erasure',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(type = NotificationType::Erasure) then&#xA;&#x9;&#x9;&#x9;&#x9;if(causedBy.oclIsKindOf(Complaint)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let complaint : Complaint = causedBy.oclAsType(Complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;basedOnData.type = ComplaintBasedOnDataType::Erasure&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="ShouldDefineCausedByAsRectification" value="Tuple {&#xA;&#x9;message : String = 'NotifyAboutRectification should contain causedBy with complaint Rectification',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(type = NotificationType::Rectification) then&#xA;&#x9;&#x9;&#x9;&#x9;if(causedBy.oclIsKindOf(Complaint)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let complaint : Complaint = causedBy.oclAsType(Complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;basedOnData.type = ComplaintBasedOnDataType::Rectification&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="ShouldDefineCausedByAsPrivacyPolicy" value="Tuple {&#xA;&#x9;message : String = 'NotifyAboutCollecting should contain causedBy with policy statement',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(type = NotificationType::DataCollecting) then&#xA;&#x9;&#x9;&#x9;&#x9;causedBy.oclIsKindOf(PolicyStatement)&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//NotificationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="notifiers" lowerBound="1"
+        upperBound="-1" eType="#//Principal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receivers" lowerBound="1"
+        upperBound="-1" eType="#//Principal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="causedBy" lowerBound="1"
+        eType="#//NotificationInfo"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="when" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NotificationInfo" abstract="true"/>
 </ecore:EPackage>
