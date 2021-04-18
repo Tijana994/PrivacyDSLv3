@@ -1,0 +1,134 @@
+Privacy statement
+
+who => Principal
+where -> Region
+when -> TimeInterval
+why -> Purpose
+what -> What(Action*, PrivacyData*, Provider(Service*, Region)*)
+whose -> Principal
+how -> Restriction*
+cause => PolicyStatement//Cause(Action*, PrivacyData*, Provider(Service*, Region)*)// Odlucila sam da ga obrisem, a da cause bude opisan referencom na policystatement koji je izazvao neki drugi, tipa izmena podataka-notify o izmeni
+whom => Principal*
+fromwho => Principal
+
+-------------------------
+antonimi:
+permission - prohibition
+obligation - optional
+
+obligation proverava ima li permisijiju ili zabranu
+optional proverava ima li permisiju ili zabranu i zatim obligation da budu negde drugde sacuvani
+information proverava ima li permisiju ili zabranu i zatim obligation da budu negde drugde sacuvani
+information, s tim da notify moze biti samo information, a information moze biti bilo sta
+-------------------------
+
+Enumi pre toga su za OutOfScope
+Specific right moze imati vrednosti : employment, social security, social protection Art 9
+
+Constraint treba da ima informaciju da li je dodatni uslov neophodan samo spoljnim, unutrasnjim ili svima vlasnicima podataka
+Hocu da podatak ima info sta sve sme da se vrsi nad njim uz neka ogranicenja, zatim da vrsim validaciju spram toga
+
+Restriction je definisan Art14 kao i citav deo oko Constraint i PrivacyData
+Where je definisano Art13 kao i when
+
+Dodati u OCL ako je u pitanju store neophodno je da postoji interval od do Art14, takodje moram znati od koga je dobijen podatak zbog toga dodajem fromwho
+
+Purpose, time span i Recipient su opisani u Art15, Art18
+
+Akcija rectification  objasnjena je u Art16, podrazumeva dopunu/ispravku podataka od strane vlasnika podataka
+
+Akcija erasure objasnjena je u Art17 - zahtev od strane vlasnika podataka da se podaci obrisu
+
+Zbog Art 17 uvodim retrieval akciju kojom Controller uklanja podatke u odnosu na sve Recipiente sa kojima je delio te podatke
+
+Zbog Art 19 uvodim notifyAboutErasure i notifyAboutRectification - dakle obavestava Controler sve recipiente o izmeni/brisanju podataka
+
+Art 21 - marketing u Purpose kao i akcija povlačenje podataka
+
+Art 30 u suštini opisuje moj privacy statement videti još jednom jel sve ispunjeno
+
+Konsultacije 2:
+Da li u Restriction staviti value da je string? ili ostaviti T? Moj predlog: staviti samo enum i freetext kao descripton ovo mi se više sviđa
+Tu mozda dodati od kada do kada vazi, samo mozda onda da dodam neki objekat koji ce naslediti restriction, a imati datum?
+
+Sta raditi sa Art14 kaze da moze da podnese zalbu, takodje se na ovo odnosi i Art 21
+
+Recipient mogu da objasnim potpuno pomocu principala, samo oni vrse akcije citanja, obrade itd, nema potrebe da ih tretiram drugacije. :) Mozda ga opisati sa whom? Tako sam sad dodala u meta-model
+
+Da li je za erasure dovoljno deskriptivno sve predstavljeno meta modelom?
+
+Art 20 - samo je naznačeno da isti podatak sme da se nalazi kod više kontrolora, sad je pitanje da li ovo da radimo, jer sam vezala za jednog čitav meta-model
+
+Da li sve iz Art 23 navoditi posebno ili da se svodi pod OutOfScope->PreventionOfThreats?
+
+Art 26 kaže da može biti više kontrolora, da li opterećivati meta-model ovim? isto kao za Art 20
+
+
+Art 28 Processor meni je ovo Provider, međutim ima stavka koja kaže da on može angažovati nekog drugog provajdera i da za to treba obavestiti kontrolora
+
+Art 31 pominje nadzorni organ, ne bih se ovim bavila
+
+Art 32 security deo - prodiskutovati sta dodati u ProtectionControls
+
+Art 33, 34 da li u restriction uslov postojanje dokumenta o kršenju (Breach document) i (akciju kršenje ličnih podataka(personal data breach) i obaveštavanje vlasnika podataka(NotifyAboutBreach))
+
+Art 35 se bavi procenama rizika, mislim da bi to generalno potpalo pod temu rada, nemam potrebu da opisujem to, motivacija rada je zapravo procena rizika, kao i Art 36 koji opisuje konsultacije
+
+bitno u Art 36 je da mozda dodam i Restriction dozvolu za obradu podataka u javne svrhe
+
+Ima li svrhe obradjivati od Art37-39 bave se imenovanjem sluzbenika za zastitu podataka, da li da se spustamo na taj nivo, mislim da mozda ne
+
+____________________________________________
+Art 40 uvodi pojam kodeksa ponašanja kontrolora
+
+Art 41 se bavi upravljanjem kodeksom i žalbama na njega
+
+Art 42 sertifikati za kontrolore i obrađivače ovo mislim da moramo dodati zbog Art 46
+
+Art 43 telo koje izdaje certifikate
+
+Art 45 komisija mora da odobri prenos u treću zemlju ili već neki njen deo - mislim da BiH ipak vratila da imam oznaku da je EU i dodala vezu region dozvola, gde je dozvola vezana za Principala, zatim bih OCL-om odradila validaciju
+Takođe je moguće suspendovati dozvolu razmotriti kako rešiti ovaj problem
+
+Art 46 transferi podložni odgovarajućim zaštitnim merama - Ukoliko odluke nema tada obrađivač u 3. zemlji mora posedovati sertifikate
+
+Art 47 ovde se bave korporativnim pravilima odnosno organizacijom unutar kompanije gde se određuje ko ima koja prava
+
+Art 48 zabranjeni transferi ovo bi mogao da se doda neki enum u model
+
+Art 49 nastavak pravila iz 48
+
+Art 50 je međunarodna saradnja i nije ništa bitno  
+-----------------------------------------------------------------
+
+Posle konsultacija 2:
+
+Art 51-76 necu obradjivatii supervisore
+
+Art 77-84 necu pustiti da se priloze zalbe na nadzorno lice, jer se ne bavim njima i nemam ih u modelu
+
+Art 85,89 obratiti paznju na novinare, obrazovanje...
+
+Art 86, 87,88 obuhvatila sam
+
+Art 91 samo komentar da i crkva podleze
+
+Art 92 delegacija preskacem
+
+Art 93 komitet preskacem
+
+Art 94 - 99 dodaci direktivama preskacem
+
+***********
+NAPOMENE za rad
+Obrati paznju kaze da se u Art 6 odredjuje da li su purpose kompatibilne
+
+
+
+
+
+Pogledati Representing Multicloud Security and
+Privacy Policies and Detecting
+Potential Problems
+
+mozda refaktorisati ceo deo sa ogranicenjima, po ugledu na ovaj rad

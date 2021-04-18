@@ -1,0 +1,70 @@
+Konsultacije 2:
+Da li u Restriction staviti value da je string? ili ostaviti T? Moj predlog: staviti samo enum i freetext kao descripton ovo mi se više sviđa
+Tu mozda dodati od kada do kada vazi, samo mozda onda da dodam neki objekat koji ce naslediti restriction, a imati datum? 
+*start, termination date i obrazlozenje zasto je terminiran
+*Promeniti Restriction na odobrenje
+
+Sta raditi sa Art14 kaze da moze da podnese zalbu, takodje se na ovo odnosi i Art 21
+*Nova klasa zalba
+
+Da li je za erasure dovoljno deskriptivno sve predstavljeno meta modelom?
+*O ovome i zalbi jos razmisliti
+
+Recipient mogu da objasnim potpuno pomocu principala, samo oni vrse akcije citanja, obrade itd, nema potrebe da ih tretiram drugacije. :) Mozda ga opisati sa whom? Tako sam sad dodala u meta-model
+
+Art 20 - samo je naznačeno da isti podatak sme da se nalazi kod više kontrolora, sad je pitanje da li ovo da radimo, jer sam vezala za jednog čitav meta-model
+Art 26 kaže da može biti više kontrolora, da li opterećivati meta-model ovim? isto kao za Art 20
+*Necemo ubacivati
+
+Da li sve iz Art 23 navoditi posebno ili da se svodi pod OutOfScope->PreventionOfThreats?
+*Pokusati navesti sve
+
+Art 28 Processor meni je ovo Provider, međutim ima stavka koja kaže da on može angažovati nekog drugog provajdera i da za to treba obavestiti kontrolora
+*Preimenovati da se zove kao u gdpr-u
+
+Art 31 pominje nadzorni organ, ne bih se ovim bavila
+*izostaviti, u tekstu se ograditi od stvari koje nisu razmatrane
+
+Art 32 security deo - prodiskutovati sta dodati u ProtectionControls
+*Prebaciti ProtectionControls u sifarnik i navesti ove stvari kao primer
+
+Art 33, 34 da li u restriction uslov postojanje dokumenta o kršenju (Breach document) i (akciju kršenje ličnih podataka(personal data breach) i obaveštavanje vlasnika podataka(NotifyAboutBreach))
+*Dodati zahtev i vezati za statementi u njega ubaciti sve sta je user inicirao
+
+Art 35 se bavi procenama rizika, mislim da bi to generalno potpalo pod temu rada, nemam potrebu da opisujem to, motivacija rada je zapravo procena rizika, kao i Art 36 koji opisuje konsultacije
+*izostaviti, u tekstu se ograditi od stvari koje nisu razmatrane
+
+bitno u Art 36 je da mozda dodam i Restriction dozvolu za obradu podataka u javne svrhe
+*dodati
+
+Ima li svrhe obradjivati od Art37-39 bave se imenovanjem sluzbenika za zastitu podataka, da li da se spustamo na taj nivo, mislim da mozda ne
+*on bi koristio rezultate ovoga kao motivacija za rad
+____________________________________________
+Art 40 uvodi pojam kodeksa ponašanja kontrolora
+*izostaviti, u tekstu se ograditi od stvari koje nisu razmatrane
+
+Art 41 se bavi upravljanjem kodeksom i žalbama na njega
+* ne zali se na podatak, vec na kontrolora, pa izbaciti
+
+Art 42 sertifikati za kontrolore i obrađivače ovo mislim da moramo dodati zbog Art 46
+* ne zali se na podatak, vec na kontrolora, pa izbaciti
+Art 43 telo koje izdaje certifikate
+* ne zali se na podatak, vec na kontrolora, pa izbaciti
+
+Art 45 komisija mora da odobri prenos u treću zemlju ili već neki njen deo - mislim da bih ipak vratila da imam oznaku da je EU i dodala vezu region dozvola, 
+gde je dozvola vezana za ?Principala?, zatim bih OCL-om odradila validaciju Takođe je moguće suspendovati dozvolu razmotriti kako rešiti ovaj problem.
+* Dodati na Location da li je EU Member 
+* Razraditi ovaj deo preko restriction
+
+Art 46 transferi podložni odgovarajućim zaštitnim merama - Ukoliko odluke nema tada obrađivač u 3. zemlji mora posedovati sertifikate
+
+Art 47 ovde se bave korporativnim pravilima odnosno organizacijom unutar kompanije gde se određuje ko ima koja prava
+
+Art 48 zabranjeni transferi ovo bi mogao da se doda neki enum u model
+
+Art 49 nastavak pravila iz 48
+
+Art 50 je međunarodna saradnja i nije ništa bitno  
+
+*******************
+DataSource promeniti na sifarnik,a o proccessing tipovima razmisliti

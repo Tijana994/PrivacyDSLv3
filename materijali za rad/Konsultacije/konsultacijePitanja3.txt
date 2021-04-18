@@ -1,0 +1,10 @@
+
+
+Videti za Approval da li da se cuva ovako.
+Da li mozda podatak da bude jedan u what? Kao i akcija... - koristice
+PrivacyStatementType da li mi sad stvarno treba, buduci da smo zalbe pokrili one bi bile kao nekakva zabrana? Nisam ih za sada koristila pri validaciji - koristice
+Dodala sam causedBy vezu, mozda cause obrisati, razmisliti o ovome, 
+ili cause koristiti za proveru nekih uzrocnih akcija, razmotriti ima li potrebe da komplikujemo model ovoliko - koristice - obrisati
+Kardinalitete mozda da namestim na 1 za Complaint sto se tice privacyData i dodati neki komentar - dodati komentar, videti kako raade tagovi na umlu, pa mozda dodati u named element
+Da li za preposition staviti samo from to i at, sve manje smisla mi ima ostalo - probati na primerima
+None tip za constraintscope je dodat kako bi principal mogao biti nedefinisan za tu grupu - izbacujem

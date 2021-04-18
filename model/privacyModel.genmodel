@@ -86,6 +86,10 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/SocialProtection"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/PhisicallyIncapable"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/LegallyIncapable"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/Statistical"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/Historical"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/Scientific"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/Other"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ConsentFormat">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ConsentFormat/Written"/>
@@ -122,7 +126,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allProviders"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/configurationManager"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allDatas"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/dataSubjectComplaints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allComplaints"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/privacyPolicyHelper"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allDenials"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allConsents"/>
@@ -183,9 +187,9 @@
       <genOperations ecoreOperation="privacyModel.ecore#//TimeInterval/isTypeForbidden">
         <genParameters ecoreParameter="privacyModel.ecore#//TimeInterval/isTypeForbidden/prepositionType"/>
       </genOperations>
-      <genOperations ecoreOperation="privacyModel.ecore#//TimeInterval/isIntervalValid">
-        <genParameters ecoreParameter="privacyModel.ecore#//TimeInterval/isIntervalValid/firstPrepositionType"/>
-        <genParameters ecoreParameter="privacyModel.ecore#//TimeInterval/isIntervalValid/secondPrepositionType"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//TimeInterval/isValid">
+        <genParameters ecoreParameter="privacyModel.ecore#//TimeInterval/isValid/firstPrepositionType"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//TimeInterval/isValid/secondPrepositionType"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//TimeStatement">
@@ -202,7 +206,10 @@
       <genOperations ecoreOperation="privacyModel.ecore#//Purpose/isSubPurposeValid">
         <genParameters ecoreParameter="privacyModel.ecore#//Purpose/isSubPurposeValid/reason"/>
         <genParameters ecoreParameter="privacyModel.ecore#//Purpose/isSubPurposeValid/subreasons"/>
-        <genParameters ecoreParameter="privacyModel.ecore#//Purpose/isSubPurposeValid/purpose"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//Purpose/containsAllowedPurposeReasonAndSubreason">
+        <genParameters ecoreParameter="privacyModel.ecore#//Purpose/containsAllowedPurposeReasonAndSubreason/allowedReason"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//Purpose/containsAllowedPurposeReasonAndSubreason/allowedSubreasons"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//What">

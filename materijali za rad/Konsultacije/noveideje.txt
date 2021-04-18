@@ -1,0 +1,16 @@
+Dodala sam da li je maloletan, jer bih to posebno da hendalam
+dodala sam zbog Art14, takodje moram znati od koga je dobijen podatak zbog toga dodajem fromwho
+
+****Prosiriti*****
+Art 23 RestrictionType
+Action prosiriti po radu tracking GDPR
+
+
+
+mozda restriction i approval da naslede namedelement
+da li u approval staviti notallowed - Ovo je sad Consent, mislim da ne, jer bih mogla to isto da kazem tipom statementa (Prohibition)
+
+Privacy Policy je preimenovano u ‘filing system’ zbog Art4
+
+ComplaintBasedOnData ce biti konkretna klasa, na osnovu nje treba ako nije izvrseno da se radi validacija tj da nije izvrseno, ukoliko se doda statement gde se radi operacija navdena kao tip, tada se uradi execute i setuje se na true.
+Dodat je Denial zbog Art17 deo 2. Denial ima u sebi datum, osobu koja je odobrila, i referencu na spisak statemenata na osnovu kojih je odbaceno.
