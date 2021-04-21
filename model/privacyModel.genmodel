@@ -28,6 +28,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//DocumentType">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/ChildCustody"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/CourtApproval"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/ControllerApproval"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//TimePreposition">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//TimePreposition/from"/>
@@ -70,6 +71,7 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/Testing"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/Profiling"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/ProtectTheVitalInterestsOfTheDataSubject"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/LegitimateInterests"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ProcessingReasonSubtype">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/None"/>
