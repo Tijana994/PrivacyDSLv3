@@ -21,9 +21,12 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/General"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/Genetic"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/PoliticalOpinion"/>
-      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/RacialEthnicOrigin"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/RacialOrEthnicOrigin"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/Beliefs"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/SexLife"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/Religic"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/Health"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/Judical"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//DocumentType">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/ChildCustody"/>
@@ -149,6 +152,10 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/dateShouldBeDefinedForType">
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/dateShouldBeDefinedForType/actionType"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/documentIsNeededForPurpose">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/documentIsNeededForPurpose/documentType"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/documentIsNeededForPurpose/processingReason"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PrivacyData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//PrivacyData/type"/>
@@ -168,14 +175,17 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Principal/inhabits"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Principal/birthdate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Principal/age"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//Principal/equals">
+        <genParameters ecoreParameter="privacyModel.ecore#//Principal/equals/observed"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Location">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Location/isEUMember"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Location/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Location/subLocations"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Location/legalAgeLimit"/>
-      <genOperations ecoreOperation="privacyModel.ecore#//Location/areEquals">
-        <genParameters ecoreParameter="privacyModel.ecore#//Location/areEquals/observed"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//Location/equals">
+        <genParameters ecoreParameter="privacyModel.ecore#//Location/equals/observed"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//AbstractTime"/>
@@ -279,8 +289,8 @@
     <genClasses ecoreClass="privacyModel.ecore#//Where">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Where/destination"/>
-      <genOperations ecoreOperation="privacyModel.ecore#//Where/areEquals">
-        <genParameters ecoreParameter="privacyModel.ecore#//Where/areEquals/observed"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//Where/equals">
+        <genParameters ecoreParameter="privacyModel.ecore#//Where/equals/observed"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Document">
