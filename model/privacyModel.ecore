@@ -376,6 +376,12 @@
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Complaint" eSuperTypes="#//NotificationInfo">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="CannotIdentifyDataFromComplaint"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="CannotIdentifyDataFromComplaint" value="Tuple {&#xA;&#x9;message : String = 'Based on Art11',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;let privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in&#xA;&#x9;&#x9;&#x9;if(self.action->oclIsKindOf(Withdraw)) then&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;let basedOnData : ComplaintBasedOnData = self.action->oclAsType(ComplaintBasedOnData) in&#xA;&#x9;&#x9;&#x9;&#x9;basedOnData.subject->forAll(data: PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;privacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::Collecting) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(stmt.whose = null) and stmt.whose = self.who and privacyPolicy.privacyPolicyHelper.isDateInInterval(stmt.when, self.when) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and stmt.what.datas->exists(selectedData| selectedData = data)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;  endif&#xA;}.status"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="who" lowerBound="1" eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="when" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
