@@ -57,6 +57,7 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//Action/Profiling"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//Action/Erasure"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//Action/Rectification"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//Action/Transfer"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//LocationType">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//LocationType/Union"/>
@@ -151,6 +152,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/causedBy"/>
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/dateShouldBeDefinedForType">
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/dateShouldBeDefinedForType/actionType"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/causedByShouldBeDefinedForType">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/causedByShouldBeDefinedForType/actionType"/>
       </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/documentIsNeededForPurpose">
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/documentIsNeededForPurpose/documentType"/>
@@ -250,6 +254,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Complaint/when"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Complaint/reason"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Complaint/action"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//Complaint/doesPolicyStatementExists">
+        <genParameters ecoreParameter="privacyModel.ecore#//Complaint/doesPolicyStatementExists/actionType"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//Complaint/doesPolicyStatementExists/type"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PrivacyPolicyHelper">
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/isPolicyControlValid">
