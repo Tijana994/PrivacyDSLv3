@@ -61,7 +61,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PolicyStatement" eSuperTypes="#//NotificationInfo">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="DateShoudBeDefinedForAccessAction DateShoudBeDefinedForStoreAction CourtApprovalIsNeedForPublicInterestPurpose ControllerApprovalIsNeedForLegitimateInterestsPurpose ControllerApprovalIsNeedForProtectTheVitalInterestsOfTheDataSubjectPurpose MissingConsentForCollecting UndefinedPurposeForAction ExpiredConsent WithdrawedConsent JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson ProcessingOfSpecialCategories SubjectShouldBeNotifiedAboutCollecting CausedByShouldBeDefinedForRectificationAction CausedByShouldBeDefinedForErasureAction SubjectShouldBeNotifiedAboutErasure SubjectShouldBeNotifiedAboutRectification WhomShouldBeDefinedForTransfer MissingConsentForTransfer"/>
+      <details key="constraints" value="DateShoudBeDefinedForAccessAction DateShoudBeDefinedForStoreAction CourtApprovalIsNeedForPublicInterestPurpose ControllerApprovalIsNeedForLegitimateInterestsPurpose ControllerApprovalIsNeedForProtectTheVitalInterestsOfTheDataSubjectPurpose MissingConsentForCollecting UndefinedPurposeForAction ExpiredConsent WithdrawedConsent JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson ProcessingOfSpecialCategories SubjectShouldBeNotifiedAboutCollecting CausedByShouldBeDefinedForRectificationAction CausedByShouldBeDefinedForErasureAction SubjectShouldBeNotifiedAboutErasure SubjectShouldBeNotifiedAboutRectification WhomShouldBeDefinedForTransfer MissingConsentForTransfer SubjectShouldBeNotifiedAboutStopProcessing CausedByShouldBeDefinedForStopProcessingAction"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="DateShoudBeDefinedForAccessAction" value="Tuple {&#xA;&#x9;message : String = 'Date shoud be defined',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;dateShouldBeDefinedForType(Action::Access)&#xA;}.status"/>
@@ -84,6 +84,8 @@
       <details key="SubjectShouldBeNotifiedAboutRectification" value="Tuple {&#xA;&#x9;message : String = 'Based on Art19',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(what.actions->exists(action| action = Action::Rectification)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
       <details key="WhomShouldBeDefinedForTransfer" value="Tuple {&#xA;&#x9;message : String = 'Based on Art20',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(what.actions->exists(action| action = Action::Transfer)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;not(self.whom = null)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
       <details key="MissingConsentForTransfer" value="Tuple {&#xA;&#x9;message : String = 'Based on Art20',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(self.whose = null or not(self.what.actions->exists(action| action = Action::Transfer))) then&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age &lt; PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then&#xA;&#x9;&#x9;&#x9;&#x9;not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy)&#xA;&#x9;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;&#x9;not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.consent.providedBy))&#xA;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="SubjectShouldBeNotifiedAboutStopProcessing" value="Tuple {&#xA;&#x9;message : String = 'Based on Art21',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(what.actions->exists(action| action = Action::StopProcessing)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="CausedByShouldBeDefinedForStopProcessingAction" value="Tuple {&#xA;&#x9;message : String = 'Based on Art21',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;causedByShouldBeDefinedForType(Action::StopProcessing)&#xA;}.status"/>
     </eAnnotations>
     <eOperations name="dateShouldBeDefinedForType" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -104,7 +106,6 @@
       <eParameters name="documentType" lowerBound="1" eType="#//DocumentType"/>
       <eParameters name="processingReason" lowerBound="1" eType="#//ProcessingReason"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//PrivacyStatementType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="when" eType="#//AbstractTime"
         containment="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -160,13 +161,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="birthdate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         derived="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="PrivacyStatementType">
-    <eLiterals name="Permission"/>
-    <eLiterals name="Obligation" value="1"/>
-    <eLiterals name="Information" value="2"/>
-    <eLiterals name="Optional" value="3"/>
-    <eLiterals name="Prohibition" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="DataType">
     <eLiterals name="Biometric"/>
@@ -269,6 +263,7 @@
     <eLiterals name="Erasure" value="7"/>
     <eLiterals name="Rectification" value="8"/>
     <eLiterals name="Transfer" value="6"/>
+    <eLiterals name="StopProcessing" value="7"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="LocationType">
     <eLiterals name="Union"/>
@@ -277,7 +272,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Purpose">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ResearchCannotContainsThisSubReason PublicHealthShouldNotContainSubReason OutOfScopeCannotContainsThisSubReason PublicInterestShouldNotContainSubReason StatisticalPurposesShouldNotContainSubReason ExercisingSpecificRightsPurposesCannotContainsThisSubReason MarketingShouldNotContainSubReason TestingShouldNotContainSubReason ProfilingShouldNotContainSubReason ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason"/>
+      <details key="constraints" value="ResearchCannotContainsThisSubReason PublicHealthShouldNotContainSubReason OutOfScopeCannotContainsThisSubReason PublicInterestShouldNotContainSubReason StatisticalPurposesShouldNotContainSubReason ExercisingSpecificRightsPurposesCannotContainsThisSubReason MarketingShouldNotContainSubReason TestingShouldNotContainSubReason ProfilingShouldNotContainSubReason ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason LegitimateInterestsNotContainSubReason"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="ResearchCannotContainsThisSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::Research, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::Scientific, ProcessingReasonSubtype::Historical,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;ProcessingReasonSubtype::Statistical&#xA;&#x9;&#x9;&#x9;&#x9;})"/>
@@ -291,6 +286,7 @@
       <details key="ProfilingShouldNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::Profiling, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None})"/>
       <details key="ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason"
           value="&#xA;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::PhisicallyIncapable,ProcessingReasonSubtype::LegallyIncapable, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::None})"/>
+      <details key="LegitimateInterestsNotContainSubReason" value="&#xA;&#x9;&#x9;&#x9;isSubPurposeValid(ProcessingReason::LegitimateInterests, &#xA;&#x9;&#x9;&#x9;&#x9;Sequence{ProcessingReasonSubtype::None})"/>
     </eAnnotations>
     <eOperations name="isValid" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
@@ -390,17 +386,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Complaint" eSuperTypes="#//NotificationInfo">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="SubjectShouldBeNotifiedAboutWithdraw CannotIdentifyDataFromComplaint RectificationShouldBeExecutedAsSoonAsPossible ErasureShouldBeExecutedAsSoonAsPossible"/>
+      <details key="constraints" value="SubjectShouldBeNotifiedAboutWithdraw CannotIdentifyDataFromComplaint RectificationShouldBeExecutedAsSoonAsPossible ErasureShouldBeExecutedAsSoonAsPossible InvalidTypeOfPurposeForObject StopProcessingShouldBeExecutedAsSoonAsPossible"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="SubjectShouldBeNotifiedAboutWithdraw" value="Tuple {&#xA;&#x9;message : String = 'Based on Art19',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(self.action->oclIsKindOf(Withdraw)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
       <details key="CannotIdentifyDataFromComplaint" value="Tuple {&#xA;&#x9;message : String = 'Based on Art11',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;let privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in&#xA;&#x9;&#x9;&#x9;if(self.action->oclIsKindOf(Withdraw)) then&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;let basedOnData : ComplaintBasedOnData = self.action->oclAsType(ComplaintBasedOnData) in&#xA;&#x9;&#x9;&#x9;&#x9;basedOnData.subject->forAll(data: PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;privacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::Collecting) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(stmt.whose = null) and stmt.whose = self.who and privacyPolicy.privacyPolicyHelper.isDateInInterval(stmt.when, self.when) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and stmt.what.datas->exists(selectedData| selectedData = data)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;  endif&#xA;}.status"/>
       <details key="RectificationShouldBeExecutedAsSoonAsPossible" value="Tuple {&#xA;&#x9;message : String = 'Based on Art16',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;doesPolicyStatementExists(Action::Rectification,ComplaintBasedOnDataType::Rectification)&#xA;}.status"/>
       <details key="ErasureShouldBeExecutedAsSoonAsPossible" value="Tuple {&#xA;&#x9;message : String = 'Based on Art17',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;doesPolicyStatementExists(Action::Erasure,ComplaintBasedOnDataType::Erasure)&#xA;}.status"/>
+      <details key="InvalidTypeOfPurposeForObject" value="Tuple {&#xA;&#x9;message : String = 'Based on Art21',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(not(self.action->oclIsKindOf(ComplaintBasedOnAction))) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;let basedOnAction : ComplaintBasedOnAction = self.action->oclAsType(ComplaintBasedOnAction) in&#xA;&#x9;&#x9;&#x9;&#x9;if(basedOnAction.statement.who = null or not(basedOnAction.statement.who = self.who)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(basedOnAction.statement.why = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(not(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::None})) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;or&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::OutOfScope,Sequence{ProcessingReasonSubtype::Investigation, &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;ProcessingReasonSubtype::Prosecution})))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Marketing,Sequence{ProcessingReasonSubtype::None})&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;or&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Profiling,Sequence{ProcessingReasonSubtype::None}))&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="StopProcessingShouldBeExecutedAsSoonAsPossible" value="Tuple {&#xA;&#x9;message : String = 'Based on Art21',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;let privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in&#xA;&#x9;&#x9;&#x9;&#x9;if(not(self.action->oclIsKindOf(ComplaintBasedOnAction))) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;let basedOnAction : ComplaintBasedOnAction = self.action->oclAsType(ComplaintBasedOnAction) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(not(basedOnAction.denialReason = null)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;privacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::StopProcessing) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(stmt.causedBy = null) and stmt.causedBy = self)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;  endif&#xA;}.status"/>
     </eAnnotations>
     <eOperations name="doesPolicyStatementExists" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#x9;&#x9; &#x9;&#xA;&#x9;&#x9;&#x9;let privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in&#xA;&#x9;&#x9;&#x9;&#x9;if(self.action->oclIsKindOf(Withdraw)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;let basedOnData : ComplaintBasedOnData = self.action->oclAsType(ComplaintBasedOnData) in&#xA;&#x9;&#x9;&#x9;&#x9;if(basedOnData.type = type) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(not(basedOnData.denialReason = null)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;basedOnData.subject->forAll(data: PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;privacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = actionType) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(stmt.whose = null) and stmt.whose = self.who and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and stmt.what.datas->exists(selectedData| selectedData = data) and not(stmt.causedBy = null) and stmt.causedBy = self)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;  endif"/>
+        <details key="body" value="&#x9;&#x9; &#x9;&#xA;&#x9;&#x9;&#x9;let privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in&#xA;&#x9;&#x9;&#x9;&#x9;if(not(self.action->oclIsKindOf(ComplaintBasedOnData))) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;let basedOnData : ComplaintBasedOnData = self.action->oclAsType(ComplaintBasedOnData) in&#xA;&#x9;&#x9;&#x9;&#x9;if(basedOnData.type = type) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(not(basedOnData.denialReason = null)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;basedOnData.subject->forAll(data: PrivacyData|&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;privacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = actionType) and &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;not(stmt.whose = null) and stmt.whose = self.who and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) &#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;and stmt.what.datas->exists(selectedData| selectedData = data) and not(stmt.causedBy = null) and stmt.causedBy = self)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;  endif"/>
       </eAnnotations>
       <eParameters name="actionType" lowerBound="1" eType="#//Action"/>
       <eParameters name="type" lowerBound="1" eType="#//ComplaintBasedOnDataType"/>
@@ -514,14 +512,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subject" lowerBound="1"
         eType="#//Consent"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComplaintBasedOnData" eSuperTypes="#//AbstractComplaintAction">
-    <eOperations name="execute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplaintBasedOnData" eSuperTypes="#//AbstractComplaint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subject" lowerBound="1"
         upperBound="-1" eType="#//PrivacyData"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//ComplaintBasedOnDataType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isExecuted" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="denialReason" eType="#//Denial"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ConsentType">
     <eLiterals name="Explicit"/>
@@ -562,6 +556,7 @@
     <eLiterals name="Withdraw" value="1"/>
     <eLiterals name="Rectification" value="2"/>
     <eLiterals name="DataCollecting" value="3"/>
+    <eLiterals name="StopProcessing" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Notification">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -571,7 +566,7 @@
       <details key="ShouldDefineCausedByAsWithdraw" value="Tuple {&#xA;&#x9;message : String = 'NotifyAboutWithdraw should contain causedBy with complaint Withraw',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(type = NotificationType::Withdraw) then&#xA;&#x9;&#x9;&#x9;&#x9;if(causedBy.oclIsKindOf(Complaint)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let complaint : Complaint = causedBy.oclAsType(Complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;complaint.action.oclIsKindOf(Withdraw)&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
       <details key="ShouldDefineCausedByAsErasure" value="Tuple {&#xA;&#x9;message : String = 'NotifyAboutErasure should contain causedBy with complaint Erasure',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(type = NotificationType::Erasure) then&#xA;&#x9;&#x9;&#x9;&#x9;if(causedBy.oclIsKindOf(Complaint)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let complaint : Complaint = causedBy.oclAsType(Complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;basedOnData.type = ComplaintBasedOnDataType::Erasure&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
       <details key="ShouldDefineCausedByAsRectification" value="Tuple {&#xA;&#x9;message : String = 'NotifyAboutRectification should contain causedBy with complaint Rectification',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(type = NotificationType::Rectification) then&#xA;&#x9;&#x9;&#x9;&#x9;if(causedBy.oclIsKindOf(Complaint)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let complaint : Complaint = causedBy.oclAsType(Complaint) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;let basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;basedOnData.type = ComplaintBasedOnDataType::Rectification&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
-      <details key="ShouldDefineCausedByAsPrivacyPolicy" value="Tuple {&#xA;&#x9;message : String = 'NotifyAboutCollecting should contain causedBy with policy statement',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(type = NotificationType::DataCollecting) then&#xA;&#x9;&#x9;&#x9;&#x9;causedBy.oclIsKindOf(PolicyStatement)&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
+      <details key="ShouldDefineCausedByAsPrivacyPolicy" value="Tuple {&#xA;&#x9;message : String = 'NotifyAboutCollecting or StopProcessing should contain causedBy with policy statement',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;&#x9;if(type = NotificationType::DataCollecting or type = NotificationType::StopProcessing) then&#xA;&#x9;&#x9;&#x9;&#x9;causedBy.oclIsKindOf(PolicyStatement)&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;true&#xA;&#x9;&#x9;&#x9;endif&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//NotificationType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="notifiers" lowerBound="1"
@@ -583,4 +578,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="when" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NotificationInfo" abstract="true" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractComplaint" abstract="true" eSuperTypes="#//AbstractComplaintAction">
+    <eOperations name="execute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isExecuted" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="denialReason" eType="#//Denial"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComplaintBasedOnAction" eSuperTypes="#//AbstractComplaint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" lowerBound="1"
+        eType="#//PolicyStatement"/>
+  </eClassifiers>
 </ecore:EPackage>
