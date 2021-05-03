@@ -25,6 +25,7 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/ChildCustody"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/CourtApproval"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/ControllerApproval"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/TransferCertificate"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//TimePreposition">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//TimePreposition/from"/>
@@ -113,6 +114,7 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/Rectification"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/DataCollecting"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/StopProcessing"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/ThirdPartyTransfer"/>
     </genEnums>
     <genClasses ecoreClass="privacyModel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//NamedElement/name"/>
