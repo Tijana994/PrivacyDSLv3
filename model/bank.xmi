@@ -5,11 +5,92 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:privacyModel="http://privacymodel"
     xsi:schemaLocation="http://privacymodel privacyModel.ecore"
-    name="Policy">
+    name="Green Bank"
+    owner="//@allPrincipals.0">
+  <policyStatements
+      name="open account oa1"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.2">
+    <when xsi:type="privacyModel:TimeStatement"
+        dateTime="2020-10-25T01:00:00.000+0200"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"
+        details="Open account"/>
+    <what>
+      <actions>Collecting</actions>
+      <actions>Store</actions>
+      <datas
+          privacydata="//@allDatas.0">
+        <additionalProtectionControls>Encryption</additionalProtectionControls>
+      </datas>
+      <datas
+          privacydata="//@allDatas.1">
+        <additionalProtectionControls>Encryption</additionalProtectionControls>
+      </datas>
+      <datas
+          privacydata="//@allDatas.2"/>
+    </what>
+    <how consent="//@allConsents.0"
+        dataSource="Identity document"/>
+    <where source="//@locations.0"
+        destination="//@locations.0"/>
+  </policyStatements>
+  <policyStatements
+      name="status check sc1"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.2">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2020-11-02T00:00:00.000+0100"/>
+    <why processingReason="OutOfScope"/>
+    <what>
+      <actions>Access</actions>
+      <datas
+          privacydata="//@allDatas.2"/>
+    </what>
+    <where source="//@locations.0"
+        destination="//@locations.0"/>
+  </policyStatements>
+  <allPrincipals
+      name="Green Bank"
+      subPrincipals="//@allPrincipals.1"
+      responsiblePersons="//@allPrincipals.1"
+      inhabits="//@locations.0"/>
+  <allPrincipals
+      name="Petar Petrovic"
+      type="NaturalPerson"
+      inhabits="//@locations.0"
+      age="35"/>
+  <allPrincipals
+      name="Mery Peterson"
+      type="NaturalPerson"
+      scope="Out"
+      age="25"/>
+  <locations
+      name="Hungary"
+      type="Country"/>
+  <defaultProtectionControls>OriginalData</defaultProtectionControls>
   <configurationManager>
-    <dataSources>test</dataSources>
-    <protectionControlMethods>tomo</protectionControlMethods>
-    <protectionControlMethods>tommo</protectionControlMethods>
+    <dataSources>PubliclyAccessibleSources</dataSources>
+    <dataSources>Identity document</dataSources>
+    <protectionControlMethods>OriginalData</protectionControlMethods>
+    <protectionControlMethods>Pseudonymisation</protectionControlMethods>
+    <protectionControlMethods>Encryption</protectionControlMethods>
   </configurationManager>
+  <allDatas
+      name="name"
+      type="General"/>
+  <allDatas
+      name="identity number"/>
+  <allDatas
+      name="account number"
+      type="General"/>
   <privacyPolicyHelper/>
+  <allConsents
+      name="MP C1"
+      providedBy="//@allPrincipals.2"
+      startDate="2020-10-03T01:00:00.000+0200"
+      terminationDate="2025-10-24T01:00:00.000+0200"
+      fileLocation="Budapest - city centre"
+      description="collecting consent"/>
 </privacyModel:PrivacyPolicy>

@@ -212,6 +212,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/processingReason"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/processingReasonSubtype"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Purpose/subPurposes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/details"/>
       <genOperations ecoreOperation="privacyModel.ecore#//Purpose/isValid">
         <genParameters ecoreParameter="privacyModel.ecore#//Purpose/isValid/purpose"/>
       </genOperations>
