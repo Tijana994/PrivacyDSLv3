@@ -135,6 +135,7 @@
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allConsents"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allDocuments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/notifications"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allSharedPrivacyData"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PolicyStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PolicyStatement/when"/>
@@ -228,12 +229,11 @@
     <genClasses ecoreClass="privacyModel.ecore#//What">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//What/actions"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//What/providers"/>
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//What/datas"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//What/datas"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//How">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//How/documents"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//How/consent"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//How/dataSource"/>
       <genOperations ecoreOperation="privacyModel.ecore#//How/isConsentValid">
         <genParameters ecoreParameter="privacyModel.ecore#//How/isConsentValid/howConsent"/>
       </genOperations>
@@ -321,6 +321,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//SharedPrivacyData/additionalProtectionControls"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//SharedPrivacyData/privacydata"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//SharedPrivacyData/colllectedFromSubject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//SharedPrivacyData/dataSource"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Denial">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Denial/date"/>

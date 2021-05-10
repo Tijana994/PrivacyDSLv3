@@ -15,23 +15,15 @@
         dateTime="2020-10-25T01:00:00.000+0200"/>
     <why processingReason="OutOfScope"
         processingReasonSubtype="PersonalActivity"
-        details="Open account"/>
-    <what>
+        details="Open account">
+      <subPurposes
+          processingReason="OutOfScope"/>
+    </why>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2">
       <actions>Collecting</actions>
       <actions>Store</actions>
-      <datas
-          privacydata="//@allDatas.0">
-        <additionalProtectionControls>Encryption</additionalProtectionControls>
-      </datas>
-      <datas
-          privacydata="//@allDatas.1">
-        <additionalProtectionControls>Encryption</additionalProtectionControls>
-      </datas>
-      <datas
-          privacydata="//@allDatas.2"/>
     </what>
-    <how consent="//@allConsents.0"
-        dataSource="Identity document"/>
+    <how consent="//@allConsents.0"/>
     <where source="//@locations.0"
         destination="//@locations.0"/>
   </policyStatements>
@@ -40,16 +32,32 @@
       who="//@allPrincipals.1"
       whose="//@allPrincipals.2">
     <when xsi:type="privacyModel:TimeStatement"
-        preposition="at"
         dateTime="2020-11-02T00:00:00.000+0100"/>
     <why processingReason="OutOfScope"/>
-    <what>
+    <what datas="//@allSharedPrivacyData.2">
       <actions>Access</actions>
-      <datas
-          privacydata="//@allDatas.2"/>
     </what>
     <where source="//@locations.0"
         destination="//@locations.0"/>
+  </policyStatements>
+  <policyStatements
+      name="transfer account"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.2"
+      whom="//@allPrincipals.0">
+    <when xsi:type="privacyModel:TimeInterval">
+      <start
+          dateTime="2021-01-01T00:00:00.000+0100"/>
+      <end preposition="to"
+          dateTime="2022-12-31T00:00:00.000+0100"/>
+    </when>
+    <why processingReason="OutOfScope"/>
+    <what datas="//@allSharedPrivacyData.1 //@allSharedPrivacyData.2">
+      <actions>Transfer</actions>
+    </what>
+    <how consent="//@allConsents.0"/>
+    <where source="//@locations.0"
+        destination="//@locations.1"/>
   </policyStatements>
   <allPrincipals
       name="Green Bank"
@@ -68,11 +76,16 @@
       age="25"/>
   <locations
       name="Hungary"
+      isEUMember="true"
       type="Country"/>
+  <locations
+      name="Serbia"
+      legalAgeLimit="14"/>
   <defaultProtectionControls>OriginalData</defaultProtectionControls>
   <configurationManager>
     <dataSources>PubliclyAccessibleSources</dataSources>
     <dataSources>Identity document</dataSources>
+    <dataSources>Internal</dataSources>
     <protectionControlMethods>OriginalData</protectionControlMethods>
     <protectionControlMethods>Pseudonymisation</protectionControlMethods>
     <protectionControlMethods>Encryption</protectionControlMethods>
@@ -93,4 +106,21 @@
       terminationDate="2025-10-24T01:00:00.000+0200"
       fileLocation="Budapest - city centre"
       description="collecting consent"/>
+  <notifications
+      type="ThirdPartyTransfer"
+      notifiers="//@allPrincipals.0"
+      receivers="//@allPrincipals.2"
+      causedBy="//@policyStatements.2"
+      when="2021-01-01T00:00:00.000+0100"/>
+  <allSharedPrivacyData
+      privacydata="//@allDatas.0"
+      dataSource="Identity document">
+    <additionalProtectionControls>Encryption</additionalProtectionControls>
+  </allSharedPrivacyData>
+  <allSharedPrivacyData
+      privacydata="//@allDatas.1"
+      dataSource="Identity document"/>
+  <allSharedPrivacyData
+      privacydata="//@allDatas.2"
+      dataSource="Internal"/>
 </privacyModel:PrivacyPolicy>
