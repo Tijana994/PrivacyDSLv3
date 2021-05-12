@@ -41,7 +41,7 @@
         destination="//@locations.0"/>
   </policyStatements>
   <policyStatements
-      name="transfer account"
+      name="transfer account to other country"
       who="//@allPrincipals.1"
       whose="//@allPrincipals.2"
       whom="//@allPrincipals.0">
@@ -59,6 +59,50 @@
     <where source="//@locations.0"
         destination="//@locations.1"/>
   </policyStatements>
+  <policyStatements
+      name="open account for child"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.3">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2021-05-12T01:00:00.000+0200"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2">
+      <actions>Collecting</actions>
+    </what>
+    <how documents="//@allDocuments.0"
+        consent="//@allConsents.1"/>
+    <where source="//@locations.0"
+        destination="//@locations.0"/>
+  </policyStatements>
+  <policyStatements
+      name="status check sc2"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.3">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2021-05-13T01:00:00.000+0200"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0">
+      <actions>Access</actions>
+    </what>
+  </policyStatements>
+  <policyStatements
+      name="open account oa2"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.4">
+    <when xsi:type="privacyModel:TimeStatement"
+        dateTime="2021-05-12T01:00:00.000+0200"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2">
+      <actions>Collecting</actions>
+      <actions>Store</actions>
+    </what>
+    <how consent="//@allConsents.1"/>
+  </policyStatements>
   <allPrincipals
       name="Green Bank"
       subPrincipals="//@allPrincipals.1"
@@ -74,6 +118,14 @@
       type="NaturalPerson"
       scope="Out"
       age="25"/>
+  <allPrincipals
+      name="Bart Simpson"
+      type="NaturalPerson"
+      responsiblePersons="//@allPrincipals.4"
+      age="10"/>
+  <allPrincipals
+      name="Homer Simpson"
+      age="45"/>
   <locations
       name="Hungary"
       isEUMember="true"
@@ -98,7 +150,22 @@
   <allDatas
       name="account number"
       type="General"/>
+  <allComplaints
+      name="erasure of account"
+      who="//@allPrincipals.4"
+      when="2021-05-15T01:00:00.000+0200"
+      reason="Delete account">
+    <action
+        xsi:type="privacyModel:ComplaintBasedOnData"
+        denialReason="//@allDenials.0"
+        subject="//@allDatas.2"/>
+  </allComplaints>
   <privacyPolicyHelper/>
+  <allDenials
+      date="2021-05-16T01:00:00.000+0200"
+      approvedBy="//@allPrincipals.0"
+      reason="Still proccessing"
+      basedOnStatements="//@policyStatements.5"/>
   <allConsents
       name="MP C1"
       providedBy="//@allPrincipals.2"
@@ -106,6 +173,17 @@
       terminationDate="2025-10-24T01:00:00.000+0200"
       fileLocation="Budapest - city centre"
       description="collecting consent"/>
+  <allConsents
+      name="HS "
+      providedBy="//@allPrincipals.4"
+      startDate="2021-05-12T01:00:00.000+0200"
+      terminationDate="2028-04-12T01:00:00.000+0200"
+      fileLocation="Budapest - city centre"/>
+  <allDocuments
+      name="HS - BS CS"
+      providedBy="//@allPrincipals.4"
+      startDate="2021-05-12T01:00:00.000+0200"
+      fileLocation="Budapest - city centre"/>
   <notifications
       type="ThirdPartyTransfer"
       notifiers="//@allPrincipals.0"
@@ -123,4 +201,6 @@
   <allSharedPrivacyData
       privacydata="//@allDatas.2"
       dataSource="Internal"/>
+  <allSharedPrivacyData
+      privacydata="//@allDatas.2"/>
 </privacyModel:PrivacyPolicy>
