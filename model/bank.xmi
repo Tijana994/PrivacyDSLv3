@@ -96,12 +96,40 @@
     <when xsi:type="privacyModel:TimeStatement"
         dateTime="2021-05-12T01:00:00.000+0200"/>
     <why processingReason="OutOfScope"
-        processingReasonSubtype="PersonalActivity"/>
-    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2">
+        processingReasonSubtype="PersonalActivity">
+      <subPurposes
+          processingReason="Marketing"/>
+    </why>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2 //@allSharedPrivacyData.3">
       <actions>Collecting</actions>
       <actions>Store</actions>
     </what>
     <how consent="//@allConsents.1"/>
+  </policyStatements>
+  <policyStatements
+      name="email sending for new credit card"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.4">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2021-05-13T01:00:00.000+0200"/>
+    <why processingReason="Marketing"/>
+    <what datas="//@allSharedPrivacyData.3">
+      <actions>Access</actions>
+    </what>
+  </policyStatements>
+  <policyStatements
+      name="stop sending mails"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.4"
+      causedBy="//@allComplaints.2">
+    <when xsi:type="privacyModel:TimeStatement"
+        dateTime="2021-05-15T01:00:00.000+0200"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.3">
+      <actions>StopProcessing</actions>
+    </what>
   </policyStatements>
   <allPrincipals
       name="Green Bank"
@@ -150,6 +178,9 @@
   <allDatas
       name="account number"
       type="General"/>
+  <allDatas
+      name="email address"
+      type="General"/>
   <allComplaints
       name="erasure of account"
       who="//@allPrincipals.4"
@@ -160,11 +191,36 @@
         denialReason="//@allDenials.0"
         subject="//@allDatas.2"/>
   </allComplaints>
+  <allComplaints
+      name="open account"
+      who="//@allPrincipals.4"
+      when="2021-05-12T01:00:00.000+0200">
+    <action
+        xsi:type="privacyModel:ComplaintBasedOnAction"
+        denialReason="//@allDenials.0"
+        statement="//@policyStatements.5"/>
+  </allComplaints>
+  <allComplaints
+      name="sending emails"
+      who="//@allPrincipals.4"
+      when="2021-05-14T01:00:00.000+0200">
+    <action
+        xsi:type="privacyModel:ComplaintBasedOnAction"
+        statement="//@policyStatements.6"/>
+  </allComplaints>
+  <allComplaints
+      name="Homer withdraw consent"
+      who="//@allPrincipals.4"
+      when="2021-04-14T01:00:00.000+0200">
+    <action
+        xsi:type="privacyModel:Withdraw"
+        subject="//@allConsents.1"/>
+  </allComplaints>
   <privacyPolicyHelper/>
   <allDenials
       date="2021-05-16T01:00:00.000+0200"
       approvedBy="//@allPrincipals.0"
-      reason="Still proccessing"
+      reason="oa2 still proccessing"
       basedOnStatements="//@policyStatements.5"/>
   <allConsents
       name="MP C1"
@@ -190,6 +246,12 @@
       receivers="//@allPrincipals.2"
       causedBy="//@policyStatements.2"
       when="2021-01-01T00:00:00.000+0100"/>
+  <notifications
+      type="StopProcessing"
+      notifiers="//@allPrincipals.0"
+      receivers="//@allPrincipals.4"
+      causedBy="//@policyStatements.7"
+      when="2021-05-15T01:00:00.000+0200"/>
   <allSharedPrivacyData
       privacydata="//@allDatas.0"
       dataSource="Identity document">
@@ -202,5 +264,5 @@
       privacydata="//@allDatas.2"
       dataSource="Internal"/>
   <allSharedPrivacyData
-      privacydata="//@allDatas.2"/>
+      privacydata="//@allDatas.3"/>
 </privacyModel:PrivacyPolicy>
