@@ -125,9 +125,20 @@
       causedBy="//@allComplaints.2">
     <when xsi:type="privacyModel:TimeStatement"
         dateTime="2021-05-15T01:00:00.000+0200"/>
-    <why processingReason="OutOfScope"
-        processingReasonSubtype="PersonalActivity"/>
+    <why processingReason="StopProcessing"/>
     <what datas="//@allSharedPrivacyData.3">
+      <actions>StopProcessing</actions>
+    </what>
+  </policyStatements>
+  <policyStatements
+      name="stop processing"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.4"
+      causedBy="//@allComplaints.3">
+    <when xsi:type="privacyModel:TimeStatement"
+        dateTime="2021-04-15T01:00:00.000+0200"/>
+    <why processingReason="StopProcessing"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2 //@allSharedPrivacyData.3">
       <actions>StopProcessing</actions>
     </what>
   </policyStatements>
@@ -252,6 +263,18 @@
       receivers="//@allPrincipals.4"
       causedBy="//@policyStatements.7"
       when="2021-05-15T01:00:00.000+0200"/>
+  <notifications
+      type="Withdraw"
+      notifiers="//@allPrincipals.1"
+      receivers="//@allPrincipals.0"
+      causedBy="//@allComplaints.3"
+      when="2021-04-14T01:00:00.000+0200"/>
+  <notifications
+      type="StopProcessing"
+      notifiers="//@allPrincipals.0"
+      receivers="//@allPrincipals.4"
+      causedBy="//@policyStatements.8"
+      when="2021-04-14T01:00:00.000+0200"/>
   <allSharedPrivacyData
       privacydata="//@allDatas.0"
       dataSource="Identity document">

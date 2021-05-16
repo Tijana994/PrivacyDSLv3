@@ -71,6 +71,7 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/Profiling"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/ProtectTheVitalInterestsOfTheDataSubject"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/LegitimateInterests"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/StopProcessing"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ProcessingReasonSubtype">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/None"/>
@@ -286,9 +287,6 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/isDateInInterval">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isDateInInterval/time"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isDateInInterval/date"/>
-      </genOperations>
-      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/startTime">
-        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/startTime/time"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Where">
