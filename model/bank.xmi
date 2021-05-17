@@ -142,9 +142,41 @@
       <actions>StopProcessing</actions>
     </what>
   </policyStatements>
+  <policyStatements
+      name="open account oa3"
+      who="//@allPrincipals.6"
+      whose="//@allPrincipals.5">
+    <when xsi:type="privacyModel:TimeStatement"
+        dateTime="2021-04-17T01:00:00.000+0200"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2 //@allSharedPrivacyData.3">
+      <actions>Collecting</actions>
+      <actions>Store</actions>
+    </what>
+    <how consent="//@allConsents.2"/>
+  </policyStatements>
+  <policyStatements
+      name="police investigation pi1"
+      who="//@allPrincipals.0"
+      whose="//@allPrincipals.5"
+      whom="//@allPrincipals.7">
+    <when xsi:type="privacyModel:TimeInterval">
+      <start
+          dateTime="2021-04-18T01:00:00.000+0200"/>
+      <end preposition="to"
+          dateTime="2021-04-19T01:00:00.000+0200"/>
+    </when>
+    <why processingReason="PublicInterest"
+        processingReasonSubtype="Investigation"/>
+    <what datas="//@allSharedPrivacyData.2">
+      <actions>Access</actions>
+    </what>
+    <how documents="//@allDocuments.1"/>
+  </policyStatements>
   <allPrincipals
       name="Green Bank"
-      subPrincipals="//@allPrincipals.1"
+      subPrincipals="//@allPrincipals.1 //@allPrincipals.6"
       responsiblePersons="//@allPrincipals.1"
       inhabits="//@locations.0"/>
   <allPrincipals
@@ -165,6 +197,16 @@
   <allPrincipals
       name="Homer Simpson"
       age="45"/>
+  <allPrincipals
+      name="Mr Burns"
+      type="NaturalPerson"
+      age="60"/>
+  <allPrincipals
+      name="Pati Buvije"
+      age="45"/>
+  <allPrincipals
+      name="Police"
+      scope="Out"/>
   <locations
       name="Hungary"
       isEUMember="true"
@@ -246,11 +288,24 @@
       startDate="2021-05-12T01:00:00.000+0200"
       terminationDate="2028-04-12T01:00:00.000+0200"
       fileLocation="Budapest - city centre"/>
+  <allConsents
+      name="Mr Burns"
+      providedBy="//@allPrincipals.5"
+      startDate="2021-04-17T01:00:00.000+0200"
+      fileLocation="Budapest - city centre"
+      format="Verbal"
+      type="Implied"/>
   <allDocuments
       name="HS - BS CS"
       providedBy="//@allPrincipals.4"
       startDate="2021-05-12T01:00:00.000+0200"
       fileLocation="Budapest - city centre"/>
+  <allDocuments
+      name="Approval for investigation Mr Burns"
+      providedBy="//@allPrincipals.7"
+      startDate="2021-04-17T01:00:00.000+0200"
+      fileLocation="Budapest court"
+      documentType="CourtApproval"/>
   <notifications
       type="ThirdPartyTransfer"
       notifiers="//@allPrincipals.0"
