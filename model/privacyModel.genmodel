@@ -116,6 +116,8 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/DataCollecting"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/StopProcessing"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/ThirdPartyTransfer"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/ExecutedRectification"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/ExecutedErasure"/>
     </genEnums>
     <genClasses ecoreClass="privacyModel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//NamedElement/name"/>

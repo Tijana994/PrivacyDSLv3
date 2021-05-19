@@ -958,11 +958,19 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_MxICoawzEeugjLjNCuXvzw" fontName="Segoe UI" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_MxICoqwzEeugjLjNCuXvzw"/>
             </children>
+            <children xmi:type="notation:Node" xmi:id="_Uz9cwLjNEeuwgcdcG5_Gmw" type="3010" element="_UxXbwLjNEeuwgcdcG5_Gmw">
+              <styles xmi:type="notation:FontStyle" xmi:id="_Uz9cwbjNEeuwgcdcG5_Gmw" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_Uz9cwrjNEeuwgcdcG5_Gmw"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_uaVkkLjOEeuwgcdcG5_Gmw" type="3010" element="_uZMVELjOEeuwgcdcG5_Gmw">
+              <styles xmi:type="notation:FontStyle" xmi:id="_uaVkkbjOEeuwgcdcG5_Gmw" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_uaVkkrjOEeuwgcdcG5_Gmw"/>
+            </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_-9mcYZ4QEeuf0o0jl41ULQ"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_-9mcYp4QEeuf0o0jl41ULQ"/>
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_-9dScZ4QEeuf0o0jl41ULQ" fontName="Segoe UI" fontHeight="8"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-9dScp4QEeuf0o0jl41ULQ" x="-288" y="1402" width="135" height="137"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-9dScp4QEeuf0o0jl41ULQ" x="-420" y="1428" width="159" height="159"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_IqScwJ4UEeuf0o0jl41ULQ" type="2003" element="_IpP68J4UEeuf0o0jl41ULQ">
           <children xmi:type="notation:Node" xmi:id="_IqTD0J4UEeuf0o0jl41ULQ" type="5007"/>
@@ -4419,6 +4427,22 @@
         <target xmi:type="ecore:EEnumLiteral" href="privacyModel.ecore#//NotificationType/ThirdPartyTransfer"/>
         <semanticElements xmi:type="ecore:EEnumLiteral" href="privacyModel.ecore#//NotificationType/ThirdPartyTransfer"/>
         <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_MuEHkKwzEeugjLjNCuXvzw" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_UxXbwLjNEeuwgcdcG5_Gmw" name="ExecutedRectification" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="privacyModel.ecore#//NotificationType/ExecutedRectification"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="privacyModel.ecore#//NotificationType/ExecutedRectification"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_UxYp4LjNEeuwgcdcG5_Gmw" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_uZMVELjOEeuwgcdcG5_Gmw" name="ExecutedErasure" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="privacyModel.ecore#//NotificationType/ExecutedErasure"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="privacyModel.ecore#//NotificationType/ExecutedErasure"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_uZMVEbjOEeuwgcdcG5_Gmw" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
