@@ -119,6 +119,12 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/ExecutedRectification"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/ExecutedErasure"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ComplaintStatus">
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ComplaintStatus/Pending"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ComplaintStatus/Accepted"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ComplaintStatus/Denied"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ComplaintStatus/Executed"/>
+    </genEnums>
     <genClasses ecoreClass="privacyModel.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//NamedElement/name"/>
     </genClasses>
@@ -306,7 +312,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//AbstractPaper/terminationExplanation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//AbstractPaper/startDate"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//AbstractPaper/terminationDate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//AbstractPaper/fileLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//AbstractPaper/location"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//AbstractPaper/description"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//AbstractComplaintAction"/>
@@ -338,9 +344,8 @@
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//NotificationInfo"/>
     <genClasses image="false" ecoreClass="privacyModel.ecore#//AbstractComplaint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//AbstractComplaint/isExecuted"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//AbstractComplaint/status"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//AbstractComplaint/denialReason"/>
-      <genOperations ecoreOperation="privacyModel.ecore#//AbstractComplaint/execute"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//ComplaintBasedOnAction">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//ComplaintBasedOnAction/statement"/>

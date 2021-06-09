@@ -269,6 +269,7 @@
       reason="Delete account">
     <action
         xsi:type="privacyModel:ComplaintBasedOnData"
+        status="Denied"
         denialReason="//@allDenials.0"
         subject="//@allDatas.2"/>
   </allComplaints>
@@ -278,6 +279,7 @@
       when="2021-05-12T01:00:00.000+0200">
     <action
         xsi:type="privacyModel:ComplaintBasedOnAction"
+        status="Executed"
         denialReason="//@allDenials.0"
         statement="//@policyStatements.5"/>
   </allComplaints>
@@ -287,6 +289,7 @@
       when="2021-05-14T01:00:00.000+0200">
     <action
         xsi:type="privacyModel:ComplaintBasedOnAction"
+        status="Executed"
         statement="//@policyStatements.6"/>
   </allComplaints>
   <allComplaints
@@ -303,6 +306,7 @@
       when="2021-05-20T01:00:00.000+0200">
     <action
         xsi:type="privacyModel:ComplaintBasedOnData"
+        status="Executed"
         subject="//@allDatas.0"
         type="Rectification"/>
   </allComplaints>
@@ -312,6 +316,7 @@
       when="2021-05-15T01:00:00.000+0200">
     <action
         xsi:type="privacyModel:ComplaintBasedOnData"
+        status="Accepted"
         subject="//@allDatas.3"/>
   </allComplaints>
   <privacyPolicyHelper/>
@@ -325,32 +330,32 @@
       providedBy="//@allPrincipals.2"
       startDate="2020-10-03T01:00:00.000+0200"
       terminationDate="2025-10-24T01:00:00.000+0200"
-      fileLocation="Budapest - city centre"
+      location="Budapest - city centre"
       description="collecting consent"/>
   <allConsents
       name="HS "
       providedBy="//@allPrincipals.4"
       startDate="2021-05-12T01:00:00.000+0200"
       terminationDate="2028-04-12T01:00:00.000+0200"
-      fileLocation="Budapest - city centre"/>
+      location="Budapest - city centre"/>
   <allConsents
       name="Mr Burns"
       providedBy="//@allPrincipals.5"
       startDate="2021-04-17T01:00:00.000+0200"
-      fileLocation="Budapest - city centre"
+      location="Budapest - city centre"
       format="Verbal"
       type="Implied"/>
   <allDocuments
       name="HS - BS CS"
       providedBy="//@allPrincipals.4"
       startDate="2021-05-12T01:00:00.000+0200"
-      fileLocation="Budapest - city centre"/>
+      location="Budapest - city centre"/>
   <allDocuments
       name="Approval for investigation Mr Burns"
       providedBy="//@allPrincipals.7"
       startDate="2021-04-17T01:00:00.000+0200"
       terminationDate="2021-05-17T01:00:00.000+0200"
-      fileLocation="Budapest court"
+      location="Budapest court"
       documentType="CourtApproval"/>
   <notifications
       type="ThirdPartyTransfer"
