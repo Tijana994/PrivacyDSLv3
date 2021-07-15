@@ -1,1 +1,3 @@
 PubliclyAccessibleSources
+Internet
+SocialNetwork
