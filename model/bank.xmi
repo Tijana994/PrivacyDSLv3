@@ -208,12 +208,12 @@
       responsiblePersons="//@allPrincipals.1"
       inhabits="//@locations.0"/>
   <allPrincipals
-      name="Petar Petrovic"
+      name="Ned Flanders"
       type="NaturalPerson"
       inhabits="//@locations.0"
       age="35"/>
   <allPrincipals
-      name="Mery Peterson"
+      name="Edna Karabapel"
       type="NaturalPerson"
       scope="Out"
       age="25"/>
