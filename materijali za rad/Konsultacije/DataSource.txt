@@ -1,3 +1,0 @@
-PubliclyAccessibleSources
-Internet
-SocialNetwork
