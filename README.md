@@ -457,3 +457,57 @@ TeMDA](https://img.youtube.com/vi/rE7cVhbUNkM/0.jpg)](https://www.youtube.com/wa
 				self.privacyPolicyHelper.isPolicyControlValid(protectionControl)
 			);
 ```
+
+### PolicyStatement class
+```
+		invariant DateShoudBeDefinedForAccessAction('Date shoud be defined'): 
+			dateShouldBeDefinedForType(Action::Access);
+		invariant DateShoudBeDefinedForStoreAction('Date shoud be defined'): 
+			dateShouldBeDefinedForType(Action::Store);
+					invariant StopProcessingPurposeForActionStopProcessing: 
+			if(not(self.what.actions->exists(act| act = Action::StopProcessing))) then
+				true
+			else
+				self.why.processingReason = ProcessingReason::StopProcessing
+			endif;
+		invariant ExpiredDocument: 
+			if(self.how = null or not(self.how.documents->notEmpty())) then
+				true
+			else
+			let privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in
+				self.how.documents->forAll(document|
+					(privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, document.startDate) or 
+					privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, document.startDate))
+					and
+					(document.terminationDate = null or (not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, document.terminationDate))))
+				)
+			endif;
+```
+
+### Principal class
+
+```
+		invariant NaturalPersonCanNotConatainsSubPrincipals: 
+			if(self.type = PrincipalType::NaturalPerson) then
+				self.subPrincipals->isEmpty()
+			else
+				true
+			endif;
+```
+
+### TimeInterval class
+
+```
+		invariant OnlyAfterOrAfterWithBefore('After interval should be defined alone or with before interval'): 
+			self.isTypeDefinedWithOtherType(TimePreposition::after, TimePreposition::before);
+		invariant OnlyFromOrFromWithTo('From interval should be defined alone or with to interval'): 
+			self.isTypeDefinedWithOtherType(TimePreposition::from, TimePreposition::to);
+		invariant AtTypeShouldBeDefinedAlone('At statement should be defined alone'): 
+			self.isTypeForbidden(TimePreposition::at);
+		invariant UntilTypeShouldBeDefinedAlone('Until statement should be defined alone'): 
+			self.isTypeForbidden(TimePreposition::until);
+		invariant AfterStatementBeforeBeforeStatement('After interval should be defined before before interval'): 
+			self.isValid(TimePreposition::after, TimePreposition::before);
+		invariant FromStatementBeforeToStatement('From interval should be defined before to interval'): 
+			self.isValid(TimePreposition::from, TimePreposition::to);
+```
