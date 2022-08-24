@@ -511,3 +511,126 @@ TeMDA](https://img.youtube.com/vi/rE7cVhbUNkM/0.jpg)](https://www.youtube.com/wa
 		invariant FromStatementBeforeToStatement('From interval should be defined before to interval'): 
 			self.isValid(TimePreposition::from, TimePreposition::to);
 ```
+### Purpose class
+
+```
+		invariant ResearchCannotContainsThisSubReason: 
+				isSubPurposeValid(ProcessingReason::Research, 
+				Sequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::Scientific, ProcessingReasonSubtype::Historical,
+					ProcessingReasonSubtype::Statistical
+				});
+		invariant PublicHealthShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::PublicHealth, 
+				Sequence{ProcessingReasonSubtype::None});
+		invariant OutOfScopeCannotContainsThisSubReason: 
+			isSubPurposeValid(ProcessingReason::OutOfScope, 
+				Sequence{ProcessingReasonSubtype::OutOfEU,
+					ProcessingReasonSubtype::PersonalActivity, ProcessingReasonSubtype::SpecialScopeOfActivity, ProcessingReasonSubtype::None,
+					ProcessingReasonSubtype::Other
+				});
+		invariant PublicInterestCannotContainsThisSubReason: 
+				isSubPurposeValid(ProcessingReason::PublicInterest, 
+				Sequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,
+					ProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other});
+		invariant StatisticalPurposesShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::StatisticalPurposes, 
+				Sequence{ProcessingReasonSubtype::None});
+		invariant ExercisingSpecificRightsPurposesCannotContainsThisSubReason: 
+				isSubPurposeValid(ProcessingReason::ExercisingSpecificRights, 
+				Sequence{ProcessingReasonSubtype::Employment, ProcessingReasonSubtype::SocialSecurity,ProcessingReasonSubtype::SocialProtection, 
+				ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other});
+		invariant MarketingShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::Marketing, 
+				Sequence{ProcessingReasonSubtype::None});
+		invariant TestingShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::Testing, 
+				Sequence{ProcessingReasonSubtype::None});
+		invariant ProfilingShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::Profiling, 
+				Sequence{ProcessingReasonSubtype::None});
+		invariant ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason: 
+			isSubPurposeValid(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, 
+				Sequence{ProcessingReasonSubtype::PhisicallyIncapable,ProcessingReasonSubtype::LegallyIncapable, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::None});
+		invariant LegitimateInterestsNotContainSubReason: 
+			isSubPurposeValid(ProcessingReason::LegitimateInterests, 
+				Sequence{ProcessingReasonSubtype::None});
+		invariant StopProcessingInterestShouldNotContainSubReason: 
+				isSubPurposeValid(ProcessingReason::StopProcessing, 
+				Sequence{ProcessingReasonSubtype::None});
+```
+
+### AbstractPaper class
+
+```
+		invariant StartDateShouldBeBeforeTerminationDate('Terminationdate is after startdate!'): 
+			self.terminationDate = null or (not(self.startDate > self.terminationDate));
+```
+
+### SharedPrivacyData class
+
+```
+		invariant ProtectionControlShouldExistsInConfiguration('Protection controls should be defined in configuration.'): 
+			self.additionalProtectionControls->forAll(protectionControl:String|
+				PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isPolicyControlValid(protectionControl)
+			);
+		invariant DataSourceShouldExistsInConfiguration('Data source should be defined in configuration.'): 
+			self.dataSource = null or PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDataSourceValid(self.dataSource);
+```
+
+### Notification class
+
+```
+		invariant ShouldDefineCausedByAsWithdraw('NotifyAboutWithdraw should contain causedBy with complaint Withraw'): 
+			if(type = NotificationType::Withdraw) then
+				if(causedBy.oclIsKindOf(Complaint)) then
+					let complaint : Complaint = causedBy.oclAsType(Complaint) in
+					complaint.action.oclIsKindOf(Withdraw)
+				else
+					false
+				endif
+			else
+				true
+			endif;
+		invariant ShouldDefineCausedByAsErasure('NotifyAboutErasure should contain causedBy with complaint Erasure'): 
+			if(type = NotificationType::Erasure) then
+				if(causedBy.oclIsKindOf(Complaint)) then
+					let complaint : Complaint = causedBy.oclAsType(Complaint) in
+					if(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then
+						let basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in
+						basedOnData.type = ComplaintBasedOnDataType::Erasure
+					else
+						false
+					endif
+				else
+					false
+				endif
+			else
+				true
+			endif;
+		invariant
+		ShouldDefineCausedByAsRectification('NotifyAboutRectification should contain causedBy with complaint Rectification'): 
+			if(type = NotificationType::Rectification) then
+				if(causedBy.oclIsKindOf(Complaint)) then
+					let complaint : Complaint = causedBy.oclAsType(Complaint) in
+					if(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then
+						let basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in
+						basedOnData.type = ComplaintBasedOnDataType::Rectification
+					else
+						false
+					endif
+				else
+					false
+				endif
+			else
+				true
+			endif;
+		invariant
+		ShouldDefineCausedByAsPrivacyPolicy('NotifyAboutCollecting or StopProcessing should contain causedBy with policy statement'): 
+			if(type = NotificationType::DataCollecting or type = NotificationType::StopProcessing 
+				or type = NotificationType::ExecutedRectification or type = NotificationType::ExecutedErasure
+			) then
+				causedBy.oclIsKindOf(PolicyStatement)
+			else
+				true
+			endif;
+```
