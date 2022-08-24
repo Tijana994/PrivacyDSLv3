@@ -27,6 +27,10 @@ Java(TM) SE Development Kit 15.0.1<br/>Luna Eclipse with packages:<br/>
 - OCL Classic for Ecore and UML Developer
 - SimpleOCL
 
+## License
+
+MIT
+
 ## Video tutorials
 
 ### Introduction to TeMDA
@@ -413,4 +417,43 @@ TeMDA](https://img.youtube.com/vi/rE7cVhbUNkM/0.jpg)](https://www.youtube.com/wa
 							not(stmt.causedBy = null) and stmt.causedBy = self)
 					endif
 			  endif;
+```
+## OCL rules for model validation
+
+### PrivacyPolicy class
+```
+		invariant UniquePolicyStatementName('PolicyStatement name is unique'): 
+			self.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2);
+		invariant UniquePrincipalNamePerType('Principal name per type is unique'): 
+		self.allPrincipals->forAll(pr1:Principal,pr2:Principal| 
+			if(pr1.type = pr2.type) then 
+			pr1.name = pr2.name implies pr1 = pr2
+			else
+				true
+			endif
+		);
+		invariant UniquePrivacyDataName('PrivacyData name is unique'): 
+		self.allDatas->forAll(data1:PrivacyData,data2:PrivacyData| data1.name = data2.name implies data1 = data2);
+		invariant UniqueServiceName('Service name is unique'): 
+		self.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2);
+		invariant UniqueProviderName('Provider name is unique'): 
+		self.allProviders->forAll(provider1:Provider,provider2:Provider| provider1.name = provider2.name implies provider1 = provider2);
+		invariant UniqueDocumentName('Document name is unique'): 
+		self.allDocuments->forAll(document1:Document,document2:Document| document1.name = document2.name implies document1 = document2);
+		invariant UniqueConsentName('Consent name is unique'): 
+		self.allConsents->forAll(consent1:Consent,consent2:Consent| consent1.name = consent2.name implies consent1 = consent2);
+		invariant UniqueComplaintName('Complaint name is unique'): 
+		self.allComplaints->forAll(complaint1:Complaint,complaint2:Complaint| complaint1.name = complaint2.name implies complaint1 = complaint2);
+		invariant UniqueLocationPerType('Location name per type is unique'): 
+		self.locations->forAll(loc1:Location,loc2:Location| 
+			if(loc1.type = loc2.type) then 
+				loc1.name = loc2.name implies loc1 = loc2
+			else
+				true
+			endif
+		);
+		invariant ProtectionControlShouldExistsInConfiguration('Protection controls should be defined in configuration.'): 
+			self.defaultProtectionControls->forAll(protectionControl:String|
+				self.privacyPolicyHelper.isPolicyControlValid(protectionControl)
+			);
 ```
