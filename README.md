@@ -4,7 +4,7 @@ TeMDA (Themis - Greek goddess of justice, MDA - Model Driven Approach) presents 
 
 ## Environment
 
-*Java(TM) SE Development Kit 15.0.1  *Luna Eclipse with packages:  
+*Java(TM) SE Development Kit 15.0.1\*Luna Eclipse with packages:\
 - Ecore Diagram Editor
 - Ecore Tools Utilities
 - EMF - Eclipse Modeling Framework Base RunTime
@@ -300,4 +300,117 @@ TeMDA](https://img.youtube.com/vi/rE7cVhbUNkM/0.jpg)](https://www.youtube.com/wa
 					true
 				endif
 			endif;
+```
+### Principal class
+
+```
+		invariant JuvenileShouldHaveResponsiblePerson('Based on Art8'): 
+		if(self.type = PrincipalType::NaturalPerson and self.age < PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then
+				not(self.responsiblePersons->isEmpty())
+			else
+				true
+		endif;
+```
+
+### Complaint class
+
+```
+		invariant UserDoesntHavePermissionToWithdrawConsent('Based on Art7'): 
+			if(not(self.action.oclIsKindOf(Withdraw))) then
+					true
+			else
+				let withdraw : Withdraw = self.action.oclAsType(Withdraw) in
+					self.who = withdraw.subject.providedBy or  withdraw.subject.providedBy.responsiblePersons->exists(rp| rp = self.who)
+			endif;
+		invariant SubjectShouldBeNotifiedAboutWithdraw('Based on Art19'): 
+			if(self.action.oclIsKindOf(Withdraw)) then
+					PrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and 
+						notification.type = NotificationType::Withdraw
+					)
+				else
+					true
+			endif;
+		invariant SubjectShouldBeNotifiedAboutExistingComplaintForRectification('Based on Art19'): 
+			if(self.action.oclIsKindOf(ComplaintBasedOnData)) then
+				let basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in
+					if(basedOnData.type = ComplaintBasedOnDataType::Rectification)then
+						PrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and
+							notification.type = NotificationType::Rectification
+						)
+					else
+						true
+					endif
+				else
+					true
+			endif;
+		invariant SubjectShouldBeNotifiedAboutExistingComplaintForErasure('Based on Art19'): 
+			if(self.action.oclIsKindOf(ComplaintBasedOnData)) then
+				let basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in
+					if(basedOnData.type = ComplaintBasedOnDataType::Erasure)then
+						PrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and
+							notification.type = NotificationType::Erasure
+						)
+					else
+						true
+					endif
+				else
+					true
+			endif;
+		invariant CannotIdentifyDataFromComplaint('Based on Art11'): 
+			let privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in
+			if(not(self.action.oclIsKindOf(ComplaintBasedOnData))) then
+				true
+			else
+			let basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in
+					basedOnData.subject->forAll(data: PrivacyData|
+					privacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::Collecting) and 
+						not(stmt.whose = null) and (stmt.whose = self.who or stmt.whose.responsiblePersons->exists(rp| rp = self.who))
+						and privacyPolicy.privacyPolicyHelper.isDateAfterInterval(stmt.when, self.when) 
+						and stmt.what.datas->exists(selectedData| selectedData.privacydata = data)
+					)
+				)
+		  endif;
+		invariant RectificationShouldBeExecutedAsSoonAsPossible('Based on Art16'): 
+			doesPolicyStatementExists(Action::Rectification,ComplaintBasedOnDataType::Rectification);
+		invariant ErasureShouldBeExecutedAsSoonAsPossible('Based on Art17'): 
+			doesPolicyStatementExists(Action::Erasure,ComplaintBasedOnDataType::Erasure);
+		invariant InvalidTypeOfPurposeForAnObject('Based on Art21'): 
+			if(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then
+					true
+			else
+				let basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in
+				if(basedOnAction.statement.why = null or not(basedOnAction.denialReason = null)) then
+						true
+				else
+					(not(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,
+					Sequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,
+					ProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}))) 
+					and
+					(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Marketing,Sequence{ProcessingReasonSubtype::None})
+					or
+					basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Profiling,Sequence{ProcessingReasonSubtype::None}))
+				endif
+			endif;
+		invariant UserDoesntHavePermissionToComplaint('Based on Art21'): 
+			if(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then
+					true
+			else
+				let basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in
+					not(basedOnAction.statement.whose = null) 
+					and 
+					(basedOnAction.statement.whose = self.who or basedOnAction.statement.whose.responsiblePersons->exists(rp| rp = self.who))
+			endif;
+		invariant StopProcessingShouldBeExecutedAsSoonAsPossible('Based on Art21'): 
+			let privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in
+				if(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then
+					true
+				else
+				let basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in
+					if(not(basedOnAction.denialReason = null)) then
+						true
+					else
+						privacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::StopProcessing) and 
+							not(stmt.causedBy = null) and stmt.causedBy = self)
+					endif
+			  endif;
 ```
