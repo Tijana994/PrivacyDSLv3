@@ -6,8 +6,7 @@ TeMDA (Themis - Greek goddess of justice, MDA - Model Driven Approach) presents 
 
 ### Introduction to TeMDA
 
-
 [![Introduction to
-TeMDA]([https://img.youtube.com/vi/rE7cVhbUNkM/0.jpg)](https://www.youtube.com/watch?v=rE7cVhbUNkM))
+TeMDA](https://img.youtube.com/vi/rE7cVhbUNkM/0.jpg)](https://www.youtube.com/watch?v=rE7cVhbUNkM)
 
 ## Quick intro
