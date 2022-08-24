@@ -4,8 +4,8 @@ TeMDA (Themis - Greek goddess of justice, MDA - Model Driven Approach) presents 
 
 ## Environment
 
-Java(TM) SE Development Kit 15.0.1
-Luna Eclipse with packages:
+*Java(TM) SE Development Kit 15.0.1
+*Luna Eclipse with packages:
 - Ecore Diagram Editor
 - Ecore Tools Utilities
 - EMF - Eclipse Modeling Framework Base RunTime
@@ -35,4 +35,20 @@ Luna Eclipse with packages:
 [![Introduction to
 TeMDA](https://img.youtube.com/vi/rE7cVhbUNkM/0.jpg)](https://www.youtube.com/watch?v=rE7cVhbUNkM)
 
-## Quick intro
+## OCL rules based on the GDPR articles
+
+###PrivacyPolicy class
+```
+		invariant OwnerShouldHaveDefinedInhabits('Based on Art 3'): 
+			(not(self.owner = null) and not(self.owner.inhabits = null));
+```
+
+###PolicyStatement class
+```
+		invariant CourtApprovalIsNeedForPublicInterestPurpose('Based on Art9'): 
+			documentIsNeededForPurpose(DocumentType::CourtApproval,ProcessingReason::PublicInterest);
+		invariant ControllerApprovalIsNeedForLegitimateInterestsPurpose('Based on Art9'): 
+			documentIsNeededForPurpose(DocumentType::ControllerApproval,ProcessingReason::LegitimateInterests);
+		invariant ControllerApprovalIsNeedForProtectTheVitalInterestsOfTheDataSubjectPurpose('Based on Art9'): 
+			documentIsNeededForPurpose(DocumentType::ControllerApproval,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject);
+```
