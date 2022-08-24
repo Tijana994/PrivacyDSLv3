@@ -4,7 +4,7 @@ TeMDA (Themis - Greek goddess of justice, MDA - Model Driven Approach) presents 
 
 ## Environment
 
-*Java(TM) SE Development Kit 15.0.1\*Luna Eclipse with packages:\
+Java(TM) SE Development Kit 15.0.1<br/>Luna Eclipse with packages:<br/>
 - Ecore Diagram Editor
 - Ecore Tools Utilities
 - EMF - Eclipse Modeling Framework Base RunTime
