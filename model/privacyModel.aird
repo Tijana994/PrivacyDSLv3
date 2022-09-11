@@ -5,6 +5,7 @@
     <semanticResources>privacyModel.genmodel</semanticResources>
     <semanticResources>platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore</semanticResources>
     <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
+    <semanticResources>hospital.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_A1W7YCg1Eeu3XdDcotsorQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_A2QTQCg1Eeu3XdDcotsorQ" name="privacyModel" repPath="#_A18KMCg1Eeu3XdDcotsorQ">

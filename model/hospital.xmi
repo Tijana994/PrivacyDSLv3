@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ASCII"?>
+<privacyModel:PrivacyPolicy
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:privacyModel="http://privacymodel"
+    xsi:schemaLocation="http://privacymodel privacyModel.ecore"
+    name="City hospital policy"
+    owner="//@allPrincipals.0">
+  <policyStatements
+      name="Open medical record 1"
+      who="//@allPrincipals.2"
+      whose="//@allPrincipals.4">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2020-10-25T01:00:00.000+0200"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1">
+      <actions>Store</actions>
+      <actions>Collecting</actions>
+    </what>
+    <how consent="//@allConsents.0"/>
+  </policyStatements>
+  <policyStatements
+      name="Medical examination 1"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.4">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2020-10-25T01:00:00.000+0200"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.2">
+      <actions>Access</actions>
+      <actions>Store</actions>
+      <actions>Collecting</actions>
+    </what>
+    <how consent="//@allConsents.0"/>
+  </policyStatements>
+  <policyStatements
+      name="Transfer 1"
+      who="//@allPrincipals.0"
+      whose="//@allPrincipals.4"
+      whom="//@allPrincipals.5">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2020-10-26T00:00:00.000+0100"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.2">
+      <actions>Transfer</actions>
+    </what>
+    <how documents="//@allDocuments.0"
+        consent="//@allConsents.0"/>
+    <where source="//@locations.1"
+        destination="//@locations.2"/>
+  </policyStatements>
+  <allPrincipals
+      name="City hospital"
+      inhabits="//@locations.1"/>
+  <allPrincipals
+      name="Doctor Tom"
+      type="NaturalPerson"
+      age="32"/>
+  <allPrincipals
+      name="Nurse Bert"
+      type="NaturalPerson"
+      age="26"/>
+  <allPrincipals
+      name="Nurse Trisha"
+      type="NaturalPerson"
+      age="35"/>
+  <allPrincipals
+      name="Chloe"
+      type="NaturalPerson"
+      scope="Out"
+      age="36"/>
+  <allPrincipals
+      name="Florence hospital"
+      scope="Out"
+      inhabits="//@locations.2"/>
+  <locations
+      name="Italy"
+      isEUMember="true"
+      type="Country"
+      subLocations="//@locations.1"
+      legalAgeLimit="18"/>
+  <locations
+      name="Milano"
+      isEUMember="true"
+      type="Region"
+      legalAgeLimit="18"/>
+  <locations
+      name="Florence"
+      isEUMember="true"/>
+  <defaultProtectionControls>Encryption</defaultProtectionControls>
+  <configurationManager>
+    <dataSources>PubliclyAccessibleSources</dataSources>
+    <dataSources>Identity document</dataSources>
+    <dataSources>Internal</dataSources>
+    <protectionControlMethods>OriginalData</protectionControlMethods>
+    <protectionControlMethods>Pseudonymisation</protectionControlMethods>
+    <protectionControlMethods>Encryption</protectionControlMethods>
+  </configurationManager>
+  <allDatas
+      name="name"/>
+  <allDatas
+      name="illness"
+      type="Health"/>
+  <allDatas
+      name="social number"/>
+  <privacyPolicyHelper/>
+  <allConsents
+      name="Chole consent"
+      providedBy="//@allPrincipals.4"
+      startDate="2020-10-25T01:00:00.000+0200"
+      terminationDate="2025-10-25T01:00:00.000+0200"
+      location="system"/>
+  <allDocuments
+      name="Chloe transfer"
+      providedBy="//@allPrincipals.4"
+      startDate="2020-10-25T01:00:00.000+0200"
+      location="system"
+      documentType="TransferCertificate"/>
+  <allSharedPrivacyData
+      privacydata="//@allDatas.0"/>
+  <allSharedPrivacyData
+      privacydata="//@allDatas.2"/>
+  <allSharedPrivacyData
+      privacydata="//@allDatas.1"/>
+</privacyModel:PrivacyPolicy>
