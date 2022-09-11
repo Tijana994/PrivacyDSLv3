@@ -12,7 +12,6 @@
       who="//@allPrincipals.2"
       whose="//@allPrincipals.4">
     <when xsi:type="privacyModel:TimeStatement"
-        preposition="at"
         dateTime="2020-10-25T01:00:00.000+0200"/>
     <why processingReason="OutOfScope"
         processingReasonSubtype="PersonalActivity"/>
@@ -51,10 +50,42 @@
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.2">
       <actions>Transfer</actions>
     </what>
-    <how documents="//@allDocuments.0"
-        consent="//@allConsents.0"/>
+    <how consent="//@allConsents.0"/>
     <where source="//@locations.1"
         destination="//@locations.2"/>
+  </policyStatements>
+  <policyStatements
+      name="Open medical record for the child 1"
+      who="//@allPrincipals.3"
+      whose="//@allPrincipals.6">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2020-10-30T00:00:00.000+0100"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1">
+      <actions>Store</actions>
+      <actions>Collecting</actions>
+    </what>
+    <how documents="//@allDocuments.0"
+        consent="//@allConsents.1"/>
+  </policyStatements>
+  <policyStatements
+      name="Medical examination for the child"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.6">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2020-10-30T00:00:00.000+0100"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2">
+      <actions>Store</actions>
+      <actions>Access</actions>
+      <actions>Collecting</actions>
+    </what>
+    <how documents="//@allDocuments.0"
+        consent="//@allConsents.1"/>
   </policyStatements>
   <allPrincipals
       name="City hospital"
@@ -80,6 +111,17 @@
       name="Florence hospital"
       scope="Out"
       inhabits="//@locations.2"/>
+  <allPrincipals
+      name="Adam"
+      type="NaturalPerson"
+      scope="Out"
+      responsiblePersons="//@allPrincipals.7"
+      age="12"/>
+  <allPrincipals
+      name="Sam"
+      type="NaturalPerson"
+      scope="Out"
+      age="40"/>
   <locations
       name="Italy"
       isEUMember="true"
@@ -117,12 +159,16 @@
       startDate="2020-10-25T01:00:00.000+0200"
       terminationDate="2025-10-25T01:00:00.000+0200"
       location="system"/>
+  <allConsents
+      name="Sam consent"
+      providedBy="//@allPrincipals.7"
+      startDate="2020-10-30T00:00:00.000+0100"
+      location="system"/>
   <allDocuments
-      name="Chloe transfer"
-      providedBy="//@allPrincipals.4"
-      startDate="2020-10-25T01:00:00.000+0200"
-      location="system"
-      documentType="TransferCertificate"/>
+      name="Sam child custody"
+      providedBy="//@allPrincipals.7"
+      startDate="2020-10-30T00:00:00.000+0100"
+      location="system"/>
   <allSharedPrivacyData
       privacydata="//@allDatas.0"/>
   <allSharedPrivacyData
