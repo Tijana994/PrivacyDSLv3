@@ -26,7 +26,6 @@
       who="//@allPrincipals.1"
       whose="//@allPrincipals.4">
     <when xsi:type="privacyModel:TimeStatement"
-        preposition="at"
         dateTime="2020-10-25T01:00:00.000+0200"/>
     <why processingReason="OutOfScope"
         processingReasonSubtype="PersonalActivity"/>
@@ -47,7 +46,7 @@
         dateTime="2020-10-26T00:00:00.000+0100"/>
     <why processingReason="OutOfScope"
         processingReasonSubtype="PersonalActivity"/>
-    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.2">
+    <what datas="//@allSharedPrivacyData.0">
       <actions>Transfer</actions>
     </what>
     <how consent="//@allConsents.0"/>
@@ -87,8 +86,52 @@
     <how documents="//@allDocuments.0"
         consent="//@allConsents.1"/>
   </policyStatements>
+  <policyStatements
+      name="Open medical record 2"
+      who="//@allPrincipals.3"
+      whose="//@allPrincipals.8">
+    <when xsi:type="privacyModel:TimeStatement"
+        dateTime="2020-10-31T00:00:00.000+0100"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1">
+      <actions>Store</actions>
+      <actions>Collecting</actions>
+    </what>
+    <how consent="//@allConsents.2"/>
+  </policyStatements>
+  <policyStatements
+      name="Medical examination 2"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.8">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2020-11-01T00:00:00.000+0100"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2">
+      <actions>Store</actions>
+      <actions>Access</actions>
+      <actions>Collecting</actions>
+    </what>
+    <how consent="//@allConsents.2"/>
+  </policyStatements>
+  <policyStatements
+      name="New disease report 1"
+      who="//@allPrincipals.0"
+      whose="//@allPrincipals.8"
+      whom="//@allPrincipals.5">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2020-11-02T00:00:00.000+0100"/>
+    <why processingReason="PublicHealth"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.2">
+      <actions>Access</actions>
+    </what>
+  </policyStatements>
   <allPrincipals
       name="City hospital"
+      subPrincipals="//@allPrincipals.1 //@allPrincipals.2 //@allPrincipals.3"
       inhabits="//@locations.1"/>
   <allPrincipals
       name="Doctor Tom"
@@ -119,6 +162,11 @@
       age="12"/>
   <allPrincipals
       name="Sam"
+      type="NaturalPerson"
+      scope="Out"
+      age="40"/>
+  <allPrincipals
+      name="Henry"
       type="NaturalPerson"
       scope="Out"
       age="40"/>
@@ -163,6 +211,12 @@
       name="Sam consent"
       providedBy="//@allPrincipals.7"
       startDate="2020-10-30T00:00:00.000+0100"
+      location="system"/>
+  <allConsents
+      name="Henry consent"
+      providedBy="//@allPrincipals.8"
+      startDate="2020-10-30T00:00:00.000+0100"
+      terminationDate="2025-10-30T00:00:00.000+0100"
       location="system"/>
   <allDocuments
       name="Sam child custody"
