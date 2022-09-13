@@ -10,7 +10,8 @@
   <policyStatements
       name="Open medical record 1"
       who="//@allPrincipals.2"
-      whose="//@allPrincipals.4">
+      whose="//@allPrincipals.4"
+      whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         dateTime="2020-10-25T01:00:00.000+0200"/>
     <why processingReason="OutOfScope"
@@ -24,7 +25,8 @@
   <policyStatements
       name="Medical examination 1"
       who="//@allPrincipals.1"
-      whose="//@allPrincipals.4">
+      whose="//@allPrincipals.4"
+      whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         dateTime="2020-10-25T01:00:00.000+0200"/>
     <why processingReason="OutOfScope"
@@ -56,7 +58,8 @@
   <policyStatements
       name="Open medical record for the child 1"
       who="//@allPrincipals.3"
-      whose="//@allPrincipals.6">
+      whose="//@allPrincipals.6"
+      whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2020-10-30T00:00:00.000+0100"/>
@@ -72,7 +75,8 @@
   <policyStatements
       name="Medical examination for the child"
       who="//@allPrincipals.1"
-      whose="//@allPrincipals.6">
+      whose="//@allPrincipals.6"
+      whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2020-10-30T00:00:00.000+0100"/>
@@ -89,7 +93,8 @@
   <policyStatements
       name="Open medical record 2"
       who="//@allPrincipals.3"
-      whose="//@allPrincipals.8">
+      whose="//@allPrincipals.8"
+      whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         dateTime="2020-10-31T00:00:00.000+0100"/>
     <why processingReason="OutOfScope"
@@ -103,7 +108,8 @@
   <policyStatements
       name="Medical examination 2"
       who="//@allPrincipals.1"
-      whose="//@allPrincipals.8">
+      whose="//@allPrincipals.8"
+      whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2020-11-01T00:00:00.000+0100"/>

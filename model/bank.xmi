@@ -10,7 +10,8 @@
   <policyStatements
       name="Open account 1"
       who="//@allPrincipals.1"
-      whose="//@allPrincipals.3">
+      whose="//@allPrincipals.3"
+      whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2020-10-25T01:00:00.000+0200"/>
@@ -59,7 +60,8 @@
   <policyStatements
       name="Open account for the child"
       who="//@allPrincipals.1"
-      whose="//@allPrincipals.4">
+      whose="//@allPrincipals.4"
+      whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2021-05-12T01:00:00.000+0200"/>
@@ -102,7 +104,8 @@
   <policyStatements
       name="Open account 2"
       who="//@allPrincipals.1"
-      whose="//@allPrincipals.5">
+      whose="//@allPrincipals.5"
+      whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2021-05-12T01:00:00.000+0200"/>
@@ -172,7 +175,8 @@
   <policyStatements
       name="Open account 3"
       who="//@allPrincipals.2"
-      whose="//@allPrincipals.6">
+      whose="//@allPrincipals.6"
+      whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2021-04-17T01:00:00.000+0200"/>
