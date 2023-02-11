@@ -527,7 +527,7 @@
     <eLiterals name="Unanomius" value="3"/>
     <eLiterals name="Substituted" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SharedPrivacyData">
+  <eClassifiers xsi:type="ecore:EClass" name="SharedPrivacyData" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="ProtectionControlShouldExistsInConfiguration DataSourceShouldExistsInConfiguration"/>
     </eAnnotations>
@@ -544,7 +544,7 @@
         defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Denial">
+  <eClassifiers xsi:type="ecore:EClass" name="Denial" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="approvedBy" lowerBound="1"
         eType="#//Principal"/>
