@@ -545,7 +545,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Denial" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="when" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="approvedBy" lowerBound="1"
         eType="#//Principal"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -566,7 +566,7 @@
     <eLiterals name="ExecutedRectification" value="6"/>
     <eLiterals name="ExecutedErasure" value="7"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Notification">
+  <eClassifiers xsi:type="ecore:EClass" name="Notification" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="ShouldDefineCausedByAsWithdraw ShouldDefineCausedByAsErasure ShouldDefineCausedByAsRectification ShouldDefineCausedByAsPrivacyPolicy"/>
     </eAnnotations>

@@ -330,7 +330,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//SharedPrivacyData/dataSource"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Denial">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Denial/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Denial/when"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Denial/approvedBy"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Denial/reason"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Denial/basedOnStatements"/>
