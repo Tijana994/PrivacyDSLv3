@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="lib/aspectjrt.jar"/>
 	<classpathentry kind="lib" path="lib/aspectjtools.jar"/>
 	<classpathentry kind="lib" path="lib/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.ocl.xtext.essentialocl_1.17.0.v20220309-0840.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.ocl.pivot_1.17.0.v20220309-0840.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

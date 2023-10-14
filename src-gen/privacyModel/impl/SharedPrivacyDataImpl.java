@@ -2,10 +2,14 @@
  */
 package privacyModel.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -18,6 +22,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import privacyModel.PrivacyData;
 import privacyModel.PrivacyModelPackage;
 import privacyModel.SharedPrivacyData;
+import privacyModel.util.PrivacyModelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -214,6 +219,62 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 	}
 
 	/**
+	 * The cached validation expression for the '{@link #ProtectionControlShouldExistsInConfiguration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Protection Control Should Exists In Configuration</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ProtectionControlShouldExistsInConfiguration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Protection controls should be defined in configuration.',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tself.additionalProtectionControls->forAll(protectionControl:String|\n"
+			+ "\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isPolicyControlValid(protectionControl)\n"
+			+ "\t\t\t)\n" + "}.status";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ProtectionControlShouldExistsInConfiguration(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA, this, diagnostics,
+				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP,
+				PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.SHARED_PRIVACY_DATA__PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #DataSourceShouldExistsInConfiguration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Data Source Should Exists In Configuration</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DataSourceShouldExistsInConfiguration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DATA_SOURCE_SHOULD_EXISTS_IN_CONFIGURATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Data source should be defined in configuration.',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.dataSource = null or PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDataSourceValid(self.dataSource)\n"
+			+ "}.status";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean DataSourceShouldExistsInConfiguration(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA, this, diagnostics,
+				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA___DATA_SOURCE_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP,
+				DATA_SOURCE_SHOULD_EXISTS_IN_CONFIGURATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.SHARED_PRIVACY_DATA__DATA_SOURCE_SHOULD_EXISTS_IN_CONFIGURATION);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -303,6 +364,25 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 			return DATA_SOURCE_EDEFAULT == null ? dataSource != null : !DATA_SOURCE_EDEFAULT.equals(dataSource);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+		case PrivacyModelPackage.SHARED_PRIVACY_DATA___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
+			return ProtectionControlShouldExistsInConfiguration((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.SHARED_PRIVACY_DATA___DATA_SOURCE_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
+			return DataSourceShouldExistsInConfiguration((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

@@ -6,10 +6,13 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 
@@ -27,6 +30,7 @@ import privacyModel.PrivacyModelPackage;
 import privacyModel.ProcessingReason;
 import privacyModel.ProcessingReasonSubtype;
 import privacyModel.Purpose;
+import privacyModel.util.PrivacyModelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -293,6 +297,327 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 	}
 
 	/**
+	 * The cached validation expression for the '{@link #PublicHealthShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Public Health Should Not Contain Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PublicHealthShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::PublicHealth, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean PublicHealthShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #LegitimateInterestsNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Legitimate Interests Not Contain Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LegitimateInterestsNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LEGITIMATE_INTERESTS_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\tisSubPurposeValid(ProcessingReason::LegitimateInterests, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean LegitimateInterestsNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___LEGITIMATE_INTERESTS_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				LEGITIMATE_INTERESTS_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__LEGITIMATE_INTERESTS_NOT_CONTAIN_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #StopProcessingInterestShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Stop Processing Interest Should Not Contain Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #StopProcessingInterestShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String STOP_PROCESSING_INTEREST_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::StopProcessing, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean StopProcessingInterestShouldNotContainSubReason(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___STOP_PROCESSING_INTEREST_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				STOP_PROCESSING_INTEREST_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				Diagnostic.ERROR, PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__STOP_PROCESSING_INTEREST_SHOULD_NOT_CONTAIN_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #ProfilingShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Profiling Should Not Contain Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ProfilingShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::Profiling, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ProfilingShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #MarketingShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Marketing Should Not Contain Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #MarketingShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::Marketing, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean MarketingShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #OutOfScopeCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Out Of Scope Cannot Contains This Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #OutOfScopeCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String OUT_OF_SCOPE_CANNOT_CONTAINS_THIS_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\tisSubPurposeValid(ProcessingReason::OutOfScope, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::OutOfEU,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::PersonalActivity, ProcessingReasonSubtype::SpecialScopeOfActivity, ProcessingReasonSubtype::None,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::Other\n" + "\t\t\t\t})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean OutOfScopeCannotContainsThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___OUT_OF_SCOPE_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				OUT_OF_SCOPE_CANNOT_CONTAINS_THIS_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__OUT_OF_SCOPE_CANNOT_CONTAINS_THIS_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #ExercisingSpecificRightsPurposesCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Exercising Specific Rights Purposes Cannot Contains This Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ExercisingSpecificRightsPurposesCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAINS_THIS_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::ExercisingSpecificRights, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::Employment, ProcessingReasonSubtype::SocialSecurity,ProcessingReasonSubtype::SocialProtection, \n"
+			+ "\t\t\t\tProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ExercisingSpecificRightsPurposesCannotContainsThisSubReason(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAINS_THIS_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				Diagnostic.ERROR, PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAINS_THIS_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Protect The Vital Interests Of The Data Subject Cannot Contains This Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_CANNOT_CONTAINS_THIS_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\tisSubPurposeValid(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::PhisicallyIncapable,ProcessingReasonSubtype::LegallyIncapable, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::None})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_CANNOT_CONTAINS_THIS_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				Diagnostic.ERROR, PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_CANNOT_CONTAINS_THIS_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #PublicInterestCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Public Interest Cannot Contains This Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PublicInterestCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PUBLIC_INTEREST_CANNOT_CONTAINS_THIS_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::PublicInterest, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean PublicInterestCannotContainsThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___PUBLIC_INTEREST_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				PUBLIC_INTEREST_CANNOT_CONTAINS_THIS_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__PUBLIC_INTEREST_CANNOT_CONTAINS_THIS_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #ResearchCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Research Cannot Contains This Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ResearchCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String RESEARCH_CANNOT_CONTAINS_THIS_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::Research, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::Scientific, ProcessingReasonSubtype::Historical,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::Statistical\n" + "\t\t\t\t})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ResearchCannotContainsThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___RESEARCH_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				RESEARCH_CANNOT_CONTAINS_THIS_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__RESEARCH_CANNOT_CONTAINS_THIS_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #StatisticalPurposesShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Statistical Purposes Should Not Contain Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #StatisticalPurposesShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::StatisticalPurposes, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean StatisticalPurposesShouldNotContainSubReason(DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #TestingShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Testing Should Not Contain Sub Reason</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TestingShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TESTING_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::Testing, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean TestingShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PURPOSE, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PURPOSE___TESTING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP,
+				TESTING_SHOULD_NOT_CONTAIN_SUB_REASON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PURPOSE__TESTING_SHOULD_NOT_CONTAIN_SUB_REASON);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -413,6 +738,42 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		case PrivacyModelPackage.PURPOSE___CONTAINS_ALLOWED_PURPOSE_REASON_AND_SUBREASON__PROCESSINGREASON_ELIST:
 			return containsAllowedPurposeReasonAndSubreason((ProcessingReason) arguments.get(0),
 					(EList<ProcessingReasonSubtype>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return PublicHealthShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___LEGITIMATE_INTERESTS_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return LegitimateInterestsNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___STOP_PROCESSING_INTEREST_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return StopProcessingInterestShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return ProfilingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return MarketingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___OUT_OF_SCOPE_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return OutOfScopeCannotContainsThisSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return ExercisingSpecificRightsPurposesCannotContainsThisSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason(
+					(DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___PUBLIC_INTEREST_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return PublicInterestCannotContainsThisSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___RESEARCH_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return ResearchCannotContainsThisSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return StatisticalPurposesShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___TESTING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return TestingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

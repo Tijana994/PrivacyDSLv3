@@ -2,9 +2,13 @@
  */
 package privacyModel.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Date;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -19,6 +23,7 @@ import privacyModel.NotificationInfo;
 import privacyModel.NotificationType;
 import privacyModel.Principal;
 import privacyModel.PrivacyModelPackage;
+import privacyModel.util.PrivacyModelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -238,6 +243,132 @@ public class NotificationImpl extends NamedElementImpl implements Notification {
 	}
 
 	/**
+	 * The cached validation expression for the '{@link #ShouldDefineCausedByAsErasure(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Should Define Caused By As Erasure</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ShouldDefineCausedByAsErasure(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SHOULD_DEFINE_CAUSED_BY_AS_ERASURE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'NotifyAboutErasure should contain causedBy with complaint Erasure',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tif(type = NotificationType::Erasure) then\n"
+			+ "\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n"
+			+ "\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n"
+			+ "\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
+			+ "\t\t\t\t\t\tlet basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in\n"
+			+ "\t\t\t\t\t\tbasedOnData.type = ComplaintBasedOnDataType::Erasure\n" + "\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\tfalse\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\tfalse\n" + "\t\t\t\tendif\n"
+			+ "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ShouldDefineCausedByAsErasure(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.NOTIFICATION, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_ERASURE__DIAGNOSTICCHAIN_MAP,
+				SHOULD_DEFINE_CAUSED_BY_AS_ERASURE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_ERASURE);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #ShouldDefineCausedByAsPrivacyPolicy(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Should Define Caused By As Privacy Policy</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ShouldDefineCausedByAsPrivacyPolicy(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'NotifyAboutCollecting or StopProcessing should contain causedBy with policy statement',\n"
+			+ "\tstatus : Boolean = \n"
+			+ "\t\t\tif(type = NotificationType::DataCollecting or type = NotificationType::StopProcessing \n"
+			+ "\t\t\t\tor type = NotificationType::ExecutedRectification or type = NotificationType::ExecutedErasure\n"
+			+ "\t\t\t) then\n" + "\t\t\t\tcausedBy.oclIsKindOf(PolicyStatement)\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\tendif\n" + "}.status";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ShouldDefineCausedByAsPrivacyPolicy(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.NOTIFICATION, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY__DIAGNOSTICCHAIN_MAP,
+				SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #ShouldDefineCausedByAsWithdraw(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Should Define Caused By As Withdraw</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ShouldDefineCausedByAsWithdraw(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'NotifyAboutWithdraw should contain causedBy with complaint Withraw',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tif(type = NotificationType::Withdraw) then\n"
+			+ "\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n"
+			+ "\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n"
+			+ "\t\t\t\t\tcomplaint.action.oclIsKindOf(Withdraw)\n" + "\t\t\t\telse\n" + "\t\t\t\t\tfalse\n"
+			+ "\t\t\t\tendif\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ShouldDefineCausedByAsWithdraw(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.NOTIFICATION, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW__DIAGNOSTICCHAIN_MAP,
+				SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #ShouldDefineCausedByAsRectification(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Should Define Caused By As Rectification</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ShouldDefineCausedByAsRectification(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'NotifyAboutRectification should contain causedBy with complaint Rectification',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tif(type = NotificationType::Rectification) then\n"
+			+ "\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n"
+			+ "\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n"
+			+ "\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
+			+ "\t\t\t\t\t\tlet basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in\n"
+			+ "\t\t\t\t\t\tbasedOnData.type = ComplaintBasedOnDataType::Rectification\n" + "\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\tfalse\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\tfalse\n" + "\t\t\t\tendif\n"
+			+ "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ShouldDefineCausedByAsRectification(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.NOTIFICATION, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION__DIAGNOSTICCHAIN_MAP,
+				SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -338,6 +469,31 @@ public class NotificationImpl extends NamedElementImpl implements Notification {
 			return WHEN_EDEFAULT == null ? when != null : !WHEN_EDEFAULT.equals(when);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+		case PrivacyModelPackage.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_ERASURE__DIAGNOSTICCHAIN_MAP:
+			return ShouldDefineCausedByAsErasure((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY__DIAGNOSTICCHAIN_MAP:
+			return ShouldDefineCausedByAsPrivacyPolicy((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW__DIAGNOSTICCHAIN_MAP:
+			return ShouldDefineCausedByAsWithdraw((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION__DIAGNOSTICCHAIN_MAP:
+			return ShouldDefineCausedByAsRectification((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

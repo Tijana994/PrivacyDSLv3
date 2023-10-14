@@ -3,6 +3,8 @@
 package privacyModel;
 
 import java.util.Date;
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +26,6 @@ import java.util.Date;
  * @see privacyModel.PrivacyModelPackage#getAbstractPaper()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='StartDateShouldBeBeforeTerminationDate'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot StartDateShouldBeBeforeTerminationDate='Tuple {\n\tmessage : String = \'Terminationdate is after startdate!\',\n\tstatus : Boolean = \n\t\t\tself.terminationDate = null or (not(self.startDate &gt; self.terminationDate))\n}.status'"
  * @generated
  */
 public interface AbstractPaper extends NamedElement {
@@ -159,5 +160,13 @@ public interface AbstractPaper extends NamedElement {
 	 * @generated
 	 */
 	void setDescription(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Terminationdate is after startdate!\',\n\tstatus : Boolean = \n\t\t\tself.terminationDate = null or (not(self.startDate &gt; self.terminationDate))\n}.status'"
+	 * @generated
+	 */
+	boolean StartDateShouldBeBeforeTerminationDate(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // AbstractPaper

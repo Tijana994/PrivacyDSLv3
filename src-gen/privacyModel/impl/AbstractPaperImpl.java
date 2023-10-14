@@ -2,10 +2,15 @@
  */
 package privacyModel.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -14,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import privacyModel.AbstractPaper;
 import privacyModel.Principal;
 import privacyModel.PrivacyModelPackage;
+import privacyModel.util.PrivacyModelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -315,6 +321,32 @@ public abstract class AbstractPaperImpl extends NamedElementImpl implements Abst
 	}
 
 	/**
+	 * The cached validation expression for the '{@link #StartDateShouldBeBeforeTerminationDate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Start Date Should Be Before Termination Date</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #StartDateShouldBeBeforeTerminationDate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Terminationdate is after startdate!',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.terminationDate = null or (not(self.startDate > self.terminationDate))\n" + "}.status";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean StartDateShouldBeBeforeTerminationDate(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.ABSTRACT_PAPER, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.ABSTRACT_PAPER___START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE__DIAGNOSTICCHAIN_MAP,
+				START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.ABSTRACT_PAPER__START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -424,6 +456,22 @@ public abstract class AbstractPaperImpl extends NamedElementImpl implements Abst
 			return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+		case PrivacyModelPackage.ABSTRACT_PAPER___START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE__DIAGNOSTICCHAIN_MAP:
+			return StartDateShouldBeBeforeTerminationDate((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

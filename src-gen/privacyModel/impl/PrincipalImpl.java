@@ -7,9 +7,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Date;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 
@@ -26,6 +29,7 @@ import privacyModel.Principal;
 import privacyModel.PrincipalScope;
 import privacyModel.PrincipalType;
 import privacyModel.PrivacyModelPackage;
+import privacyModel.util.PrivacyModelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -354,6 +358,60 @@ public class PrincipalImpl extends NamedElementImpl implements Principal {
 	}
 
 	/**
+	 * The cached validation expression for the '{@link #NaturalPersonCanNotConatainsSubPrincipals(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Natural Person Can Not Conatains Sub Principals</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NaturalPersonCanNotConatainsSubPrincipals(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NATURAL_PERSON_CAN_NOT_CONATAINS_SUB_PRINCIPALS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n"
+			+ "\t\t\tif(self.type = PrincipalType::NaturalPerson) then\n" + "\t\t\t\tself.subPrincipals->isEmpty()\n"
+			+ "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean NaturalPersonCanNotConatainsSubPrincipals(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRINCIPAL, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PRINCIPAL___NATURAL_PERSON_CAN_NOT_CONATAINS_SUB_PRINCIPALS__DIAGNOSTICCHAIN_MAP,
+				NATURAL_PERSON_CAN_NOT_CONATAINS_SUB_PRINCIPALS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PRINCIPAL__NATURAL_PERSON_CAN_NOT_CONATAINS_SUB_PRINCIPALS);
+	}
+
+	/**
+	 * The cached validation expression for the '{@link #JuvenileShouldHaveResponsiblePerson(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Juvenile Should Have Responsible Person</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #JuvenileShouldHaveResponsiblePerson(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String JUVENILE_SHOULD_HAVE_RESPONSIBLE_PERSON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art8',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tif(self.type = PrincipalType::NaturalPerson and self.age < PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then\n"
+			+ "\t\t\t\tnot(self.responsiblePersons->isEmpty())\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\tendif\n"
+			+ "}.status";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean JuvenileShouldHaveResponsiblePerson(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRINCIPAL, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PRINCIPAL___JUVENILE_SHOULD_HAVE_RESPONSIBLE_PERSON__DIAGNOSTICCHAIN_MAP,
+				JUVENILE_SHOULD_HAVE_RESPONSIBLE_PERSON_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PRINCIPAL__JUVENILE_SHOULD_HAVE_RESPONSIBLE_PERSON);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -482,10 +540,17 @@ public class PrincipalImpl extends NamedElementImpl implements Principal {
 	 * @generated
 	 */
 	@Override
+	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
 		case PrivacyModelPackage.PRINCIPAL___EQUALS__PRINCIPAL:
 			return equals((Principal) arguments.get(0));
+		case PrivacyModelPackage.PRINCIPAL___NATURAL_PERSON_CAN_NOT_CONATAINS_SUB_PRINCIPALS__DIAGNOSTICCHAIN_MAP:
+			return NaturalPersonCanNotConatainsSubPrincipals((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRINCIPAL___JUVENILE_SHOULD_HAVE_RESPONSIBLE_PERSON__DIAGNOSTICCHAIN_MAP:
+			return JuvenileShouldHaveResponsiblePerson((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

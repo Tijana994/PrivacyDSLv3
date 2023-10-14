@@ -4,6 +4,8 @@ package privacyModel;
 
 import java.util.Date;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -25,8 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getPrincipal()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NaturalPersonCanNotConatainsSubPrincipals JuvenileShouldHaveResponsiblePerson'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot NaturalPersonCanNotConatainsSubPrincipals='\n\t\t\tif(self.type = PrincipalType::NaturalPerson) then\n\t\t\t\tself.subPrincipals-&gt;isEmpty()\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif' JuvenileShouldHaveResponsiblePerson='Tuple {\n\tmessage : String = \'Based on Art8\',\n\tstatus : Boolean = \n\t\tif(self.type = PrincipalType::NaturalPerson and self.age &lt; PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().owner.inhabits.legalAgeLimit) then\n\t\t\t\tnot(self.responsiblePersons-&gt;isEmpty())\n\t\t\telse\n\t\t\t\ttrue\n\t\tendif\n}.status'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='JuvenileShouldHaveResponsiblePerson'"
  * @generated
  */
 public interface Principal extends NamedElement {
@@ -178,5 +179,21 @@ public interface Principal extends NamedElement {
 	 * @generated
 	 */
 	boolean equals(Principal observed);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tif(self.type = PrincipalType::NaturalPerson) then\n\t\t\t\tself.subPrincipals-&gt;isEmpty()\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif'"
+	 * @generated
+	 */
+	boolean NaturalPersonCanNotConatainsSubPrincipals(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art8\',\n\tstatus : Boolean = \n\t\tif(self.type = PrincipalType::NaturalPerson and self.age &lt; PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().owner.inhabits.legalAgeLimit) then\n\t\t\t\tnot(self.responsiblePersons-&gt;isEmpty())\n\t\t\telse\n\t\t\t\ttrue\n\t\tendif\n}.status'"
+	 * @generated
+	 */
+	boolean JuvenileShouldHaveResponsiblePerson(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Principal
