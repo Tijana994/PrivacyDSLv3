@@ -12,15 +12,8 @@
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
         <file path="/PrivacyModel/.project"/>
-        <javaElement handleIdentifier="=PrivacyModel/src-gen&lt;oclstdlib.util"/>
-        <javaElement handleIdentifier="=PrivacyModel/src-gen&lt;privacyModel.impl"/>
-        <javaElement handleIdentifier="=PrivacyModel/src-gen&lt;privacyModel.validation"/>
-        <file path="/PrivacyModel/.classpath"/>
-        <javaElement handleIdentifier="=PrivacyModel/src-gen&lt;oclstdlib"/>
-        <javaElement handleIdentifier="=PrivacyModel/src-gen&lt;privacyModel"/>
         <javaElement handleIdentifier="=PrivacyModel/META-INF"/>
-        <javaElement handleIdentifier="=PrivacyModel/src-gen&lt;oclstdlib.impl"/>
-        <javaElement handleIdentifier="=PrivacyModel/src-gen&lt;oclstdlib.validation"/>
-        <javaElement handleIdentifier="=PrivacyModel/src-gen&lt;privacyModel.util"/>
+        <file path="/PrivacyModel/.classpath"/>
+        <javaElement handleIdentifier="=PrivacyModel/src-gen"/>
     </selectedElements>
 </jardesc>

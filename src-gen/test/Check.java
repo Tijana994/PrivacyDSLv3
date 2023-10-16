@@ -1,10 +1,13 @@
 package test;
 
+import utility.ProjectConfiguration.Configuration;
+
 public class Check {
 
 	public static void main(String[] args) {
-		var validation = new Validation();
-		validation.checkValidation();
+		Configuration.createDefaultConfiguration();
+		/*var validation = new Validation();
+		validation.checkValidation();*/
 	}
 
 }
