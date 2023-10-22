@@ -13,7 +13,8 @@ Export-Package: oclstdlib,
  oclstdlib.util,
  privacyModel,
  privacyModel.impl,
- privacyModel.util
+ privacyModel.util,
+ utility
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.ocl.pivot;visibility:=reexport,
  org.eclipse.ocl.examples.codegen;visibility:=reexport,
