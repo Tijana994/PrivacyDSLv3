@@ -37,7 +37,7 @@ public class ProjectConfiguration {
 			var model = repo.getModel();
 			model.setConfigurationManager(factory.createConfigurationManager());
 			model.setPrivacyPolicyHelper(factory.createPrivacyPolicyHelper());
-			return repo.saveModel();
+			return repo.saveModel(model);
 		}
 		
 		public static void setDataSources(EList<String> dataSources)
@@ -46,7 +46,7 @@ public class ProjectConfiguration {
 			var model = repo.getModel();
 			model.getConfigurationManager().getDataSources().clear();
 			model.getConfigurationManager().getDataSources().addAll(dataSources);
-			repo.saveModel();
+			repo.saveModel(model);
 		}
 		
 		public static void addDataSources(String dataSource)
@@ -54,7 +54,7 @@ public class ProjectConfiguration {
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
 			model.getConfigurationManager().getDataSources().add(dataSource);
-			repo.saveModel();
+			repo.saveModel(model);
 		}
 		
 		public static void setProtectionControlMethods(EList<String> protectionControlMethods)
@@ -63,7 +63,7 @@ public class ProjectConfiguration {
 			var model = repo.getModel();
 			model.getConfigurationManager().getProtectionControlMethods().clear();
 			model.getConfigurationManager().getProtectionControlMethods().addAll(protectionControlMethods);
-			repo.saveModel();
+			repo.saveModel(model);
 		}
 		
 		public static void addProtectionControlMethod(String protectionControlMethod)
@@ -71,7 +71,7 @@ public class ProjectConfiguration {
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
 			model.getConfigurationManager().getProtectionControlMethods().add(protectionControlMethod);
-			repo.saveModel();
+			repo.saveModel(model);
 		}
 		
 		public static void setPrivacyPolicyName(String name)
@@ -79,7 +79,7 @@ public class ProjectConfiguration {
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
 			model.setName(name);
-			repo.saveModel();
+			repo.saveModel(model);
 		}
 		
 		public static void setPrivacyPolicyOwner(Principal owner)
@@ -87,7 +87,7 @@ public class ProjectConfiguration {
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
 			model.setOwner(owner);
-			repo.saveModel();
+			repo.saveModel(model);
 		}
 
 		public static void setDefaultProtectionControls(EList<String> protectionCOntrols)
@@ -96,7 +96,7 @@ public class ProjectConfiguration {
 			var model = repo.getModel();
 			model.getDefaultProtectionControls().clear();
 			model.getDefaultProtectionControls().addAll(protectionCOntrols);
-			repo.saveModel();
+			repo.saveModel(model);
 		}
 	}
 

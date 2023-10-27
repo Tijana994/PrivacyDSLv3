@@ -37,14 +37,13 @@ public class PrivacyModelRepository {
 	    return policy;
 	}
 
-	public Boolean saveModel(){
+	public Boolean saveModel(PrivacyPolicy model){
 		//TODO
 		return true;
 	}
 	
 	public PrivacyModelFactory getFactory(){
 		var p = PrivacyModelPackage.eINSTANCE;
-	    // Retrieve the default factory singleton
 		return PrivacyModelFactory.eINSTANCE;
 	}
 	
