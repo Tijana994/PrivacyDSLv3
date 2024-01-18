@@ -1,5 +1,6 @@
 package utility;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 import privacyModel.PrivacyModelFactory;
 import privacyModel.PrivacyModelPackage;
@@ -38,8 +40,25 @@ public class PrivacyModelRepository {
 	}
 
 	public Boolean saveModel(PrivacyPolicy model){
-		//TODO
-		return true;
+    	PrivacyModelPackage.eINSTANCE.eClass();
+        Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+        Map<String, Object> m = reg.getExtensionToFactoryMap();
+        m.put("xmi", new XMIResourceFactoryImpl());
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("arxml", new XMIResourceImpl());
+
+		URI uri = URI.createURI(Configuration.getXmlPath());
+		Resource res = resourceSet.createResource(uri);
+
+		 res.getContents().add(model);
+
+		 try{
+		    res.save(m);
+		 } catch (IOException e){
+		   System.out.print("Problem with saving. Exception " + e );
+		   return false;
+		 }  
+		 return true;
 	}
 	
 	public PrivacyModelFactory getFactory(){

@@ -34,7 +34,7 @@ public class ProjectConfiguration {
 			var p = PrivacyModelPackage.eINSTANCE;
 			PrivacyModelFactory factory = PrivacyModelFactory.eINSTANCE;
 			var repo = new PrivacyModelRepository();
-			var model = repo.getModel();
+			var model = factory.createPrivacyPolicy();
 			model.setConfigurationManager(factory.createConfigurationManager());
 			model.setPrivacyPolicyHelper(factory.createPrivacyPolicyHelper());
 			return repo.saveModel(model);
