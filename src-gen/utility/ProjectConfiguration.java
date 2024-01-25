@@ -82,12 +82,17 @@ public class ProjectConfiguration {
 			repo.saveModel(model);
 		}
 		
-		public static void setPrivacyPolicyOwner(Principal owner)
+		public static void setPrivacyPolicyOwner(String ownerId)
 		{
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
-			model.setOwner(owner);
-			repo.saveModel(model);
+			var owner = model.getAllPrincipals().stream()
+			   .filter(principal -> principal.getName().equals(ownerId)).findFirst();
+			if(owner.isPresent())
+			{
+				model.setOwner(owner.get());
+				repo.saveModel(model);
+			}
 		}
 
 		public static void setDefaultProtectionControls(EList<String> protectionCOntrols)

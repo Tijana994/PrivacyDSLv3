@@ -24,19 +24,24 @@ public class PrivacyModelRepository {
 	}
 	
     public PrivacyPolicy getModel() {
-    	PrivacyModelPackage.eINSTANCE.eClass();
-        Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-        Map<String, Object> m = reg.getExtensionToFactoryMap();
-        m.put("xmi", new XMIResourceFactoryImpl());
+    	try {
+        	PrivacyModelPackage.eINSTANCE.eClass();
+            Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+            Map<String, Object> m = reg.getExtensionToFactoryMap();
+            m.put("xmi", new XMIResourceFactoryImpl());
 
-	    // Obtain a new resource set
-	    ResourceSet resSet = new ResourceSetImpl();
-	    registerPackage(resSet);
-	
-	    // Get the resource
-	    Resource resource = resSet.getResource(URI.createURI(Configuration.getXmlPath()), true);
-	    PrivacyPolicy policy = (PrivacyPolicy)resource.getContents().get(0);
-	    return policy;
+    	    // Obtain a new resource set
+    	    ResourceSet resSet = new ResourceSetImpl();
+    	    registerPackage(resSet);
+    	
+    	    // Get the resource
+    	    Resource resource = resSet.getResource(URI.createURI(Configuration.getXmlPath()), true);
+    	    PrivacyPolicy policy = (PrivacyPolicy)resource.getContents().get(0);
+    	    return policy;
+    	} catch (Exception e){
+ 		   System.out.print("Problem with loading model. Exception " + e );
+ 		   return null;
+ 		 } 
 	}
 
 	public Boolean saveModel(PrivacyPolicy model){
