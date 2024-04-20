@@ -1,5 +1,7 @@
 package utility;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 
 import privacyModel.PrivacyModelFactory;
@@ -39,7 +41,7 @@ public class ProjectConfiguration {
 			return repo.saveModel(model);
 		}
 		
-		public static void setDataSources(EList<String> dataSources)
+		public static void setDataSources(List<String> dataSources)
 		{
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
@@ -56,7 +58,7 @@ public class ProjectConfiguration {
 			repo.saveModel(model);
 		}
 		
-		public static void setProtectionControlMethods(EList<String> protectionControlMethods)
+		public static void setProtectionControlMethods(List<String> protectionControlMethods)
 		{
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
@@ -94,7 +96,7 @@ public class ProjectConfiguration {
 			}
 		}
 
-		public static void setDefaultProtectionControls(EList<String> protectionCOntrols)
+		public static void setDefaultProtectionControls(List<String> protectionCOntrols)
 		{
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
