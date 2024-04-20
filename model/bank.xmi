@@ -4,7 +4,6 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:privacyModel="http://privacymodel"
-    xsi:schemaLocation="http://privacymodel privacyModel.ecore"
     name="Green bank"
     owner="//@allPrincipals.0">
   <policyStatements
@@ -421,17 +420,21 @@
       causedBy="//@policyStatements.10"
       when="2022-04-15T01:00:00.000+0200"/>
   <allSharedPrivacyData
+      name="name"
       privacydata="//@allDatas.0"
       dataSource="Identity document">
     <additionalProtectionControls>Encryption</additionalProtectionControls>
   </allSharedPrivacyData>
   <allSharedPrivacyData
+      name="account number"
       privacydata="//@allDatas.1"/>
   <allSharedPrivacyData
+      name="identity number"
       privacydata="//@allDatas.2"
       dataSource="Identity document">
     <additionalProtectionControls>Encryption</additionalProtectionControls>
   </allSharedPrivacyData>
   <allSharedPrivacyData
+      name="email"
       privacydata="//@allDatas.3"/>
 </privacyModel:PrivacyPolicy>
