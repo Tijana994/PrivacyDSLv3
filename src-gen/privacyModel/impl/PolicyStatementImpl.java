@@ -780,7 +780,7 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 	protected static final String MISSING_CONSENT_FOR_COLLECTING_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art6',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::Collecting)) or \n"
-			+ "\t\t\t\t(what.datas->exists(data| data.colllectedFromSubject = false) and self.what.actions->exists(action| action = Action::Collecting))\n"
+			+ "\t\t\t\t(what.datas->exists(data| data.collectedFromSubject = false) and self.what.actions->exists(action| action = Action::Collecting))\n"
 			+ "\t\t\t) then\n" + "\t\t\t\ttrue\n"
 			+ "\t\t\telse if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then\n"
 			+ "\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n"
@@ -968,7 +968,7 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 	 */
 	protected static final String SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art14',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.what.actions->exists(action| action = Action::Collecting) and self.what.datas->exists(data| data.colllectedFromSubject = false)) then\n"
+			+ "\t\t\tif(self.what.actions->exists(action| action = Action::Collecting) and self.what.datas->exists(data| data.collectedFromSubject = false)) then\n"
 			+ "\t\t\t\tif(not(self.why = null) and \n"
 			+ "\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::None}) or\n"
 			+ "\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Research,Sequence{ProcessingReasonSubtype::Statistical, \n"

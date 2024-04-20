@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link privacyModel.SharedPrivacyData#getAdditionalProtectionControls <em>Additional Protection Controls</em>}</li>
  *   <li>{@link privacyModel.SharedPrivacyData#getPrivacydata <em>Privacydata</em>}</li>
- *   <li>{@link privacyModel.SharedPrivacyData#isColllectedFromSubject <em>Colllected From Subject</em>}</li>
+ *   <li>{@link privacyModel.SharedPrivacyData#isCollectedFromSubject <em>Collected From Subject</em>}</li>
  *   <li>{@link privacyModel.SharedPrivacyData#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
@@ -61,27 +61,27 @@ public interface SharedPrivacyData extends NamedElement {
 	void setPrivacydata(PrivacyData value);
 
 	/**
-	 * Returns the value of the '<em><b>Colllected From Subject</b></em>' attribute.
+	 * Returns the value of the '<em><b>Collected From Subject</b></em>' attribute.
 	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Colllected From Subject</em>' attribute.
-	 * @see #setColllectedFromSubject(boolean)
-	 * @see privacyModel.PrivacyModelPackage#getSharedPrivacyData_ColllectedFromSubject()
+	 * @return the value of the '<em>Collected From Subject</em>' attribute.
+	 * @see #setCollectedFromSubject(boolean)
+	 * @see privacyModel.PrivacyModelPackage#getSharedPrivacyData_CollectedFromSubject()
 	 * @model default="true" required="true"
 	 * @generated
 	 */
-	boolean isColllectedFromSubject();
+	boolean isCollectedFromSubject();
 
 	/**
-	 * Sets the value of the '{@link privacyModel.SharedPrivacyData#isColllectedFromSubject <em>Colllected From Subject</em>}' attribute.
+	 * Sets the value of the '{@link privacyModel.SharedPrivacyData#isCollectedFromSubject <em>Collected From Subject</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Colllected From Subject</em>' attribute.
-	 * @see #isColllectedFromSubject()
+	 * @param value the new value of the '<em>Collected From Subject</em>' attribute.
+	 * @see #isCollectedFromSubject()
 	 * @generated
 	 */
-	void setColllectedFromSubject(boolean value);
+	void setCollectedFromSubject(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Data Source</b></em>' attribute.

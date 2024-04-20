@@ -326,7 +326,7 @@
     <genClasses ecoreClass="privacyModel.ecore#//SharedPrivacyData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//SharedPrivacyData/additionalProtectionControls"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//SharedPrivacyData/privacydata"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//SharedPrivacyData/colllectedFromSubject"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//SharedPrivacyData/collectedFromSubject"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//SharedPrivacyData/dataSource"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Denial">

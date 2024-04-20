@@ -16,5 +16,28 @@ public class PrivacyDataFactory {
 			model.getAllDatas().add(privacyDataObject);
 			repo.saveModel(model);
 		}
+		
+		public static void addSharedPrivacyData(String name, String privacyDataId, 
+				Boolean collectedFromSubject, String privacyDataSource)
+		{
+			var repo = new PrivacyModelRepository();
+			var model = repo.getModel();
+			
+			var privacyDataOptional = model.getAllDatas().stream()
+			   .filter(privacyData -> privacyData.getName().equals(privacyDataId)).findFirst();
+			
+			if(privacyDataOptional.isEmpty())
+			{
+				System.out.println("There is no privacy data with id " + privacyDataId);
+				return;
+			}
+			var sharedPrivacyDataObject = repo.getFactory().createSharedPrivacyData();
+			sharedPrivacyDataObject.setName(name);
+			sharedPrivacyDataObject.setCollectedFromSubject(collectedFromSubject);
+			sharedPrivacyDataObject.setDataSource(privacyDataSource);
+			sharedPrivacyDataObject.setPrivacydata(privacyDataOptional.get());
+			model.getAllSharedPrivacyData().add(sharedPrivacyDataObject);
+			repo.saveModel(model);
+		}
 	}
 }

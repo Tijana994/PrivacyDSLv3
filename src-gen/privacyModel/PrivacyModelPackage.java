@@ -2595,13 +2595,13 @@ public interface PrivacyModelPackage extends EPackage {
 	int SHARED_PRIVACY_DATA__PRIVACYDATA = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Colllected From Subject</b></em>' attribute.
+	 * The feature id for the '<em><b>Collected From Subject</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SHARED_PRIVACY_DATA__COLLLECTED_FROM_SUBJECT = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int SHARED_PRIVACY_DATA__COLLECTED_FROM_SUBJECT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Data Source</b></em>' attribute.
@@ -5015,15 +5015,15 @@ public interface PrivacyModelPackage extends EPackage {
 	EReference getSharedPrivacyData_Privacydata();
 
 	/**
-	 * Returns the meta object for the attribute '{@link privacyModel.SharedPrivacyData#isColllectedFromSubject <em>Colllected From Subject</em>}'.
+	 * Returns the meta object for the attribute '{@link privacyModel.SharedPrivacyData#isCollectedFromSubject <em>Collected From Subject</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Colllected From Subject</em>'.
-	 * @see privacyModel.SharedPrivacyData#isColllectedFromSubject()
+	 * @return the meta object for the attribute '<em>Collected From Subject</em>'.
+	 * @see privacyModel.SharedPrivacyData#isCollectedFromSubject()
 	 * @see #getSharedPrivacyData()
 	 * @generated
 	 */
-	EAttribute getSharedPrivacyData_ColllectedFromSubject();
+	EAttribute getSharedPrivacyData_CollectedFromSubject();
 
 	/**
 	 * Returns the meta object for the attribute '{@link privacyModel.SharedPrivacyData#getDataSource <em>Data Source</em>}'.
@@ -7098,13 +7098,12 @@ public interface PrivacyModelPackage extends EPackage {
 		EReference SHARED_PRIVACY_DATA__PRIVACYDATA = eINSTANCE.getSharedPrivacyData_Privacydata();
 
 		/**
-		 * The meta object literal for the '<em><b>Colllected From Subject</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Collected From Subject</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SHARED_PRIVACY_DATA__COLLLECTED_FROM_SUBJECT = eINSTANCE
-				.getSharedPrivacyData_ColllectedFromSubject();
+		EAttribute SHARED_PRIVACY_DATA__COLLECTED_FROM_SUBJECT = eINSTANCE.getSharedPrivacyData_CollectedFromSubject();
 
 		/**
 		 * The meta object literal for the '<em><b>Data Source</b></em>' attribute feature.

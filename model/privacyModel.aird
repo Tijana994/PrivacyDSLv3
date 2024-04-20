@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
-  <viewpoint:DAnalysis uid="_AxK-8Cg1Eeu3XdDcotsorQ" selectedViews="_A1W7YCg1Eeu3XdDcotsorQ" version="15.1.0.202211301600">
+  <viewpoint:DAnalysis uid="_AxK-8Cg1Eeu3XdDcotsorQ" selectedViews="_A1W7YCg1Eeu3XdDcotsorQ" version="15.2.0.202303281325">
     <semanticResources>privacyModel.ecore</semanticResources>
     <semanticResources>privacyModel.genmodel</semanticResources>
     <semanticResources>platform:/plugin/org.eclipse.ocl.pivot/model-gen/oclstdlib.ecore</semanticResources>
@@ -8,7 +8,7 @@
     <semanticResources>hospital.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_A1W7YCg1Eeu3XdDcotsorQ">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_A2QTQCg1Eeu3XdDcotsorQ" name="privacyModel" repPath="#_A2PsMCg1Eeu3XdDcotsorQ" changeId="1694190142715">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_A2QTQCg1Eeu3XdDcotsorQ" name="privacyModel" repPath="#_A2PsMCg1Eeu3XdDcotsorQ" changeId="1713636394035">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="privacyModel.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -4298,9 +4298,9 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_vNEMwJ4ZEeuf0o0jl41ULQ" name="colllectedFromSubject : EBoolean = true" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="privacyModel.ecore#//SharedPrivacyData/colllectedFromSubject"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="privacyModel.ecore#//SharedPrivacyData/colllectedFromSubject"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_vNEMwJ4ZEeuf0o0jl41ULQ" name="collectedFromSubject : EBoolean = true" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="privacyModel.ecore#//SharedPrivacyData/collectedFromSubject"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="privacyModel.ecore#//SharedPrivacyData/collectedFromSubject"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_z1dewJ4aEeuf0o0jl41ULQ" labelAlignment="LEFT" description="_i7xnECg1Eeu3XdDcotsorQ">
           <labelFormat>bold</labelFormat>
         </ownedStyle>
