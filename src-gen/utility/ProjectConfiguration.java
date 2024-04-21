@@ -2,8 +2,6 @@ package utility;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
-
 import privacyModel.PrivacyModelFactory;
 import privacyModel.PrivacyModelPackage;
 
