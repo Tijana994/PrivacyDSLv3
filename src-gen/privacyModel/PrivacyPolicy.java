@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getPrivacyPolicy()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueComplaintName'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueServiceName'"
  * @generated
  */
 public interface PrivacyPolicy extends NamedElement {
@@ -311,7 +311,7 @@ public interface PrivacyPolicy extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'PrivacyData name is unique\',\n\tstatus : Boolean = \n\t\tself.allDatas-&gt;forAll(data1:PrivacyData,data2:PrivacyData| data1.name = data2.name implies data1 = data2)\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'PrivacyData name is unique\',\n\tstatus : Boolean = \n\t\t\tself.allDatas-&gt;forAll(pd1:PrivacyData,pd2:PrivacyData| pd1.name = pd2.name implies pd1 = pd2)\n}.status'"
 	 * @generated
 	 */
 	boolean UniquePrivacyDataName(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -339,6 +339,14 @@ public interface PrivacyPolicy extends NamedElement {
 	 * @generated
 	 */
 	boolean UniquePrincipalNamePerType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'SharedPrivacyData name is unique\',\n\tstatus : Boolean = \n\t\t\tself.allSharedPrivacyData-&gt;forAll(sd1:SharedPrivacyData,sd2:SharedPrivacyData| sd1.name = sd2.name implies sd1 = sd2)\n}.status'"
+	 * @generated
+	 */
+	boolean UniqueSharedPrivacyDataName(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

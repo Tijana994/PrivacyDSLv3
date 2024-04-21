@@ -589,19 +589,6 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #UniqueConsentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Consent Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniqueConsentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_CONSENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Consent name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.allConsents->forAll(consent1:Consent,consent2:Consent| consent1.name = consent2.name implies consent1 = consent2)\n"
-			+ "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -615,19 +602,6 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #UniqueServiceName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Service Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniqueServiceName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_SERVICE_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Service name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)\n"
-			+ "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -639,18 +613,6 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 				UNIQUE_SERVICE_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
 				PrivacyModelValidator.DIAGNOSTIC_SOURCE, PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_SERVICE_NAME);
 	}
-
-	/**
-	 * The cached validation expression for the '{@link #OwnerShouldHaveDefinedInhabits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Owner Should Have Defined Inhabits</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OwnerShouldHaveDefinedInhabits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String OWNER_SHOULD_HAVE_DEFINED_INHABITS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art 3',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\t(not(self.owner = null) and not(self.owner.inhabits = null))\n" + "}.status";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -667,19 +629,6 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #UniquePolicyStatementName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Policy Statement Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniquePolicyStatementName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_POLICY_STATEMENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'PolicyStatement name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tself.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2)\n"
-			+ "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -692,19 +641,6 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
 				PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_POLICY_STATEMENT_NAME);
 	}
-
-	/**
-	 * The cached validation expression for the '{@link #ProtectionControlShouldExistsInConfiguration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Protection Control Should Exists In Configuration</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ProtectionControlShouldExistsInConfiguration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Protection controls should be defined in configuration.',\n"
-			+ "\tstatus : Boolean = \n" + "\t\t\tself.defaultProtectionControls->forAll(protectionControl:String|\n"
-			+ "\t\t\t\tself.privacyPolicyHelper.isPolicyControlValid(protectionControl)\n" + "\t\t\t)\n" + "}.status";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -722,19 +658,6 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #UniquePrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Privacy Data Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniquePrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_PRIVACY_DATA_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'PrivacyData name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.allDatas->forAll(data1:PrivacyData,data2:PrivacyData| data1.name = data2.name implies data1 = data2)\n"
-			+ "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -747,19 +670,6 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
 				PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_PRIVACY_DATA_NAME);
 	}
-
-	/**
-	 * The cached validation expression for the '{@link #UniqueDocumentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Document Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniqueDocumentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_DOCUMENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Document name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.allDocuments->forAll(document1:Document,document2:Document| document1.name = document2.name implies document1 = document2)\n"
-			+ "}.status";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -831,6 +741,72 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	}
 
 	/**
+	 * The cached validation expression for the '{@link #UniqueSharedPrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Shared Privacy Data Name</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UniqueSharedPrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_SHARED_PRIVACY_DATA_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'SharedPrivacyData name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.allSharedPrivacyData->forAll(sd1:SharedPrivacyData,sd2:SharedPrivacyData| sd1.name = sd2.name implies sd1 = sd2)\n"
+			+ "}.status";
+
+	/**
+	 * The cached validation expression for the '{@link #UniqueDocumentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Document Name</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UniqueDocumentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_DOCUMENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Document name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.allDocuments->forAll(document1:Document,document2:Document| document1.name = document2.name implies document1 = document2)\n"
+			+ "}.status";
+
+	/**
+	 * The cached validation expression for the '{@link #ProtectionControlShouldExistsInConfiguration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Protection Control Should Exists In Configuration</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #ProtectionControlShouldExistsInConfiguration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Protection controls should be defined in configuration.',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tself.defaultProtectionControls->forAll(protectionControl:String|\n"
+			+ "\t\t\t\tself.privacyPolicyHelper.isPolicyControlValid(protectionControl)\n" + "\t\t\t)\n" + "}.status";
+
+	/**
+	 * The cached validation expression for the '{@link #UniqueConsentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Consent Name</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UniqueConsentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_CONSENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Consent name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.allConsents->forAll(consent1:Consent,consent2:Consent| consent1.name = consent2.name implies consent1 = consent2)\n"
+			+ "}.status";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean UniqueSharedPrivacyDataName(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP,
+				UNIQUE_SHARED_PRIVACY_DATA_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
+				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
+				PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_SHARED_PRIVACY_DATA_NAME);
+	}
+
+	/**
 	 * The cached validation expression for the '{@link #UniqueComplaintName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Complaint Name</em>}' invariant operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -841,6 +817,57 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	protected static final String UNIQUE_COMPLAINT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Complaint name is unique',\n" + "\tstatus : Boolean = \n"
 			+ "\t\tself.allComplaints->forAll(complaint1:Complaint,complaint2:Complaint| complaint1.name = complaint2.name implies complaint1 = complaint2)\n"
+			+ "}.status";
+
+	/**
+	 * The cached validation expression for the '{@link #OwnerShouldHaveDefinedInhabits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Owner Should Have Defined Inhabits</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #OwnerShouldHaveDefinedInhabits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String OWNER_SHOULD_HAVE_DEFINED_INHABITS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art 3',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\t(not(self.owner = null) and not(self.owner.inhabits = null))\n" + "}.status";
+
+	/**
+	 * The cached validation expression for the '{@link #UniquePolicyStatementName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Policy Statement Name</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UniquePolicyStatementName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_POLICY_STATEMENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'PolicyStatement name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2)\n"
+			+ "}.status";
+
+	/**
+	 * The cached validation expression for the '{@link #UniquePrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Privacy Data Name</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UniquePrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_PRIVACY_DATA_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'PrivacyData name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.allDatas->forAll(pd1:PrivacyData,pd2:PrivacyData| pd1.name = pd2.name implies pd1 = pd2)\n"
+			+ "}.status";
+
+	/**
+	 * The cached validation expression for the '{@link #UniqueServiceName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Service Name</em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UniqueServiceName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_SERVICE_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Service name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)\n"
 			+ "}.status";
 
 	/**
@@ -1131,30 +1158,33 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 		switch (operationID) {
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_PROVIDER_NAME__DIAGNOSTICCHAIN_MAP:
 			return UniqueProviderName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP:
+			return UniqueLocationPerType((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP:
+			return UniquePrincipalNamePerType((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP:
+			return UniqueSharedPrivacyDataName((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP:
+			return UniqueDocumentName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
+			return ProtectionControlShouldExistsInConfiguration((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP:
 			return UniqueConsentName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP:
-			return UniqueServiceName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP:
+			return UniqueComplaintName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP:
 			return OwnerShouldHaveDefinedInhabits((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP:
 			return UniquePolicyStatementName((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
-			return ProtectionControlShouldExistsInConfiguration((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP:
 			return UniquePrivacyDataName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP:
-			return UniqueDocumentName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP:
-			return UniqueLocationPerType((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP:
-			return UniquePrincipalNamePerType((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP:
-			return UniqueComplaintName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP:
+			return UniqueServiceName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

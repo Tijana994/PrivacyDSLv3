@@ -646,7 +646,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	public EOperation getPrivacyPolicy__UniqueConsentName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(1);
+		return privacyPolicyEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -655,7 +655,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	public EOperation getPrivacyPolicy__UniqueServiceName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(2);
+		return privacyPolicyEClass.getEOperations().get(11);
 	}
 
 	/**
@@ -664,7 +664,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	public EOperation getPrivacyPolicy__OwnerShouldHaveDefinedInhabits__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(3);
+		return privacyPolicyEClass.getEOperations().get(8);
 	}
 
 	/**
@@ -673,7 +673,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	public EOperation getPrivacyPolicy__UniquePolicyStatementName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(4);
+		return privacyPolicyEClass.getEOperations().get(9);
 	}
 
 	/**
@@ -691,7 +691,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	public EOperation getPrivacyPolicy__UniquePrivacyDataName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(6);
+		return privacyPolicyEClass.getEOperations().get(10);
 	}
 
 	/**
@@ -700,7 +700,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	public EOperation getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(7);
+		return privacyPolicyEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -709,7 +709,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	public EOperation getPrivacyPolicy__UniqueLocationPerType__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(8);
+		return privacyPolicyEClass.getEOperations().get(1);
 	}
 
 	/**
@@ -718,7 +718,16 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	public EOperation getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(9);
+		return privacyPolicyEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPrivacyPolicy__UniqueSharedPrivacyDataName__DiagnosticChain_Map() {
+		return privacyPolicyEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -727,7 +736,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	public EOperation getPrivacyPolicy__UniqueComplaintName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(10);
+		return privacyPolicyEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -2571,17 +2580,18 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		createEReference(privacyPolicyEClass, PRIVACY_POLICY__NOTIFICATIONS);
 		createEReference(privacyPolicyEClass, PRIVACY_POLICY__ALL_SHARED_PRIVACY_DATA);
 		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_PROVIDER_NAME__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass,
-				PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass,
+				PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP);
 
 		policyStatementEClass = createEClass(POLICY_STATEMENT);
 		createEReference(policyStatementEClass, POLICY_STATEMENT__WHEN);
@@ -2971,6 +2981,57 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getPrivacyPolicy__UniqueLocationPerType__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"UniqueLocationPerType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "UniquePrincipalNamePerType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniqueSharedPrivacyDataName__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "UniqueSharedPrivacyDataName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"UniqueDocumentName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__ProtectionControlShouldExistsInConfiguration__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "ProtectionControlShouldExistsInConfiguration", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		op = initEOperation(getPrivacyPolicy__UniqueConsentName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
 				"UniqueConsentName", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -2981,8 +3042,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPrivacyPolicy__UniqueServiceName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"UniqueServiceName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPrivacyPolicy__UniqueComplaintName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"UniqueComplaintName", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3011,17 +3072,6 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPrivacyPolicy__ProtectionControlShouldExistsInConfiguration__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "ProtectionControlShouldExistsInConfiguration", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		op = initEOperation(getPrivacyPolicy__UniquePrivacyDataName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
 				"UniquePrivacyDataName", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -3032,38 +3082,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"UniqueDocumentName", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPrivacyPolicy__UniqueLocationPerType__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"UniqueLocationPerType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "UniquePrincipalNamePerType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPrivacyPolicy__UniqueComplaintName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"UniqueComplaintName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPrivacyPolicy__UniqueServiceName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"UniqueServiceName", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -4238,7 +4258,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				new String[] { "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
 						"settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "validationDelegates",
 						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" });
-		addAnnotation(privacyPolicyEClass, source, new String[] { "constraints", "UniqueComplaintName" });
+		addAnnotation(privacyPolicyEClass, source, new String[] { "constraints", "UniqueServiceName" });
 		addAnnotation(policyStatementEClass, source, new String[] { "constraints", "WhomShouldBeDefinedForTransfer" });
 		addAnnotation(principalEClass, source, new String[] { "constraints", "JuvenileShouldHaveResponsiblePerson" });
 		addAnnotation(timeIntervalEClass, source, new String[] { "constraints", "AtTypeShouldBeDefinedAlone" });
@@ -4263,29 +4283,32 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
 		addAnnotation(getPrivacyPolicy__UniqueProviderName__DiagnosticChain_Map(), source, new String[] { "body",
 				"Tuple {\n\tmessage : String = \'Provider name is unique\',\n\tstatus : Boolean = \n\t\tself.allProviders->forAll(provider1:Provider,provider2:Provider| provider1.name = provider2.name implies provider1 = provider2)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniqueConsentName__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'Consent name is unique\',\n\tstatus : Boolean = \n\t\tself.allConsents->forAll(consent1:Consent,consent2:Consent| consent1.name = consent2.name implies consent1 = consent2)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniqueServiceName__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'Service name is unique\',\n\tstatus : Boolean = \n\t\tself.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)\n}.status" });
-		addAnnotation(getPrivacyPolicy__OwnerShouldHaveDefinedInhabits__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"Tuple {\n\tmessage : String = \'Based on Art 3\',\n\tstatus : Boolean = \n\t\t\t(not(self.owner = null) and not(self.owner.inhabits = null))\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniquePolicyStatementName__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'PolicyStatement name is unique\',\n\tstatus : Boolean = \n\t\t\tself.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2)\n}.status" });
-		addAnnotation(getPrivacyPolicy__ProtectionControlShouldExistsInConfiguration__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Protection controls should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.defaultProtectionControls->forAll(protectionControl:String|\n\t\t\t\tself.privacyPolicyHelper.isPolicyControlValid(protectionControl)\n\t\t\t)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniquePrivacyDataName__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'PrivacyData name is unique\',\n\tstatus : Boolean = \n\t\tself.allDatas->forAll(data1:PrivacyData,data2:PrivacyData| data1.name = data2.name implies data1 = data2)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'Document name is unique\',\n\tstatus : Boolean = \n\t\tself.allDocuments->forAll(document1:Document,document2:Document| document1.name = document2.name implies document1 = document2)\n}.status" });
 		addAnnotation(getPrivacyPolicy__UniqueLocationPerType__DiagnosticChain_Map(), source, new String[] { "body",
 				"Tuple {\n\tmessage : String = \'Location name per type is unique\',\n\tstatus : Boolean = \n\t\tself.locations->forAll(loc1:Location,loc2:Location| \n\t\t\tif(loc1.type = loc2.type) then \n\t\t\t\tloc1.name = loc2.name implies loc1 = loc2\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t)\n}.status" });
 		addAnnotation(getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map(), source, new String[] {
 				"body",
 				"Tuple {\n\tmessage : String = \'Principal name per type is unique\',\n\tstatus : Boolean = \n\t\tself.allPrincipals->forAll(pr1:Principal,pr2:Principal| \n\t\t\tif(pr1.type = pr2.type) then \n\t\t\tpr1.name = pr2.name implies pr1 = pr2\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueSharedPrivacyDataName__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"Tuple {\n\tmessage : String = \'SharedPrivacyData name is unique\',\n\tstatus : Boolean = \n\t\t\tself.allSharedPrivacyData->forAll(sd1:SharedPrivacyData,sd2:SharedPrivacyData| sd1.name = sd2.name implies sd1 = sd2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Document name is unique\',\n\tstatus : Boolean = \n\t\tself.allDocuments->forAll(document1:Document,document2:Document| document1.name = document2.name implies document1 = document2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__ProtectionControlShouldExistsInConfiguration__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Protection controls should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.defaultProtectionControls->forAll(protectionControl:String|\n\t\t\t\tself.privacyPolicyHelper.isPolicyControlValid(protectionControl)\n\t\t\t)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueConsentName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Consent name is unique\',\n\tstatus : Boolean = \n\t\tself.allConsents->forAll(consent1:Consent,consent2:Consent| consent1.name = consent2.name implies consent1 = consent2)\n}.status" });
 		addAnnotation(getPrivacyPolicy__UniqueComplaintName__DiagnosticChain_Map(), source, new String[] { "body",
 				"Tuple {\n\tmessage : String = \'Complaint name is unique\',\n\tstatus : Boolean = \n\t\tself.allComplaints->forAll(complaint1:Complaint,complaint2:Complaint| complaint1.name = complaint2.name implies complaint1 = complaint2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__OwnerShouldHaveDefinedInhabits__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"Tuple {\n\tmessage : String = \'Based on Art 3\',\n\tstatus : Boolean = \n\t\t\t(not(self.owner = null) and not(self.owner.inhabits = null))\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniquePolicyStatementName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'PolicyStatement name is unique\',\n\tstatus : Boolean = \n\t\t\tself.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniquePrivacyDataName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'PrivacyData name is unique\',\n\tstatus : Boolean = \n\t\t\tself.allDatas->forAll(pd1:PrivacyData,pd2:PrivacyData| pd1.name = pd2.name implies pd1 = pd2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueServiceName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Service name is unique\',\n\tstatus : Boolean = \n\t\tself.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)\n}.status" });
 		addAnnotation(getPolicyStatement__DateShouldBeDefinedForType__Action(), source, new String[] { "body",
 				"\n\t\t\t\t\tif(self.what = null) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\t\tif(self.what.actions->exists(act| act = actionType)) then\n\t\t\t\t\t\t\tnot(self.when = null)\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif" });
 		addAnnotation(getPolicyStatement__CausedByShouldBeDefinedForType__Action(), source, new String[] { "body",

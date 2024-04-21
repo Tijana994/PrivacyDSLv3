@@ -278,40 +278,40 @@ public interface PrivacyModelPackage extends EPackage {
 	int PRIVACY_POLICY___UNIQUE_PROVIDER_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Unique Consent Name</em>' operation.
+	 * The operation id for the '<em>Unique Location Per Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 1;
+	int PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Unique Service Name</em>' operation.
+	 * The operation id for the '<em>Unique Principal Name Per Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 2;
+	int PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The operation id for the '<em>Owner Should Have Defined Inhabits</em>' operation.
+	 * The operation id for the '<em>Unique Shared Privacy Data Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 3;
+	int PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Unique Policy Statement Name</em>' operation.
+	 * The operation id for the '<em>Unique Document Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 4;
+	int PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Protection Control Should Exists In Configuration</em>' operation.
@@ -324,40 +324,13 @@ public interface PrivacyModelPackage extends EPackage {
 			+ 5;
 
 	/**
-	 * The operation id for the '<em>Unique Privacy Data Name</em>' operation.
+	 * The operation id for the '<em>Unique Consent Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY___UNIQUE_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 6;
-
-	/**
-	 * The operation id for the '<em>Unique Document Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 7;
-
-	/**
-	 * The operation id for the '<em>Unique Location Per Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 8;
-
-	/**
-	 * The operation id for the '<em>Unique Principal Name Per Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 9;
+	int PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Unique Complaint Name</em>' operation.
@@ -366,7 +339,43 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 10;
+	int PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
+	 * The operation id for the '<em>Owner Should Have Defined Inhabits</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Unique Policy Statement Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 9;
+
+	/**
+	 * The operation id for the '<em>Unique Privacy Data Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_POLICY___UNIQUE_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 10;
+
+	/**
+	 * The operation id for the '<em>Unique Service Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The number of operations of the '<em>Privacy Policy</em>' class.
@@ -375,7 +384,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 11;
+	int PRIVACY_POLICY_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.NotificationInfoImpl <em>Notification Info</em>}' class.
@@ -3346,6 +3355,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PrivacyPolicy#UniqueSharedPrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Shared Privacy Data Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Unique Shared Privacy Data Name</em>' operation.
+	 * @see privacyModel.PrivacyPolicy#UniqueSharedPrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPrivacyPolicy__UniqueSharedPrivacyDataName__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link privacyModel.PrivacyPolicy#UniqueComplaintName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Complaint Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5686,6 +5705,15 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique Shared Privacy Data Name</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPrivacyPolicy__UniqueSharedPrivacyDataName__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Unique Complaint Name</b></em>' operation.
