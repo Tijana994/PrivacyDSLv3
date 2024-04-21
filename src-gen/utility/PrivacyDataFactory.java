@@ -1,5 +1,7 @@
 package utility;
 
+import java.util.List;
+
 import privacyModel.DataType;
 
 public class PrivacyDataFactory {
@@ -18,7 +20,7 @@ public class PrivacyDataFactory {
 		}
 		
 		public static void addSharedPrivacyData(String name, String privacyDataId, 
-				Boolean collectedFromSubject, String privacyDataSource)
+				Boolean collectedFromSubject, String privacyDataSource, List<String> additionalProtectionControls)
 		{
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
@@ -36,6 +38,11 @@ public class PrivacyDataFactory {
 			sharedPrivacyDataObject.setCollectedFromSubject(collectedFromSubject);
 			sharedPrivacyDataObject.setDataSource(privacyDataSource);
 			sharedPrivacyDataObject.setPrivacydata(privacyDataOptional.get());
+			if(additionalProtectionControls != null)
+			{
+				sharedPrivacyDataObject.getAdditionalProtectionControls().addAll(additionalProtectionControls);
+			}
+			
 			model.getAllSharedPrivacyData().add(sharedPrivacyDataObject);
 			repo.saveModel(model);
 		}
