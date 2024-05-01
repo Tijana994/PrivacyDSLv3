@@ -328,6 +328,7 @@
   </allComplaints>
   <privacyPolicyHelper/>
   <allDenials
+      name="Erasure cannot be done - need parent persmission"
       when="2022-05-16T01:00:00.000+0200"
       approvedBy="//@allPrincipals.0"
       reason="Still processing"
@@ -379,41 +380,48 @@
       location="Budapest court"
       documentType="CourtApproval"/>
   <notifications
+      name="Notify Eve about transfer"
       type="ThirdPartyTransfer"
       notifiers="//@allPrincipals.0"
       receivers="//@allPrincipals.3"
       causedBy="//@policyStatements.2"
       when="2021-01-01T00:00:00.000+0100"/>
   <notifications
+      name="Notify Alice and Green bank about rectification"
       type="Rectification"
       notifiers="//@allPrincipals.0"
       receivers="//@allPrincipals.0 //@allPrincipals.4"
       causedBy="//@allComplaints.0"
       when="2021-05-21T01:00:00.000+0200"/>
   <notifications
+      name="Notify Alice about rectified email"
       type="ExecutedRectification"
       notifiers="//@allPrincipals.0"
       receivers="//@allPrincipals.4"
       causedBy="//@policyStatements.5"
       when="2021-05-21T01:00:00.000+0200"/>
   <notifications
+      name="Notify Alice and Green bank about erasure"
       notifiers="//@allPrincipals.0"
       receivers="//@allPrincipals.0 //@allPrincipals.4"
       causedBy="//@allComplaints.1"
       when="2022-05-15T02:00:00.000+0200"/>
   <notifications
+      name="Notify John about stop sending mails"
       type="StopProcessing"
       notifiers="//@allPrincipals.0"
       receivers="//@allPrincipals.5"
       causedBy="//@policyStatements.8"
       when="2022-01-14T00:00:00.000+0100"/>
   <notifications
+      name="Notify John and Ned about withdrawal"
       type="Withdraw"
       notifiers="//@allPrincipals.0"
       receivers="//@allPrincipals.1 //@allPrincipals.5"
       causedBy="//@allComplaints.3"
       when="2022-04-14T01:00:00.000+0200"/>
   <notifications
+      name="Notify John about stop processing"
       type="StopProcessing"
       notifiers="//@allPrincipals.0"
       receivers="//@allPrincipals.5"
