@@ -1,10 +1,14 @@
+# PrivacyDSLv3
+
+This project represents meta-model of TeMDA - DSL based on aspect oriented language.
+
 # TeMDA
 
 TeMDA (Themis - Greek goddess of justice, MDA - Model Driven Approach) presents a meta-model of a DSL. The meta-model is based on Ecore and developed using the Eclipse Modeling Framework. Automatic verification of business processes' GDPR compliance is implemented using Object Constraint Language (OCL).
 
 ## Environment
 
-Java(TM) SE Development Kit 15.0.1<br/>Luna Eclipse with packages:<br/>
+Java(TM) SE Development Kit 21<br/>Luna Eclipse with packages:<br/>
 - Ecore Diagram Editor
 - Ecore Tools Utilities
 - EMF - Eclipse Modeling Framework Base RunTime
