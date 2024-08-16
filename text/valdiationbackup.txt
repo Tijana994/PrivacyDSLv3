@@ -1,0 +1,53 @@
+	public Boolean test1()
+	{
+		//ProjectManager projectManager = ProjectManager.NO_PROJECTS;
+        // Step 1: Register OCL Ecore delegates manually
+        String oclDelegateURI = "http://www.eclipse.org/emf/2002/Ecore/OCL";
+
+        // Register OCL as a delegate for EOperations
+        EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(
+                oclDelegateURI, new OCLInvocationDelegateFactory.Global());
+
+        // Register OCL as a delegate for EStructuralFeatures
+        EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(
+                oclDelegateURI, new OCLSettingDelegateFactory.Global());
+
+        // Register OCL as a delegate for validation
+        EValidator.ValidationDelegate.Registry.INSTANCE.put(oclDelegateURI,
+                new OCLValidationDelegateFactory.Global());
+
+        // Step 2: Initialize the resource set and load the model
+        ResourceSet resourceSet = new ResourceSetImpl();
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
+                .put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+
+        // Register the Ecore package (example: YourPackage.eINSTANCE)
+        resourceSet.getPackageRegistry().put("http://privacymodel", PrivacyModelPackage.eINSTANCE);
+
+        // Load your model resource
+        Resource resource = resourceSet.getResource(URI.createFileURI(passInst1), true);
+
+        // Step 3: Validate using Diagnostician
+        EObject eObject = resource.getContents().get(0); // Assume the first EObject is what we want to validate
+        Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
+
+        // Output the validation results
+        // Output the results
+        if (diagnostic.getSeverity() == Diagnostic.ERROR || 
+        		diagnostic.getSeverity() == Diagnostic.WARNING)
+	      {
+	        System.err.println(diagnostic.getMessage());
+	        for (Iterator i=diagnostic.getChildren().iterator(); i.hasNext();)
+	        {
+	          Diagnostic childDiagnostic = (Diagnostic)i.next();
+	          switch (childDiagnostic.getSeverity())
+	          {
+	            case Diagnostic.ERROR:
+	            case Diagnostic.WARNING:
+	            	System.out.println(childDiagnostic.getMessage());
+	          }
+	        }
+	        return false;
+	      }
+        return true;
+	}

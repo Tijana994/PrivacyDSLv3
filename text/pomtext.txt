@@ -1,0 +1,3 @@
+ org.eclipse.ocl.pivot.utilities
+ org.eclipse.ocl.pivot;visibility:=reexport,
+ org.eclipse.ocl.examples.codegen;visibility:=reexport,

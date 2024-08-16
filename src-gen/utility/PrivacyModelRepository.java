@@ -15,12 +15,14 @@ import privacyModel.PrivacyModelFactory;
 import privacyModel.PrivacyModelPackage;
 import privacyModel.PrivacyPolicy;
 import utility.ProjectConfiguration.Configuration;
+import utility.validation.Validation;
 
 public class PrivacyModelRepository {
 
+	private Validation validationHelper;
 	public PrivacyModelRepository()
 	{
-		
+		validationHelper = new Validation();
 	}
 	
     public PrivacyPolicy getModel() {
@@ -62,7 +64,10 @@ public class PrivacyModelRepository {
 		 } catch (IOException e){
 		   System.out.print("Problem with saving. Exception " + e );
 		   return false;
-		 }  
+		 } 
+		 
+		 var validationResult = validationHelper.validateModel("model/bank.xmi");
+	     System.out.println(validationResult.ValidationMessage);
 		 return true;
 	}
 	

@@ -8,7 +8,19 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.ocl.xtext.essentialocl_1.17.0.v20220309-0840.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.ocl.pivot_1.17.0.v20220309-0840.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/guice-5.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/javax.inject-1.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.resources-3.20.100.jar"/>
+	<classpathentry kind="lib" path="lib/ocl6.10/org.eclipse.ocl.examples.codegen_2.10.0.v20191209-1145.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/guava-27.0-jre.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.emf.edit-2.21.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.xtext.util-2.10.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.xtext-2.10.0.jar"/>
+	<classpathentry kind="lib" path="lib/antlr-runtime-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/ocl6.10/org.eclipse.ocl.pivot_1.10.0.v20191209-1145.jar"/>
+	<classpathentry kind="lib" path="lib/ocl6.10/org.eclipse.ocl.xtext.base_1.10.0.v20191209-1145.jar"/>
+	<classpathentry kind="lib" path="lib/ocl6.10/org.eclipse.ocl.xtext.essentialocl_1.10.0.v20191209-1145.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.ocl.common_1.8.400.v20191209-1145.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
