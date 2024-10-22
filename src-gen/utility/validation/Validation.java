@@ -74,7 +74,8 @@ public class Validation {
     private ValidationResult validateObject(EObject eObject)
     {
     	ValidationResult result = new ValidationResult();
-    	result.ValidationMessage = "Failed - Errors:";
+    	result.ValidationMessage = "Validation failed with errors:";
+    	result.IsSuccessful = false;
     	Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
         if (diagnostic.getSeverity() == Diagnostic.ERROR || 
 	    		diagnostic.getSeverity() == Diagnostic.WARNING)

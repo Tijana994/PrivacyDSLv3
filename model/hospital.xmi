@@ -4,7 +4,6 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:privacyModel="http://privacymodel"
-    xsi:schemaLocation="http://privacymodel privacyModel.ecore"
     name="City hospital policy"
     owner="//@allPrincipals.0">
   <policyStatements
@@ -230,9 +229,12 @@
       startDate="2020-10-30T00:00:00.000+0100"
       location="system"/>
   <allSharedPrivacyData
+      name="name"
       privacydata="//@allDatas.0"/>
   <allSharedPrivacyData
+      name="social number"
       privacydata="//@allDatas.2"/>
   <allSharedPrivacyData
+      name="illness"
       privacydata="//@allDatas.1"/>
 </privacyModel:PrivacyPolicy>

@@ -66,7 +66,7 @@ public class PrivacyModelRepository {
 		   return false;
 		 } 
 		 
-		 var validationResult = validationHelper.validateModel("model/bank.xmi");
+		 var validationResult = validationHelper.validateModel(Configuration.getXmlPath());
 	     System.out.println(validationResult.ValidationMessage);
 		 return true;
 	}
