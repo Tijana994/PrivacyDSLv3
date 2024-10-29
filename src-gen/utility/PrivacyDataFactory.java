@@ -82,6 +82,8 @@ public class PrivacyDataFactory {
 			if(parentObj.isPresent())
 			{
 				parentObj.get().getSubLocations().add(locationObject);
+				locationObject.setIsEUMember(parentObj.get().isIsEUMember());
+				locationObject.setLegalAgeLimit(parentObj.get().getLegalAgeLimit());
 			}
 			else
 			{
