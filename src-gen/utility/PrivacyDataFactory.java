@@ -79,17 +79,14 @@ public class PrivacyDataFactory {
 			locationObject.setName(name);
 			locationObject.setType(LocationType.REGION);
 			var parentObj = model.getLocations().stream().filter(location -> location.getName().equals(parentId)).findFirst();
-			if(parentObj.isPresent())
-			{
-				parentObj.get().getSubLocations().add(locationObject);
-				locationObject.setIsEUMember(parentObj.get().isIsEUMember());
-				locationObject.setLegalAgeLimit(parentObj.get().getLegalAgeLimit());
-			}
-			else
+			if(parentObj.isEmpty())
 			{
 				System.out.println("There is no location with id " + parentId);
 				return;
 			}
+			parentObj.get().getSubLocations().add(locationObject);
+			locationObject.setIsEUMember(parentObj.get().isIsEUMember());
+			locationObject.setLegalAgeLimit(parentObj.get().getLegalAgeLimit());
 			model.getLocations().add(locationObject);
 			repo.saveModel(model);
 		}
@@ -105,6 +102,27 @@ public class PrivacyDataFactory {
 			locationObject.setLegalAgeLimit(legalAgeLimit);
 			model.getLocations().add(locationObject);
 			repo.saveModel(model);
+		}
+		
+		public static void addSubPrincipal(String childId, String parentId)
+		{
+			var repo = new PrivacyModelRepository();
+			var model = repo.getModel();
+			var childObj = model.getAllPrincipals().stream().filter(principal -> principal.getName().equals(childId)).findFirst();
+			if(childObj.isEmpty())
+			{
+				System.out.println("There is no principal with id " + childId);
+				return;
+			}
+			var parentObj = model.getAllPrincipals().stream().filter(principal -> principal.getName().equals(parentId)).findFirst();
+			if(parentObj.isEmpty())
+			{
+				System.out.println("There is no principal with id " + parentId);
+				return;
+			}
+			parentObj.get().getSubPrincipals().add(childObj.get());
+			repo.saveModel(model);
+			
 		}
 	}
 }
