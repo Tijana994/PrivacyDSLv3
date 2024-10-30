@@ -4,6 +4,9 @@ import java.util.List;
 
 import privacyModel.DataType;
 import privacyModel.LocationType;
+import privacyModel.ProcessingReason;
+import privacyModel.ProcessingReasonSubtype;
+import privacyModel.Purpose;
 
 public class PrivacyDataFactory {
 
@@ -123,6 +126,16 @@ public class PrivacyDataFactory {
 			parentObj.get().getSubPrincipals().add(childObj.get());
 			repo.saveModel(model);
 			
+		}
+		
+		public static Purpose createPurpose(String details, ProcessingReason reason, ProcessingReasonSubtype subtype)
+		{
+			var repo = new PrivacyModelRepository();
+			var purpose = repo.getFactory().createPurpose();
+			purpose.setDetails(details);
+			purpose.setProcessingReason(reason);
+			purpose.setProcessingReasonSubtype(subtype);
+			return purpose;
 		}
 	}
 }
