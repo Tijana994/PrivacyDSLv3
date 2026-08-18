@@ -50,6 +50,7 @@
         processingReasonSubtype="PersonalActivity"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2 //@allSharedPrivacyData.3">
       <actions>Transfer</actions>
+      <actions>DataPortability</actions>
     </what>
     <how documents="//@allDocuments.0"
         consent="//@allConsents.1"/>
