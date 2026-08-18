@@ -7,13 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -21,6 +16,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.ocl.pivot.values.InvalidValueException;
 import privacyModel.Consent;
 import privacyModel.Document;
 import privacyModel.How;
@@ -133,28 +129,43 @@ public class HowImpl extends MinimalEObjectImpl.Container implements How {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #isConsentValid(privacyModel.How) <em>Is Consent Valid</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isConsentValid(privacyModel.How)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_CONSENT_VALID_HOW__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.HOW___IS_CONSENT_VALID__HOW)
-			.getInvocationDelegate();
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isConsentValid(How howConsent) {
-		try {
-			return (Boolean) IS_CONSENT_VALID_HOW__EINVOCATION_DELEGATE.dynamicInvoke(this,
-					new BasicEList.UnmodifiableEList<Object>(1, new Object[] { howConsent }));
-		} catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
+	public boolean isConsentValid(final How howConsent) {
+		/**
+		 *
+		 * if self.consent = null
+		 * then true
+		 * else
+		 *   if howConsent.consent = null
+		 *   then false
+		 *   else self.consent = howConsent.consent
+		 *   endif
+		 * endif
+		 */
+		final /*@NonInvalid*/ Consent consent = this.getConsent();
+		final /*@NonInvalid*/ boolean eq = consent == null;
+		/*@Thrown*/ boolean local_1;
+		if (eq) {
+			local_1 = true;
+		} else {
+			if (howConsent == null) {
+				throw new InvalidValueException("Null source for \'\'http://privacymodel\'::How::consent\'");
+			}
+			final /*@Thrown*/ Consent consent_2 = howConsent.getConsent();
+			final /*@Thrown*/ boolean eq_0 = consent_2 == null;
+			/*@Thrown*/ boolean local_0;
+			if (eq_0) {
+				local_0 = false;
+			} else {
+				final /*@Thrown*/ boolean eq_1 = (consent != null) ? consent.equals(consent_2) : (consent_2 == null);
+				local_0 = eq_1;
+			}
+			local_1 = local_0;
 		}
+		return local_1;
 	}
 
 	/**

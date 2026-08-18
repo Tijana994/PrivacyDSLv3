@@ -49,23 +49,22 @@ public enum ConsentType implements Enumerator {
 	INFORMED(2, "Informed", "Informed"),
 
 	/**
-	 * The '<em><b>Unanomius</b></em>' literal object.
+	 * The '<em><b>Unanimous</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UNANOMIUS_VALUE
+	 * @see #UNANIMOUS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	UNANOMIUS(3, "Unanomius", "Unanomius"),
-
+	UNANIMOUS(3, "Unanimous", "Unanimous"),
 	/**
-	 * The '<em><b>Substituted</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #SUBSTITUTED_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	* The '<em><b>Substituted</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #SUBSTITUTED_VALUE
+	* @generated
+	* @ordered
+	*/
 	SUBSTITUTED(4, "Substituted", "Substituted");
 
 	/**
@@ -102,15 +101,15 @@ public enum ConsentType implements Enumerator {
 	public static final int INFORMED_VALUE = 2;
 
 	/**
-	 * The '<em><b>Unanomius</b></em>' literal value.
+	 * The '<em><b>Unanimous</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UNANOMIUS
-	 * @model name="Unanomius"
+	 * @see #UNANIMOUS
+	 * @model name="Unanimous"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNANOMIUS_VALUE = 3;
+	public static final int UNANIMOUS_VALUE = 3;
 
 	/**
 	 * The '<em><b>Substituted</b></em>' literal value.
@@ -129,7 +128,7 @@ public enum ConsentType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ConsentType[] VALUES_ARRAY = new ConsentType[] { EXPLICIT, IMPLIED, INFORMED, UNANOMIUS,
+	private static final ConsentType[] VALUES_ARRAY = new ConsentType[] { EXPLICIT, IMPLIED, INFORMED, UNANIMOUS,
 			SUBSTITUTED, };
 
 	/**
@@ -192,8 +191,8 @@ public enum ConsentType implements Enumerator {
 			return IMPLIED;
 		case INFORMED_VALUE:
 			return INFORMED;
-		case UNANOMIUS_VALUE:
-			return UNANOMIUS;
+		case UNANIMOUS_VALUE:
+			return UNANIMOUS;
 		case SUBSTITUTED_VALUE:
 			return SUBSTITUTED;
 		}

@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see privacyModel.PrivacyModelFactory
  * @model kind="package"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' settingDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot' validationDelegates='http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore"
  * @generated
  */
 public interface PrivacyModelPackage extends EPackage {
@@ -561,91 +561,22 @@ public interface PrivacyModelPackage extends EPackage {
 			+ 2;
 
 	/**
-	 * The operation id for the '<em>Subject Should Be Notified About Transfer To Third Country</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 3;
-
-	/**
-	 * The operation id for the '<em>Subject Should Be Notified About Executed Rectification</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 4;
-
-	/**
-	 * The operation id for the '<em>Subject Should Be Notified About Stop Processing</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 5;
-
-	/**
-	 * The operation id for the '<em>Controller Approval Is Need For Protect The Vital Interests Of The Data Subject Purpose</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 6;
-
-	/**
 	 * The operation id for the '<em>Missing Consent For Collecting</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT___MISSING_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 7;
+	int POLICY_STATEMENT___MISSING_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Expired Consent</em>' operation.
+	 * The operation id for the '<em>Expired Document</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT___EXPIRED_CONSENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 8;
-
-	/**
-	 * The operation id for the '<em>Stop Processing Purpose For Action Stop Processing</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 9;
-
-	/**
-	 * The operation id for the '<em>Withdrawed Consent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___WITHDRAWED_CONSENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 10;
-
-	/**
-	 * The operation id for the '<em>Processing Of Special Categories</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___PROCESSING_OF_SPECIAL_CATEGORIES__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 11;
+	int POLICY_STATEMENT___EXPIRED_DOCUMENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Subject Should Be Notified About Collecting</em>' operation.
@@ -655,133 +586,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 12;
-
-	/**
-	 * The operation id for the '<em>Date Shoud Be Defined For Store Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___DATE_SHOUD_BE_DEFINED_FOR_STORE_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 13;
-
-	/**
-	 * The operation id for the '<em>Court Approval Is Need For Public Interest Purpose</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___COURT_APPROVAL_IS_NEED_FOR_PUBLIC_INTEREST_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 14;
-
-	/**
-	 * The operation id for the '<em>Controller Approval Is Need For Legitimate Interests Purpose</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEED_FOR_LEGITIMATE_INTERESTS_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 15;
-
-	/**
-	 * The operation id for the '<em>Date Shoud Be Defined For Access Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___DATE_SHOUD_BE_DEFINED_FOR_ACCESS_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 16;
-
-	/**
-	 * The operation id for the '<em>Expired Consent For Collecting</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___EXPIRED_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 17;
-
-	/**
-	 * The operation id for the '<em>Caused By Should Be Defined For Stop Processing Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 18;
-
-	/**
-	 * The operation id for the '<em>Juvenile Data Should Be Used With Document Of Type Child Custody Provided By Responsible Person</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 19;
-
-	/**
-	 * The operation id for the '<em>Missing Consent Or Transfer Certificate</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 20;
-
-	/**
-	 * The operation id for the '<em>Undefined Purpose For Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___UNDEFINED_PURPOSE_FOR_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 21;
-
-	/**
-	 * The operation id for the '<em>Caused By Should Be Defined For Rectification Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 22;
-
-	/**
-	 * The operation id for the '<em>Expired Document</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___EXPIRED_DOCUMENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 23;
-
-	/**
-	 * The operation id for the '<em>Missing Consent For Transfer</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___MISSING_CONSENT_FOR_TRANSFER__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 24;
-
-	/**
-	 * The operation id for the '<em>Caused By Should Be Defined For Erasure Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 25;
+			+ 5;
 
 	/**
 	 * The operation id for the '<em>Subject Should Be Notified About Executed Erasure</em>' operation.
@@ -791,7 +596,66 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 26;
+			+ 6;
+
+	/**
+	 * The operation id for the '<em>Subject Should Be Notified About Executed Rectification</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 7;
+
+	/**
+	 * The operation id for the '<em>Processing Of Special Categories</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___PROCESSING_OF_SPECIAL_CATEGORIES__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 8;
+
+	/**
+	 * The operation id for the '<em>Caused By Should Be Defined For Rectification Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 9;
+
+	/**
+	 * The operation id for the '<em>Court Approval Is Needed For Public Interest Purpose</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 10;
+
+	/**
+	 * The operation id for the '<em>Expired Consent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___EXPIRED_CONSENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 11;
+
+	/**
+	 * The operation id for the '<em>Caused By Should Be Defined For Erasure Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 12;
 
 	/**
 	 * The operation id for the '<em>Whom Should Be Defined For Transfer</em>' operation.
@@ -801,7 +665,155 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int POLICY_STATEMENT___WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 27;
+			+ 13;
+
+	/**
+	 * The operation id for the '<em>Expired Consent For Collecting</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___EXPIRED_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 14;
+
+	/**
+	 * The operation id for the '<em>Missing Consent Or Transfer Certificate</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 15;
+
+	/**
+	 * The operation id for the '<em>Controller Approval Is Needed For Protect The Vital Interests Of The Data Subject Purpose</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 16;
+
+	/**
+	 * The operation id for the '<em>Controller Approval Is Needed For Legitimate Interests Purpose</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 17;
+
+	/**
+	 * The operation id for the '<em>Date Should Be Defined For Access Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 18;
+
+	/**
+	 * The operation id for the '<em>Date Should Be Defined For Store Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 19;
+
+	/**
+	 * The operation id for the '<em>Where Should Be Defined For Transfer Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 20;
+
+	/**
+	 * The operation id for the '<em>Subject Should Be Notified About Stop Processing</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 21;
+
+	/**
+	 * The operation id for the '<em>Subject Should Be Notified About Transfer To Third Country</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 22;
+
+	/**
+	 * The operation id for the '<em>Missing Consent For Data Portability</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___MISSING_CONSENT_FOR_DATA_PORTABILITY__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 23;
+
+	/**
+	 * The operation id for the '<em>Caused By Should Be Defined For Stop Processing Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 24;
+
+	/**
+	 * The operation id for the '<em>Stop Processing Purpose For Action Stop Processing</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 25;
+
+	/**
+	 * The operation id for the '<em>Juvenile Data Should Be Used With Document Of Type Child Custody Provided By Responsible Person</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 26;
+
+	/**
+	 * The operation id for the '<em>Withdrawn Consent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___WITHDRAWN_CONSENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 27;
+
+	/**
+	 * The operation id for the '<em>Undefined Purpose For Action Or User Doesnt Have Permission</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOESNT_HAVE_PERMISSION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 28;
 
 	/**
 	 * The number of operations of the '<em>Policy Statement</em>' class.
@@ -810,7 +822,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 28;
+	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 29;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
@@ -1060,13 +1072,13 @@ public interface PrivacyModelPackage extends EPackage {
 	int PRINCIPAL___EQUALS__PRINCIPAL = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Natural Person Can Not Conatains Sub Principals</em>' operation.
+	 * The operation id for the '<em>Natural Person Cannot Contain Sub Principals</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRINCIPAL___NATURAL_PERSON_CAN_NOT_CONATAINS_SUB_PRINCIPALS__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT
+	int PRINCIPAL___NATURAL_PERSON_CANNOT_CONTAIN_SUB_PRINCIPALS__DIAGNOSTICCHAIN_MAP = NAMED_ELEMENT_OPERATION_COUNT
 			+ 1;
 
 	/**
@@ -1455,31 +1467,31 @@ public interface PrivacyModelPackage extends EPackage {
 	int PURPOSE___CONTAINS_ALLOWED_PURPOSE_REASON_AND_SUBREASON__PROCESSINGREASON_ELIST = 2;
 
 	/**
+	 * The operation id for the '<em>Public Interest Should Not Contain This Sub Reason</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PURPOSE___PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 3;
+
+	/**
 	 * The operation id for the '<em>Public Health Should Not Contain Sub Reason</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PURPOSE___PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = 3;
+	int PURPOSE___PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = 4;
 
 	/**
-	 * The operation id for the '<em>Legitimate Interests Not Contain Sub Reason</em>' operation.
+	 * The operation id for the '<em>Out Of Scope Should Not Contain This Sub Reason</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PURPOSE___LEGITIMATE_INTERESTS_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = 4;
-
-	/**
-	 * The operation id for the '<em>Stop Processing Interest Should Not Contain Sub Reason</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PURPOSE___STOP_PROCESSING_INTEREST_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = 5;
+	int PURPOSE___OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 5;
 
 	/**
 	 * The operation id for the '<em>Profiling Should Not Contain Sub Reason</em>' operation.
@@ -1491,58 +1503,58 @@ public interface PrivacyModelPackage extends EPackage {
 	int PURPOSE___PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = 6;
 
 	/**
+	 * The operation id for the '<em>Stop Processing Should Not Contain Sub Reason</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PURPOSE___STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = 7;
+
+	/**
 	 * The operation id for the '<em>Marketing Should Not Contain Sub Reason</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PURPOSE___MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = 7;
+	int PURPOSE___MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = 8;
 
 	/**
-	 * The operation id for the '<em>Out Of Scope Cannot Contains This Sub Reason</em>' operation.
+	 * The operation id for the '<em>Exercising Specific Rights Purposes Cannot Contain This Sub Reason</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PURPOSE___OUT_OF_SCOPE_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 8;
+	int PURPOSE___EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 9;
 
 	/**
-	 * The operation id for the '<em>Exercising Specific Rights Purposes Cannot Contains This Sub Reason</em>' operation.
+	 * The operation id for the '<em>Protect The Vital Interests Of The Data Subject Should Not Contain This Sub Reason</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PURPOSE___EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 9;
+	int PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 10;
 
 	/**
-	 * The operation id for the '<em>Protect The Vital Interests Of The Data Subject Cannot Contains This Sub Reason</em>' operation.
+	 * The operation id for the '<em>Legitimate Interests Should Not Contain This Sub Reason</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 10;
+	int PURPOSE___LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 11;
 
 	/**
-	 * The operation id for the '<em>Public Interest Cannot Contains This Sub Reason</em>' operation.
+	 * The operation id for the '<em>Research Should Not Contain This Sub Reason</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PURPOSE___PUBLIC_INTEREST_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 11;
-
-	/**
-	 * The operation id for the '<em>Research Cannot Contains This Sub Reason</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PURPOSE___RESEARCH_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 12;
+	int PURPOSE___RESEARCH_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = 12;
 
 	/**
 	 * The operation id for the '<em>Statistical Purposes Should Not Contain Sub Reason</em>' operation.
@@ -2021,72 +2033,22 @@ public interface PrivacyModelPackage extends EPackage {
 			+ 0;
 
 	/**
-	 * The operation id for the '<em>Cannot Identify Data From Complaint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLAINT___CANNOT_IDENTIFY_DATA_FROM_COMPLAINT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Stop Processing Should Be Executed As Soon As Possible</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLAINT___STOP_PROCESSING_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 2;
-
-	/**
-	 * The operation id for the '<em>User Doesnt Have Permission To Withdraw Consent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLAINT___USER_DOESNT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 3;
-
-	/**
-	 * The operation id for the '<em>Erasure Should Be Executed As Soon As Possible</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLAINT___ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 4;
-
-	/**
-	 * The operation id for the '<em>Subject Should Be Notified About Existing Complaint For Erasure</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 5;
-
-	/**
-	 * The operation id for the '<em>Rectification Should Be Executed As Soon As Possible</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLAINT___RECTIFICATION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 6;
-
-	/**
 	 * The operation id for the '<em>Invalid Type Of Purpose For An Object</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLAINT___INVALID_TYPE_OF_PURPOSE_FOR_AN_OBJECT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 7;
+	int COMPLAINT___INVALID_TYPE_OF_PURPOSE_FOR_AN_OBJECT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Cannot Identify Data From Complaint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLAINT___CANNOT_IDENTIFY_DATA_FROM_COMPLAINT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>User Doesnt Have Permission To Complaint</em>' operation.
@@ -2096,7 +2058,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPLAINT___USER_DOESNT_HAVE_PERMISSION_TO_COMPLAINT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 8;
+			+ 3;
 
 	/**
 	 * The operation id for the '<em>Subject Should Be Notified About Withdraw</em>' operation.
@@ -2106,7 +2068,47 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAW__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 9;
+			+ 4;
+
+	/**
+	 * The operation id for the '<em>Erasure Should Be Executed As Soon As Possible</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLAINT___ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 5;
+
+	/**
+	 * The operation id for the '<em>Withdraw Consent Should Be Executed As Soon As Possible</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLAINT___WITHDRAW_CONSENT_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 6;
+
+	/**
+	 * The operation id for the '<em>Subject Should Be Notified About Existing Complaint For Erasure</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 7;
+
+	/**
+	 * The operation id for the '<em>User Doesnt Have Permission To Withdraw Consent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLAINT___USER_DOESNT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 8;
 
 	/**
 	 * The operation id for the '<em>Subject Should Be Notified About Existing Complaint For Rectification</em>' operation.
@@ -2116,7 +2118,27 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_RECTIFICATION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 9;
+
+	/**
+	 * The operation id for the '<em>Rectification Should Be Executed As Soon As Possible</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLAINT___RECTIFICATION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
 			+ 10;
+
+	/**
+	 * The operation id for the '<em>Stop Processing Should Be Executed As Soon As Possible</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLAINT___STOP_PROCESSING_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 11;
 
 	/**
 	 * The number of operations of the '<em>Complaint</em>' class.
@@ -2125,7 +2147,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLAINT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 11;
+	int COMPLAINT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.PrivacyPolicyHelperImpl <em>Privacy Policy Helper</em>}' class.
@@ -3524,6 +3546,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutTransferToThirdCountry__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#MissingConsentForDataPortability(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Missing Consent For Data Portability</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Missing Consent For Data Portability</em>' operation.
+	 * @see privacyModel.PolicyStatement#MissingConsentForDataPortability(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__MissingConsentForDataPortability__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#SubjectShouldBeNotifiedAboutExecutedRectification(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Subject Should Be Notified About Executed Rectification</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3542,16 +3574,6 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutStopProcessing__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#ControllerApprovalIsNeedForProtectTheVitalInterestsOfTheDataSubjectPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Controller Approval Is Need For Protect The Vital Interests Of The Data Subject Purpose</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Controller Approval Is Need For Protect The Vital Interests Of The Data Subject Purpose</em>' operation.
-	 * @see privacyModel.PolicyStatement#ControllerApprovalIsNeedForProtectTheVitalInterestsOfTheDataSubjectPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPolicyStatement__ControllerApprovalIsNeedForProtectTheVitalInterestsOfTheDataSubjectPurpose__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#MissingConsentForCollecting(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Missing Consent For Collecting</em>}' operation.
@@ -3584,16 +3606,6 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__StopProcessingPurposeForActionStopProcessing__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#WithdrawedConsent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Withdrawed Consent</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Withdrawed Consent</em>' operation.
-	 * @see privacyModel.PolicyStatement#WithdrawedConsent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPolicyStatement__WithdrawedConsent__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#ProcessingOfSpecialCategories(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Processing Of Special Categories</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3612,46 +3624,6 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutCollecting__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#DateShoudBeDefinedForStoreAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Date Shoud Be Defined For Store Action</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Date Shoud Be Defined For Store Action</em>' operation.
-	 * @see privacyModel.PolicyStatement#DateShoudBeDefinedForStoreAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPolicyStatement__DateShoudBeDefinedForStoreAction__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#CourtApprovalIsNeedForPublicInterestPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Court Approval Is Need For Public Interest Purpose</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Court Approval Is Need For Public Interest Purpose</em>' operation.
-	 * @see privacyModel.PolicyStatement#CourtApprovalIsNeedForPublicInterestPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPolicyStatement__CourtApprovalIsNeedForPublicInterestPurpose__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#ControllerApprovalIsNeedForLegitimateInterestsPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Controller Approval Is Need For Legitimate Interests Purpose</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Controller Approval Is Need For Legitimate Interests Purpose</em>' operation.
-	 * @see privacyModel.PolicyStatement#ControllerApprovalIsNeedForLegitimateInterestsPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPolicyStatement__ControllerApprovalIsNeedForLegitimateInterestsPurpose__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#DateShoudBeDefinedForAccessAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Date Shoud Be Defined For Access Action</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Date Shoud Be Defined For Access Action</em>' operation.
-	 * @see privacyModel.PolicyStatement#DateShoudBeDefinedForAccessAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPolicyStatement__DateShoudBeDefinedForAccessAction__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#ExpiredConsentForCollecting(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Expired Consent For Collecting</em>}' operation.
@@ -3684,6 +3656,26 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#WithdrawnConsent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Withdrawn Consent</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Withdrawn Consent</em>' operation.
+	 * @see privacyModel.PolicyStatement#WithdrawnConsent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__WithdrawnConsent__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#UndefinedPurposeForActionOrUserDoesntHavePermission(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Undefined Purpose For Action Or User Doesnt Have Permission</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Undefined Purpose For Action Or User Doesnt Have Permission</em>' operation.
+	 * @see privacyModel.PolicyStatement#UndefinedPurposeForActionOrUserDoesntHavePermission(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__UndefinedPurposeForActionOrUserDoesntHavePermission__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#MissingConsentOrTransferCertificate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Missing Consent Or Transfer Certificate</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3694,14 +3686,54 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__MissingConsentOrTransferCertificate__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#UndefinedPurposeForAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Undefined Purpose For Action</em>}' operation.
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Controller Approval Is Needed For Protect The Vital Interests Of The Data Subject Purpose</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Undefined Purpose For Action</em>' operation.
-	 * @see privacyModel.PolicyStatement#UndefinedPurposeForAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Controller Approval Is Needed For Protect The Vital Interests Of The Data Subject Purpose</em>' operation.
+	 * @see privacyModel.PolicyStatement#ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPolicyStatement__UndefinedPurposeForAction__DiagnosticChain_Map();
+	EOperation getPolicyStatement__ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#ControllerApprovalIsNeededForLegitimateInterestsPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Controller Approval Is Needed For Legitimate Interests Purpose</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Controller Approval Is Needed For Legitimate Interests Purpose</em>' operation.
+	 * @see privacyModel.PolicyStatement#ControllerApprovalIsNeededForLegitimateInterestsPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__ControllerApprovalIsNeededForLegitimateInterestsPurpose__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#DateShouldBeDefinedForAccessAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Date Should Be Defined For Access Action</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Date Should Be Defined For Access Action</em>' operation.
+	 * @see privacyModel.PolicyStatement#DateShouldBeDefinedForAccessAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__DateShouldBeDefinedForAccessAction__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#DateShouldBeDefinedForStoreAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Date Should Be Defined For Store Action</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Date Should Be Defined For Store Action</em>' operation.
+	 * @see privacyModel.PolicyStatement#DateShouldBeDefinedForStoreAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__DateShouldBeDefinedForStoreAction__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#WhereShouldBeDefinedForTransferAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Where Should Be Defined For Transfer Action</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Where Should Be Defined For Transfer Action</em>' operation.
+	 * @see privacyModel.PolicyStatement#WhereShouldBeDefinedForTransferAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__WhereShouldBeDefinedForTransferAction__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#CausedByShouldBeDefinedForRectificationAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Caused By Should Be Defined For Rectification Action</em>}' operation.
@@ -3714,6 +3746,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__CausedByShouldBeDefinedForRectificationAction__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#CourtApprovalIsNeededForPublicInterestPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Court Approval Is Needed For Public Interest Purpose</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Court Approval Is Needed For Public Interest Purpose</em>' operation.
+	 * @see privacyModel.PolicyStatement#CourtApprovalIsNeededForPublicInterestPurpose(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__CourtApprovalIsNeededForPublicInterestPurpose__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#ExpiredDocument(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Expired Document</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3722,16 +3764,6 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getPolicyStatement__ExpiredDocument__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#MissingConsentForTransfer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Missing Consent For Transfer</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Missing Consent For Transfer</em>' operation.
-	 * @see privacyModel.PolicyStatement#MissingConsentForTransfer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPolicyStatement__MissingConsentForTransfer__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#CausedByShouldBeDefinedForErasureAction(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Caused By Should Be Defined For Erasure Action</em>}' operation.
@@ -3935,14 +3967,14 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPrincipal__Equals__Principal();
 
 	/**
-	 * Returns the meta object for the '{@link privacyModel.Principal#NaturalPersonCanNotConatainsSubPrincipals(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Natural Person Can Not Conatains Sub Principals</em>}' operation.
+	 * Returns the meta object for the '{@link privacyModel.Principal#NaturalPersonCannotContainSubPrincipals(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Natural Person Cannot Contain Sub Principals</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Natural Person Can Not Conatains Sub Principals</em>' operation.
-	 * @see privacyModel.Principal#NaturalPersonCanNotConatainsSubPrincipals(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Natural Person Cannot Contain Sub Principals</em>' operation.
+	 * @see privacyModel.Principal#NaturalPersonCannotContainSubPrincipals(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPrincipal__NaturalPersonCanNotConatainsSubPrincipals__DiagnosticChain_Map();
+	EOperation getPrincipal__NaturalPersonCannotContainSubPrincipals__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.Principal#JuvenileShouldHaveResponsiblePerson(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Juvenile Should Have Responsible Person</em>}' operation.
@@ -4267,6 +4299,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPurpose__ContainsAllowedPurposeReasonAndSubreason__ProcessingReason_EList();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.Purpose#PublicInterestShouldNotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Public Interest Should Not Contain This Sub Reason</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Public Interest Should Not Contain This Sub Reason</em>' operation.
+	 * @see privacyModel.Purpose#PublicInterestShouldNotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPurpose__PublicInterestShouldNotContainThisSubReason__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link privacyModel.Purpose#PublicHealthShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Public Health Should Not Contain Sub Reason</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4277,24 +4319,14 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPurpose__PublicHealthShouldNotContainSubReason__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link privacyModel.Purpose#LegitimateInterestsNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Legitimate Interests Not Contain Sub Reason</em>}' operation.
+	 * Returns the meta object for the '{@link privacyModel.Purpose#OutOfScopeShouldNotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Out Of Scope Should Not Contain This Sub Reason</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Legitimate Interests Not Contain Sub Reason</em>' operation.
-	 * @see privacyModel.Purpose#LegitimateInterestsNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Out Of Scope Should Not Contain This Sub Reason</em>' operation.
+	 * @see privacyModel.Purpose#OutOfScopeShouldNotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPurpose__LegitimateInterestsNotContainSubReason__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link privacyModel.Purpose#StopProcessingInterestShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Stop Processing Interest Should Not Contain Sub Reason</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Stop Processing Interest Should Not Contain Sub Reason</em>' operation.
-	 * @see privacyModel.Purpose#StopProcessingInterestShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPurpose__StopProcessingInterestShouldNotContainSubReason__DiagnosticChain_Map();
+	EOperation getPurpose__OutOfScopeShouldNotContainThisSubReason__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.Purpose#ProfilingShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Profiling Should Not Contain Sub Reason</em>}' operation.
@@ -4307,6 +4339,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPurpose__ProfilingShouldNotContainSubReason__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.Purpose#StopProcessingShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Stop Processing Should Not Contain Sub Reason</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Stop Processing Should Not Contain Sub Reason</em>' operation.
+	 * @see privacyModel.Purpose#StopProcessingShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPurpose__StopProcessingShouldNotContainSubReason__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link privacyModel.Purpose#MarketingShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Marketing Should Not Contain Sub Reason</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4317,54 +4359,44 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPurpose__MarketingShouldNotContainSubReason__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link privacyModel.Purpose#OutOfScopeCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Out Of Scope Cannot Contains This Sub Reason</em>}' operation.
+	 * Returns the meta object for the '{@link privacyModel.Purpose#ExercisingSpecificRightsPurposesCannotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Exercising Specific Rights Purposes Cannot Contain This Sub Reason</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Out Of Scope Cannot Contains This Sub Reason</em>' operation.
-	 * @see privacyModel.Purpose#OutOfScopeCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Exercising Specific Rights Purposes Cannot Contain This Sub Reason</em>' operation.
+	 * @see privacyModel.Purpose#ExercisingSpecificRightsPurposesCannotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPurpose__OutOfScopeCannotContainsThisSubReason__DiagnosticChain_Map();
+	EOperation getPurpose__ExercisingSpecificRightsPurposesCannotContainThisSubReason__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link privacyModel.Purpose#ExercisingSpecificRightsPurposesCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Exercising Specific Rights Purposes Cannot Contains This Sub Reason</em>}' operation.
+	 * Returns the meta object for the '{@link privacyModel.Purpose#ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Protect The Vital Interests Of The Data Subject Should Not Contain This Sub Reason</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Exercising Specific Rights Purposes Cannot Contains This Sub Reason</em>' operation.
-	 * @see privacyModel.Purpose#ExercisingSpecificRightsPurposesCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Protect The Vital Interests Of The Data Subject Should Not Contain This Sub Reason</em>' operation.
+	 * @see privacyModel.Purpose#ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPurpose__ExercisingSpecificRightsPurposesCannotContainsThisSubReason__DiagnosticChain_Map();
+	EOperation getPurpose__ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link privacyModel.Purpose#ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Protect The Vital Interests Of The Data Subject Cannot Contains This Sub Reason</em>}' operation.
+	 * Returns the meta object for the '{@link privacyModel.Purpose#LegitimateInterestsShouldNotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Legitimate Interests Should Not Contain This Sub Reason</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Protect The Vital Interests Of The Data Subject Cannot Contains This Sub Reason</em>' operation.
-	 * @see privacyModel.Purpose#ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Legitimate Interests Should Not Contain This Sub Reason</em>' operation.
+	 * @see privacyModel.Purpose#LegitimateInterestsShouldNotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPurpose__ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason__DiagnosticChain_Map();
+	EOperation getPurpose__LegitimateInterestsShouldNotContainThisSubReason__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link privacyModel.Purpose#PublicInterestCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Public Interest Cannot Contains This Sub Reason</em>}' operation.
+	 * Returns the meta object for the '{@link privacyModel.Purpose#ResearchShouldNotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Research Should Not Contain This Sub Reason</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Public Interest Cannot Contains This Sub Reason</em>' operation.
-	 * @see privacyModel.Purpose#PublicInterestCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Research Should Not Contain This Sub Reason</em>' operation.
+	 * @see privacyModel.Purpose#ResearchShouldNotContainThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getPurpose__PublicInterestCannotContainsThisSubReason__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link privacyModel.Purpose#ResearchCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Research Cannot Contains This Sub Reason</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Research Cannot Contains This Sub Reason</em>' operation.
-	 * @see privacyModel.Purpose#ResearchCannotContainsThisSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getPurpose__ResearchCannotContainsThisSubReason__DiagnosticChain_Map();
+	EOperation getPurpose__ResearchShouldNotContainThisSubReason__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.Purpose#StatisticalPurposesShouldNotContainSubReason(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Statistical Purposes Should Not Contain Sub Reason</em>}' operation.
@@ -4638,6 +4670,16 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getComplaint__ErasureShouldBeExecutedAsSoonAsPossible__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.Complaint#WithdrawConsentShouldBeExecutedAsSoonAsPossible(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Withdraw Consent Should Be Executed As Soon As Possible</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Withdraw Consent Should Be Executed As Soon As Possible</em>' operation.
+	 * @see privacyModel.Complaint#WithdrawConsentShouldBeExecutedAsSoonAsPossible(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getComplaint__WithdrawConsentShouldBeExecutedAsSoonAsPossible__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.Complaint#SubjectShouldBeNotifiedAboutExistingComplaintForErasure(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Subject Should Be Notified About Existing Complaint For Erasure</em>}' operation.
@@ -5843,6 +5885,15 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPolicyStatement__SubjectShouldBeNotifiedAboutTransferToThirdCountry__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Missing Consent For Data Portability</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___MISSING_CONSENT_FOR_DATA_PORTABILITY__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__MissingConsentForDataPortability__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Subject Should Be Notified About Executed Rectification</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5859,15 +5910,6 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getPolicyStatement__SubjectShouldBeNotifiedAboutStopProcessing__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Controller Approval Is Need For Protect The Vital Interests Of The Data Subject Purpose</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPolicyStatement__ControllerApprovalIsNeedForProtectTheVitalInterestsOfTheDataSubjectPurpose__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Missing Consent For Collecting</b></em>' operation.
@@ -5897,15 +5939,6 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPolicyStatement__StopProcessingPurposeForActionStopProcessing__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Withdrawed Consent</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation POLICY_STATEMENT___WITHDRAWED_CONSENT__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPolicyStatement__WithdrawedConsent__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '<em><b>Processing Of Special Categories</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5922,42 +5955,6 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getPolicyStatement__SubjectShouldBeNotifiedAboutCollecting__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Date Shoud Be Defined For Store Action</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation POLICY_STATEMENT___DATE_SHOUD_BE_DEFINED_FOR_STORE_ACTION__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPolicyStatement__DateShoudBeDefinedForStoreAction__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Court Approval Is Need For Public Interest Purpose</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation POLICY_STATEMENT___COURT_APPROVAL_IS_NEED_FOR_PUBLIC_INTEREST_PURPOSE__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPolicyStatement__CourtApprovalIsNeedForPublicInterestPurpose__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Controller Approval Is Need For Legitimate Interests Purpose</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEED_FOR_LEGITIMATE_INTERESTS_PURPOSE__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPolicyStatement__ControllerApprovalIsNeedForLegitimateInterestsPurpose__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Date Shoud Be Defined For Access Action</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation POLICY_STATEMENT___DATE_SHOUD_BE_DEFINED_FOR_ACCESS_ACTION__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPolicyStatement__DateShoudBeDefinedForAccessAction__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Expired Consent For Collecting</b></em>' operation.
@@ -5987,6 +5984,24 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPolicyStatement__JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Withdrawn Consent</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___WITHDRAWN_CONSENT__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__WithdrawnConsent__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Undefined Purpose For Action Or User Doesnt Have Permission</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOESNT_HAVE_PERMISSION__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__UndefinedPurposeForActionOrUserDoesntHavePermission__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Missing Consent Or Transfer Certificate</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5996,13 +6011,49 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPolicyStatement__MissingConsentOrTransferCertificate__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Undefined Purpose For Action</b></em>' operation.
+		 * The meta object literal for the '<em><b>Controller Approval Is Needed For Protect The Vital Interests Of The Data Subject Purpose</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation POLICY_STATEMENT___UNDEFINED_PURPOSE_FOR_ACTION__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPolicyStatement__UndefinedPurposeForAction__DiagnosticChain_Map();
+		EOperation POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Controller Approval Is Needed For Legitimate Interests Purpose</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__ControllerApprovalIsNeededForLegitimateInterestsPurpose__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Date Should Be Defined For Access Action</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__DateShouldBeDefinedForAccessAction__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Date Should Be Defined For Store Action</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__DateShouldBeDefinedForStoreAction__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Where Should Be Defined For Transfer Action</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__WhereShouldBeDefinedForTransferAction__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Caused By Should Be Defined For Rectification Action</b></em>' operation.
@@ -6014,6 +6065,15 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPolicyStatement__CausedByShouldBeDefinedForRectificationAction__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Court Approval Is Needed For Public Interest Purpose</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__CourtApprovalIsNeededForPublicInterestPurpose__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Expired Document</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6021,15 +6081,6 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation POLICY_STATEMENT___EXPIRED_DOCUMENT__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getPolicyStatement__ExpiredDocument__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Missing Consent For Transfer</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation POLICY_STATEMENT___MISSING_CONSENT_FOR_TRANSFER__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPolicyStatement__MissingConsentForTransfer__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Caused By Should Be Defined For Erasure Action</b></em>' operation.
@@ -6195,13 +6246,13 @@ public interface PrivacyModelPackage extends EPackage {
 		EOperation PRINCIPAL___EQUALS__PRINCIPAL = eINSTANCE.getPrincipal__Equals__Principal();
 
 		/**
-		 * The meta object literal for the '<em><b>Natural Person Can Not Conatains Sub Principals</b></em>' operation.
+		 * The meta object literal for the '<em><b>Natural Person Cannot Contain Sub Principals</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PRINCIPAL___NATURAL_PERSON_CAN_NOT_CONATAINS_SUB_PRINCIPALS__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPrincipal__NaturalPersonCanNotConatainsSubPrincipals__DiagnosticChain_Map();
+		EOperation PRINCIPAL___NATURAL_PERSON_CANNOT_CONTAIN_SUB_PRINCIPALS__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPrincipal__NaturalPersonCannotContainSubPrincipals__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Juvenile Should Have Responsible Person</b></em>' operation.
@@ -6474,6 +6525,15 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPurpose__ContainsAllowedPurposeReasonAndSubreason__ProcessingReason_EList();
 
 		/**
+		 * The meta object literal for the '<em><b>Public Interest Should Not Contain This Sub Reason</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PURPOSE___PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPurpose__PublicInterestShouldNotContainThisSubReason__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Public Health Should Not Contain Sub Reason</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6483,22 +6543,13 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPurpose__PublicHealthShouldNotContainSubReason__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Legitimate Interests Not Contain Sub Reason</b></em>' operation.
+		 * The meta object literal for the '<em><b>Out Of Scope Should Not Contain This Sub Reason</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PURPOSE___LEGITIMATE_INTERESTS_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPurpose__LegitimateInterestsNotContainSubReason__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Stop Processing Interest Should Not Contain Sub Reason</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PURPOSE___STOP_PROCESSING_INTEREST_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPurpose__StopProcessingInterestShouldNotContainSubReason__DiagnosticChain_Map();
+		EOperation PURPOSE___OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPurpose__OutOfScopeShouldNotContainThisSubReason__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Profiling Should Not Contain Sub Reason</b></em>' operation.
@@ -6510,6 +6561,15 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPurpose__ProfilingShouldNotContainSubReason__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Stop Processing Should Not Contain Sub Reason</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PURPOSE___STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPurpose__StopProcessingShouldNotContainSubReason__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Marketing Should Not Contain Sub Reason</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6519,49 +6579,40 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPurpose__MarketingShouldNotContainSubReason__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Out Of Scope Cannot Contains This Sub Reason</b></em>' operation.
+		 * The meta object literal for the '<em><b>Exercising Specific Rights Purposes Cannot Contain This Sub Reason</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PURPOSE___OUT_OF_SCOPE_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPurpose__OutOfScopeCannotContainsThisSubReason__DiagnosticChain_Map();
+		EOperation PURPOSE___EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPurpose__ExercisingSpecificRightsPurposesCannotContainThisSubReason__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Exercising Specific Rights Purposes Cannot Contains This Sub Reason</b></em>' operation.
+		 * The meta object literal for the '<em><b>Protect The Vital Interests Of The Data Subject Should Not Contain This Sub Reason</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PURPOSE___EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPurpose__ExercisingSpecificRightsPurposesCannotContainsThisSubReason__DiagnosticChain_Map();
+		EOperation PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPurpose__ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Protect The Vital Interests Of The Data Subject Cannot Contains This Sub Reason</b></em>' operation.
+		 * The meta object literal for the '<em><b>Legitimate Interests Should Not Contain This Sub Reason</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPurpose__ProtectTheVitalInterestsOfTheDataSubjectCannotContainsThisSubReason__DiagnosticChain_Map();
+		EOperation PURPOSE___LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPurpose__LegitimateInterestsShouldNotContainThisSubReason__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Public Interest Cannot Contains This Sub Reason</b></em>' operation.
+		 * The meta object literal for the '<em><b>Research Should Not Contain This Sub Reason</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation PURPOSE___PUBLIC_INTEREST_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPurpose__PublicInterestCannotContainsThisSubReason__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Research Cannot Contains This Sub Reason</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation PURPOSE___RESEARCH_CANNOT_CONTAINS_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getPurpose__ResearchCannotContainsThisSubReason__DiagnosticChain_Map();
+		EOperation PURPOSE___RESEARCH_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPurpose__ResearchShouldNotContainThisSubReason__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Statistical Purposes Should Not Contain Sub Reason</b></em>' operation.
@@ -6788,6 +6839,15 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation COMPLAINT___ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getComplaint__ErasureShouldBeExecutedAsSoonAsPossible__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Withdraw Consent Should Be Executed As Soon As Possible</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation COMPLAINT___WITHDRAW_CONSENT_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getComplaint__WithdrawConsentShouldBeExecutedAsSoonAsPossible__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Subject Should Be Notified About Existing Complaint For Erasure</b></em>' operation.

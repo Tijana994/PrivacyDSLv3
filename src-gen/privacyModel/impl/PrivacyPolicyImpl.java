@@ -5,10 +5,10 @@ package privacyModel.impl;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
@@ -21,23 +21,43 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.ocl.pivot.StandardLibrary;
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.internal.library.executor.ExecutorMultipleIterationManager;
+import org.eclipse.ocl.pivot.library.AbstractSimpleOperation;
+import org.eclipse.ocl.pivot.library.LibraryIteration.LibraryIterationExtension;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.oclstdlib.OCLstdlibTables;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
+import org.eclipse.ocl.pivot.values.TupleValue;
 import privacyModel.Complaint;
 import privacyModel.ConfigurationManager;
 import privacyModel.Consent;
 import privacyModel.Denial;
 import privacyModel.Document;
 import privacyModel.Location;
+import privacyModel.LocationType;
 import privacyModel.Notification;
 import privacyModel.PolicyStatement;
 import privacyModel.Principal;
+import privacyModel.PrincipalType;
 import privacyModel.PrivacyData;
 import privacyModel.PrivacyModelPackage;
+import privacyModel.PrivacyModelTables;
 import privacyModel.PrivacyPolicy;
 import privacyModel.PrivacyPolicyHelper;
 import privacyModel.Provider;
 import privacyModel.Service;
 import privacyModel.SharedPrivacyData;
-import privacyModel.util.PrivacyModelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -563,29 +583,137 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #UniqueProviderName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Provider Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniqueProviderName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_PROVIDER_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Provider name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.allProviders->forAll(provider1:Provider,provider2:Provider| provider1.name = provider2.name implies provider1 = provider2)\n"
-			+ "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UniqueProviderName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_PROVIDER_NAME__DIAGNOSTICCHAIN_MAP,
-				UNIQUE_PROVIDER_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE, PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_PROVIDER_NAME);
+	public boolean UniqueProviderName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniqueProviderName";
+		try {
+			/**
+			 *
+			 * inv UniqueProviderName:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.allProviders->forAll(provider1, provider2 | provider1.name = provider2.name implies provider1 = provider2)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Provider name is unique', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_PROVIDER_NAME__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_6;
+			if (le) {
+				local_6 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_5;
+				try {
+					final /*@NonInvalid*/ List<Provider> allProviders = this.getAllProviders();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_allProviders = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Provider, allProviders);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_allProviders);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 * provider1.name = provider2.name implies provider1 = provider2
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_allProviders = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object provider1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object provider2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_implies;
+							try {
+								final /*@NonInvalid*/ Provider local_2 = (Provider) provider1;
+								final /*@NonInvalid*/ Provider local_3 = (Provider) provider2;
+								/*@Caught*/ Object CAUGHT_eq;
+								try {
+									if (local_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name = local_2.getName();
+									if (local_3 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name_0 = local_3.getName();
+									final /*@Thrown*/ boolean eq = name.equals(name_0);
+									CAUGHT_eq = eq;
+								} catch (Exception e) {
+									CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean implies;
+								if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+									implies = ValueUtil.TRUE_VALUE;
+								} else {
+									final /*@NonInvalid*/ boolean eq_0 = (local_2 != null) ? local_2.equals(local_3)
+											: (local_3 == null);
+									if (eq_0) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq;
+										}
+										implies = ValueUtil.FALSE_VALUE;
+									}
+								}
+								CAUGHT_implies = implies;
+							} catch (Exception e) {
+								CAUGHT_implies = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_implies;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_allProviders, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_5;
+					if (eq_1) {
+						local_5 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_4 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Provider_32_name_32_is_32_unique, status);
+						local_5 = local_4;
+					}
+					CAUGHT_local_5 = local_5;
+				} catch (Exception e) {
+					CAUGHT_local_5 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_5, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_6 = logDiagnostic;
+			}
+			return local_6;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
@@ -593,12 +721,133 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UniqueConsentName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP,
-				UNIQUE_CONSENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE, PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_CONSENT_NAME);
+	public boolean UniqueConsentName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniqueConsentName";
+		try {
+			/**
+			 *
+			 * inv UniqueConsentName:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.allConsents->forAll(consent1, consent2 | consent1.name = consent2.name implies consent1 = consent2)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Consent name is unique', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_6;
+			if (le) {
+				local_6 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_5;
+				try {
+					final /*@NonInvalid*/ List<Consent> allConsents = this.getAllConsents();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_allConsents = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Consent, allConsents);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_allConsents);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 * consent1.name = consent2.name implies consent1 = consent2
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_allConsents = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object consent1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object consent2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_implies;
+							try {
+								final /*@NonInvalid*/ Consent local_2 = (Consent) consent1;
+								final /*@NonInvalid*/ Consent local_3 = (Consent) consent2;
+								/*@Caught*/ Object CAUGHT_eq;
+								try {
+									if (local_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name = local_2.getName();
+									if (local_3 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name_0 = local_3.getName();
+									final /*@Thrown*/ boolean eq = name.equals(name_0);
+									CAUGHT_eq = eq;
+								} catch (Exception e) {
+									CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean implies;
+								if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+									implies = ValueUtil.TRUE_VALUE;
+								} else {
+									final /*@NonInvalid*/ boolean eq_0 = (local_2 != null) ? local_2.equals(local_3)
+											: (local_3 == null);
+									if (eq_0) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq;
+										}
+										implies = ValueUtil.FALSE_VALUE;
+									}
+								}
+								CAUGHT_implies = implies;
+							} catch (Exception e) {
+								CAUGHT_implies = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_implies;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_allConsents, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_5;
+					if (eq_1) {
+						local_5 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_4 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Consent_32_name_32_is_32_unique, status);
+						local_5 = local_4;
+					}
+					CAUGHT_local_5 = local_5;
+				} catch (Exception e) {
+					CAUGHT_local_5 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_5, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_6 = logDiagnostic;
+			}
+			return local_6;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
@@ -606,12 +855,133 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UniqueServiceName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP,
-				UNIQUE_SERVICE_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE, PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_SERVICE_NAME);
+	public boolean UniqueServiceName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniqueServiceName";
+		try {
+			/**
+			 *
+			 * inv UniqueServiceName:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.allServices->forAll(service1, service2 | service1.name = service2.name implies service1 = service2)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Service name is unique', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_6;
+			if (le) {
+				local_6 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_5;
+				try {
+					final /*@NonInvalid*/ List<Service> allServices = this.getAllServices();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_allServices = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Service, allServices);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_allServices);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 * service1.name = service2.name implies service1 = service2
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_allServices = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object service1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object service2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_implies;
+							try {
+								final /*@NonInvalid*/ Service local_2 = (Service) service1;
+								final /*@NonInvalid*/ Service local_3 = (Service) service2;
+								/*@Caught*/ Object CAUGHT_eq;
+								try {
+									if (local_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name = local_2.getName();
+									if (local_3 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name_0 = local_3.getName();
+									final /*@Thrown*/ boolean eq = name.equals(name_0);
+									CAUGHT_eq = eq;
+								} catch (Exception e) {
+									CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean implies;
+								if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+									implies = ValueUtil.TRUE_VALUE;
+								} else {
+									final /*@NonInvalid*/ boolean eq_0 = (local_2 != null) ? local_2.equals(local_3)
+											: (local_3 == null);
+									if (eq_0) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq;
+										}
+										implies = ValueUtil.FALSE_VALUE;
+									}
+								}
+								CAUGHT_implies = implies;
+							} catch (Exception e) {
+								CAUGHT_implies = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_implies;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_allServices, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_5;
+					if (eq_1) {
+						local_5 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_4 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Service_32_name_32_is_32_unique, status);
+						local_5 = local_4;
+					}
+					CAUGHT_local_5 = local_5;
+				} catch (Exception e) {
+					CAUGHT_local_5 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_5, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_6 = logDiagnostic;
+			}
+			return local_6;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
@@ -619,13 +989,95 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean OwnerShouldHaveDefinedInhabits(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP,
-				OWNER_SHOULD_HAVE_DEFINED_INHABITS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.PRIVACY_POLICY__OWNER_SHOULD_HAVE_DEFINED_INHABITS);
+	public boolean OwnerShouldHaveDefinedInhabits(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::OwnerShouldHaveDefinedInhabits";
+		try {
+			/**
+			 *
+			 * inv OwnerShouldHaveDefinedInhabits:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = not (self.owner = null
+			 *           ) and
+			 *           not (self.owner.inhabits = null
+			 *           )
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Based on Art 3', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_1;
+				try {
+					final /*@NonInvalid*/ Boolean not = ValueUtil.TRUE_VALUE;
+					final /*@Thrown*/ Boolean status;
+					if (not == ValueUtil.FALSE_VALUE) {
+						status = ValueUtil.FALSE_VALUE;
+					} else {
+						final /*@NonInvalid*/ Principal owner = this.getOwner();
+						final /*@NonInvalid*/ Location inhabits = owner.getInhabits();
+						final /*@NonInvalid*/ boolean eq = inhabits == null;
+						final /*@NonInvalid*/ Boolean not_0;
+						if (!eq) {
+							not_0 = ValueUtil.TRUE_VALUE;
+						} else {
+							if (eq) {
+								not_0 = ValueUtil.FALSE_VALUE;
+							} else {
+								not_0 = null;
+							}
+						}
+						if (not_0 == ValueUtil.FALSE_VALUE) {
+							status = ValueUtil.FALSE_VALUE;
+						} else {
+							if ((not == null) || (not_0 == null)) {
+								status = null;
+							} else {
+								status = ValueUtil.TRUE_VALUE;
+							}
+						}
+					}
+					final /*@Thrown*/ boolean eq_0 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_1;
+					if (eq_0) {
+						local_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Based_32_on_32_Art_32_3, status);
+						local_1 = local_0;
+					}
+					CAUGHT_local_1 = local_1;
+				} catch (Exception e) {
+					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
@@ -633,13 +1085,135 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UniquePolicyStatementName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP,
-				UNIQUE_POLICY_STATEMENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_POLICY_STATEMENT_NAME);
+	public boolean UniquePolicyStatementName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniquePolicyStatementName";
+		try {
+			/**
+			 *
+			 * inv UniquePolicyStatementName:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.policyStatements->forAll(st1, st2 | st1.name = st2.name implies st1 = st2)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'PolicyStatement name is unique', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_6;
+			if (le) {
+				local_6 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_5;
+				try {
+					final /*@NonInvalid*/ List<PolicyStatement> policyStatements = this.getPolicyStatements();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_policyStatements = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_PolicyStatement, policyStatements);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_policyStatements);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 * st1.name = st2.name implies st1 = st2
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_policyStatements = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object st1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object st2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_implies;
+							try {
+								final /*@NonInvalid*/ PolicyStatement local_2 = (PolicyStatement) st1;
+								final /*@NonInvalid*/ PolicyStatement local_3 = (PolicyStatement) st2;
+								/*@Caught*/ Object CAUGHT_eq;
+								try {
+									if (local_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name = local_2.getName();
+									if (local_3 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name_0 = local_3.getName();
+									final /*@Thrown*/ boolean eq = name.equals(name_0);
+									CAUGHT_eq = eq;
+								} catch (Exception e) {
+									CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean implies;
+								if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+									implies = ValueUtil.TRUE_VALUE;
+								} else {
+									final /*@NonInvalid*/ boolean eq_0 = (local_2 != null) ? local_2.equals(local_3)
+											: (local_3 == null);
+									if (eq_0) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq;
+										}
+										implies = ValueUtil.FALSE_VALUE;
+									}
+								}
+								CAUGHT_implies = implies;
+							} catch (Exception e) {
+								CAUGHT_implies = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_implies;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_policyStatements, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_5;
+					if (eq_1) {
+						local_5 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_4 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_PolicyStatement_32_name_32_is_32_unique, status);
+						local_5 = local_4;
+					}
+					CAUGHT_local_5 = local_5;
+				} catch (Exception e) {
+					CAUGHT_local_5 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_5, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_6 = logDiagnostic;
+			}
+			return local_6;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
@@ -647,14 +1221,95 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean ProtectionControlShouldExistsInConfiguration(DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP,
-				PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.PRIVACY_POLICY__PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION);
+	public boolean ProtectionControlShouldExistsInConfiguration(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::ProtectionControlShouldExistsInConfiguration";
+		try {
+			/**
+			 *
+			 * inv ProtectionControlShouldExistsInConfiguration:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.defaultProtectionControls->forAll(protectionControl |
+			 *             self.privacyPolicyHelper.isPolicyControlValid(protectionControl))
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Protection controls should be defined in configuration.', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				final /*@NonInvalid*/ List<String> defaultProtectionControls = this.getDefaultProtectionControls();
+				final /*@NonInvalid*/ OrderedSetValue BOXED_defaultProtectionControls = idResolver
+						.createOrderedSetOfAll(PrivacyModelTables.ORD_PRIMid_String, defaultProtectionControls);
+				/*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
+				Iterator<Object> ITERATOR_protectionControl = BOXED_defaultProtectionControls.iterator();
+				/*@NonInvalid*/ Boolean status;
+				while (true) {
+					if (!ITERATOR_protectionControl.hasNext()) {
+						if (accumulator == ValueUtil.TRUE_VALUE) {
+							status = ValueUtil.TRUE_VALUE;
+						} else {
+							throw (InvalidValueException) accumulator;
+						}
+						break;
+					}
+					/*@NonInvalid*/ String protectionControl = (String) ITERATOR_protectionControl.next();
+					/**
+					 * self.privacyPolicyHelper.isPolicyControlValid(protectionControl)
+					 */
+					final /*@NonInvalid*/ PrivacyPolicyHelper privacyPolicyHelper = this.getPrivacyPolicyHelper();
+					final /*@NonInvalid*/ boolean isPolicyControlValid = privacyPolicyHelper
+							.isPolicyControlValid(protectionControl);
+					//
+					if (!isPolicyControlValid) { // Normal unsuccessful body evaluation result
+						status = ValueUtil.FALSE_VALUE;
+						break; // Stop immediately
+					} else if (isPolicyControlValid) { // Normal successful body evaluation result
+						; // Carry on
+					} else { // Impossible badly typed result
+						accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "forAll");
+					}
+				}
+				final /*@NonInvalid*/ boolean eq = status == Boolean.TRUE;
+				/*@NonInvalid*/ Object local_1;
+				if (eq) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+							PrivacyModelTables.STR_Protection_32_controls_32_should_32_be_32_defined_32_in_32_configuration,
+							status);
+					local_1 = local_0;
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
@@ -662,13 +1317,133 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UniquePrivacyDataName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP,
-				UNIQUE_PRIVACY_DATA_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_PRIVACY_DATA_NAME);
+	public boolean UniquePrivacyDataName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniquePrivacyDataName";
+		try {
+			/**
+			 *
+			 * inv UniquePrivacyDataName:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.allDatas->forAll(pd1, pd2 | pd1.name = pd2.name implies pd1 = pd2)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'PrivacyData name is unique', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_6;
+			if (le) {
+				local_6 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_5;
+				try {
+					final /*@NonInvalid*/ List<PrivacyData> allDatas = this.getAllDatas();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_allDatas = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_PrivacyData, allDatas);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_allDatas);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 * pd1.name = pd2.name implies pd1 = pd2
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_allDatas = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object pd1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object pd2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_implies;
+							try {
+								final /*@NonInvalid*/ PrivacyData local_2 = (PrivacyData) pd1;
+								final /*@NonInvalid*/ PrivacyData local_3 = (PrivacyData) pd2;
+								/*@Caught*/ Object CAUGHT_eq;
+								try {
+									if (local_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name = local_2.getName();
+									if (local_3 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name_0 = local_3.getName();
+									final /*@Thrown*/ boolean eq = name.equals(name_0);
+									CAUGHT_eq = eq;
+								} catch (Exception e) {
+									CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean implies;
+								if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+									implies = ValueUtil.TRUE_VALUE;
+								} else {
+									final /*@NonInvalid*/ boolean eq_0 = (local_2 != null) ? local_2.equals(local_3)
+											: (local_3 == null);
+									if (eq_0) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq;
+										}
+										implies = ValueUtil.FALSE_VALUE;
+									}
+								}
+								CAUGHT_implies = implies;
+							} catch (Exception e) {
+								CAUGHT_implies = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_implies;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_allDatas, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_5;
+					if (eq_1) {
+						local_5 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_4 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_PrivacyData_32_name_32_is_32_unique, status);
+						local_5 = local_4;
+					}
+					CAUGHT_local_5 = local_5;
+				} catch (Exception e) {
+					CAUGHT_local_5 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_5, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_6 = logDiagnostic;
+			}
+			return local_6;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
@@ -676,211 +1451,709 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UniqueDocumentName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP,
-				UNIQUE_DOCUMENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE, PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_DOCUMENT_NAME);
+	public boolean UniqueDocumentName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniqueDocumentName";
+		try {
+			/**
+			 *
+			 * inv UniqueDocumentName:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.allDocuments->forAll(document1, document2 | document1.name = document2.name implies document1 = document2)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Document name is unique', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_6;
+			if (le) {
+				local_6 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_5;
+				try {
+					final /*@NonInvalid*/ List<Document> allDocuments = this.getAllDocuments();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_allDocuments = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Document, allDocuments);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_allDocuments);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 * document1.name = document2.name implies document1 = document2
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_allDocuments = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object document1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object document2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_implies;
+							try {
+								final /*@NonInvalid*/ Document local_2 = (Document) document1;
+								final /*@NonInvalid*/ Document local_3 = (Document) document2;
+								/*@Caught*/ Object CAUGHT_eq;
+								try {
+									if (local_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name = local_2.getName();
+									if (local_3 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name_0 = local_3.getName();
+									final /*@Thrown*/ boolean eq = name.equals(name_0);
+									CAUGHT_eq = eq;
+								} catch (Exception e) {
+									CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean implies;
+								if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+									implies = ValueUtil.TRUE_VALUE;
+								} else {
+									final /*@NonInvalid*/ boolean eq_0 = (local_2 != null) ? local_2.equals(local_3)
+											: (local_3 == null);
+									if (eq_0) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq;
+										}
+										implies = ValueUtil.FALSE_VALUE;
+									}
+								}
+								CAUGHT_implies = implies;
+							} catch (Exception e) {
+								CAUGHT_implies = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_implies;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_allDocuments, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_5;
+					if (eq_1) {
+						local_5 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_4 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Document_32_name_32_is_32_unique, status);
+						local_5 = local_4;
+					}
+					CAUGHT_local_5 = local_5;
+				} catch (Exception e) {
+					CAUGHT_local_5 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_5, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_6 = logDiagnostic;
+			}
+			return local_6;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #UniqueLocationPerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Location Per Type</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniqueLocationPerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_LOCATION_PER_TYPE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Location name per type is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.locations->forAll(loc1:Location,loc2:Location| \n" + "\t\t\tif(loc1.type = loc2.type) then \n"
-			+ "\t\t\t\tloc1.name = loc2.name implies loc1 = loc2\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n"
-			+ "\t\t\tendif\n" + "\t\t)\n" + "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UniqueLocationPerType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP,
-				UNIQUE_LOCATION_PER_TYPE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_LOCATION_PER_TYPE);
+	public boolean UniqueLocationPerType(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniqueLocationPerType";
+		try {
+			/**
+			 *
+			 * inv UniqueLocationPerType:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.locations->forAll(loc1, loc2 |
+			 *             if loc1.type = loc2.type
+			 *             then loc1.name = loc2.name implies loc1 = loc2
+			 *             else true
+			 *             endif)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Location name per type is unique', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_9;
+			if (le) {
+				local_9 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_8;
+				try {
+					final /*@NonInvalid*/ List<Location> locations = this.getLocations();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_locations = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Location, locations);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_locations);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 *
+						 * if loc1.type = loc2.type
+						 * then loc1.name = loc2.name implies loc1 = loc2
+						 * else true
+						 * endif
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_locations = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object loc1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object loc2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_local_6;
+							try {
+								final /*@NonInvalid*/ Location local_4 = (Location) loc1;
+								final /*@NonInvalid*/ Location local_5 = (Location) loc2;
+								if (local_4 == null) {
+									throw new InvalidValueException(
+											"Null source for \'\'http://privacymodel\'::Location::type\'");
+								}
+								if (local_5 == null) {
+									throw new InvalidValueException(
+											"Null source for \'\'http://privacymodel\'::Location::type\'");
+								}
+								final /*@Thrown*/ LocationType type = local_4.getType();
+								final /*@Thrown*/ LocationType type_0 = local_5.getType();
+								final /*@Thrown*/ boolean eq = type.equals(type_0);
+								/*@Thrown*/ Boolean local_6;
+								if (eq) {
+									/*@Caught*/ Object CAUGHT_eq_0;
+									try {
+										final /*@Thrown*/ String name = local_4.getName();
+										final /*@Thrown*/ String name_0 = local_5.getName();
+										final /*@Thrown*/ boolean eq_0 = name.equals(name_0);
+										CAUGHT_eq_0 = eq_0;
+									} catch (Exception e) {
+										CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+									}
+									final /*@Thrown*/ Boolean implies;
+									if (CAUGHT_eq_0 == ValueUtil.FALSE_VALUE) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										final /*@NonInvalid*/ boolean eq_1 = (local_4 != null) ? local_4.equals(local_5)
+												: (local_5 == null);
+										if (eq_1) {
+											implies = ValueUtil.TRUE_VALUE;
+										} else {
+											if (CAUGHT_eq_0 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_eq_0;
+											}
+											implies = ValueUtil.FALSE_VALUE;
+										}
+									}
+									local_6 = implies;
+								} else {
+									local_6 = ValueUtil.TRUE_VALUE;
+								}
+								CAUGHT_local_6 = local_6;
+							} catch (Exception e) {
+								CAUGHT_local_6 = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_local_6;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_locations, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_2 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_8;
+					if (eq_2) {
+						local_8 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_7 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Location_32_name_32_per_32_type_32_is_32_unique, status);
+						local_8 = local_7;
+					}
+					CAUGHT_local_8 = local_8;
+				} catch (Exception e) {
+					CAUGHT_local_8 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_8, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_9 = logDiagnostic;
+			}
+			return local_9;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #UniquePrincipalNamePerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Principal Name Per Type</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniquePrincipalNamePerType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_PRINCIPAL_NAME_PER_TYPE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Principal name per type is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.allPrincipals->forAll(pr1:Principal,pr2:Principal| \n" + "\t\t\tif(pr1.type = pr2.type) then \n"
-			+ "\t\t\tpr1.name = pr2.name implies pr1 = pr2\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n"
-			+ "\t\t)\n" + "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UniquePrincipalNamePerType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP,
-				UNIQUE_PRINCIPAL_NAME_PER_TYPE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_PRINCIPAL_NAME_PER_TYPE);
+	public boolean UniquePrincipalNamePerType(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniquePrincipalNamePerType";
+		try {
+			/**
+			 *
+			 * inv UniquePrincipalNamePerType:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.allPrincipals->forAll(pr1, pr2 |
+			 *             if pr1.type = pr2.type
+			 *             then pr1.name = pr2.name implies pr1 = pr2
+			 *             else true
+			 *             endif)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Principal name per type is unique', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_9;
+			if (le) {
+				local_9 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_8;
+				try {
+					final /*@NonInvalid*/ List<Principal> allPrincipals = this.getAllPrincipals();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_allPrincipals = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal, allPrincipals);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_allPrincipals);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 *
+						 * if pr1.type = pr2.type
+						 * then pr1.name = pr2.name implies pr1 = pr2
+						 * else true
+						 * endif
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_allPrincipals = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object pr1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object pr2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_local_6;
+							try {
+								final /*@NonInvalid*/ Principal local_4 = (Principal) pr1;
+								final /*@NonInvalid*/ Principal local_5 = (Principal) pr2;
+								if (local_4 == null) {
+									throw new InvalidValueException(
+											"Null source for \'\'http://privacymodel\'::Principal::type\'");
+								}
+								if (local_5 == null) {
+									throw new InvalidValueException(
+											"Null source for \'\'http://privacymodel\'::Principal::type\'");
+								}
+								final /*@Thrown*/ PrincipalType type = local_4.getType();
+								final /*@Thrown*/ PrincipalType type_0 = local_5.getType();
+								final /*@Thrown*/ boolean eq = type.equals(type_0);
+								/*@Thrown*/ Boolean local_6;
+								if (eq) {
+									/*@Caught*/ Object CAUGHT_eq_0;
+									try {
+										final /*@Thrown*/ String name = local_4.getName();
+										final /*@Thrown*/ String name_0 = local_5.getName();
+										final /*@Thrown*/ boolean eq_0 = name.equals(name_0);
+										CAUGHT_eq_0 = eq_0;
+									} catch (Exception e) {
+										CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+									}
+									final /*@Thrown*/ Boolean implies;
+									if (CAUGHT_eq_0 == ValueUtil.FALSE_VALUE) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										final /*@NonInvalid*/ boolean eq_1 = (local_4 != null) ? local_4.equals(local_5)
+												: (local_5 == null);
+										if (eq_1) {
+											implies = ValueUtil.TRUE_VALUE;
+										} else {
+											if (CAUGHT_eq_0 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_eq_0;
+											}
+											implies = ValueUtil.FALSE_VALUE;
+										}
+									}
+									local_6 = implies;
+								} else {
+									local_6 = ValueUtil.TRUE_VALUE;
+								}
+								CAUGHT_local_6 = local_6;
+							} catch (Exception e) {
+								CAUGHT_local_6 = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_local_6;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_allPrincipals, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_2 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_8;
+					if (eq_2) {
+						local_8 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_7 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Principal_32_name_32_per_32_type_32_is_32_unique, status);
+						local_8 = local_7;
+					}
+					CAUGHT_local_8 = local_8;
+				} catch (Exception e) {
+					CAUGHT_local_8 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_8, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_9 = logDiagnostic;
+			}
+			return local_9;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #UniqueSharedPrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Shared Privacy Data Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniqueSharedPrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_SHARED_PRIVACY_DATA_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'SharedPrivacyData name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tself.allSharedPrivacyData->forAll(sd1:SharedPrivacyData,sd2:SharedPrivacyData| sd1.name = sd2.name implies sd1 = sd2)\n"
-			+ "}.status";
-
-	/**
-	 * The cached validation expression for the '{@link #UniqueDocumentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Document Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniqueDocumentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_DOCUMENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Document name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.allDocuments->forAll(document1:Document,document2:Document| document1.name = document2.name implies document1 = document2)\n"
-			+ "}.status";
-
-	/**
-	 * The cached validation expression for the '{@link #ProtectionControlShouldExistsInConfiguration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Protection Control Should Exists In Configuration</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ProtectionControlShouldExistsInConfiguration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Protection controls should be defined in configuration.',\n"
-			+ "\tstatus : Boolean = \n" + "\t\t\tself.defaultProtectionControls->forAll(protectionControl:String|\n"
-			+ "\t\t\t\tself.privacyPolicyHelper.isPolicyControlValid(protectionControl)\n" + "\t\t\t)\n" + "}.status";
-
-	/**
-	 * The cached validation expression for the '{@link #UniqueConsentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Consent Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniqueConsentName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_CONSENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Consent name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.allConsents->forAll(consent1:Consent,consent2:Consent| consent1.name = consent2.name implies consent1 = consent2)\n"
-			+ "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UniqueSharedPrivacyDataName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP,
-				UNIQUE_SHARED_PRIVACY_DATA_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_SHARED_PRIVACY_DATA_NAME);
+	public boolean UniqueSharedPrivacyDataName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniqueSharedPrivacyDataName";
+		try {
+			/**
+			 *
+			 * inv UniqueSharedPrivacyDataName:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.allSharedPrivacyData->forAll(sd1, sd2 | sd1.name = sd2.name implies sd1 = sd2)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'SharedPrivacyData name is unique', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_6;
+			if (le) {
+				local_6 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_5;
+				try {
+					final /*@NonInvalid*/ List<SharedPrivacyData> allSharedPrivacyData = this.getAllSharedPrivacyData();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_allSharedPrivacyData = idResolver.createOrderedSetOfAll(
+							PrivacyModelTables.ORD_CLSSid_SharedPrivacyData, allSharedPrivacyData);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_allSharedPrivacyData);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 * sd1.name = sd2.name implies sd1 = sd2
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_allSharedPrivacyData = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object sd1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object sd2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_implies;
+							try {
+								final /*@NonInvalid*/ SharedPrivacyData local_2 = (SharedPrivacyData) sd1;
+								final /*@NonInvalid*/ SharedPrivacyData local_3 = (SharedPrivacyData) sd2;
+								/*@Caught*/ Object CAUGHT_eq;
+								try {
+									if (local_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name = local_2.getName();
+									if (local_3 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name_0 = local_3.getName();
+									final /*@Thrown*/ boolean eq = name.equals(name_0);
+									CAUGHT_eq = eq;
+								} catch (Exception e) {
+									CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean implies;
+								if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+									implies = ValueUtil.TRUE_VALUE;
+								} else {
+									final /*@NonInvalid*/ boolean eq_0 = (local_2 != null) ? local_2.equals(local_3)
+											: (local_3 == null);
+									if (eq_0) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq;
+										}
+										implies = ValueUtil.FALSE_VALUE;
+									}
+								}
+								CAUGHT_implies = implies;
+							} catch (Exception e) {
+								CAUGHT_implies = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_implies;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_allSharedPrivacyData, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_5;
+					if (eq_1) {
+						local_5 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_4 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_SharedPrivacyData_32_name_32_is_32_unique, status);
+						local_5 = local_4;
+					}
+					CAUGHT_local_5 = local_5;
+				} catch (Exception e) {
+					CAUGHT_local_5 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_5, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_6 = logDiagnostic;
+			}
+			return local_6;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #UniqueComplaintName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Complaint Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniqueComplaintName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_COMPLAINT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Complaint name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.allComplaints->forAll(complaint1:Complaint,complaint2:Complaint| complaint1.name = complaint2.name implies complaint1 = complaint2)\n"
-			+ "}.status";
-
-	/**
-	 * The cached validation expression for the '{@link #OwnerShouldHaveDefinedInhabits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Owner Should Have Defined Inhabits</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #OwnerShouldHaveDefinedInhabits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String OWNER_SHOULD_HAVE_DEFINED_INHABITS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art 3',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\t(not(self.owner = null) and not(self.owner.inhabits = null))\n" + "}.status";
-
-	/**
-	 * The cached validation expression for the '{@link #UniquePolicyStatementName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Policy Statement Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniquePolicyStatementName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_POLICY_STATEMENT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'PolicyStatement name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tself.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2)\n"
-			+ "}.status";
-
-	/**
-	 * The cached validation expression for the '{@link #UniquePrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Privacy Data Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniquePrivacyDataName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_PRIVACY_DATA_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'PrivacyData name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tself.allDatas->forAll(pd1:PrivacyData,pd2:PrivacyData| pd1.name = pd2.name implies pd1 = pd2)\n"
-			+ "}.status";
-
-	/**
-	 * The cached validation expression for the '{@link #UniqueServiceName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Service Name</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UniqueServiceName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String UNIQUE_SERVICE_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Service name is unique',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tself.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)\n"
-			+ "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UniqueComplaintName(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP,
-				UNIQUE_COMPLAINT_NAME_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE, PrivacyModelValidator.PRIVACY_POLICY__UNIQUE_COMPLAINT_NAME);
+	public boolean UniqueComplaintName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniqueComplaintName";
+		try {
+			/**
+			 *
+			 * inv UniqueComplaintName:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.allComplaints->forAll(complaint1, complaint2 | complaint1.name = complaint2.name implies complaint1 = complaint2)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Complaint name is unique', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_6;
+			if (le) {
+				local_6 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_5;
+				try {
+					final /*@NonInvalid*/ List<Complaint> allComplaints = this.getAllComplaints();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_allComplaints = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Complaint, allComplaints);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_allComplaints);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 * complaint1.name = complaint2.name implies complaint1 = complaint2
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_allComplaints = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object complaint1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object complaint2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_implies;
+							try {
+								final /*@NonInvalid*/ Complaint local_2 = (Complaint) complaint1;
+								final /*@NonInvalid*/ Complaint local_3 = (Complaint) complaint2;
+								/*@Caught*/ Object CAUGHT_eq;
+								try {
+									if (local_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name = local_2.getName();
+									if (local_3 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name_0 = local_3.getName();
+									final /*@Thrown*/ boolean eq = name.equals(name_0);
+									CAUGHT_eq = eq;
+								} catch (Exception e) {
+									CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean implies;
+								if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+									implies = ValueUtil.TRUE_VALUE;
+								} else {
+									final /*@NonInvalid*/ boolean eq_0 = (local_2 != null) ? local_2.equals(local_3)
+											: (local_3 == null);
+									if (eq_0) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq;
+										}
+										implies = ValueUtil.FALSE_VALUE;
+									}
+								}
+								CAUGHT_implies = implies;
+							} catch (Exception e) {
+								CAUGHT_implies = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_implies;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_allComplaints, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_5;
+					if (eq_1) {
+						local_5 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_4 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Complaint_32_name_32_is_32_unique, status);
+						local_5 = local_4;
+					}
+					CAUGHT_local_5 = local_5;
+				} catch (Exception e) {
+					CAUGHT_local_5 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_5, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_6 = logDiagnostic;
+			}
+			return local_6;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**

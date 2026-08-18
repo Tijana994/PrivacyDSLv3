@@ -7,8 +7,6 @@ import java.util.Date;
 
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -16,10 +14,21 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.TupleValue;
 import privacyModel.AbstractPaper;
 import privacyModel.Principal;
 import privacyModel.PrivacyModelPackage;
-import privacyModel.util.PrivacyModelValidator;
+import privacyModel.PrivacyModelTables;
 
 /**
  * <!-- begin-user-doc -->
@@ -321,29 +330,125 @@ public abstract class AbstractPaperImpl extends NamedElementImpl implements Abst
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #StartDateShouldBeBeforeTerminationDate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Start Date Should Be Before Termination Date</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #StartDateShouldBeBeforeTerminationDate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Terminationdate is after startdate!',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tself.terminationDate = null or (not(self.startDate > self.terminationDate))\n" + "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean StartDateShouldBeBeforeTerminationDate(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.ABSTRACT_PAPER, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.ABSTRACT_PAPER___START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE__DIAGNOSTICCHAIN_MAP,
-				START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.ABSTRACT_PAPER__START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE);
+	public boolean StartDateShouldBeBeforeTerminationDate(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "AbstractPaper::StartDateShouldBeBeforeTerminationDate";
+		try {
+			/**
+			 *
+			 * inv StartDateShouldBeBeforeTerminationDate:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let status : Boolean[?] = self.terminationDate = null or
+			 *           not (self.startDate > self.terminationDate
+			 *           )
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Termination date is before start date', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.ABSTRACT_PAPER___START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_1;
+				try {
+					final /*@NonInvalid*/ Date terminationDate = this.getTerminationDate();
+					final /*@NonInvalid*/ boolean eq = terminationDate == null;
+					final /*@Thrown*/ Boolean status;
+					if (eq) {
+						status = ValueUtil.TRUE_VALUE;
+					} else {
+						/*@Caught*/ Object CAUGHT_not;
+						try {
+							/*@Caught*/ Object CAUGHT_gt;
+							try {
+								final /*@NonInvalid*/ Date startDate = this.getStartDate();
+								if (terminationDate == null) {
+									throw new InvalidValueException(
+											"Null \'\'OclSelf\'\' rather than \'\'OclVoid\'\' value required");
+								}
+								if (terminationDate instanceof InvalidValueException) {
+									throw (InvalidValueException) terminationDate;
+								}
+								final /*@Thrown*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE
+										.evaluate(executor, startDate, terminationDate).booleanValue();
+								CAUGHT_gt = gt;
+							} catch (Exception e) {
+								CAUGHT_gt = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_gt instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_gt;
+							}
+							final /*@Thrown*/ Boolean not;
+							if (CAUGHT_gt == ValueUtil.FALSE_VALUE) {
+								not = ValueUtil.TRUE_VALUE;
+							} else {
+								if (CAUGHT_gt == ValueUtil.TRUE_VALUE) {
+									not = ValueUtil.FALSE_VALUE;
+								} else {
+									not = null;
+								}
+							}
+							CAUGHT_not = not;
+						} catch (Exception e) {
+							CAUGHT_not = ValueUtil.createInvalidValue(e);
+						}
+						if (CAUGHT_not == ValueUtil.TRUE_VALUE) {
+							status = ValueUtil.TRUE_VALUE;
+						} else {
+							if (CAUGHT_not instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_not;
+							}
+							if (CAUGHT_not == null) {
+								status = null;
+							} else {
+								status = ValueUtil.FALSE_VALUE;
+							}
+						}
+					}
+					final /*@Thrown*/ boolean eq_0 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_1;
+					if (eq_0) {
+						local_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Termination_32_date_32_is_32_before_32_start_32_date, status);
+						local_1 = local_0;
+					}
+					CAUGHT_local_1 = local_1;
+				} catch (Exception e) {
+					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**

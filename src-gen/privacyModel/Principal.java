@@ -186,7 +186,7 @@ public interface Principal extends NamedElement {
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tif(self.type = PrincipalType::NaturalPerson) then\n\t\t\t\tself.subPrincipals-&gt;isEmpty()\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif'"
 	 * @generated
 	 */
-	boolean NaturalPersonCanNotConatainsSubPrincipals(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean NaturalPersonCannotContainSubPrincipals(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -139,23 +139,22 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	SOCIAL_PROTECTION(11, "SocialProtection", "SocialProtection"),
 
 	/**
-	 * The '<em><b>Phisically Incapable</b></em>' literal object.
+	 * The '<em><b>Physically Incapable</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PHISICALLY_INCAPABLE_VALUE
+	 * @see #PHYSICALLY_INCAPABLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	PHISICALLY_INCAPABLE(12, "PhisicallyIncapable", "PhisicallyIncapable"),
-
+	PHYSICALLY_INCAPABLE(12, "PhysicallyIncapable", "PhysicallyIncapable"),
 	/**
-	 * The '<em><b>Legally Incapable</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #LEGALLY_INCAPABLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	* The '<em><b>Legally Incapable</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #LEGALLY_INCAPABLE_VALUE
+	* @generated
+	* @ordered
+	*/
 	LEGALLY_INCAPABLE(13, "LegallyIncapable", "LegallyIncapable"),
 
 	/**
@@ -331,15 +330,15 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	public static final int SOCIAL_PROTECTION_VALUE = 11;
 
 	/**
-	 * The '<em><b>Phisically Incapable</b></em>' literal value.
+	 * The '<em><b>Physically Incapable</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #PHISICALLY_INCAPABLE
-	 * @model name="PhisicallyIncapable"
+	 * @see #PHYSICALLY_INCAPABLE
+	 * @model name="PhysicallyIncapable"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PHISICALLY_INCAPABLE_VALUE = 12;
+	public static final int PHYSICALLY_INCAPABLE_VALUE = 12;
 
 	/**
 	 * The '<em><b>Legally Incapable</b></em>' literal value.
@@ -404,7 +403,7 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	 */
 	private static final ProcessingReasonSubtype[] VALUES_ARRAY = new ProcessingReasonSubtype[] { NONE, PREVENTION,
 			INVESTIGATION, DETECTION, PROSECUTION, PREVENTION_OF_THREATS, OUT_OF_EU, PERSONAL_ACTIVITY,
-			SPECIAL_SCOPE_OF_ACTIVITY, EMPLOYMENT, SOCIAL_SECURITY, SOCIAL_PROTECTION, PHISICALLY_INCAPABLE,
+			SPECIAL_SCOPE_OF_ACTIVITY, EMPLOYMENT, SOCIAL_SECURITY, SOCIAL_PROTECTION, PHYSICALLY_INCAPABLE,
 			LEGALLY_INCAPABLE, STATISTICAL, HISTORICAL, SCIENTIFIC, OTHER, };
 
 	/**
@@ -486,8 +485,8 @@ public enum ProcessingReasonSubtype implements Enumerator {
 			return SOCIAL_SECURITY;
 		case SOCIAL_PROTECTION_VALUE:
 			return SOCIAL_PROTECTION;
-		case PHISICALLY_INCAPABLE_VALUE:
-			return PHISICALLY_INCAPABLE;
+		case PHYSICALLY_INCAPABLE_VALUE:
+			return PHYSICALLY_INCAPABLE;
 		case LEGALLY_INCAPABLE_VALUE:
 			return LEGALLY_INCAPABLE;
 		case STATISTICAL_VALUE:

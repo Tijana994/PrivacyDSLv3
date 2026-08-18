@@ -56,7 +56,7 @@ public enum Action implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROFILING(6, "Profiling", "Profiling"),
+	PROFILING(3, "Profiling", "Profiling"),
 
 	/**
 	 * The '<em><b>Erasure</b></em>' literal object.
@@ -66,7 +66,7 @@ public enum Action implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ERASURE(7, "Erasure", "Erasure"),
+	ERASURE(4, "Erasure", "Erasure"),
 
 	/**
 	 * The '<em><b>Rectification</b></em>' literal object.
@@ -76,7 +76,7 @@ public enum Action implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RECTIFICATION(8, "Rectification", "Rectification"),
+	RECTIFICATION(5, "Rectification", "Rectification"),
 
 	/**
 	 * The '<em><b>Transfer</b></em>' literal object.
@@ -96,7 +96,16 @@ public enum Action implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STOP_PROCESSING(7, "StopProcessing", "StopProcessing");
+	STOP_PROCESSING(7, "StopProcessing", "StopProcessing"),
+	/**
+	* The '<em><b>Data Portability</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #DATA_PORTABILITY_VALUE
+	* @generated
+	* @ordered
+	*/
+	DATA_PORTABILITY(8, "DataPortability", "DataPortability");
 
 	/**
 	 * The '<em><b>Store</b></em>' literal value.
@@ -140,7 +149,7 @@ public enum Action implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int PROFILING_VALUE = 6;
+	public static final int PROFILING_VALUE = 3;
 
 	/**
 	 * The '<em><b>Erasure</b></em>' literal value.
@@ -151,7 +160,7 @@ public enum Action implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ERASURE_VALUE = 7;
+	public static final int ERASURE_VALUE = 4;
 
 	/**
 	 * The '<em><b>Rectification</b></em>' literal value.
@@ -162,7 +171,7 @@ public enum Action implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RECTIFICATION_VALUE = 8;
+	public static final int RECTIFICATION_VALUE = 5;
 
 	/**
 	 * The '<em><b>Transfer</b></em>' literal value.
@@ -187,13 +196,24 @@ public enum Action implements Enumerator {
 	public static final int STOP_PROCESSING_VALUE = 7;
 
 	/**
+	 * The '<em><b>Data Portability</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DATA_PORTABILITY
+	 * @model name="DataPortability"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DATA_PORTABILITY_VALUE = 8;
+
+	/**
 	 * An array of all the '<em><b>Action</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final Action[] VALUES_ARRAY = new Action[] { STORE, ACCESS, COLLECTING, PROFILING, ERASURE,
-			RECTIFICATION, TRANSFER, STOP_PROCESSING, };
+			RECTIFICATION, TRANSFER, STOP_PROCESSING, DATA_PORTABILITY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Action</b></em>' enumerators.
@@ -261,6 +281,12 @@ public enum Action implements Enumerator {
 			return ERASURE;
 		case RECTIFICATION_VALUE:
 			return RECTIFICATION;
+		case TRANSFER_VALUE:
+			return TRANSFER;
+		case STOP_PROCESSING_VALUE:
+			return STOP_PROCESSING;
+		case DATA_PORTABILITY_VALUE:
+			return DATA_PORTABILITY;
 		}
 		return null;
 	}

@@ -89,34 +89,33 @@ public enum DataType implements Enumerator {
 	SEX_LIFE(6, "SexLife", "SexLife"),
 
 	/**
-	 * The '<em><b>Religic</b></em>' literal object.
+	 * The '<em><b>Religious</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RELIGIC_VALUE
+	 * @see #RELIGIOUS_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RELIGIC(7, "Religic", "Religic"),
-
+	RELIGIOUS(7, "Religious", "Religious"),
 	/**
-	 * The '<em><b>Health</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #HEALTH_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	* The '<em><b>Health</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #HEALTH_VALUE
+	* @generated
+	* @ordered
+	*/
 	HEALTH(8, "Health", "Health"),
 
 	/**
-	 * The '<em><b>Judical</b></em>' literal object.
+	 * The '<em><b>Judicial</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #JUDICAL_VALUE
+	 * @see #JUDICIAL_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	JUDICAL(9, "Judical", "Judical");
+	JUDICIAL(9, "Judicial", "Judicial");
 
 	/**
 	 * The '<em><b>Biometric</b></em>' literal value.
@@ -196,15 +195,15 @@ public enum DataType implements Enumerator {
 	public static final int SEX_LIFE_VALUE = 6;
 
 	/**
-	 * The '<em><b>Religic</b></em>' literal value.
+	 * The '<em><b>Religious</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RELIGIC
-	 * @model name="Religic"
+	 * @see #RELIGIOUS
+	 * @model name="Religious"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RELIGIC_VALUE = 7;
+	public static final int RELIGIOUS_VALUE = 7;
 
 	/**
 	 * The '<em><b>Health</b></em>' literal value.
@@ -218,15 +217,15 @@ public enum DataType implements Enumerator {
 	public static final int HEALTH_VALUE = 8;
 
 	/**
-	 * The '<em><b>Judical</b></em>' literal value.
+	 * The '<em><b>Judicial</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #JUDICAL
-	 * @model name="Judical"
+	 * @see #JUDICIAL
+	 * @model name="Judicial"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int JUDICAL_VALUE = 9;
+	public static final int JUDICIAL_VALUE = 9;
 
 	/**
 	 * An array of all the '<em><b>Data Type</b></em>' enumerators.
@@ -235,7 +234,7 @@ public enum DataType implements Enumerator {
 	 * @generated
 	 */
 	private static final DataType[] VALUES_ARRAY = new DataType[] { BIOMETRIC, GENERAL, GENETIC, POLITICAL_OPINION,
-			RACIAL_OR_ETHNIC_ORIGIN, BELIEFS, SEX_LIFE, RELIGIC, HEALTH, JUDICAL, };
+			RACIAL_OR_ETHNIC_ORIGIN, BELIEFS, SEX_LIFE, RELIGIOUS, HEALTH, JUDICIAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Data Type</b></em>' enumerators.
@@ -305,12 +304,12 @@ public enum DataType implements Enumerator {
 			return BELIEFS;
 		case SEX_LIFE_VALUE:
 			return SEX_LIFE;
-		case RELIGIC_VALUE:
-			return RELIGIC;
+		case RELIGIOUS_VALUE:
+			return RELIGIOUS;
 		case HEALTH_VALUE:
 			return HEALTH;
-		case JUDICAL_VALUE:
-			return JUDICAL;
+		case JUDICIAL_VALUE:
+			return JUDICIAL;
 		}
 		return null;
 	}

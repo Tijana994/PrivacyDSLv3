@@ -164,7 +164,7 @@ public interface AbstractPaper extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Terminationdate is after startdate!\',\n\tstatus : Boolean = \n\t\t\tself.terminationDate = null or (not(self.startDate &gt; self.terminationDate))\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Termination date is before start date\',\n\tstatus : Boolean = \n\t\t\tself.terminationDate = null or (not(self.startDate &gt; self.terminationDate))\n}.status'"
 	 * @generated
 	 */
 	boolean StartDateShouldBeBeforeTerminationDate(DiagnosticChain diagnostics, Map<Object, Object> context);

@@ -287,7 +287,7 @@ public interface PrivacyPolicy extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art 3\',\n\tstatus : Boolean = \n\t\t\t(not(self.owner = null) and not(self.owner.inhabits = null))\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art 3\',\n\tstatus : Boolean = \n\t\t\tnot(self.owner = null) and not(self.owner.inhabits = null)\n}.status'"
 	 * @generated
 	 */
 	boolean OwnerShouldHaveDefinedInhabits(DiagnosticChain diagnostics, Map<Object, Object> context);

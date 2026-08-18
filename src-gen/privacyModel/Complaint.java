@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getComplaint()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SubjectShouldBeNotifiedAboutExistingComplaintForRectification'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='StopProcessingShouldBeExecutedAsSoonAsPossible'"
  * @generated
  */
 public interface Complaint extends NotificationInfo {
@@ -154,6 +154,14 @@ public interface Complaint extends NotificationInfo {
 	 * @generated
 	 */
 	boolean ErasureShouldBeExecutedAsSoonAsPossible(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art7\',\n\tstatus : Boolean = \n\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tprivacyPolicy.policyStatements-&gt;exists(stmt| stmt.what.actions-&gt;exists(action| action = Action::StopProcessing) and \n\t\t\t\t\t\t\tnot(stmt.whose = null) and stmt.whose = self.who and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) \n\t\t\t\t\t\t\tand not(stmt.causedBy = null) and stmt.causedBy = self)\n\t\t\t  endif\n}.status'"
+	 * @generated
+	 */
+	boolean WithdrawConsentShouldBeExecutedAsSoonAsPossible(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

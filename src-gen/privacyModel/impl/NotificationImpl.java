@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.Date;
 
 import java.util.Map;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
@@ -18,12 +17,31 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.ids.TypeId;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsTypeOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsKindOfOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
+import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.TupleValue;
+import privacyModel.AbstractComplaintAction;
+import privacyModel.Complaint;
+import privacyModel.ComplaintBasedOnData;
+import privacyModel.ComplaintBasedOnDataType;
 import privacyModel.Notification;
 import privacyModel.NotificationInfo;
 import privacyModel.NotificationType;
 import privacyModel.Principal;
 import privacyModel.PrivacyModelPackage;
-import privacyModel.util.PrivacyModelValidator;
+import privacyModel.PrivacyModelTables;
 
 /**
  * <!-- begin-user-doc -->
@@ -243,129 +261,495 @@ public class NotificationImpl extends NamedElementImpl implements Notification {
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #ShouldDefineCausedByAsErasure(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Should Define Caused By As Erasure</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ShouldDefineCausedByAsErasure(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String SHOULD_DEFINE_CAUSED_BY_AS_ERASURE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'NotifyAboutErasure should contain causedBy with complaint Erasure',\n"
-			+ "\tstatus : Boolean = \n" + "\t\t\tif(type = NotificationType::Erasure) then\n"
-			+ "\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n"
-			+ "\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n"
-			+ "\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
-			+ "\t\t\t\t\t\tlet basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in\n"
-			+ "\t\t\t\t\t\tbasedOnData.type = ComplaintBasedOnDataType::Erasure\n" + "\t\t\t\t\telse\n"
-			+ "\t\t\t\t\t\tfalse\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\tfalse\n" + "\t\t\t\tendif\n"
-			+ "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean ShouldDefineCausedByAsErasure(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.NOTIFICATION, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_ERASURE__DIAGNOSTICCHAIN_MAP,
-				SHOULD_DEFINE_CAUSED_BY_AS_ERASURE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_ERASURE);
+	public boolean ShouldDefineCausedByAsErasure(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Notification::ShouldDefineCausedByAsErasure";
+		try {
+			/**
+			 *
+			 * inv ShouldDefineCausedByAsErasure:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = if type = NotificationType::Erasure
+			 *           then
+			 *             if causedBy.oclIsKindOf(Complaint)
+			 *             then
+			 *               let
+			 *                 complaint : Complaint[1] = causedBy.oclAsType(Complaint)
+			 *               in
+			 *                 if
+			 *                   complaint.action.oclIsKindOf(ComplaintBasedOnData)
+			 *                 then
+			 *                   let
+			 *                     basedOnData : ComplaintBasedOnData[1] = complaint.action.oclAsType(ComplaintBasedOnData)
+			 *                   in basedOnData.type = ComplaintBasedOnDataType::Erasure
+			 *                 else false
+			 *                 endif
+			 *             else false
+			 *             endif
+			 *           else true
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'NotifyAboutErasure should contain causedBy with complaint Erasure', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_ERASURE__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_4;
+			if (le) {
+				local_4 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_3;
+				try {
+					final /*@NonInvalid*/ NotificationType type_0 = this.getType();
+					final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_0 = PrivacyModelTables.ENUMid_NotificationType
+							.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
+					final /*@NonInvalid*/ boolean eq = BOXED_type_0 == PrivacyModelTables.ELITid_Erasure_1;
+					/*@Thrown*/ boolean status;
+					if (eq) {
+						final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_Complaint_0 = idResolver
+								.getClass(PrivacyModelTables.CLSSid_Complaint, null);
+						final /*@NonInvalid*/ NotificationInfo causedBy = this.getCausedBy();
+						final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
+								.evaluate(executor, causedBy, TYP_privacyModel_c_c_Complaint_0).booleanValue();
+						/*@Thrown*/ boolean local_1;
+						if (oclIsKindOf) {
+							final /*@Thrown*/ Complaint complaint = (Complaint) OclAnyOclAsTypeOperation.INSTANCE
+									.evaluate(executor, causedBy, TYP_privacyModel_c_c_Complaint_0);
+							final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_ComplaintBasedOnData_0 = idResolver
+									.getClass(PrivacyModelTables.CLSSid_ComplaintBasedOnData, null);
+							final /*@Thrown*/ AbstractComplaintAction action = complaint.getAction();
+							final /*@Thrown*/ boolean oclIsKindOf_0 = OclAnyOclIsKindOfOperation.INSTANCE
+									.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnData_0)
+									.booleanValue();
+							/*@Thrown*/ boolean local_0;
+							if (oclIsKindOf_0) {
+								final /*@Thrown*/ ComplaintBasedOnData basedOnData = (ComplaintBasedOnData) OclAnyOclAsTypeOperation.INSTANCE
+										.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnData_0);
+								final /*@Thrown*/ ComplaintBasedOnDataType type_1 = basedOnData.getType();
+								final /*@Thrown*/ EnumerationLiteralId BOXED_type_1 = PrivacyModelTables.ENUMid_ComplaintBasedOnDataType
+										.getEnumerationLiteralId(ClassUtil.nonNullState(type_1.getName()));
+								final /*@Thrown*/ boolean eq_0 = BOXED_type_1 == PrivacyModelTables.ELITid_Erasure_0;
+								local_0 = eq_0;
+							} else {
+								local_0 = false;
+							}
+							local_1 = local_0;
+						} else {
+							local_1 = false;
+						}
+						status = local_1;
+					} else {
+						status = true;
+					}
+					/*@Thrown*/ Object local_3;
+					if (status) {
+						local_3 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_2 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_NotifyAboutErasure_32_should_32_contain_32_causedBy_32_with_32_complaint_32_Erasur,
+								status);
+						local_3 = local_2;
+					}
+					CAUGHT_local_3 = local_3;
+				} catch (Exception e) {
+					CAUGHT_local_3 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_3, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_4 = logDiagnostic;
+			}
+			return local_4;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #ShouldDefineCausedByAsPrivacyPolicy(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Should Define Caused By As Privacy Policy</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ShouldDefineCausedByAsPrivacyPolicy(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'NotifyAboutCollecting or StopProcessing should contain causedBy with policy statement',\n"
-			+ "\tstatus : Boolean = \n"
-			+ "\t\t\tif(type = NotificationType::DataCollecting or type = NotificationType::StopProcessing \n"
-			+ "\t\t\t\tor type = NotificationType::ExecutedRectification or type = NotificationType::ExecutedErasure\n"
-			+ "\t\t\t) then\n" + "\t\t\t\tcausedBy.oclIsKindOf(PolicyStatement)\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n"
-			+ "\t\t\tendif\n" + "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean ShouldDefineCausedByAsPrivacyPolicy(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.NOTIFICATION, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY__DIAGNOSTICCHAIN_MAP,
-				SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY);
+	public boolean ShouldDefineCausedByAsPrivacyPolicy(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Notification::ShouldDefineCausedByAsPrivacyPolicy";
+		try {
+			/**
+			 *
+			 * inv ShouldDefineCausedByAsPrivacyPolicy:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = if type = NotificationType::DataCollecting or type = NotificationType::StopProcessing or type = NotificationType::ExecutedRectification or type = NotificationType::ExecutedErasure
+			 *           then causedBy.oclIsKindOf(PolicyStatement)
+			 *           else true
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'NotifyAboutCollecting or StopProcessing should contain causedBy with policy statement', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				final /*@NonInvalid*/ NotificationType type_3 = this.getType();
+				final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_3 = PrivacyModelTables.ENUMid_NotificationType
+						.getEnumerationLiteralId(ClassUtil.nonNullState(type_3.getName()));
+				/*@Caught*/ Object CAUGHT_or_0;
+				try {
+					final /*@NonInvalid*/ boolean eq = BOXED_type_3 == PrivacyModelTables.ELITid_DataCollecting;
+					final /*@NonInvalid*/ Boolean or;
+					if (eq) {
+						or = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@NonInvalid*/ boolean eq_0 = BOXED_type_3 == PrivacyModelTables.ELITid_StopProcessing_1;
+						if (eq_0) {
+							or = ValueUtil.TRUE_VALUE;
+						} else {
+							or = ValueUtil.FALSE_VALUE;
+						}
+					}
+					final /*@Thrown*/ Boolean or_0;
+					if (or == ValueUtil.TRUE_VALUE) {
+						or_0 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@NonInvalid*/ boolean eq_1 = BOXED_type_3 == PrivacyModelTables.ELITid_ExecutedRectification;
+						if (eq_1) {
+							or_0 = ValueUtil.TRUE_VALUE;
+						} else {
+							if (or == null) {
+								or_0 = null;
+							} else {
+								or_0 = ValueUtil.FALSE_VALUE;
+							}
+						}
+					}
+					CAUGHT_or_0 = or_0;
+				} catch (Exception e) {
+					CAUGHT_or_0 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@Thrown*/ Boolean or_1;
+				if (CAUGHT_or_0 == ValueUtil.TRUE_VALUE) {
+					or_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ boolean eq_2 = BOXED_type_3 == PrivacyModelTables.ELITid_ExecutedErasure;
+					if (eq_2) {
+						or_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						if (CAUGHT_or_0 instanceof InvalidValueException) {
+							throw (InvalidValueException) CAUGHT_or_0;
+						}
+						if (CAUGHT_or_0 == null) {
+							or_1 = null;
+						} else {
+							or_1 = ValueUtil.FALSE_VALUE;
+						}
+					}
+				}
+				if (or_1 == null) {
+					throw new InvalidValueException("Null if condition");
+				}
+				/*@NonInvalid*/ boolean status;
+				if (or_1) {
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PolicyStatement = idResolver
+							.getClass(PrivacyModelTables.CLSSid_PolicyStatement, null);
+					final /*@NonInvalid*/ NotificationInfo causedBy = this.getCausedBy();
+					final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
+							.evaluate(executor, causedBy, TYP_privacyModel_c_c_PolicyStatement).booleanValue();
+					status = oclIsKindOf;
+				} else {
+					status = true;
+				}
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+							PrivacyModelTables.STR_NotifyAboutCollecting_32_or_32_StopProcessing_32_should_32_contain_32_causedBy_32,
+							status);
+					local_1 = local_0;
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #ShouldDefineCausedByAsWithdraw(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Should Define Caused By As Withdraw</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ShouldDefineCausedByAsWithdraw(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'NotifyAboutWithdraw should contain causedBy with complaint Withraw',\n"
-			+ "\tstatus : Boolean = \n" + "\t\t\tif(type = NotificationType::Withdraw) then\n"
-			+ "\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n"
-			+ "\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n"
-			+ "\t\t\t\t\tcomplaint.action.oclIsKindOf(Withdraw)\n" + "\t\t\t\telse\n" + "\t\t\t\t\tfalse\n"
-			+ "\t\t\t\tendif\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean ShouldDefineCausedByAsWithdraw(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.NOTIFICATION, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW__DIAGNOSTICCHAIN_MAP,
-				SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW);
+	public boolean ShouldDefineCausedByAsWithdraw(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Notification::ShouldDefineCausedByAsWithdraw";
+		try {
+			/**
+			 *
+			 * inv ShouldDefineCausedByAsWithdraw:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = if type = NotificationType::Withdraw
+			 *           then
+			 *             if causedBy.oclIsKindOf(Complaint)
+			 *             then
+			 *               let
+			 *                 complaint : Complaint[1] = causedBy.oclAsType(Complaint)
+			 *               in complaint.action.oclIsKindOf(Withdraw)
+			 *             else false
+			 *             endif
+			 *           else true
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'NotifyAboutWithdraw should contain causedBy with complaint Withdraw', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_3;
+			if (le) {
+				local_3 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_2;
+				try {
+					final /*@NonInvalid*/ NotificationType type_0 = this.getType();
+					final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_0 = PrivacyModelTables.ENUMid_NotificationType
+							.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
+					final /*@NonInvalid*/ boolean eq = BOXED_type_0 == PrivacyModelTables.ELITid_Withdraw;
+					/*@Thrown*/ boolean status;
+					if (eq) {
+						final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_Complaint = idResolver
+								.getClass(PrivacyModelTables.CLSSid_Complaint, null);
+						final /*@NonInvalid*/ NotificationInfo causedBy = this.getCausedBy();
+						final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
+								.evaluate(executor, causedBy, TYP_privacyModel_c_c_Complaint).booleanValue();
+						/*@Thrown*/ boolean local_0;
+						if (oclIsKindOf) {
+							final /*@Thrown*/ Complaint complaint = (Complaint) OclAnyOclAsTypeOperation.INSTANCE
+									.evaluate(executor, causedBy, TYP_privacyModel_c_c_Complaint);
+							final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_Withdraw_0 = idResolver
+									.getClass(PrivacyModelTables.CLSSid_Withdraw, null);
+							final /*@Thrown*/ AbstractComplaintAction action = complaint.getAction();
+							final /*@Thrown*/ boolean oclIsKindOf_0 = OclAnyOclIsKindOfOperation.INSTANCE
+									.evaluate(executor, action, TYP_privacyModel_c_c_Withdraw_0).booleanValue();
+							local_0 = oclIsKindOf_0;
+						} else {
+							local_0 = false;
+						}
+						status = local_0;
+					} else {
+						status = true;
+					}
+					/*@Thrown*/ Object local_2;
+					if (status) {
+						local_2 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_1 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_NotifyAboutWithdraw_32_should_32_contain_32_causedBy_32_with_32_complaint_32_Withd,
+								status);
+						local_2 = local_1;
+					}
+					CAUGHT_local_2 = local_2;
+				} catch (Exception e) {
+					CAUGHT_local_2 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_2, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_3 = logDiagnostic;
+			}
+			return local_3;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #ShouldDefineCausedByAsRectification(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Should Define Caused By As Rectification</em>}' invariant operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ShouldDefineCausedByAsRectification(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'NotifyAboutRectification should contain causedBy with complaint Rectification',\n"
-			+ "\tstatus : Boolean = \n" + "\t\t\tif(type = NotificationType::Rectification) then\n"
-			+ "\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n"
-			+ "\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n"
-			+ "\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
-			+ "\t\t\t\t\t\tlet basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in\n"
-			+ "\t\t\t\t\t\tbasedOnData.type = ComplaintBasedOnDataType::Rectification\n" + "\t\t\t\t\telse\n"
-			+ "\t\t\t\t\t\tfalse\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\tfalse\n" + "\t\t\t\tendif\n"
-			+ "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean ShouldDefineCausedByAsRectification(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return PrivacyModelValidator.validate(PrivacyModelPackage.Literals.NOTIFICATION, this, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-				PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION__DIAGNOSTICCHAIN_MAP,
-				SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR,
-				PrivacyModelValidator.DIAGNOSTIC_SOURCE,
-				PrivacyModelValidator.NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION);
+	public boolean ShouldDefineCausedByAsRectification(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Notification::ShouldDefineCausedByAsRectification";
+		try {
+			/**
+			 *
+			 * inv ShouldDefineCausedByAsRectification:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = if type = NotificationType::Rectification
+			 *           then
+			 *             if causedBy.oclIsKindOf(Complaint)
+			 *             then
+			 *               let
+			 *                 complaint : Complaint[1] = causedBy.oclAsType(Complaint)
+			 *               in
+			 *                 if
+			 *                   complaint.action.oclIsKindOf(ComplaintBasedOnData)
+			 *                 then
+			 *                   let
+			 *                     basedOnData : ComplaintBasedOnData[1] = complaint.action.oclAsType(ComplaintBasedOnData)
+			 *                   in basedOnData.type = ComplaintBasedOnDataType::Rectification
+			 *                 else false
+			 *                 endif
+			 *             else false
+			 *             endif
+			 *           else true
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'NotifyAboutRectification should contain causedBy with complaint Rectification', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.NOTIFICATION___SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_4;
+			if (le) {
+				local_4 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_3;
+				try {
+					final /*@NonInvalid*/ NotificationType type_0 = this.getType();
+					final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_0 = PrivacyModelTables.ENUMid_NotificationType
+							.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
+					final /*@NonInvalid*/ boolean eq = BOXED_type_0 == PrivacyModelTables.ELITid_Rectification_1;
+					/*@Thrown*/ boolean status;
+					if (eq) {
+						final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_Complaint_0 = idResolver
+								.getClass(PrivacyModelTables.CLSSid_Complaint, null);
+						final /*@NonInvalid*/ NotificationInfo causedBy = this.getCausedBy();
+						final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
+								.evaluate(executor, causedBy, TYP_privacyModel_c_c_Complaint_0).booleanValue();
+						/*@Thrown*/ boolean local_1;
+						if (oclIsKindOf) {
+							final /*@Thrown*/ Complaint complaint = (Complaint) OclAnyOclAsTypeOperation.INSTANCE
+									.evaluate(executor, causedBy, TYP_privacyModel_c_c_Complaint_0);
+							final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_ComplaintBasedOnData_0 = idResolver
+									.getClass(PrivacyModelTables.CLSSid_ComplaintBasedOnData, null);
+							final /*@Thrown*/ AbstractComplaintAction action = complaint.getAction();
+							final /*@Thrown*/ boolean oclIsKindOf_0 = OclAnyOclIsKindOfOperation.INSTANCE
+									.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnData_0)
+									.booleanValue();
+							/*@Thrown*/ boolean local_0;
+							if (oclIsKindOf_0) {
+								final /*@Thrown*/ ComplaintBasedOnData basedOnData = (ComplaintBasedOnData) OclAnyOclAsTypeOperation.INSTANCE
+										.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnData_0);
+								final /*@Thrown*/ ComplaintBasedOnDataType type_1 = basedOnData.getType();
+								final /*@Thrown*/ EnumerationLiteralId BOXED_type_1 = PrivacyModelTables.ENUMid_ComplaintBasedOnDataType
+										.getEnumerationLiteralId(ClassUtil.nonNullState(type_1.getName()));
+								final /*@Thrown*/ boolean eq_0 = BOXED_type_1 == PrivacyModelTables.ELITid_Rectification_0;
+								local_0 = eq_0;
+							} else {
+								local_0 = false;
+							}
+							local_1 = local_0;
+						} else {
+							local_1 = false;
+						}
+						status = local_1;
+					} else {
+						status = true;
+					}
+					/*@Thrown*/ Object local_3;
+					if (status) {
+						local_3 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_2 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_NotifyAboutRectification_32_should_32_contain_32_causedBy_32_with_32_complaint_32,
+								status);
+						local_3 = local_2;
+					}
+					CAUGHT_local_3 = local_3;
+				} catch (Exception e) {
+					CAUGHT_local_3 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_3, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_4 = logDiagnostic;
+			}
+			return local_4;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
 	}
 
 	/**

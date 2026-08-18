@@ -6,22 +6,27 @@ import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
 
+import java.util.Iterator;
+import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.ocl.pivot.evaluation.Executor;
+import org.eclipse.ocl.pivot.ids.IdResolver;
+import org.eclipse.ocl.pivot.library.collection.CollectionNotEmptyOperation;
+import org.eclipse.ocl.pivot.messages.PivotMessages;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import privacyModel.Location;
 import privacyModel.LocationType;
 import privacyModel.PrivacyModelPackage;
+import privacyModel.PrivacyModelTables;
 
 /**
  * <!-- begin-user-doc -->
@@ -208,28 +213,97 @@ public class LocationImpl extends NamedElementImpl implements Location {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #equals(privacyModel.Location) <em>Equals</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #equals(privacyModel.Location)
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate EQUALS_LOCATION__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.LOCATION___EQUALS__LOCATION)
-			.getInvocationDelegate();
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean equals(Location observed) {
-		try {
-			return (Boolean) EQUALS_LOCATION__EINVOCATION_DELEGATE.dynamicInvoke(this,
-					new BasicEList.UnmodifiableEList<Object>(1, new Object[] { observed }));
-		} catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
+	public boolean equals(final Location observed) {
+		/**
+		 *
+		 * if self = observed
+		 * then true
+		 * else
+		 *   self.subLocations->notEmpty() and
+		 *   self.subLocations->exists(s | s.equals(observed))
+		 * endif
+		 */
+		final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		final /*@NonInvalid*/ boolean eq = this.equals(observed);
+		/*@Thrown*/ Boolean local_0;
+		if (eq) {
+			local_0 = ValueUtil.TRUE_VALUE;
+		} else {
+			final /*@NonInvalid*/ List<Location> subLocations = this.getSubLocations();
+			final /*@NonInvalid*/ OrderedSetValue BOXED_subLocations = idResolver
+					.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Location, subLocations);
+			final /*@NonInvalid*/ boolean notEmpty = CollectionNotEmptyOperation.INSTANCE.evaluate(BOXED_subLocations)
+					.booleanValue();
+			final /*@Thrown*/ Boolean and;
+			if (!notEmpty) {
+				and = ValueUtil.FALSE_VALUE;
+			} else {
+				/*@Caught*/ Object CAUGHT_exists;
+				try {
+					/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+					Iterator<Object> ITERATOR_s = BOXED_subLocations.iterator();
+					/*@Thrown*/ Boolean exists;
+					while (true) {
+						if (!ITERATOR_s.hasNext()) {
+							if (accumulator == ValueUtil.FALSE_VALUE) {
+								exists = ValueUtil.FALSE_VALUE;
+							} else {
+								throw (InvalidValueException) accumulator;
+							}
+							break;
+						}
+						/*@NonInvalid*/ Location s = (Location) ITERATOR_s.next();
+						/**
+						 * s.equals(observed)
+						 */
+						/*@Caught*/ Object CAUGHT_equals;
+						try {
+							final /*@Thrown*/ boolean equals = s.equals(observed);
+							CAUGHT_equals = equals;
+						} catch (Exception e) {
+							CAUGHT_equals = ValueUtil.createInvalidValue(e);
+						}
+						//
+						if (CAUGHT_equals == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+							exists = ValueUtil.TRUE_VALUE;
+							break; // Stop immediately
+						} else if (CAUGHT_equals == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+							; // Carry on
+						} else if (CAUGHT_equals instanceof InvalidValueException) { // Abnormal exception evaluation result
+							accumulator = CAUGHT_equals; // Cache an exception failure
+						} else { // Impossible badly typed result
+							accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+						}
+					}
+					CAUGHT_exists = exists;
+				} catch (Exception e) {
+					CAUGHT_exists = ValueUtil.createInvalidValue(e);
+				}
+				if (CAUGHT_exists == ValueUtil.FALSE_VALUE) {
+					and = ValueUtil.FALSE_VALUE;
+				} else {
+					if (CAUGHT_exists instanceof InvalidValueException) {
+						throw (InvalidValueException) CAUGHT_exists;
+					}
+					if (CAUGHT_exists == null) {
+						and = null;
+					} else {
+						and = ValueUtil.TRUE_VALUE;
+					}
+				}
+			}
+			local_0 = and;
 		}
+		if (local_0 == null) {
+			throw new InvalidValueException(
+					"Null body for \'privacyModel::Location::equals(privacyModel::Location[?]) : Boolean[1]\'");
+		}
+		return local_0;
 	}
 
 	/**

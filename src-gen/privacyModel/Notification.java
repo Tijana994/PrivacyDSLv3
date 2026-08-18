@@ -141,7 +141,7 @@ public interface Notification extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'NotifyAboutWithdraw should contain causedBy with complaint Withraw\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Withdraw) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tcomplaint.action.oclIsKindOf(Withdraw)\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'NotifyAboutWithdraw should contain causedBy with complaint Withdraw\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Withdraw) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tcomplaint.action.oclIsKindOf(Withdraw)\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
 	 * @generated
 	 */
 	boolean ShouldDefineCausedByAsWithdraw(DiagnosticChain diagnostics, Map<Object, Object> context);
