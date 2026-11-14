@@ -139,22 +139,22 @@ public enum ProcessingReason implements Enumerator {
 	 */
 	STOP_PROCESSING(11, "StopProcessing", "StopProcessing"),
 	/**
-	* The '<em><b>Contract Performance</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Contract Performance</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #CONTRACT_PERFORMANCE_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #CONTRACT_PERFORMANCE_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	CONTRACT_PERFORMANCE(12, "ContractPerformance", "ContractPerformance"),
 	/**
-	* The '<em><b>Legal Obligation</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Legal Obligation</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #LEGAL_OBLIGATION_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #LEGAL_OBLIGATION_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LEGAL_OBLIGATION(13, "LegalObligation", "LegalObligation");
 
 	/**

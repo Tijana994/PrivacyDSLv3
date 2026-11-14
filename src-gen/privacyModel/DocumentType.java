@@ -58,13 +58,13 @@ public enum DocumentType implements Enumerator {
 	 */
 	TRANSFER_CERTIFICATE(3, "TransferCertificate", "TransferCertificate"),
 	/**
-	* The '<em><b>Legal Provision</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Legal Provision</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #LEGAL_PROVISION_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #LEGAL_PROVISION_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LEGAL_PROVISION(4, "LegalProvision", "LegalProvision");
 
 	/**

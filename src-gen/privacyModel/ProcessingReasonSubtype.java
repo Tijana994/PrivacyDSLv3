@@ -197,13 +197,13 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	 */
 	OTHER(17, "Other", "Other"),
 	/**
-	* The '<em><b>Pre Contractual</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Pre Contractual</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #PRE_CONTRACTUAL_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #PRE_CONTRACTUAL_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	PRE_CONTRACTUAL(18, "PreContractual", "PreContractual");
 
 	/**

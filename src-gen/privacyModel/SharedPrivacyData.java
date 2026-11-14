@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getSharedPrivacyData()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DataSourceShouldExistsInConfiguration'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ProtectionControlShouldExistInConfiguration'"
  * @generated
  */
 public interface SharedPrivacyData extends NamedElement {
@@ -108,17 +108,17 @@ public interface SharedPrivacyData extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Protection controls should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.additionalProtectionControls-&gt;forAll(protectionControl:String|\n\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().privacyPolicyHelper.isPolicyControlValid(protectionControl)\n\t\t\t)\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Data source should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.dataSource = null or PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().privacyPolicyHelper.isDataSourceValid(self.dataSource)\n}.status'"
 	 * @generated
 	 */
-	boolean ProtectionControlShouldExistsInConfiguration(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean DataSourceShouldExistInConfiguration(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Data source should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.dataSource = null or PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().privacyPolicyHelper.isDataSourceValid(self.dataSource)\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Protection controls should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.additionalProtectionControls-&gt;forAll(protectionControl:String|\n\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().privacyPolicyHelper.isPolicyControlValid(protectionControl)\n\t\t\t)\n}.status'"
 	 * @generated
 	 */
-	boolean DataSourceShouldExistsInConfiguration(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean ProtectionControlShouldExistInConfiguration(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // SharedPrivacyData

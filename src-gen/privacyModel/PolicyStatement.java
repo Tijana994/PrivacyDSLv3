@@ -286,14 +286,6 @@ public interface PolicyStatement extends NotificationInfo {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art20 and Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.what.actions-&gt;exists(action| action = Action::DataPortability))) then\n\t\t\t\ttrue\n\t\t\telse if(self.isContractProvidedBySubject()) then\n\t\t\t\ttrue\n\t\t\telse if(self.whose.type= PrincipalType::NaturalPerson and self.whose.age &lt; PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().owner.inhabits.legalAgeLimit) then\n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons-&gt;exists(person| self.how.consent.providedBy = person)\n\t\t\telse \n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons-&gt;exists(person| self.how.consent.providedBy = person))\n\t\t\tendif\n\t\t\tendif\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean MissingConsentForDataPortability(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(what.actions-&gt;exists(action| action = Action::Rectification)) then\n\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().notifications-&gt;exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status'"
 	 * @generated
 	 */
@@ -330,6 +322,15 @@ public interface PolicyStatement extends NotificationInfo {
 	 * @generated
 	 */
 	boolean MissingConsentForCollecting(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art6 and Art9\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what.actions-&gt;exists(act| act = Action::Collecting or act = Action::StopProcessing)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tself.what.datas-&gt;forAll(data|\n\t\t\t\t\tlet statements = privacyPolicy.policyStatements-&gt;select(st| \n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose  \n\t\t\t\t\t\tand st.what.actions-&gt;exists(act| act = Action::Collecting) and st.what.datas-&gt;exists(d| d = data))\n\t\t\t\t\t\tin \n\t\t\t\t\t\tif(statements-&gt;isEmpty()) then \n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tstatements -&gt; forAll(st|\n\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\tif(self.why = null) then\n\t\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\t(not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals-&gt;exists(subprincipal| subprincipal = self.who) \n\t\t\t\t\t\t\t\t\t\tor self.who.equals(st.whose) or st.whose.responsiblePersons-&gt;exists(responsiblePerson| responsiblePerson = self.who)))\n\t\t\t\t\t\t\t\t\t\tand (st.why.isValid(self.why) or \n\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth, ProcessingReason::LegalObligation} in\n\t\t\t\t\t\t\t\t\t\t\treasons-&gt;includes(self.why.processingReason) or self.why.subPurposes-&gt;exists(subpurpose| reasons-&gt;includes(subpurpose.processingReason)))\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\tendif\n\t\t\t\t)\n\t\t\tendif\n}.status'"
+	 * @generated
+	 */
+	boolean UndefinedPurposeForActionOrUserDoesNotHavePermission(DiagnosticChain diagnostics,
+			Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -407,15 +408,6 @@ public interface PolicyStatement extends NotificationInfo {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art6 and Art9\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what.actions-&gt;exists(act| act = Action::Collecting or act = Action::StopProcessing)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tself.what.datas-&gt;forAll(data|\n\t\t\t\t\tlet statements = privacyPolicy.policyStatements-&gt;select(st| \n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose  \n\t\t\t\t\t\tand st.what.actions-&gt;exists(act| act = Action::Collecting) and st.what.datas-&gt;exists(d| d = data))\n\t\t\t\t\t\tin \n\t\t\t\t\t\tif(statements-&gt;isEmpty()) then \n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tstatements -&gt; forAll(st|\n\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\tif(self.why = null) then\n\t\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\t(not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals-&gt;exists(subprincipal| subprincipal = self.who) \n\t\t\t\t\t\t\t\t\t\tor self.who.equals(st.whose) or st.whose.responsiblePersons-&gt;exists(responsiblePerson| responsiblePerson = self.who)))\n\t\t\t\t\t\t\t\t\t\tand (st.why.isValid(self.why) or \n\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth, ProcessingReason::LegalObligation} in\n\t\t\t\t\t\t\t\t\t\t\treasons-&gt;includes(self.why.processingReason) or self.why.subPurposes-&gt;exists(subpurpose| reasons-&gt;includes(subpurpose.processingReason)))\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\tendif\n\t\t\t\t)\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean UndefinedPurposeForActionOrUserDoesntHavePermission(DiagnosticChain diagnostics,
-			Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Arts 44-50 and Art 49(1)(b)\',\n\tstatus : Boolean = \n\t\t\tif(not(self.what.actions-&gt;exists(action| action = Action::Transfer))or self.where = null or self.where.destination = null or self.where.destination.isEUMember = true) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tif((not(self.where.destination = null)) and self.where.destination.isEUMember = false) then\n\t\t\t\t\t(not(self.how = null) and (self.how.documents-&gt;exists(doc| doc.documentType = DocumentType::TransferCertificate) or (not(self.how = null) and not(self.how.consent = null)))) or\n\t\t\t\t\t(self.hasProcessingReason(ProcessingReason::ContractPerformance) and self.isContractProvidedBySubject()) or\n\t\t\t\t\t(not(self.why = null) and \n\t\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) or\n\t\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,Sequence{ProcessingReasonSubtype::PhysicallyIncapable, \n\t\t\t\t\t\t\tProcessingReasonSubtype::Other,ProcessingReasonSubtype::None})))\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\t\tendif\n\t\t\tendif\n}.status'"
 	 * @generated
 	 */
@@ -486,6 +478,14 @@ public interface PolicyStatement extends NotificationInfo {
 	 * @generated
 	 */
 	boolean ExpiredDocument(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art20 and Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.what.actions-&gt;exists(action| action = Action::DataPortability))) then\n\t\t\t\ttrue\n\t\t\telse if(self.isContractProvidedBySubject()) then\n\t\t\t\ttrue\n\t\t\telse if(self.whose.type= PrincipalType::NaturalPerson and self.whose.age &lt; PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().owner.inhabits.legalAgeLimit) then\n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons-&gt;exists(person| self.how.consent.providedBy = person)\n\t\t\telse \n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons-&gt;exists(person| self.how.consent.providedBy = person))\n\t\t\tendif\n\t\t\tendif\n\t\t\tendif\n}.status'"
+	 * @generated
+	 */
+	boolean MissingConsentOrContractForDataPortability(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

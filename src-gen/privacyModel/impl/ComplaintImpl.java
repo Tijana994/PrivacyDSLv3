@@ -1346,6 +1346,407 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean UserDoesNotHavePermissionToComplain(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Complaint::UserDoesNotHavePermissionToComplain";
+		try {
+			/**
+			 *
+			 * inv UserDoesNotHavePermissionToComplain:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = if
+			 *             not self.action.oclIsKindOf(ComplaintBasedOnAction)
+			 *           then true
+			 *           else
+			 *             let
+			 *               basedOnAction : ComplaintBasedOnAction[1] = self.action.oclAsType(ComplaintBasedOnAction)
+			 *             in
+			 *               not (basedOnAction.statement.whose = null
+			 *               ) and
+			 *               (basedOnAction.statement.whose = self.who or
+			 *                 basedOnAction.statement.whose.responsiblePersons->exists(rp | rp = self.who)
+			 *               )
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Based on Art21', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.COMPLAINT___USER_DOES_NOT_HAVE_PERMISSION_TO_COMPLAIN__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_1;
+				try {
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_ComplaintBasedOnAction_0 = idResolver
+							.getClass(PrivacyModelTables.CLSSid_ComplaintBasedOnAction, null);
+					final /*@NonInvalid*/ AbstractComplaintAction action = this.getAction();
+					final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
+							.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction_0).booleanValue();
+					final /*@NonInvalid*/ Boolean not;
+					if (!oclIsKindOf) {
+						not = ValueUtil.TRUE_VALUE;
+					} else {
+						if (oclIsKindOf) {
+							not = ValueUtil.FALSE_VALUE;
+						} else {
+							not = null;
+						}
+					}
+					if (not == null) {
+						throw new InvalidValueException("Null if condition");
+					}
+					/*@Thrown*/ Boolean status;
+					if (not) {
+						status = ValueUtil.TRUE_VALUE;
+					} else {
+						/*@Caught*/ Object CAUGHT_basedOnAction;
+						try {
+							final /*@Thrown*/ ComplaintBasedOnAction basedOnAction = (ComplaintBasedOnAction) OclAnyOclAsTypeOperation.INSTANCE
+									.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction_0);
+							CAUGHT_basedOnAction = basedOnAction;
+						} catch (Exception e) {
+							CAUGHT_basedOnAction = ValueUtil.createInvalidValue(e);
+						}
+						/*@Caught*/ Object CAUGHT_not_0;
+						try {
+							/*@Caught*/ Object CAUGHT_eq;
+							try {
+								if (CAUGHT_basedOnAction instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_basedOnAction;
+								}
+								final /*@Thrown*/ PolicyStatement statement = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+										.getStatement();
+								final /*@Thrown*/ Principal whose = statement.getWhose();
+								final /*@Thrown*/ boolean eq = whose == null;
+								CAUGHT_eq = eq;
+							} catch (Exception e) {
+								CAUGHT_eq = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_eq instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_eq;
+							}
+							final /*@Thrown*/ Boolean not_0;
+							if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+								not_0 = ValueUtil.TRUE_VALUE;
+							} else {
+								if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
+									not_0 = ValueUtil.FALSE_VALUE;
+								} else {
+									not_0 = null;
+								}
+							}
+							CAUGHT_not_0 = not_0;
+						} catch (Exception e) {
+							CAUGHT_not_0 = ValueUtil.createInvalidValue(e);
+						}
+						final /*@Thrown*/ Boolean and;
+						if (CAUGHT_not_0 == ValueUtil.FALSE_VALUE) {
+							and = ValueUtil.FALSE_VALUE;
+						} else {
+							/*@Caught*/ Object CAUGHT_or;
+							try {
+								/*@Caught*/ Object CAUGHT_eq_0;
+								try {
+									if (CAUGHT_basedOnAction instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_basedOnAction;
+									}
+									final /*@Thrown*/ PolicyStatement statement_0 = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+											.getStatement();
+									final /*@Thrown*/ Principal whose_0 = statement_0.getWhose();
+									final /*@NonInvalid*/ Principal who = this.getWho();
+									final /*@Thrown*/ boolean eq_0 = who.equals(whose_0);
+									CAUGHT_eq_0 = eq_0;
+								} catch (Exception e) {
+									CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean or;
+								if (CAUGHT_eq_0 == ValueUtil.TRUE_VALUE) {
+									or = ValueUtil.TRUE_VALUE;
+								} else {
+									/*@Caught*/ Object CAUGHT_exists;
+									try {
+										if (CAUGHT_basedOnAction instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_basedOnAction;
+										}
+										final /*@Thrown*/ PolicyStatement statement_1 = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+												.getStatement();
+										final /*@Thrown*/ Principal whose_1 = statement_1.getWhose();
+										if (whose_1 == null) {
+											throw new InvalidValueException(
+													"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
+										}
+										final /*@Thrown*/ List<Principal> responsiblePersons = whose_1
+												.getResponsiblePersons();
+										final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons = idResolver
+												.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal,
+														responsiblePersons);
+										/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+										Iterator<Object> ITERATOR_rp = BOXED_responsiblePersons.iterator();
+										/*@Thrown*/ Boolean exists;
+										while (true) {
+											if (!ITERATOR_rp.hasNext()) {
+												if (accumulator == ValueUtil.FALSE_VALUE) {
+													exists = ValueUtil.FALSE_VALUE;
+												} else {
+													throw (InvalidValueException) accumulator;
+												}
+												break;
+											}
+											/*@NonInvalid*/ Principal rp = (Principal) ITERATOR_rp.next();
+											/**
+											 * rp = self.who
+											 */
+											final /*@NonInvalid*/ Principal who_0 = this.getWho();
+											final /*@NonInvalid*/ boolean eq_1 = rp.equals(who_0);
+											//
+											if (eq_1) { // Normal successful body evaluation result
+												exists = ValueUtil.TRUE_VALUE;
+												break; // Stop immediately
+											} else if (!eq_1) { // Normal unsuccessful body evaluation result
+												; // Carry on
+											} else { // Impossible badly typed result
+												accumulator = new InvalidValueException(PivotMessages.NonBooleanBody,
+														"exists");
+											}
+										}
+										CAUGHT_exists = exists;
+									} catch (Exception e) {
+										CAUGHT_exists = ValueUtil.createInvalidValue(e);
+									}
+									if (CAUGHT_exists == ValueUtil.TRUE_VALUE) {
+										or = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq_0 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq_0;
+										}
+										if (CAUGHT_exists instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_exists;
+										}
+										if (CAUGHT_exists == null) {
+											or = null;
+										} else {
+											or = ValueUtil.FALSE_VALUE;
+										}
+									}
+								}
+								CAUGHT_or = or;
+							} catch (Exception e) {
+								CAUGHT_or = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_or == ValueUtil.FALSE_VALUE) {
+								and = ValueUtil.FALSE_VALUE;
+							} else {
+								if (CAUGHT_not_0 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_not_0;
+								}
+								if (CAUGHT_or instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_or;
+								}
+								if ((CAUGHT_not_0 == null) || (CAUGHT_or == null)) {
+									and = null;
+								} else {
+									and = ValueUtil.TRUE_VALUE;
+								}
+							}
+						}
+						status = and;
+					}
+					final /*@Thrown*/ boolean eq_2 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_1;
+					if (eq_2) {
+						local_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Based_32_on_32_Art21, status);
+						local_1 = local_0;
+					}
+					CAUGHT_local_1 = local_1;
+				} catch (Exception e) {
+					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean SubjectShouldBeNotifiedAboutWithdrawal(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Complaint::SubjectShouldBeNotifiedAboutWithdrawal";
+		try {
+			/**
+			 *
+			 * inv SubjectShouldBeNotifiedAboutWithdrawal:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = if self.action.oclIsKindOf(Withdraw)
+			 *           then
+			 *             PrivacyPolicy.allInstances()
+			 *             ->asSequence()
+			 *             ->first()
+			 *             .notifications->exists(notification | notification.causedBy = self and notification.type = NotificationType::Withdraw)
+			 *           else true
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Based on Art19', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_1;
+				try {
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_Withdraw_0 = idResolver
+							.getClass(PrivacyModelTables.CLSSid_Withdraw, null);
+					final /*@NonInvalid*/ AbstractComplaintAction action = this.getAction();
+					final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
+							.evaluate(executor, action, TYP_privacyModel_c_c_Withdraw_0).booleanValue();
+					/*@Thrown*/ Boolean status;
+					if (oclIsKindOf) {
+						final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
+								.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
+						final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(
+								executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
+								TYP_privacyModel_c_c_PrivacyPolicy_0);
+						final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
+								.evaluate(allInstances);
+						final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
+								.evaluate(asSequence);
+						if (first == null) {
+							throw new InvalidValueException(
+									"Null source for \'\'http://privacymodel\'::PrivacyPolicy::notifications\'");
+						}
+						final /*@Thrown*/ List<privacyModel.Notification> notifications = first.getNotifications();
+						final /*@Thrown*/ OrderedSetValue BOXED_notifications = idResolver
+								.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Notification, notifications);
+						/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+						Iterator<Object> ITERATOR_notification = BOXED_notifications.iterator();
+						/*@Thrown*/ Boolean exists;
+						while (true) {
+							if (!ITERATOR_notification.hasNext()) {
+								if (accumulator == null) {
+									exists = null;
+								} else if (accumulator == ValueUtil.FALSE_VALUE) {
+									exists = ValueUtil.FALSE_VALUE;
+								} else {
+									throw (InvalidValueException) accumulator;
+								}
+								break;
+							}
+							/*@NonInvalid*/ privacyModel.Notification notification = (privacyModel.Notification) ITERATOR_notification
+									.next();
+							/**
+							 * notification.causedBy = self and notification.type = NotificationType::Withdraw
+							 */
+							final /*@NonInvalid*/ NotificationInfo causedBy = notification.getCausedBy();
+							final /*@NonInvalid*/ boolean eq = causedBy.equals(this);
+							final /*@NonInvalid*/ Boolean and;
+							if (!eq) {
+								and = ValueUtil.FALSE_VALUE;
+							} else {
+								final /*@NonInvalid*/ NotificationType type = notification.getType();
+								final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_NotificationType
+										.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
+								final /*@NonInvalid*/ boolean eq_0 = BOXED_type == PrivacyModelTables.ELITid_Withdraw;
+								if (!eq_0) {
+									and = ValueUtil.FALSE_VALUE;
+								} else {
+									and = ValueUtil.TRUE_VALUE;
+								}
+							}
+							//
+							if (and == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+								exists = ValueUtil.TRUE_VALUE;
+								break; // Stop immediately
+							} else if (and == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+								; // Carry on
+							} else if (and == null) { // Abnormal null body evaluation result
+								if (accumulator == ValueUtil.FALSE_VALUE) {
+									accumulator = null; // Cache a null failure
+								}
+							} else { // Impossible badly typed result
+								accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+							}
+						}
+						status = exists;
+					} else {
+						status = ValueUtil.TRUE_VALUE;
+					}
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_1;
+					if (eq_1) {
+						local_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Based_32_on_32_Art19, status);
+						local_1 = local_0;
+					}
+					CAUGHT_local_1 = local_1;
+				} catch (Exception e) {
+					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean StopProcessingShouldBeExecutedAsSoonAsPossible(final DiagnosticChain diagnostics,
 			final Map<Object, Object> context) {
 		final String constraintName = "Complaint::StopProcessingShouldBeExecutedAsSoonAsPossible";
@@ -1643,13 +2044,247 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UserDoesntHavePermissionToWithdrawConsent(final DiagnosticChain diagnostics,
+	public boolean ErasureShouldBeExecutedAsSoonAsPossible(final DiagnosticChain diagnostics,
 			final Map<Object, Object> context) {
-		final String constraintName = "Complaint::UserDoesntHavePermissionToWithdrawConsent";
+		final String constraintName = "Complaint::ErasureShouldBeExecutedAsSoonAsPossible";
 		try {
 			/**
 			 *
-			 * inv UserDoesntHavePermissionToWithdrawConsent:
+			 * inv ErasureShouldBeExecutedAsSoonAsPossible:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = doesPolicyStatementExists(Action::Erasure, ComplaintBasedOnDataType::Erasure)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Based on Art17', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.COMPLAINT___ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				final /*@NonInvalid*/ Action ECORE_ELITid_Erasure = (Action) idResolver.ecoreValueOf(Enumerator.class,
+						PrivacyModelTables.ELITid_Erasure);
+				final /*@NonInvalid*/ ComplaintBasedOnDataType ECORE_ELITid_Erasure_0 = (ComplaintBasedOnDataType) idResolver
+						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_Erasure_0);
+				final /*@NonInvalid*/ boolean status = this.doesPolicyStatementExists(ECORE_ELITid_Erasure,
+						ECORE_ELITid_Erasure_0);
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+							PrivacyModelTables.STR_Based_32_on_32_Art17, status);
+					local_1 = local_0;
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean SubjectShouldBeNotifiedAboutExistingComplaintForErasure(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Complaint::SubjectShouldBeNotifiedAboutExistingComplaintForErasure";
+		try {
+			/**
+			 *
+			 * inv SubjectShouldBeNotifiedAboutExistingComplaintForErasure:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = if
+			 *             self.action.oclIsKindOf(ComplaintBasedOnData)
+			 *           then
+			 *             let
+			 *               basedOnData : ComplaintBasedOnData[1] = self.action.oclAsType(ComplaintBasedOnData)
+			 *             in
+			 *               if basedOnData.type = ComplaintBasedOnDataType::Erasure
+			 *               then
+			 *                 PrivacyPolicy.allInstances()
+			 *                 ->asSequence()
+			 *                 ->first()
+			 *                 .notifications->exists(notification | notification.causedBy = self and notification.type = NotificationType::Erasure)
+			 *               else true
+			 *               endif
+			 *           else true
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Based on Art19', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_3;
+			if (le) {
+				local_3 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_2;
+				try {
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_ComplaintBasedOnData_0 = idResolver
+							.getClass(PrivacyModelTables.CLSSid_ComplaintBasedOnData, null);
+					final /*@NonInvalid*/ AbstractComplaintAction action = this.getAction();
+					final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
+							.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnData_0).booleanValue();
+					/*@Thrown*/ Boolean status;
+					if (oclIsKindOf) {
+						final /*@Thrown*/ ComplaintBasedOnData basedOnData = (ComplaintBasedOnData) OclAnyOclAsTypeOperation.INSTANCE
+								.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnData_0);
+						final /*@Thrown*/ ComplaintBasedOnDataType type = basedOnData.getType();
+						final /*@Thrown*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_ComplaintBasedOnDataType
+								.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
+						final /*@Thrown*/ boolean eq = BOXED_type == PrivacyModelTables.ELITid_Erasure_0;
+						/*@Thrown*/ Boolean local_0;
+						if (eq) {
+							final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
+									.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
+							final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
+									.evaluate(executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
+											TYP_privacyModel_c_c_PrivacyPolicy_0);
+							final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
+									.evaluate(allInstances);
+							final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
+									.evaluate(asSequence);
+							if (first == null) {
+								throw new InvalidValueException(
+										"Null source for \'\'http://privacymodel\'::PrivacyPolicy::notifications\'");
+							}
+							final /*@Thrown*/ List<privacyModel.Notification> notifications = first.getNotifications();
+							final /*@Thrown*/ OrderedSetValue BOXED_notifications = idResolver
+									.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Notification, notifications);
+							/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+							Iterator<Object> ITERATOR_notification = BOXED_notifications.iterator();
+							/*@Thrown*/ Boolean exists;
+							while (true) {
+								if (!ITERATOR_notification.hasNext()) {
+									if (accumulator == null) {
+										exists = null;
+									} else if (accumulator == ValueUtil.FALSE_VALUE) {
+										exists = ValueUtil.FALSE_VALUE;
+									} else {
+										throw (InvalidValueException) accumulator;
+									}
+									break;
+								}
+								/*@NonInvalid*/ privacyModel.Notification notification = (privacyModel.Notification) ITERATOR_notification
+										.next();
+								/**
+								 * notification.causedBy = self and notification.type = NotificationType::Erasure
+								 */
+								final /*@NonInvalid*/ NotificationInfo causedBy = notification.getCausedBy();
+								final /*@NonInvalid*/ boolean eq_0 = causedBy.equals(this);
+								final /*@NonInvalid*/ Boolean and;
+								if (!eq_0) {
+									and = ValueUtil.FALSE_VALUE;
+								} else {
+									final /*@NonInvalid*/ NotificationType type_0 = notification.getType();
+									final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_0 = PrivacyModelTables.ENUMid_NotificationType
+											.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
+									final /*@NonInvalid*/ boolean eq_1 = BOXED_type_0 == PrivacyModelTables.ELITid_Erasure_1;
+									if (!eq_1) {
+										and = ValueUtil.FALSE_VALUE;
+									} else {
+										and = ValueUtil.TRUE_VALUE;
+									}
+								}
+								//
+								if (and == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+									exists = ValueUtil.TRUE_VALUE;
+									break; // Stop immediately
+								} else if (and == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+									; // Carry on
+								} else if (and == null) { // Abnormal null body evaluation result
+									if (accumulator == ValueUtil.FALSE_VALUE) {
+										accumulator = null; // Cache a null failure
+									}
+								} else { // Impossible badly typed result
+									accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+								}
+							}
+							local_0 = exists;
+						} else {
+							local_0 = ValueUtil.TRUE_VALUE;
+						}
+						status = local_0;
+					} else {
+						status = ValueUtil.TRUE_VALUE;
+					}
+					final /*@Thrown*/ boolean eq_2 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_2;
+					if (eq_2) {
+						local_2 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_1 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Based_32_on_32_Art19, status);
+						local_2 = local_1;
+					}
+					CAUGHT_local_2 = local_2;
+				} catch (Exception e) {
+					CAUGHT_local_2 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_2, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_3 = logDiagnostic;
+			}
+			return local_3;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean UserDoesNotHavePermissionToWithdrawConsent(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Complaint::UserDoesNotHavePermissionToWithdrawConsent";
+		try {
+			/**
+			 *
+			 * inv UserDoesNotHavePermissionToWithdrawConsent:
 			 *   let severity : Integer[1] = constraintName.getSeverity()
 			 *   in
 			 *     if severity <= 0
@@ -1678,7 +2313,7 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					PrivacyModelPackage.Literals.COMPLAINT___USER_DOESNT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT__DIAGNOSTICCHAIN_MAP);
+					PrivacyModelPackage.Literals.COMPLAINT___USER_DOES_NOT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_2;
@@ -1826,78 +2461,13 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean ErasureShouldBeExecutedAsSoonAsPossible(final DiagnosticChain diagnostics,
+	public boolean ConsentWithdrawalShouldBeExecutedAsSoonAsPossible(final DiagnosticChain diagnostics,
 			final Map<Object, Object> context) {
-		final String constraintName = "Complaint::ErasureShouldBeExecutedAsSoonAsPossible";
+		final String constraintName = "Complaint::ConsentWithdrawalShouldBeExecutedAsSoonAsPossible";
 		try {
 			/**
 			 *
-			 * inv ErasureShouldBeExecutedAsSoonAsPossible:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : OclAny[1] = let
-			 *           status : Boolean[1] = doesPolicyStatementExists(Action::Erasure, ComplaintBasedOnDataType::Erasure)
-			 *         in
-			 *           if status = true
-			 *           then true
-			 *           else Tuple{message = 'Based on Art17', status = status}
-			 *           endif
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					PrivacyModelPackage.Literals.COMPLAINT___ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_2;
-			if (le) {
-				local_2 = true;
-			} else {
-				final /*@NonInvalid*/ Action ECORE_ELITid_Erasure = (Action) idResolver.ecoreValueOf(Enumerator.class,
-						PrivacyModelTables.ELITid_Erasure);
-				final /*@NonInvalid*/ ComplaintBasedOnDataType ECORE_ELITid_Erasure_0 = (ComplaintBasedOnDataType) idResolver
-						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_Erasure_0);
-				final /*@NonInvalid*/ boolean status = this.doesPolicyStatementExists(ECORE_ELITid_Erasure,
-						ECORE_ELITid_Erasure_0);
-				/*@NonInvalid*/ Object local_1;
-				if (status) {
-					local_1 = ValueUtil.TRUE_VALUE;
-				} else {
-					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
-							PrivacyModelTables.STR_Based_32_on_32_Art17, status);
-					local_1 = local_0;
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, local_1, PrivacyModelTables.INT_0)
-						.booleanValue();
-				local_2 = logDiagnostic;
-			}
-			return local_2;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean WithdrawConsentShouldBeExecutedAsSoonAsPossible(final DiagnosticChain diagnostics,
-			final Map<Object, Object> context) {
-		final String constraintName = "Complaint::WithdrawConsentShouldBeExecutedAsSoonAsPossible";
-		try {
-			/**
-			 *
-			 * inv WithdrawConsentShouldBeExecutedAsSoonAsPossible:
+			 * inv ConsentWithdrawalShouldBeExecutedAsSoonAsPossible:
 			 *   let severity : Integer[1] = constraintName.getSeverity()
 			 *   in
 			 *     if severity <= 0
@@ -1933,7 +2503,7 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					PrivacyModelPackage.Literals.COMPLAINT___WITHDRAW_CONSENT_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP);
+					PrivacyModelPackage.Literals.COMPLAINT___CONSENT_WITHDRAWAL_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_3;
@@ -2227,175 +2797,6 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 					} else {
 						final /*@Thrown*/ TupleValue local_1 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
 								PrivacyModelTables.STR_Based_32_on_32_Art7, local_0);
-						local_2 = local_1;
-					}
-					CAUGHT_local_2 = local_2;
-				} catch (Exception e) {
-					CAUGHT_local_2 = ValueUtil.createInvalidValue(e);
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_local_2, PrivacyModelTables.INT_0)
-						.booleanValue();
-				local_3 = logDiagnostic;
-			}
-			return local_3;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean SubjectShouldBeNotifiedAboutExistingComplaintForErasure(final DiagnosticChain diagnostics,
-			final Map<Object, Object> context) {
-		final String constraintName = "Complaint::SubjectShouldBeNotifiedAboutExistingComplaintForErasure";
-		try {
-			/**
-			 *
-			 * inv SubjectShouldBeNotifiedAboutExistingComplaintForErasure:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : OclAny[1] = let
-			 *           status : Boolean[?] = if
-			 *             self.action.oclIsKindOf(ComplaintBasedOnData)
-			 *           then
-			 *             let
-			 *               basedOnData : ComplaintBasedOnData[1] = self.action.oclAsType(ComplaintBasedOnData)
-			 *             in
-			 *               if basedOnData.type = ComplaintBasedOnDataType::Erasure
-			 *               then
-			 *                 PrivacyPolicy.allInstances()
-			 *                 ->asSequence()
-			 *                 ->first()
-			 *                 .notifications->exists(notification | notification.causedBy = self and notification.type = NotificationType::Erasure)
-			 *               else true
-			 *               endif
-			 *           else true
-			 *           endif
-			 *         in
-			 *           if status = true
-			 *           then true
-			 *           else Tuple{message = 'Based on Art19', status = status}
-			 *           endif
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					PrivacyModelPackage.Literals.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_3;
-			if (le) {
-				local_3 = true;
-			} else {
-				/*@Caught*/ Object CAUGHT_local_2;
-				try {
-					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_ComplaintBasedOnData_0 = idResolver
-							.getClass(PrivacyModelTables.CLSSid_ComplaintBasedOnData, null);
-					final /*@NonInvalid*/ AbstractComplaintAction action = this.getAction();
-					final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
-							.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnData_0).booleanValue();
-					/*@Thrown*/ Boolean status;
-					if (oclIsKindOf) {
-						final /*@Thrown*/ ComplaintBasedOnData basedOnData = (ComplaintBasedOnData) OclAnyOclAsTypeOperation.INSTANCE
-								.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnData_0);
-						final /*@Thrown*/ ComplaintBasedOnDataType type = basedOnData.getType();
-						final /*@Thrown*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_ComplaintBasedOnDataType
-								.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
-						final /*@Thrown*/ boolean eq = BOXED_type == PrivacyModelTables.ELITid_Erasure_0;
-						/*@Thrown*/ Boolean local_0;
-						if (eq) {
-							final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
-									.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
-							final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
-									.evaluate(executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
-											TYP_privacyModel_c_c_PrivacyPolicy_0);
-							final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
-									.evaluate(allInstances);
-							final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
-									.evaluate(asSequence);
-							if (first == null) {
-								throw new InvalidValueException(
-										"Null source for \'\'http://privacymodel\'::PrivacyPolicy::notifications\'");
-							}
-							final /*@Thrown*/ List<privacyModel.Notification> notifications = first.getNotifications();
-							final /*@Thrown*/ OrderedSetValue BOXED_notifications = idResolver
-									.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Notification, notifications);
-							/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-							Iterator<Object> ITERATOR_notification = BOXED_notifications.iterator();
-							/*@Thrown*/ Boolean exists;
-							while (true) {
-								if (!ITERATOR_notification.hasNext()) {
-									if (accumulator == null) {
-										exists = null;
-									} else if (accumulator == ValueUtil.FALSE_VALUE) {
-										exists = ValueUtil.FALSE_VALUE;
-									} else {
-										throw (InvalidValueException) accumulator;
-									}
-									break;
-								}
-								/*@NonInvalid*/ privacyModel.Notification notification = (privacyModel.Notification) ITERATOR_notification
-										.next();
-								/**
-								 * notification.causedBy = self and notification.type = NotificationType::Erasure
-								 */
-								final /*@NonInvalid*/ NotificationInfo causedBy = notification.getCausedBy();
-								final /*@NonInvalid*/ boolean eq_0 = causedBy.equals(this);
-								final /*@NonInvalid*/ Boolean and;
-								if (!eq_0) {
-									and = ValueUtil.FALSE_VALUE;
-								} else {
-									final /*@NonInvalid*/ NotificationType type_0 = notification.getType();
-									final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_0 = PrivacyModelTables.ENUMid_NotificationType
-											.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
-									final /*@NonInvalid*/ boolean eq_1 = BOXED_type_0 == PrivacyModelTables.ELITid_Erasure_1;
-									if (!eq_1) {
-										and = ValueUtil.FALSE_VALUE;
-									} else {
-										and = ValueUtil.TRUE_VALUE;
-									}
-								}
-								//
-								if (and == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
-									exists = ValueUtil.TRUE_VALUE;
-									break; // Stop immediately
-								} else if (and == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
-									; // Carry on
-								} else if (and == null) { // Abnormal null body evaluation result
-									if (accumulator == ValueUtil.FALSE_VALUE) {
-										accumulator = null; // Cache a null failure
-									}
-								} else { // Impossible badly typed result
-									accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
-								}
-							}
-							local_0 = exists;
-						} else {
-							local_0 = ValueUtil.TRUE_VALUE;
-						}
-						status = local_0;
-					} else {
-						status = ValueUtil.TRUE_VALUE;
-					}
-					final /*@Thrown*/ boolean eq_2 = status == Boolean.TRUE;
-					/*@Thrown*/ Object local_2;
-					if (eq_2) {
-						local_2 = ValueUtil.TRUE_VALUE;
-					} else {
-						final /*@Thrown*/ TupleValue local_1 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
-								PrivacyModelTables.STR_Based_32_on_32_Art19, status);
 						local_2 = local_1;
 					}
 					CAUGHT_local_2 = local_2;
@@ -2775,407 +3176,6 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean UserDoesntHavePermissionToComplaint(final DiagnosticChain diagnostics,
-			final Map<Object, Object> context) {
-		final String constraintName = "Complaint::UserDoesntHavePermissionToComplaint";
-		try {
-			/**
-			 *
-			 * inv UserDoesntHavePermissionToComplaint:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : OclAny[1] = let
-			 *           status : Boolean[?] = if
-			 *             not self.action.oclIsKindOf(ComplaintBasedOnAction)
-			 *           then true
-			 *           else
-			 *             let
-			 *               basedOnAction : ComplaintBasedOnAction[1] = self.action.oclAsType(ComplaintBasedOnAction)
-			 *             in
-			 *               not (basedOnAction.statement.whose = null
-			 *               ) and
-			 *               (basedOnAction.statement.whose = self.who or
-			 *                 basedOnAction.statement.whose.responsiblePersons->exists(rp | rp = self.who)
-			 *               )
-			 *           endif
-			 *         in
-			 *           if status = true
-			 *           then true
-			 *           else Tuple{message = 'Based on Art21', status = status}
-			 *           endif
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					PrivacyModelPackage.Literals.COMPLAINT___USER_DOESNT_HAVE_PERMISSION_TO_COMPLAINT__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_2;
-			if (le) {
-				local_2 = true;
-			} else {
-				/*@Caught*/ Object CAUGHT_local_1;
-				try {
-					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_ComplaintBasedOnAction_0 = idResolver
-							.getClass(PrivacyModelTables.CLSSid_ComplaintBasedOnAction, null);
-					final /*@NonInvalid*/ AbstractComplaintAction action = this.getAction();
-					final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
-							.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction_0).booleanValue();
-					final /*@NonInvalid*/ Boolean not;
-					if (!oclIsKindOf) {
-						not = ValueUtil.TRUE_VALUE;
-					} else {
-						if (oclIsKindOf) {
-							not = ValueUtil.FALSE_VALUE;
-						} else {
-							not = null;
-						}
-					}
-					if (not == null) {
-						throw new InvalidValueException("Null if condition");
-					}
-					/*@Thrown*/ Boolean status;
-					if (not) {
-						status = ValueUtil.TRUE_VALUE;
-					} else {
-						/*@Caught*/ Object CAUGHT_basedOnAction;
-						try {
-							final /*@Thrown*/ ComplaintBasedOnAction basedOnAction = (ComplaintBasedOnAction) OclAnyOclAsTypeOperation.INSTANCE
-									.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction_0);
-							CAUGHT_basedOnAction = basedOnAction;
-						} catch (Exception e) {
-							CAUGHT_basedOnAction = ValueUtil.createInvalidValue(e);
-						}
-						/*@Caught*/ Object CAUGHT_not_0;
-						try {
-							/*@Caught*/ Object CAUGHT_eq;
-							try {
-								if (CAUGHT_basedOnAction instanceof InvalidValueException) {
-									throw (InvalidValueException) CAUGHT_basedOnAction;
-								}
-								final /*@Thrown*/ PolicyStatement statement = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
-										.getStatement();
-								final /*@Thrown*/ Principal whose = statement.getWhose();
-								final /*@Thrown*/ boolean eq = whose == null;
-								CAUGHT_eq = eq;
-							} catch (Exception e) {
-								CAUGHT_eq = ValueUtil.createInvalidValue(e);
-							}
-							if (CAUGHT_eq instanceof InvalidValueException) {
-								throw (InvalidValueException) CAUGHT_eq;
-							}
-							final /*@Thrown*/ Boolean not_0;
-							if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
-								not_0 = ValueUtil.TRUE_VALUE;
-							} else {
-								if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
-									not_0 = ValueUtil.FALSE_VALUE;
-								} else {
-									not_0 = null;
-								}
-							}
-							CAUGHT_not_0 = not_0;
-						} catch (Exception e) {
-							CAUGHT_not_0 = ValueUtil.createInvalidValue(e);
-						}
-						final /*@Thrown*/ Boolean and;
-						if (CAUGHT_not_0 == ValueUtil.FALSE_VALUE) {
-							and = ValueUtil.FALSE_VALUE;
-						} else {
-							/*@Caught*/ Object CAUGHT_or;
-							try {
-								/*@Caught*/ Object CAUGHT_eq_0;
-								try {
-									if (CAUGHT_basedOnAction instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_basedOnAction;
-									}
-									final /*@Thrown*/ PolicyStatement statement_0 = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
-											.getStatement();
-									final /*@Thrown*/ Principal whose_0 = statement_0.getWhose();
-									final /*@NonInvalid*/ Principal who = this.getWho();
-									final /*@Thrown*/ boolean eq_0 = who.equals(whose_0);
-									CAUGHT_eq_0 = eq_0;
-								} catch (Exception e) {
-									CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
-								}
-								final /*@Thrown*/ Boolean or;
-								if (CAUGHT_eq_0 == ValueUtil.TRUE_VALUE) {
-									or = ValueUtil.TRUE_VALUE;
-								} else {
-									/*@Caught*/ Object CAUGHT_exists;
-									try {
-										if (CAUGHT_basedOnAction instanceof InvalidValueException) {
-											throw (InvalidValueException) CAUGHT_basedOnAction;
-										}
-										final /*@Thrown*/ PolicyStatement statement_1 = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
-												.getStatement();
-										final /*@Thrown*/ Principal whose_1 = statement_1.getWhose();
-										if (whose_1 == null) {
-											throw new InvalidValueException(
-													"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
-										}
-										final /*@Thrown*/ List<Principal> responsiblePersons = whose_1
-												.getResponsiblePersons();
-										final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons = idResolver
-												.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal,
-														responsiblePersons);
-										/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-										Iterator<Object> ITERATOR_rp = BOXED_responsiblePersons.iterator();
-										/*@Thrown*/ Boolean exists;
-										while (true) {
-											if (!ITERATOR_rp.hasNext()) {
-												if (accumulator == ValueUtil.FALSE_VALUE) {
-													exists = ValueUtil.FALSE_VALUE;
-												} else {
-													throw (InvalidValueException) accumulator;
-												}
-												break;
-											}
-											/*@NonInvalid*/ Principal rp = (Principal) ITERATOR_rp.next();
-											/**
-											 * rp = self.who
-											 */
-											final /*@NonInvalid*/ Principal who_0 = this.getWho();
-											final /*@NonInvalid*/ boolean eq_1 = rp.equals(who_0);
-											//
-											if (eq_1) { // Normal successful body evaluation result
-												exists = ValueUtil.TRUE_VALUE;
-												break; // Stop immediately
-											} else if (!eq_1) { // Normal unsuccessful body evaluation result
-												; // Carry on
-											} else { // Impossible badly typed result
-												accumulator = new InvalidValueException(PivotMessages.NonBooleanBody,
-														"exists");
-											}
-										}
-										CAUGHT_exists = exists;
-									} catch (Exception e) {
-										CAUGHT_exists = ValueUtil.createInvalidValue(e);
-									}
-									if (CAUGHT_exists == ValueUtil.TRUE_VALUE) {
-										or = ValueUtil.TRUE_VALUE;
-									} else {
-										if (CAUGHT_eq_0 instanceof InvalidValueException) {
-											throw (InvalidValueException) CAUGHT_eq_0;
-										}
-										if (CAUGHT_exists instanceof InvalidValueException) {
-											throw (InvalidValueException) CAUGHT_exists;
-										}
-										if (CAUGHT_exists == null) {
-											or = null;
-										} else {
-											or = ValueUtil.FALSE_VALUE;
-										}
-									}
-								}
-								CAUGHT_or = or;
-							} catch (Exception e) {
-								CAUGHT_or = ValueUtil.createInvalidValue(e);
-							}
-							if (CAUGHT_or == ValueUtil.FALSE_VALUE) {
-								and = ValueUtil.FALSE_VALUE;
-							} else {
-								if (CAUGHT_not_0 instanceof InvalidValueException) {
-									throw (InvalidValueException) CAUGHT_not_0;
-								}
-								if (CAUGHT_or instanceof InvalidValueException) {
-									throw (InvalidValueException) CAUGHT_or;
-								}
-								if ((CAUGHT_not_0 == null) || (CAUGHT_or == null)) {
-									and = null;
-								} else {
-									and = ValueUtil.TRUE_VALUE;
-								}
-							}
-						}
-						status = and;
-					}
-					final /*@Thrown*/ boolean eq_2 = status == Boolean.TRUE;
-					/*@Thrown*/ Object local_1;
-					if (eq_2) {
-						local_1 = ValueUtil.TRUE_VALUE;
-					} else {
-						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
-								PrivacyModelTables.STR_Based_32_on_32_Art21, status);
-						local_1 = local_0;
-					}
-					CAUGHT_local_1 = local_1;
-				} catch (Exception e) {
-					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_local_1, PrivacyModelTables.INT_0)
-						.booleanValue();
-				local_2 = logDiagnostic;
-			}
-			return local_2;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean SubjectShouldBeNotifiedAboutWithdraw(final DiagnosticChain diagnostics,
-			final Map<Object, Object> context) {
-		final String constraintName = "Complaint::SubjectShouldBeNotifiedAboutWithdraw";
-		try {
-			/**
-			 *
-			 * inv SubjectShouldBeNotifiedAboutWithdraw:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : OclAny[1] = let
-			 *           status : Boolean[?] = if self.action.oclIsKindOf(Withdraw)
-			 *           then
-			 *             PrivacyPolicy.allInstances()
-			 *             ->asSequence()
-			 *             ->first()
-			 *             .notifications->exists(notification | notification.causedBy = self and notification.type = NotificationType::Withdraw)
-			 *           else true
-			 *           endif
-			 *         in
-			 *           if status = true
-			 *           then true
-			 *           else Tuple{message = 'Based on Art19', status = status}
-			 *           endif
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					PrivacyModelPackage.Literals.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAW__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_2;
-			if (le) {
-				local_2 = true;
-			} else {
-				/*@Caught*/ Object CAUGHT_local_1;
-				try {
-					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_Withdraw_0 = idResolver
-							.getClass(PrivacyModelTables.CLSSid_Withdraw, null);
-					final /*@NonInvalid*/ AbstractComplaintAction action = this.getAction();
-					final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
-							.evaluate(executor, action, TYP_privacyModel_c_c_Withdraw_0).booleanValue();
-					/*@Thrown*/ Boolean status;
-					if (oclIsKindOf) {
-						final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
-								.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
-						final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(
-								executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
-								TYP_privacyModel_c_c_PrivacyPolicy_0);
-						final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
-								.evaluate(allInstances);
-						final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
-								.evaluate(asSequence);
-						if (first == null) {
-							throw new InvalidValueException(
-									"Null source for \'\'http://privacymodel\'::PrivacyPolicy::notifications\'");
-						}
-						final /*@Thrown*/ List<privacyModel.Notification> notifications = first.getNotifications();
-						final /*@Thrown*/ OrderedSetValue BOXED_notifications = idResolver
-								.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Notification, notifications);
-						/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-						Iterator<Object> ITERATOR_notification = BOXED_notifications.iterator();
-						/*@Thrown*/ Boolean exists;
-						while (true) {
-							if (!ITERATOR_notification.hasNext()) {
-								if (accumulator == null) {
-									exists = null;
-								} else if (accumulator == ValueUtil.FALSE_VALUE) {
-									exists = ValueUtil.FALSE_VALUE;
-								} else {
-									throw (InvalidValueException) accumulator;
-								}
-								break;
-							}
-							/*@NonInvalid*/ privacyModel.Notification notification = (privacyModel.Notification) ITERATOR_notification
-									.next();
-							/**
-							 * notification.causedBy = self and notification.type = NotificationType::Withdraw
-							 */
-							final /*@NonInvalid*/ NotificationInfo causedBy = notification.getCausedBy();
-							final /*@NonInvalid*/ boolean eq = causedBy.equals(this);
-							final /*@NonInvalid*/ Boolean and;
-							if (!eq) {
-								and = ValueUtil.FALSE_VALUE;
-							} else {
-								final /*@NonInvalid*/ NotificationType type = notification.getType();
-								final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_NotificationType
-										.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
-								final /*@NonInvalid*/ boolean eq_0 = BOXED_type == PrivacyModelTables.ELITid_Withdraw;
-								if (!eq_0) {
-									and = ValueUtil.FALSE_VALUE;
-								} else {
-									and = ValueUtil.TRUE_VALUE;
-								}
-							}
-							//
-							if (and == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
-								exists = ValueUtil.TRUE_VALUE;
-								break; // Stop immediately
-							} else if (and == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
-								; // Carry on
-							} else if (and == null) { // Abnormal null body evaluation result
-								if (accumulator == ValueUtil.FALSE_VALUE) {
-									accumulator = null; // Cache a null failure
-								}
-							} else { // Impossible badly typed result
-								accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
-							}
-						}
-						status = exists;
-					} else {
-						status = ValueUtil.TRUE_VALUE;
-					}
-					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
-					/*@Thrown*/ Object local_1;
-					if (eq_1) {
-						local_1 = ValueUtil.TRUE_VALUE;
-					} else {
-						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
-								PrivacyModelTables.STR_Based_32_on_32_Art19, status);
-						local_1 = local_0;
-					}
-					CAUGHT_local_1 = local_1;
-				} catch (Exception e) {
-					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_local_1, PrivacyModelTables.INT_0)
-						.booleanValue();
-				local_2 = logDiagnostic;
-			}
-			return local_2;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean SubjectShouldBeNotifiedAboutExistingComplaintForRectification(final DiagnosticChain diagnostics,
 			final Map<Object, Object> context) {
 		final String constraintName = "Complaint::SubjectShouldBeNotifiedAboutExistingComplaintForRectification";
@@ -3461,23 +3461,23 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 		case PrivacyModelPackage.COMPLAINT___CANNOT_IDENTIFY_DATA_FROM_COMPLAINT__DIAGNOSTICCHAIN_MAP:
 			return CannotIdentifyDataFromComplaint((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.COMPLAINT___USER_DOESNT_HAVE_PERMISSION_TO_COMPLAINT__DIAGNOSTICCHAIN_MAP:
-			return UserDoesntHavePermissionToComplaint((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.COMPLAINT___USER_DOES_NOT_HAVE_PERMISSION_TO_COMPLAIN__DIAGNOSTICCHAIN_MAP:
+			return UserDoesNotHavePermissionToComplain((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAW__DIAGNOSTICCHAIN_MAP:
-			return SubjectShouldBeNotifiedAboutWithdraw((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL__DIAGNOSTICCHAIN_MAP:
+			return SubjectShouldBeNotifiedAboutWithdrawal((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.COMPLAINT___ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP:
 			return ErasureShouldBeExecutedAsSoonAsPossible((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.COMPLAINT___WITHDRAW_CONSENT_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP:
-			return WithdrawConsentShouldBeExecutedAsSoonAsPossible((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE__DIAGNOSTICCHAIN_MAP:
 			return SubjectShouldBeNotifiedAboutExistingComplaintForErasure((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.COMPLAINT___USER_DOESNT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT__DIAGNOSTICCHAIN_MAP:
-			return UserDoesntHavePermissionToWithdrawConsent((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.COMPLAINT___USER_DOES_NOT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT__DIAGNOSTICCHAIN_MAP:
+			return UserDoesNotHavePermissionToWithdrawConsent((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.COMPLAINT___CONSENT_WITHDRAWAL_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP:
+			return ConsentWithdrawalShouldBeExecutedAsSoonAsPossible((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_RECTIFICATION__DIAGNOSTICCHAIN_MAP:
 			return SubjectShouldBeNotifiedAboutExistingComplaintForRectification((DiagnosticChain) arguments.get(0),

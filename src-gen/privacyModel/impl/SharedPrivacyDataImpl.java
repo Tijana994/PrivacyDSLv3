@@ -243,13 +243,122 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean ProtectionControlShouldExistsInConfiguration(final DiagnosticChain diagnostics,
+	public boolean DataSourceShouldExistInConfiguration(final DiagnosticChain diagnostics,
 			final Map<Object, Object> context) {
-		final String constraintName = "SharedPrivacyData::ProtectionControlShouldExistsInConfiguration";
+		final String constraintName = "SharedPrivacyData::DataSourceShouldExistInConfiguration";
 		try {
 			/**
 			 *
-			 * inv ProtectionControlShouldExistsInConfiguration:
+			 * inv DataSourceShouldExistInConfiguration:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let status : Boolean[?] = self.dataSource = null or
+			 *           PrivacyPolicy.allInstances()
+			 *           ->asSequence()
+			 *           ->first()
+			 *           .privacyPolicyHelper.isDataSourceValid(self.dataSource)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Data source should be defined in configuration.', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA___DATA_SOURCE_SHOULD_EXIST_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_1;
+				try {
+					final /*@NonInvalid*/ String dataSource_0 = this.getDataSource();
+					final /*@NonInvalid*/ boolean eq = dataSource_0 == null;
+					final /*@Thrown*/ Boolean status;
+					if (eq) {
+						status = ValueUtil.TRUE_VALUE;
+					} else {
+						/*@Caught*/ Object CAUGHT_isDataSourceValid;
+						try {
+							final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
+									.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
+							final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
+									.evaluate(executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
+											TYP_privacyModel_c_c_PrivacyPolicy_0);
+							final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
+									.evaluate(allInstances);
+							final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
+									.evaluate(asSequence);
+							if (first == null) {
+								throw new InvalidValueException(
+										"Null source for \'\'http://privacymodel\'::PrivacyPolicy::privacyPolicyHelper\'");
+							}
+							final /*@Thrown*/ PrivacyPolicyHelper privacyPolicyHelper = first.getPrivacyPolicyHelper();
+							final /*@Thrown*/ boolean isDataSourceValid = privacyPolicyHelper
+									.isDataSourceValid(dataSource_0);
+							CAUGHT_isDataSourceValid = isDataSourceValid;
+						} catch (Exception e) {
+							CAUGHT_isDataSourceValid = ValueUtil.createInvalidValue(e);
+						}
+						if (CAUGHT_isDataSourceValid == ValueUtil.TRUE_VALUE) {
+							status = ValueUtil.TRUE_VALUE;
+						} else {
+							if (CAUGHT_isDataSourceValid instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_isDataSourceValid;
+							}
+							status = ValueUtil.FALSE_VALUE;
+						}
+					}
+					final /*@Thrown*/ boolean eq_0 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_1;
+					if (eq_0) {
+						local_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Data_32_source_32_should_32_be_32_defined_32_in_32_configuration,
+								status);
+						local_1 = local_0;
+					}
+					CAUGHT_local_1 = local_1;
+				} catch (Exception e) {
+					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ProtectionControlShouldExistInConfiguration(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "SharedPrivacyData::ProtectionControlShouldExistInConfiguration";
+		try {
+			/**
+			 *
+			 * inv ProtectionControlShouldExistInConfiguration:
 			 *   let severity : Integer[1] = constraintName.getSeverity()
 			 *   in
 			 *     if severity <= 0
@@ -276,7 +385,7 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP);
+					PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA___PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_2;
@@ -350,115 +459,6 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 					} else {
 						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
 								PrivacyModelTables.STR_Protection_32_controls_32_should_32_be_32_defined_32_in_32_configuration,
-								status);
-						local_1 = local_0;
-					}
-					CAUGHT_local_1 = local_1;
-				} catch (Exception e) {
-					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_local_1, PrivacyModelTables.INT_0)
-						.booleanValue();
-				local_2 = logDiagnostic;
-			}
-			return local_2;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean DataSourceShouldExistsInConfiguration(final DiagnosticChain diagnostics,
-			final Map<Object, Object> context) {
-		final String constraintName = "SharedPrivacyData::DataSourceShouldExistsInConfiguration";
-		try {
-			/**
-			 *
-			 * inv DataSourceShouldExistsInConfiguration:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : OclAny[1] = let status : Boolean[?] = self.dataSource = null or
-			 *           PrivacyPolicy.allInstances()
-			 *           ->asSequence()
-			 *           ->first()
-			 *           .privacyPolicyHelper.isDataSourceValid(self.dataSource)
-			 *         in
-			 *           if status = true
-			 *           then true
-			 *           else
-			 *             Tuple{message = 'Data source should be defined in configuration.', status = status
-			 *             }
-			 *           endif
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA___DATA_SOURCE_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_2;
-			if (le) {
-				local_2 = true;
-			} else {
-				/*@Caught*/ Object CAUGHT_local_1;
-				try {
-					final /*@NonInvalid*/ String dataSource_0 = this.getDataSource();
-					final /*@NonInvalid*/ boolean eq = dataSource_0 == null;
-					final /*@Thrown*/ Boolean status;
-					if (eq) {
-						status = ValueUtil.TRUE_VALUE;
-					} else {
-						/*@Caught*/ Object CAUGHT_isDataSourceValid;
-						try {
-							final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
-									.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
-							final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
-									.evaluate(executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
-											TYP_privacyModel_c_c_PrivacyPolicy_0);
-							final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
-									.evaluate(allInstances);
-							final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
-									.evaluate(asSequence);
-							if (first == null) {
-								throw new InvalidValueException(
-										"Null source for \'\'http://privacymodel\'::PrivacyPolicy::privacyPolicyHelper\'");
-							}
-							final /*@Thrown*/ PrivacyPolicyHelper privacyPolicyHelper = first.getPrivacyPolicyHelper();
-							final /*@Thrown*/ boolean isDataSourceValid = privacyPolicyHelper
-									.isDataSourceValid(dataSource_0);
-							CAUGHT_isDataSourceValid = isDataSourceValid;
-						} catch (Exception e) {
-							CAUGHT_isDataSourceValid = ValueUtil.createInvalidValue(e);
-						}
-						if (CAUGHT_isDataSourceValid == ValueUtil.TRUE_VALUE) {
-							status = ValueUtil.TRUE_VALUE;
-						} else {
-							if (CAUGHT_isDataSourceValid instanceof InvalidValueException) {
-								throw (InvalidValueException) CAUGHT_isDataSourceValid;
-							}
-							status = ValueUtil.FALSE_VALUE;
-						}
-					}
-					final /*@Thrown*/ boolean eq_0 = status == Boolean.TRUE;
-					/*@Thrown*/ Object local_1;
-					if (eq_0) {
-						local_1 = ValueUtil.TRUE_VALUE;
-					} else {
-						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
-								PrivacyModelTables.STR_Data_32_source_32_should_32_be_32_defined_32_in_32_configuration,
 								status);
 						local_1 = local_0;
 					}
@@ -579,11 +579,11 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case PrivacyModelPackage.SHARED_PRIVACY_DATA___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
-			return ProtectionControlShouldExistsInConfiguration((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.SHARED_PRIVACY_DATA___DATA_SOURCE_SHOULD_EXIST_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
+			return DataSourceShouldExistInConfiguration((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.SHARED_PRIVACY_DATA___DATA_SOURCE_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
-			return DataSourceShouldExistsInConfiguration((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.SHARED_PRIVACY_DATA___PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
+			return ProtectionControlShouldExistInConfiguration((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

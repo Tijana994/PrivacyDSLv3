@@ -1246,102 +1246,6 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean ProtectionControlShouldExistsInConfiguration(final DiagnosticChain diagnostics,
-			final Map<Object, Object> context) {
-		final String constraintName = "PrivacyPolicy::ProtectionControlShouldExistsInConfiguration";
-		try {
-			/**
-			 *
-			 * inv ProtectionControlShouldExistsInConfiguration:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : OclAny[1] = let
-			 *           status : Boolean[?] = self.defaultProtectionControls->forAll(protectionControl |
-			 *             self.privacyPolicyHelper.isPolicyControlValid(protectionControl))
-			 *         in
-			 *           if status = true
-			 *           then true
-			 *           else
-			 *             Tuple{message = 'Protection controls should be defined in configuration.', status = status
-			 *             }
-			 *           endif
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					PrivacyModelPackage.Literals.PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_2;
-			if (le) {
-				local_2 = true;
-			} else {
-				final /*@NonInvalid*/ List<String> defaultProtectionControls = this.getDefaultProtectionControls();
-				final /*@NonInvalid*/ OrderedSetValue BOXED_defaultProtectionControls = idResolver
-						.createOrderedSetOfAll(PrivacyModelTables.ORD_PRIMid_String, defaultProtectionControls);
-				/*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-				Iterator<Object> ITERATOR_protectionControl = BOXED_defaultProtectionControls.iterator();
-				/*@NonInvalid*/ Boolean status;
-				while (true) {
-					if (!ITERATOR_protectionControl.hasNext()) {
-						if (accumulator == ValueUtil.TRUE_VALUE) {
-							status = ValueUtil.TRUE_VALUE;
-						} else {
-							throw (InvalidValueException) accumulator;
-						}
-						break;
-					}
-					/*@NonInvalid*/ String protectionControl = (String) ITERATOR_protectionControl.next();
-					/**
-					 * self.privacyPolicyHelper.isPolicyControlValid(protectionControl)
-					 */
-					final /*@NonInvalid*/ PrivacyPolicyHelper privacyPolicyHelper = this.getPrivacyPolicyHelper();
-					final /*@NonInvalid*/ boolean isPolicyControlValid = privacyPolicyHelper
-							.isPolicyControlValid(protectionControl);
-					//
-					if (!isPolicyControlValid) { // Normal unsuccessful body evaluation result
-						status = ValueUtil.FALSE_VALUE;
-						break; // Stop immediately
-					} else if (isPolicyControlValid) { // Normal successful body evaluation result
-						; // Carry on
-					} else { // Impossible badly typed result
-						accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "forAll");
-					}
-				}
-				final /*@NonInvalid*/ boolean eq = status == Boolean.TRUE;
-				/*@NonInvalid*/ Object local_1;
-				if (eq) {
-					local_1 = ValueUtil.TRUE_VALUE;
-				} else {
-					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
-							PrivacyModelTables.STR_Protection_32_controls_32_should_32_be_32_defined_32_in_32_configuration,
-							status);
-					local_1 = local_0;
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, local_1, PrivacyModelTables.INT_0)
-						.booleanValue();
-				local_2 = logDiagnostic;
-			}
-			return local_2;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean UniquePrivacyDataName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		final String constraintName = "PrivacyPolicy::UniquePrivacyDataName";
 		try {
@@ -1600,6 +1504,102 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 				local_6 = logDiagnostic;
 			}
 			return local_6;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ProtectionControlShouldExistInConfiguration(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::ProtectionControlShouldExistInConfiguration";
+		try {
+			/**
+			 *
+			 * inv ProtectionControlShouldExistInConfiguration:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.defaultProtectionControls->forAll(protectionControl |
+			 *             self.privacyPolicyHelper.isPolicyControlValid(protectionControl))
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Protection controls should be defined in configuration.', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				final /*@NonInvalid*/ List<String> defaultProtectionControls = this.getDefaultProtectionControls();
+				final /*@NonInvalid*/ OrderedSetValue BOXED_defaultProtectionControls = idResolver
+						.createOrderedSetOfAll(PrivacyModelTables.ORD_PRIMid_String, defaultProtectionControls);
+				/*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
+				Iterator<Object> ITERATOR_protectionControl = BOXED_defaultProtectionControls.iterator();
+				/*@NonInvalid*/ Boolean status;
+				while (true) {
+					if (!ITERATOR_protectionControl.hasNext()) {
+						if (accumulator == ValueUtil.TRUE_VALUE) {
+							status = ValueUtil.TRUE_VALUE;
+						} else {
+							throw (InvalidValueException) accumulator;
+						}
+						break;
+					}
+					/*@NonInvalid*/ String protectionControl = (String) ITERATOR_protectionControl.next();
+					/**
+					 * self.privacyPolicyHelper.isPolicyControlValid(protectionControl)
+					 */
+					final /*@NonInvalid*/ PrivacyPolicyHelper privacyPolicyHelper = this.getPrivacyPolicyHelper();
+					final /*@NonInvalid*/ boolean isPolicyControlValid = privacyPolicyHelper
+							.isPolicyControlValid(protectionControl);
+					//
+					if (!isPolicyControlValid) { // Normal unsuccessful body evaluation result
+						status = ValueUtil.FALSE_VALUE;
+						break; // Stop immediately
+					} else if (isPolicyControlValid) { // Normal successful body evaluation result
+						; // Carry on
+					} else { // Impossible badly typed result
+						accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "forAll");
+					}
+				}
+				final /*@NonInvalid*/ boolean eq = status == Boolean.TRUE;
+				/*@NonInvalid*/ Object local_1;
+				if (eq) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+							PrivacyModelTables.STR_Protection_32_controls_32_should_32_be_32_defined_32_in_32_configuration,
+							status);
+					local_1 = local_0;
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
 		} catch (Throwable e) {
 			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
 		}
@@ -2604,9 +2604,6 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP:
 			return UniquePolicyStatementName((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
-			return ProtectionControlShouldExistsInConfiguration((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP:
 			return UniquePrivacyDataName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP:
@@ -2632,6 +2629,9 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 			return UniqueLocationPerType((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP:
 			return UniqueDocumentName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
+			return ProtectionControlShouldExistInConfiguration((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

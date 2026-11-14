@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getPrivacyPolicy()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueDocumentName'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ProtectionControlShouldExistInConfiguration'"
  * @generated
  */
 public interface PrivacyPolicy extends NamedElement {
@@ -316,14 +316,6 @@ public interface PrivacyPolicy extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Protection controls should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.defaultProtectionControls-&gt;forAll(protectionControl:String|\n\t\t\t\tself.privacyPolicyHelper.isPolicyControlValid(protectionControl)\n\t\t\t)\n}.status'"
-	 * @generated
-	 */
-	boolean ProtectionControlShouldExistsInConfiguration(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'PrivacyData name is unique\',\n\tstatus : Boolean = \n\t\t\tself.allDatas-&gt;forAll(pd1:PrivacyData,pd2:PrivacyData| pd1.name = pd2.name implies pd1 = pd2)\n}.status'"
 	 * @generated
 	 */
@@ -336,6 +328,14 @@ public interface PrivacyPolicy extends NamedElement {
 	 * @generated
 	 */
 	boolean UniqueDocumentName(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Protection controls should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.defaultProtectionControls-&gt;forAll(protectionControl:String|\n\t\t\t\tself.privacyPolicyHelper.isPolicyControlValid(protectionControl)\n\t\t\t)\n}.status'"
+	 * @generated
+	 */
+	boolean ProtectionControlShouldExistInConfiguration(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
