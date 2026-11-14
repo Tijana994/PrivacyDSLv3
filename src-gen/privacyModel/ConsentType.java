@@ -58,13 +58,13 @@ public enum ConsentType implements Enumerator {
 	 */
 	UNANIMOUS(3, "Unanimous", "Unanimous"),
 	/**
-	* The '<em><b>Substituted</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Substituted</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #SUBSTITUTED_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #SUBSTITUTED_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	SUBSTITUTED(4, "Substituted", "Substituted");
 
 	/**

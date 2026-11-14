@@ -27,6 +27,7 @@ import privacyModel.ConfigurationManager;
 import privacyModel.Consent;
 import privacyModel.ConsentFormat;
 import privacyModel.ConsentType;
+import privacyModel.Contract;
 import privacyModel.DataType;
 import privacyModel.Denial;
 import privacyModel.Document;
@@ -173,6 +174,13 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	private EClass consentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass contractEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -597,7 +605,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPrivacyPolicy_AllDocuments() {
+	public EReference getPrivacyPolicy_AllContracts() {
 		return (EReference) privacyPolicyEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -606,7 +614,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPrivacyPolicy_Notifications() {
+	public EReference getPrivacyPolicy_AllDocuments() {
 		return (EReference) privacyPolicyEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -615,7 +623,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPrivacyPolicy_AllSharedPrivacyData() {
+	public EReference getPrivacyPolicy_Notifications() {
 		return (EReference) privacyPolicyEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -624,70 +632,16 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPrivacyPolicy_AllSharedPrivacyData() {
+		return (EReference) privacyPolicyEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getPrivacyPolicy__UniqueProviderName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPrivacyPolicy__UniqueConsentName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPrivacyPolicy__UniqueServiceName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPrivacyPolicy__OwnerShouldHaveDefinedInhabits__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPrivacyPolicy__UniquePolicyStatementName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPrivacyPolicy__ProtectionControlShouldExistsInConfiguration__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPrivacyPolicy__UniquePrivacyDataName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map() {
 		return privacyPolicyEClass.getEOperations().get(4);
 	}
 
@@ -696,7 +650,43 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPrivacyPolicy__UniqueLocationPerType__DiagnosticChain_Map() {
+	public EOperation getPrivacyPolicy__UniqueConsentName__DiagnosticChain_Map() {
+		return privacyPolicyEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPrivacyPolicy__UniqueServiceName__DiagnosticChain_Map() {
+		return privacyPolicyEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPrivacyPolicy__OwnerShouldHaveDefinedInhabits__DiagnosticChain_Map() {
+		return privacyPolicyEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPrivacyPolicy__UniquePolicyStatementName__DiagnosticChain_Map() {
+		return privacyPolicyEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPrivacyPolicy__ProtectionControlShouldExistsInConfiguration__DiagnosticChain_Map() {
 		return privacyPolicyEClass.getEOperations().get(1);
 	}
 
@@ -705,7 +695,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map() {
+	public EOperation getPrivacyPolicy__UniquePrivacyDataName__DiagnosticChain_Map() {
 		return privacyPolicyEClass.getEOperations().get(2);
 	}
 
@@ -714,8 +704,35 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map() {
+		return privacyPolicyEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPrivacyPolicy__UniqueLocationPerType__DiagnosticChain_Map() {
+		return privacyPolicyEClass.getEOperations().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map() {
+		return privacyPolicyEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getPrivacyPolicy__UniqueSharedPrivacyDataName__DiagnosticChain_Map() {
-		return privacyPolicyEClass.getEOperations().get(3);
+		return privacyPolicyEClass.getEOperations().get(10);
 	}
 
 	/**
@@ -725,6 +742,15 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 */
 	public EOperation getPrivacyPolicy__UniqueComplaintName__DiagnosticChain_Map() {
 		return privacyPolicyEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPrivacyPolicy__UniqueContractName__DiagnosticChain_Map() {
+		return privacyPolicyEClass.getEOperations().get(8);
 	}
 
 	/**
@@ -849,43 +875,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutTransferToThirdCountry__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(22);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__MissingConsentForDataPortability__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(23);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedRectification__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutStopProcessing__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(21);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__MissingConsentForCollecting__DiagnosticChain_Map() {
+	public EOperation getPolicyStatement__HasProcessingReason__ProcessingReason() {
 		return policyStatementEClass.getEOperations().get(3);
 	}
 
@@ -894,160 +884,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPolicyStatement__ExpiredConsent__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__StopProcessingPurposeForActionStopProcessing__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(25);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__ProcessingOfSpecialCategories__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutCollecting__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__ExpiredConsentForCollecting__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(14);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__CausedByShouldBeDefinedForStopProcessingAction__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(24);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(26);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__WithdrawnConsent__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(27);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__UndefinedPurposeForActionOrUserDoesntHavePermission__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(28);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__MissingConsentOrTransferCertificate__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(15);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(16);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__ControllerApprovalIsNeededForLegitimateInterestsPurpose__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(17);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__DateShouldBeDefinedForAccessAction__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(18);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__DateShouldBeDefinedForStoreAction__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(19);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__WhereShouldBeDefinedForTransferAction__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(20);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__CausedByShouldBeDefinedForRectificationAction__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__CourtApprovalIsNeededForPublicInterestPurpose__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPolicyStatement__ExpiredDocument__DiagnosticChain_Map() {
+	public EOperation getPolicyStatement__IsContractProvidedBySubject() {
 		return policyStatementEClass.getEOperations().get(4);
 	}
 
@@ -1056,8 +893,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPolicyStatement__CausedByShouldBeDefinedForErasureAction__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(12);
+	public EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutTransferToThirdCountry__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(7);
 	}
 
 	/**
@@ -1065,7 +902,187 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedErasure__DiagnosticChain_Map() {
+	public EOperation getPolicyStatement__MissingConsentForDataPortability__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(26);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedRectification__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(30);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__ExpiredContract__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(31);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__LegalProvisionIsNeededForLegalObligationPurpose__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(32);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutStopProcessing__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(33);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__MissingConsentForCollecting__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__ExpiredConsent__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__StopProcessingPurposeForActionStopProcessing__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__ProcessingOfSpecialCategories__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutCollecting__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(24);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__ExpiredConsentForCollecting__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(23);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__CausedByShouldBeDefinedForStopProcessingAction__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__MissingContractForContractPerformance__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(22);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__WithdrawnConsent__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(28);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__UndefinedPurposeForActionOrUserDoesntHavePermission__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(25);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__MissingConsentOrTransferCertificate__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__ControllerApprovalIsNeededForLegitimateInterestsPurpose__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__DateShouldBeDefinedForAccessAction__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(27);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__DateShouldBeDefinedForStoreAction__DiagnosticChain_Map() {
 		return policyStatementEClass.getEOperations().get(6);
 	}
 
@@ -1074,8 +1091,62 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getPolicyStatement__WhereShouldBeDefinedForTransferAction__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__CausedByShouldBeDefinedForRectificationAction__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__CourtApprovalIsNeededForPublicInterestPurpose__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__ExpiredDocument__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__CausedByShouldBeDefinedForErasureAction__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(29);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedErasure__DiagnosticChain_Map() {
+		return policyStatementEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getPolicyStatement__WhomShouldBeDefinedForTransfer__DiagnosticChain_Map() {
-		return policyStatementEClass.getEOperations().get(13);
+		return policyStatementEClass.getEOperations().get(15);
 	}
 
 	/**
@@ -1516,96 +1587,6 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * @generated
 	 */
 	public EOperation getPurpose__PublicInterestShouldNotContainThisSubReason__DiagnosticChain_Map() {
-		return purposeEClass.getEOperations().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPurpose__PublicHealthShouldNotContainSubReason__DiagnosticChain_Map() {
-		return purposeEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPurpose__OutOfScopeShouldNotContainThisSubReason__DiagnosticChain_Map() {
-		return purposeEClass.getEOperations().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPurpose__ProfilingShouldNotContainSubReason__DiagnosticChain_Map() {
-		return purposeEClass.getEOperations().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPurpose__StopProcessingShouldNotContainSubReason__DiagnosticChain_Map() {
-		return purposeEClass.getEOperations().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPurpose__MarketingShouldNotContainSubReason__DiagnosticChain_Map() {
-		return purposeEClass.getEOperations().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPurpose__ExercisingSpecificRightsPurposesCannotContainThisSubReason__DiagnosticChain_Map() {
-		return purposeEClass.getEOperations().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPurpose__ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason__DiagnosticChain_Map() {
-		return purposeEClass.getEOperations().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPurpose__LegitimateInterestsShouldNotContainThisSubReason__DiagnosticChain_Map() {
-		return purposeEClass.getEOperations().get(11);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPurpose__ResearchShouldNotContainThisSubReason__DiagnosticChain_Map() {
-		return purposeEClass.getEOperations().get(12);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getPurpose__StatisticalPurposesShouldNotContainSubReason__DiagnosticChain_Map() {
 		return purposeEClass.getEOperations().get(13);
 	}
 
@@ -1614,8 +1595,116 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPurpose__TestingShouldNotContainSubReason__DiagnosticChain_Map() {
+	public EOperation getPurpose__PublicHealthShouldNotContainSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__OutOfScopeShouldNotContainThisSubReason__DiagnosticChain_Map() {
 		return purposeEClass.getEOperations().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__ProfilingShouldNotContainSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__ContractPerformanceCannotContainThisSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__LegalObligationShouldNotContainSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__StopProcessingShouldNotContainSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__MarketingShouldNotContainSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__ExercisingSpecificRightsPurposesCannotContainThisSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__LegitimateInterestsShouldNotContainThisSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__ResearchShouldNotContainThisSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__StatisticalPurposesShouldNotContainSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPurpose__TestingShouldNotContainSubReason__DiagnosticChain_Map() {
+		return purposeEClass.getEOperations().get(6);
 	}
 
 	/**
@@ -1686,8 +1775,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getHow__IsConsentValid__How() {
-		return howEClass.getEOperations().get(0);
+	public EReference getHow_Contract() {
+		return (EReference) howEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1715,6 +1804,15 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 */
 	public EAttribute getConsent_Type() {
 		return (EAttribute) consentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContract() {
+		return contractEClass;
 	}
 
 	/**
@@ -2582,22 +2680,24 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		createEReference(privacyPolicyEClass, PRIVACY_POLICY__PRIVACY_POLICY_HELPER);
 		createEReference(privacyPolicyEClass, PRIVACY_POLICY__ALL_DENIALS);
 		createEReference(privacyPolicyEClass, PRIVACY_POLICY__ALL_CONSENTS);
+		createEReference(privacyPolicyEClass, PRIVACY_POLICY__ALL_CONTRACTS);
 		createEReference(privacyPolicyEClass, PRIVACY_POLICY__ALL_DOCUMENTS);
 		createEReference(privacyPolicyEClass, PRIVACY_POLICY__NOTIFICATIONS);
 		createEReference(privacyPolicyEClass, PRIVACY_POLICY__ALL_SHARED_PRIVACY_DATA);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_PROVIDER_NAME__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(privacyPolicyEClass,
 				PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_PROVIDER_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_CONTRACT_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(privacyPolicyEClass, PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP);
 
 		policyStatementEClass = createEClass(POLICY_STATEMENT);
 		createEReference(policyStatementEClass, POLICY_STATEMENT__WHEN);
@@ -2613,53 +2713,60 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		createEOperation(policyStatementEClass, POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_TYPE__ACTION);
 		createEOperation(policyStatementEClass,
 				POLICY_STATEMENT___DOCUMENT_IS_NEEDED_FOR_PURPOSE__DOCUMENTTYPE_PROCESSINGREASON);
-		createEOperation(policyStatementEClass, POLICY_STATEMENT___MISSING_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass, POLICY_STATEMENT___HAS_PROCESSING_REASON__PROCESSINGREASON);
+		createEOperation(policyStatementEClass, POLICY_STATEMENT___IS_CONTRACT_PROVIDED_BY_SUBJECT);
 		createEOperation(policyStatementEClass, POLICY_STATEMENT___EXPIRED_DOCUMENT__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___PROCESSING_OF_SPECIAL_CATEGORIES__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass, POLICY_STATEMENT___EXPIRED_CONSENT__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass, POLICY_STATEMENT___EXPIRED_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION__DIAGNOSTICCHAIN_MAP);
 		createEOperation(policyStatementEClass,
 				POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION__DIAGNOSTICCHAIN_MAP);
 		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass,
 				POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__DIAGNOSTICCHAIN_MAP);
 		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___MISSING_CONSENT_FOR_DATA_PORTABILITY__DIAGNOSTICCHAIN_MAP);
+				POLICY_STATEMENT___WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__DIAGNOSTICCHAIN_MAP);
 		createEOperation(policyStatementEClass,
-				POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION__DIAGNOSTICCHAIN_MAP);
+				POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass, POLICY_STATEMENT___MISSING_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__DIAGNOSTICCHAIN_MAP);
 		createEOperation(policyStatementEClass,
 				POLICY_STATEMENT___STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP);
 		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___PROCESSING_OF_SPECIAL_CATEGORIES__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass, POLICY_STATEMENT___EXPIRED_CONSENT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
 				POLICY_STATEMENT___JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON__DIAGNOSTICCHAIN_MAP);
-		createEOperation(policyStatementEClass, POLICY_STATEMENT___WITHDRAWN_CONSENT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___MISSING_CONTRACT_FOR_CONTRACT_PERFORMANCE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass, POLICY_STATEMENT___EXPIRED_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__DIAGNOSTICCHAIN_MAP);
 		createEOperation(policyStatementEClass,
 				POLICY_STATEMENT___UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOESNT_HAVE_PERMISSION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___MISSING_CONSENT_FOR_DATA_PORTABILITY__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass, POLICY_STATEMENT___WITHDRAWN_CONSENT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass, POLICY_STATEMENT___EXPIRED_CONTRACT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___LEGAL_PROVISION_IS_NEEDED_FOR_LEGAL_OBLIGATION_PURPOSE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(policyStatementEClass,
+				POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP);
 
 		privacyDataEClass = createEClass(PRIVACY_DATA);
 		createEAttribute(privacyDataEClass, PRIVACY_DATA__TYPE);
@@ -2722,22 +2829,25 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		createEOperation(purposeEClass,
 				PURPOSE___CONTAINS_ALLOWED_PURPOSE_REASON_AND_SUBREASON__PROCESSINGREASON_ELIST);
 		createEOperation(purposeEClass,
-				PURPOSE___PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
-		createEOperation(purposeEClass, PURPOSE___PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
-		createEOperation(purposeEClass, PURPOSE___OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
-		createEOperation(purposeEClass, PURPOSE___PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+				PURPOSE___LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
 		createEOperation(purposeEClass, PURPOSE___STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
 		createEOperation(purposeEClass, PURPOSE___MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+		createEOperation(purposeEClass, PURPOSE___TESTING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
 		createEOperation(purposeEClass,
 				PURPOSE___EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
-		createEOperation(purposeEClass,
-				PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
-		createEOperation(purposeEClass,
-				PURPOSE___LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
 		createEOperation(purposeEClass, PURPOSE___RESEARCH_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+		createEOperation(purposeEClass, PURPOSE___PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+		createEOperation(purposeEClass, PURPOSE___PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+		createEOperation(purposeEClass,
+				PURPOSE___CONTRACT_PERFORMANCE_CANNOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+		createEOperation(purposeEClass, PURPOSE___LEGAL_OBLIGATION_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+		createEOperation(purposeEClass,
+				PURPOSE___PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+		createEOperation(purposeEClass, PURPOSE___OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
 		createEOperation(purposeEClass,
 				PURPOSE___STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
-		createEOperation(purposeEClass, PURPOSE___TESTING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+		createEOperation(purposeEClass,
+				PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
 
 		whatEClass = createEClass(WHAT);
 		createEAttribute(whatEClass, WHAT__ACTIONS);
@@ -2747,11 +2857,13 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		howEClass = createEClass(HOW);
 		createEReference(howEClass, HOW__DOCUMENTS);
 		createEReference(howEClass, HOW__CONSENT);
-		createEOperation(howEClass, HOW___IS_CONSENT_VALID__HOW);
+		createEReference(howEClass, HOW__CONTRACT);
 
 		consentEClass = createEClass(CONSENT);
 		createEAttribute(consentEClass, CONSENT__FORMAT);
 		createEAttribute(consentEClass, CONSENT__TYPE);
+
+		contractEClass = createEClass(CONTRACT);
 
 		configurationManagerEClass = createEClass(CONFIGURATION_MANAGER);
 		createEAttribute(configurationManagerEClass, CONFIGURATION_MANAGER__DATA_SOURCES);
@@ -2915,6 +3027,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		timeIntervalEClass.getESuperTypes().add(this.getAbstractTime());
 		timeStatementEClass.getESuperTypes().add(this.getAbstractTime());
 		consentEClass.getESuperTypes().add(this.getAbstractPaper());
+		contractEClass.getESuperTypes().add(this.getAbstractPaper());
 		complaintEClass.getESuperTypes().add(this.getNotificationInfo());
 		documentEClass.getESuperTypes().add(this.getAbstractPaper());
 		abstractPaperEClass.getESuperTypes().add(this.getNamedElement());
@@ -2974,6 +3087,9 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		initEReference(getPrivacyPolicy_AllConsents(), this.getConsent(), null, "allConsents", null, 0, -1,
 				PrivacyPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPrivacyPolicy_AllContracts(), this.getContract(), null, "allContracts", null, 0, -1,
+				PrivacyPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPrivacyPolicy_AllDocuments(), this.getDocument(), null, "allDocuments", null, 0, -1,
 				PrivacyPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2984,8 +3100,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				"allSharedPrivacyData", null, 0, -1, PrivacyPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getPrivacyPolicy__UniqueProviderName__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "UniqueProviderName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getPrivacyPolicy__UniquePolicyStatementName__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "UniquePolicyStatementName", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -2994,89 +3110,9 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPrivacyPolicy__UniqueLocationPerType__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"UniqueLocationPerType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "UniquePrincipalNamePerType", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPrivacyPolicy__UniqueSharedPrivacyDataName__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "UniqueSharedPrivacyDataName", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"UniqueDocumentName", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		op = initEOperation(getPrivacyPolicy__ProtectionControlShouldExistsInConfiguration__DiagnosticChain_Map(),
 				ecorePackage.getEBoolean(), "ProtectionControlShouldExistsInConfiguration", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPrivacyPolicy__UniqueConsentName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"UniqueConsentName", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPrivacyPolicy__UniqueComplaintName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"UniqueComplaintName", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPrivacyPolicy__OwnerShouldHaveDefinedInhabits__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "OwnerShouldHaveDefinedInhabits", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPrivacyPolicy__UniquePolicyStatementName__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "UniquePolicyStatementName", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3097,6 +3133,96 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 
 		op = initEOperation(getPrivacyPolicy__UniqueServiceName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
 				"UniqueServiceName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniqueProviderName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"UniqueProviderName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "UniquePrincipalNamePerType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__OwnerShouldHaveDefinedInhabits__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "OwnerShouldHaveDefinedInhabits", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniqueComplaintName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"UniqueComplaintName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniqueContractName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"UniqueContractName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniqueConsentName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"UniqueConsentName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniqueSharedPrivacyDataName__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "UniqueSharedPrivacyDataName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniqueLocationPerType__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"UniqueLocationPerType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"UniqueDocumentName", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3148,15 +3274,12 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addEParameter(op, this.getDocumentType(), "documentType", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getProcessingReason(), "processingReason", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPolicyStatement__MissingConsentForCollecting__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "MissingConsentForCollecting", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPolicyStatement__HasProcessingReason__ProcessingReason(), ecorePackage.getEBoolean(),
+				"hasProcessingReason", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getProcessingReason(), "processingReason", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEOperation(getPolicyStatement__IsContractProvidedBySubject(), ecorePackage.getEBoolean(),
+				"isContractProvidedBySubject", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(getPolicyStatement__ExpiredDocument__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
 				"ExpiredDocument", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -3168,18 +3291,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPolicyStatement__SubjectShouldBeNotifiedAboutCollecting__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "SubjectShouldBeNotifiedAboutCollecting", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedErasure__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "SubjectShouldBeNotifiedAboutExecutedErasure", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPolicyStatement__DateShouldBeDefinedForStoreAction__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "DateShouldBeDefinedForStoreAction", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3189,8 +3302,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = initEOperation(
-				getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedRectification__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "SubjectShouldBeNotifiedAboutExecutedRectification", 0, 1, IS_UNIQUE,
+				getPolicyStatement__SubjectShouldBeNotifiedAboutTransferToThirdCountry__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "SubjectShouldBeNotifiedAboutTransferToThirdCountry", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -3200,80 +3313,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPolicyStatement__ProcessingOfSpecialCategories__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "ProcessingOfSpecialCategories", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__CausedByShouldBeDefinedForRectificationAction__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "CausedByShouldBeDefinedForRectificationAction", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__CourtApprovalIsNeededForPublicInterestPurpose__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "CourtApprovalIsNeededForPublicInterestPurpose", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__ExpiredConsent__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"ExpiredConsent", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__CausedByShouldBeDefinedForErasureAction__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "CausedByShouldBeDefinedForErasureAction", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__WhomShouldBeDefinedForTransfer__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "WhomShouldBeDefinedForTransfer", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__ExpiredConsentForCollecting__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "ExpiredConsentForCollecting", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__MissingConsentOrTransferCertificate__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "MissingConsentOrTransferCertificate", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPolicyStatement__WhereShouldBeDefinedForTransferAction__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "WhereShouldBeDefinedForTransferAction", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3295,6 +3336,47 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getPolicyStatement__MissingConsentOrTransferCertificate__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "MissingConsentOrTransferCertificate", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__CausedByShouldBeDefinedForRectificationAction__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "CausedByShouldBeDefinedForRectificationAction", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedErasure__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "SubjectShouldBeNotifiedAboutExecutedErasure", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__MissingConsentForCollecting__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "MissingConsentForCollecting", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		op = initEOperation(
 				getPolicyStatement__ControllerApprovalIsNeededForLegitimateInterestsPurpose__DiagnosticChain_Map(),
 				ecorePackage.getEBoolean(), "ControllerApprovalIsNeededForLegitimateInterestsPurpose", 0, 1, IS_UNIQUE,
@@ -3307,71 +3389,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPolicyStatement__DateShouldBeDefinedForAccessAction__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "DateShouldBeDefinedForAccessAction", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__DateShouldBeDefinedForStoreAction__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "DateShouldBeDefinedForStoreAction", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__WhereShouldBeDefinedForTransferAction__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "WhereShouldBeDefinedForTransferAction", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__SubjectShouldBeNotifiedAboutStopProcessing__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "SubjectShouldBeNotifiedAboutStopProcessing", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(
-				getPolicyStatement__SubjectShouldBeNotifiedAboutTransferToThirdCountry__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "SubjectShouldBeNotifiedAboutTransferToThirdCountry", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__MissingConsentForDataPortability__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "MissingConsentForDataPortability", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPolicyStatement__CausedByShouldBeDefinedForStopProcessingAction__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "CausedByShouldBeDefinedForStopProcessingAction", 0, 1, IS_UNIQUE,
-				IS_ORDERED);
+		op = initEOperation(getPolicyStatement__WhomShouldBeDefinedForTransfer__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "WhomShouldBeDefinedForTransfer", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3382,6 +3401,37 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 
 		op = initEOperation(getPolicyStatement__StopProcessingPurposeForActionStopProcessing__DiagnosticChain_Map(),
 				ecorePackage.getEBoolean(), "StopProcessingPurposeForActionStopProcessing", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__ProcessingOfSpecialCategories__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "ProcessingOfSpecialCategories", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__ExpiredConsent__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"ExpiredConsent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__CourtApprovalIsNeededForPublicInterestPurpose__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "CourtApprovalIsNeededForPublicInterestPurpose", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -3404,8 +3454,39 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPolicyStatement__WithdrawnConsent__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"WithdrawnConsent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPolicyStatement__CausedByShouldBeDefinedForStopProcessingAction__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "CausedByShouldBeDefinedForStopProcessingAction", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__MissingContractForContractPerformance__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "MissingContractForContractPerformance", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__ExpiredConsentForCollecting__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "ExpiredConsentForCollecting", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__SubjectShouldBeNotifiedAboutCollecting__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "SubjectShouldBeNotifiedAboutCollecting", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3418,6 +3499,89 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				getPolicyStatement__UndefinedPurposeForActionOrUserDoesntHavePermission__DiagnosticChain_Map(),
 				ecorePackage.getEBoolean(), "UndefinedPurposeForActionOrUserDoesntHavePermission", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__MissingConsentForDataPortability__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "MissingConsentForDataPortability", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__DateShouldBeDefinedForAccessAction__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "DateShouldBeDefinedForAccessAction", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__WithdrawnConsent__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"WithdrawnConsent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__CausedByShouldBeDefinedForErasureAction__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "CausedByShouldBeDefinedForErasureAction", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(
+				getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedRectification__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "SubjectShouldBeNotifiedAboutExecutedRectification", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__ExpiredContract__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"ExpiredContract", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__LegalProvisionIsNeededForLegalObligationPurpose__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "LegalProvisionIsNeededForLegalObligationPurpose", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPolicyStatement__SubjectShouldBeNotifiedAboutStopProcessing__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "SubjectShouldBeNotifiedAboutStopProcessing", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3627,38 +3791,9 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addEParameter(op, this.getProcessingReason(), "allowedReason", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getProcessingReasonSubtype(), "allowedSubreasons", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPurpose__PublicInterestShouldNotContainThisSubReason__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "PublicInterestShouldNotContainThisSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPurpose__PublicHealthShouldNotContainSubReason__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "PublicHealthShouldNotContainSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPurpose__OutOfScopeShouldNotContainThisSubReason__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "OutOfScopeShouldNotContainThisSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getPurpose__ProfilingShouldNotContainSubReason__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "ProfilingShouldNotContainSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPurpose__LegitimateInterestsShouldNotContainThisSubReason__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "LegitimateInterestsShouldNotContainThisSubReason", 0, 1, IS_UNIQUE,
+				IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3687,6 +3822,16 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getPurpose__TestingShouldNotContainSubReason__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "TestingShouldNotContainSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		op = initEOperation(
 				getPurpose__ExercisingSpecificRightsPurposesCannotContainThisSubReason__DiagnosticChain_Map(),
 				ecorePackage.getEBoolean(), "ExercisingSpecificRightsPurposesCannotContainThisSubReason", 0, 1,
@@ -3699,10 +3844,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(
-				getPurpose__ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason", 0,
-				1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPurpose__ResearchShouldNotContainThisSubReason__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "ResearchShouldNotContainThisSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3711,8 +3854,28 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPurpose__LegitimateInterestsShouldNotContainThisSubReason__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "LegitimateInterestsShouldNotContainThisSubReason", 0, 1, IS_UNIQUE,
+		op = initEOperation(getPurpose__PublicHealthShouldNotContainSubReason__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "PublicHealthShouldNotContainSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPurpose__ProfilingShouldNotContainSubReason__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "ProfilingShouldNotContainSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPurpose__ContractPerformanceCannotContainThisSubReason__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "ContractPerformanceCannotContainThisSubReason", 0, 1, IS_UNIQUE,
 				IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
@@ -3722,8 +3885,28 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPurpose__ResearchShouldNotContainThisSubReason__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "ResearchShouldNotContainThisSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getPurpose__LegalObligationShouldNotContainSubReason__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "LegalObligationShouldNotContainSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPurpose__PublicInterestShouldNotContainThisSubReason__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "PublicInterestShouldNotContainThisSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getPurpose__OutOfScopeShouldNotContainThisSubReason__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "OutOfScopeShouldNotContainThisSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3743,8 +3926,10 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getPurpose__TestingShouldNotContainSubReason__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "TestingShouldNotContainSubReason", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(
+				getPurpose__ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason", 0,
+				1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -3770,16 +3955,18 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		initEReference(getHow_Consent(), this.getConsent(), null, "consent", null, 0, 1, How.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-
-		op = initEOperation(getHow__IsConsentValid__How(), ecorePackage.getEBoolean(), "isConsentValid", 1, 1,
-				IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getHow(), "howConsent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEReference(getHow_Contract(), this.getContract(), null, "contract", null, 0, 1, How.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		initEClass(consentEClass, Consent.class, "Consent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConsent_Format(), this.getConsentFormat(), "format", null, 0, 1, Consent.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConsent_Type(), this.getConsentType(), "type", null, 0, 1, Consent.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(contractEClass, Contract.class, "Contract", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(configurationManagerEClass, ConfigurationManager.class, "ConfigurationManager", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4172,6 +4359,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addEEnumLiteral(documentTypeEEnum, DocumentType.COURT_APPROVAL);
 		addEEnumLiteral(documentTypeEEnum, DocumentType.CONTROLLER_APPROVAL);
 		addEEnumLiteral(documentTypeEEnum, DocumentType.TRANSFER_CERTIFICATE);
+		addEEnumLiteral(documentTypeEEnum, DocumentType.LEGAL_PROVISION);
 
 		initEEnum(timePrepositionEEnum, TimePreposition.class, "TimePreposition");
 		addEEnumLiteral(timePrepositionEEnum, TimePreposition.FROM);
@@ -4219,6 +4407,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addEEnumLiteral(processingReasonEEnum, ProcessingReason.PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT);
 		addEEnumLiteral(processingReasonEEnum, ProcessingReason.LEGITIMATE_INTERESTS);
 		addEEnumLiteral(processingReasonEEnum, ProcessingReason.STOP_PROCESSING);
+		addEEnumLiteral(processingReasonEEnum, ProcessingReason.CONTRACT_PERFORMANCE);
+		addEEnumLiteral(processingReasonEEnum, ProcessingReason.LEGAL_OBLIGATION);
 
 		initEEnum(processingReasonSubtypeEEnum, ProcessingReasonSubtype.class, "ProcessingReasonSubtype");
 		addEEnumLiteral(processingReasonSubtypeEEnum, ProcessingReasonSubtype.NONE);
@@ -4239,6 +4429,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addEEnumLiteral(processingReasonSubtypeEEnum, ProcessingReasonSubtype.HISTORICAL);
 		addEEnumLiteral(processingReasonSubtypeEEnum, ProcessingReasonSubtype.SCIENTIFIC);
 		addEEnumLiteral(processingReasonSubtypeEEnum, ProcessingReasonSubtype.OTHER);
+		addEEnumLiteral(processingReasonSubtypeEEnum, ProcessingReasonSubtype.PRE_CONTRACTUAL);
 
 		initEEnum(consentFormatEEnum, ConsentFormat.class, "ConsentFormat");
 		addEEnumLiteral(consentFormatEEnum, ConsentFormat.WRITTEN);
@@ -4293,12 +4484,13 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	protected void createEcoreAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore";
 		addAnnotation(this, source, new String[] {});
-		addAnnotation(privacyPolicyEClass, source, new String[] { "constraints", "UniqueServiceName" });
+		addAnnotation(privacyPolicyEClass, source, new String[] { "constraints", "UniqueDocumentName" });
 		addAnnotation(policyStatementEClass, source,
-				new String[] { "constraints", "UndefinedPurposeForActionOrUserDoesntHavePermission" });
+				new String[] { "constraints", "SubjectShouldBeNotifiedAboutStopProcessing" });
 		addAnnotation(principalEClass, source, new String[] { "constraints", "JuvenileShouldHaveResponsiblePerson" });
 		addAnnotation(timeIntervalEClass, source, new String[] { "constraints", "AtTypeShouldBeDefinedAlone" });
-		addAnnotation(purposeEClass, source, new String[] { "constraints", "TestingShouldNotContainSubReason" });
+		addAnnotation(purposeEClass, source, new String[] { "constraints",
+				"ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason" });
 		addAnnotation(complaintEClass, source,
 				new String[] { "constraints", "StopProcessingShouldBeExecutedAsSoonAsPossible" });
 		addAnnotation(abstractPaperEClass, source,
@@ -4317,34 +4509,36 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 */
 	protected void createPivotAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
-		addAnnotation(getPrivacyPolicy__UniqueProviderName__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'Provider name is unique\',\n\tstatus : Boolean = \n\t\tself.allProviders->forAll(provider1:Provider,provider2:Provider| provider1.name = provider2.name implies provider1 = provider2)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniqueLocationPerType__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'Location name per type is unique\',\n\tstatus : Boolean = \n\t\tself.locations->forAll(loc1:Location,loc2:Location| \n\t\t\tif(loc1.type = loc2.type) then \n\t\t\t\tloc1.name = loc2.name implies loc1 = loc2\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"Tuple {\n\tmessage : String = \'Principal name per type is unique\',\n\tstatus : Boolean = \n\t\tself.allPrincipals->forAll(pr1:Principal,pr2:Principal| \n\t\t\tif(pr1.type = pr2.type) then \n\t\t\tpr1.name = pr2.name implies pr1 = pr2\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniqueSharedPrivacyDataName__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"Tuple {\n\tmessage : String = \'SharedPrivacyData name is unique\',\n\tstatus : Boolean = \n\t\t\tself.allSharedPrivacyData->forAll(sd1:SharedPrivacyData,sd2:SharedPrivacyData| sd1.name = sd2.name implies sd1 = sd2)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'Document name is unique\',\n\tstatus : Boolean = \n\t\tself.allDocuments->forAll(document1:Document,document2:Document| document1.name = document2.name implies document1 = document2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniquePolicyStatementName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'PolicyStatement name is unique\',\n\tstatus : Boolean = \n\t\t\tself.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2)\n}.status" });
 		addAnnotation(getPrivacyPolicy__ProtectionControlShouldExistsInConfiguration__DiagnosticChain_Map(), source,
 				new String[] { "body",
 						"Tuple {\n\tmessage : String = \'Protection controls should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.defaultProtectionControls->forAll(protectionControl:String|\n\t\t\t\tself.privacyPolicyHelper.isPolicyControlValid(protectionControl)\n\t\t\t)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniqueConsentName__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'Consent name is unique\',\n\tstatus : Boolean = \n\t\tself.allConsents->forAll(consent1:Consent,consent2:Consent| consent1.name = consent2.name implies consent1 = consent2)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniqueComplaintName__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'Complaint name is unique\',\n\tstatus : Boolean = \n\t\tself.allComplaints->forAll(complaint1:Complaint,complaint2:Complaint| complaint1.name = complaint2.name implies complaint1 = complaint2)\n}.status" });
-		addAnnotation(getPrivacyPolicy__OwnerShouldHaveDefinedInhabits__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"Tuple {\n\tmessage : String = \'Based on Art 3\',\n\tstatus : Boolean = \n\t\t\tnot(self.owner = null) and not(self.owner.inhabits = null)\n}.status" });
-		addAnnotation(getPrivacyPolicy__UniquePolicyStatementName__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'PolicyStatement name is unique\',\n\tstatus : Boolean = \n\t\t\tself.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2)\n}.status" });
 		addAnnotation(getPrivacyPolicy__UniquePrivacyDataName__DiagnosticChain_Map(), source, new String[] { "body",
 				"Tuple {\n\tmessage : String = \'PrivacyData name is unique\',\n\tstatus : Boolean = \n\t\t\tself.allDatas->forAll(pd1:PrivacyData,pd2:PrivacyData| pd1.name = pd2.name implies pd1 = pd2)\n}.status" });
 		addAnnotation(getPrivacyPolicy__UniqueServiceName__DiagnosticChain_Map(), source, new String[] { "body",
 				"Tuple {\n\tmessage : String = \'Service name is unique\',\n\tstatus : Boolean = \n\t\tself.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueProviderName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Provider name is unique\',\n\tstatus : Boolean = \n\t\tself.allProviders->forAll(provider1:Provider,provider2:Provider| provider1.name = provider2.name implies provider1 = provider2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniquePrincipalNamePerType__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"Tuple {\n\tmessage : String = \'Principal name per type is unique\',\n\tstatus : Boolean = \n\t\tself.allPrincipals->forAll(pr1:Principal,pr2:Principal| \n\t\t\tif(pr1.type = pr2.type) then \n\t\t\tpr1.name = pr2.name implies pr1 = pr2\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t)\n}.status" });
+		addAnnotation(getPrivacyPolicy__OwnerShouldHaveDefinedInhabits__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"Tuple {\n\tmessage : String = \'Based on Art 3\',\n\tstatus : Boolean = \n\t\t\tnot(self.owner = null) and not(self.owner.inhabits = null)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueComplaintName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Complaint name is unique\',\n\tstatus : Boolean = \n\t\tself.allComplaints->forAll(complaint1:Complaint,complaint2:Complaint| complaint1.name = complaint2.name implies complaint1 = complaint2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueContractName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Contract name is unique\',\n\tstatus : Boolean = \n\t\tself.allContracts->forAll(contract1:Contract,contract2:Contract| contract1.name = contract2.name implies contract1 = contract2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueConsentName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Consent name is unique\',\n\tstatus : Boolean = \n\t\tself.allConsents->forAll(consent1:Consent,consent2:Consent| consent1.name = consent2.name implies consent1 = consent2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueSharedPrivacyDataName__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"Tuple {\n\tmessage : String = \'SharedPrivacyData name is unique\',\n\tstatus : Boolean = \n\t\t\tself.allSharedPrivacyData->forAll(sd1:SharedPrivacyData,sd2:SharedPrivacyData| sd1.name = sd2.name implies sd1 = sd2)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueLocationPerType__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Location name per type is unique\',\n\tstatus : Boolean = \n\t\tself.locations->forAll(loc1:Location,loc2:Location| \n\t\t\tif(loc1.type = loc2.type) then \n\t\t\t\tloc1.name = loc2.name implies loc1 = loc2\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t)\n}.status" });
+		addAnnotation(getPrivacyPolicy__UniqueDocumentName__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Document name is unique\',\n\tstatus : Boolean = \n\t\tself.allDocuments->forAll(document1:Document,document2:Document| document1.name = document2.name implies document1 = document2)\n}.status" });
 		addAnnotation(getPolicyStatement__DateShouldBeDefinedForType__Action(), source, new String[] { "body",
 				"\n\t\t\t\t\tif(self.what = null) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\t\tif(self.what.actions->exists(act| act = actionType)) then\n\t\t\t\t\t\t\tnot(self.when = null)\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif" });
 		addAnnotation(getPolicyStatement__CausedByShouldBeDefinedForType__Action(), source, new String[] { "body",
@@ -4352,84 +4546,96 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addAnnotation(getPolicyStatement__DocumentIsNeededForPurpose__DocumentType_ProcessingReason(), source,
 				new String[] { "body",
 						"\n\t\t\t\t\tif(self.what.actions->exists(act| act = Action::Collecting)) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\t\tif(self.why.processingReason = processingReason) then\n\t\t\t\t\t\t not(self.how = null) and self.how.documents->exists(doc| doc.documentType = documentType)\n\t\t\t\t\t\telse\n\t\t\t\t\t\tself.why.subPurposes->forAll(purpose|\n\t\t\t\t\t\t\tif(purpose.processingReason = processingReason)then\n\t\t\t\t\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = documentType)\n\t\t\t\t\t\t\telse \n\t\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t)\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif" });
-		addAnnotation(getPolicyStatement__MissingConsentForCollecting__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::Collecting)) or \n\t\t\t\t(what.datas->exists(data| data.collectedFromSubject = false) and self.what.actions->exists(action| action = Action::Collecting))\n\t\t\t) then\n\t\t\t\ttrue\n\t\t\telse if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then\n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n\t\t\telse \n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person))\n\t\t\tendif\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__HasProcessingReason__ProcessingReason(), source, new String[] { "body",
+				"\n\t\t\t\t\tnot(self.why = null) and (self.why.processingReason = processingReason or\n\t\t\t\t\t\tself.why.subPurposes->exists(purpose| purpose.processingReason = processingReason))" });
+		addAnnotation(getPolicyStatement__IsContractProvidedBySubject(), source, new String[] { "body",
+				"\n\t\t\t\t\tif(self.whose = null or self.how = null or self.how.contract = null) then\n\t\t\t\t\t\tfalse\n\t\t\t\t\telse if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then\n\t\t\t\t\t\tself.whose.responsiblePersons->exists(person| self.how.contract.providedBy = person)\n\t\t\t\t\telse\n\t\t\t\t\t\tself.how.contract.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.contract.providedBy = person)\n\t\t\t\t\tendif\n\t\t\t\t\tendif" });
 		addAnnotation(getPolicyStatement__ExpiredDocument__DiagnosticChain_Map(), source, new String[] { "body",
 				"\n\t\t\tif(self.how = null or not(self.how.documents->notEmpty())) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tself.how.documents->forAll(document|\n\t\t\t\t\t(privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, document.startDate) or \n\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, document.startDate))\n\t\t\t\t\tand\n\t\t\t\t\t(document.terminationDate = null or (not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, document.terminationDate))))\n\t\t\t\t)\n\t\t\tendif" });
-		addAnnotation(getPolicyStatement__SubjectShouldBeNotifiedAboutCollecting__DiagnosticChain_Map(), source,
+		addAnnotation(getPolicyStatement__DateShouldBeDefinedForStoreAction__DiagnosticChain_Map(), source,
 				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art14\',\n\tstatus : Boolean = \n\t\t\tif(self.what.actions->exists(action| action = Action::Collecting) and self.what.datas->exists(data| data.collectedFromSubject = false)) then\n\t\t\t\tif(not(self.why = null) and \n\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::None}) or\n\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Research,Sequence{ProcessingReasonSubtype::Statistical, \n\t\t\t\t\t\tProcessingReasonSubtype::Historical,ProcessingReasonSubtype::Scientific}))\n\t\t\t\t)then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::DataCollecting \n\t\t\t\t\t\tand notification.causedBy = self\n\t\t\t\t\t)\n\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedErasure__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(what.actions->exists(action| action = Action::Erasure)) then\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::ExecutedErasure\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedRectification__DiagnosticChain_Map(),
+						"Tuple {\n\tmessage : String = \'Date should be defined\',\n\tstatus : Boolean = \n\t\t\tdateShouldBeDefinedForType(Action::Store)\n}.status" });
+		addAnnotation(getPolicyStatement__SubjectShouldBeNotifiedAboutTransferToThirdCountry__DiagnosticChain_Map(),
 				source, new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(what.actions->exists(action| action = Action::Rectification)) then\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__ProcessingOfSpecialCategories__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"Tuple {\n\tmessage : String = \'Based on Art9\',\n\tstatus : Boolean = \n\t\t\tif(self.what.actions->exists(action | action = Action::StopProcessing)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tself.what.datas->forAll(data| \n\t\t\t\tlet dataTypes  = Sequence{DataType::Biometric, DataType::Genetic, DataType::PoliticalOpinion, \n\t\t\t\t\tDataType::RacialOrEthnicOrigin, DataType::SexLife, DataType::Religious, DataType::Judicial\n\t\t\t\t} in\n\t\t\t\tif(dataTypes->includes(data.privacydata.type)) then\n\t\t\t\t\t((not(self.how = null) and not(self.how.consent = null))\n\t\t\t\t\t\tor\n\t\t\t\t\t(not(self.why = null) and\n\t\t\t\t\tlet reasons  = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,\n\t\t\t\t\t\tProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::Research, ProcessingReason::PublicHealth\n\t\t\t\t\t} in\n\t\t\t\t\t\treasons->includes(self.why.processingReason) or (not(self.why.subPurposes = null) and self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose)\n\t\t\t\t\t))))\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\t\tendif\n\t\t\t)\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__CausedByShouldBeDefinedForRectificationAction__DiagnosticChain_Map(), source,
+						"Tuple {\n\tmessage : String = \'Based on Art15\',\n\tstatus : Boolean = \n\t\t\tif(self.what.actions->exists(action| action = Action::Transfer) and not(self.where = null) and\n\t\t\t\tnot(self.where.destination = null) and self.where.destination.isEUMember = false\n\t\t\t) then\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer \n\t\t\t\t\t\tand notification.causedBy = self\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__WhereShouldBeDefinedForTransferAction__DiagnosticChain_Map(), source,
 				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art16\',\n\tstatus : Boolean = \n\t\t\tcausedByShouldBeDefinedForType(Action::Rectification)\n}.status" });
-		addAnnotation(getPolicyStatement__CourtApprovalIsNeededForPublicInterestPurpose__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art9\',\n\tstatus : Boolean = \n\t\t\tdocumentIsNeededForPurpose(DocumentType::CourtApproval,ProcessingReason::PublicInterest)\n}.status" });
-		addAnnotation(getPolicyStatement__ExpiredConsent__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tself.what.datas->forAll(data |\n\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st| \n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and self.who.equals(st.who) and st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n\t\t\t\t\t\tin \n\t\t\t\t\t\tif(statements->isEmpty()) then \n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tstatements -> exists(st|\n\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\tif(self.why = null \n\t\t\t\t\t\t\t\t\t\tor \n\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject} in\n\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose)\n\t\t\t\t\t\t\t\t\t)) then\n\t\t\t\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, st.how.consent.startDate)) and\n\t\t\t\t\t\t\t\t\t\t(st.how.consent.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, st.how.consent.terminationDate)))\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\tendif\n\t\t\t\t)\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__CausedByShouldBeDefinedForErasureAction__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art17\',\n\tstatus : Boolean = \n\t\t\tcausedByShouldBeDefinedForType(Action::Erasure)\n}.status" });
-		addAnnotation(getPolicyStatement__WhomShouldBeDefinedForTransfer__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"Tuple {\n\tmessage : String = \'Based on Arts44-50\',\n\tstatus : Boolean = \n\t\t\tif(what.actions->exists(action| action = Action::Transfer)) then\n\t\t\t\t\tnot(self.whom = null)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__ExpiredConsentForCollecting__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.what.actions->exists(act| act = Action::Collecting)) or self.how = null or self.how.consent = null) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tif(self.why = null \n\t\t\t\t\tor \n\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject} in\n\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose)\n\t\t\t\t)) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\t\t(privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, self.how.consent.startDate) or\n\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.consent.startDate))\n\t\t\t\t\tand\n\t\t\t\t\t(self.how.consent.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.consent.terminationDate)))\n\t\t\t\tendif\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__MissingConsentOrTransferCertificate__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Arts 44-50\',\n\tstatus : Boolean = \n\t\t\tif(not(self.what.actions->exists(action| action = Action::Transfer))or self.where = null or self.where.destination = null or self.where.destination.isEUMember = true) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tif((not(self.where.destination = null)) and self.where.destination.isEUMember = false) then\n\t\t\t\t\t(not(self.how = null) and (self.how.documents->exists(doc| doc.documentType = DocumentType::TransferCertificate) or (not(self.how = null) and not(self.how.consent = null)))) or\n\t\t\t\t\t(not(self.why = null) and \n\t\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) or\n\t\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,Sequence{ProcessingReasonSubtype::PhysicallyIncapable, \n\t\t\t\t\t\t\tProcessingReasonSubtype::Other,ProcessingReasonSubtype::None})))\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\t\tendif\n\t\t\tendif\n}.status" });
+						"Tuple {\n\tmessage : String = \'Where should be defined\',\n\tstatus : Boolean = \n\t\t\tif(self.what.actions->exists(action| action = Action::Transfer)) then\n\t\t\t\t\tnot(self.where = null)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
 		addAnnotation(
 				getPolicyStatement__ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose__DiagnosticChain_Map(),
 				source, new String[] { "body",
 						"Tuple {\n\tmessage : String = \'Based on Art9\',\n\tstatus : Boolean = \n\t\t\tdocumentIsNeededForPurpose(DocumentType::ControllerApproval,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject)\n}.status" });
+		addAnnotation(getPolicyStatement__MissingConsentOrTransferCertificate__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Arts 44-50 and Art 49(1)(b)\',\n\tstatus : Boolean = \n\t\t\tif(not(self.what.actions->exists(action| action = Action::Transfer))or self.where = null or self.where.destination = null or self.where.destination.isEUMember = true) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tif((not(self.where.destination = null)) and self.where.destination.isEUMember = false) then\n\t\t\t\t\t(not(self.how = null) and (self.how.documents->exists(doc| doc.documentType = DocumentType::TransferCertificate) or (not(self.how = null) and not(self.how.consent = null)))) or\n\t\t\t\t\t(self.hasProcessingReason(ProcessingReason::ContractPerformance) and self.isContractProvidedBySubject()) or\n\t\t\t\t\t(not(self.why = null) and \n\t\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) or\n\t\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,Sequence{ProcessingReasonSubtype::PhysicallyIncapable, \n\t\t\t\t\t\t\tProcessingReasonSubtype::Other,ProcessingReasonSubtype::None})))\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\t\tendif\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__CausedByShouldBeDefinedForRectificationAction__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art16\',\n\tstatus : Boolean = \n\t\t\tcausedByShouldBeDefinedForType(Action::Rectification)\n}.status" });
+		addAnnotation(getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedErasure__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(what.actions->exists(action| action = Action::Erasure)) then\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::ExecutedErasure\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__MissingConsentForCollecting__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::Collecting)) or \n\t\t\t\t(what.datas->exists(data| data.collectedFromSubject = false) and self.what.actions->exists(action| action = Action::Collecting))\n\t\t\t) then\n\t\t\t\ttrue\n\t\t\telse if(self.hasProcessingReason(ProcessingReason::LegalObligation)) then\n\t\t\t\ttrue\n\t\t\telse if(self.hasProcessingReason(ProcessingReason::ContractPerformance)) then\n\t\t\t\tself.isContractProvidedBySubject()\n\t\t\telse if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then\n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n\t\t\telse \n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person))\n\t\t\tendif\n\t\t\tendif\n\t\t\tendif\n\t\t\tendif\n}.status" });
 		addAnnotation(
 				getPolicyStatement__ControllerApprovalIsNeededForLegitimateInterestsPurpose__DiagnosticChain_Map(),
 				source, new String[] { "body",
 						"Tuple {\n\tmessage : String = \'Based on Art9\',\n\tstatus : Boolean = \n\t\t\tdocumentIsNeededForPurpose(DocumentType::ControllerApproval,ProcessingReason::LegitimateInterests)\n}.status" });
-		addAnnotation(getPolicyStatement__DateShouldBeDefinedForAccessAction__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Date should be defined\',\n\tstatus : Boolean = \n\t\t\tdateShouldBeDefinedForType(Action::Access)\n}.status" });
-		addAnnotation(getPolicyStatement__DateShouldBeDefinedForStoreAction__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Date should be defined\',\n\tstatus : Boolean = \n\t\t\tdateShouldBeDefinedForType(Action::Store)\n}.status" });
-		addAnnotation(getPolicyStatement__WhereShouldBeDefinedForTransferAction__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Where should be defined\',\n\tstatus : Boolean = \n\t\t\tif(self.what.actions->exists(action| action = Action::Transfer)) then\n\t\t\t\t\tnot(self.where = null)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__SubjectShouldBeNotifiedAboutStopProcessing__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art21\',\n\tstatus : Boolean = \n\t\t\tif(what.actions->exists(action| action = Action::StopProcessing)) then\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::StopProcessing and \n\t\t\t\t\t\tnotification.causedBy = self\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__SubjectShouldBeNotifiedAboutTransferToThirdCountry__DiagnosticChain_Map(),
-				source, new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art15\',\n\tstatus : Boolean = \n\t\t\tif(self.what.actions->exists(action| action = Action::Transfer) and not(self.where = null) and\n\t\t\t\tnot(self.where.destination = null) and self.where.destination.isEUMember = false\n\t\t\t) then\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer \n\t\t\t\t\t\tand notification.causedBy = self\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__MissingConsentForDataPortability__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art20\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::DataPortability))) then\n\t\t\t\ttrue\n\t\t\telse if(self.whose.type= PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then\n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n\t\t\telse \n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person))\n\t\t\tendif\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__CausedByShouldBeDefinedForStopProcessingAction__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art21\',\n\tstatus : Boolean = \n\t\t\tcausedByShouldBeDefinedForType(Action::StopProcessing)\n}.status" });
+		addAnnotation(getPolicyStatement__WhomShouldBeDefinedForTransfer__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"Tuple {\n\tmessage : String = \'Based on Arts44-50\',\n\tstatus : Boolean = \n\t\t\tif(what.actions->exists(action| action = Action::Transfer)) then\n\t\t\t\t\tnot(self.whom = null)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
 		addAnnotation(getPolicyStatement__StopProcessingPurposeForActionStopProcessing__DiagnosticChain_Map(), source,
 				new String[] { "body",
 						"\n\t\t\tif(not(self.what.actions->exists(act| act = Action::StopProcessing))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tself.why.processingReason = ProcessingReason::StopProcessing\n\t\t\tendif" });
+		addAnnotation(getPolicyStatement__ProcessingOfSpecialCategories__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"Tuple {\n\tmessage : String = \'Based on Art9\',\n\tstatus : Boolean = \n\t\t\tif(self.what.actions->exists(action | action = Action::StopProcessing)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tself.what.datas->forAll(data| \n\t\t\t\tlet dataTypes  = Sequence{DataType::Biometric, DataType::Genetic, DataType::PoliticalOpinion, \n\t\t\t\t\tDataType::RacialOrEthnicOrigin, DataType::SexLife, DataType::Religious, DataType::Judicial\n\t\t\t\t} in\n\t\t\t\tif(dataTypes->includes(data.privacydata.type)) then\n\t\t\t\t\t((not(self.how = null) and not(self.how.consent = null))\n\t\t\t\t\t\tor\n\t\t\t\t\t(not(self.why = null) and\n\t\t\t\t\tlet reasons  = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,\n\t\t\t\t\t\tProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::Research, ProcessingReason::PublicHealth\n\t\t\t\t\t} in\n\t\t\t\t\t\treasons->includes(self.why.processingReason) or (not(self.why.subPurposes = null) and self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n\t\t\t\t\t))))\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\t\tendif\n\t\t\t)\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__ExpiredConsent__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tself.what.datas->forAll(data |\n\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st| \n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and self.who.equals(st.who) and st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n\t\t\t\t\t\tin \n\t\t\t\t\t\tif(statements->isEmpty()) then \n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tstatements -> exists(st|\n\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\tif(self.why = null \n\t\t\t\t\t\t\t\t\t\tor \n\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n\t\t\t\t\t\t\t\t\t)) then\n\t\t\t\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, st.how.consent.startDate)) and\n\t\t\t\t\t\t\t\t\t\t(st.how.consent.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, st.how.consent.terminationDate)))\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\tendif\n\t\t\t\t)\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__CourtApprovalIsNeededForPublicInterestPurpose__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art9\',\n\tstatus : Boolean = \n\t\t\tdocumentIsNeededForPurpose(DocumentType::CourtApproval,ProcessingReason::PublicInterest)\n}.status" });
 		addAnnotation(
 				getPolicyStatement__JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson__DiagnosticChain_Map(),
 				source, new String[] { "body",
 						"Tuple {\n\tmessage : String = \'Based on Art8\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::Collecting))) then\n\t\t\t\ttrue\n\t\t\telse if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then\n\t\t\t\tif(self.how = null or self.whose.responsiblePersons->isEmpty() or self.how.documents->isEmpty() or \n\t\t\t\t\tnot(self.how.documents->exists(document| document.documentType = DocumentType::ChildCustody and self.whose.responsiblePersons->exists(p|p=document.providedBy)))\n\t\t\t\t) then \n\t\t\t\t\tfalse\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n\t\t\tendif\n}.status" });
-		addAnnotation(getPolicyStatement__WithdrawnConsent__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'Based on Art7\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tself.what.datas->forAll(data|\n\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st: PolicyStatement| \n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and self.who.equals(st.who) and st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n\t\t\t\t\t\tin \n\t\t\t\t\t\tif(statements->isEmpty()) then \n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tstatements -> forAll(st|\n\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\tif(self.why = null \n\t\t\t\t\t\t\t\t\t\tor \n\t\t\t\t\t\t\t\t\t\tlet reasons  = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject} in\n\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose)\n\t\t\t\t\t\t\t\t\t)) then\n\t\t\t\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.allComplaints->exists(complaint| complaint.action.oclIsTypeOf(Withdraw) and \n\t\t\t\t\t\t\t\t\t\t\tlet withdrawal: Withdraw = complaint.action.oclAsType(Withdraw) in\n\t\t\t\t\t\t\t\t\t\t\t\twithdrawal.subject = st.how.consent\n\t\t\t\t\t\t\t\t\t\t\t\tand (privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, complaint.when) \n\t\t\t\t\t\t\t\t\t\t\t\tor privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when))\n\t\t\t\t\t\t\t\t\t\t\tand not(privacyPolicy.policyStatements->exists(stopStatement| \n\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.what.actions->exists(act| act = Action::StopProcessing) and \n\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.what.datas->exists(d| d = data) and not(stopStatement.causedBy = null) and \n\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.causedBy.action= withdrawal))\n\t\t\t\t\t\t\t\t\t\t))\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\tendif\n\t\t\t\t)\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__CausedByShouldBeDefinedForStopProcessingAction__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art21\',\n\tstatus : Boolean = \n\t\t\tcausedByShouldBeDefinedForType(Action::StopProcessing)\n}.status" });
+		addAnnotation(getPolicyStatement__MissingContractForContractPerformance__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.hasProcessingReason(ProcessingReason::ContractPerformance))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tself.isContractProvidedBySubject()\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__ExpiredConsentForCollecting__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.what.actions->exists(act| act = Action::Collecting)) or self.how = null or self.how.consent = null) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tif(self.why = null \n\t\t\t\t\tor \n\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n\t\t\t\t)) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\t\t(privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, self.how.consent.startDate) or\n\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.consent.startDate))\n\t\t\t\t\tand\n\t\t\t\t\t(self.how.consent.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.consent.terminationDate)))\n\t\t\t\tendif\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__SubjectShouldBeNotifiedAboutCollecting__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art14\',\n\tstatus : Boolean = \n\t\t\tif(self.what.actions->exists(action| action = Action::Collecting) and self.what.datas->exists(data| data.collectedFromSubject = false)) then\n\t\t\t\tif(not(self.why = null) and \n\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::None}) or\n\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Research,Sequence{ProcessingReasonSubtype::Statistical, \n\t\t\t\t\t\tProcessingReasonSubtype::Historical,ProcessingReasonSubtype::Scientific}))\n\t\t\t\t)then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::DataCollecting \n\t\t\t\t\t\tand notification.causedBy = self\n\t\t\t\t\t)\n\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
 		addAnnotation(getPolicyStatement__UndefinedPurposeForActionOrUserDoesntHavePermission__DiagnosticChain_Map(),
 				source, new String[] { "body",
-						"Tuple {\n\tmessage : String = \'Based on Art6 and Art9\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tself.what.datas->forAll(data|\n\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st| \n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose  \n\t\t\t\t\t\tand st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n\t\t\t\t\t\tin \n\t\t\t\t\t\tif(statements->isEmpty()) then \n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tstatements -> forAll(st|\n\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\tif(self.why = null) then\n\t\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\t(not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals->exists(subprincipal| subprincipal = self.who) \n\t\t\t\t\t\t\t\t\t\tor self.who.equals(st.whose) or st.whose.responsiblePersons->exists(responsiblePerson| responsiblePerson = self.who)))\n\t\t\t\t\t\t\t\t\t\tand (st.why.isValid(self.why) or \n\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth} in\n\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose)))\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\tendif\n\t\t\t\t)\n\t\t\tendif\n}.status" });
+						"Tuple {\n\tmessage : String = \'Based on Art6 and Art9\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tself.what.datas->forAll(data|\n\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st| \n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose  \n\t\t\t\t\t\tand st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n\t\t\t\t\t\tin \n\t\t\t\t\t\tif(statements->isEmpty()) then \n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tstatements -> forAll(st|\n\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\tif(self.why = null) then\n\t\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\t(not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals->exists(subprincipal| subprincipal = self.who) \n\t\t\t\t\t\t\t\t\t\tor self.who.equals(st.whose) or st.whose.responsiblePersons->exists(responsiblePerson| responsiblePerson = self.who)))\n\t\t\t\t\t\t\t\t\t\tand (st.why.isValid(self.why) or \n\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth, ProcessingReason::LegalObligation} in\n\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)))\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\tendif\n\t\t\t\t)\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__MissingConsentForDataPortability__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art20 and Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::DataPortability))) then\n\t\t\t\ttrue\n\t\t\telse if(self.isContractProvidedBySubject()) then\n\t\t\t\ttrue\n\t\t\telse if(self.whose.type= PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit) then\n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n\t\t\telse \n\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person))\n\t\t\tendif\n\t\t\tendif\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__DateShouldBeDefinedForAccessAction__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Date should be defined\',\n\tstatus : Boolean = \n\t\t\tdateShouldBeDefinedForType(Action::Access)\n}.status" });
+		addAnnotation(getPolicyStatement__WithdrawnConsent__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Based on Art7\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tself.what.datas->forAll(data|\n\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st: PolicyStatement| \n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and self.who.equals(st.who) and st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n\t\t\t\t\t\tin \n\t\t\t\t\t\tif(statements->isEmpty()) then \n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tstatements -> forAll(st|\n\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\tif(self.why = null \n\t\t\t\t\t\t\t\t\t\tor \n\t\t\t\t\t\t\t\t\t\tlet reasons  = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n\t\t\t\t\t\t\t\t\t)) then\n\t\t\t\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.allComplaints->exists(complaint| complaint.action.oclIsTypeOf(Withdraw) and \n\t\t\t\t\t\t\t\t\t\t\tlet withdrawal: Withdraw = complaint.action.oclAsType(Withdraw) in\n\t\t\t\t\t\t\t\t\t\t\t\twithdrawal.subject = st.how.consent\n\t\t\t\t\t\t\t\t\t\t\t\tand (privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, complaint.when) \n\t\t\t\t\t\t\t\t\t\t\t\tor privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when))\n\t\t\t\t\t\t\t\t\t\t\tand not(privacyPolicy.policyStatements->exists(stopStatement| \n\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.what.actions->exists(act| act = Action::StopProcessing) and \n\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.what.datas->exists(d| d = data) and not(stopStatement.causedBy = null) and \n\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.causedBy.action= withdrawal))\n\t\t\t\t\t\t\t\t\t\t))\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\tendif\n\t\t\t\t)\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__CausedByShouldBeDefinedForErasureAction__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art17\',\n\tstatus : Boolean = \n\t\t\tcausedByShouldBeDefinedForType(Action::Erasure)\n}.status" });
+		addAnnotation(getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedRectification__DiagnosticChain_Map(),
+				source, new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(what.actions->exists(action| action = Action::Rectification)) then\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__ExpiredContract__DiagnosticChain_Map(), source, new String[] { "body",
+				"Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(not(self.hasProcessingReason(ProcessingReason::ContractPerformance)) or self.how = null or self.how.contract = null) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\t(self.why.processingReasonSubtype = ProcessingReasonSubtype::PreContractual or\n\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, self.how.contract.startDate) or\n\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.contract.startDate))\n\t\t\t\tand\n\t\t\t\t(self.how.contract.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.contract.terminationDate)))\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__LegalProvisionIsNeededForLegalObligationPurpose__DiagnosticChain_Map(),
+				source, new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(not(self.hasProcessingReason(ProcessingReason::LegalObligation))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision)\n\t\t\tendif\n}.status" });
+		addAnnotation(getPolicyStatement__SubjectShouldBeNotifiedAboutStopProcessing__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"Tuple {\n\tmessage : String = \'Based on Art21\',\n\tstatus : Boolean = \n\t\t\tif(what.actions->exists(action| action = Action::StopProcessing)) then\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::StopProcessing and \n\t\t\t\t\t\tnotification.causedBy = self\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status" });
 		addAnnotation(getPrincipal__Equals__Principal(), source, new String[] { "body",
 				"if(self = null) then\n\t\t\t\t\tfalse\n\t\t\t\telse\n\t\t\t\t\tself = observed or self.subPrincipals->exists(principal| principal = observed)\n\t\t\t\tendif" });
 		addAnnotation(getPrincipal__NaturalPersonCannotContainSubPrincipals__DiagnosticChain_Map(), source,
@@ -4469,45 +4675,49 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addAnnotation(getPurpose__ContainsAllowedPurposeReasonAndSubreason__ProcessingReason_EList(), source,
 				new String[] { "body",
 						"allowedReason = self.processingReason and allowedSubreasons->exists(r| r = self.processingReasonSubtype)" });
-		addAnnotation(getPurpose__PublicInterestShouldNotContainThisSubReason__DiagnosticChain_Map(), source,
+		addAnnotation(getPurpose__LegitimateInterestsShouldNotContainThisSubReason__DiagnosticChain_Map(), source,
 				new String[] { "body",
-						"\n\t\t\t\tisSubPurposeValid(ProcessingReason::PublicInterest, \n\t\t\t\tSequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})" });
-		addAnnotation(getPurpose__PublicHealthShouldNotContainSubReason__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"\n\t\t\t\tisSubPurposeValid(ProcessingReason::PublicHealth, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
-		addAnnotation(getPurpose__OutOfScopeShouldNotContainThisSubReason__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"\n\t\t\tisSubPurposeValid(ProcessingReason::OutOfScope, \n\t\t\t\tSequence{ProcessingReasonSubtype::OutOfEU,\n\t\t\t\t\tProcessingReasonSubtype::PersonalActivity, ProcessingReasonSubtype::SpecialScopeOfActivity, ProcessingReasonSubtype::None,\n\t\t\t\t\tProcessingReasonSubtype::Other\n\t\t\t\t})" });
-		addAnnotation(getPurpose__ProfilingShouldNotContainSubReason__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"\n\t\t\t\tisSubPurposeValid(ProcessingReason::Profiling, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
+						"\n\t\t\tisSubPurposeValid(ProcessingReason::LegitimateInterests, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
 		addAnnotation(getPurpose__StopProcessingShouldNotContainSubReason__DiagnosticChain_Map(), source, new String[] {
 				"body",
 				"\n\t\t\t\tisSubPurposeValid(ProcessingReason::StopProcessing, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
 		addAnnotation(getPurpose__MarketingShouldNotContainSubReason__DiagnosticChain_Map(), source, new String[] {
 				"body",
 				"\n\t\t\t\tisSubPurposeValid(ProcessingReason::Marketing, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
+		addAnnotation(getPurpose__TestingShouldNotContainSubReason__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"\n\t\t\t\tisSubPurposeValid(ProcessingReason::Testing, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
 		addAnnotation(getPurpose__ExercisingSpecificRightsPurposesCannotContainThisSubReason__DiagnosticChain_Map(),
 				source, new String[] { "body",
 						"\n\t\t\t\tisSubPurposeValid(ProcessingReason::ExercisingSpecificRights, \n\t\t\t\tSequence{ProcessingReasonSubtype::Employment, ProcessingReasonSubtype::SocialSecurity,ProcessingReasonSubtype::SocialProtection, \n\t\t\t\tProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})" });
+		addAnnotation(getPurpose__ResearchShouldNotContainThisSubReason__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"\n\t\t\t\tisSubPurposeValid(ProcessingReason::Research, \n\t\t\t\tSequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::Scientific, ProcessingReasonSubtype::Historical,\n\t\t\t\t\tProcessingReasonSubtype::Statistical\n\t\t\t\t})" });
+		addAnnotation(getPurpose__PublicHealthShouldNotContainSubReason__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"\n\t\t\t\tisSubPurposeValid(ProcessingReason::PublicHealth, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
+		addAnnotation(getPurpose__ProfilingShouldNotContainSubReason__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"\n\t\t\t\tisSubPurposeValid(ProcessingReason::Profiling, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
+		addAnnotation(getPurpose__ContractPerformanceCannotContainThisSubReason__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"\n\t\t\t\tisSubPurposeValid(ProcessingReason::ContractPerformance, \n\t\t\t\tSequence{ProcessingReasonSubtype::PreContractual, \n\t\t\t\tProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})" });
+		addAnnotation(getPurpose__LegalObligationShouldNotContainSubReason__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"\n\t\t\t\tisSubPurposeValid(ProcessingReason::LegalObligation, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
+		addAnnotation(getPurpose__PublicInterestShouldNotContainThisSubReason__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"\n\t\t\t\tisSubPurposeValid(ProcessingReason::PublicInterest, \n\t\t\t\tSequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})" });
+		addAnnotation(getPurpose__OutOfScopeShouldNotContainThisSubReason__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"\n\t\t\tisSubPurposeValid(ProcessingReason::OutOfScope, \n\t\t\t\tSequence{ProcessingReasonSubtype::OutOfEU,\n\t\t\t\t\tProcessingReasonSubtype::PersonalActivity, ProcessingReasonSubtype::SpecialScopeOfActivity, ProcessingReasonSubtype::None,\n\t\t\t\t\tProcessingReasonSubtype::Other\n\t\t\t\t})" });
+		addAnnotation(getPurpose__StatisticalPurposesShouldNotContainSubReason__DiagnosticChain_Map(), source,
+				new String[] { "body",
+						"\n\t\t\t\tisSubPurposeValid(ProcessingReason::StatisticalPurposes, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
 		addAnnotation(
 				getPurpose__ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason__DiagnosticChain_Map(),
 				source, new String[] { "body",
 						"\n\t\t\tisSubPurposeValid(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, \n\t\t\t\tSequence{ProcessingReasonSubtype::PhysicallyIncapable,ProcessingReasonSubtype::LegallyIncapable, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::None})" });
-		addAnnotation(getPurpose__LegitimateInterestsShouldNotContainThisSubReason__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"\n\t\t\tisSubPurposeValid(ProcessingReason::LegitimateInterests, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
-		addAnnotation(getPurpose__ResearchShouldNotContainThisSubReason__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"\n\t\t\t\tisSubPurposeValid(ProcessingReason::Research, \n\t\t\t\tSequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::Scientific, ProcessingReasonSubtype::Historical,\n\t\t\t\t\tProcessingReasonSubtype::Statistical\n\t\t\t\t})" });
-		addAnnotation(getPurpose__StatisticalPurposesShouldNotContainSubReason__DiagnosticChain_Map(), source,
-				new String[] { "body",
-						"\n\t\t\t\tisSubPurposeValid(ProcessingReason::StatisticalPurposes, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
-		addAnnotation(getPurpose__TestingShouldNotContainSubReason__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"\n\t\t\t\tisSubPurposeValid(ProcessingReason::Testing, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})" });
-		addAnnotation(getHow__IsConsentValid__How(), source, new String[] { "body",
-				"\n\t\t\t\t\tif(self.consent = null) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse if(howConsent.consent = null) then\n\t\t\t\t\t\tfalse\n\t\t\t\t\telse\n\t\t\t\t\t\tself.consent = howConsent.consent\n\t\t\t\t\tendif\n\t\t\t\t\tendif" });
 		addAnnotation(getComplaint__DoesPolicyStatementExists__Action_ComplaintBasedOnDataType(), source, new String[] {
 				"body",
 				"\t\t \t\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnData))) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\tif(basedOnData.type = type) then\n\t\t\t\t\tif(not(basedOnData.denialReason = null) or not(basedOnData.status = ComplaintStatus::Pending)) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\tbasedOnData.subject->forAll(data: PrivacyData|\n\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = actionType) and \n\t\t\t\t\t\t\tnot(stmt.whose = null) and stmt.whose = self.who and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) \n\t\t\t\t\t\t\tand stmt.what.datas->exists(selectedData| selectedData.privacydata = data) and not(stmt.causedBy = null) and stmt.causedBy = self)\n\t\t\t\t\t)\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\t\tendif\n\t\t\t  endif" });

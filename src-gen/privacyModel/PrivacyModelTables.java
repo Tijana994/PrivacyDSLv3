@@ -88,6 +88,7 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ ClassId CLSSid_ComplaintBasedOnData = PrivacyModelTables.PACKid_http_c_s_s_privacymodel.getClassId("ComplaintBasedOnData", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_ConfigurationManager = PrivacyModelTables.PACKid_http_c_s_s_privacymodel.getClassId("ConfigurationManager", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Consent = PrivacyModelTables.PACKid_http_c_s_s_privacymodel.getClassId("Consent", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_Contract = PrivacyModelTables.PACKid_http_c_s_s_privacymodel.getClassId("Contract", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Denial = PrivacyModelTables.PACKid_http_c_s_s_privacymodel.getClassId("Denial", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Document = PrivacyModelTables.PACKid_http_c_s_s_privacymodel.getClassId("Document", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_How = PrivacyModelTables.PACKid_http_c_s_s_privacymodel.getClassId("How", 0);
@@ -137,7 +138,7 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art16 = "Based on Art16";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art17 = "Based on Art17";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art19 = "Based on Art19";
-	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art20 = "Based on Art20";
+	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art20_32_and_32_Art6 = "Based on Art20 and Art6";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art21 = "Based on Art21";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art6 = "Based on Art6";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art6_32_and_32_Art9 = "Based on Art6 and Art9";
@@ -146,9 +147,10 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art9 = "Based on Art9";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art_32_3 = "Based on Art 3";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Arts44_m_50 = "Based on Arts44-50";
-	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Arts_32_44_m_50 = "Based on Arts 44-50";
+	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Arts_32_44_m_50_32_and_32_Art_32_49_o_1_e_o_b_e = "Based on Arts 44-50 and Art 49(1)(b)";
 	public static final /*@NonInvalid*/ String STR_Complaint_32_name_32_is_32_unique = "Complaint name is unique";
 	public static final /*@NonInvalid*/ String STR_Consent_32_name_32_is_32_unique = "Consent name is unique";
+	public static final /*@NonInvalid*/ String STR_Contract_32_name_32_is_32_unique = "Contract name is unique";
 	public static final /*@NonInvalid*/ String STR_Data_32_source_32_should_32_be_32_defined_32_in_32_configuration = "Data source should be defined in configuration.";
 	public static final /*@NonInvalid*/ String STR_Date_32_should_32_be_32_defined = "Date should be defined";
 	public static final /*@NonInvalid*/ String STR_Document_32_name_32_is_32_unique = "Document name is unique";
@@ -191,6 +193,7 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Biometric = PrivacyModelTables.ENUMid_DataType.getEnumerationLiteralId("Biometric");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_ChildCustody = PrivacyModelTables.ENUMid_DocumentType.getEnumerationLiteralId("ChildCustody");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Collecting = PrivacyModelTables.ENUMid_Action.getEnumerationLiteralId("Collecting");
+	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_ContractPerformance = PrivacyModelTables.ENUMid_ProcessingReason.getEnumerationLiteralId("ContractPerformance");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_ControllerApproval = PrivacyModelTables.ENUMid_DocumentType.getEnumerationLiteralId("ControllerApproval");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_CourtApproval = PrivacyModelTables.ENUMid_DocumentType.getEnumerationLiteralId("CourtApproval");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_DataCollecting = PrivacyModelTables.ENUMid_NotificationType.getEnumerationLiteralId("DataCollecting");
@@ -207,6 +210,8 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Historical = PrivacyModelTables.ENUMid_ProcessingReasonSubtype.getEnumerationLiteralId("Historical");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Investigation = PrivacyModelTables.ENUMid_ProcessingReasonSubtype.getEnumerationLiteralId("Investigation");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Judicial = PrivacyModelTables.ENUMid_DataType.getEnumerationLiteralId("Judicial");
+	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_LegalObligation = PrivacyModelTables.ENUMid_ProcessingReason.getEnumerationLiteralId("LegalObligation");
+	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_LegalProvision = PrivacyModelTables.ENUMid_DocumentType.getEnumerationLiteralId("LegalProvision");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_LegallyIncapable = PrivacyModelTables.ENUMid_ProcessingReasonSubtype.getEnumerationLiteralId("LegallyIncapable");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_LegitimateInterests = PrivacyModelTables.ENUMid_ProcessingReason.getEnumerationLiteralId("LegitimateInterests");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Marketing = PrivacyModelTables.ENUMid_ProcessingReason.getEnumerationLiteralId("Marketing");
@@ -219,6 +224,7 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_PersonalActivity = PrivacyModelTables.ENUMid_ProcessingReasonSubtype.getEnumerationLiteralId("PersonalActivity");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_PhysicallyIncapable = PrivacyModelTables.ENUMid_ProcessingReasonSubtype.getEnumerationLiteralId("PhysicallyIncapable");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_PoliticalOpinion = PrivacyModelTables.ENUMid_DataType.getEnumerationLiteralId("PoliticalOpinion");
+	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_PreContractual = PrivacyModelTables.ENUMid_ProcessingReasonSubtype.getEnumerationLiteralId("PreContractual");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Prevention = PrivacyModelTables.ENUMid_ProcessingReasonSubtype.getEnumerationLiteralId("Prevention");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_PreventionOfThreats = PrivacyModelTables.ENUMid_ProcessingReasonSubtype.getEnumerationLiteralId("PreventionOfThreats");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Profiling = PrivacyModelTables.ENUMid_ProcessingReason.getEnumerationLiteralId("Profiling");
@@ -256,6 +262,7 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_until = PrivacyModelTables.ENUMid_TimePreposition.getEnumerationLiteralId("until");
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Complaint = TypeId.ORDERED_SET.getSpecializedId(PrivacyModelTables.CLSSid_Complaint);
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Consent = TypeId.ORDERED_SET.getSpecializedId(PrivacyModelTables.CLSSid_Consent);
+	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Contract = TypeId.ORDERED_SET.getSpecializedId(PrivacyModelTables.CLSSid_Contract);
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Denial = TypeId.ORDERED_SET.getSpecializedId(PrivacyModelTables.CLSSid_Denial);
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Document = TypeId.ORDERED_SET.getSpecializedId(PrivacyModelTables.CLSSid_Document);
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Location = TypeId.ORDERED_SET.getSpecializedId(PrivacyModelTables.CLSSid_Location);
@@ -280,12 +287,13 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ SequenceValue Sequence_5 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReasonSubtype, PrivacyModelTables.ELITid_OutOfEU, PrivacyModelTables.ELITid_PersonalActivity, PrivacyModelTables.ELITid_SpecialScopeOfActivity, PrivacyModelTables.ELITid_None, PrivacyModelTables.ELITid_Other);
 	public static final /*@NonInvalid*/ SequenceValue Sequence_12 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReasonSubtype, PrivacyModelTables.ELITid_PhysicallyIncapable, PrivacyModelTables.ELITid_LegallyIncapable, PrivacyModelTables.ELITid_Other, PrivacyModelTables.ELITid_None);
 	public static final /*@NonInvalid*/ SequenceValue Sequence_2 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReasonSubtype, PrivacyModelTables.ELITid_PhysicallyIncapable, PrivacyModelTables.ELITid_Other, PrivacyModelTables.ELITid_None);
+	public static final /*@NonInvalid*/ SequenceValue Sequence_15 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReasonSubtype, PrivacyModelTables.ELITid_PreContractual, PrivacyModelTables.ELITid_None, PrivacyModelTables.ELITid_Other);
 	public static final /*@NonInvalid*/ SequenceValue Sequence_6 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReasonSubtype, PrivacyModelTables.ELITid_Prevention, PrivacyModelTables.ELITid_Investigation, PrivacyModelTables.ELITid_Detection, PrivacyModelTables.ELITid_Prosecution, PrivacyModelTables.ELITid_PreventionOfThreats, PrivacyModelTables.ELITid_None, PrivacyModelTables.ELITid_Other);
 	public static final /*@NonInvalid*/ SequenceValue Sequence_0 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReasonSubtype, PrivacyModelTables.ELITid_Statistical, PrivacyModelTables.ELITid_Historical, PrivacyModelTables.ELITid_Scientific);
 	public static final /*@NonInvalid*/ SequenceValue dataTypes = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_DataType, PrivacyModelTables.ELITid_Biometric, PrivacyModelTables.ELITid_Genetic, PrivacyModelTables.ELITid_PoliticalOpinion, PrivacyModelTables.ELITid_RacialOrEthnicOrigin, PrivacyModelTables.ELITid_SexLife, PrivacyModelTables.ELITid_Religious, PrivacyModelTables.ELITid_Judicial);
-	public static final /*@NonInvalid*/ SequenceValue reasons = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReason, PrivacyModelTables.ELITid_PublicInterest, PrivacyModelTables.ELITid_LegitimateInterests, PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject, PrivacyModelTables.ELITid_PublicHealth);
+	public static final /*@NonInvalid*/ SequenceValue reasons_1 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReason, PrivacyModelTables.ELITid_PublicInterest, PrivacyModelTables.ELITid_LegitimateInterests, PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject, PrivacyModelTables.ELITid_LegalObligation, PrivacyModelTables.ELITid_ContractPerformance);
+	public static final /*@NonInvalid*/ SequenceValue reasons = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReason, PrivacyModelTables.ELITid_PublicInterest, PrivacyModelTables.ELITid_LegitimateInterests, PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject, PrivacyModelTables.ELITid_PublicHealth, PrivacyModelTables.ELITid_LegalObligation);
 	public static final /*@NonInvalid*/ SequenceValue reasons_3 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReason, PrivacyModelTables.ELITid_PublicInterest, PrivacyModelTables.ELITid_LegitimateInterests, PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject, PrivacyModelTables.ELITid_Research, PrivacyModelTables.ELITid_PublicHealth);
-	public static final /*@NonInvalid*/ SequenceValue reasons_1 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReason, PrivacyModelTables.ELITid_PublicInterest, PrivacyModelTables.ELITid_LegitimateInterests, PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -329,6 +337,7 @@ public class PrivacyModelTables extends AbstractTables
 		public static final EcoreExecutorType _Consent = new EcoreExecutorType(PrivacyModelPackage.Literals.CONSENT, PACKAGE, 0);
 		public static final EcoreExecutorEnumeration _ConsentFormat = new EcoreExecutorEnumeration(PrivacyModelPackage.Literals.CONSENT_FORMAT, PACKAGE, 0);
 		public static final EcoreExecutorEnumeration _ConsentType = new EcoreExecutorEnumeration(PrivacyModelPackage.Literals.CONSENT_TYPE, PACKAGE, 0);
+		public static final EcoreExecutorType _Contract = new EcoreExecutorType(PrivacyModelPackage.Literals.CONTRACT, PACKAGE, 0);
 		public static final EcoreExecutorEnumeration _DataType = new EcoreExecutorEnumeration(PrivacyModelPackage.Literals.DATA_TYPE, PACKAGE, 0);
 		public static final EcoreExecutorType _Denial = new EcoreExecutorType(PrivacyModelPackage.Literals.DENIAL, PACKAGE, 0);
 		public static final EcoreExecutorType _Document = new EcoreExecutorType(PrivacyModelPackage.Literals.DOCUMENT, PACKAGE, 0);
@@ -375,6 +384,7 @@ public class PrivacyModelTables extends AbstractTables
 			_Consent,
 			_ConsentFormat,
 			_ConsentType,
+			_Contract,
 			_DataType,
 			_Denial,
 			_Document,
@@ -505,6 +515,12 @@ public class PrivacyModelTables extends AbstractTables
 		private static final ExecutorFragment _ConsentType__OclElement = new ExecutorFragment(Types._ConsentType, OCLstdlibTables.Types._OclElement);
 		private static final ExecutorFragment _ConsentType__OclEnumeration = new ExecutorFragment(Types._ConsentType, OCLstdlibTables.Types._OclEnumeration);
 		private static final ExecutorFragment _ConsentType__OclType = new ExecutorFragment(Types._ConsentType, OCLstdlibTables.Types._OclType);
+
+		private static final ExecutorFragment _Contract__AbstractPaper = new ExecutorFragment(Types._Contract, PrivacyModelTables.Types._AbstractPaper);
+		private static final ExecutorFragment _Contract__Contract = new ExecutorFragment(Types._Contract, PrivacyModelTables.Types._Contract);
+		private static final ExecutorFragment _Contract__NamedElement = new ExecutorFragment(Types._Contract, PrivacyModelTables.Types._NamedElement);
+		private static final ExecutorFragment _Contract__OclAny = new ExecutorFragment(Types._Contract, OCLstdlibTables.Types._OclAny);
+		private static final ExecutorFragment _Contract__OclElement = new ExecutorFragment(Types._Contract, OCLstdlibTables.Types._OclElement);
 
 		private static final ExecutorFragment _DataType__DataType = new ExecutorFragment(Types._DataType, PrivacyModelTables.Types._DataType);
 		private static final ExecutorFragment _DataType__OclAny = new ExecutorFragment(Types._DataType, OCLstdlibTables.Types._OclAny);
@@ -689,9 +705,9 @@ public class PrivacyModelTables extends AbstractTables
 		public static final ParameterTypes _Action = TypeUtil.createParameterTypes(PrivacyModelTables.Types._Action);
 		public static final ParameterTypes _Action___ComplaintBasedOnDataType = TypeUtil.createParameterTypes(PrivacyModelTables.Types._Action, PrivacyModelTables.Types._ComplaintBasedOnDataType);
 		public static final ParameterTypes _DocumentType___ProcessingReason = TypeUtil.createParameterTypes(PrivacyModelTables.Types._DocumentType, PrivacyModelTables.Types._ProcessingReason);
-		public static final ParameterTypes _How = TypeUtil.createParameterTypes(PrivacyModelTables.Types._How);
 		public static final ParameterTypes _Location = TypeUtil.createParameterTypes(PrivacyModelTables.Types._Location);
 		public static final ParameterTypes _Principal = TypeUtil.createParameterTypes(PrivacyModelTables.Types._Principal);
+		public static final ParameterTypes _ProcessingReason = TypeUtil.createParameterTypes(PrivacyModelTables.Types._ProcessingReason);
 		public static final ParameterTypes _ProcessingReason___Sequence__ProcessingReasonSubtype__ = TypeUtil.createParameterTypes(PrivacyModelTables.Types._ProcessingReason, new ExecutorSpecializedType("Sequence", PrivacyModelTables.Types._ProcessingReasonSubtype));
 		public static final ParameterTypes _Purpose = TypeUtil.createParameterTypes(PrivacyModelTables.Types._Purpose);
 		public static final ParameterTypes _String = TypeUtil.createParameterTypes(OCLstdlibTables.Types._String);
@@ -725,9 +741,6 @@ public class PrivacyModelTables extends AbstractTables
 		public static final ExecutorOperation _Complaint__doesPolicyStatementExists = new ExecutorOperation("doesPolicyStatementExists", Parameters._Action___ComplaintBasedOnDataType, Types._Complaint,
 			0, TemplateParameters.EMPTY_LIST, null);
 
-		public static final ExecutorOperation _How__isConsentValid = new ExecutorOperation("isConsentValid", Parameters._How, Types._How,
-			0, TemplateParameters.EMPTY_LIST, null);
-
 		public static final ExecutorOperation _Location__equals = new ExecutorOperation("equals", Parameters._Location, Types._Location,
 			0, TemplateParameters.EMPTY_LIST, null);
 
@@ -737,6 +750,10 @@ public class PrivacyModelTables extends AbstractTables
 			1, TemplateParameters.EMPTY_LIST, null);
 		public static final ExecutorOperation _PolicyStatement__documentIsNeededForPurpose = new ExecutorOperation("documentIsNeededForPurpose", Parameters._DocumentType___ProcessingReason, Types._PolicyStatement,
 			2, TemplateParameters.EMPTY_LIST, null);
+		public static final ExecutorOperation _PolicyStatement__hasProcessingReason = new ExecutorOperation("hasProcessingReason", Parameters._ProcessingReason, Types._PolicyStatement,
+			3, TemplateParameters.EMPTY_LIST, null);
+		public static final ExecutorOperation _PolicyStatement__isContractProvidedBySubject = new ExecutorOperation("isContractProvidedBySubject", TypeUtil.EMPTY_PARAMETER_TYPES, Types._PolicyStatement,
+			4, TemplateParameters.EMPTY_LIST, null);
 
 		public static final ExecutorOperation _Principal__equals = new ExecutorOperation("equals", Parameters._Principal, Types._Principal,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -834,6 +851,9 @@ public class PrivacyModelTables extends AbstractTables
 		public static final ExecutorProperty _Consent__PrivacyPolicy__allConsents = new ExecutorPropertyWithImplementation("PrivacyPolicy", Types._Consent, 3, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_CONSENTS));
 		public static final ExecutorProperty _Consent__Withdraw__subject = new ExecutorPropertyWithImplementation("Withdraw", Types._Consent, 4, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.WITHDRAW__SUBJECT));
 
+		public static final ExecutorProperty _Contract__How__contract = new ExecutorPropertyWithImplementation("How", Types._Contract, 0, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.HOW__CONTRACT));
+		public static final ExecutorProperty _Contract__PrivacyPolicy__allContracts = new ExecutorPropertyWithImplementation("PrivacyPolicy", Types._Contract, 1, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_CONTRACTS));
+
 		public static final ExecutorProperty _Denial__approvedBy = new EcoreExecutorProperty(PrivacyModelPackage.Literals.DENIAL__APPROVED_BY, Types._Denial, 0);
 		public static final ExecutorProperty _Denial__basedOnStatements = new EcoreExecutorProperty(PrivacyModelPackage.Literals.DENIAL__BASED_ON_STATEMENTS, Types._Denial, 1);
 		public static final ExecutorProperty _Denial__reason = new EcoreExecutorProperty(PrivacyModelPackage.Literals.DENIAL__REASON, Types._Denial, 2);
@@ -846,8 +866,9 @@ public class PrivacyModelTables extends AbstractTables
 		public static final ExecutorProperty _Document__PrivacyPolicy__allDocuments = new ExecutorPropertyWithImplementation("PrivacyPolicy", Types._Document, 2, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_DOCUMENTS));
 
 		public static final ExecutorProperty _How__consent = new EcoreExecutorProperty(PrivacyModelPackage.Literals.HOW__CONSENT, Types._How, 0);
-		public static final ExecutorProperty _How__documents = new EcoreExecutorProperty(PrivacyModelPackage.Literals.HOW__DOCUMENTS, Types._How, 1);
-		public static final ExecutorProperty _How__PolicyStatement__how = new ExecutorPropertyWithImplementation("PolicyStatement", Types._How, 2, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.POLICY_STATEMENT__HOW));
+		public static final ExecutorProperty _How__contract = new EcoreExecutorProperty(PrivacyModelPackage.Literals.HOW__CONTRACT, Types._How, 1);
+		public static final ExecutorProperty _How__documents = new EcoreExecutorProperty(PrivacyModelPackage.Literals.HOW__DOCUMENTS, Types._How, 2);
+		public static final ExecutorProperty _How__PolicyStatement__how = new ExecutorPropertyWithImplementation("PolicyStatement", Types._How, 3, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.POLICY_STATEMENT__HOW));
 
 		public static final ExecutorProperty _Location__isEUMember = new EcoreExecutorProperty(PrivacyModelPackage.Literals.LOCATION__IS_EU_MEMBER, Types._Location, 0);
 		public static final ExecutorProperty _Location__legalAgeLimit = new EcoreExecutorProperty(PrivacyModelPackage.Literals.LOCATION__LEGAL_AGE_LIMIT, Types._Location, 1);
@@ -911,20 +932,21 @@ public class PrivacyModelTables extends AbstractTables
 
 		public static final ExecutorProperty _PrivacyPolicy__allComplaints = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_COMPLAINTS, Types._PrivacyPolicy, 0);
 		public static final ExecutorProperty _PrivacyPolicy__allConsents = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_CONSENTS, Types._PrivacyPolicy, 1);
-		public static final ExecutorProperty _PrivacyPolicy__allDatas = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_DATAS, Types._PrivacyPolicy, 2);
-		public static final ExecutorProperty _PrivacyPolicy__allDenials = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_DENIALS, Types._PrivacyPolicy, 3);
-		public static final ExecutorProperty _PrivacyPolicy__allDocuments = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_DOCUMENTS, Types._PrivacyPolicy, 4);
-		public static final ExecutorProperty _PrivacyPolicy__allPrincipals = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_PRINCIPALS, Types._PrivacyPolicy, 5);
-		public static final ExecutorProperty _PrivacyPolicy__allProviders = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_PROVIDERS, Types._PrivacyPolicy, 6);
-		public static final ExecutorProperty _PrivacyPolicy__allServices = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_SERVICES, Types._PrivacyPolicy, 7);
-		public static final ExecutorProperty _PrivacyPolicy__allSharedPrivacyData = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_SHARED_PRIVACY_DATA, Types._PrivacyPolicy, 8);
-		public static final ExecutorProperty _PrivacyPolicy__configurationManager = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__CONFIGURATION_MANAGER, Types._PrivacyPolicy, 9);
-		public static final ExecutorProperty _PrivacyPolicy__defaultProtectionControls = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__DEFAULT_PROTECTION_CONTROLS, Types._PrivacyPolicy, 10);
-		public static final ExecutorProperty _PrivacyPolicy__locations = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__LOCATIONS, Types._PrivacyPolicy, 11);
-		public static final ExecutorProperty _PrivacyPolicy__notifications = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__NOTIFICATIONS, Types._PrivacyPolicy, 12);
-		public static final ExecutorProperty _PrivacyPolicy__owner = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__OWNER, Types._PrivacyPolicy, 13);
-		public static final ExecutorProperty _PrivacyPolicy__policyStatements = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__POLICY_STATEMENTS, Types._PrivacyPolicy, 14);
-		public static final ExecutorProperty _PrivacyPolicy__privacyPolicyHelper = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__PRIVACY_POLICY_HELPER, Types._PrivacyPolicy, 15);
+		public static final ExecutorProperty _PrivacyPolicy__allContracts = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_CONTRACTS, Types._PrivacyPolicy, 2);
+		public static final ExecutorProperty _PrivacyPolicy__allDatas = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_DATAS, Types._PrivacyPolicy, 3);
+		public static final ExecutorProperty _PrivacyPolicy__allDenials = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_DENIALS, Types._PrivacyPolicy, 4);
+		public static final ExecutorProperty _PrivacyPolicy__allDocuments = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_DOCUMENTS, Types._PrivacyPolicy, 5);
+		public static final ExecutorProperty _PrivacyPolicy__allPrincipals = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_PRINCIPALS, Types._PrivacyPolicy, 6);
+		public static final ExecutorProperty _PrivacyPolicy__allProviders = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_PROVIDERS, Types._PrivacyPolicy, 7);
+		public static final ExecutorProperty _PrivacyPolicy__allServices = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_SERVICES, Types._PrivacyPolicy, 8);
+		public static final ExecutorProperty _PrivacyPolicy__allSharedPrivacyData = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_SHARED_PRIVACY_DATA, Types._PrivacyPolicy, 9);
+		public static final ExecutorProperty _PrivacyPolicy__configurationManager = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__CONFIGURATION_MANAGER, Types._PrivacyPolicy, 10);
+		public static final ExecutorProperty _PrivacyPolicy__defaultProtectionControls = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__DEFAULT_PROTECTION_CONTROLS, Types._PrivacyPolicy, 11);
+		public static final ExecutorProperty _PrivacyPolicy__locations = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__LOCATIONS, Types._PrivacyPolicy, 12);
+		public static final ExecutorProperty _PrivacyPolicy__notifications = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__NOTIFICATIONS, Types._PrivacyPolicy, 13);
+		public static final ExecutorProperty _PrivacyPolicy__owner = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__OWNER, Types._PrivacyPolicy, 14);
+		public static final ExecutorProperty _PrivacyPolicy__policyStatements = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__POLICY_STATEMENTS, Types._PrivacyPolicy, 15);
+		public static final ExecutorProperty _PrivacyPolicy__privacyPolicyHelper = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__PRIVACY_POLICY_HELPER, Types._PrivacyPolicy, 16);
 
 		public static final ExecutorProperty _PrivacyPolicyHelper__PrivacyPolicy__privacyPolicyHelper = new ExecutorPropertyWithImplementation("PrivacyPolicy", Types._PrivacyPolicyHelper, 0, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__PRIVACY_POLICY_HELPER));
 
@@ -1120,6 +1142,16 @@ public class PrivacyModelTables extends AbstractTables
 				Fragments._ConsentType__ConsentType /* 4 */
 			};
 		private static final int /*@NonNull*/ [] __ConsentType = { 1,1,1,1,1 };
+
+		private static final ExecutorFragment /*@NonNull*/ [] _Contract =
+			{
+				Fragments._Contract__OclAny /* 0 */,
+				Fragments._Contract__OclElement /* 1 */,
+				Fragments._Contract__NamedElement /* 2 */,
+				Fragments._Contract__AbstractPaper /* 3 */,
+				Fragments._Contract__Contract /* 4 */
+			};
+		private static final int /*@NonNull*/ [] __Contract = { 1,1,1,1,1 };
 
 		private static final ExecutorFragment /*@NonNull*/ [] _DataType =
 			{
@@ -1414,6 +1446,7 @@ public class PrivacyModelTables extends AbstractTables
 			Types._Consent.initFragments(_Consent, __Consent);
 			Types._ConsentFormat.initFragments(_ConsentFormat, __ConsentFormat);
 			Types._ConsentType.initFragments(_ConsentType, __ConsentType);
+			Types._Contract.initFragments(_Contract, __Contract);
 			Types._DataType.initFragments(_DataType, __DataType);
 			Types._Denial.initFragments(_Denial, __Denial);
 			Types._Document.initFragments(_Document, __Document);
@@ -1897,6 +1930,36 @@ public class PrivacyModelTables extends AbstractTables
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
 
+		private static final ExecutorOperation /*@NonNull*/ [] _Contract__Contract = {};
+		private static final ExecutorOperation /*@NonNull*/ [] _Contract__AbstractPaper = {};
+		private static final ExecutorOperation /*@NonNull*/ [] _Contract__NamedElement = {};
+		private static final ExecutorOperation /*@NonNull*/ [] _Contract__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final ExecutorOperation /*@NonNull*/ [] _Contract__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[1]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[1]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+
 		private static final ExecutorOperation /*@NonNull*/ [] _DataType__DataType = {};
 		private static final ExecutorOperation /*@NonNull*/ [] _DataType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -2024,9 +2087,7 @@ public class PrivacyModelTables extends AbstractTables
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
 
-		private static final ExecutorOperation /*@NonNull*/ [] _How__How = {
-			PrivacyModelTables.Operations._How__isConsentValid /* isConsentValid(How[?]) */
-		};
+		private static final ExecutorOperation /*@NonNull*/ [] _How__How = {};
 		private static final ExecutorOperation /*@NonNull*/ [] _How__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
@@ -2242,7 +2303,9 @@ public class PrivacyModelTables extends AbstractTables
 		private static final ExecutorOperation /*@NonNull*/ [] _PolicyStatement__PolicyStatement = {
 			PrivacyModelTables.Operations._PolicyStatement__causedByShouldBeDefinedForType /* causedByShouldBeDefinedForType(Action[1]) */,
 			PrivacyModelTables.Operations._PolicyStatement__dateShouldBeDefinedForType /* dateShouldBeDefinedForType(Action[1]) */,
-			PrivacyModelTables.Operations._PolicyStatement__documentIsNeededForPurpose /* documentIsNeededForPurpose(DocumentType[1],ProcessingReason[1]) */
+			PrivacyModelTables.Operations._PolicyStatement__documentIsNeededForPurpose /* documentIsNeededForPurpose(DocumentType[1],ProcessingReason[1]) */,
+			PrivacyModelTables.Operations._PolicyStatement__hasProcessingReason /* hasProcessingReason(ProcessingReason[1]) */,
+			PrivacyModelTables.Operations._PolicyStatement__isContractProvidedBySubject /* isContractProvidedBySubject() */
 		};
 		private static final ExecutorOperation /*@NonNull*/ [] _PolicyStatement__NamedElement = {};
 		private static final ExecutorOperation /*@NonNull*/ [] _PolicyStatement__NotificationInfo = {};
@@ -2917,6 +2980,12 @@ public class PrivacyModelTables extends AbstractTables
 			Fragments._ConsentType__OclEnumeration.initOperations(_ConsentType__OclEnumeration);
 			Fragments._ConsentType__OclType.initOperations(_ConsentType__OclType);
 
+			Fragments._Contract__AbstractPaper.initOperations(_Contract__AbstractPaper);
+			Fragments._Contract__Contract.initOperations(_Contract__Contract);
+			Fragments._Contract__NamedElement.initOperations(_Contract__NamedElement);
+			Fragments._Contract__OclAny.initOperations(_Contract__OclAny);
+			Fragments._Contract__OclElement.initOperations(_Contract__OclElement);
+
 			Fragments._DataType__DataType.initOperations(_DataType__DataType);
 			Fragments._DataType__OclAny.initOperations(_DataType__OclAny);
 			Fragments._DataType__OclElement.initOperations(_DataType__OclElement);
@@ -3192,6 +3261,18 @@ public class PrivacyModelTables extends AbstractTables
 			OCLstdlibTables.Properties._OclElement__oclContents
 		};
 
+		private static final ExecutorProperty /*@NonNull*/ [] _Contract = {
+			PrivacyModelTables.Properties._AbstractPaper__description,
+			PrivacyModelTables.Properties._AbstractPaper__location,
+			PrivacyModelTables.Properties._NamedElement__name,
+			OCLstdlibTables.Properties._OclElement__oclContainer,
+			OCLstdlibTables.Properties._OclElement__oclContents,
+			PrivacyModelTables.Properties._AbstractPaper__providedBy,
+			PrivacyModelTables.Properties._AbstractPaper__startDate,
+			PrivacyModelTables.Properties._AbstractPaper__terminationDate,
+			PrivacyModelTables.Properties._AbstractPaper__terminationExplanation
+		};
+
 		private static final ExecutorProperty /*@NonNull*/ [] _DataType = {
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents
@@ -3227,6 +3308,7 @@ public class PrivacyModelTables extends AbstractTables
 
 		private static final ExecutorProperty /*@NonNull*/ [] _How = {
 			PrivacyModelTables.Properties._How__consent,
+			PrivacyModelTables.Properties._How__contract,
 			PrivacyModelTables.Properties._How__documents,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents
@@ -3323,6 +3405,7 @@ public class PrivacyModelTables extends AbstractTables
 		private static final ExecutorProperty /*@NonNull*/ [] _PrivacyPolicy = {
 			PrivacyModelTables.Properties._PrivacyPolicy__allComplaints,
 			PrivacyModelTables.Properties._PrivacyPolicy__allConsents,
+			PrivacyModelTables.Properties._PrivacyPolicy__allContracts,
 			PrivacyModelTables.Properties._PrivacyPolicy__allDatas,
 			PrivacyModelTables.Properties._PrivacyPolicy__allDenials,
 			PrivacyModelTables.Properties._PrivacyPolicy__allDocuments,
@@ -3449,6 +3532,7 @@ public class PrivacyModelTables extends AbstractTables
 			Fragments._Consent__Consent.initProperties(_Consent);
 			Fragments._ConsentFormat__ConsentFormat.initProperties(_ConsentFormat);
 			Fragments._ConsentType__ConsentType.initProperties(_ConsentType);
+			Fragments._Contract__Contract.initProperties(_Contract);
 			Fragments._DataType__DataType.initProperties(_DataType);
 			Fragments._Denial__Denial.initProperties(_Denial);
 			Fragments._Document__Document.initProperties(_Document);
@@ -3586,11 +3670,13 @@ public class PrivacyModelTables extends AbstractTables
 		public static final EcoreExecutorEnumerationLiteral _DocumentType__CourtApproval = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.DOCUMENT_TYPE.getEEnumLiteral("CourtApproval"), Types._DocumentType, 1);
 		public static final EcoreExecutorEnumerationLiteral _DocumentType__ControllerApproval = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.DOCUMENT_TYPE.getEEnumLiteral("ControllerApproval"), Types._DocumentType, 2);
 		public static final EcoreExecutorEnumerationLiteral _DocumentType__TransferCertificate = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.DOCUMENT_TYPE.getEEnumLiteral("TransferCertificate"), Types._DocumentType, 3);
+		public static final EcoreExecutorEnumerationLiteral _DocumentType__LegalProvision = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.DOCUMENT_TYPE.getEEnumLiteral("LegalProvision"), Types._DocumentType, 4);
 		private static final EcoreExecutorEnumerationLiteral /*@NonNull*/ [] _DocumentType = {
 			_DocumentType__ChildCustody,
 			_DocumentType__CourtApproval,
 			_DocumentType__ControllerApproval,
-			_DocumentType__TransferCertificate
+			_DocumentType__TransferCertificate,
+			_DocumentType__LegalProvision
 		};
 
 		public static final EcoreExecutorEnumerationLiteral _LocationType__Union = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.LOCATION_TYPE.getEEnumLiteral("Union"), Types._LocationType, 0);
@@ -3649,6 +3735,8 @@ public class PrivacyModelTables extends AbstractTables
 		public static final EcoreExecutorEnumerationLiteral _ProcessingReason__ProtectTheVitalInterestsOfTheDataSubject = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.PROCESSING_REASON.getEEnumLiteral("ProtectTheVitalInterestsOfTheDataSubject"), Types._ProcessingReason, 9);
 		public static final EcoreExecutorEnumerationLiteral _ProcessingReason__LegitimateInterests = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.PROCESSING_REASON.getEEnumLiteral("LegitimateInterests"), Types._ProcessingReason, 10);
 		public static final EcoreExecutorEnumerationLiteral _ProcessingReason__StopProcessing = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.PROCESSING_REASON.getEEnumLiteral("StopProcessing"), Types._ProcessingReason, 11);
+		public static final EcoreExecutorEnumerationLiteral _ProcessingReason__ContractPerformance = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.PROCESSING_REASON.getEEnumLiteral("ContractPerformance"), Types._ProcessingReason, 12);
+		public static final EcoreExecutorEnumerationLiteral _ProcessingReason__LegalObligation = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.PROCESSING_REASON.getEEnumLiteral("LegalObligation"), Types._ProcessingReason, 13);
 		private static final EcoreExecutorEnumerationLiteral /*@NonNull*/ [] _ProcessingReason = {
 			_ProcessingReason__Research,
 			_ProcessingReason__PublicHealth,
@@ -3661,7 +3749,9 @@ public class PrivacyModelTables extends AbstractTables
 			_ProcessingReason__Profiling,
 			_ProcessingReason__ProtectTheVitalInterestsOfTheDataSubject,
 			_ProcessingReason__LegitimateInterests,
-			_ProcessingReason__StopProcessing
+			_ProcessingReason__StopProcessing,
+			_ProcessingReason__ContractPerformance,
+			_ProcessingReason__LegalObligation
 		};
 
 		public static final EcoreExecutorEnumerationLiteral _ProcessingReasonSubtype__None = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.PROCESSING_REASON_SUBTYPE.getEEnumLiteral("None"), Types._ProcessingReasonSubtype, 0);
@@ -3682,6 +3772,7 @@ public class PrivacyModelTables extends AbstractTables
 		public static final EcoreExecutorEnumerationLiteral _ProcessingReasonSubtype__Historical = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.PROCESSING_REASON_SUBTYPE.getEEnumLiteral("Historical"), Types._ProcessingReasonSubtype, 15);
 		public static final EcoreExecutorEnumerationLiteral _ProcessingReasonSubtype__Scientific = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.PROCESSING_REASON_SUBTYPE.getEEnumLiteral("Scientific"), Types._ProcessingReasonSubtype, 16);
 		public static final EcoreExecutorEnumerationLiteral _ProcessingReasonSubtype__Other = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.PROCESSING_REASON_SUBTYPE.getEEnumLiteral("Other"), Types._ProcessingReasonSubtype, 17);
+		public static final EcoreExecutorEnumerationLiteral _ProcessingReasonSubtype__PreContractual = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.PROCESSING_REASON_SUBTYPE.getEEnumLiteral("PreContractual"), Types._ProcessingReasonSubtype, 18);
 		private static final EcoreExecutorEnumerationLiteral /*@NonNull*/ [] _ProcessingReasonSubtype = {
 			_ProcessingReasonSubtype__None,
 			_ProcessingReasonSubtype__Prevention,
@@ -3700,7 +3791,8 @@ public class PrivacyModelTables extends AbstractTables
 			_ProcessingReasonSubtype__Statistical,
 			_ProcessingReasonSubtype__Historical,
 			_ProcessingReasonSubtype__Scientific,
-			_ProcessingReasonSubtype__Other
+			_ProcessingReasonSubtype__Other,
+			_ProcessingReasonSubtype__PreContractual
 		};
 
 		public static final EcoreExecutorEnumerationLiteral _TimePreposition__from = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.TIME_PREPOSITION.getEEnumLiteral("from"), Types._TimePreposition, 0);

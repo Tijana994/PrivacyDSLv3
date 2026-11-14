@@ -2629,12 +2629,12 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 									final /*@Thrown*/ Purpose why = statement.getWhy();
 									final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_PublicInterest = (ProcessingReason) idResolver
 											.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_PublicInterest);
-									final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_15 = ((IdResolverExtension) idResolver)
+									final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_17 = ((IdResolverExtension) idResolver)
 											.ecoreValueOfAll(ProcessingReasonSubtype.class,
 													PrivacyModelTables.Sequence_6);
 									final /*@Thrown*/ boolean containsAllowedPurposeReasonAndSubreason = why
 											.containsAllowedPurposeReasonAndSubreason(ECORE_ELITid_PublicInterest,
-													(EList<ProcessingReasonSubtype>) ECORE_Sequence_15);
+													(EList<ProcessingReasonSubtype>) ECORE_Sequence_17);
 									CAUGHT_containsAllowedPurposeReasonAndSubreason = containsAllowedPurposeReasonAndSubreason;
 								} catch (Exception e) {
 									CAUGHT_containsAllowedPurposeReasonAndSubreason = ValueUtil.createInvalidValue(e);
@@ -2672,12 +2672,12 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 										final /*@Thrown*/ Purpose why_0 = statement_0.getWhy();
 										final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_Marketing = (ProcessingReason) idResolver
 												.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_Marketing);
-										final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_16 = ((IdResolverExtension) idResolver)
+										final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_18 = ((IdResolverExtension) idResolver)
 												.ecoreValueOfAll(ProcessingReasonSubtype.class,
 														PrivacyModelTables.Sequence_4);
 										final /*@Thrown*/ boolean containsAllowedPurposeReasonAndSubreason_0 = why_0
 												.containsAllowedPurposeReasonAndSubreason(ECORE_ELITid_Marketing,
-														(EList<ProcessingReasonSubtype>) ECORE_Sequence_16);
+														(EList<ProcessingReasonSubtype>) ECORE_Sequence_18);
 										CAUGHT_containsAllowedPurposeReasonAndSubreason_0 = containsAllowedPurposeReasonAndSubreason_0;
 									} catch (Exception e) {
 										CAUGHT_containsAllowedPurposeReasonAndSubreason_0 = ValueUtil
@@ -2698,12 +2698,12 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 											final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_Profiling = (ProcessingReason) idResolver
 													.ecoreValueOf(Enumerator.class,
 															PrivacyModelTables.ELITid_Profiling);
-											final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_17 = ((IdResolverExtension) idResolver)
+											final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_19 = ((IdResolverExtension) idResolver)
 													.ecoreValueOfAll(ProcessingReasonSubtype.class,
 															PrivacyModelTables.Sequence_4);
 											final /*@Thrown*/ boolean containsAllowedPurposeReasonAndSubreason_1 = why_1
 													.containsAllowedPurposeReasonAndSubreason(ECORE_ELITid_Profiling,
-															(EList<ProcessingReasonSubtype>) ECORE_Sequence_17);
+															(EList<ProcessingReasonSubtype>) ECORE_Sequence_19);
 											CAUGHT_containsAllowedPurposeReasonAndSubreason_1 = containsAllowedPurposeReasonAndSubreason_1;
 										} catch (Exception e) {
 											CAUGHT_containsAllowedPurposeReasonAndSubreason_1 = ValueUtil

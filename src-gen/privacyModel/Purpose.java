@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getPurpose()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TestingShouldNotContainSubReason'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason'"
  * @generated
  */
 public interface Purpose extends EObject {
@@ -171,6 +171,22 @@ public interface Purpose extends EObject {
 	 * @generated
 	 */
 	boolean ProfilingShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::ContractPerformance, \n\t\t\t\tSequence{ProcessingReasonSubtype::PreContractual, \n\t\t\t\tProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})'"
+	 * @generated
+	 */
+	boolean ContractPerformanceCannotContainThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::LegalObligation, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})'"
+	 * @generated
+	 */
+	boolean LegalObligationShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

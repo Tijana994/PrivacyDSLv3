@@ -281,13 +281,13 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 				} else {
 					/*@Caught*/ Object CAUGHT_eq;
 					try {
-						final /*@NonInvalid*/ ProcessingReason processingReason_0 = this.getProcessingReason();
+						final /*@NonInvalid*/ ProcessingReason processingReason_1 = this.getProcessingReason();
 						if (purpose == null) {
 							throw new InvalidValueException(
 									"Null source for \'\'http://privacymodel\'::Purpose::processingReason\'");
 						}
-						final /*@Thrown*/ ProcessingReason processingReason_1 = purpose.getProcessingReason();
-						final /*@Thrown*/ boolean eq = processingReason_0.equals(processingReason_1);
+						final /*@Thrown*/ ProcessingReason processingReason_2 = purpose.getProcessingReason();
+						final /*@Thrown*/ boolean eq = processingReason_1.equals(processingReason_2);
 						CAUGHT_eq = eq;
 					} catch (Exception e) {
 						CAUGHT_eq = ValueUtil.createInvalidValue(e);
@@ -468,8 +468,8 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		assert subreasons != null;
 		final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this);
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final /*@NonInvalid*/ ProcessingReason processingReason_0 = this.getProcessingReason();
-		final /*@NonInvalid*/ boolean eq = processingReason_0.equals(reason);
+		final /*@NonInvalid*/ ProcessingReason processingReason_1 = this.getProcessingReason();
+		final /*@NonInvalid*/ boolean eq = processingReason_1.equals(reason);
 		/*@NonInvalid*/ Boolean local_0;
 		if (eq) {
 			final /*@NonInvalid*/ SequenceValue BOXED_subreasons = idResolver
@@ -530,8 +530,8 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		assert allowedSubreasons != null;
 		final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this);
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-		final /*@NonInvalid*/ ProcessingReason processingReason_0 = this.getProcessingReason();
-		final /*@NonInvalid*/ boolean eq = allowedReason.equals(processingReason_0);
+		final /*@NonInvalid*/ ProcessingReason processingReason_1 = this.getProcessingReason();
+		final /*@NonInvalid*/ boolean eq = allowedReason.equals(processingReason_1);
 		final /*@Thrown*/ Boolean and;
 		if (!eq) {
 			and = ValueUtil.FALSE_VALUE;
@@ -786,6 +786,112 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_Profiling,
 						(EList<ProcessingReasonSubtype>) ECORE_Sequence_11);
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_0 = logDiagnostic;
+			}
+			return local_0;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ContractPerformanceCannotContainThisSubReason(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Purpose::ContractPerformanceCannotContainThisSubReason";
+		try {
+			/**
+			 *
+			 * inv ContractPerformanceCannotContainThisSubReason:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : Boolean[1] = isSubPurposeValid(ProcessingReason::ContractPerformance,
+			 *           Sequence{ProcessingReasonSubtype::PreContractual, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other
+			 *           })
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PURPOSE___CONTRACT_PERFORMANCE_CANNOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_0;
+			if (le) {
+				local_0 = true;
+			} else {
+				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ContractPerformance = (ProcessingReason) idResolver
+						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_ContractPerformance);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_15 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_15);
+				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_ContractPerformance,
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_15);
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_0 = logDiagnostic;
+			}
+			return local_0;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean LegalObligationShouldNotContainSubReason(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Purpose::LegalObligationShouldNotContainSubReason";
+		try {
+			/**
+			 *
+			 * inv LegalObligationShouldNotContainSubReason:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : Boolean[1] = isSubPurposeValid(ProcessingReason::LegalObligation,
+			 *           Sequence{ProcessingReasonSubtype::None
+			 *           })
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PURPOSE___LEGAL_OBLIGATION_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_0;
+			if (le) {
+				local_0 = true;
+			} else {
+				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_LegalObligation = (ProcessingReason) idResolver
+						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_LegalObligation);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_16 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
+				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_LegalObligation,
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_16);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -1345,17 +1451,8 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		case PrivacyModelPackage.PURPOSE___CONTAINS_ALLOWED_PURPOSE_REASON_AND_SUBREASON__PROCESSINGREASON_ELIST:
 			return containsAllowedPurposeReasonAndSubreason((ProcessingReason) arguments.get(0),
 					(EList<ProcessingReasonSubtype>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return PublicInterestShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return PublicHealthShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return OutOfScopeShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return ProfilingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.PURPOSE___LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return LegitimateInterestsShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PURPOSE___STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return StopProcessingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
@@ -1363,24 +1460,39 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		case PrivacyModelPackage.PURPOSE___MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return MarketingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___TESTING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return TestingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PURPOSE___EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return ExercisingSpecificRightsPurposesCannotContainThisSubReason((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason(
-					(DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return LegitimateInterestsShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PURPOSE___RESEARCH_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return ResearchShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return PublicHealthShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return ProfilingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___CONTRACT_PERFORMANCE_CANNOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return ContractPerformanceCannotContainThisSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___LEGAL_OBLIGATION_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return LegalObligationShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return PublicInterestShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return OutOfScopeShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PURPOSE___STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return StatisticalPurposesShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___TESTING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return TestingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason(
+					(DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

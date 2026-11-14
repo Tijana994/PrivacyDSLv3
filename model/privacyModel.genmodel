@@ -26,6 +26,7 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/CourtApproval"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/ControllerApproval"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/TransferCertificate"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/LegalProvision"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//TimePreposition">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//TimePreposition/from"/>
@@ -73,6 +74,8 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/ProtectTheVitalInterestsOfTheDataSubject"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/LegitimateInterests"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/StopProcessing"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/ContractPerformance"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/LegalObligation"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ProcessingReasonSubtype">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/None"/>
@@ -93,6 +96,7 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/Historical"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/Scientific"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/Other"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/PreContractual"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ConsentFormat">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ConsentFormat/Written"/>
@@ -143,6 +147,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/privacyPolicyHelper"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allDenials"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allConsents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allContracts"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allDocuments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/notifications"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//PrivacyPolicy/allSharedPrivacyData"/>
@@ -167,6 +172,10 @@
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/documentIsNeededForPurpose/documentType"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/documentIsNeededForPurpose/processingReason"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/hasProcessingReason">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/hasProcessingReason/processingReason"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/isContractProvidedBySubject"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PrivacyData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//PrivacyData/type"/>
@@ -244,14 +253,13 @@
     <genClasses ecoreClass="privacyModel.ecore#//How">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//How/documents"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//How/consent"/>
-      <genOperations ecoreOperation="privacyModel.ecore#//How/isConsentValid">
-        <genParameters ecoreParameter="privacyModel.ecore#//How/isConsentValid/howConsent"/>
-      </genOperations>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//How/contract"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Consent">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Consent/format"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Consent/type"/>
     </genClasses>
+    <genClasses ecoreClass="privacyModel.ecore#//Contract"/>
     <genClasses ecoreClass="privacyModel.ecore#//ConfigurationManager">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//ConfigurationManager/dataSources"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//ConfigurationManager/protectionControlMethods"/>

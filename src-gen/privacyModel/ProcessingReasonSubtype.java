@@ -148,13 +148,13 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	 */
 	PHYSICALLY_INCAPABLE(12, "PhysicallyIncapable", "PhysicallyIncapable"),
 	/**
-	* The '<em><b>Legally Incapable</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Legally Incapable</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #LEGALLY_INCAPABLE_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #LEGALLY_INCAPABLE_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LEGALLY_INCAPABLE(13, "LegallyIncapable", "LegallyIncapable"),
 
 	/**
@@ -195,7 +195,16 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OTHER(17, "Other", "Other");
+	OTHER(17, "Other", "Other"),
+	/**
+	* The '<em><b>Pre Contractual</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #PRE_CONTRACTUAL_VALUE
+	* @generated
+	* @ordered
+	*/
+	PRE_CONTRACTUAL(18, "PreContractual", "PreContractual");
 
 	/**
 	 * The '<em><b>None</b></em>' literal value.
@@ -396,6 +405,17 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	public static final int OTHER_VALUE = 17;
 
 	/**
+	 * The '<em><b>Pre Contractual</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PRE_CONTRACTUAL
+	 * @model name="PreContractual"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PRE_CONTRACTUAL_VALUE = 18;
+
+	/**
 	 * An array of all the '<em><b>Processing Reason Subtype</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -404,7 +424,7 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	private static final ProcessingReasonSubtype[] VALUES_ARRAY = new ProcessingReasonSubtype[] { NONE, PREVENTION,
 			INVESTIGATION, DETECTION, PROSECUTION, PREVENTION_OF_THREATS, OUT_OF_EU, PERSONAL_ACTIVITY,
 			SPECIAL_SCOPE_OF_ACTIVITY, EMPLOYMENT, SOCIAL_SECURITY, SOCIAL_PROTECTION, PHYSICALLY_INCAPABLE,
-			LEGALLY_INCAPABLE, STATISTICAL, HISTORICAL, SCIENTIFIC, OTHER, };
+			LEGALLY_INCAPABLE, STATISTICAL, HISTORICAL, SCIENTIFIC, OTHER, PRE_CONTRACTUAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Processing Reason Subtype</b></em>' enumerators.
@@ -497,6 +517,8 @@ public enum ProcessingReasonSubtype implements Enumerator {
 			return SCIENTIFIC;
 		case OTHER_VALUE:
 			return OTHER;
+		case PRE_CONTRACTUAL_VALUE:
+			return PRE_CONTRACTUAL;
 		}
 		return null;
 	}

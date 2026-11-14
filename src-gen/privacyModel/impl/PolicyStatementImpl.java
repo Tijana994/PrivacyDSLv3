@@ -51,6 +51,7 @@ import privacyModel.AbstractTime;
 import privacyModel.Action;
 import privacyModel.Complaint;
 import privacyModel.Consent;
+import privacyModel.Contract;
 import privacyModel.DataType;
 import privacyModel.Document;
 import privacyModel.DocumentType;
@@ -837,8 +838,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			local_2 = ValueUtil.TRUE_VALUE;
 		} else {
 			final /*@NonInvalid*/ Purpose why = this.getWhy();
-			final /*@NonInvalid*/ ProcessingReason processingReason_0 = why.getProcessingReason();
-			final /*@NonInvalid*/ boolean eq_0 = processingReason_0.equals(processingReason);
+			final /*@NonInvalid*/ ProcessingReason processingReason_1 = why.getProcessingReason();
+			final /*@NonInvalid*/ boolean eq_0 = processingReason_1.equals(processingReason);
 			/*@Thrown*/ Boolean local_1;
 			if (eq_0) {
 				final /*@NonInvalid*/ How how = this.getHow();
@@ -943,8 +944,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 					 */
 					/*@Caught*/ Object CAUGHT_local_0;
 					try {
-						final /*@NonInvalid*/ ProcessingReason processingReason_1 = purpose_0.getProcessingReason();
-						final /*@NonInvalid*/ boolean eq_3 = processingReason_1.equals(processingReason);
+						final /*@NonInvalid*/ ProcessingReason processingReason_2 = purpose_0.getProcessingReason();
+						final /*@NonInvalid*/ boolean eq_3 = processingReason_2.equals(processingReason);
 						/*@Thrown*/ Boolean local_0;
 						if (eq_3) {
 							final /*@NonInvalid*/ How how_1 = this.getHow();
@@ -1051,6 +1052,404 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 					"Null body for \'privacyModel::PolicyStatement::documentIsNeededForPurpose(privacyModel::DocumentType[1],privacyModel::ProcessingReason[1]) : Boolean[1]\'");
 		}
 		return local_2;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean hasProcessingReason(final ProcessingReason processingReason) {
+		/**
+		 *
+		 * not (self.why = null
+		 * ) and
+		 * (self.why.processingReason = processingReason or
+		 *   self.why.subPurposes->exists(purpose | purpose.processingReason = processingReason)
+		 * )
+		 */
+		final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		final /*@NonInvalid*/ Boolean not = ValueUtil.TRUE_VALUE;
+		final /*@Thrown*/ Boolean and;
+		if (not == ValueUtil.FALSE_VALUE) {
+			and = ValueUtil.FALSE_VALUE;
+		} else {
+			/*@Caught*/ Object CAUGHT_or;
+			try {
+				final /*@NonInvalid*/ Purpose why = this.getWhy();
+				final /*@NonInvalid*/ ProcessingReason processingReason_1 = why.getProcessingReason();
+				final /*@NonInvalid*/ boolean eq = processingReason_1.equals(processingReason);
+				final /*@Thrown*/ Boolean or;
+				if (eq) {
+					or = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ List<Purpose> subPurposes = why.getSubPurposes();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_subPurposes = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Purpose, subPurposes);
+					/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+					Iterator<Object> ITERATOR_purpose_0 = BOXED_subPurposes.iterator();
+					/*@NonInvalid*/ Boolean exists;
+					while (true) {
+						if (!ITERATOR_purpose_0.hasNext()) {
+							if (accumulator == ValueUtil.FALSE_VALUE) {
+								exists = ValueUtil.FALSE_VALUE;
+							} else {
+								throw (InvalidValueException) accumulator;
+							}
+							break;
+						}
+						/*@NonInvalid*/ Purpose purpose_0 = (Purpose) ITERATOR_purpose_0.next();
+						/**
+						 * purpose.processingReason = processingReason
+						 */
+						final /*@NonInvalid*/ ProcessingReason processingReason_2 = purpose_0.getProcessingReason();
+						final /*@NonInvalid*/ boolean eq_0 = processingReason_2.equals(processingReason);
+						//
+						if (eq_0) { // Normal successful body evaluation result
+							exists = ValueUtil.TRUE_VALUE;
+							break; // Stop immediately
+						} else if (!eq_0) { // Normal unsuccessful body evaluation result
+							; // Carry on
+						} else { // Impossible badly typed result
+							accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+						}
+					}
+					if (exists == ValueUtil.TRUE_VALUE) {
+						or = ValueUtil.TRUE_VALUE;
+					} else {
+						if (exists == null) {
+							or = null;
+						} else {
+							or = ValueUtil.FALSE_VALUE;
+						}
+					}
+				}
+				CAUGHT_or = or;
+			} catch (Exception e) {
+				CAUGHT_or = ValueUtil.createInvalidValue(e);
+			}
+			if (CAUGHT_or == ValueUtil.FALSE_VALUE) {
+				and = ValueUtil.FALSE_VALUE;
+			} else {
+				if (CAUGHT_or instanceof InvalidValueException) {
+					throw (InvalidValueException) CAUGHT_or;
+				}
+				if ((not == null) || (CAUGHT_or == null)) {
+					and = null;
+				} else {
+					and = ValueUtil.TRUE_VALUE;
+				}
+			}
+		}
+		if (and == null) {
+			throw new InvalidValueException(
+					"Null body for \'privacyModel::PolicyStatement::hasProcessingReason(privacyModel::ProcessingReason[1]) : Boolean[1]\'");
+		}
+		return and;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isContractProvidedBySubject() {
+		/**
+		 *
+		 * if self.whose = null or self.how = null or self.how.contract = null
+		 * then false
+		 * else
+		 *   if self.whose.type = PrincipalType::NaturalPerson and self.whose.age <
+		 *     PrivacyPolicy.allInstances()
+		 *     ->asSequence()
+		 *     ->first().owner.inhabits.legalAgeLimit
+		 *   then
+		 *     self.whose.responsiblePersons->exists(person | self.how.contract.providedBy = person)
+		 *   else self.how.contract.providedBy = self.whose or
+		 *     self.whose.responsiblePersons->exists(person | self.how.contract.providedBy = person)
+		 *   endif
+		 * endif
+		 */
+		final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		final /*@NonInvalid*/ How how = this.getHow();
+		final /*@NonInvalid*/ Principal whose_3 = this.getWhose();
+		final /*@NonInvalid*/ boolean eq = whose_3 == null;
+		final /*@NonInvalid*/ Boolean or;
+		if (eq) {
+			or = ValueUtil.TRUE_VALUE;
+		} else {
+			final /*@NonInvalid*/ boolean eq_0 = how == null;
+			if (eq_0) {
+				or = ValueUtil.TRUE_VALUE;
+			} else {
+				or = ValueUtil.FALSE_VALUE;
+			}
+		}
+		final /*@Thrown*/ Boolean or_0;
+		if (or == ValueUtil.TRUE_VALUE) {
+			or_0 = ValueUtil.TRUE_VALUE;
+		} else {
+			/*@Caught*/ Object CAUGHT_eq_1;
+			try {
+				if (how == null) {
+					throw new InvalidValueException("Null source for \'\'http://privacymodel\'::How::contract\'");
+				}
+				final /*@Thrown*/ Contract contract = how.getContract();
+				final /*@Thrown*/ boolean eq_1 = contract == null;
+				CAUGHT_eq_1 = eq_1;
+			} catch (Exception e) {
+				CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
+			}
+			if (CAUGHT_eq_1 == ValueUtil.TRUE_VALUE) {
+				or_0 = ValueUtil.TRUE_VALUE;
+			} else {
+				if (CAUGHT_eq_1 instanceof InvalidValueException) {
+					throw (InvalidValueException) CAUGHT_eq_1;
+				}
+				if (or == null) {
+					or_0 = null;
+				} else {
+					or_0 = ValueUtil.FALSE_VALUE;
+				}
+			}
+		}
+		if (or_0 == null) {
+			throw new InvalidValueException("Null if condition");
+		}
+		/*@Thrown*/ Boolean local_1;
+		if (or_0) {
+			local_1 = ValueUtil.FALSE_VALUE;
+		} else {
+			/*@Caught*/ Object CAUGHT_eq_2;
+			try {
+				if (whose_3 == null) {
+					throw new InvalidValueException("Null source for \'\'http://privacymodel\'::Principal::type\'");
+				}
+				final /*@Thrown*/ PrincipalType type_0 = whose_3.getType();
+				final /*@Thrown*/ EnumerationLiteralId BOXED_type_0 = PrivacyModelTables.ENUMid_PrincipalType
+						.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
+				final /*@Thrown*/ boolean eq_2 = BOXED_type_0 == PrivacyModelTables.ELITid_NaturalPerson;
+				CAUGHT_eq_2 = eq_2;
+			} catch (Exception e) {
+				CAUGHT_eq_2 = ValueUtil.createInvalidValue(e);
+			}
+			final /*@Thrown*/ Boolean and;
+			if (CAUGHT_eq_2 == ValueUtil.FALSE_VALUE) {
+				and = ValueUtil.FALSE_VALUE;
+			} else {
+				/*@Caught*/ Object CAUGHT_lt;
+				try {
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
+							.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
+					if (whose_3 == null) {
+						throw new InvalidValueException("Null source for \'\'http://privacymodel\'::Principal::age\'");
+					}
+					final /*@Thrown*/ int age = whose_3.getAge();
+					final /*@Thrown*/ IntegerValue BOXED_age = ValueUtil.integerValueOf(age);
+					final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(
+							executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
+							TYP_privacyModel_c_c_PrivacyPolicy_0);
+					final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
+							.evaluate(allInstances);
+					final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
+							.evaluate(asSequence);
+					if (first == null) {
+						throw new InvalidValueException(
+								"Null source for \'\'http://privacymodel\'::PrivacyPolicy::owner\'");
+					}
+					final /*@Thrown*/ Principal owner = first.getOwner();
+					final /*@Thrown*/ Location inhabits = owner.getInhabits();
+					if (inhabits == null) {
+						throw new InvalidValueException(
+								"Null source for \'\'http://privacymodel\'::Location::legalAgeLimit\'");
+					}
+					final /*@Thrown*/ int legalAgeLimit = inhabits.getLegalAgeLimit();
+					final /*@Thrown*/ IntegerValue BOXED_legalAgeLimit = ValueUtil.integerValueOf(legalAgeLimit);
+					if (BOXED_legalAgeLimit instanceof InvalidValueException) {
+						throw (InvalidValueException) BOXED_legalAgeLimit;
+					}
+					final /*@Thrown*/ boolean lt = OclComparableLessThanOperation.INSTANCE
+							.evaluate(executor, BOXED_age, BOXED_legalAgeLimit).booleanValue();
+					CAUGHT_lt = lt;
+				} catch (Exception e) {
+					CAUGHT_lt = ValueUtil.createInvalidValue(e);
+				}
+				if (CAUGHT_lt == ValueUtil.FALSE_VALUE) {
+					and = ValueUtil.FALSE_VALUE;
+				} else {
+					if (CAUGHT_eq_2 instanceof InvalidValueException) {
+						throw (InvalidValueException) CAUGHT_eq_2;
+					}
+					if (CAUGHT_lt instanceof InvalidValueException) {
+						throw (InvalidValueException) CAUGHT_lt;
+					}
+					and = ValueUtil.TRUE_VALUE;
+				}
+			}
+			if (and == null) {
+				throw new InvalidValueException("Null if condition");
+			}
+			/*@Thrown*/ Boolean local_0;
+			if (and) {
+				if (whose_3 == null) {
+					throw new InvalidValueException(
+							"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
+				}
+				final /*@Thrown*/ List<Principal> responsiblePersons = whose_3.getResponsiblePersons();
+				final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons = idResolver
+						.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal, responsiblePersons);
+				/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+				Iterator<Object> ITERATOR_person = BOXED_responsiblePersons.iterator();
+				/*@Thrown*/ Boolean exists;
+				while (true) {
+					if (!ITERATOR_person.hasNext()) {
+						if (accumulator == ValueUtil.FALSE_VALUE) {
+							exists = ValueUtil.FALSE_VALUE;
+						} else {
+							throw (InvalidValueException) accumulator;
+						}
+						break;
+					}
+					/*@NonInvalid*/ Principal person = (Principal) ITERATOR_person.next();
+					/**
+					 * self.how.contract.providedBy = person
+					 */
+					/*@Caught*/ Object CAUGHT_eq_3;
+					try {
+						if (how == null) {
+							throw new InvalidValueException(
+									"Null source for \'\'http://privacymodel\'::How::contract\'");
+						}
+						final /*@Thrown*/ Contract contract_0 = how.getContract();
+						if (contract_0 == null) {
+							throw new InvalidValueException(
+									"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
+						}
+						final /*@Thrown*/ Principal providedBy = contract_0.getProvidedBy();
+						final /*@Thrown*/ boolean eq_3 = providedBy.equals(person);
+						CAUGHT_eq_3 = eq_3;
+					} catch (Exception e) {
+						CAUGHT_eq_3 = ValueUtil.createInvalidValue(e);
+					}
+					//
+					if (CAUGHT_eq_3 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+						exists = ValueUtil.TRUE_VALUE;
+						break; // Stop immediately
+					} else if (CAUGHT_eq_3 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+						; // Carry on
+					} else if (CAUGHT_eq_3 instanceof InvalidValueException) { // Abnormal exception evaluation result
+						accumulator = CAUGHT_eq_3; // Cache an exception failure
+					} else { // Impossible badly typed result
+						accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+					}
+				}
+				local_0 = exists;
+			} else {
+				/*@Caught*/ Object CAUGHT_eq_4;
+				try {
+					if (how == null) {
+						throw new InvalidValueException("Null source for \'\'http://privacymodel\'::How::contract\'");
+					}
+					final /*@Thrown*/ Contract contract_1 = how.getContract();
+					if (contract_1 == null) {
+						throw new InvalidValueException(
+								"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
+					}
+					final /*@Thrown*/ Principal providedBy_0 = contract_1.getProvidedBy();
+					final /*@Thrown*/ boolean eq_4 = providedBy_0.equals(whose_3);
+					CAUGHT_eq_4 = eq_4;
+				} catch (Exception e) {
+					CAUGHT_eq_4 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@Thrown*/ Boolean or_1;
+				if (CAUGHT_eq_4 == ValueUtil.TRUE_VALUE) {
+					or_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					/*@Caught*/ Object CAUGHT_exists_0;
+					try {
+						if (whose_3 == null) {
+							throw new InvalidValueException(
+									"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
+						}
+						final /*@Thrown*/ List<Principal> responsiblePersons_0 = whose_3.getResponsiblePersons();
+						final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons_0 = idResolver
+								.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal, responsiblePersons_0);
+						/*@Thrown*/ Object accumulator_0 = ValueUtil.FALSE_VALUE;
+						Iterator<Object> ITERATOR_person_0 = BOXED_responsiblePersons_0.iterator();
+						/*@Thrown*/ Boolean exists_0;
+						while (true) {
+							if (!ITERATOR_person_0.hasNext()) {
+								if (accumulator_0 == ValueUtil.FALSE_VALUE) {
+									exists_0 = ValueUtil.FALSE_VALUE;
+								} else {
+									throw (InvalidValueException) accumulator_0;
+								}
+								break;
+							}
+							/*@NonInvalid*/ Principal person_0 = (Principal) ITERATOR_person_0.next();
+							/**
+							 * self.how.contract.providedBy = person
+							 */
+							/*@Caught*/ Object CAUGHT_eq_5;
+							try {
+								if (how == null) {
+									throw new InvalidValueException(
+											"Null source for \'\'http://privacymodel\'::How::contract\'");
+								}
+								final /*@Thrown*/ Contract contract_2 = how.getContract();
+								if (contract_2 == null) {
+									throw new InvalidValueException(
+											"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
+								}
+								final /*@Thrown*/ Principal providedBy_1 = contract_2.getProvidedBy();
+								final /*@Thrown*/ boolean eq_5 = providedBy_1.equals(person_0);
+								CAUGHT_eq_5 = eq_5;
+							} catch (Exception e) {
+								CAUGHT_eq_5 = ValueUtil.createInvalidValue(e);
+							}
+							//
+							if (CAUGHT_eq_5 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+								exists_0 = ValueUtil.TRUE_VALUE;
+								break; // Stop immediately
+							} else if (CAUGHT_eq_5 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+								; // Carry on
+							} else if (CAUGHT_eq_5 instanceof InvalidValueException) { // Abnormal exception evaluation result
+								accumulator_0 = CAUGHT_eq_5; // Cache an exception failure
+							} else { // Impossible badly typed result
+								accumulator_0 = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+							}
+						}
+						CAUGHT_exists_0 = exists_0;
+					} catch (Exception e) {
+						CAUGHT_exists_0 = ValueUtil.createInvalidValue(e);
+					}
+					if (CAUGHT_exists_0 == ValueUtil.TRUE_VALUE) {
+						or_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						if (CAUGHT_eq_4 instanceof InvalidValueException) {
+							throw (InvalidValueException) CAUGHT_eq_4;
+						}
+						if (CAUGHT_exists_0 instanceof InvalidValueException) {
+							throw (InvalidValueException) CAUGHT_exists_0;
+						}
+						if (CAUGHT_exists_0 == null) {
+							or_1 = null;
+						} else {
+							or_1 = ValueUtil.FALSE_VALUE;
+						}
+					}
+				}
+				local_0 = or_1;
+			}
+			local_1 = local_0;
+		}
+		if (local_1 == null) {
+			throw new InvalidValueException(
+					"Null body for \'privacyModel::PolicyStatement::isContractProvidedBySubject() : Boolean[1]\'");
+		}
+		return local_1;
 	}
 
 	/**
@@ -1390,30 +1789,34 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			 *               ))
 			 *           then true
 			 *           else
-			 *             if self.whose.type = PrincipalType::NaturalPerson and self.whose.age <
-			 *               PrivacyPolicy.allInstances()
-			 *               ->asSequence()
-			 *               ->first().owner.inhabits.legalAgeLimit
-			 *             then
-			 *               not (self.how = null
-			 *               ) and
-			 *               not (self.how.consent = null
-			 *               ) and
-			 *               self.whose.responsiblePersons->exists(person | self.how.consent.providedBy = person)
+			 *             if self.isContractProvidedBySubject()
+			 *             then true
 			 *             else
-			 *               not (self.how = null
-			 *               ) and
-			 *               not (self.how.consent = null
-			 *               ) and
-			 *               (self.how.consent.providedBy = self.whose or
+			 *               if self.whose.type = PrincipalType::NaturalPerson and self.whose.age <
+			 *                 PrivacyPolicy.allInstances()
+			 *                 ->asSequence()
+			 *                 ->first().owner.inhabits.legalAgeLimit
+			 *               then
+			 *                 not (self.how = null
+			 *                 ) and
+			 *                 not (self.how.consent = null
+			 *                 ) and
 			 *                 self.whose.responsiblePersons->exists(person | self.how.consent.providedBy = person)
-			 *               )
+			 *               else
+			 *                 not (self.how = null
+			 *                 ) and
+			 *                 not (self.how.consent = null
+			 *                 ) and
+			 *                 (self.how.consent.providedBy = self.whose or
+			 *                   self.whose.responsiblePersons->exists(person | self.how.consent.providedBy = person)
+			 *                 )
+			 *               endif
 			 *             endif
 			 *           endif
 			 *         in
 			 *           if status = true
 			 *           then true
-			 *           else Tuple{message = 'Based on Art20', status = status}
+			 *           else Tuple{message = 'Based on Art20 and Art6', status = status}
 			 *           endif
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -1425,11 +1828,11 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 					PrivacyModelPackage.Literals.POLICY_STATEMENT___MISSING_CONSENT_FOR_DATA_PORTABILITY__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_3;
+			/*@NonInvalid*/ boolean local_4;
 			if (le) {
-				local_3 = true;
+				local_4 = true;
 			} else {
-				/*@Caught*/ Object CAUGHT_local_2;
+				/*@Caught*/ Object CAUGHT_local_3;
 				try {
 					final /*@NonInvalid*/ Principal whose = this.getWhose();
 					final /*@NonInvalid*/ boolean eq = whose == null;
@@ -1505,382 +1908,390 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 					if (or) {
 						status = ValueUtil.TRUE_VALUE;
 					} else {
-						/*@Caught*/ Object CAUGHT_and_2;
-						try {
-							final /*@NonInvalid*/ How how_2 = this.getHow();
-							final /*@NonInvalid*/ boolean eq_5 = how_2 == null;
-							final /*@NonInvalid*/ Boolean not_2;
-							if (!eq_5) {
-								not_2 = ValueUtil.TRUE_VALUE;
-							} else {
-								if (eq_5) {
-									not_2 = ValueUtil.FALSE_VALUE;
+						final /*@NonInvalid*/ boolean isContractProvidedBySubject = this.isContractProvidedBySubject();
+						/*@Thrown*/ Boolean local_1;
+						if (isContractProvidedBySubject) {
+							local_1 = ValueUtil.TRUE_VALUE;
+						} else {
+							/*@Caught*/ Object CAUGHT_and_2;
+							try {
+								final /*@NonInvalid*/ How how_2 = this.getHow();
+								final /*@NonInvalid*/ boolean eq_5 = how_2 == null;
+								final /*@NonInvalid*/ Boolean not_2;
+								if (!eq_5) {
+									not_2 = ValueUtil.TRUE_VALUE;
 								} else {
-									not_2 = null;
-								}
-							}
-							final /*@Thrown*/ Boolean and_2;
-							if (not_2 == ValueUtil.FALSE_VALUE) {
-								and_2 = ValueUtil.FALSE_VALUE;
-							} else {
-								/*@Caught*/ Object CAUGHT_not_3;
-								try {
-									/*@Caught*/ Object CAUGHT_eq_6;
-									try {
-										if (how_2 == null) {
-											throw new InvalidValueException(
-													"Null source for \'\'http://privacymodel\'::How::consent\'");
-										}
-										final /*@Thrown*/ Consent consent_1 = how_2.getConsent();
-										final /*@Thrown*/ boolean eq_6 = consent_1 == null;
-										CAUGHT_eq_6 = eq_6;
-									} catch (Exception e) {
-										CAUGHT_eq_6 = ValueUtil.createInvalidValue(e);
-									}
-									if (CAUGHT_eq_6 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_eq_6;
-									}
-									final /*@Thrown*/ Boolean not_3;
-									if (CAUGHT_eq_6 == ValueUtil.FALSE_VALUE) {
-										not_3 = ValueUtil.TRUE_VALUE;
+									if (eq_5) {
+										not_2 = ValueUtil.FALSE_VALUE;
 									} else {
-										if (CAUGHT_eq_6 == ValueUtil.TRUE_VALUE) {
-											not_3 = ValueUtil.FALSE_VALUE;
-										} else {
-											not_3 = null;
-										}
+										not_2 = null;
 									}
-									CAUGHT_not_3 = not_3;
-								} catch (Exception e) {
-									CAUGHT_not_3 = ValueUtil.createInvalidValue(e);
 								}
-								if (CAUGHT_not_3 == ValueUtil.FALSE_VALUE) {
+								final /*@Thrown*/ Boolean and_2;
+								if (not_2 == ValueUtil.FALSE_VALUE) {
 									and_2 = ValueUtil.FALSE_VALUE;
 								} else {
-									if (CAUGHT_not_3 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_not_3;
-									}
-									if ((not_2 == null) || (CAUGHT_not_3 == null)) {
-										and_2 = null;
-									} else {
-										and_2 = ValueUtil.TRUE_VALUE;
-									}
-								}
-							}
-							CAUGHT_and_2 = and_2;
-						} catch (Exception e) {
-							CAUGHT_and_2 = ValueUtil.createInvalidValue(e);
-						}
-						/*@Caught*/ Object CAUGHT_eq_1;
-						try {
-							if (whose == null) {
-								throw new InvalidValueException(
-										"Null source for \'\'http://privacymodel\'::Principal::type\'");
-							}
-							final /*@Thrown*/ PrincipalType type = whose.getType();
-							final /*@Thrown*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_PrincipalType
-									.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
-							final /*@Thrown*/ boolean eq_1 = BOXED_type == PrivacyModelTables.ELITid_NaturalPerson;
-							CAUGHT_eq_1 = eq_1;
-						} catch (Exception e) {
-							CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
-						}
-						final /*@Thrown*/ Boolean and;
-						if (CAUGHT_eq_1 == ValueUtil.FALSE_VALUE) {
-							and = ValueUtil.FALSE_VALUE;
-						} else {
-							/*@Caught*/ Object CAUGHT_lt;
-							try {
-								final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
-										.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
-								if (whose == null) {
-									throw new InvalidValueException(
-											"Null source for \'\'http://privacymodel\'::Principal::age\'");
-								}
-								final /*@Thrown*/ int age = whose.getAge();
-								final /*@Thrown*/ IntegerValue BOXED_age = ValueUtil.integerValueOf(age);
-								final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
-										.evaluate(executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
-												TYP_privacyModel_c_c_PrivacyPolicy_0);
-								final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
-										.evaluate(allInstances);
-								final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
-										.evaluate(asSequence);
-								if (first == null) {
-									throw new InvalidValueException(
-											"Null source for \'\'http://privacymodel\'::PrivacyPolicy::owner\'");
-								}
-								final /*@Thrown*/ Principal owner = first.getOwner();
-								final /*@Thrown*/ Location inhabits = owner.getInhabits();
-								if (inhabits == null) {
-									throw new InvalidValueException(
-											"Null source for \'\'http://privacymodel\'::Location::legalAgeLimit\'");
-								}
-								final /*@Thrown*/ int legalAgeLimit = inhabits.getLegalAgeLimit();
-								final /*@Thrown*/ IntegerValue BOXED_legalAgeLimit = ValueUtil
-										.integerValueOf(legalAgeLimit);
-								if (BOXED_legalAgeLimit instanceof InvalidValueException) {
-									throw (InvalidValueException) BOXED_legalAgeLimit;
-								}
-								final /*@Thrown*/ boolean lt = OclComparableLessThanOperation.INSTANCE
-										.evaluate(executor, BOXED_age, BOXED_legalAgeLimit).booleanValue();
-								CAUGHT_lt = lt;
-							} catch (Exception e) {
-								CAUGHT_lt = ValueUtil.createInvalidValue(e);
-							}
-							if (CAUGHT_lt == ValueUtil.FALSE_VALUE) {
-								and = ValueUtil.FALSE_VALUE;
-							} else {
-								if (CAUGHT_eq_1 instanceof InvalidValueException) {
-									throw (InvalidValueException) CAUGHT_eq_1;
-								}
-								if (CAUGHT_lt instanceof InvalidValueException) {
-									throw (InvalidValueException) CAUGHT_lt;
-								}
-								and = ValueUtil.TRUE_VALUE;
-							}
-						}
-						if (and == null) {
-							throw new InvalidValueException("Null if condition");
-						}
-						/*@Thrown*/ Boolean local_0;
-						if (and) {
-							final /*@Thrown*/ Boolean and_1;
-							if (CAUGHT_and_2 == ValueUtil.FALSE_VALUE) {
-								and_1 = ValueUtil.FALSE_VALUE;
-							} else {
-								/*@Caught*/ Object CAUGHT_exists_0;
-								try {
-									if (whose == null) {
-										throw new InvalidValueException(
-												"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
-									}
-									final /*@Thrown*/ List<Principal> responsiblePersons = whose
-											.getResponsiblePersons();
-									final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons = idResolver
-											.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal,
-													responsiblePersons);
-									/*@Thrown*/ Object accumulator_0 = ValueUtil.FALSE_VALUE;
-									Iterator<Object> ITERATOR_person = BOXED_responsiblePersons.iterator();
-									/*@Thrown*/ Boolean exists_0;
-									while (true) {
-										if (!ITERATOR_person.hasNext()) {
-											if (accumulator_0 == ValueUtil.FALSE_VALUE) {
-												exists_0 = ValueUtil.FALSE_VALUE;
-											} else {
-												throw (InvalidValueException) accumulator_0;
-											}
-											break;
-										}
-										/*@NonInvalid*/ Principal person = (Principal) ITERATOR_person.next();
-										/**
-										 * self.how.consent.providedBy = person
-										 */
-										/*@Caught*/ Object CAUGHT_eq_4;
+									/*@Caught*/ Object CAUGHT_not_3;
+									try {
+										/*@Caught*/ Object CAUGHT_eq_6;
 										try {
-											final /*@NonInvalid*/ How how_1 = this.getHow();
-											if (how_1 == null) {
+											if (how_2 == null) {
 												throw new InvalidValueException(
 														"Null source for \'\'http://privacymodel\'::How::consent\'");
 											}
-											final /*@Thrown*/ Consent consent_0 = how_1.getConsent();
-											if (consent_0 == null) {
+											final /*@Thrown*/ Consent consent_1 = how_2.getConsent();
+											final /*@Thrown*/ boolean eq_6 = consent_1 == null;
+											CAUGHT_eq_6 = eq_6;
+										} catch (Exception e) {
+											CAUGHT_eq_6 = ValueUtil.createInvalidValue(e);
+										}
+										if (CAUGHT_eq_6 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq_6;
+										}
+										final /*@Thrown*/ Boolean not_3;
+										if (CAUGHT_eq_6 == ValueUtil.FALSE_VALUE) {
+											not_3 = ValueUtil.TRUE_VALUE;
+										} else {
+											if (CAUGHT_eq_6 == ValueUtil.TRUE_VALUE) {
+												not_3 = ValueUtil.FALSE_VALUE;
+											} else {
+												not_3 = null;
+											}
+										}
+										CAUGHT_not_3 = not_3;
+									} catch (Exception e) {
+										CAUGHT_not_3 = ValueUtil.createInvalidValue(e);
+									}
+									if (CAUGHT_not_3 == ValueUtil.FALSE_VALUE) {
+										and_2 = ValueUtil.FALSE_VALUE;
+									} else {
+										if (CAUGHT_not_3 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_not_3;
+										}
+										if ((not_2 == null) || (CAUGHT_not_3 == null)) {
+											and_2 = null;
+										} else {
+											and_2 = ValueUtil.TRUE_VALUE;
+										}
+									}
+								}
+								CAUGHT_and_2 = and_2;
+							} catch (Exception e) {
+								CAUGHT_and_2 = ValueUtil.createInvalidValue(e);
+							}
+							/*@Caught*/ Object CAUGHT_eq_1;
+							try {
+								if (whose == null) {
+									throw new InvalidValueException(
+											"Null source for \'\'http://privacymodel\'::Principal::type\'");
+								}
+								final /*@Thrown*/ PrincipalType type = whose.getType();
+								final /*@Thrown*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_PrincipalType
+										.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
+								final /*@Thrown*/ boolean eq_1 = BOXED_type == PrivacyModelTables.ELITid_NaturalPerson;
+								CAUGHT_eq_1 = eq_1;
+							} catch (Exception e) {
+								CAUGHT_eq_1 = ValueUtil.createInvalidValue(e);
+							}
+							final /*@Thrown*/ Boolean and;
+							if (CAUGHT_eq_1 == ValueUtil.FALSE_VALUE) {
+								and = ValueUtil.FALSE_VALUE;
+							} else {
+								/*@Caught*/ Object CAUGHT_lt;
+								try {
+									final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
+											.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
+									if (whose == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::Principal::age\'");
+									}
+									final /*@Thrown*/ int age = whose.getAge();
+									final /*@Thrown*/ IntegerValue BOXED_age = ValueUtil.integerValueOf(age);
+									final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
+											.evaluate(executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
+													TYP_privacyModel_c_c_PrivacyPolicy_0);
+									final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
+											.evaluate(allInstances);
+									final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
+											.evaluate(asSequence);
+									if (first == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::PrivacyPolicy::owner\'");
+									}
+									final /*@Thrown*/ Principal owner = first.getOwner();
+									final /*@Thrown*/ Location inhabits = owner.getInhabits();
+									if (inhabits == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::Location::legalAgeLimit\'");
+									}
+									final /*@Thrown*/ int legalAgeLimit = inhabits.getLegalAgeLimit();
+									final /*@Thrown*/ IntegerValue BOXED_legalAgeLimit = ValueUtil
+											.integerValueOf(legalAgeLimit);
+									if (BOXED_legalAgeLimit instanceof InvalidValueException) {
+										throw (InvalidValueException) BOXED_legalAgeLimit;
+									}
+									final /*@Thrown*/ boolean lt = OclComparableLessThanOperation.INSTANCE
+											.evaluate(executor, BOXED_age, BOXED_legalAgeLimit).booleanValue();
+									CAUGHT_lt = lt;
+								} catch (Exception e) {
+									CAUGHT_lt = ValueUtil.createInvalidValue(e);
+								}
+								if (CAUGHT_lt == ValueUtil.FALSE_VALUE) {
+									and = ValueUtil.FALSE_VALUE;
+								} else {
+									if (CAUGHT_eq_1 instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_eq_1;
+									}
+									if (CAUGHT_lt instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_lt;
+									}
+									and = ValueUtil.TRUE_VALUE;
+								}
+							}
+							if (and == null) {
+								throw new InvalidValueException("Null if condition");
+							}
+							/*@Thrown*/ Boolean local_0;
+							if (and) {
+								final /*@Thrown*/ Boolean and_1;
+								if (CAUGHT_and_2 == ValueUtil.FALSE_VALUE) {
+									and_1 = ValueUtil.FALSE_VALUE;
+								} else {
+									/*@Caught*/ Object CAUGHT_exists_0;
+									try {
+										if (whose == null) {
+											throw new InvalidValueException(
+													"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
+										}
+										final /*@Thrown*/ List<Principal> responsiblePersons = whose
+												.getResponsiblePersons();
+										final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons = idResolver
+												.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal,
+														responsiblePersons);
+										/*@Thrown*/ Object accumulator_0 = ValueUtil.FALSE_VALUE;
+										Iterator<Object> ITERATOR_person = BOXED_responsiblePersons.iterator();
+										/*@Thrown*/ Boolean exists_0;
+										while (true) {
+											if (!ITERATOR_person.hasNext()) {
+												if (accumulator_0 == ValueUtil.FALSE_VALUE) {
+													exists_0 = ValueUtil.FALSE_VALUE;
+												} else {
+													throw (InvalidValueException) accumulator_0;
+												}
+												break;
+											}
+											/*@NonInvalid*/ Principal person = (Principal) ITERATOR_person.next();
+											/**
+											 * self.how.consent.providedBy = person
+											 */
+											/*@Caught*/ Object CAUGHT_eq_4;
+											try {
+												final /*@NonInvalid*/ How how_1 = this.getHow();
+												if (how_1 == null) {
+													throw new InvalidValueException(
+															"Null source for \'\'http://privacymodel\'::How::consent\'");
+												}
+												final /*@Thrown*/ Consent consent_0 = how_1.getConsent();
+												if (consent_0 == null) {
+													throw new InvalidValueException(
+															"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
+												}
+												final /*@Thrown*/ Principal providedBy = consent_0.getProvidedBy();
+												final /*@Thrown*/ boolean eq_4 = providedBy.equals(person);
+												CAUGHT_eq_4 = eq_4;
+											} catch (Exception e) {
+												CAUGHT_eq_4 = ValueUtil.createInvalidValue(e);
+											}
+											//
+											if (CAUGHT_eq_4 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+												exists_0 = ValueUtil.TRUE_VALUE;
+												break; // Stop immediately
+											} else if (CAUGHT_eq_4 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+												; // Carry on
+											} else if (CAUGHT_eq_4 instanceof InvalidValueException) { // Abnormal exception evaluation result
+												accumulator_0 = CAUGHT_eq_4; // Cache an exception failure
+											} else { // Impossible badly typed result
+												accumulator_0 = new InvalidValueException(PivotMessages.NonBooleanBody,
+														"exists");
+											}
+										}
+										CAUGHT_exists_0 = exists_0;
+									} catch (Exception e) {
+										CAUGHT_exists_0 = ValueUtil.createInvalidValue(e);
+									}
+									if (CAUGHT_exists_0 == ValueUtil.FALSE_VALUE) {
+										and_1 = ValueUtil.FALSE_VALUE;
+									} else {
+										if (CAUGHT_and_2 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_and_2;
+										}
+										if (CAUGHT_exists_0 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_exists_0;
+										}
+										if ((CAUGHT_and_2 == null) || (CAUGHT_exists_0 == null)) {
+											and_1 = null;
+										} else {
+											and_1 = ValueUtil.TRUE_VALUE;
+										}
+									}
+								}
+								local_0 = and_1;
+							} else {
+								final /*@Thrown*/ Boolean and_3;
+								if (CAUGHT_and_2 == ValueUtil.FALSE_VALUE) {
+									and_3 = ValueUtil.FALSE_VALUE;
+								} else {
+									/*@Caught*/ Object CAUGHT_or_0;
+									try {
+										/*@Caught*/ Object CAUGHT_eq_7;
+										try {
+											final /*@NonInvalid*/ How how_4 = this.getHow();
+											if (how_4 == null) {
+												throw new InvalidValueException(
+														"Null source for \'\'http://privacymodel\'::How::consent\'");
+											}
+											final /*@Thrown*/ Consent consent_2 = how_4.getConsent();
+											if (consent_2 == null) {
 												throw new InvalidValueException(
 														"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
 											}
-											final /*@Thrown*/ Principal providedBy = consent_0.getProvidedBy();
-											final /*@Thrown*/ boolean eq_4 = providedBy.equals(person);
-											CAUGHT_eq_4 = eq_4;
+											final /*@Thrown*/ Principal providedBy_0 = consent_2.getProvidedBy();
+											final /*@Thrown*/ boolean eq_7 = providedBy_0.equals(whose);
+											CAUGHT_eq_7 = eq_7;
 										} catch (Exception e) {
-											CAUGHT_eq_4 = ValueUtil.createInvalidValue(e);
+											CAUGHT_eq_7 = ValueUtil.createInvalidValue(e);
 										}
-										//
-										if (CAUGHT_eq_4 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
-											exists_0 = ValueUtil.TRUE_VALUE;
-											break; // Stop immediately
-										} else if (CAUGHT_eq_4 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
-											; // Carry on
-										} else if (CAUGHT_eq_4 instanceof InvalidValueException) { // Abnormal exception evaluation result
-											accumulator_0 = CAUGHT_eq_4; // Cache an exception failure
-										} else { // Impossible badly typed result
-											accumulator_0 = new InvalidValueException(PivotMessages.NonBooleanBody,
-													"exists");
-										}
-									}
-									CAUGHT_exists_0 = exists_0;
-								} catch (Exception e) {
-									CAUGHT_exists_0 = ValueUtil.createInvalidValue(e);
-								}
-								if (CAUGHT_exists_0 == ValueUtil.FALSE_VALUE) {
-									and_1 = ValueUtil.FALSE_VALUE;
-								} else {
-									if (CAUGHT_and_2 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_and_2;
-									}
-									if (CAUGHT_exists_0 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_exists_0;
-									}
-									if ((CAUGHT_and_2 == null) || (CAUGHT_exists_0 == null)) {
-										and_1 = null;
-									} else {
-										and_1 = ValueUtil.TRUE_VALUE;
-									}
-								}
-							}
-							local_0 = and_1;
-						} else {
-							final /*@Thrown*/ Boolean and_3;
-							if (CAUGHT_and_2 == ValueUtil.FALSE_VALUE) {
-								and_3 = ValueUtil.FALSE_VALUE;
-							} else {
-								/*@Caught*/ Object CAUGHT_or_0;
-								try {
-									/*@Caught*/ Object CAUGHT_eq_7;
-									try {
-										final /*@NonInvalid*/ How how_4 = this.getHow();
-										if (how_4 == null) {
-											throw new InvalidValueException(
-													"Null source for \'\'http://privacymodel\'::How::consent\'");
-										}
-										final /*@Thrown*/ Consent consent_2 = how_4.getConsent();
-										if (consent_2 == null) {
-											throw new InvalidValueException(
-													"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
-										}
-										final /*@Thrown*/ Principal providedBy_0 = consent_2.getProvidedBy();
-										final /*@Thrown*/ boolean eq_7 = providedBy_0.equals(whose);
-										CAUGHT_eq_7 = eq_7;
-									} catch (Exception e) {
-										CAUGHT_eq_7 = ValueUtil.createInvalidValue(e);
-									}
-									final /*@Thrown*/ Boolean or_0;
-									if (CAUGHT_eq_7 == ValueUtil.TRUE_VALUE) {
-										or_0 = ValueUtil.TRUE_VALUE;
-									} else {
-										/*@Caught*/ Object CAUGHT_exists_1;
-										try {
-											if (whose == null) {
-												throw new InvalidValueException(
-														"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
-											}
-											final /*@Thrown*/ List<Principal> responsiblePersons_0 = whose
-													.getResponsiblePersons();
-											final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons_0 = idResolver
-													.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal,
-															responsiblePersons_0);
-											/*@Thrown*/ Object accumulator_1 = ValueUtil.FALSE_VALUE;
-											Iterator<Object> ITERATOR_person_0 = BOXED_responsiblePersons_0.iterator();
-											/*@Thrown*/ Boolean exists_1;
-											while (true) {
-												if (!ITERATOR_person_0.hasNext()) {
-													if (accumulator_1 == ValueUtil.FALSE_VALUE) {
-														exists_1 = ValueUtil.FALSE_VALUE;
-													} else {
-														throw (InvalidValueException) accumulator_1;
-													}
-													break;
-												}
-												/*@NonInvalid*/ Principal person_0 = (Principal) ITERATOR_person_0
-														.next();
-												/**
-												 * self.how.consent.providedBy = person
-												 */
-												/*@Caught*/ Object CAUGHT_eq_8;
-												try {
-													final /*@NonInvalid*/ How how_5 = this.getHow();
-													if (how_5 == null) {
-														throw new InvalidValueException(
-																"Null source for \'\'http://privacymodel\'::How::consent\'");
-													}
-													final /*@Thrown*/ Consent consent_3 = how_5.getConsent();
-													if (consent_3 == null) {
-														throw new InvalidValueException(
-																"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
-													}
-													final /*@Thrown*/ Principal providedBy_1 = consent_3
-															.getProvidedBy();
-													final /*@Thrown*/ boolean eq_8 = providedBy_1.equals(person_0);
-													CAUGHT_eq_8 = eq_8;
-												} catch (Exception e) {
-													CAUGHT_eq_8 = ValueUtil.createInvalidValue(e);
-												}
-												//
-												if (CAUGHT_eq_8 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
-													exists_1 = ValueUtil.TRUE_VALUE;
-													break; // Stop immediately
-												} else if (CAUGHT_eq_8 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
-													; // Carry on
-												} else if (CAUGHT_eq_8 instanceof InvalidValueException) { // Abnormal exception evaluation result
-													accumulator_1 = CAUGHT_eq_8; // Cache an exception failure
-												} else { // Impossible badly typed result
-													accumulator_1 = new InvalidValueException(
-															PivotMessages.NonBooleanBody, "exists");
-												}
-											}
-											CAUGHT_exists_1 = exists_1;
-										} catch (Exception e) {
-											CAUGHT_exists_1 = ValueUtil.createInvalidValue(e);
-										}
-										if (CAUGHT_exists_1 == ValueUtil.TRUE_VALUE) {
+										final /*@Thrown*/ Boolean or_0;
+										if (CAUGHT_eq_7 == ValueUtil.TRUE_VALUE) {
 											or_0 = ValueUtil.TRUE_VALUE;
 										} else {
-											if (CAUGHT_eq_7 instanceof InvalidValueException) {
-												throw (InvalidValueException) CAUGHT_eq_7;
+											/*@Caught*/ Object CAUGHT_exists_1;
+											try {
+												if (whose == null) {
+													throw new InvalidValueException(
+															"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
+												}
+												final /*@Thrown*/ List<Principal> responsiblePersons_0 = whose
+														.getResponsiblePersons();
+												final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons_0 = idResolver
+														.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal,
+																responsiblePersons_0);
+												/*@Thrown*/ Object accumulator_1 = ValueUtil.FALSE_VALUE;
+												Iterator<Object> ITERATOR_person_0 = BOXED_responsiblePersons_0
+														.iterator();
+												/*@Thrown*/ Boolean exists_1;
+												while (true) {
+													if (!ITERATOR_person_0.hasNext()) {
+														if (accumulator_1 == ValueUtil.FALSE_VALUE) {
+															exists_1 = ValueUtil.FALSE_VALUE;
+														} else {
+															throw (InvalidValueException) accumulator_1;
+														}
+														break;
+													}
+													/*@NonInvalid*/ Principal person_0 = (Principal) ITERATOR_person_0
+															.next();
+													/**
+													 * self.how.consent.providedBy = person
+													 */
+													/*@Caught*/ Object CAUGHT_eq_8;
+													try {
+														final /*@NonInvalid*/ How how_5 = this.getHow();
+														if (how_5 == null) {
+															throw new InvalidValueException(
+																	"Null source for \'\'http://privacymodel\'::How::consent\'");
+														}
+														final /*@Thrown*/ Consent consent_3 = how_5.getConsent();
+														if (consent_3 == null) {
+															throw new InvalidValueException(
+																	"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
+														}
+														final /*@Thrown*/ Principal providedBy_1 = consent_3
+																.getProvidedBy();
+														final /*@Thrown*/ boolean eq_8 = providedBy_1.equals(person_0);
+														CAUGHT_eq_8 = eq_8;
+													} catch (Exception e) {
+														CAUGHT_eq_8 = ValueUtil.createInvalidValue(e);
+													}
+													//
+													if (CAUGHT_eq_8 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+														exists_1 = ValueUtil.TRUE_VALUE;
+														break; // Stop immediately
+													} else if (CAUGHT_eq_8 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+														; // Carry on
+													} else if (CAUGHT_eq_8 instanceof InvalidValueException) { // Abnormal exception evaluation result
+														accumulator_1 = CAUGHT_eq_8; // Cache an exception failure
+													} else { // Impossible badly typed result
+														accumulator_1 = new InvalidValueException(
+																PivotMessages.NonBooleanBody, "exists");
+													}
+												}
+												CAUGHT_exists_1 = exists_1;
+											} catch (Exception e) {
+												CAUGHT_exists_1 = ValueUtil.createInvalidValue(e);
 											}
-											if (CAUGHT_exists_1 instanceof InvalidValueException) {
-												throw (InvalidValueException) CAUGHT_exists_1;
-											}
-											if (CAUGHT_exists_1 == null) {
-												or_0 = null;
+											if (CAUGHT_exists_1 == ValueUtil.TRUE_VALUE) {
+												or_0 = ValueUtil.TRUE_VALUE;
 											} else {
-												or_0 = ValueUtil.FALSE_VALUE;
+												if (CAUGHT_eq_7 instanceof InvalidValueException) {
+													throw (InvalidValueException) CAUGHT_eq_7;
+												}
+												if (CAUGHT_exists_1 instanceof InvalidValueException) {
+													throw (InvalidValueException) CAUGHT_exists_1;
+												}
+												if (CAUGHT_exists_1 == null) {
+													or_0 = null;
+												} else {
+													or_0 = ValueUtil.FALSE_VALUE;
+												}
 											}
 										}
+										CAUGHT_or_0 = or_0;
+									} catch (Exception e) {
+										CAUGHT_or_0 = ValueUtil.createInvalidValue(e);
 									}
-									CAUGHT_or_0 = or_0;
-								} catch (Exception e) {
-									CAUGHT_or_0 = ValueUtil.createInvalidValue(e);
-								}
-								if (CAUGHT_or_0 == ValueUtil.FALSE_VALUE) {
-									and_3 = ValueUtil.FALSE_VALUE;
-								} else {
-									if (CAUGHT_and_2 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_and_2;
-									}
-									if (CAUGHT_or_0 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_or_0;
-									}
-									if ((CAUGHT_and_2 == null) || (CAUGHT_or_0 == null)) {
-										and_3 = null;
+									if (CAUGHT_or_0 == ValueUtil.FALSE_VALUE) {
+										and_3 = ValueUtil.FALSE_VALUE;
 									} else {
-										and_3 = ValueUtil.TRUE_VALUE;
+										if (CAUGHT_and_2 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_and_2;
+										}
+										if (CAUGHT_or_0 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_or_0;
+										}
+										if ((CAUGHT_and_2 == null) || (CAUGHT_or_0 == null)) {
+											and_3 = null;
+										} else {
+											and_3 = ValueUtil.TRUE_VALUE;
+										}
 									}
 								}
+								local_0 = and_3;
 							}
-							local_0 = and_3;
+							local_1 = local_0;
 						}
-						status = local_0;
+						status = local_1;
 					}
 					final /*@Thrown*/ boolean eq_9 = status == Boolean.TRUE;
-					/*@Thrown*/ Object local_2;
+					/*@Thrown*/ Object local_3;
 					if (eq_9) {
-						local_2 = ValueUtil.TRUE_VALUE;
+						local_3 = ValueUtil.TRUE_VALUE;
 					} else {
-						final /*@Thrown*/ TupleValue local_1 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
-								PrivacyModelTables.STR_Based_32_on_32_Art20, status);
-						local_2 = local_1;
+						final /*@Thrown*/ TupleValue local_2 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Based_32_on_32_Art20_32_and_32_Art6, status);
+						local_3 = local_2;
 					}
-					CAUGHT_local_2 = local_2;
+					CAUGHT_local_3 = local_3;
 				} catch (Exception e) {
-					CAUGHT_local_2 = ValueUtil.createInvalidValue(e);
+					CAUGHT_local_3 = ValueUtil.createInvalidValue(e);
 				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_local_2, PrivacyModelTables.INT_0)
+								(Object) null, severity_0, CAUGHT_local_3, PrivacyModelTables.INT_0)
 						.booleanValue();
-				local_3 = logDiagnostic;
+				local_4 = logDiagnostic;
 			}
-			return local_3;
+			return local_4;
 		} catch (Throwable e) {
 			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
 		}
@@ -2047,6 +2458,572 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 					} else {
 						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
 								PrivacyModelTables.STR_Based_32_on_32_Art19, status);
+						local_1 = local_0;
+					}
+					CAUGHT_local_1 = local_1;
+				} catch (Exception e) {
+					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean ExpiredContract(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PolicyStatement::ExpiredContract";
+		try {
+			/**
+			 *
+			 * inv ExpiredContract:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = if
+			 *             not self.hasProcessingReason(ProcessingReason::ContractPerformance) or self.how = null or self.how.contract = null
+			 *           then true
+			 *           else
+			 *             let
+			 *               privacyPolicy : PrivacyPolicy[1] = PrivacyPolicy.allInstances()
+			 *               ->asSequence()
+			 *               ->first()
+			 *             in
+			 *               (self.why.processingReasonSubtype = ProcessingReasonSubtype::PreContractual or
+			 *                 privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, self.how.contract.startDate) or
+			 *                 privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.contract.startDate)
+			 *               ) and
+			 *               (self.how.contract.terminationDate = null or
+			 *                 not privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.contract.terminationDate)
+			 *               )
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Based on Art6', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.POLICY_STATEMENT___EXPIRED_CONTRACT__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_1;
+				try {
+					/*@Caught*/ Object CAUGHT_or;
+					try {
+						final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ContractPerformance = (ProcessingReason) idResolver
+								.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_ContractPerformance);
+						final /*@NonInvalid*/ boolean hasProcessingReason = this
+								.hasProcessingReason(ECORE_ELITid_ContractPerformance);
+						final /*@NonInvalid*/ Boolean not;
+						if (!hasProcessingReason) {
+							not = ValueUtil.TRUE_VALUE;
+						} else {
+							if (hasProcessingReason) {
+								not = ValueUtil.FALSE_VALUE;
+							} else {
+								not = null;
+							}
+						}
+						final /*@Thrown*/ Boolean or;
+						if (not == ValueUtil.TRUE_VALUE) {
+							or = ValueUtil.TRUE_VALUE;
+						} else {
+							final /*@NonInvalid*/ How how = this.getHow();
+							final /*@NonInvalid*/ boolean eq = how == null;
+							if (eq) {
+								or = ValueUtil.TRUE_VALUE;
+							} else {
+								if (not == null) {
+									or = null;
+								} else {
+									or = ValueUtil.FALSE_VALUE;
+								}
+							}
+						}
+						CAUGHT_or = or;
+					} catch (Exception e) {
+						CAUGHT_or = ValueUtil.createInvalidValue(e);
+					}
+					final /*@Thrown*/ Boolean or_0;
+					if (CAUGHT_or == ValueUtil.TRUE_VALUE) {
+						or_0 = ValueUtil.TRUE_VALUE;
+					} else {
+						/*@Caught*/ Object CAUGHT_eq_0;
+						try {
+							final /*@NonInvalid*/ How how_0 = this.getHow();
+							if (how_0 == null) {
+								throw new InvalidValueException(
+										"Null source for \'\'http://privacymodel\'::How::contract\'");
+							}
+							final /*@Thrown*/ Contract contract = how_0.getContract();
+							final /*@Thrown*/ boolean eq_0 = contract == null;
+							CAUGHT_eq_0 = eq_0;
+						} catch (Exception e) {
+							CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+						}
+						if (CAUGHT_eq_0 == ValueUtil.TRUE_VALUE) {
+							or_0 = ValueUtil.TRUE_VALUE;
+						} else {
+							if (CAUGHT_or instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_or;
+							}
+							if (CAUGHT_eq_0 instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_eq_0;
+							}
+							if (CAUGHT_or == null) {
+								or_0 = null;
+							} else {
+								or_0 = ValueUtil.FALSE_VALUE;
+							}
+						}
+					}
+					if (or_0 == null) {
+						throw new InvalidValueException("Null if condition");
+					}
+					/*@Thrown*/ Boolean status;
+					if (or_0) {
+						status = ValueUtil.TRUE_VALUE;
+					} else {
+						/*@Caught*/ Object CAUGHT_privacyPolicy;
+						try {
+							final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
+									.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
+							final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
+									.evaluate(executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
+											TYP_privacyModel_c_c_PrivacyPolicy_0);
+							final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
+									.evaluate(allInstances);
+							final /*@Thrown*/ PrivacyPolicy privacyPolicy = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
+									.evaluate(asSequence);
+							CAUGHT_privacyPolicy = privacyPolicy;
+						} catch (Exception e) {
+							CAUGHT_privacyPolicy = ValueUtil.createInvalidValue(e);
+						}
+						/*@Caught*/ Object CAUGHT_or_2;
+						try {
+							/*@Caught*/ Object CAUGHT_or_1;
+							try {
+								final /*@NonInvalid*/ Purpose why = this.getWhy();
+								final /*@NonInvalid*/ ProcessingReasonSubtype processingReasonSubtype = why
+										.getProcessingReasonSubtype();
+								final /*@NonInvalid*/ EnumerationLiteralId BOXED_processingReasonSubtype = PrivacyModelTables.ENUMid_ProcessingReasonSubtype
+										.getEnumerationLiteralId(
+												ClassUtil.nonNullState(processingReasonSubtype.getName()));
+								final /*@NonInvalid*/ boolean eq_1 = BOXED_processingReasonSubtype == PrivacyModelTables.ELITid_PreContractual;
+								final /*@Thrown*/ Boolean or_1;
+								if (eq_1) {
+									or_1 = ValueUtil.TRUE_VALUE;
+								} else {
+									/*@Caught*/ Object CAUGHT_isDateInInterval;
+									try {
+										if (CAUGHT_privacyPolicy == null) {
+											throw new InvalidValueException(
+													"Null source for \'\'http://privacymodel\'::PrivacyPolicy::privacyPolicyHelper\'");
+										}
+										if (CAUGHT_privacyPolicy instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_privacyPolicy;
+										}
+										final /*@Thrown*/ PrivacyPolicyHelper privacyPolicyHelper = ((PrivacyPolicy) CAUGHT_privacyPolicy)
+												.getPrivacyPolicyHelper();
+										final /*@NonInvalid*/ AbstractTime when = this.getWhen();
+										final /*@NonInvalid*/ How how_1 = this.getHow();
+										if (how_1 == null) {
+											throw new InvalidValueException(
+													"Null source for \'\'http://privacymodel\'::How::contract\'");
+										}
+										final /*@Thrown*/ Contract contract_0 = how_1.getContract();
+										if (contract_0 == null) {
+											throw new InvalidValueException(
+													"Null source for \'\'http://privacymodel\'::AbstractPaper::startDate\'");
+										}
+										final /*@Thrown*/ Date startDate = contract_0.getStartDate();
+										final /*@Thrown*/ boolean isDateInInterval = privacyPolicyHelper
+												.isDateInInterval(when, startDate);
+										CAUGHT_isDateInInterval = isDateInInterval;
+									} catch (Exception e) {
+										CAUGHT_isDateInInterval = ValueUtil.createInvalidValue(e);
+									}
+									if (CAUGHT_isDateInInterval == ValueUtil.TRUE_VALUE) {
+										or_1 = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_isDateInInterval instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_isDateInInterval;
+										}
+										or_1 = ValueUtil.FALSE_VALUE;
+									}
+								}
+								CAUGHT_or_1 = or_1;
+							} catch (Exception e) {
+								CAUGHT_or_1 = ValueUtil.createInvalidValue(e);
+							}
+							final /*@Thrown*/ Boolean or_2;
+							if (CAUGHT_or_1 == ValueUtil.TRUE_VALUE) {
+								or_2 = ValueUtil.TRUE_VALUE;
+							} else {
+								/*@Caught*/ Object CAUGHT_isDateBeforeInterval;
+								try {
+									if (CAUGHT_privacyPolicy == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::PrivacyPolicy::privacyPolicyHelper\'");
+									}
+									if (CAUGHT_privacyPolicy instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_privacyPolicy;
+									}
+									final /*@Thrown*/ PrivacyPolicyHelper privacyPolicyHelper_0 = ((PrivacyPolicy) CAUGHT_privacyPolicy)
+											.getPrivacyPolicyHelper();
+									final /*@NonInvalid*/ AbstractTime when_0 = this.getWhen();
+									final /*@NonInvalid*/ How how_2 = this.getHow();
+									if (how_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::How::contract\'");
+									}
+									final /*@Thrown*/ Contract contract_1 = how_2.getContract();
+									if (contract_1 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::AbstractPaper::startDate\'");
+									}
+									final /*@Thrown*/ Date startDate_0 = contract_1.getStartDate();
+									final /*@Thrown*/ boolean isDateBeforeInterval = privacyPolicyHelper_0
+											.isDateBeforeInterval(when_0, startDate_0);
+									CAUGHT_isDateBeforeInterval = isDateBeforeInterval;
+								} catch (Exception e) {
+									CAUGHT_isDateBeforeInterval = ValueUtil.createInvalidValue(e);
+								}
+								if (CAUGHT_isDateBeforeInterval == ValueUtil.TRUE_VALUE) {
+									or_2 = ValueUtil.TRUE_VALUE;
+								} else {
+									if (CAUGHT_or_1 instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_or_1;
+									}
+									if (CAUGHT_isDateBeforeInterval instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_isDateBeforeInterval;
+									}
+									if (CAUGHT_or_1 == null) {
+										or_2 = null;
+									} else {
+										or_2 = ValueUtil.FALSE_VALUE;
+									}
+								}
+							}
+							CAUGHT_or_2 = or_2;
+						} catch (Exception e) {
+							CAUGHT_or_2 = ValueUtil.createInvalidValue(e);
+						}
+						final /*@Thrown*/ Boolean and;
+						if (CAUGHT_or_2 == ValueUtil.FALSE_VALUE) {
+							and = ValueUtil.FALSE_VALUE;
+						} else {
+							/*@Caught*/ Object CAUGHT_or_3;
+							try {
+								/*@Caught*/ Object CAUGHT_eq_2;
+								try {
+									final /*@NonInvalid*/ How how_3 = this.getHow();
+									if (how_3 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::How::contract\'");
+									}
+									final /*@Thrown*/ Contract contract_2 = how_3.getContract();
+									if (contract_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::AbstractPaper::terminationDate\'");
+									}
+									final /*@Thrown*/ Date terminationDate = contract_2.getTerminationDate();
+									final /*@Thrown*/ boolean eq_2 = terminationDate == null;
+									CAUGHT_eq_2 = eq_2;
+								} catch (Exception e) {
+									CAUGHT_eq_2 = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean or_3;
+								if (CAUGHT_eq_2 == ValueUtil.TRUE_VALUE) {
+									or_3 = ValueUtil.TRUE_VALUE;
+								} else {
+									/*@Caught*/ Object CAUGHT_not_0;
+									try {
+										/*@Caught*/ Object CAUGHT_isDateBeforeInterval_0;
+										try {
+											if (CAUGHT_privacyPolicy == null) {
+												throw new InvalidValueException(
+														"Null source for \'\'http://privacymodel\'::PrivacyPolicy::privacyPolicyHelper\'");
+											}
+											if (CAUGHT_privacyPolicy instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_privacyPolicy;
+											}
+											final /*@Thrown*/ PrivacyPolicyHelper privacyPolicyHelper_1 = ((PrivacyPolicy) CAUGHT_privacyPolicy)
+													.getPrivacyPolicyHelper();
+											final /*@NonInvalid*/ AbstractTime when_1 = this.getWhen();
+											final /*@NonInvalid*/ How how_4 = this.getHow();
+											if (how_4 == null) {
+												throw new InvalidValueException(
+														"Null source for \'\'http://privacymodel\'::How::contract\'");
+											}
+											final /*@Thrown*/ Contract contract_3 = how_4.getContract();
+											if (contract_3 == null) {
+												throw new InvalidValueException(
+														"Null source for \'\'http://privacymodel\'::AbstractPaper::terminationDate\'");
+											}
+											final /*@Thrown*/ Date terminationDate_0 = contract_3.getTerminationDate();
+											final /*@Thrown*/ boolean isDateBeforeInterval_0 = privacyPolicyHelper_1
+													.isDateBeforeInterval(when_1, terminationDate_0);
+											CAUGHT_isDateBeforeInterval_0 = isDateBeforeInterval_0;
+										} catch (Exception e) {
+											CAUGHT_isDateBeforeInterval_0 = ValueUtil.createInvalidValue(e);
+										}
+										if (CAUGHT_isDateBeforeInterval_0 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_isDateBeforeInterval_0;
+										}
+										final /*@Thrown*/ Boolean not_0;
+										if (CAUGHT_isDateBeforeInterval_0 == ValueUtil.FALSE_VALUE) {
+											not_0 = ValueUtil.TRUE_VALUE;
+										} else {
+											if (CAUGHT_isDateBeforeInterval_0 == ValueUtil.TRUE_VALUE) {
+												not_0 = ValueUtil.FALSE_VALUE;
+											} else {
+												not_0 = null;
+											}
+										}
+										CAUGHT_not_0 = not_0;
+									} catch (Exception e) {
+										CAUGHT_not_0 = ValueUtil.createInvalidValue(e);
+									}
+									if (CAUGHT_not_0 == ValueUtil.TRUE_VALUE) {
+										or_3 = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq_2 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq_2;
+										}
+										if (CAUGHT_not_0 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_not_0;
+										}
+										if (CAUGHT_not_0 == null) {
+											or_3 = null;
+										} else {
+											or_3 = ValueUtil.FALSE_VALUE;
+										}
+									}
+								}
+								CAUGHT_or_3 = or_3;
+							} catch (Exception e) {
+								CAUGHT_or_3 = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_or_3 == ValueUtil.FALSE_VALUE) {
+								and = ValueUtil.FALSE_VALUE;
+							} else {
+								if (CAUGHT_or_2 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_or_2;
+								}
+								if (CAUGHT_or_3 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_or_3;
+								}
+								if ((CAUGHT_or_2 == null) || (CAUGHT_or_3 == null)) {
+									and = null;
+								} else {
+									and = ValueUtil.TRUE_VALUE;
+								}
+							}
+						}
+						status = and;
+					}
+					final /*@Thrown*/ boolean eq_3 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_1;
+					if (eq_3) {
+						local_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Based_32_on_32_Art6, status);
+						local_1 = local_0;
+					}
+					CAUGHT_local_1 = local_1;
+				} catch (Exception e) {
+					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean LegalProvisionIsNeededForLegalObligationPurpose(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "PolicyStatement::LegalProvisionIsNeededForLegalObligationPurpose";
+		try {
+			/**
+			 *
+			 * inv LegalProvisionIsNeededForLegalObligationPurpose:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = if
+			 *             not self.hasProcessingReason(ProcessingReason::LegalObligation)
+			 *           then true
+			 *           else
+			 *             not (self.how = null
+			 *             ) and
+			 *             self.how.documents->exists(doc | doc.documentType = DocumentType::LegalProvision)
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Based on Art6', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.POLICY_STATEMENT___LEGAL_PROVISION_IS_NEEDED_FOR_LEGAL_OBLIGATION_PURPOSE__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_1;
+				try {
+					final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_LegalObligation = (ProcessingReason) idResolver
+							.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_LegalObligation);
+					final /*@NonInvalid*/ boolean hasProcessingReason = this
+							.hasProcessingReason(ECORE_ELITid_LegalObligation);
+					final /*@NonInvalid*/ Boolean not;
+					if (!hasProcessingReason) {
+						not = ValueUtil.TRUE_VALUE;
+					} else {
+						if (hasProcessingReason) {
+							not = ValueUtil.FALSE_VALUE;
+						} else {
+							not = null;
+						}
+					}
+					if (not == null) {
+						throw new InvalidValueException("Null if condition");
+					}
+					/*@Thrown*/ Boolean status;
+					if (not) {
+						status = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@NonInvalid*/ How how = this.getHow();
+						final /*@NonInvalid*/ boolean eq = how == null;
+						final /*@NonInvalid*/ Boolean not_0;
+						if (!eq) {
+							not_0 = ValueUtil.TRUE_VALUE;
+						} else {
+							if (eq) {
+								not_0 = ValueUtil.FALSE_VALUE;
+							} else {
+								not_0 = null;
+							}
+						}
+						final /*@Thrown*/ Boolean and;
+						if (not_0 == ValueUtil.FALSE_VALUE) {
+							and = ValueUtil.FALSE_VALUE;
+						} else {
+							/*@Caught*/ Object CAUGHT_exists;
+							try {
+								if (how == null) {
+									throw new InvalidValueException(
+											"Null source for \'\'http://privacymodel\'::How::documents\'");
+								}
+								final /*@Thrown*/ List<Document> documents = how.getDocuments();
+								final /*@Thrown*/ OrderedSetValue BOXED_documents = idResolver
+										.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Document, documents);
+								/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+								Iterator<Object> ITERATOR_doc = BOXED_documents.iterator();
+								/*@Thrown*/ Boolean exists;
+								while (true) {
+									if (!ITERATOR_doc.hasNext()) {
+										if (accumulator == ValueUtil.FALSE_VALUE) {
+											exists = ValueUtil.FALSE_VALUE;
+										} else {
+											throw (InvalidValueException) accumulator;
+										}
+										break;
+									}
+									/*@NonInvalid*/ Document doc = (Document) ITERATOR_doc.next();
+									/**
+									 * doc.documentType = DocumentType::LegalProvision
+									 */
+									final /*@NonInvalid*/ DocumentType documentType = doc.getDocumentType();
+									final /*@NonInvalid*/ EnumerationLiteralId BOXED_documentType = documentType == null
+											? null
+											: PrivacyModelTables.ENUMid_DocumentType.getEnumerationLiteralId(
+													ClassUtil.nonNullState(documentType.getName()));
+									final /*@NonInvalid*/ boolean eq_0 = BOXED_documentType == PrivacyModelTables.ELITid_LegalProvision;
+									//
+									if (eq_0) { // Normal successful body evaluation result
+										exists = ValueUtil.TRUE_VALUE;
+										break; // Stop immediately
+									} else if (!eq_0) { // Normal unsuccessful body evaluation result
+										; // Carry on
+									} else { // Impossible badly typed result
+										accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+									}
+								}
+								CAUGHT_exists = exists;
+							} catch (Exception e) {
+								CAUGHT_exists = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_exists == ValueUtil.FALSE_VALUE) {
+								and = ValueUtil.FALSE_VALUE;
+							} else {
+								if (CAUGHT_exists instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_exists;
+								}
+								if ((not_0 == null) || (CAUGHT_exists == null)) {
+									and = null;
+								} else {
+									and = ValueUtil.TRUE_VALUE;
+								}
+							}
+						}
+						status = and;
+					}
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_1;
+					if (eq_1) {
+						local_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Based_32_on_32_Art6, status);
 						local_1 = local_0;
 					}
 					CAUGHT_local_1 = local_1;
@@ -2268,24 +3245,34 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			 *             self.what.actions->exists(action | action = Action::Collecting)
 			 *           then true
 			 *           else
-			 *             if self.whose.type = PrincipalType::NaturalPerson and self.whose.age <
-			 *               PrivacyPolicy.allInstances()
-			 *               ->asSequence()
-			 *               ->first().owner.inhabits.legalAgeLimit
-			 *             then
-			 *               not (self.how = null
-			 *               ) and
-			 *               not (self.how.consent = null
-			 *               ) and
-			 *               self.whose.responsiblePersons->exists(person | self.how.consent.providedBy = person)
+			 *             if
+			 *               self.hasProcessingReason(ProcessingReason::LegalObligation)
+			 *             then true
 			 *             else
-			 *               not (self.how = null
-			 *               ) and
-			 *               not (self.how.consent = null
-			 *               ) and
-			 *               (self.how.consent.providedBy = self.whose or
-			 *                 self.whose.responsiblePersons->exists(person | self.how.consent.providedBy = person)
-			 *               )
+			 *               if
+			 *                 self.hasProcessingReason(ProcessingReason::ContractPerformance)
+			 *               then self.isContractProvidedBySubject()
+			 *               else
+			 *                 if self.whose.type = PrincipalType::NaturalPerson and self.whose.age <
+			 *                   PrivacyPolicy.allInstances()
+			 *                   ->asSequence()
+			 *                   ->first().owner.inhabits.legalAgeLimit
+			 *                 then
+			 *                   not (self.how = null
+			 *                   ) and
+			 *                   not (self.how.consent = null
+			 *                   ) and
+			 *                   self.whose.responsiblePersons->exists(person | self.how.consent.providedBy = person)
+			 *                 else
+			 *                   not (self.how = null
+			 *                   ) and
+			 *                   not (self.how.consent = null
+			 *                   ) and
+			 *                   (self.how.consent.providedBy = self.whose or
+			 *                     self.whose.responsiblePersons->exists(person | self.how.consent.providedBy = person)
+			 *                   )
+			 *                 endif
+			 *               endif
 			 *             endif
 			 *           endif
 			 *         in
@@ -2303,11 +3290,11 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 					PrivacyModelPackage.Literals.POLICY_STATEMENT___MISSING_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_3;
+			/*@NonInvalid*/ boolean local_5;
 			if (le) {
-				local_3 = true;
+				local_5 = true;
 			} else {
-				/*@Caught*/ Object CAUGHT_local_2;
+				/*@Caught*/ Object CAUGHT_local_4;
 				try {
 					/*@Caught*/ Object CAUGHT_or;
 					try {
@@ -2493,387 +3480,412 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 					if (or_0) {
 						status = ValueUtil.TRUE_VALUE;
 					} else {
-						/*@Caught*/ Object CAUGHT_and_3;
-						try {
-							final /*@NonInvalid*/ How how_2 = this.getHow();
-							final /*@NonInvalid*/ boolean eq_7 = how_2 == null;
-							final /*@NonInvalid*/ Boolean not_2;
-							if (!eq_7) {
-								not_2 = ValueUtil.TRUE_VALUE;
+						final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_LegalObligation = (ProcessingReason) idResolver
+								.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_LegalObligation);
+						final /*@NonInvalid*/ boolean hasProcessingReason = this
+								.hasProcessingReason(ECORE_ELITid_LegalObligation);
+						/*@Thrown*/ Boolean local_2;
+						if (hasProcessingReason) {
+							local_2 = ValueUtil.TRUE_VALUE;
+						} else {
+							final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ContractPerformance = (ProcessingReason) idResolver
+									.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_ContractPerformance);
+							final /*@NonInvalid*/ boolean hasProcessingReason_0 = this
+									.hasProcessingReason(ECORE_ELITid_ContractPerformance);
+							/*@Thrown*/ Boolean local_1;
+							if (hasProcessingReason_0) {
+								final /*@NonInvalid*/ boolean isContractProvidedBySubject = this
+										.isContractProvidedBySubject();
+								local_1 = isContractProvidedBySubject;
 							} else {
-								if (eq_7) {
-									not_2 = ValueUtil.FALSE_VALUE;
-								} else {
-									not_2 = null;
-								}
-							}
-							final /*@Thrown*/ Boolean and_3;
-							if (not_2 == ValueUtil.FALSE_VALUE) {
-								and_3 = ValueUtil.FALSE_VALUE;
-							} else {
-								/*@Caught*/ Object CAUGHT_not_3;
+								/*@Caught*/ Object CAUGHT_and_3;
 								try {
-									/*@Caught*/ Object CAUGHT_eq_8;
-									try {
-										if (how_2 == null) {
-											throw new InvalidValueException(
-													"Null source for \'\'http://privacymodel\'::How::consent\'");
-										}
-										final /*@Thrown*/ Consent consent_1 = how_2.getConsent();
-										final /*@Thrown*/ boolean eq_8 = consent_1 == null;
-										CAUGHT_eq_8 = eq_8;
-									} catch (Exception e) {
-										CAUGHT_eq_8 = ValueUtil.createInvalidValue(e);
-									}
-									if (CAUGHT_eq_8 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_eq_8;
-									}
-									final /*@Thrown*/ Boolean not_3;
-									if (CAUGHT_eq_8 == ValueUtil.FALSE_VALUE) {
-										not_3 = ValueUtil.TRUE_VALUE;
+									final /*@NonInvalid*/ How how_2 = this.getHow();
+									final /*@NonInvalid*/ boolean eq_7 = how_2 == null;
+									final /*@NonInvalid*/ Boolean not_2;
+									if (!eq_7) {
+										not_2 = ValueUtil.TRUE_VALUE;
 									} else {
-										if (CAUGHT_eq_8 == ValueUtil.TRUE_VALUE) {
-											not_3 = ValueUtil.FALSE_VALUE;
+										if (eq_7) {
+											not_2 = ValueUtil.FALSE_VALUE;
 										} else {
-											not_3 = null;
+											not_2 = null;
 										}
 									}
-									CAUGHT_not_3 = not_3;
-								} catch (Exception e) {
-									CAUGHT_not_3 = ValueUtil.createInvalidValue(e);
-								}
-								if (CAUGHT_not_3 == ValueUtil.FALSE_VALUE) {
-									and_3 = ValueUtil.FALSE_VALUE;
-								} else {
-									if (CAUGHT_not_3 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_not_3;
-									}
-									if ((not_2 == null) || (CAUGHT_not_3 == null)) {
-										and_3 = null;
+									final /*@Thrown*/ Boolean and_3;
+									if (not_2 == ValueUtil.FALSE_VALUE) {
+										and_3 = ValueUtil.FALSE_VALUE;
 									} else {
-										and_3 = ValueUtil.TRUE_VALUE;
-									}
-								}
-							}
-							CAUGHT_and_3 = and_3;
-						} catch (Exception e) {
-							CAUGHT_and_3 = ValueUtil.createInvalidValue(e);
-						}
-						/*@Caught*/ Object CAUGHT_eq_3;
-						try {
-							final /*@NonInvalid*/ Principal whose_0 = this.getWhose();
-							if (whose_0 == null) {
-								throw new InvalidValueException(
-										"Null source for \'\'http://privacymodel\'::Principal::type\'");
-							}
-							final /*@Thrown*/ PrincipalType type = whose_0.getType();
-							final /*@Thrown*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_PrincipalType
-									.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
-							final /*@Thrown*/ boolean eq_3 = BOXED_type == PrivacyModelTables.ELITid_NaturalPerson;
-							CAUGHT_eq_3 = eq_3;
-						} catch (Exception e) {
-							CAUGHT_eq_3 = ValueUtil.createInvalidValue(e);
-						}
-						final /*@Thrown*/ Boolean and_0;
-						if (CAUGHT_eq_3 == ValueUtil.FALSE_VALUE) {
-							and_0 = ValueUtil.FALSE_VALUE;
-						} else {
-							/*@Caught*/ Object CAUGHT_lt;
-							try {
-								final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
-										.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
-								final /*@NonInvalid*/ Principal whose_1 = this.getWhose();
-								if (whose_1 == null) {
-									throw new InvalidValueException(
-											"Null source for \'\'http://privacymodel\'::Principal::age\'");
-								}
-								final /*@Thrown*/ int age = whose_1.getAge();
-								final /*@Thrown*/ IntegerValue BOXED_age = ValueUtil.integerValueOf(age);
-								final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
-										.evaluate(executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
-												TYP_privacyModel_c_c_PrivacyPolicy_0);
-								final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
-										.evaluate(allInstances);
-								final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
-										.evaluate(asSequence);
-								if (first == null) {
-									throw new InvalidValueException(
-											"Null source for \'\'http://privacymodel\'::PrivacyPolicy::owner\'");
-								}
-								final /*@Thrown*/ Principal owner = first.getOwner();
-								final /*@Thrown*/ Location inhabits = owner.getInhabits();
-								if (inhabits == null) {
-									throw new InvalidValueException(
-											"Null source for \'\'http://privacymodel\'::Location::legalAgeLimit\'");
-								}
-								final /*@Thrown*/ int legalAgeLimit = inhabits.getLegalAgeLimit();
-								final /*@Thrown*/ IntegerValue BOXED_legalAgeLimit = ValueUtil
-										.integerValueOf(legalAgeLimit);
-								if (BOXED_legalAgeLimit instanceof InvalidValueException) {
-									throw (InvalidValueException) BOXED_legalAgeLimit;
-								}
-								final /*@Thrown*/ boolean lt = OclComparableLessThanOperation.INSTANCE
-										.evaluate(executor, BOXED_age, BOXED_legalAgeLimit).booleanValue();
-								CAUGHT_lt = lt;
-							} catch (Exception e) {
-								CAUGHT_lt = ValueUtil.createInvalidValue(e);
-							}
-							if (CAUGHT_lt == ValueUtil.FALSE_VALUE) {
-								and_0 = ValueUtil.FALSE_VALUE;
-							} else {
-								if (CAUGHT_eq_3 instanceof InvalidValueException) {
-									throw (InvalidValueException) CAUGHT_eq_3;
-								}
-								if (CAUGHT_lt instanceof InvalidValueException) {
-									throw (InvalidValueException) CAUGHT_lt;
-								}
-								and_0 = ValueUtil.TRUE_VALUE;
-							}
-						}
-						if (and_0 == null) {
-							throw new InvalidValueException("Null if condition");
-						}
-						/*@Thrown*/ Boolean local_0;
-						if (and_0) {
-							final /*@Thrown*/ Boolean and_2;
-							if (CAUGHT_and_3 == ValueUtil.FALSE_VALUE) {
-								and_2 = ValueUtil.FALSE_VALUE;
-							} else {
-								/*@Caught*/ Object CAUGHT_exists_2;
-								try {
-									final /*@NonInvalid*/ Principal whose_2 = this.getWhose();
-									if (whose_2 == null) {
-										throw new InvalidValueException(
-												"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
-									}
-									final /*@Thrown*/ List<Principal> responsiblePersons = whose_2
-											.getResponsiblePersons();
-									final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons = idResolver
-											.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal,
-													responsiblePersons);
-									/*@Thrown*/ Object accumulator_2 = ValueUtil.FALSE_VALUE;
-									Iterator<Object> ITERATOR_person = BOXED_responsiblePersons.iterator();
-									/*@Thrown*/ Boolean exists_2;
-									while (true) {
-										if (!ITERATOR_person.hasNext()) {
-											if (accumulator_2 == ValueUtil.FALSE_VALUE) {
-												exists_2 = ValueUtil.FALSE_VALUE;
+										/*@Caught*/ Object CAUGHT_not_3;
+										try {
+											/*@Caught*/ Object CAUGHT_eq_8;
+											try {
+												if (how_2 == null) {
+													throw new InvalidValueException(
+															"Null source for \'\'http://privacymodel\'::How::consent\'");
+												}
+												final /*@Thrown*/ Consent consent_1 = how_2.getConsent();
+												final /*@Thrown*/ boolean eq_8 = consent_1 == null;
+												CAUGHT_eq_8 = eq_8;
+											} catch (Exception e) {
+												CAUGHT_eq_8 = ValueUtil.createInvalidValue(e);
+											}
+											if (CAUGHT_eq_8 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_eq_8;
+											}
+											final /*@Thrown*/ Boolean not_3;
+											if (CAUGHT_eq_8 == ValueUtil.FALSE_VALUE) {
+												not_3 = ValueUtil.TRUE_VALUE;
 											} else {
-												throw (InvalidValueException) accumulator_2;
+												if (CAUGHT_eq_8 == ValueUtil.TRUE_VALUE) {
+													not_3 = ValueUtil.FALSE_VALUE;
+												} else {
+													not_3 = null;
+												}
 											}
-											break;
-										}
-										/*@NonInvalid*/ Principal person = (Principal) ITERATOR_person.next();
-										/**
-										 * self.how.consent.providedBy = person
-										 */
-										/*@Caught*/ Object CAUGHT_eq_6;
-										try {
-											final /*@NonInvalid*/ How how_1 = this.getHow();
-											if (how_1 == null) {
-												throw new InvalidValueException(
-														"Null source for \'\'http://privacymodel\'::How::consent\'");
-											}
-											final /*@Thrown*/ Consent consent_0 = how_1.getConsent();
-											if (consent_0 == null) {
-												throw new InvalidValueException(
-														"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
-											}
-											final /*@Thrown*/ Principal providedBy = consent_0.getProvidedBy();
-											final /*@Thrown*/ boolean eq_6 = providedBy.equals(person);
-											CAUGHT_eq_6 = eq_6;
+											CAUGHT_not_3 = not_3;
 										} catch (Exception e) {
-											CAUGHT_eq_6 = ValueUtil.createInvalidValue(e);
+											CAUGHT_not_3 = ValueUtil.createInvalidValue(e);
 										}
-										//
-										if (CAUGHT_eq_6 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
-											exists_2 = ValueUtil.TRUE_VALUE;
-											break; // Stop immediately
-										} else if (CAUGHT_eq_6 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
-											; // Carry on
-										} else if (CAUGHT_eq_6 instanceof InvalidValueException) { // Abnormal exception evaluation result
-											accumulator_2 = CAUGHT_eq_6; // Cache an exception failure
-										} else { // Impossible badly typed result
-											accumulator_2 = new InvalidValueException(PivotMessages.NonBooleanBody,
-													"exists");
+										if (CAUGHT_not_3 == ValueUtil.FALSE_VALUE) {
+											and_3 = ValueUtil.FALSE_VALUE;
+										} else {
+											if (CAUGHT_not_3 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_not_3;
+											}
+											if ((not_2 == null) || (CAUGHT_not_3 == null)) {
+												and_3 = null;
+											} else {
+												and_3 = ValueUtil.TRUE_VALUE;
+											}
 										}
 									}
-									CAUGHT_exists_2 = exists_2;
+									CAUGHT_and_3 = and_3;
 								} catch (Exception e) {
-									CAUGHT_exists_2 = ValueUtil.createInvalidValue(e);
+									CAUGHT_and_3 = ValueUtil.createInvalidValue(e);
 								}
-								if (CAUGHT_exists_2 == ValueUtil.FALSE_VALUE) {
-									and_2 = ValueUtil.FALSE_VALUE;
-								} else {
-									if (CAUGHT_and_3 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_and_3;
-									}
-									if (CAUGHT_exists_2 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_exists_2;
-									}
-									if ((CAUGHT_and_3 == null) || (CAUGHT_exists_2 == null)) {
-										and_2 = null;
-									} else {
-										and_2 = ValueUtil.TRUE_VALUE;
-									}
-								}
-							}
-							local_0 = and_2;
-						} else {
-							final /*@Thrown*/ Boolean and_4;
-							if (CAUGHT_and_3 == ValueUtil.FALSE_VALUE) {
-								and_4 = ValueUtil.FALSE_VALUE;
-							} else {
-								/*@Caught*/ Object CAUGHT_or_1;
+								/*@Caught*/ Object CAUGHT_eq_3;
 								try {
-									/*@Caught*/ Object CAUGHT_eq_9;
-									try {
-										final /*@NonInvalid*/ How how_4 = this.getHow();
-										if (how_4 == null) {
-											throw new InvalidValueException(
-													"Null source for \'\'http://privacymodel\'::How::consent\'");
-										}
-										final /*@Thrown*/ Consent consent_2 = how_4.getConsent();
-										if (consent_2 == null) {
-											throw new InvalidValueException(
-													"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
-										}
-										final /*@Thrown*/ Principal providedBy_0 = consent_2.getProvidedBy();
-										final /*@NonInvalid*/ Principal whose_3 = this.getWhose();
-										final /*@Thrown*/ boolean eq_9 = providedBy_0.equals(whose_3);
-										CAUGHT_eq_9 = eq_9;
-									} catch (Exception e) {
-										CAUGHT_eq_9 = ValueUtil.createInvalidValue(e);
+									final /*@NonInvalid*/ Principal whose_0 = this.getWhose();
+									if (whose_0 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::Principal::type\'");
 									}
-									final /*@Thrown*/ Boolean or_1;
-									if (CAUGHT_eq_9 == ValueUtil.TRUE_VALUE) {
-										or_1 = ValueUtil.TRUE_VALUE;
+									final /*@Thrown*/ PrincipalType type = whose_0.getType();
+									final /*@Thrown*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_PrincipalType
+											.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
+									final /*@Thrown*/ boolean eq_3 = BOXED_type == PrivacyModelTables.ELITid_NaturalPerson;
+									CAUGHT_eq_3 = eq_3;
+								} catch (Exception e) {
+									CAUGHT_eq_3 = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean and_0;
+								if (CAUGHT_eq_3 == ValueUtil.FALSE_VALUE) {
+									and_0 = ValueUtil.FALSE_VALUE;
+								} else {
+									/*@Caught*/ Object CAUGHT_lt;
+									try {
+										final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
+												.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
+										final /*@NonInvalid*/ Principal whose_1 = this.getWhose();
+										if (whose_1 == null) {
+											throw new InvalidValueException(
+													"Null source for \'\'http://privacymodel\'::Principal::age\'");
+										}
+										final /*@Thrown*/ int age = whose_1.getAge();
+										final /*@Thrown*/ IntegerValue BOXED_age = ValueUtil.integerValueOf(age);
+										final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
+												.evaluate(executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
+														TYP_privacyModel_c_c_PrivacyPolicy_0);
+										final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
+												.evaluate(allInstances);
+										final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
+												.evaluate(asSequence);
+										if (first == null) {
+											throw new InvalidValueException(
+													"Null source for \'\'http://privacymodel\'::PrivacyPolicy::owner\'");
+										}
+										final /*@Thrown*/ Principal owner = first.getOwner();
+										final /*@Thrown*/ Location inhabits = owner.getInhabits();
+										if (inhabits == null) {
+											throw new InvalidValueException(
+													"Null source for \'\'http://privacymodel\'::Location::legalAgeLimit\'");
+										}
+										final /*@Thrown*/ int legalAgeLimit = inhabits.getLegalAgeLimit();
+										final /*@Thrown*/ IntegerValue BOXED_legalAgeLimit = ValueUtil
+												.integerValueOf(legalAgeLimit);
+										if (BOXED_legalAgeLimit instanceof InvalidValueException) {
+											throw (InvalidValueException) BOXED_legalAgeLimit;
+										}
+										final /*@Thrown*/ boolean lt = OclComparableLessThanOperation.INSTANCE
+												.evaluate(executor, BOXED_age, BOXED_legalAgeLimit).booleanValue();
+										CAUGHT_lt = lt;
+									} catch (Exception e) {
+										CAUGHT_lt = ValueUtil.createInvalidValue(e);
+									}
+									if (CAUGHT_lt == ValueUtil.FALSE_VALUE) {
+										and_0 = ValueUtil.FALSE_VALUE;
 									} else {
-										/*@Caught*/ Object CAUGHT_exists_3;
+										if (CAUGHT_eq_3 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq_3;
+										}
+										if (CAUGHT_lt instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_lt;
+										}
+										and_0 = ValueUtil.TRUE_VALUE;
+									}
+								}
+								if (and_0 == null) {
+									throw new InvalidValueException("Null if condition");
+								}
+								/*@Thrown*/ Boolean local_0;
+								if (and_0) {
+									final /*@Thrown*/ Boolean and_2;
+									if (CAUGHT_and_3 == ValueUtil.FALSE_VALUE) {
+										and_2 = ValueUtil.FALSE_VALUE;
+									} else {
+										/*@Caught*/ Object CAUGHT_exists_2;
 										try {
-											final /*@NonInvalid*/ Principal whose_4 = this.getWhose();
-											if (whose_4 == null) {
+											final /*@NonInvalid*/ Principal whose_2 = this.getWhose();
+											if (whose_2 == null) {
 												throw new InvalidValueException(
 														"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
 											}
-											final /*@Thrown*/ List<Principal> responsiblePersons_0 = whose_4
+											final /*@Thrown*/ List<Principal> responsiblePersons = whose_2
 													.getResponsiblePersons();
-											final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons_0 = idResolver
+											final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons = idResolver
 													.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal,
-															responsiblePersons_0);
-											/*@Thrown*/ Object accumulator_3 = ValueUtil.FALSE_VALUE;
-											Iterator<Object> ITERATOR_person_0 = BOXED_responsiblePersons_0.iterator();
-											/*@Thrown*/ Boolean exists_3;
+															responsiblePersons);
+											/*@Thrown*/ Object accumulator_2 = ValueUtil.FALSE_VALUE;
+											Iterator<Object> ITERATOR_person = BOXED_responsiblePersons.iterator();
+											/*@Thrown*/ Boolean exists_2;
 											while (true) {
-												if (!ITERATOR_person_0.hasNext()) {
-													if (accumulator_3 == ValueUtil.FALSE_VALUE) {
-														exists_3 = ValueUtil.FALSE_VALUE;
+												if (!ITERATOR_person.hasNext()) {
+													if (accumulator_2 == ValueUtil.FALSE_VALUE) {
+														exists_2 = ValueUtil.FALSE_VALUE;
 													} else {
-														throw (InvalidValueException) accumulator_3;
+														throw (InvalidValueException) accumulator_2;
 													}
 													break;
 												}
-												/*@NonInvalid*/ Principal person_0 = (Principal) ITERATOR_person_0
-														.next();
+												/*@NonInvalid*/ Principal person = (Principal) ITERATOR_person.next();
 												/**
 												 * self.how.consent.providedBy = person
 												 */
-												/*@Caught*/ Object CAUGHT_eq_10;
+												/*@Caught*/ Object CAUGHT_eq_6;
 												try {
-													final /*@NonInvalid*/ How how_5 = this.getHow();
-													if (how_5 == null) {
+													final /*@NonInvalid*/ How how_1 = this.getHow();
+													if (how_1 == null) {
 														throw new InvalidValueException(
 																"Null source for \'\'http://privacymodel\'::How::consent\'");
 													}
-													final /*@Thrown*/ Consent consent_3 = how_5.getConsent();
-													if (consent_3 == null) {
+													final /*@Thrown*/ Consent consent_0 = how_1.getConsent();
+													if (consent_0 == null) {
 														throw new InvalidValueException(
 																"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
 													}
-													final /*@Thrown*/ Principal providedBy_1 = consent_3
-															.getProvidedBy();
-													final /*@Thrown*/ boolean eq_10 = providedBy_1.equals(person_0);
-													CAUGHT_eq_10 = eq_10;
+													final /*@Thrown*/ Principal providedBy = consent_0.getProvidedBy();
+													final /*@Thrown*/ boolean eq_6 = providedBy.equals(person);
+													CAUGHT_eq_6 = eq_6;
 												} catch (Exception e) {
-													CAUGHT_eq_10 = ValueUtil.createInvalidValue(e);
+													CAUGHT_eq_6 = ValueUtil.createInvalidValue(e);
 												}
 												//
-												if (CAUGHT_eq_10 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
-													exists_3 = ValueUtil.TRUE_VALUE;
+												if (CAUGHT_eq_6 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+													exists_2 = ValueUtil.TRUE_VALUE;
 													break; // Stop immediately
-												} else if (CAUGHT_eq_10 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+												} else if (CAUGHT_eq_6 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
 													; // Carry on
-												} else if (CAUGHT_eq_10 instanceof InvalidValueException) { // Abnormal exception evaluation result
-													accumulator_3 = CAUGHT_eq_10; // Cache an exception failure
+												} else if (CAUGHT_eq_6 instanceof InvalidValueException) { // Abnormal exception evaluation result
+													accumulator_2 = CAUGHT_eq_6; // Cache an exception failure
 												} else { // Impossible badly typed result
-													accumulator_3 = new InvalidValueException(
+													accumulator_2 = new InvalidValueException(
 															PivotMessages.NonBooleanBody, "exists");
 												}
 											}
-											CAUGHT_exists_3 = exists_3;
+											CAUGHT_exists_2 = exists_2;
 										} catch (Exception e) {
-											CAUGHT_exists_3 = ValueUtil.createInvalidValue(e);
+											CAUGHT_exists_2 = ValueUtil.createInvalidValue(e);
 										}
-										if (CAUGHT_exists_3 == ValueUtil.TRUE_VALUE) {
-											or_1 = ValueUtil.TRUE_VALUE;
+										if (CAUGHT_exists_2 == ValueUtil.FALSE_VALUE) {
+											and_2 = ValueUtil.FALSE_VALUE;
 										} else {
-											if (CAUGHT_eq_9 instanceof InvalidValueException) {
-												throw (InvalidValueException) CAUGHT_eq_9;
+											if (CAUGHT_and_3 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_and_3;
 											}
-											if (CAUGHT_exists_3 instanceof InvalidValueException) {
-												throw (InvalidValueException) CAUGHT_exists_3;
+											if (CAUGHT_exists_2 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_exists_2;
 											}
-											if (CAUGHT_exists_3 == null) {
-												or_1 = null;
+											if ((CAUGHT_and_3 == null) || (CAUGHT_exists_2 == null)) {
+												and_2 = null;
 											} else {
-												or_1 = ValueUtil.FALSE_VALUE;
+												and_2 = ValueUtil.TRUE_VALUE;
 											}
 										}
 									}
-									CAUGHT_or_1 = or_1;
-								} catch (Exception e) {
-									CAUGHT_or_1 = ValueUtil.createInvalidValue(e);
-								}
-								if (CAUGHT_or_1 == ValueUtil.FALSE_VALUE) {
-									and_4 = ValueUtil.FALSE_VALUE;
+									local_0 = and_2;
 								} else {
-									if (CAUGHT_and_3 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_and_3;
-									}
-									if (CAUGHT_or_1 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_or_1;
-									}
-									if ((CAUGHT_and_3 == null) || (CAUGHT_or_1 == null)) {
-										and_4 = null;
+									final /*@Thrown*/ Boolean and_4;
+									if (CAUGHT_and_3 == ValueUtil.FALSE_VALUE) {
+										and_4 = ValueUtil.FALSE_VALUE;
 									} else {
-										and_4 = ValueUtil.TRUE_VALUE;
+										/*@Caught*/ Object CAUGHT_or_1;
+										try {
+											/*@Caught*/ Object CAUGHT_eq_9;
+											try {
+												final /*@NonInvalid*/ How how_4 = this.getHow();
+												if (how_4 == null) {
+													throw new InvalidValueException(
+															"Null source for \'\'http://privacymodel\'::How::consent\'");
+												}
+												final /*@Thrown*/ Consent consent_2 = how_4.getConsent();
+												if (consent_2 == null) {
+													throw new InvalidValueException(
+															"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
+												}
+												final /*@Thrown*/ Principal providedBy_0 = consent_2.getProvidedBy();
+												final /*@NonInvalid*/ Principal whose_3 = this.getWhose();
+												final /*@Thrown*/ boolean eq_9 = providedBy_0.equals(whose_3);
+												CAUGHT_eq_9 = eq_9;
+											} catch (Exception e) {
+												CAUGHT_eq_9 = ValueUtil.createInvalidValue(e);
+											}
+											final /*@Thrown*/ Boolean or_1;
+											if (CAUGHT_eq_9 == ValueUtil.TRUE_VALUE) {
+												or_1 = ValueUtil.TRUE_VALUE;
+											} else {
+												/*@Caught*/ Object CAUGHT_exists_3;
+												try {
+													final /*@NonInvalid*/ Principal whose_4 = this.getWhose();
+													if (whose_4 == null) {
+														throw new InvalidValueException(
+																"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
+													}
+													final /*@Thrown*/ List<Principal> responsiblePersons_0 = whose_4
+															.getResponsiblePersons();
+													final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons_0 = idResolver
+															.createOrderedSetOfAll(
+																	PrivacyModelTables.ORD_CLSSid_Principal,
+																	responsiblePersons_0);
+													/*@Thrown*/ Object accumulator_3 = ValueUtil.FALSE_VALUE;
+													Iterator<Object> ITERATOR_person_0 = BOXED_responsiblePersons_0
+															.iterator();
+													/*@Thrown*/ Boolean exists_3;
+													while (true) {
+														if (!ITERATOR_person_0.hasNext()) {
+															if (accumulator_3 == ValueUtil.FALSE_VALUE) {
+																exists_3 = ValueUtil.FALSE_VALUE;
+															} else {
+																throw (InvalidValueException) accumulator_3;
+															}
+															break;
+														}
+														/*@NonInvalid*/ Principal person_0 = (Principal) ITERATOR_person_0
+																.next();
+														/**
+														 * self.how.consent.providedBy = person
+														 */
+														/*@Caught*/ Object CAUGHT_eq_10;
+														try {
+															final /*@NonInvalid*/ How how_5 = this.getHow();
+															if (how_5 == null) {
+																throw new InvalidValueException(
+																		"Null source for \'\'http://privacymodel\'::How::consent\'");
+															}
+															final /*@Thrown*/ Consent consent_3 = how_5.getConsent();
+															if (consent_3 == null) {
+																throw new InvalidValueException(
+																		"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
+															}
+															final /*@Thrown*/ Principal providedBy_1 = consent_3
+																	.getProvidedBy();
+															final /*@Thrown*/ boolean eq_10 = providedBy_1
+																	.equals(person_0);
+															CAUGHT_eq_10 = eq_10;
+														} catch (Exception e) {
+															CAUGHT_eq_10 = ValueUtil.createInvalidValue(e);
+														}
+														//
+														if (CAUGHT_eq_10 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+															exists_3 = ValueUtil.TRUE_VALUE;
+															break; // Stop immediately
+														} else if (CAUGHT_eq_10 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+															; // Carry on
+														} else if (CAUGHT_eq_10 instanceof InvalidValueException) { // Abnormal exception evaluation result
+															accumulator_3 = CAUGHT_eq_10; // Cache an exception failure
+														} else { // Impossible badly typed result
+															accumulator_3 = new InvalidValueException(
+																	PivotMessages.NonBooleanBody, "exists");
+														}
+													}
+													CAUGHT_exists_3 = exists_3;
+												} catch (Exception e) {
+													CAUGHT_exists_3 = ValueUtil.createInvalidValue(e);
+												}
+												if (CAUGHT_exists_3 == ValueUtil.TRUE_VALUE) {
+													or_1 = ValueUtil.TRUE_VALUE;
+												} else {
+													if (CAUGHT_eq_9 instanceof InvalidValueException) {
+														throw (InvalidValueException) CAUGHT_eq_9;
+													}
+													if (CAUGHT_exists_3 instanceof InvalidValueException) {
+														throw (InvalidValueException) CAUGHT_exists_3;
+													}
+													if (CAUGHT_exists_3 == null) {
+														or_1 = null;
+													} else {
+														or_1 = ValueUtil.FALSE_VALUE;
+													}
+												}
+											}
+											CAUGHT_or_1 = or_1;
+										} catch (Exception e) {
+											CAUGHT_or_1 = ValueUtil.createInvalidValue(e);
+										}
+										if (CAUGHT_or_1 == ValueUtil.FALSE_VALUE) {
+											and_4 = ValueUtil.FALSE_VALUE;
+										} else {
+											if (CAUGHT_and_3 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_and_3;
+											}
+											if (CAUGHT_or_1 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_or_1;
+											}
+											if ((CAUGHT_and_3 == null) || (CAUGHT_or_1 == null)) {
+												and_4 = null;
+											} else {
+												and_4 = ValueUtil.TRUE_VALUE;
+											}
+										}
 									}
+									local_0 = and_4;
 								}
+								local_1 = local_0;
 							}
-							local_0 = and_4;
+							local_2 = local_1;
 						}
-						status = local_0;
+						status = local_2;
 					}
 					final /*@Thrown*/ boolean eq_11 = status == Boolean.TRUE;
-					/*@Thrown*/ Object local_2;
+					/*@Thrown*/ Object local_4;
 					if (eq_11) {
-						local_2 = ValueUtil.TRUE_VALUE;
+						local_4 = ValueUtil.TRUE_VALUE;
 					} else {
-						final /*@Thrown*/ TupleValue local_1 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+						final /*@Thrown*/ TupleValue local_3 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
 								PrivacyModelTables.STR_Based_32_on_32_Art6, status);
-						local_2 = local_1;
+						local_4 = local_3;
 					}
-					CAUGHT_local_2 = local_2;
+					CAUGHT_local_4 = local_4;
 				} catch (Exception e) {
-					CAUGHT_local_2 = ValueUtil.createInvalidValue(e);
+					CAUGHT_local_4 = ValueUtil.createInvalidValue(e);
 				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_local_2, PrivacyModelTables.INT_0)
+								(Object) null, severity_0, CAUGHT_local_4, PrivacyModelTables.INT_0)
 						.booleanValue();
-				local_3 = logDiagnostic;
+				local_5 = logDiagnostic;
 			}
-			return local_3;
+			return local_5;
 		} catch (Throwable e) {
 			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
 		}
@@ -2924,12 +3936,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			 *                       then
 			 *                         if self.why = null or
 			 *                           let
-			 *                             reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject
+			 *                             reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::LegalObligation, ProcessingReason::ContractPerformance
 			 *                             }
 			 *                           in
 			 *                             reasons->includes(self.why.processingReason) or
 			 *                             self.why.subPurposes->exists(subpurpose |
-			 *                               reasons->includes(subpurpose))
+			 *                               reasons->includes(subpurpose.processingReason))
 			 *                         then true
 			 *                         else
 			 *                           not privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, st.how.consent.startDate) and
@@ -3095,12 +4107,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 							 *       then
 							 *         if self.why = null or
 							 *           let
-							 *             reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject
+							 *             reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::LegalObligation, ProcessingReason::ContractPerformance
 							 *             }
 							 *           in
 							 *             reasons->includes(self.why.processingReason) or
 							 *             self.why.subPurposes->exists(subpurpose |
-							 *               reasons->includes(subpurpose))
+							 *               reasons->includes(subpurpose.processingReason))
 							 *         then true
 							 *         else
 							 *           not privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, st.how.consent.startDate) and
@@ -3348,12 +4360,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 										 * then
 										 *   if self.why = null or
 										 *     let
-										 *       reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject
+										 *       reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::LegalObligation, ProcessingReason::ContractPerformance
 										 *       }
 										 *     in
 										 *       reasons->includes(self.why.processingReason) or
 										 *       self.why.subPurposes->exists(subpurpose |
-										 *         reasons->includes(subpurpose))
+										 *         reasons->includes(subpurpose.processingReason))
 										 *   then true
 										 *   else
 										 *     not privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, st.how.consent.startDate) and
@@ -3413,10 +4425,16 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 															/*@NonInvalid*/ Purpose subpurpose = (Purpose) ITERATOR_subpurpose
 																	.next();
 															/**
-															 * reasons->includes(subpurpose)
+															 * reasons->includes(subpurpose.processingReason)
 															 */
+															final /*@NonInvalid*/ ProcessingReason processingReason_0 = subpurpose
+																	.getProcessingReason();
+															final /*@NonInvalid*/ EnumerationLiteralId BOXED_processingReason_0 = PrivacyModelTables.ENUMid_ProcessingReason
+																	.getEnumerationLiteralId(ClassUtil.nonNullState(
+																			processingReason_0.getName()));
 															final /*@NonInvalid*/ boolean includes_0 = CollectionIncludesOperation.INSTANCE
-																	.evaluate(PrivacyModelTables.reasons_1, subpurpose)
+																	.evaluate(PrivacyModelTables.reasons_1,
+																			BOXED_processingReason_0)
 																	.booleanValue();
 															//
 															if (includes_0) { // Normal successful body evaluation result
@@ -3826,7 +4844,7 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			 *                       not (self.why.subPurposes = null
 			 *                       ) and
 			 *                       self.why.subPurposes->exists(subpurpose |
-			 *                         reasons->includes(subpurpose))
+			 *                         reasons->includes(subpurpose.processingReason))
 			 *                     )
 			 *                 else true
 			 *                 endif)
@@ -3931,7 +4949,7 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 							 *         not (self.why.subPurposes = null
 							 *         ) and
 							 *         self.why.subPurposes->exists(subpurpose |
-							 *           reasons->includes(subpurpose))
+							 *           reasons->includes(subpurpose.processingReason))
 							 *       )
 							 *   else true
 							 *   endif
@@ -4067,11 +5085,17 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 																	/*@NonInvalid*/ Purpose subpurpose = (Purpose) ITERATOR_subpurpose
 																			.next();
 																	/**
-																	 * reasons->includes(subpurpose)
+																	 * reasons->includes(subpurpose.processingReason)
 																	 */
+																	final /*@NonInvalid*/ ProcessingReason processingReason_0 = subpurpose
+																			.getProcessingReason();
+																	final /*@NonInvalid*/ EnumerationLiteralId BOXED_processingReason_0 = PrivacyModelTables.ENUMid_ProcessingReason
+																			.getEnumerationLiteralId(ClassUtil
+																					.nonNullState(processingReason_0
+																							.getName()));
 																	final /*@NonInvalid*/ boolean includes_1 = CollectionIncludesOperation.INSTANCE
 																			.evaluate(PrivacyModelTables.reasons_3,
-																					subpurpose)
+																					BOXED_processingReason_0)
 																			.booleanValue();
 																	//
 																	if (includes_1) { // Normal successful body evaluation result
@@ -4516,12 +5540,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			 *             in
 			 *               if self.why = null or
 			 *                 let
-			 *                   reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject
+			 *                   reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::LegalObligation, ProcessingReason::ContractPerformance
 			 *                   }
 			 *                 in
 			 *                   reasons->includes(self.why.processingReason) or
 			 *                   self.why.subPurposes->exists(subpurpose |
-			 *                     reasons->includes(subpurpose))
+			 *                     reasons->includes(subpurpose.processingReason))
 			 *               then true
 			 *               else
 			 *                 (
@@ -4738,10 +5762,16 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 									}
 									/*@NonInvalid*/ Purpose subpurpose = (Purpose) ITERATOR_subpurpose.next();
 									/**
-									 * reasons->includes(subpurpose)
+									 * reasons->includes(subpurpose.processingReason)
 									 */
+									final /*@NonInvalid*/ ProcessingReason processingReason_0 = subpurpose
+											.getProcessingReason();
+									final /*@NonInvalid*/ EnumerationLiteralId BOXED_processingReason_0 = PrivacyModelTables.ENUMid_ProcessingReason
+											.getEnumerationLiteralId(
+													ClassUtil.nonNullState(processingReason_0.getName()));
 									final /*@NonInvalid*/ boolean includes_0 = CollectionIncludesOperation.INSTANCE
-											.evaluate(PrivacyModelTables.reasons_1, subpurpose).booleanValue();
+											.evaluate(PrivacyModelTables.reasons_1, BOXED_processingReason_0)
+											.booleanValue();
 									//
 									if (includes_0) { // Normal successful body evaluation result
 										exists_0 = ValueUtil.TRUE_VALUE;
@@ -5048,6 +6078,109 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 				} else {
 					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
 							PrivacyModelTables.STR_Based_32_on_32_Art21, status);
+					local_1 = local_0;
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, local_1, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean MissingContractForContractPerformance(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "PolicyStatement::MissingContractForContractPerformance";
+		try {
+			/**
+			 *
+			 * inv MissingContractForContractPerformance:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = if self.whose = null or
+			 *             not self.hasProcessingReason(ProcessingReason::ContractPerformance)
+			 *           then true
+			 *           else self.isContractProvidedBySubject()
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Based on Art6', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.POLICY_STATEMENT___MISSING_CONTRACT_FOR_CONTRACT_PERFORMANCE__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				final /*@NonInvalid*/ Principal whose = this.getWhose();
+				final /*@NonInvalid*/ boolean eq = whose == null;
+				final /*@Thrown*/ Boolean or;
+				if (eq) {
+					or = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ContractPerformance = (ProcessingReason) idResolver
+							.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_ContractPerformance);
+					final /*@NonInvalid*/ boolean hasProcessingReason = this
+							.hasProcessingReason(ECORE_ELITid_ContractPerformance);
+					final /*@NonInvalid*/ Boolean not;
+					if (!hasProcessingReason) {
+						not = ValueUtil.TRUE_VALUE;
+					} else {
+						if (hasProcessingReason) {
+							not = ValueUtil.FALSE_VALUE;
+						} else {
+							not = null;
+						}
+					}
+					if (not == ValueUtil.TRUE_VALUE) {
+						or = ValueUtil.TRUE_VALUE;
+					} else {
+						if (not == null) {
+							or = null;
+						} else {
+							or = ValueUtil.FALSE_VALUE;
+						}
+					}
+				}
+				if (or == null) {
+					throw new InvalidValueException("Null if condition");
+				}
+				/*@NonInvalid*/ boolean status;
+				if (or) {
+					status = true;
+				} else {
+					final /*@NonInvalid*/ boolean isContractProvidedBySubject = this.isContractProvidedBySubject();
+					status = isContractProvidedBySubject;
+				}
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+							PrivacyModelTables.STR_Based_32_on_32_Art6, status);
 					local_1 = local_0;
 				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
@@ -5594,12 +6727,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			 *                       then
 			 *                         if self.why = null or
 			 *                           let
-			 *                             reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject
+			 *                             reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::LegalObligation, ProcessingReason::ContractPerformance
 			 *                             }
 			 *                           in
 			 *                             reasons->includes(self.why.processingReason) or
 			 *                             self.why.subPurposes->exists(subpurpose |
-			 *                               reasons->includes(subpurpose))
+			 *                               reasons->includes(subpurpose.processingReason))
 			 *                         then true
 			 *                         else
 			 *                           not privacyPolicy.allComplaints->exists(complaint |
@@ -5752,12 +6885,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 							 *       then
 							 *         if self.why = null or
 							 *           let
-							 *             reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject
+							 *             reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::LegalObligation, ProcessingReason::ContractPerformance
 							 *             }
 							 *           in
 							 *             reasons->includes(self.why.processingReason) or
 							 *             self.why.subPurposes->exists(subpurpose |
-							 *               reasons->includes(subpurpose))
+							 *               reasons->includes(subpurpose.processingReason))
 							 *         then true
 							 *         else
 							 *           not privacyPolicy.allComplaints->exists(complaint |
@@ -6019,12 +7152,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 										 * then
 										 *   if self.why = null or
 										 *     let
-										 *       reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject
+										 *       reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::LegalObligation, ProcessingReason::ContractPerformance
 										 *       }
 										 *     in
 										 *       reasons->includes(self.why.processingReason) or
 										 *       self.why.subPurposes->exists(subpurpose |
-										 *         reasons->includes(subpurpose))
+										 *         reasons->includes(subpurpose.processingReason))
 										 *   then true
 										 *   else
 										 *     not privacyPolicy.allComplaints->exists(complaint |
@@ -6098,10 +7231,16 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 															/*@NonInvalid*/ Purpose subpurpose = (Purpose) ITERATOR_subpurpose
 																	.next();
 															/**
-															 * reasons->includes(subpurpose)
+															 * reasons->includes(subpurpose.processingReason)
 															 */
+															final /*@NonInvalid*/ ProcessingReason processingReason_0 = subpurpose
+																	.getProcessingReason();
+															final /*@NonInvalid*/ EnumerationLiteralId BOXED_processingReason_0 = PrivacyModelTables.ENUMid_ProcessingReason
+																	.getEnumerationLiteralId(ClassUtil.nonNullState(
+																			processingReason_0.getName()));
 															final /*@NonInvalid*/ boolean includes_0 = CollectionIncludesOperation.INSTANCE
-																	.evaluate(PrivacyModelTables.reasons_1, subpurpose)
+																	.evaluate(PrivacyModelTables.reasons_1,
+																			BOXED_processingReason_0)
 																	.booleanValue();
 															//
 															if (includes_0) { // Normal successful body evaluation result
@@ -6775,12 +7914,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			 *                           (
 			 *                             st.why.isValid(self.why) or
 			 *                             let
-			 *                               reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth
+			 *                               reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth, ProcessingReason::LegalObligation
 			 *                               }
 			 *                             in
 			 *                               reasons->includes(self.why.processingReason) or
 			 *                               self.why.subPurposes->exists(subpurpose |
-			 *                                 reasons->includes(subpurpose))
+			 *                                 reasons->includes(subpurpose.processingReason))
 			 *                           )
 			 *                         endif
 			 *                       else false
@@ -6946,12 +8085,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 							 *           (
 							 *             st.why.isValid(self.why) or
 							 *             let
-							 *               reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth
+							 *               reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth, ProcessingReason::LegalObligation
 							 *               }
 							 *             in
 							 *               reasons->includes(self.why.processingReason) or
 							 *               self.why.subPurposes->exists(subpurpose |
-							 *                 reasons->includes(subpurpose))
+							 *                 reasons->includes(subpurpose.processingReason))
 							 *           )
 							 *         endif
 							 *       else false
@@ -7176,12 +8315,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 										 *     (
 										 *       st.why.isValid(self.why) or
 										 *       let
-										 *         reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth
+										 *         reasons : Sequence(privacyModel::ProcessingReason) = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth, ProcessingReason::LegalObligation
 										 *         }
 										 *       in
 										 *         reasons->includes(self.why.processingReason) or
 										 *         self.why.subPurposes->exists(subpurpose |
-										 *           reasons->includes(subpurpose))
+										 *           reasons->includes(subpurpose.processingReason))
 										 *     )
 										 *   endif
 										 * else false
@@ -7487,11 +8626,17 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 																		/*@NonInvalid*/ Purpose subpurpose = (Purpose) ITERATOR_subpurpose
 																				.next();
 																		/**
-																		 * reasons->includes(subpurpose)
+																		 * reasons->includes(subpurpose.processingReason)
 																		 */
+																		final /*@NonInvalid*/ ProcessingReason processingReason_0 = subpurpose
+																				.getProcessingReason();
+																		final /*@NonInvalid*/ EnumerationLiteralId BOXED_processingReason_0 = PrivacyModelTables.ENUMid_ProcessingReason
+																				.getEnumerationLiteralId(ClassUtil
+																						.nonNullState(processingReason_0
+																								.getName()));
 																		final /*@NonInvalid*/ boolean includes_0 = CollectionIncludesOperation.INSTANCE
 																				.evaluate(PrivacyModelTables.reasons,
-																						subpurpose)
+																						BOXED_processingReason_0)
 																				.booleanValue();
 																		//
 																		if (includes_0) { // Normal successful body evaluation result
@@ -7662,6 +8807,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			 *                 not (self.how.consent = null
 			 *                 )
 			 *               ) or
+			 *               self.hasProcessingReason(ProcessingReason::ContractPerformance) and
+			 *               self.isContractProvidedBySubject() or
 			 *               not (self.why = null
 			 *               ) and
 			 *               (
@@ -7678,7 +8825,9 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			 *         in
 			 *           if status = true
 			 *           then true
-			 *           else Tuple{message = 'Based on Arts 44-50', status = status}
+			 *           else
+			 *             Tuple{message = 'Based on Arts 44-50 and Art 49(1)(b)', status = status
+			 *             }
 			 *           endif
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -7927,180 +9076,221 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 						}
 						/*@Thrown*/ Boolean local_0;
 						if (and) {
-							/*@Caught*/ Object CAUGHT_and_1;
+							/*@Caught*/ Object CAUGHT_or_3;
 							try {
-								final /*@NonInvalid*/ How how = this.getHow();
-								final /*@NonInvalid*/ boolean eq_4 = how == null;
-								final /*@NonInvalid*/ Boolean not_1;
-								if (!eq_4) {
-									not_1 = ValueUtil.TRUE_VALUE;
-								} else {
-									if (eq_4) {
-										not_1 = ValueUtil.FALSE_VALUE;
+								/*@Caught*/ Object CAUGHT_and_1;
+								try {
+									final /*@NonInvalid*/ How how = this.getHow();
+									final /*@NonInvalid*/ boolean eq_4 = how == null;
+									final /*@NonInvalid*/ Boolean not_1;
+									if (!eq_4) {
+										not_1 = ValueUtil.TRUE_VALUE;
 									} else {
-										not_1 = null;
-									}
-								}
-								final /*@Thrown*/ Boolean and_1;
-								if (not_1 == ValueUtil.FALSE_VALUE) {
-									and_1 = ValueUtil.FALSE_VALUE;
-								} else {
-									/*@Caught*/ Object CAUGHT_or_2;
-									try {
-										/*@Caught*/ Object CAUGHT_exists_0;
-										try {
-											if (how == null) {
-												throw new InvalidValueException(
-														"Null source for \'\'http://privacymodel\'::How::documents\'");
-											}
-											final /*@Thrown*/ List<Document> documents = how.getDocuments();
-											final /*@Thrown*/ OrderedSetValue BOXED_documents = idResolver
-													.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Document,
-															documents);
-											/*@Thrown*/ Object accumulator_0 = ValueUtil.FALSE_VALUE;
-											Iterator<Object> ITERATOR_doc = BOXED_documents.iterator();
-											/*@Thrown*/ Boolean exists_0;
-											while (true) {
-												if (!ITERATOR_doc.hasNext()) {
-													if (accumulator_0 == ValueUtil.FALSE_VALUE) {
-														exists_0 = ValueUtil.FALSE_VALUE;
-													} else {
-														throw (InvalidValueException) accumulator_0;
-													}
-													break;
-												}
-												/*@NonInvalid*/ Document doc = (Document) ITERATOR_doc.next();
-												/**
-												 * doc.documentType = DocumentType::TransferCertificate
-												 */
-												final /*@NonInvalid*/ DocumentType documentType = doc.getDocumentType();
-												final /*@NonInvalid*/ EnumerationLiteralId BOXED_documentType = documentType == null
-														? null
-														: PrivacyModelTables.ENUMid_DocumentType
-																.getEnumerationLiteralId(
-																		ClassUtil.nonNullState(documentType.getName()));
-												final /*@NonInvalid*/ boolean eq_5 = BOXED_documentType == PrivacyModelTables.ELITid_TransferCertificate;
-												//
-												if (eq_5) { // Normal successful body evaluation result
-													exists_0 = ValueUtil.TRUE_VALUE;
-													break; // Stop immediately
-												} else if (!eq_5) { // Normal unsuccessful body evaluation result
-													; // Carry on
-												} else { // Impossible badly typed result
-													accumulator_0 = new InvalidValueException(
-															PivotMessages.NonBooleanBody, "exists");
-												}
-											}
-											CAUGHT_exists_0 = exists_0;
-										} catch (Exception e) {
-											CAUGHT_exists_0 = ValueUtil.createInvalidValue(e);
-										}
-										final /*@Thrown*/ Boolean or_2;
-										if (CAUGHT_exists_0 == ValueUtil.TRUE_VALUE) {
-											or_2 = ValueUtil.TRUE_VALUE;
+										if (eq_4) {
+											not_1 = ValueUtil.FALSE_VALUE;
 										} else {
-											/*@Caught*/ Object CAUGHT_and_0;
-											try {
-												final /*@Thrown*/ Boolean and_0;
-												if (not_1 == ValueUtil.FALSE_VALUE) {
-													and_0 = ValueUtil.FALSE_VALUE;
-												} else {
-													/*@Caught*/ Object CAUGHT_not_3;
-													try {
-														/*@Caught*/ Object CAUGHT_eq_7;
-														try {
-															if (how == null) {
-																throw new InvalidValueException(
-																		"Null source for \'\'http://privacymodel\'::How::consent\'");
-															}
-															final /*@Thrown*/ Consent consent = how.getConsent();
-															final /*@Thrown*/ boolean eq_7 = consent == null;
-															CAUGHT_eq_7 = eq_7;
-														} catch (Exception e) {
-															CAUGHT_eq_7 = ValueUtil.createInvalidValue(e);
-														}
-														if (CAUGHT_eq_7 instanceof InvalidValueException) {
-															throw (InvalidValueException) CAUGHT_eq_7;
-														}
-														final /*@Thrown*/ Boolean not_3;
-														if (CAUGHT_eq_7 == ValueUtil.FALSE_VALUE) {
-															not_3 = ValueUtil.TRUE_VALUE;
-														} else {
-															if (CAUGHT_eq_7 == ValueUtil.TRUE_VALUE) {
-																not_3 = ValueUtil.FALSE_VALUE;
-															} else {
-																not_3 = null;
-															}
-														}
-														CAUGHT_not_3 = not_3;
-													} catch (Exception e) {
-														CAUGHT_not_3 = ValueUtil.createInvalidValue(e);
-													}
-													if (CAUGHT_not_3 == ValueUtil.FALSE_VALUE) {
-														and_0 = ValueUtil.FALSE_VALUE;
-													} else {
-														if (CAUGHT_not_3 instanceof InvalidValueException) {
-															throw (InvalidValueException) CAUGHT_not_3;
-														}
-														if ((not_1 == null) || (CAUGHT_not_3 == null)) {
-															and_0 = null;
-														} else {
-															and_0 = ValueUtil.TRUE_VALUE;
-														}
-													}
-												}
-												CAUGHT_and_0 = and_0;
-											} catch (Exception e) {
-												CAUGHT_and_0 = ValueUtil.createInvalidValue(e);
-											}
-											if (CAUGHT_and_0 == ValueUtil.TRUE_VALUE) {
-												or_2 = ValueUtil.TRUE_VALUE;
-											} else {
-												if (CAUGHT_exists_0 instanceof InvalidValueException) {
-													throw (InvalidValueException) CAUGHT_exists_0;
-												}
-												if (CAUGHT_and_0 instanceof InvalidValueException) {
-													throw (InvalidValueException) CAUGHT_and_0;
-												}
-												if ((CAUGHT_exists_0 == null) || (CAUGHT_and_0 == null)) {
-													or_2 = null;
-												} else {
-													or_2 = ValueUtil.FALSE_VALUE;
-												}
-											}
+											not_1 = null;
 										}
-										CAUGHT_or_2 = or_2;
-									} catch (Exception e) {
-										CAUGHT_or_2 = ValueUtil.createInvalidValue(e);
 									}
-									if (CAUGHT_or_2 == ValueUtil.FALSE_VALUE) {
+									final /*@Thrown*/ Boolean and_1;
+									if (not_1 == ValueUtil.FALSE_VALUE) {
 										and_1 = ValueUtil.FALSE_VALUE;
 									} else {
-										if (CAUGHT_or_2 instanceof InvalidValueException) {
-											throw (InvalidValueException) CAUGHT_or_2;
+										/*@Caught*/ Object CAUGHT_or_2;
+										try {
+											/*@Caught*/ Object CAUGHT_exists_0;
+											try {
+												if (how == null) {
+													throw new InvalidValueException(
+															"Null source for \'\'http://privacymodel\'::How::documents\'");
+												}
+												final /*@Thrown*/ List<Document> documents = how.getDocuments();
+												final /*@Thrown*/ OrderedSetValue BOXED_documents = idResolver
+														.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Document,
+																documents);
+												/*@Thrown*/ Object accumulator_0 = ValueUtil.FALSE_VALUE;
+												Iterator<Object> ITERATOR_doc = BOXED_documents.iterator();
+												/*@Thrown*/ Boolean exists_0;
+												while (true) {
+													if (!ITERATOR_doc.hasNext()) {
+														if (accumulator_0 == ValueUtil.FALSE_VALUE) {
+															exists_0 = ValueUtil.FALSE_VALUE;
+														} else {
+															throw (InvalidValueException) accumulator_0;
+														}
+														break;
+													}
+													/*@NonInvalid*/ Document doc = (Document) ITERATOR_doc.next();
+													/**
+													 * doc.documentType = DocumentType::TransferCertificate
+													 */
+													final /*@NonInvalid*/ DocumentType documentType = doc
+															.getDocumentType();
+													final /*@NonInvalid*/ EnumerationLiteralId BOXED_documentType = documentType == null
+															? null
+															: PrivacyModelTables.ENUMid_DocumentType
+																	.getEnumerationLiteralId(ClassUtil
+																			.nonNullState(documentType.getName()));
+													final /*@NonInvalid*/ boolean eq_5 = BOXED_documentType == PrivacyModelTables.ELITid_TransferCertificate;
+													//
+													if (eq_5) { // Normal successful body evaluation result
+														exists_0 = ValueUtil.TRUE_VALUE;
+														break; // Stop immediately
+													} else if (!eq_5) { // Normal unsuccessful body evaluation result
+														; // Carry on
+													} else { // Impossible badly typed result
+														accumulator_0 = new InvalidValueException(
+																PivotMessages.NonBooleanBody, "exists");
+													}
+												}
+												CAUGHT_exists_0 = exists_0;
+											} catch (Exception e) {
+												CAUGHT_exists_0 = ValueUtil.createInvalidValue(e);
+											}
+											final /*@Thrown*/ Boolean or_2;
+											if (CAUGHT_exists_0 == ValueUtil.TRUE_VALUE) {
+												or_2 = ValueUtil.TRUE_VALUE;
+											} else {
+												/*@Caught*/ Object CAUGHT_and_0;
+												try {
+													final /*@Thrown*/ Boolean and_0;
+													if (not_1 == ValueUtil.FALSE_VALUE) {
+														and_0 = ValueUtil.FALSE_VALUE;
+													} else {
+														/*@Caught*/ Object CAUGHT_not_3;
+														try {
+															/*@Caught*/ Object CAUGHT_eq_7;
+															try {
+																if (how == null) {
+																	throw new InvalidValueException(
+																			"Null source for \'\'http://privacymodel\'::How::consent\'");
+																}
+																final /*@Thrown*/ Consent consent = how.getConsent();
+																final /*@Thrown*/ boolean eq_7 = consent == null;
+																CAUGHT_eq_7 = eq_7;
+															} catch (Exception e) {
+																CAUGHT_eq_7 = ValueUtil.createInvalidValue(e);
+															}
+															if (CAUGHT_eq_7 instanceof InvalidValueException) {
+																throw (InvalidValueException) CAUGHT_eq_7;
+															}
+															final /*@Thrown*/ Boolean not_3;
+															if (CAUGHT_eq_7 == ValueUtil.FALSE_VALUE) {
+																not_3 = ValueUtil.TRUE_VALUE;
+															} else {
+																if (CAUGHT_eq_7 == ValueUtil.TRUE_VALUE) {
+																	not_3 = ValueUtil.FALSE_VALUE;
+																} else {
+																	not_3 = null;
+																}
+															}
+															CAUGHT_not_3 = not_3;
+														} catch (Exception e) {
+															CAUGHT_not_3 = ValueUtil.createInvalidValue(e);
+														}
+														if (CAUGHT_not_3 == ValueUtil.FALSE_VALUE) {
+															and_0 = ValueUtil.FALSE_VALUE;
+														} else {
+															if (CAUGHT_not_3 instanceof InvalidValueException) {
+																throw (InvalidValueException) CAUGHT_not_3;
+															}
+															if ((not_1 == null) || (CAUGHT_not_3 == null)) {
+																and_0 = null;
+															} else {
+																and_0 = ValueUtil.TRUE_VALUE;
+															}
+														}
+													}
+													CAUGHT_and_0 = and_0;
+												} catch (Exception e) {
+													CAUGHT_and_0 = ValueUtil.createInvalidValue(e);
+												}
+												if (CAUGHT_and_0 == ValueUtil.TRUE_VALUE) {
+													or_2 = ValueUtil.TRUE_VALUE;
+												} else {
+													if (CAUGHT_exists_0 instanceof InvalidValueException) {
+														throw (InvalidValueException) CAUGHT_exists_0;
+													}
+													if (CAUGHT_and_0 instanceof InvalidValueException) {
+														throw (InvalidValueException) CAUGHT_and_0;
+													}
+													if ((CAUGHT_exists_0 == null) || (CAUGHT_and_0 == null)) {
+														or_2 = null;
+													} else {
+														or_2 = ValueUtil.FALSE_VALUE;
+													}
+												}
+											}
+											CAUGHT_or_2 = or_2;
+										} catch (Exception e) {
+											CAUGHT_or_2 = ValueUtil.createInvalidValue(e);
 										}
-										if ((not_1 == null) || (CAUGHT_or_2 == null)) {
-											and_1 = null;
+										if (CAUGHT_or_2 == ValueUtil.FALSE_VALUE) {
+											and_1 = ValueUtil.FALSE_VALUE;
 										} else {
-											and_1 = ValueUtil.TRUE_VALUE;
+											if (CAUGHT_or_2 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_or_2;
+											}
+											if ((not_1 == null) || (CAUGHT_or_2 == null)) {
+												and_1 = null;
+											} else {
+												and_1 = ValueUtil.TRUE_VALUE;
+											}
+										}
+									}
+									CAUGHT_and_1 = and_1;
+								} catch (Exception e) {
+									CAUGHT_and_1 = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean or_3;
+								if (CAUGHT_and_1 == ValueUtil.TRUE_VALUE) {
+									or_3 = ValueUtil.TRUE_VALUE;
+								} else {
+									final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ContractPerformance = (ProcessingReason) idResolver
+											.ecoreValueOf(Enumerator.class,
+													PrivacyModelTables.ELITid_ContractPerformance);
+									final /*@NonInvalid*/ boolean hasProcessingReason = this
+											.hasProcessingReason(ECORE_ELITid_ContractPerformance);
+									final /*@NonInvalid*/ Boolean and_2;
+									if (!hasProcessingReason) {
+										and_2 = ValueUtil.FALSE_VALUE;
+									} else {
+										final /*@NonInvalid*/ boolean isContractProvidedBySubject = this
+												.isContractProvidedBySubject();
+										if (!isContractProvidedBySubject) {
+											and_2 = ValueUtil.FALSE_VALUE;
+										} else {
+											and_2 = ValueUtil.TRUE_VALUE;
+										}
+									}
+									if (and_2 == ValueUtil.TRUE_VALUE) {
+										or_3 = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_and_1 instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_and_1;
+										}
+										if ((CAUGHT_and_1 == null) || (and_2 == null)) {
+											or_3 = null;
+										} else {
+											or_3 = ValueUtil.FALSE_VALUE;
 										}
 									}
 								}
-								CAUGHT_and_1 = and_1;
+								CAUGHT_or_3 = or_3;
 							} catch (Exception e) {
-								CAUGHT_and_1 = ValueUtil.createInvalidValue(e);
+								CAUGHT_or_3 = ValueUtil.createInvalidValue(e);
 							}
-							final /*@Thrown*/ Boolean or_4;
-							if (CAUGHT_and_1 == ValueUtil.TRUE_VALUE) {
-								or_4 = ValueUtil.TRUE_VALUE;
+							final /*@Thrown*/ Boolean or_5;
+							if (CAUGHT_or_3 == ValueUtil.TRUE_VALUE) {
+								or_5 = ValueUtil.TRUE_VALUE;
 							} else {
-								/*@Caught*/ Object CAUGHT_and_2;
+								/*@Caught*/ Object CAUGHT_and_3;
 								try {
 									final /*@NonInvalid*/ Purpose why_0 = this.getWhy();
 									final /*@NonInvalid*/ Boolean not_4 = ValueUtil.TRUE_VALUE;
-									final /*@Thrown*/ Boolean and_2;
+									final /*@Thrown*/ Boolean and_3;
 									if (not_4 == ValueUtil.FALSE_VALUE) {
-										and_2 = ValueUtil.FALSE_VALUE;
+										and_3 = ValueUtil.FALSE_VALUE;
 									} else {
 										final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_PublicInterest = (ProcessingReason) idResolver
 												.ecoreValueOf(Enumerator.class,
@@ -8111,9 +9301,9 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 										final /*@NonInvalid*/ boolean containsAllowedPurposeReasonAndSubreason = why_0
 												.containsAllowedPurposeReasonAndSubreason(ECORE_ELITid_PublicInterest,
 														(EList<ProcessingReasonSubtype>) ECORE_Sequence_1);
-										final /*@NonInvalid*/ Boolean or_3;
+										final /*@NonInvalid*/ Boolean or_4;
 										if (containsAllowedPurposeReasonAndSubreason) {
-											or_3 = ValueUtil.TRUE_VALUE;
+											or_4 = ValueUtil.TRUE_VALUE;
 										} else {
 											final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject = (ProcessingReason) idResolver
 													.ecoreValueOf(Enumerator.class,
@@ -8126,42 +9316,42 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 															ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject,
 															(EList<ProcessingReasonSubtype>) ECORE_Sequence_2);
 											if (containsAllowedPurposeReasonAndSubreason_0) {
-												or_3 = ValueUtil.TRUE_VALUE;
+												or_4 = ValueUtil.TRUE_VALUE;
 											} else {
-												or_3 = ValueUtil.FALSE_VALUE;
+												or_4 = ValueUtil.FALSE_VALUE;
 											}
 										}
-										if (or_3 == ValueUtil.FALSE_VALUE) {
-											and_2 = ValueUtil.FALSE_VALUE;
+										if (or_4 == ValueUtil.FALSE_VALUE) {
+											and_3 = ValueUtil.FALSE_VALUE;
 										} else {
-											if ((not_4 == null) || (or_3 == null)) {
-												and_2 = null;
+											if ((not_4 == null) || (or_4 == null)) {
+												and_3 = null;
 											} else {
-												and_2 = ValueUtil.TRUE_VALUE;
+												and_3 = ValueUtil.TRUE_VALUE;
 											}
 										}
 									}
-									CAUGHT_and_2 = and_2;
+									CAUGHT_and_3 = and_3;
 								} catch (Exception e) {
-									CAUGHT_and_2 = ValueUtil.createInvalidValue(e);
+									CAUGHT_and_3 = ValueUtil.createInvalidValue(e);
 								}
-								if (CAUGHT_and_2 == ValueUtil.TRUE_VALUE) {
-									or_4 = ValueUtil.TRUE_VALUE;
+								if (CAUGHT_and_3 == ValueUtil.TRUE_VALUE) {
+									or_5 = ValueUtil.TRUE_VALUE;
 								} else {
-									if (CAUGHT_and_1 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_and_1;
+									if (CAUGHT_or_3 instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_or_3;
 									}
-									if (CAUGHT_and_2 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_and_2;
+									if (CAUGHT_and_3 instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_and_3;
 									}
-									if ((CAUGHT_and_1 == null) || (CAUGHT_and_2 == null)) {
-										or_4 = null;
+									if ((CAUGHT_or_3 == null) || (CAUGHT_and_3 == null)) {
+										or_5 = null;
 									} else {
-										or_4 = ValueUtil.FALSE_VALUE;
+										or_5 = ValueUtil.FALSE_VALUE;
 									}
 								}
 							}
-							local_0 = or_4;
+							local_0 = or_5;
 						} else {
 							local_0 = ValueUtil.TRUE_VALUE;
 						}
@@ -8173,7 +9363,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 						local_2 = ValueUtil.TRUE_VALUE;
 					} else {
 						final /*@Thrown*/ TupleValue local_1 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
-								PrivacyModelTables.STR_Based_32_on_32_Arts_32_44_m_50, status);
+								PrivacyModelTables.STR_Based_32_on_32_Arts_32_44_m_50_32_and_32_Art_32_49_o_1_e_o_b_e,
+								status);
 						local_2 = local_1;
 					}
 					CAUGHT_local_2 = local_2;
@@ -9570,80 +10761,92 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			return causedByShouldBeDefinedForType((Action) arguments.get(0));
 		case PrivacyModelPackage.POLICY_STATEMENT___DOCUMENT_IS_NEEDED_FOR_PURPOSE__DOCUMENTTYPE_PROCESSINGREASON:
 			return documentIsNeededForPurpose((DocumentType) arguments.get(0), (ProcessingReason) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___MISSING_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP:
-			return MissingConsentForCollecting((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___HAS_PROCESSING_REASON__PROCESSINGREASON:
+			return hasProcessingReason((ProcessingReason) arguments.get(0));
+		case PrivacyModelPackage.POLICY_STATEMENT___IS_CONTRACT_PROVIDED_BY_SUBJECT:
+			return isContractProvidedBySubject();
 		case PrivacyModelPackage.POLICY_STATEMENT___EXPIRED_DOCUMENT__DIAGNOSTICCHAIN_MAP:
 			return ExpiredDocument((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__DIAGNOSTICCHAIN_MAP:
-			return SubjectShouldBeNotifiedAboutCollecting((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__DIAGNOSTICCHAIN_MAP:
-			return SubjectShouldBeNotifiedAboutExecutedErasure((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__DIAGNOSTICCHAIN_MAP:
-			return SubjectShouldBeNotifiedAboutExecutedRectification((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___PROCESSING_OF_SPECIAL_CATEGORIES__DIAGNOSTICCHAIN_MAP:
-			return ProcessingOfSpecialCategories((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION__DIAGNOSTICCHAIN_MAP:
-			return CausedByShouldBeDefinedForRectificationAction((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__DIAGNOSTICCHAIN_MAP:
-			return CourtApprovalIsNeededForPublicInterestPurpose((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___EXPIRED_CONSENT__DIAGNOSTICCHAIN_MAP:
-			return ExpiredConsent((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__DIAGNOSTICCHAIN_MAP:
-			return CausedByShouldBeDefinedForErasureAction((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__DIAGNOSTICCHAIN_MAP:
-			return WhomShouldBeDefinedForTransfer((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___EXPIRED_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP:
-			return ExpiredConsentForCollecting((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__DIAGNOSTICCHAIN_MAP:
-			return MissingConsentOrTransferCertificate((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__DIAGNOSTICCHAIN_MAP:
-			return ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose(
-					(DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE__DIAGNOSTICCHAIN_MAP:
-			return ControllerApprovalIsNeededForLegitimateInterestsPurpose((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION__DIAGNOSTICCHAIN_MAP:
-			return DateShouldBeDefinedForAccessAction((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION__DIAGNOSTICCHAIN_MAP:
 			return DateShouldBeDefinedForStoreAction((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__DIAGNOSTICCHAIN_MAP:
-			return WhereShouldBeDefinedForTransferAction((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP:
-			return SubjectShouldBeNotifiedAboutStopProcessing((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__DIAGNOSTICCHAIN_MAP:
 			return SubjectShouldBeNotifiedAboutTransferToThirdCountry((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___MISSING_CONSENT_FOR_DATA_PORTABILITY__DIAGNOSTICCHAIN_MAP:
-			return MissingConsentForDataPortability((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.POLICY_STATEMENT___WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__DIAGNOSTICCHAIN_MAP:
+			return WhereShouldBeDefinedForTransferAction((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION__DIAGNOSTICCHAIN_MAP:
-			return CausedByShouldBeDefinedForStopProcessingAction((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__DIAGNOSTICCHAIN_MAP:
+			return ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose(
+					(DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__DIAGNOSTICCHAIN_MAP:
+			return MissingConsentOrTransferCertificate((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION__DIAGNOSTICCHAIN_MAP:
+			return CausedByShouldBeDefinedForRectificationAction((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__DIAGNOSTICCHAIN_MAP:
+			return SubjectShouldBeNotifiedAboutExecutedErasure((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___MISSING_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP:
+			return MissingConsentForCollecting((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE__DIAGNOSTICCHAIN_MAP:
+			return ControllerApprovalIsNeededForLegitimateInterestsPurpose((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__DIAGNOSTICCHAIN_MAP:
+			return WhomShouldBeDefinedForTransfer((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.POLICY_STATEMENT___STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP:
 			return StopProcessingPurposeForActionStopProcessing((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___PROCESSING_OF_SPECIAL_CATEGORIES__DIAGNOSTICCHAIN_MAP:
+			return ProcessingOfSpecialCategories((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___EXPIRED_CONSENT__DIAGNOSTICCHAIN_MAP:
+			return ExpiredConsent((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__DIAGNOSTICCHAIN_MAP:
+			return CourtApprovalIsNeededForPublicInterestPurpose((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.POLICY_STATEMENT___JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON__DIAGNOSTICCHAIN_MAP:
 			return JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson(
 					(DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.POLICY_STATEMENT___WITHDRAWN_CONSENT__DIAGNOSTICCHAIN_MAP:
-			return WithdrawnConsent((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION__DIAGNOSTICCHAIN_MAP:
+			return CausedByShouldBeDefinedForStopProcessingAction((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___MISSING_CONTRACT_FOR_CONTRACT_PERFORMANCE__DIAGNOSTICCHAIN_MAP:
+			return MissingContractForContractPerformance((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___EXPIRED_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP:
+			return ExpiredConsentForCollecting((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__DIAGNOSTICCHAIN_MAP:
+			return SubjectShouldBeNotifiedAboutCollecting((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.POLICY_STATEMENT___UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOESNT_HAVE_PERMISSION__DIAGNOSTICCHAIN_MAP:
 			return UndefinedPurposeForActionOrUserDoesntHavePermission((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___MISSING_CONSENT_FOR_DATA_PORTABILITY__DIAGNOSTICCHAIN_MAP:
+			return MissingConsentForDataPortability((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION__DIAGNOSTICCHAIN_MAP:
+			return DateShouldBeDefinedForAccessAction((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___WITHDRAWN_CONSENT__DIAGNOSTICCHAIN_MAP:
+			return WithdrawnConsent((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__DIAGNOSTICCHAIN_MAP:
+			return CausedByShouldBeDefinedForErasureAction((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__DIAGNOSTICCHAIN_MAP:
+			return SubjectShouldBeNotifiedAboutExecutedRectification((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___EXPIRED_CONTRACT__DIAGNOSTICCHAIN_MAP:
+			return ExpiredContract((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___LEGAL_PROVISION_IS_NEEDED_FOR_LEGAL_OBLIGATION_PURPOSE__DIAGNOSTICCHAIN_MAP:
+			return LegalProvisionIsNeededForLegalObligationPurpose((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP:
+			return SubjectShouldBeNotifiedAboutStopProcessing((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

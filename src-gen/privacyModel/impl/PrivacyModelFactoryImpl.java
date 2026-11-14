@@ -83,6 +83,8 @@ public class PrivacyModelFactoryImpl extends EFactoryImpl implements PrivacyMode
 			return createHow();
 		case PrivacyModelPackage.CONSENT:
 			return createConsent();
+		case PrivacyModelPackage.CONTRACT:
+			return createContract();
 		case PrivacyModelPackage.CONFIGURATION_MANAGER:
 			return createConfigurationManager();
 		case PrivacyModelPackage.COMPLAINT:
@@ -320,6 +322,16 @@ public class PrivacyModelFactoryImpl extends EFactoryImpl implements PrivacyMode
 	public Consent createConsent() {
 		ConsentImpl consent = new ConsentImpl();
 		return consent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Contract createContract() {
+		ContractImpl contract = new ContractImpl();
+		return contract;
 	}
 
 	/**

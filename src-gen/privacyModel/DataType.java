@@ -98,13 +98,13 @@ public enum DataType implements Enumerator {
 	 */
 	RELIGIOUS(7, "Religious", "Religious"),
 	/**
-	* The '<em><b>Health</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Health</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #HEALTH_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #HEALTH_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	HEALTH(8, "Health", "Health"),
 
 	/**

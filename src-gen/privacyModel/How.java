@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link privacyModel.How#getDocuments <em>Documents</em>}</li>
  *   <li>{@link privacyModel.How#getConsent <em>Consent</em>}</li>
+ *   <li>{@link privacyModel.How#getContract <em>Contract</em>}</li>
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getHow()
@@ -59,12 +60,25 @@ public interface How extends EObject {
 	void setConsent(Consent value);
 
 	/**
+	 * Returns the value of the '<em><b>Contract</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\t\tif(self.consent = null) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse if(howConsent.consent = null) then\n\t\t\t\t\t\tfalse\n\t\t\t\t\telse\n\t\t\t\t\t\tself.consent = howConsent.consent\n\t\t\t\t\tendif\n\t\t\t\t\tendif'"
+	 * @return the value of the '<em>Contract</em>' reference.
+	 * @see #setContract(Contract)
+	 * @see privacyModel.PrivacyModelPackage#getHow_Contract()
+	 * @model
 	 * @generated
 	 */
-	boolean isConsentValid(How howConsent);
+	Contract getContract();
+
+	/**
+	 * Sets the value of the '{@link privacyModel.How#getContract <em>Contract</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Contract</em>' reference.
+	 * @see #getContract()
+	 * @generated
+	 */
+	void setContract(Contract value);
 
 } // How

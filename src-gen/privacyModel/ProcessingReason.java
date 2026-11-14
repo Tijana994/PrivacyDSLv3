@@ -137,7 +137,25 @@ public enum ProcessingReason implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	STOP_PROCESSING(11, "StopProcessing", "StopProcessing");
+	STOP_PROCESSING(11, "StopProcessing", "StopProcessing"),
+	/**
+	* The '<em><b>Contract Performance</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #CONTRACT_PERFORMANCE_VALUE
+	* @generated
+	* @ordered
+	*/
+	CONTRACT_PERFORMANCE(12, "ContractPerformance", "ContractPerformance"),
+	/**
+	* The '<em><b>Legal Obligation</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #LEGAL_OBLIGATION_VALUE
+	* @generated
+	* @ordered
+	*/
+	LEGAL_OBLIGATION(13, "LegalObligation", "LegalObligation");
 
 	/**
 	 * The '<em><b>Research</b></em>' literal value.
@@ -272,6 +290,28 @@ public enum ProcessingReason implements Enumerator {
 	public static final int STOP_PROCESSING_VALUE = 11;
 
 	/**
+	 * The '<em><b>Contract Performance</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #CONTRACT_PERFORMANCE
+	 * @model name="ContractPerformance"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONTRACT_PERFORMANCE_VALUE = 12;
+
+	/**
+	 * The '<em><b>Legal Obligation</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LEGAL_OBLIGATION
+	 * @model name="LegalObligation"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LEGAL_OBLIGATION_VALUE = 13;
+
+	/**
 	 * An array of all the '<em><b>Processing Reason</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -279,7 +319,8 @@ public enum ProcessingReason implements Enumerator {
 	 */
 	private static final ProcessingReason[] VALUES_ARRAY = new ProcessingReason[] { RESEARCH, PUBLIC_HEALTH,
 			OUT_OF_SCOPE, PUBLIC_INTEREST, STATISTICAL_PURPOSES, EXERCISING_SPECIFIC_RIGHTS, MARKETING, TESTING,
-			PROFILING, PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT, LEGITIMATE_INTERESTS, STOP_PROCESSING, };
+			PROFILING, PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT, LEGITIMATE_INTERESTS, STOP_PROCESSING,
+			CONTRACT_PERFORMANCE, LEGAL_OBLIGATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Processing Reason</b></em>' enumerators.
@@ -359,6 +400,10 @@ public enum ProcessingReason implements Enumerator {
 			return LEGITIMATE_INTERESTS;
 		case STOP_PROCESSING_VALUE:
 			return STOP_PROCESSING;
+		case CONTRACT_PERFORMANCE_VALUE:
+			return CONTRACT_PERFORMANCE;
+		case LEGAL_OBLIGATION_VALUE:
+			return LEGAL_OBLIGATION;
 		}
 		return null;
 	}

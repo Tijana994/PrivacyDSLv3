@@ -139,6 +139,15 @@ public interface PrivacyModelFactory extends EFactory {
 	Consent createConsent();
 
 	/**
+	 * Returns a new object of class '<em>Contract</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Contract</em>'.
+	 * @generated
+	 */
+	Contract createContract();
+
+	/**
 	 * Returns a new object of class '<em>Configuration Manager</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

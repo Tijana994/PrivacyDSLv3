@@ -28,13 +28,14 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link privacyModel.PrivacyPolicy#getPrivacyPolicyHelper <em>Privacy Policy Helper</em>}</li>
  *   <li>{@link privacyModel.PrivacyPolicy#getAllDenials <em>All Denials</em>}</li>
  *   <li>{@link privacyModel.PrivacyPolicy#getAllConsents <em>All Consents</em>}</li>
+ *   <li>{@link privacyModel.PrivacyPolicy#getAllContracts <em>All Contracts</em>}</li>
  *   <li>{@link privacyModel.PrivacyPolicy#getAllDocuments <em>All Documents</em>}</li>
  *   <li>{@link privacyModel.PrivacyPolicy#getNotifications <em>Notifications</em>}</li>
  *   <li>{@link privacyModel.PrivacyPolicy#getAllSharedPrivacyData <em>All Shared Privacy Data</em>}</li>
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getPrivacyPolicy()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueServiceName'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueDocumentName'"
  * @generated
  */
 public interface PrivacyPolicy extends NamedElement {
@@ -225,6 +226,18 @@ public interface PrivacyPolicy extends NamedElement {
 	EList<Consent> getAllConsents();
 
 	/**
+	 * Returns the value of the '<em><b>All Contracts</b></em>' containment reference list.
+	 * The list contents are of type {@link privacyModel.Contract}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Contracts</em>' containment reference list.
+	 * @see privacyModel.PrivacyModelPackage#getPrivacyPolicy_AllContracts()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Contract> getAllContracts();
+
+	/**
 	 * Returns the value of the '<em><b>All Documents</b></em>' containment reference list.
 	 * The list contents are of type {@link privacyModel.Document}.
 	 * <!-- begin-user-doc -->
@@ -355,5 +368,13 @@ public interface PrivacyPolicy extends NamedElement {
 	 * @generated
 	 */
 	boolean UniqueComplaintName(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Contract name is unique\',\n\tstatus : Boolean = \n\t\tself.allContracts-&gt;forAll(contract1:Contract,contract2:Contract| contract1.name = contract2.name implies contract1 = contract2)\n}.status'"
+	 * @generated
+	 */
+	boolean UniqueContractName(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // PrivacyPolicy

@@ -142,6 +142,11 @@ public class PrivacyModelAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseContract(Contract object) {
+			return createContractAdapter();
+		}
+
+		@Override
 		public Adapter caseConfigurationManager(ConfigurationManager object) {
 			return createConfigurationManagerAdapter();
 		}
@@ -442,6 +447,20 @@ public class PrivacyModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConsentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link privacyModel.Contract <em>Contract</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see privacyModel.Contract
+	 * @generated
+	 */
+	public Adapter createContractAdapter() {
 		return null;
 	}
 

@@ -56,7 +56,16 @@ public enum DocumentType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	TRANSFER_CERTIFICATE(3, "TransferCertificate", "TransferCertificate");
+	TRANSFER_CERTIFICATE(3, "TransferCertificate", "TransferCertificate"),
+	/**
+	* The '<em><b>Legal Provision</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #LEGAL_PROVISION_VALUE
+	* @generated
+	* @ordered
+	*/
+	LEGAL_PROVISION(4, "LegalProvision", "LegalProvision");
 
 	/**
 	 * The '<em><b>Child Custody</b></em>' literal value.
@@ -103,13 +112,24 @@ public enum DocumentType implements Enumerator {
 	public static final int TRANSFER_CERTIFICATE_VALUE = 3;
 
 	/**
+	 * The '<em><b>Legal Provision</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LEGAL_PROVISION
+	 * @model name="LegalProvision"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LEGAL_PROVISION_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>Document Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final DocumentType[] VALUES_ARRAY = new DocumentType[] { CHILD_CUSTODY, COURT_APPROVAL,
-			CONTROLLER_APPROVAL, TRANSFER_CERTIFICATE, };
+			CONTROLLER_APPROVAL, TRANSFER_CERTIFICATE, LEGAL_PROVISION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Document Type</b></em>' enumerators.
@@ -173,6 +193,8 @@ public enum DocumentType implements Enumerator {
 			return CONTROLLER_APPROVAL;
 		case TRANSFER_CERTIFICATE_VALUE:
 			return TRANSFER_CERTIFICATE;
+		case LEGAL_PROVISION_VALUE:
+			return LEGAL_PROVISION;
 		}
 		return null;
 	}

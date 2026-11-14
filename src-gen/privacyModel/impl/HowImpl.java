@@ -2,8 +2,6 @@
  */
 package privacyModel.impl;
 
-import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -15,9 +13,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
-import org.eclipse.ocl.pivot.values.InvalidValueException;
 import privacyModel.Consent;
+import privacyModel.Contract;
 import privacyModel.Document;
 import privacyModel.How;
 import privacyModel.PrivacyModelPackage;
@@ -32,6 +29,7 @@ import privacyModel.PrivacyModelPackage;
  * <ul>
  *   <li>{@link privacyModel.impl.HowImpl#getDocuments <em>Documents</em>}</li>
  *   <li>{@link privacyModel.impl.HowImpl#getConsent <em>Consent</em>}</li>
+ *   <li>{@link privacyModel.impl.HowImpl#getContract <em>Contract</em>}</li>
  * </ul>
  *
  * @generated
@@ -56,6 +54,16 @@ public class HowImpl extends MinimalEObjectImpl.Container implements How {
 	 * @ordered
 	 */
 	protected Consent consent;
+
+	/**
+	 * The cached value of the '{@link #getContract() <em>Contract</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContract()
+	 * @generated
+	 * @ordered
+	 */
+	protected Contract contract;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,39 +141,39 @@ public class HowImpl extends MinimalEObjectImpl.Container implements How {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isConsentValid(final How howConsent) {
-		/**
-		 *
-		 * if self.consent = null
-		 * then true
-		 * else
-		 *   if howConsent.consent = null
-		 *   then false
-		 *   else self.consent = howConsent.consent
-		 *   endif
-		 * endif
-		 */
-		final /*@NonInvalid*/ Consent consent = this.getConsent();
-		final /*@NonInvalid*/ boolean eq = consent == null;
-		/*@Thrown*/ boolean local_1;
-		if (eq) {
-			local_1 = true;
-		} else {
-			if (howConsent == null) {
-				throw new InvalidValueException("Null source for \'\'http://privacymodel\'::How::consent\'");
+	public Contract getContract() {
+		if (contract != null && contract.eIsProxy()) {
+			InternalEObject oldContract = (InternalEObject) contract;
+			contract = (Contract) eResolveProxy(oldContract);
+			if (contract != oldContract) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PrivacyModelPackage.HOW__CONTRACT,
+							oldContract, contract));
 			}
-			final /*@Thrown*/ Consent consent_2 = howConsent.getConsent();
-			final /*@Thrown*/ boolean eq_0 = consent_2 == null;
-			/*@Thrown*/ boolean local_0;
-			if (eq_0) {
-				local_0 = false;
-			} else {
-				final /*@Thrown*/ boolean eq_1 = (consent != null) ? consent.equals(consent_2) : (consent_2 == null);
-				local_0 = eq_1;
-			}
-			local_1 = local_0;
 		}
-		return local_1;
+		return contract;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Contract basicGetContract() {
+		return contract;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContract(Contract newContract) {
+		Contract oldContract = contract;
+		contract = newContract;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PrivacyModelPackage.HOW__CONTRACT, oldContract,
+					contract));
 	}
 
 	/**
@@ -182,6 +190,10 @@ public class HowImpl extends MinimalEObjectImpl.Container implements How {
 			if (resolve)
 				return getConsent();
 			return basicGetConsent();
+		case PrivacyModelPackage.HOW__CONTRACT:
+			if (resolve)
+				return getContract();
+			return basicGetContract();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,6 +214,9 @@ public class HowImpl extends MinimalEObjectImpl.Container implements How {
 		case PrivacyModelPackage.HOW__CONSENT:
 			setConsent((Consent) newValue);
 			return;
+		case PrivacyModelPackage.HOW__CONTRACT:
+			setContract((Contract) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -220,6 +235,9 @@ public class HowImpl extends MinimalEObjectImpl.Container implements How {
 		case PrivacyModelPackage.HOW__CONSENT:
 			setConsent((Consent) null);
 			return;
+		case PrivacyModelPackage.HOW__CONTRACT:
+			setContract((Contract) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -236,22 +254,10 @@ public class HowImpl extends MinimalEObjectImpl.Container implements How {
 			return documents != null && !documents.isEmpty();
 		case PrivacyModelPackage.HOW__CONSENT:
 			return consent != null;
+		case PrivacyModelPackage.HOW__CONTRACT:
+			return contract != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-		case PrivacyModelPackage.HOW___IS_CONSENT_VALID__HOW:
-			return isConsentValid((How) arguments.get(0));
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 } //HowImpl

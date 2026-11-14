@@ -98,13 +98,13 @@ public enum Action implements Enumerator {
 	 */
 	STOP_PROCESSING(7, "StopProcessing", "StopProcessing"),
 	/**
-	* The '<em><b>Data Portability</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Data Portability</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #DATA_PORTABILITY_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #DATA_PORTABILITY_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	DATA_PORTABILITY(8, "DataPortability", "DataPortability");
 
 	/**

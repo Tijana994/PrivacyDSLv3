@@ -195,6 +195,17 @@ public class PrivacyModelSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case PrivacyModelPackage.CONTRACT: {
+			Contract contract = (Contract) theEObject;
+			T result = caseContract(contract);
+			if (result == null)
+				result = caseAbstractPaper(contract);
+			if (result == null)
+				result = caseNamedElement(contract);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case PrivacyModelPackage.CONFIGURATION_MANAGER: {
 			ConfigurationManager configurationManager = (ConfigurationManager) theEObject;
 			T result = caseConfigurationManager(configurationManager);
@@ -557,6 +568,21 @@ public class PrivacyModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConsent(Consent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Contract</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Contract</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContract(Contract object) {
 		return null;
 	}
 

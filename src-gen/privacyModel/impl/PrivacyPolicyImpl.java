@@ -42,6 +42,7 @@ import org.eclipse.ocl.pivot.values.TupleValue;
 import privacyModel.Complaint;
 import privacyModel.ConfigurationManager;
 import privacyModel.Consent;
+import privacyModel.Contract;
 import privacyModel.Denial;
 import privacyModel.Document;
 import privacyModel.Location;
@@ -80,6 +81,7 @@ import privacyModel.SharedPrivacyData;
  *   <li>{@link privacyModel.impl.PrivacyPolicyImpl#getPrivacyPolicyHelper <em>Privacy Policy Helper</em>}</li>
  *   <li>{@link privacyModel.impl.PrivacyPolicyImpl#getAllDenials <em>All Denials</em>}</li>
  *   <li>{@link privacyModel.impl.PrivacyPolicyImpl#getAllConsents <em>All Consents</em>}</li>
+ *   <li>{@link privacyModel.impl.PrivacyPolicyImpl#getAllContracts <em>All Contracts</em>}</li>
  *   <li>{@link privacyModel.impl.PrivacyPolicyImpl#getAllDocuments <em>All Documents</em>}</li>
  *   <li>{@link privacyModel.impl.PrivacyPolicyImpl#getNotifications <em>Notifications</em>}</li>
  *   <li>{@link privacyModel.impl.PrivacyPolicyImpl#getAllSharedPrivacyData <em>All Shared Privacy Data</em>}</li>
@@ -217,6 +219,16 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	 * @ordered
 	 */
 	protected EList<Consent> allConsents;
+
+	/**
+	 * The cached value of the '{@link #getAllContracts() <em>All Contracts</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAllContracts()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Contract> allContracts;
 
 	/**
 	 * The cached value of the '{@link #getAllDocuments() <em>All Documents</em>}' containment reference list.
@@ -541,6 +553,19 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 					PrivacyModelPackage.PRIVACY_POLICY__ALL_CONSENTS);
 		}
 		return allConsents;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Contract> getAllContracts() {
+		if (allContracts == null) {
+			allContracts = new EObjectContainmentEList<Contract>(Contract.class, this,
+					PrivacyModelPackage.PRIVACY_POLICY__ALL_CONTRACTS);
+		}
+		return allContracts;
 	}
 
 	/**
@@ -2161,6 +2186,140 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean UniqueContractName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "PrivacyPolicy::UniqueContractName";
+		try {
+			/**
+			 *
+			 * inv UniqueContractName:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.allContracts->forAll(contract1, contract2 | contract1.name = contract2.name implies contract1 = contract2)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Contract name is unique', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ StandardLibrary standardLibrary = idResolver.getStandardLibrary();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PRIVACY_POLICY___UNIQUE_CONTRACT_NAME__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_6;
+			if (le) {
+				local_6 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_5;
+				try {
+					final /*@NonInvalid*/ List<Contract> allContracts = this.getAllContracts();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_allContracts = idResolver
+							.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Contract, allContracts);
+					final org.eclipse.ocl.pivot.Class TYPE_status_0 = executor.getStaticTypeOfValue(null,
+							BOXED_allContracts);
+					final LibraryIterationExtension IMPL_status_0 = (LibraryIterationExtension) TYPE_status_0
+							.lookupImplementation(standardLibrary, OCLstdlibTables.Operations._Collection__1_forAll);
+					final /*@NonNull*/ Object ACC_status_0 = IMPL_status_0.createAccumulatorValue(executor,
+							TypeId.BOOLEAN, TypeId.BOOLEAN);
+					/**
+					 * Implementation of the iterator body.
+					 */
+					final AbstractSimpleOperation BODY_status_0 = new AbstractSimpleOperation() {
+						/**
+						 * contract1.name = contract2.name implies contract1 = contract2
+						 */
+						@Override
+						public /*@Nullable*/ Object evaluate(final Executor executor, final TypeId typeId,
+								final /*@Nullable*/ Object /*@NonNull*/ [] sourceAndArgumentValues) {
+							final /*@NonInvalid*/ OrderedSetValue BOXED_allContracts = (OrderedSetValue) sourceAndArgumentValues[0];
+							final /*@NonInvalid*/ Object contract1 = sourceAndArgumentValues[1];
+							final /*@NonInvalid*/ Object contract2 = sourceAndArgumentValues[2];
+							/*@Caught*/ Object CAUGHT_implies;
+							try {
+								final /*@NonInvalid*/ Contract local_2 = (Contract) contract1;
+								final /*@NonInvalid*/ Contract local_3 = (Contract) contract2;
+								/*@Caught*/ Object CAUGHT_eq;
+								try {
+									if (local_2 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name = local_2.getName();
+									if (local_3 == null) {
+										throw new InvalidValueException(
+												"Null source for \'\'http://privacymodel\'::NamedElement::name\'");
+									}
+									final /*@Thrown*/ String name_0 = local_3.getName();
+									final /*@Thrown*/ boolean eq = name.equals(name_0);
+									CAUGHT_eq = eq;
+								} catch (Exception e) {
+									CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								}
+								final /*@Thrown*/ Boolean implies;
+								if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+									implies = ValueUtil.TRUE_VALUE;
+								} else {
+									final /*@NonInvalid*/ boolean eq_0 = (local_2 != null) ? local_2.equals(local_3)
+											: (local_3 == null);
+									if (eq_0) {
+										implies = ValueUtil.TRUE_VALUE;
+									} else {
+										if (CAUGHT_eq instanceof InvalidValueException) {
+											throw (InvalidValueException) CAUGHT_eq;
+										}
+										implies = ValueUtil.FALSE_VALUE;
+									}
+								}
+								CAUGHT_implies = implies;
+							} catch (Exception e) {
+								CAUGHT_implies = ValueUtil.createInvalidValue(e);
+							}
+							return CAUGHT_implies;
+						}
+					};
+					final ExecutorMultipleIterationManager MGR_status_0 = new ExecutorMultipleIterationManager(executor,
+							2, TypeId.BOOLEAN, BODY_status_0, BOXED_allContracts, ACC_status_0);
+					final /*@Thrown*/ Boolean status = (Boolean) IMPL_status_0.evaluateIteration(MGR_status_0);
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_5;
+					if (eq_1) {
+						local_5 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_4 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Contract_32_name_32_is_32_unique, status);
+						local_5 = local_4;
+					}
+					CAUGHT_local_5 = local_5;
+				} catch (Exception e) {
+					CAUGHT_local_5 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_5, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_6 = logDiagnostic;
+			}
+			return local_6;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -2186,6 +2345,8 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 			return ((InternalEList<?>) getAllDenials()).basicRemove(otherEnd, msgs);
 		case PrivacyModelPackage.PRIVACY_POLICY__ALL_CONSENTS:
 			return ((InternalEList<?>) getAllConsents()).basicRemove(otherEnd, msgs);
+		case PrivacyModelPackage.PRIVACY_POLICY__ALL_CONTRACTS:
+			return ((InternalEList<?>) getAllContracts()).basicRemove(otherEnd, msgs);
 		case PrivacyModelPackage.PRIVACY_POLICY__ALL_DOCUMENTS:
 			return ((InternalEList<?>) getAllDocuments()).basicRemove(otherEnd, msgs);
 		case PrivacyModelPackage.PRIVACY_POLICY__NOTIFICATIONS:
@@ -2232,6 +2393,8 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 			return getAllDenials();
 		case PrivacyModelPackage.PRIVACY_POLICY__ALL_CONSENTS:
 			return getAllConsents();
+		case PrivacyModelPackage.PRIVACY_POLICY__ALL_CONTRACTS:
+			return getAllContracts();
 		case PrivacyModelPackage.PRIVACY_POLICY__ALL_DOCUMENTS:
 			return getAllDocuments();
 		case PrivacyModelPackage.PRIVACY_POLICY__NOTIFICATIONS:
@@ -2300,6 +2463,10 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 			getAllConsents().clear();
 			getAllConsents().addAll((Collection<? extends Consent>) newValue);
 			return;
+		case PrivacyModelPackage.PRIVACY_POLICY__ALL_CONTRACTS:
+			getAllContracts().clear();
+			getAllContracts().addAll((Collection<? extends Contract>) newValue);
+			return;
 		case PrivacyModelPackage.PRIVACY_POLICY__ALL_DOCUMENTS:
 			getAllDocuments().clear();
 			getAllDocuments().addAll((Collection<? extends Document>) newValue);
@@ -2363,6 +2530,9 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 		case PrivacyModelPackage.PRIVACY_POLICY__ALL_CONSENTS:
 			getAllConsents().clear();
 			return;
+		case PrivacyModelPackage.PRIVACY_POLICY__ALL_CONTRACTS:
+			getAllContracts().clear();
+			return;
 		case PrivacyModelPackage.PRIVACY_POLICY__ALL_DOCUMENTS:
 			getAllDocuments().clear();
 			return;
@@ -2410,6 +2580,8 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 			return allDenials != null && !allDenials.isEmpty();
 		case PrivacyModelPackage.PRIVACY_POLICY__ALL_CONSENTS:
 			return allConsents != null && !allConsents.isEmpty();
+		case PrivacyModelPackage.PRIVACY_POLICY__ALL_CONTRACTS:
+			return allContracts != null && !allContracts.isEmpty();
 		case PrivacyModelPackage.PRIVACY_POLICY__ALL_DOCUMENTS:
 			return allDocuments != null && !allDocuments.isEmpty();
 		case PrivacyModelPackage.PRIVACY_POLICY__NOTIFICATIONS:
@@ -2429,35 +2601,37 @@ public class PrivacyPolicyImpl extends NamedElementImpl implements PrivacyPolicy
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_PROVIDER_NAME__DIAGNOSTICCHAIN_MAP:
-			return UniqueProviderName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP:
-			return UniqueLocationPerType((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP:
-			return UniquePrincipalNamePerType((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP:
-			return UniqueSharedPrivacyDataName((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP:
-			return UniqueDocumentName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
-			return ProtectionControlShouldExistsInConfiguration((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP:
-			return UniqueConsentName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP:
-			return UniqueComplaintName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP:
-			return OwnerShouldHaveDefinedInhabits((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_POLICY_STATEMENT_NAME__DIAGNOSTICCHAIN_MAP:
 			return UniquePolicyStatementName((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___PROTECTION_CONTROL_SHOULD_EXISTS_IN_CONFIGURATION__DIAGNOSTICCHAIN_MAP:
+			return ProtectionControlShouldExistsInConfiguration((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP:
 			return UniquePrivacyDataName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_SERVICE_NAME__DIAGNOSTICCHAIN_MAP:
 			return UniqueServiceName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_PROVIDER_NAME__DIAGNOSTICCHAIN_MAP:
+			return UniqueProviderName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_PRINCIPAL_NAME_PER_TYPE__DIAGNOSTICCHAIN_MAP:
+			return UniquePrincipalNamePerType((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___OWNER_SHOULD_HAVE_DEFINED_INHABITS__DIAGNOSTICCHAIN_MAP:
+			return OwnerShouldHaveDefinedInhabits((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_COMPLAINT_NAME__DIAGNOSTICCHAIN_MAP:
+			return UniqueComplaintName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_CONTRACT_NAME__DIAGNOSTICCHAIN_MAP:
+			return UniqueContractName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_CONSENT_NAME__DIAGNOSTICCHAIN_MAP:
+			return UniqueConsentName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_SHARED_PRIVACY_DATA_NAME__DIAGNOSTICCHAIN_MAP:
+			return UniqueSharedPrivacyDataName((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_LOCATION_PER_TYPE__DIAGNOSTICCHAIN_MAP:
+			return UniqueLocationPerType((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY___UNIQUE_DOCUMENT_NAME__DIAGNOSTICCHAIN_MAP:
+			return UniqueDocumentName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
