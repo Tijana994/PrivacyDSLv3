@@ -140,6 +140,8 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art19 = "Based on Art19";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art20_32_and_32_Art6 = "Based on Art20 and Art6";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art21 = "Based on Art21";
+	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art5 = "Based on Art5";
+	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art5_32_and_32_Art13 = "Based on Art5 and Art13";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art6 = "Based on Art6";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art6_32_and_32_Art9 = "Based on Art6 and Art9";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art7 = "Based on Art7";
@@ -275,6 +277,7 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Service = TypeId.ORDERED_SET.getSpecializedId(PrivacyModelTables.CLSSid_Service);
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_SharedPrivacyData = TypeId.ORDERED_SET.getSpecializedId(PrivacyModelTables.CLSSid_SharedPrivacyData);
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_ENUMid_Action = TypeId.ORDERED_SET.getSpecializedId(PrivacyModelTables.ENUMid_Action);
+	public static final /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_PolicyStatement = TypeId.SEQUENCE.getSpecializedId(PrivacyModelTables.CLSSid_PolicyStatement);
 	public static final /*@NonInvalid*/ CollectionTypeId SEQ_CLSSid_PrivacyPolicy = TypeId.SEQUENCE.getSpecializedId(PrivacyModelTables.CLSSid_PrivacyPolicy);
 	public static final /*@NonInvalid*/ CollectionTypeId SEQ_ENUMid_DataType = TypeId.SEQUENCE.getSpecializedId(PrivacyModelTables.ENUMid_DataType);
 	public static final /*@NonInvalid*/ CollectionTypeId SEQ_ENUMid_ProcessingReason = TypeId.SEQUENCE.getSpecializedId(PrivacyModelTables.ENUMid_ProcessingReason);
@@ -956,11 +959,12 @@ public class PrivacyModelTables extends AbstractTables
 		public static final ExecutorProperty _Provider__What__providers = new ExecutorPropertyWithImplementation("What", Types._Provider, 3, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.WHAT__PROVIDERS));
 
 		public static final ExecutorProperty _Purpose__details = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PURPOSE__DETAILS, Types._Purpose, 0);
-		public static final ExecutorProperty _Purpose__processingReason = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PURPOSE__PROCESSING_REASON, Types._Purpose, 1);
-		public static final ExecutorProperty _Purpose__processingReasonSubtype = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PURPOSE__PROCESSING_REASON_SUBTYPE, Types._Purpose, 2);
-		public static final ExecutorProperty _Purpose__subPurposes = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PURPOSE__SUB_PURPOSES, Types._Purpose, 3);
-		public static final ExecutorProperty _Purpose__PolicyStatement__why = new ExecutorPropertyWithImplementation("PolicyStatement", Types._Purpose, 4, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.POLICY_STATEMENT__WHY));
-		public static final ExecutorProperty _Purpose__Purpose__subPurposes = new ExecutorPropertyWithImplementation("Purpose", Types._Purpose, 5, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.PURPOSE__SUB_PURPOSES));
+		public static final ExecutorProperty _Purpose__erasureDate = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PURPOSE__ERASURE_DATE, Types._Purpose, 1);
+		public static final ExecutorProperty _Purpose__processingReason = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PURPOSE__PROCESSING_REASON, Types._Purpose, 2);
+		public static final ExecutorProperty _Purpose__processingReasonSubtype = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PURPOSE__PROCESSING_REASON_SUBTYPE, Types._Purpose, 3);
+		public static final ExecutorProperty _Purpose__subPurposes = new EcoreExecutorProperty(PrivacyModelPackage.Literals.PURPOSE__SUB_PURPOSES, Types._Purpose, 4);
+		public static final ExecutorProperty _Purpose__PolicyStatement__why = new ExecutorPropertyWithImplementation("PolicyStatement", Types._Purpose, 5, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.POLICY_STATEMENT__WHY));
+		public static final ExecutorProperty _Purpose__Purpose__subPurposes = new ExecutorPropertyWithImplementation("Purpose", Types._Purpose, 6, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.PURPOSE__SUB_PURPOSES));
 
 		public static final ExecutorProperty _Service__subservices = new EcoreExecutorProperty(PrivacyModelPackage.Literals.SERVICE__SUBSERVICES, Types._Service, 0);
 		public static final ExecutorProperty _Service__PrivacyPolicy__allServices = new ExecutorPropertyWithImplementation("PrivacyPolicy", Types._Service, 1, new EcoreLibraryOppositeProperty(PrivacyModelPackage.Literals.PRIVACY_POLICY__ALL_SERVICES));
@@ -3450,6 +3454,7 @@ public class PrivacyModelTables extends AbstractTables
 
 		private static final ExecutorProperty /*@NonNull*/ [] _Purpose = {
 			PrivacyModelTables.Properties._Purpose__details,
+			PrivacyModelTables.Properties._Purpose__erasureDate,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
 			PrivacyModelTables.Properties._Purpose__processingReason,

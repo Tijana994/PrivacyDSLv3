@@ -135,13 +135,14 @@ public class PrivacyDataFactory {
 			
 		}
 		
-		public static Purpose createPurpose(String details, ProcessingReason reason, ProcessingReasonSubtype subtype)
+		public static Purpose createPurpose(String details, ProcessingReason reason, ProcessingReasonSubtype subtype, Date erasureDate)
 		{
 			var repo = new PrivacyModelRepository();
 			var purpose = repo.getFactory().createPurpose();
 			purpose.setDetails(details);
 			purpose.setProcessingReason(reason);
 			purpose.setProcessingReasonSubtype(subtype);
+			purpose.setErasureDate(erasureDate);
 			return purpose;
 		}
 		

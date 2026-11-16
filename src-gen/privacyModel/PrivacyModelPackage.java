@@ -597,201 +597,13 @@ public interface PrivacyModelPackage extends EPackage {
 	int POLICY_STATEMENT___IS_CONTRACT_PROVIDED_BY_SUBJECT = NOTIFICATION_INFO_OPERATION_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Expired Document</em>' operation.
+	 * The operation id for the '<em>Withdrawn Consent</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT___EXPIRED_DOCUMENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Missing Consent Or Contract For Data Portability</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___MISSING_CONSENT_OR_CONTRACT_FOR_DATA_PORTABILITY__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 6;
-
-	/**
-	 * The operation id for the '<em>Date Should Be Defined For Store Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 7;
-
-	/**
-	 * The operation id for the '<em>Subject Should Be Notified About Transfer To Third Country</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 8;
-
-	/**
-	 * The operation id for the '<em>Where Should Be Defined For Transfer Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 9;
-
-	/**
-	 * The operation id for the '<em>Controller Approval Is Needed For Protect The Vital Interests Of The Data Subject Purpose</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 10;
-
-	/**
-	 * The operation id for the '<em>Missing Consent Or Transfer Certificate</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 11;
-
-	/**
-	 * The operation id for the '<em>Caused By Should Be Defined For Rectification Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 12;
-
-	/**
-	 * The operation id for the '<em>Subject Should Be Notified About Executed Erasure</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 13;
-
-	/**
-	 * The operation id for the '<em>Missing Consent For Collecting</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___MISSING_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 14;
-
-	/**
-	 * The operation id for the '<em>Undefined Purpose For Action Or User Does Not Have Permission</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOES_NOT_HAVE_PERMISSION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 15;
-
-	/**
-	 * The operation id for the '<em>Controller Approval Is Needed For Legitimate Interests Purpose</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 16;
-
-	/**
-	 * The operation id for the '<em>Whom Should Be Defined For Transfer</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 17;
-
-	/**
-	 * The operation id for the '<em>Stop Processing Purpose For Action Stop Processing</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 18;
-
-	/**
-	 * The operation id for the '<em>Processing Of Special Categories</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___PROCESSING_OF_SPECIAL_CATEGORIES__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 19;
-
-	/**
-	 * The operation id for the '<em>Expired Consent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___EXPIRED_CONSENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 20;
-
-	/**
-	 * The operation id for the '<em>Court Approval Is Needed For Public Interest Purpose</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 21;
-
-	/**
-	 * The operation id for the '<em>Juvenile Data Should Be Used With Document Of Type Child Custody Provided By Responsible Person</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 22;
-
-	/**
-	 * The operation id for the '<em>Caused By Should Be Defined For Stop Processing Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 23;
-
-	/**
-	 * The operation id for the '<em>Missing Contract For Contract Performance</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___MISSING_CONTRACT_FOR_CONTRACT_PERFORMANCE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 24;
+	int POLICY_STATEMENT___WITHDRAWN_CONSENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Expired Consent For Collecting</em>' operation.
@@ -800,65 +612,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT___EXPIRED_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 25;
-
-	/**
-	 * The operation id for the '<em>Subject Should Be Notified About Collecting</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 26;
-
-	/**
-	 * The operation id for the '<em>Date Should Be Defined For Access Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 27;
-
-	/**
-	 * The operation id for the '<em>Withdrawn Consent</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___WITHDRAWN_CONSENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 28;
-
-	/**
-	 * The operation id for the '<em>Caused By Should Be Defined For Erasure Action</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 29;
-
-	/**
-	 * The operation id for the '<em>Subject Should Be Notified About Executed Rectification</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 30;
-
-	/**
-	 * The operation id for the '<em>Expired Contract</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POLICY_STATEMENT___EXPIRED_CONTRACT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 31;
+	int POLICY_STATEMENT___EXPIRED_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Legal Provision Is Needed For Legal Obligation Purpose</em>' operation.
@@ -868,7 +622,75 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int POLICY_STATEMENT___LEGAL_PROVISION_IS_NEEDED_FOR_LEGAL_OBLIGATION_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
-			+ 32;
+			+ 7;
+
+	/**
+	 * The operation id for the '<em>Expired Document</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___EXPIRED_DOCUMENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Subject Should Be Notified About Executed Erasure</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 9;
+
+	/**
+	 * The operation id for the '<em>Processing After Erasure Date</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___PROCESSING_AFTER_ERASURE_DATE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 10;
+
+	/**
+	 * The operation id for the '<em>Undefined Purpose For Action Or User Does Not Have Permission</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOES_NOT_HAVE_PERMISSION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 11;
+
+	/**
+	 * The operation id for the '<em>Erasure Date Should Be Defined For Collecting</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___ERASURE_DATE_SHOULD_BE_DEFINED_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 12;
+
+	/**
+	 * The operation id for the '<em>Subject Should Be Notified About Collecting</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 13;
+
+	/**
+	 * The operation id for the '<em>Whom Should Be Defined For Transfer</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 14;
 
 	/**
 	 * The operation id for the '<em>Subject Should Be Notified About Stop Processing</em>' operation.
@@ -878,7 +700,204 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 15;
+
+	/**
+	 * The operation id for the '<em>Missing Contract For Contract Performance</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___MISSING_CONTRACT_FOR_CONTRACT_PERFORMANCE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 16;
+
+	/**
+	 * The operation id for the '<em>Stop Processing Purpose For Action Stop Processing</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 17;
+
+	/**
+	 * The operation id for the '<em>Controller Approval Is Needed For Legitimate Interests Purpose</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 18;
+
+	/**
+	 * The operation id for the '<em>Expired Contract</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___EXPIRED_CONTRACT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 19;
+
+	/**
+	 * The operation id for the '<em>Caused By Should Be Defined For Erasure Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 20;
+
+	/**
+	 * The operation id for the '<em>Where Should Be Defined For Transfer Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 21;
+
+	/**
+	 * The operation id for the '<em>Court Approval Is Needed For Public Interest Purpose</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 22;
+
+	/**
+	 * The operation id for the '<em>Date Should Be Defined For Access Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 23;
+
+	/**
+	 * The operation id for the '<em>Controller Approval Is Needed For Protect The Vital Interests Of The Data Subject Purpose</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 24;
+
+	/**
+	 * The operation id for the '<em>Caused By Should Be Defined For Rectification Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 25;
+
+	/**
+	 * The operation id for the '<em>Processing Of Special Categories</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___PROCESSING_OF_SPECIAL_CATEGORIES__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 26;
+
+	/**
+	 * The operation id for the '<em>Subject Should Be Notified About Transfer To Third Country</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 27;
+
+	/**
+	 * The operation id for the '<em>Juvenile Data Should Be Used With Document Of Type Child Custody Provided By Responsible Person</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 28;
+
+	/**
+	 * The operation id for the '<em>Subject Should Be Notified About Executed Rectification</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 29;
+
+	/**
+	 * The operation id for the '<em>Expired Consent</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___EXPIRED_CONSENT__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 30;
+
+	/**
+	 * The operation id for the '<em>Missing Consent For Collecting</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___MISSING_CONSENT_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT + 31;
+
+	/**
+	 * The operation id for the '<em>Missing Consent Or Transfer Certificate</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 32;
+
+	/**
+	 * The operation id for the '<em>Caused By Should Be Defined For Stop Processing Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
 			+ 33;
+
+	/**
+	 * The operation id for the '<em>Missing Consent Or Contract For Data Portability</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___MISSING_CONSENT_OR_CONTRACT_FOR_DATA_PORTABILITY__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 34;
+
+	/**
+	 * The operation id for the '<em>Date Should Be Defined For Store Action</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION__DIAGNOSTICCHAIN_MAP = NOTIFICATION_INFO_OPERATION_COUNT
+			+ 35;
 
 	/**
 	 * The number of operations of the '<em>Policy Statement</em>' class.
@@ -887,7 +906,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 34;
+	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 36;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
@@ -1496,13 +1515,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int PURPOSE__DETAILS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Erasure Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PURPOSE__ERASURE_DATE = 4;
+
+	/**
 	 * The number of structural features of the '<em>Purpose</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PURPOSE_FEATURE_COUNT = 4;
+	int PURPOSE_FEATURE_COUNT = 5;
 
 	/**
 	 * The operation id for the '<em>Is Valid</em>' operation.
@@ -3830,6 +3858,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__UndefinedPurposeForActionOrUserDoesNotHavePermission__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#ErasureDateShouldBeDefinedForCollecting(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Erasure Date Should Be Defined For Collecting</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Erasure Date Should Be Defined For Collecting</em>' operation.
+	 * @see privacyModel.PolicyStatement#ErasureDateShouldBeDefinedForCollecting(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__ErasureDateShouldBeDefinedForCollecting__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#ExpiredConsent(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Expired Consent</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4038,6 +4076,16 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedErasure__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#ProcessingAfterErasureDate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Processing After Erasure Date</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Processing After Erasure Date</em>' operation.
+	 * @see privacyModel.PolicyStatement#ProcessingAfterErasureDate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__ProcessingAfterErasureDate__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#WhomShouldBeDefinedForTransfer(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Whom Should Be Defined For Transfer</em>}' operation.
@@ -4521,6 +4569,17 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPurpose_Details();
+
+	/**
+	 * Returns the meta object for the attribute '{@link privacyModel.Purpose#getErasureDate <em>Erasure Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Erasure Date</em>'.
+	 * @see privacyModel.Purpose#getErasureDate()
+	 * @see #getPurpose()
+	 * @generated
+	 */
+	EAttribute getPurpose_ErasureDate();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.Purpose#isValid(privacyModel.Purpose) <em>Is Valid</em>}' operation.
@@ -6259,6 +6318,15 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPolicyStatement__UndefinedPurposeForActionOrUserDoesNotHavePermission__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Erasure Date Should Be Defined For Collecting</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___ERASURE_DATE_SHOULD_BE_DEFINED_FOR_COLLECTING__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__ErasureDateShouldBeDefinedForCollecting__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Expired Consent</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6446,6 +6514,15 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation POLICY_STATEMENT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getPolicyStatement__SubjectShouldBeNotifiedAboutExecutedErasure__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Processing After Erasure Date</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___PROCESSING_AFTER_ERASURE_DATE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getPolicyStatement__ProcessingAfterErasureDate__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Whom Should Be Defined For Transfer</b></em>' operation.
@@ -6844,6 +6921,14 @@ public interface PrivacyModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PURPOSE__DETAILS = eINSTANCE.getPurpose_Details();
+
+		/**
+		 * The meta object literal for the '<em><b>Erasure Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PURPOSE__ERASURE_DATE = eINSTANCE.getPurpose_ErasureDate();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Valid</b></em>' operation.

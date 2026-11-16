@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getPolicyStatement()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SubjectShouldBeNotifiedAboutStopProcessing'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DateShouldBeDefinedForStoreAction'"
  * @generated
  */
 public interface PolicyStatement extends NotificationInfo {
@@ -335,6 +335,14 @@ public interface PolicyStatement extends NotificationInfo {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art5 and Art13\',\n\tstatus : Boolean = \n\t\t\tif(self.what = null or self.why = null or not(self.what.actions-&gt;exists(act| act = Action::Collecting)) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::Research) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::StatisticalPurposes)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tnot(self.why.erasureDate = null)\n\t\t\tendif\n}.status'"
+	 * @generated
+	 */
+	boolean ErasureDateShouldBeDefinedForCollecting(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what.actions-&gt;exists(act| act = Action::Collecting or act = Action::StopProcessing)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tself.what.datas-&gt;forAll(data |\n\t\t\t\t\tlet statements = privacyPolicy.policyStatements-&gt;select(st| \n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and self.who.equals(st.who) and st.what.actions-&gt;exists(act| act = Action::Collecting) and st.what.datas-&gt;exists(d| d = data))\n\t\t\t\t\t\tin \n\t\t\t\t\t\tif(statements-&gt;isEmpty()) then \n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tstatements -&gt; exists(st|\n\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n\t\t\t\t\t\t\t\t\tif(self.why = null \n\t\t\t\t\t\t\t\t\t\tor \n\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n\t\t\t\t\t\t\t\t\t\t\treasons-&gt;includes(self.why.processingReason) or self.why.subPurposes-&gt;exists(subpurpose| reasons-&gt;includes(subpurpose.processingReason)\n\t\t\t\t\t\t\t\t\t)) then\n\t\t\t\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, st.how.consent.startDate)) and\n\t\t\t\t\t\t\t\t\t\t(st.how.consent.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, st.how.consent.terminationDate)))\n\t\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\tendif\n\t\t\t\t)\n\t\t\tendif\n}.status'"
 	 * @generated
 	 */
@@ -502,6 +510,14 @@ public interface PolicyStatement extends NotificationInfo {
 	 * @generated
 	 */
 	boolean SubjectShouldBeNotifiedAboutExecutedErasure(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art5\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what = null or self.when = null or\n\t\t\t\tself.what.actions-&gt;forAll(act| act = Action::Collecting or act = Action::Erasure or act = Action::StopProcessing) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::Research) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::StatisticalPurposes)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tself.what.datas-&gt;forAll(data |\n\t\t\t\t\tlet collectingStatements : Sequence(PolicyStatement) = privacyPolicy.policyStatements-&gt;select(st|\n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and not(st.what = null) and\n\t\t\t\t\t\tst.what.actions-&gt;exists(act| act = Action::Collecting) and st.what.datas-&gt;exists(d| d = data) and\n\t\t\t\t\t\tnot(st.why = null) and not(st.why.erasureDate = null))-&gt;asSequence() in\n\t\t\t\t\t\tcollectingStatements-&gt;isEmpty() or\n\t\t\t\t\t\tcollectingStatements-&gt;exists(st| not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, st.why.erasureDate)))\n\t\t\t\t)\n\t\t\tendif\n}.status'"
+	 * @generated
+	 */
+	boolean ProcessingAfterErasureDate(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
