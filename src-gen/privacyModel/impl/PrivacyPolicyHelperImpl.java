@@ -32,6 +32,8 @@ import org.eclipse.ocl.pivot.values.SequenceValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 import privacyModel.AbstractTime;
 import privacyModel.ConfigurationManager;
+import privacyModel.Location;
+import privacyModel.Principal;
 import privacyModel.PrivacyModelPackage;
 import privacyModel.PrivacyModelTables;
 import privacyModel.PrivacyPolicy;
@@ -2651,6 +2653,56 @@ public class PrivacyPolicyHelperImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int legalAgeLimitFor(final Principal principal) {
+		/**
+		 *
+		 * if principal.inhabits = null
+		 * then
+		 *   PrivacyPolicy.allInstances()
+		 *   ->asSequence()
+		 *   ->first().owner.inhabits.legalAgeLimit
+		 * else principal.inhabits.legalAgeLimit
+		 * endif
+		 */
+		final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this);
+		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+		final /*@NonInvalid*/ Location inhabits = principal.getInhabits();
+		final /*@NonInvalid*/ boolean eq = inhabits == null;
+		/*@Thrown*/ int local_0;
+		if (eq) {
+			final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
+					.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
+			final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(executor,
+					PrivacyModelTables.SET_CLSSid_PrivacyPolicy, TYP_privacyModel_c_c_PrivacyPolicy_0);
+			final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
+					.evaluate(allInstances);
+			final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
+					.evaluate(asSequence);
+			if (first == null) {
+				throw new InvalidValueException("Null source for \'\'http://privacymodel\'::PrivacyPolicy::owner\'");
+			}
+			final /*@Thrown*/ Principal owner = first.getOwner();
+			final /*@Thrown*/ Location inhabits_0 = owner.getInhabits();
+			if (inhabits_0 == null) {
+				throw new InvalidValueException("Null source for \'\'http://privacymodel\'::Location::legalAgeLimit\'");
+			}
+			final /*@Thrown*/ int legalAgeLimit = inhabits_0.getLegalAgeLimit();
+			local_0 = legalAgeLimit;
+		} else {
+			if (inhabits == null) {
+				throw new InvalidValueException("Null source for \'\'http://privacymodel\'::Location::legalAgeLimit\'");
+			}
+			final /*@Thrown*/ int legalAgeLimit_0 = inhabits.getLegalAgeLimit();
+			local_0 = legalAgeLimit_0;
+		}
+		return local_0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
@@ -2670,6 +2722,8 @@ public class PrivacyPolicyHelperImpl extends MinimalEObjectImpl.Container implem
 			return isDateAfterInterval((AbstractTime) arguments.get(0), (Date) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___IS_DATE_IN_INTERVAL__ABSTRACTTIME_DATE:
 			return isDateInInterval((AbstractTime) arguments.get(0), (Date) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL:
+			return legalAgeLimitFor((Principal) arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

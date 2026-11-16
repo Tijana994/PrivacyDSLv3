@@ -89,4 +89,13 @@ public interface PrivacyPolicyHelper extends EObject {
 	 */
 	boolean isDateInInterval(AbstractTime time, Date date);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" principalRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif(principal.inhabits = null) then\n\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().owner.inhabits.legalAgeLimit\n\t\t\t\telse\n\t\t\t\t\tprincipal.inhabits.legalAgeLimit\n\t\t\t\tendif'"
+	 * @generated
+	 */
+	int legalAgeLimitFor(Principal principal);
+
 } // PrivacyPolicyHelper

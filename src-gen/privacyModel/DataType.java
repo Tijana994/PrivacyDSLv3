@@ -115,7 +115,16 @@ public enum DataType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	JUDICIAL(9, "Judicial", "Judicial");
+	JUDICIAL(9, "Judicial", "Judicial"),
+	/**
+	* The '<em><b>Trade Union Membership</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #TRADE_UNION_MEMBERSHIP_VALUE
+	* @generated
+	* @ordered
+	*/
+	TRADE_UNION_MEMBERSHIP(10, "TradeUnionMembership", "TradeUnionMembership");
 
 	/**
 	 * The '<em><b>Biometric</b></em>' literal value.
@@ -228,13 +237,24 @@ public enum DataType implements Enumerator {
 	public static final int JUDICIAL_VALUE = 9;
 
 	/**
+	 * The '<em><b>Trade Union Membership</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #TRADE_UNION_MEMBERSHIP
+	 * @model name="TradeUnionMembership"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int TRADE_UNION_MEMBERSHIP_VALUE = 10;
+
+	/**
 	 * An array of all the '<em><b>Data Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final DataType[] VALUES_ARRAY = new DataType[] { BIOMETRIC, GENERAL, GENETIC, POLITICAL_OPINION,
-			RACIAL_OR_ETHNIC_ORIGIN, BELIEFS, SEX_LIFE, RELIGIOUS, HEALTH, JUDICIAL, };
+			RACIAL_OR_ETHNIC_ORIGIN, BELIEFS, SEX_LIFE, RELIGIOUS, HEALTH, JUDICIAL, TRADE_UNION_MEMBERSHIP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Data Type</b></em>' enumerators.
@@ -310,6 +330,8 @@ public enum DataType implements Enumerator {
 			return HEALTH;
 		case JUDICIAL_VALUE:
 			return JUDICIAL;
+		case TRADE_UNION_MEMBERSHIP_VALUE:
+			return TRADE_UNION_MEMBERSHIP;
 		}
 		return null;
 	}

@@ -132,6 +132,7 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ String STR_After_32_interval_32_should_32_be_32_defined_32_alone_32_or_32_with_32_before_32_interval = "After interval should be defined alone or with before interval";
 	public static final /*@NonInvalid*/ String STR_After_32_interval_32_should_32_be_32_defined_32_before_32_before_32_interval = "After interval should be defined before before interval";
 	public static final /*@NonInvalid*/ String STR_At_32_statement_32_should_32_be_32_defined_32_alone = "At statement should be defined alone";
+	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art10 = "Based on Art10";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art11 = "Based on Art11";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art14 = "Based on Art14";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art15 = "Based on Art15";
@@ -145,7 +146,7 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art6 = "Based on Art6";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art6_32_and_32_Art9 = "Based on Art6 and Art9";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art7 = "Based on Art7";
-	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art8 = "Based on Art8";
+	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art8_32_and_32_national_32_law = "Based on Art8 and national law";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art9 = "Based on Art9";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Art_32_3 = "Based on Art 3";
 	public static final /*@NonInvalid*/ String STR_Based_32_on_32_Arts44_m_50 = "Based on Arts44-50";
@@ -192,6 +193,7 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Where = TypeId.BAG.getSpecializedId(PrivacyModelTables.CLSSid_Where);
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Withdraw = TypeId.BAG.getSpecializedId(PrivacyModelTables.CLSSid_Withdraw);
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Access = PrivacyModelTables.ENUMid_Action.getEnumerationLiteralId("Access");
+	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Beliefs = PrivacyModelTables.ENUMid_DataType.getEnumerationLiteralId("Beliefs");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Biometric = PrivacyModelTables.ENUMid_DataType.getEnumerationLiteralId("Biometric");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_ChildCustody = PrivacyModelTables.ENUMid_DocumentType.getEnumerationLiteralId("ChildCustody");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Collecting = PrivacyModelTables.ENUMid_Action.getEnumerationLiteralId("Collecting");
@@ -208,7 +210,9 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_ExecutedErasure = PrivacyModelTables.ENUMid_NotificationType.getEnumerationLiteralId("ExecutedErasure");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_ExecutedRectification = PrivacyModelTables.ENUMid_NotificationType.getEnumerationLiteralId("ExecutedRectification");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_ExercisingSpecificRights = PrivacyModelTables.ENUMid_ProcessingReason.getEnumerationLiteralId("ExercisingSpecificRights");
+	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Explicit = PrivacyModelTables.ENUMid_ConsentType.getEnumerationLiteralId("Explicit");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Genetic = PrivacyModelTables.ENUMid_DataType.getEnumerationLiteralId("Genetic");
+	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Health = PrivacyModelTables.ENUMid_DataType.getEnumerationLiteralId("Health");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Historical = PrivacyModelTables.ENUMid_ProcessingReasonSubtype.getEnumerationLiteralId("Historical");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Investigation = PrivacyModelTables.ENUMid_ProcessingReasonSubtype.getEnumerationLiteralId("Investigation");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Judicial = PrivacyModelTables.ENUMid_DataType.getEnumerationLiteralId("Judicial");
@@ -253,6 +257,7 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Store = PrivacyModelTables.ENUMid_Action.getEnumerationLiteralId("Store");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Testing = PrivacyModelTables.ENUMid_ProcessingReason.getEnumerationLiteralId("Testing");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_ThirdPartyTransfer = PrivacyModelTables.ENUMid_NotificationType.getEnumerationLiteralId("ThirdPartyTransfer");
+	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_TradeUnionMembership = PrivacyModelTables.ENUMid_DataType.getEnumerationLiteralId("TradeUnionMembership");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Transfer = PrivacyModelTables.ENUMid_Action.getEnumerationLiteralId("Transfer");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_TransferCertificate = PrivacyModelTables.ENUMid_DocumentType.getEnumerationLiteralId("TransferCertificate");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_Withdraw = PrivacyModelTables.ENUMid_NotificationType.getEnumerationLiteralId("Withdraw");
@@ -293,10 +298,9 @@ public class PrivacyModelTables extends AbstractTables
 	public static final /*@NonInvalid*/ SequenceValue Sequence_15 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReasonSubtype, PrivacyModelTables.ELITid_PreContractual, PrivacyModelTables.ELITid_None, PrivacyModelTables.ELITid_Other);
 	public static final /*@NonInvalid*/ SequenceValue Sequence_6 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReasonSubtype, PrivacyModelTables.ELITid_Prevention, PrivacyModelTables.ELITid_Investigation, PrivacyModelTables.ELITid_Detection, PrivacyModelTables.ELITid_Prosecution, PrivacyModelTables.ELITid_PreventionOfThreats, PrivacyModelTables.ELITid_None, PrivacyModelTables.ELITid_Other);
 	public static final /*@NonInvalid*/ SequenceValue Sequence_0 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReasonSubtype, PrivacyModelTables.ELITid_Statistical, PrivacyModelTables.ELITid_Historical, PrivacyModelTables.ELITid_Scientific);
-	public static final /*@NonInvalid*/ SequenceValue dataTypes = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_DataType, PrivacyModelTables.ELITid_Biometric, PrivacyModelTables.ELITid_Genetic, PrivacyModelTables.ELITid_PoliticalOpinion, PrivacyModelTables.ELITid_RacialOrEthnicOrigin, PrivacyModelTables.ELITid_SexLife, PrivacyModelTables.ELITid_Religious, PrivacyModelTables.ELITid_Judicial);
 	public static final /*@NonInvalid*/ SequenceValue reasons_1 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReason, PrivacyModelTables.ELITid_PublicInterest, PrivacyModelTables.ELITid_LegitimateInterests, PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject, PrivacyModelTables.ELITid_LegalObligation, PrivacyModelTables.ELITid_ContractPerformance);
 	public static final /*@NonInvalid*/ SequenceValue reasons = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReason, PrivacyModelTables.ELITid_PublicInterest, PrivacyModelTables.ELITid_LegitimateInterests, PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject, PrivacyModelTables.ELITid_PublicHealth, PrivacyModelTables.ELITid_LegalObligation);
-	public static final /*@NonInvalid*/ SequenceValue reasons_3 = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_ProcessingReason, PrivacyModelTables.ELITid_PublicInterest, PrivacyModelTables.ELITid_LegitimateInterests, PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject, PrivacyModelTables.ELITid_Research, PrivacyModelTables.ELITid_PublicHealth);
+	public static final /*@NonInvalid*/ SequenceValue specialCategories = ValueUtil.createSequenceOfEach(PrivacyModelTables.SEQ_ENUMid_DataType, PrivacyModelTables.ELITid_Biometric, PrivacyModelTables.ELITid_Genetic, PrivacyModelTables.ELITid_Health, PrivacyModelTables.ELITid_PoliticalOpinion, PrivacyModelTables.ELITid_RacialOrEthnicOrigin, PrivacyModelTables.ELITid_Beliefs, PrivacyModelTables.ELITid_Religious, PrivacyModelTables.ELITid_SexLife, PrivacyModelTables.ELITid_TradeUnionMembership);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -777,6 +781,8 @@ public class PrivacyModelTables extends AbstractTables
 			6, TemplateParameters.EMPTY_LIST, null);
 		public static final ExecutorOperation _PrivacyPolicyHelper__isPolicyControlValid = new ExecutorOperation("isPolicyControlValid", Parameters._String, Types._PrivacyPolicyHelper,
 			7, TemplateParameters.EMPTY_LIST, null);
+		public static final ExecutorOperation _PrivacyPolicyHelper__legalAgeLimitFor = new ExecutorOperation("legalAgeLimitFor", Parameters._Principal, Types._PrivacyPolicyHelper,
+			8, TemplateParameters.EMPTY_LIST, null);
 
 		public static final ExecutorOperation _Purpose__containsAllowedPurposeReasonAndSubreason = new ExecutorOperation("containsAllowedPurposeReasonAndSubreason", Parameters._ProcessingReason___Sequence__ProcessingReasonSubtype__, Types._Purpose,
 			0, TemplateParameters.EMPTY_LIST, null);
@@ -2505,7 +2511,8 @@ public class PrivacyModelTables extends AbstractTables
 			PrivacyModelTables.Operations._PrivacyPolicyHelper__isDateAfterInterval /* isDateAfterInterval(AbstractTime[1],EDate[1]) */,
 			PrivacyModelTables.Operations._PrivacyPolicyHelper__isDateBeforeInterval /* isDateBeforeInterval(AbstractTime[1],EDate[1]) */,
 			PrivacyModelTables.Operations._PrivacyPolicyHelper__isDateInInterval /* isDateInInterval(AbstractTime[1],EDate[1]) */,
-			PrivacyModelTables.Operations._PrivacyPolicyHelper__isPolicyControlValid /* isPolicyControlValid(String[1]) */
+			PrivacyModelTables.Operations._PrivacyPolicyHelper__isPolicyControlValid /* isPolicyControlValid(String[1]) */,
+			PrivacyModelTables.Operations._PrivacyPolicyHelper__legalAgeLimitFor /* legalAgeLimitFor(Principal[1]) */
 		};
 		private static final ExecutorOperation /*@NonNull*/ [] _PrivacyPolicyHelper__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -3658,6 +3665,7 @@ public class PrivacyModelTables extends AbstractTables
 		public static final EcoreExecutorEnumerationLiteral _DataType__Religious = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.DATA_TYPE.getEEnumLiteral("Religious"), Types._DataType, 7);
 		public static final EcoreExecutorEnumerationLiteral _DataType__Health = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.DATA_TYPE.getEEnumLiteral("Health"), Types._DataType, 8);
 		public static final EcoreExecutorEnumerationLiteral _DataType__Judicial = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.DATA_TYPE.getEEnumLiteral("Judicial"), Types._DataType, 9);
+		public static final EcoreExecutorEnumerationLiteral _DataType__TradeUnionMembership = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.DATA_TYPE.getEEnumLiteral("TradeUnionMembership"), Types._DataType, 10);
 		private static final EcoreExecutorEnumerationLiteral /*@NonNull*/ [] _DataType = {
 			_DataType__Biometric,
 			_DataType__General,
@@ -3668,7 +3676,8 @@ public class PrivacyModelTables extends AbstractTables
 			_DataType__SexLife,
 			_DataType__Religious,
 			_DataType__Health,
-			_DataType__Judicial
+			_DataType__Judicial,
+			_DataType__TradeUnionMembership
 		};
 
 		public static final EcoreExecutorEnumerationLiteral _DocumentType__ChildCustody = new EcoreExecutorEnumerationLiteral(PrivacyModelPackage.Literals.DOCUMENT_TYPE.getEEnumLiteral("ChildCustody"), Types._DocumentType, 0);

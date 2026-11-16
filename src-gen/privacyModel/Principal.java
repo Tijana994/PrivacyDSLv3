@@ -191,7 +191,7 @@ public interface Principal extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art8\',\n\tstatus : Boolean = \n\t\tif(self.type = PrincipalType::NaturalPerson and self.age &lt; PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().owner.inhabits.legalAgeLimit) then\n\t\t\t\tnot(self.responsiblePersons-&gt;isEmpty())\n\t\t\telse\n\t\t\t\ttrue\n\t\tendif\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art8 and national law\',\n\tstatus : Boolean = \n\t\tif(self.type = PrincipalType::NaturalPerson and self.age &lt; PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().privacyPolicyHelper.legalAgeLimitFor(self)) then\n\t\t\t\tnot(self.responsiblePersons-&gt;isEmpty())\n\t\t\telse\n\t\t\t\ttrue\n\t\tendif\n}.status'"
 	 * @generated
 	 */
 	boolean JuvenileShouldHaveResponsiblePerson(DiagnosticChain diagnostics, Map<Object, Object> context);

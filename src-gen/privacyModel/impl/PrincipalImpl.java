@@ -49,6 +49,7 @@ import privacyModel.PrincipalType;
 import privacyModel.PrivacyModelPackage;
 import privacyModel.PrivacyModelTables;
 import privacyModel.PrivacyPolicy;
+import privacyModel.PrivacyPolicyHelper;
 
 /**
  * <!-- begin-user-doc -->
@@ -372,10 +373,10 @@ public class PrincipalImpl extends NamedElementImpl implements Principal {
 			final /*@NonInvalid*/ OrderedSetValue BOXED_subPrincipals = idResolver
 					.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal, subPrincipals);
 			/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-			Iterator<Object> ITERATOR_principal = BOXED_subPrincipals.iterator();
+			Iterator<Object> ITERATOR_principal_0 = BOXED_subPrincipals.iterator();
 			/*@NonInvalid*/ Boolean exists;
 			while (true) {
-				if (!ITERATOR_principal.hasNext()) {
+				if (!ITERATOR_principal_0.hasNext()) {
 					if (accumulator == ValueUtil.FALSE_VALUE) {
 						exists = ValueUtil.FALSE_VALUE;
 					} else {
@@ -383,11 +384,11 @@ public class PrincipalImpl extends NamedElementImpl implements Principal {
 					}
 					break;
 				}
-				/*@NonInvalid*/ Principal principal = (Principal) ITERATOR_principal.next();
+				/*@NonInvalid*/ Principal principal_0 = (Principal) ITERATOR_principal_0.next();
 				/**
 				 * principal = observed
 				 */
-				final /*@NonInvalid*/ boolean eq_0 = principal.equals(observed);
+				final /*@NonInvalid*/ boolean eq_0 = principal_0.equals(observed);
 				//
 				if (eq_0) { // Normal successful body evaluation result
 					exists = ValueUtil.TRUE_VALUE;
@@ -500,14 +501,17 @@ public class PrincipalImpl extends NamedElementImpl implements Principal {
 			 *           status : Boolean[?] = if self.type = PrincipalType::NaturalPerson and self.age <
 			 *             PrivacyPolicy.allInstances()
 			 *             ->asSequence()
-			 *             ->first().owner.inhabits.legalAgeLimit
+			 *             ->first()
+			 *             .privacyPolicyHelper.legalAgeLimitFor(self)
 			 *           then not self.responsiblePersons->isEmpty()
 			 *           else true
 			 *           endif
 			 *         in
 			 *           if status = true
 			 *           then true
-			 *           else Tuple{message = 'Based on Art8', status = status}
+			 *           else
+			 *             Tuple{message = 'Based on Art8 and national law', status = status
+			 *             }
 			 *           endif
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -546,21 +550,17 @@ public class PrincipalImpl extends NamedElementImpl implements Principal {
 								.evaluate(asSequence);
 						if (first == null) {
 							throw new InvalidValueException(
-									"Null source for \'\'http://privacymodel\'::PrivacyPolicy::owner\'");
+									"Null source for \'\'http://privacymodel\'::PrivacyPolicy::privacyPolicyHelper\'");
 						}
-						final /*@Thrown*/ Principal owner = first.getOwner();
-						final /*@Thrown*/ Location inhabits = owner.getInhabits();
-						if (inhabits == null) {
-							throw new InvalidValueException(
-									"Null source for \'\'http://privacymodel\'::Location::legalAgeLimit\'");
-						}
-						final /*@Thrown*/ int legalAgeLimit = inhabits.getLegalAgeLimit();
-						final /*@Thrown*/ IntegerValue BOXED_legalAgeLimit = ValueUtil.integerValueOf(legalAgeLimit);
-						if (BOXED_legalAgeLimit instanceof InvalidValueException) {
-							throw (InvalidValueException) BOXED_legalAgeLimit;
+						final /*@Thrown*/ PrivacyPolicyHelper privacyPolicyHelper = first.getPrivacyPolicyHelper();
+						final /*@Thrown*/ int legalAgeLimitFor = privacyPolicyHelper.legalAgeLimitFor(this);
+						final /*@Thrown*/ IntegerValue BOXED_legalAgeLimitFor = ValueUtil
+								.integerValueOf(legalAgeLimitFor);
+						if (BOXED_legalAgeLimitFor instanceof InvalidValueException) {
+							throw (InvalidValueException) BOXED_legalAgeLimitFor;
 						}
 						final /*@Thrown*/ boolean lt = OclComparableLessThanOperation.INSTANCE
-								.evaluate(executor, BOXED_age, BOXED_legalAgeLimit).booleanValue();
+								.evaluate(executor, BOXED_age, BOXED_legalAgeLimitFor).booleanValue();
 						CAUGHT_lt = lt;
 					} catch (Exception e) {
 						CAUGHT_lt = ValueUtil.createInvalidValue(e);
@@ -604,7 +604,7 @@ public class PrincipalImpl extends NamedElementImpl implements Principal {
 					local_1 = ValueUtil.TRUE_VALUE;
 				} else {
 					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
-							PrivacyModelTables.STR_Based_32_on_32_Art8, status);
+							PrivacyModelTables.STR_Based_32_on_32_Art8_32_and_32_national_32_law, status);
 					local_1 = local_0;
 				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE

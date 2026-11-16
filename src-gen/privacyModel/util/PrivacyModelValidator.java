@@ -147,7 +147,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY = 36;
+	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY = 20;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Executed Rectification' of 'Policy Statement'.
@@ -155,7 +155,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION = 38;
+	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION = 28;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Expired Contract' of 'Policy Statement'.
@@ -163,7 +163,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__EXPIRED_CONTRACT = 28;
+	public static final int POLICY_STATEMENT__EXPIRED_CONTRACT = 42;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Legal Provision Is Needed For Legal Obligation Purpose' of 'Policy Statement'.
@@ -171,7 +171,15 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__LEGAL_PROVISION_IS_NEEDED_FOR_LEGAL_OBLIGATION_PURPOSE = 16;
+	public static final int POLICY_STATEMENT__LEGAL_PROVISION_IS_NEEDED_FOR_LEGAL_OBLIGATION_PURPOSE = 24;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Processing Of Criminal Conviction Data' of 'Policy Statement'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int POLICY_STATEMENT__PROCESSING_OF_CRIMINAL_CONVICTION_DATA = 25;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Stop Processing' of 'Policy Statement'.
@@ -179,7 +187,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING = 24;
+	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING = 26;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Missing Consent For Collecting' of 'Policy Statement'.
@@ -187,7 +195,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__MISSING_CONSENT_FOR_COLLECTING = 40;
+	public static final int POLICY_STATEMENT__MISSING_CONSENT_FOR_COLLECTING = 38;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Undefined Purpose For Action Or User Does Not Have Permission' of 'Policy Statement'.
@@ -195,7 +203,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOES_NOT_HAVE_PERMISSION = 20;
+	public static final int POLICY_STATEMENT__UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOES_NOT_HAVE_PERMISSION = 35;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Erasure Date Should Be Defined For Collecting' of 'Policy Statement'.
@@ -203,7 +211,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__ERASURE_DATE_SHOULD_BE_DEFINED_FOR_COLLECTING = 21;
+	public static final int POLICY_STATEMENT__ERASURE_DATE_SHOULD_BE_DEFINED_FOR_COLLECTING = 41;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Expired Consent' of 'Policy Statement'.
@@ -211,7 +219,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__EXPIRED_CONSENT = 39;
+	public static final int POLICY_STATEMENT__EXPIRED_CONSENT = 16;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Stop Processing Purpose For Action Stop Processing' of 'Policy Statement'.
@@ -219,7 +227,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING = 26;
+	public static final int POLICY_STATEMENT__STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING = 27;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Processing Of Special Categories' of 'Policy Statement'.
@@ -227,7 +235,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__PROCESSING_OF_SPECIAL_CATEGORIES = 35;
+	public static final int POLICY_STATEMENT__PROCESSING_OF_SPECIAL_CATEGORIES = 17;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Collecting' of 'Policy Statement'.
@@ -243,7 +251,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__EXPIRED_CONSENT_FOR_COLLECTING = 15;
+	public static final int POLICY_STATEMENT__EXPIRED_CONSENT_FOR_COLLECTING = 21;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Caused By Should Be Defined For Stop Processing Action' of 'Policy Statement'.
@@ -251,7 +259,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION = 42;
+	public static final int POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION = 33;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Missing Contract For Contract Performance' of 'Policy Statement'.
@@ -259,7 +267,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__MISSING_CONTRACT_FOR_CONTRACT_PERFORMANCE = 25;
+	public static final int POLICY_STATEMENT__MISSING_CONTRACT_FOR_CONTRACT_PERFORMANCE = 37;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Juvenile Data Should Be Used With Document Of Type Child Custody Provided By Responsible Person' of 'Policy Statement'.
@@ -267,7 +275,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON = 37;
+	public static final int POLICY_STATEMENT__JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON = 30;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Withdrawn Consent' of 'Policy Statement'.
@@ -275,7 +283,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__WITHDRAWN_CONSENT = 14;
+	public static final int POLICY_STATEMENT__WITHDRAWN_CONSENT = 36;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Natural Person Cannot Contain Sub Principals' of 'Principal'.
@@ -283,7 +291,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PRINCIPAL__NATURAL_PERSON_CANNOT_CONTAIN_SUB_PRINCIPALS = 45;
+	public static final int PRINCIPAL__NATURAL_PERSON_CANNOT_CONTAIN_SUB_PRINCIPALS = 46;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Missing Consent Or Transfer Certificate' of 'Policy Statement'.
@@ -291,7 +299,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__MISSING_CONSENT_OR_TRANSFER_CERTIFICATE = 41;
+	public static final int POLICY_STATEMENT__MISSING_CONSENT_OR_TRANSFER_CERTIFICATE = 29;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Controller Approval Is Needed For Protect The Vital Interests Of The Data Subject Purpose' of 'Policy Statement'.
@@ -299,7 +307,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE = 33;
+	public static final int POLICY_STATEMENT__CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE = 44;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Controller Approval Is Needed For Legitimate Interests Purpose' of 'Policy Statement'.
@@ -307,7 +315,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE = 27;
+	public static final int POLICY_STATEMENT__CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE = 19;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Date Should Be Defined For Access Action' of 'Policy Statement'.
@@ -315,7 +323,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION = 32;
+	public static final int POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION = 34;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Date Should Be Defined For Store Action' of 'Policy Statement'.
@@ -323,7 +331,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION = 44;
+	public static final int POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION = 45;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Where Should Be Defined For Transfer Action' of 'Policy Statement'.
@@ -331,7 +339,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION = 30;
+	public static final int POLICY_STATEMENT__WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION = 43;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Caused By Should Be Defined For Rectification Action' of 'Policy Statement'.
@@ -339,7 +347,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION = 34;
+	public static final int POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION = 23;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Court Approval Is Needed For Public Interest Purpose' of 'Policy Statement'.
@@ -347,7 +355,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE = 31;
+	public static final int POLICY_STATEMENT__COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE = 14;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Expired Document' of 'Policy Statement'.
@@ -355,7 +363,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__EXPIRED_DOCUMENT = 17;
+	public static final int POLICY_STATEMENT__EXPIRED_DOCUMENT = 15;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Missing Consent Or Contract For Data Portability' of 'Policy Statement'.
@@ -363,7 +371,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__MISSING_CONSENT_OR_CONTRACT_FOR_DATA_PORTABILITY = 43;
+	public static final int POLICY_STATEMENT__MISSING_CONSENT_OR_CONTRACT_FOR_DATA_PORTABILITY = 40;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Caused By Should Be Defined For Erasure Action' of 'Policy Statement'.
@@ -371,7 +379,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION = 29;
+	public static final int POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION = 31;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Executed Erasure' of 'Policy Statement'.
@@ -387,7 +395,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__PROCESSING_AFTER_ERASURE_DATE = 19;
+	public static final int POLICY_STATEMENT__PROCESSING_AFTER_ERASURE_DATE = 32;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Whom Should Be Defined For Transfer' of 'Policy Statement'.
@@ -395,7 +403,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int POLICY_STATEMENT__WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER = 23;
+	public static final int POLICY_STATEMENT__WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER = 39;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Juvenile Should Have Responsible Person' of 'Principal'.
@@ -403,7 +411,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PRINCIPAL__JUVENILE_SHOULD_HAVE_RESPONSIBLE_PERSON = 46;
+	public static final int PRINCIPAL__JUVENILE_SHOULD_HAVE_RESPONSIBLE_PERSON = 47;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'After Statement Before Before Statement' of 'Time Interval'.
@@ -411,7 +419,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TIME_INTERVAL__AFTER_STATEMENT_BEFORE_BEFORE_STATEMENT = 47;
+	public static final int TIME_INTERVAL__AFTER_STATEMENT_BEFORE_BEFORE_STATEMENT = 48;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Until Type Should Be Defined Alone' of 'Time Interval'.
@@ -419,7 +427,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TIME_INTERVAL__UNTIL_TYPE_SHOULD_BE_DEFINED_ALONE = 48;
+	public static final int TIME_INTERVAL__UNTIL_TYPE_SHOULD_BE_DEFINED_ALONE = 49;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'From Statement Before To Statement' of 'Time Interval'.
@@ -427,7 +435,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TIME_INTERVAL__FROM_STATEMENT_BEFORE_TO_STATEMENT = 49;
+	public static final int TIME_INTERVAL__FROM_STATEMENT_BEFORE_TO_STATEMENT = 50;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Only From Or From With To' of 'Time Interval'.
@@ -435,7 +443,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TIME_INTERVAL__ONLY_FROM_OR_FROM_WITH_TO = 50;
+	public static final int TIME_INTERVAL__ONLY_FROM_OR_FROM_WITH_TO = 51;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Only After Or After With Before' of 'Time Interval'.
@@ -443,7 +451,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TIME_INTERVAL__ONLY_AFTER_OR_AFTER_WITH_BEFORE = 51;
+	public static final int TIME_INTERVAL__ONLY_AFTER_OR_AFTER_WITH_BEFORE = 52;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'At Type Should Be Defined Alone' of 'Time Interval'.
@@ -451,7 +459,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int TIME_INTERVAL__AT_TYPE_SHOULD_BE_DEFINED_ALONE = 52;
+	public static final int TIME_INTERVAL__AT_TYPE_SHOULD_BE_DEFINED_ALONE = 53;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Public Interest Should Not Contain This Sub Reason' of 'Purpose'.
@@ -459,7 +467,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 63;
+	public static final int PURPOSE__PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 64;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Public Health Should Not Contain Sub Reason' of 'Purpose'.
@@ -467,7 +475,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON = 59;
+	public static final int PURPOSE__PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON = 60;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Out Of Scope Should Not Contain This Sub Reason' of 'Purpose'.
@@ -475,7 +483,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 64;
+	public static final int PURPOSE__OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 65;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Profiling Should Not Contain Sub Reason' of 'Purpose'.
@@ -483,7 +491,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON = 60;
+	public static final int PURPOSE__PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON = 61;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Contract Performance Cannot Contain This Sub Reason' of 'Purpose'.
@@ -491,7 +499,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__CONTRACT_PERFORMANCE_CANNOT_CONTAIN_THIS_SUB_REASON = 61;
+	public static final int PURPOSE__CONTRACT_PERFORMANCE_CANNOT_CONTAIN_THIS_SUB_REASON = 62;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Legal Obligation Should Not Contain Sub Reason' of 'Purpose'.
@@ -499,7 +507,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__LEGAL_OBLIGATION_SHOULD_NOT_CONTAIN_SUB_REASON = 62;
+	public static final int PURPOSE__LEGAL_OBLIGATION_SHOULD_NOT_CONTAIN_SUB_REASON = 63;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Stop Processing Should Not Contain Sub Reason' of 'Purpose'.
@@ -507,7 +515,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON = 54;
+	public static final int PURPOSE__STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON = 55;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Marketing Should Not Contain Sub Reason' of 'Purpose'.
@@ -515,7 +523,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON = 55;
+	public static final int PURPOSE__MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON = 56;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Exercising Specific Rights Purposes Cannot Contain This Sub Reason' of 'Purpose'.
@@ -523,7 +531,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAIN_THIS_SUB_REASON = 57;
+	public static final int PURPOSE__EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAIN_THIS_SUB_REASON = 58;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Protect The Vital Interests Of The Data Subject Should Not Contain This Sub Reason' of 'Purpose'.
@@ -531,7 +539,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 66;
+	public static final int PURPOSE__PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 67;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Legitimate Interests Should Not Contain This Sub Reason' of 'Purpose'.
@@ -539,7 +547,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 53;
+	public static final int PURPOSE__LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 54;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Research Should Not Contain This Sub Reason' of 'Purpose'.
@@ -547,7 +555,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__RESEARCH_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 58;
+	public static final int PURPOSE__RESEARCH_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 59;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Statistical Purposes Should Not Contain Sub Reason' of 'Purpose'.
@@ -555,7 +563,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON = 65;
+	public static final int PURPOSE__STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON = 66;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Testing Should Not Contain Sub Reason' of 'Purpose'.
@@ -563,7 +571,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PURPOSE__TESTING_SHOULD_NOT_CONTAIN_SUB_REASON = 56;
+	public static final int PURPOSE__TESTING_SHOULD_NOT_CONTAIN_SUB_REASON = 57;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Cannot Identify Data From Complaint' of 'Complaint'.
@@ -571,7 +579,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__CANNOT_IDENTIFY_DATA_FROM_COMPLAINT = 68;
+	public static final int COMPLAINT__CANNOT_IDENTIFY_DATA_FROM_COMPLAINT = 69;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'User Does Not Have Permission To Complain' of 'Complaint'.
@@ -579,7 +587,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__USER_DOES_NOT_HAVE_PERMISSION_TO_COMPLAIN = 69;
+	public static final int COMPLAINT__USER_DOES_NOT_HAVE_PERMISSION_TO_COMPLAIN = 70;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Withdrawal' of 'Complaint'.
@@ -587,7 +595,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL = 70;
+	public static final int COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL = 71;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Stop Processing Should Be Executed As Soon As Possible' of 'Complaint'.
@@ -595,7 +603,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__STOP_PROCESSING_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 77;
+	public static final int COMPLAINT__STOP_PROCESSING_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 78;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Erasure Should Be Executed As Soon As Possible' of 'Complaint'.
@@ -603,7 +611,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 71;
+	public static final int COMPLAINT__ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 72;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Existing Complaint For Erasure' of 'Complaint'.
@@ -611,7 +619,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE = 72;
+	public static final int COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE = 73;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'User Does Not Have Permission To Withdraw Consent' of 'Complaint'.
@@ -619,7 +627,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__USER_DOES_NOT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT = 73;
+	public static final int COMPLAINT__USER_DOES_NOT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT = 74;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Consent Withdrawal Should Be Executed As Soon As Possible' of 'Complaint'.
@@ -627,7 +635,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__CONSENT_WITHDRAWAL_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 74;
+	public static final int COMPLAINT__CONSENT_WITHDRAWAL_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 75;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Rectification Should Be Executed As Soon As Possible' of 'Complaint'.
@@ -635,7 +643,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__RECTIFICATION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 76;
+	public static final int COMPLAINT__RECTIFICATION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 77;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Invalid Type Of Purpose For An Object' of 'Complaint'.
@@ -643,7 +651,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__INVALID_TYPE_OF_PURPOSE_FOR_AN_OBJECT = 67;
+	public static final int COMPLAINT__INVALID_TYPE_OF_PURPOSE_FOR_AN_OBJECT = 68;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Existing Complaint For Rectification' of 'Complaint'.
@@ -651,7 +659,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_RECTIFICATION = 75;
+	public static final int COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_RECTIFICATION = 76;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Start Date Should Be Before Termination Date' of 'Abstract Paper'.
@@ -659,7 +667,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ABSTRACT_PAPER__START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE = 78;
+	public static final int ABSTRACT_PAPER__START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE = 79;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Data Source Should Exist In Configuration' of 'Shared Privacy Data'.
@@ -667,7 +675,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SHARED_PRIVACY_DATA__DATA_SOURCE_SHOULD_EXIST_IN_CONFIGURATION = 79;
+	public static final int SHARED_PRIVACY_DATA__DATA_SOURCE_SHOULD_EXIST_IN_CONFIGURATION = 80;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Protection Control Should Exist In Configuration' of 'Shared Privacy Data'.
@@ -675,7 +683,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int SHARED_PRIVACY_DATA__PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION = 80;
+	public static final int SHARED_PRIVACY_DATA__PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION = 81;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Should Define Caused By As Erasure' of 'Notification'.
@@ -683,7 +691,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_ERASURE = 81;
+	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_ERASURE = 82;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Should Define Caused By As Privacy Policy' of 'Notification'.
@@ -691,7 +699,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY = 82;
+	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY = 83;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Should Define Caused By As Withdraw' of 'Notification'.
@@ -699,7 +707,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW = 83;
+	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW = 84;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Should Define Caused By As Rectification' of 'Notification'.
@@ -707,7 +715,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION = 84;
+	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION = 85;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -715,7 +723,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 84;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 85;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -1085,85 +1093,87 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_DateShouldBeDefinedForStoreAction(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_WithdrawnConsent(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ExpiredConsentForCollecting(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_LegalProvisionIsNeededForLegalObligationPurpose(policyStatement,
+			result &= validatePolicyStatement_CourtApprovalIsNeededForPublicInterestPurpose(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_ExpiredDocument(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ExpiredConsent(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ProcessingOfSpecialCategories(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutExecutedErasure(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ProcessingAfterErasureDate(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_UndefinedPurposeForActionOrUserDoesNotHavePermission(policyStatement,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ErasureDateShouldBeDefinedForCollecting(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutCollecting(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_WhomShouldBeDefinedForTransfer(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutStopProcessing(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_MissingContractForContractPerformance(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_StopProcessingPurposeForActionStopProcessing(policyStatement, diagnostics,
 					context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_ControllerApprovalIsNeededForLegitimateInterestsPurpose(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ExpiredContract(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_CausedByShouldBeDefinedForErasureAction(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_WhereShouldBeDefinedForTransferAction(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_CourtApprovalIsNeededForPublicInterestPurpose(policyStatement,
+			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutTransferToThirdCountry(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_DateShouldBeDefinedForAccessAction(policyStatement, diagnostics, context);
+			result &= validatePolicyStatement_ExpiredConsentForCollecting(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose(
-					policyStatement, diagnostics, context);
+			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutCollecting(policyStatement, diagnostics,
+					context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_CausedByShouldBeDefinedForRectificationAction(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ProcessingOfSpecialCategories(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutTransferToThirdCountry(policyStatement,
+			result &= validatePolicyStatement_LegalProvisionIsNeededForLegalObligationPurpose(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson(
-					policyStatement, diagnostics, context);
+			result &= validatePolicyStatement_ProcessingOfCriminalConvictionData(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutStopProcessing(policyStatement, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_StopProcessingPurposeForActionStopProcessing(policyStatement, diagnostics,
+					context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutExecutedRectification(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ExpiredConsent(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_MissingConsentForCollecting(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validatePolicyStatement_MissingConsentOrTransferCertificate(policyStatement, diagnostics,
 					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson(
+					policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_CausedByShouldBeDefinedForErasureAction(policyStatement, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ProcessingAfterErasureDate(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_CausedByShouldBeDefinedForStopProcessingAction(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validatePolicyStatement_DateShouldBeDefinedForAccessAction(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_UndefinedPurposeForActionOrUserDoesNotHavePermission(policyStatement,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_WithdrawnConsent(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_MissingContractForContractPerformance(policyStatement, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_MissingConsentForCollecting(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_WhomShouldBeDefinedForTransfer(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= validatePolicyStatement_MissingConsentOrContractForDataPortability(policyStatement, diagnostics,
 					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ErasureDateShouldBeDefinedForCollecting(policyStatement, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ExpiredContract(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_WhereShouldBeDefinedForTransferAction(policyStatement, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose(
+					policyStatement, diagnostics, context);
 		return result;
 	}
 
@@ -1397,6 +1407,17 @@ public class PrivacyModelValidator extends EObjectValidator {
 	public boolean validatePolicyStatement_LegalProvisionIsNeededForLegalObligationPurpose(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return policyStatement.LegalProvisionIsNeededForLegalObligationPurpose(diagnostics, context);
+	}
+
+	/**
+	 * Validates the ProcessingOfCriminalConvictionData constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePolicyStatement_ProcessingOfCriminalConvictionData(PolicyStatement policyStatement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return policyStatement.ProcessingOfCriminalConvictionData(diagnostics, context);
 	}
 
 	/**

@@ -34,7 +34,7 @@ public class PrivacyDataImpl extends NamedElementImpl implements PrivacyData {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final DataType TYPE_EDEFAULT = DataType.BIOMETRIC;
+	protected static final DataType TYPE_EDEFAULT = DataType.GENERAL;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.

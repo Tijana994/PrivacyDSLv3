@@ -21,6 +21,7 @@ package privacyModel;
 public interface PrivacyData extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The default value is <code>"General"</code>.
 	 * The literals are from the enumeration {@link privacyModel.DataType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28,7 +29,7 @@ public interface PrivacyData extends NamedElement {
 	 * @see privacyModel.DataType
 	 * @see #setType(DataType)
 	 * @see privacyModel.PrivacyModelPackage#getPrivacyData_Type()
-	 * @model required="true"
+	 * @model default="General" required="true"
 	 * @generated
 	 */
 	DataType getType();
