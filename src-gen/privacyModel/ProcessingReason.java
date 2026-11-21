@@ -157,22 +157,22 @@ public enum ProcessingReason implements Enumerator {
 	 */
 	LEGAL_OBLIGATION(13, "LegalObligation", "LegalObligation"),
 	/**
-	* The '<em><b>Not For Profit Body Activity</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Not For Profit Body Activity</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #NOT_FOR_PROFIT_BODY_ACTIVITY_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #NOT_FOR_PROFIT_BODY_ACTIVITY_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	NOT_FOR_PROFIT_BODY_ACTIVITY(14, "NotForProfitBodyActivity", "NotForProfitBodyActivity"),
 	/**
-	* The '<em><b>Health Care</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Health Care</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #HEALTH_CARE_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #HEALTH_CARE_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	HEALTH_CARE(15, "HealthCare", "HealthCare");
 
 	/**

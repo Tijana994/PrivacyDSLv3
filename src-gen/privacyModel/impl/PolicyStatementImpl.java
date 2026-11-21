@@ -1177,8 +1177,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 		final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this);
 		final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 		final /*@NonInvalid*/ How how = this.getHow();
-		final /*@NonInvalid*/ Principal whose = this.getWhose();
-		final /*@NonInvalid*/ boolean eq = whose == null;
+		final /*@NonInvalid*/ Principal whose_4 = this.getWhose();
+		final /*@NonInvalid*/ boolean eq = whose_4 == null;
 		final /*@NonInvalid*/ Boolean or;
 		if (eq) {
 			or = ValueUtil.TRUE_VALUE;
@@ -1227,10 +1227,10 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 		} else {
 			/*@Caught*/ Object CAUGHT_eq_2;
 			try {
-				if (whose == null) {
+				if (whose_4 == null) {
 					throw new InvalidValueException("Null source for \'\'http://privacymodel\'::Principal::type\'");
 				}
-				final /*@Thrown*/ PrincipalType type_0 = whose.getType();
+				final /*@Thrown*/ PrincipalType type_0 = whose_4.getType();
 				final /*@Thrown*/ EnumerationLiteralId BOXED_type_0 = PrivacyModelTables.ENUMid_PrincipalType
 						.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
 				final /*@Thrown*/ boolean eq_2 = BOXED_type_0 == PrivacyModelTables.ELITid_NaturalPerson;
@@ -1246,10 +1246,10 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 				try {
 					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
 							.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
-					if (whose == null) {
+					if (whose_4 == null) {
 						throw new InvalidValueException("Null source for \'\'http://privacymodel\'::Principal::age\'");
 					}
-					final /*@Thrown*/ int age = whose.getAge();
+					final /*@Thrown*/ int age = whose_4.getAge();
 					final /*@Thrown*/ IntegerValue BOXED_age = ValueUtil.integerValueOf(age);
 					final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(
 							executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
@@ -1263,7 +1263,7 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 								"Null source for \'\'http://privacymodel\'::PrivacyPolicy::privacyPolicyHelper\'");
 					}
 					final /*@Thrown*/ PrivacyPolicyHelper privacyPolicyHelper = first.getPrivacyPolicyHelper();
-					final /*@Thrown*/ int legalAgeLimitFor = privacyPolicyHelper.legalAgeLimitFor(whose);
+					final /*@Thrown*/ int legalAgeLimitFor = privacyPolicyHelper.legalAgeLimitFor(whose_4);
 					final /*@Thrown*/ IntegerValue BOXED_legalAgeLimitFor = ValueUtil.integerValueOf(legalAgeLimitFor);
 					if (BOXED_legalAgeLimitFor instanceof InvalidValueException) {
 						throw (InvalidValueException) BOXED_legalAgeLimitFor;
@@ -1291,11 +1291,11 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			}
 			/*@Thrown*/ Boolean local_0;
 			if (and) {
-				if (whose == null) {
+				if (whose_4 == null) {
 					throw new InvalidValueException(
 							"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
 				}
-				final /*@Thrown*/ List<Principal> responsiblePersons = whose.getResponsiblePersons();
+				final /*@Thrown*/ List<Principal> responsiblePersons = whose_4.getResponsiblePersons();
 				final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons = idResolver
 						.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal, responsiblePersons);
 				/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
@@ -1356,7 +1356,7 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 								"Null source for \'\'http://privacymodel\'::AbstractPaper::providedBy\'");
 					}
 					final /*@Thrown*/ Principal providedBy_0 = contract_1.getProvidedBy();
-					final /*@Thrown*/ boolean eq_4 = providedBy_0.equals(whose);
+					final /*@Thrown*/ boolean eq_4 = providedBy_0.equals(whose_4);
 					CAUGHT_eq_4 = eq_4;
 				} catch (Exception e) {
 					CAUGHT_eq_4 = ValueUtil.createInvalidValue(e);
@@ -1367,11 +1367,11 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 				} else {
 					/*@Caught*/ Object CAUGHT_exists_0;
 					try {
-						if (whose == null) {
+						if (whose_4 == null) {
 							throw new InvalidValueException(
 									"Null source for \'\'http://privacymodel\'::Principal::responsiblePersons\'");
 						}
-						final /*@Thrown*/ List<Principal> responsiblePersons_0 = whose.getResponsiblePersons();
+						final /*@Thrown*/ List<Principal> responsiblePersons_0 = whose_4.getResponsiblePersons();
 						final /*@Thrown*/ OrderedSetValue BOXED_responsiblePersons_0 = idResolver
 								.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Principal, responsiblePersons_0);
 						/*@Thrown*/ Object accumulator_0 = ValueUtil.FALSE_VALUE;
