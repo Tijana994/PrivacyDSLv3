@@ -37,6 +37,7 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SequenceValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.TupleValue;
+import privacyModel.DataOrigin;
 import privacyModel.PrivacyData;
 import privacyModel.PrivacyModelPackage;
 import privacyModel.PrivacyModelTables;
@@ -54,7 +55,7 @@ import privacyModel.SharedPrivacyData;
  * <ul>
  *   <li>{@link privacyModel.impl.SharedPrivacyDataImpl#getAdditionalProtectionControls <em>Additional Protection Controls</em>}</li>
  *   <li>{@link privacyModel.impl.SharedPrivacyDataImpl#getPrivacydata <em>Privacydata</em>}</li>
- *   <li>{@link privacyModel.impl.SharedPrivacyDataImpl#isCollectedFromSubject <em>Collected From Subject</em>}</li>
+ *   <li>{@link privacyModel.impl.SharedPrivacyDataImpl#getOrigin <em>Origin</em>}</li>
  *   <li>{@link privacyModel.impl.SharedPrivacyDataImpl#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
@@ -82,24 +83,24 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 	protected PrivacyData privacydata;
 
 	/**
-	 * The default value of the '{@link #isCollectedFromSubject() <em>Collected From Subject</em>}' attribute.
+	 * The default value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isCollectedFromSubject()
+	 * @see #getOrigin()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean COLLECTED_FROM_SUBJECT_EDEFAULT = true;
+	protected static final DataOrigin ORIGIN_EDEFAULT = DataOrigin.DATA_SUBJECT;
 
 	/**
-	 * The cached value of the '{@link #isCollectedFromSubject() <em>Collected From Subject</em>}' attribute.
+	 * The cached value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isCollectedFromSubject()
+	 * @see #getOrigin()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean collectedFromSubject = COLLECTED_FROM_SUBJECT_EDEFAULT;
+	protected DataOrigin origin = ORIGIN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDataSource() <em>Data Source</em>}' attribute.
@@ -198,8 +199,8 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isCollectedFromSubject() {
-		return collectedFromSubject;
+	public DataOrigin getOrigin() {
+		return origin;
 	}
 
 	/**
@@ -207,13 +208,12 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCollectedFromSubject(boolean newCollectedFromSubject) {
-		boolean oldCollectedFromSubject = collectedFromSubject;
-		collectedFromSubject = newCollectedFromSubject;
+	public void setOrigin(DataOrigin newOrigin) {
+		DataOrigin oldOrigin = origin;
+		origin = newOrigin == null ? ORIGIN_EDEFAULT : newOrigin;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					PrivacyModelPackage.SHARED_PRIVACY_DATA__COLLECTED_FROM_SUBJECT, oldCollectedFromSubject,
-					collectedFromSubject));
+			eNotify(new ENotificationImpl(this, Notification.SET, PrivacyModelPackage.SHARED_PRIVACY_DATA__ORIGIN,
+					oldOrigin, origin));
 	}
 
 	/**
@@ -492,8 +492,8 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 			if (resolve)
 				return getPrivacydata();
 			return basicGetPrivacydata();
-		case PrivacyModelPackage.SHARED_PRIVACY_DATA__COLLECTED_FROM_SUBJECT:
-			return isCollectedFromSubject();
+		case PrivacyModelPackage.SHARED_PRIVACY_DATA__ORIGIN:
+			return getOrigin();
 		case PrivacyModelPackage.SHARED_PRIVACY_DATA__DATA_SOURCE:
 			return getDataSource();
 		}
@@ -516,8 +516,8 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 		case PrivacyModelPackage.SHARED_PRIVACY_DATA__PRIVACYDATA:
 			setPrivacydata((PrivacyData) newValue);
 			return;
-		case PrivacyModelPackage.SHARED_PRIVACY_DATA__COLLECTED_FROM_SUBJECT:
-			setCollectedFromSubject((Boolean) newValue);
+		case PrivacyModelPackage.SHARED_PRIVACY_DATA__ORIGIN:
+			setOrigin((DataOrigin) newValue);
 			return;
 		case PrivacyModelPackage.SHARED_PRIVACY_DATA__DATA_SOURCE:
 			setDataSource((String) newValue);
@@ -540,8 +540,8 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 		case PrivacyModelPackage.SHARED_PRIVACY_DATA__PRIVACYDATA:
 			setPrivacydata((PrivacyData) null);
 			return;
-		case PrivacyModelPackage.SHARED_PRIVACY_DATA__COLLECTED_FROM_SUBJECT:
-			setCollectedFromSubject(COLLECTED_FROM_SUBJECT_EDEFAULT);
+		case PrivacyModelPackage.SHARED_PRIVACY_DATA__ORIGIN:
+			setOrigin(ORIGIN_EDEFAULT);
 			return;
 		case PrivacyModelPackage.SHARED_PRIVACY_DATA__DATA_SOURCE:
 			setDataSource(DATA_SOURCE_EDEFAULT);
@@ -562,8 +562,8 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 			return additionalProtectionControls != null && !additionalProtectionControls.isEmpty();
 		case PrivacyModelPackage.SHARED_PRIVACY_DATA__PRIVACYDATA:
 			return privacydata != null;
-		case PrivacyModelPackage.SHARED_PRIVACY_DATA__COLLECTED_FROM_SUBJECT:
-			return collectedFromSubject != COLLECTED_FROM_SUBJECT_EDEFAULT;
+		case PrivacyModelPackage.SHARED_PRIVACY_DATA__ORIGIN:
+			return origin != ORIGIN_EDEFAULT;
 		case PrivacyModelPackage.SHARED_PRIVACY_DATA__DATA_SOURCE:
 			return DATA_SOURCE_EDEFAULT == null ? dataSource != null : !DATA_SOURCE_EDEFAULT.equals(dataSource);
 		}
@@ -602,8 +602,8 @@ public class SharedPrivacyDataImpl extends NamedElementImpl implements SharedPri
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (additionalProtectionControls: ");
 		result.append(additionalProtectionControls);
-		result.append(", collectedFromSubject: ");
-		result.append(collectedFromSubject);
+		result.append(", origin: ");
+		result.append(origin);
 		result.append(", dataSource: ");
 		result.append(dataSource);
 		result.append(')');

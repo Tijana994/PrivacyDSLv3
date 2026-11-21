@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link privacyModel.SharedPrivacyData#getAdditionalProtectionControls <em>Additional Protection Controls</em>}</li>
  *   <li>{@link privacyModel.SharedPrivacyData#getPrivacydata <em>Privacydata</em>}</li>
- *   <li>{@link privacyModel.SharedPrivacyData#isCollectedFromSubject <em>Collected From Subject</em>}</li>
+ *   <li>{@link privacyModel.SharedPrivacyData#getOrigin <em>Origin</em>}</li>
  *   <li>{@link privacyModel.SharedPrivacyData#getDataSource <em>Data Source</em>}</li>
  * </ul>
  *
@@ -61,27 +61,30 @@ public interface SharedPrivacyData extends NamedElement {
 	void setPrivacydata(PrivacyData value);
 
 	/**
-	 * Returns the value of the '<em><b>Collected From Subject</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
+	 * Returns the value of the '<em><b>Origin</b></em>' attribute.
+	 * The default value is <code>"DataSubject"</code>.
+	 * The literals are from the enumeration {@link privacyModel.DataOrigin}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Collected From Subject</em>' attribute.
-	 * @see #setCollectedFromSubject(boolean)
-	 * @see privacyModel.PrivacyModelPackage#getSharedPrivacyData_CollectedFromSubject()
-	 * @model default="true" required="true"
+	 * @return the value of the '<em>Origin</em>' attribute.
+	 * @see privacyModel.DataOrigin
+	 * @see #setOrigin(DataOrigin)
+	 * @see privacyModel.PrivacyModelPackage#getSharedPrivacyData_Origin()
+	 * @model default="DataSubject" required="true"
 	 * @generated
 	 */
-	boolean isCollectedFromSubject();
+	DataOrigin getOrigin();
 
 	/**
-	 * Sets the value of the '{@link privacyModel.SharedPrivacyData#isCollectedFromSubject <em>Collected From Subject</em>}' attribute.
+	 * Sets the value of the '{@link privacyModel.SharedPrivacyData#getOrigin <em>Origin</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Collected From Subject</em>' attribute.
-	 * @see #isCollectedFromSubject()
+	 * @param value the new value of the '<em>Origin</em>' attribute.
+	 * @see privacyModel.DataOrigin
+	 * @see #getOrigin()
 	 * @generated
 	 */
-	void setCollectedFromSubject(boolean value);
+	void setOrigin(DataOrigin value);
 
 	/**
 	 * Returns the value of the '<em><b>Data Source</b></em>' attribute.

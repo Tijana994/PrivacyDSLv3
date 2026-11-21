@@ -120,6 +120,8 @@ public class PrivacyModelFactoryImpl extends EFactoryImpl implements PrivacyMode
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+		case PrivacyModelPackage.DATA_ORIGIN:
+			return createDataOriginFromString(eDataType, initialValue);
 		case PrivacyModelPackage.DATA_TYPE:
 			return createDataTypeFromString(eDataType, initialValue);
 		case PrivacyModelPackage.DOCUMENT_TYPE:
@@ -161,6 +163,8 @@ public class PrivacyModelFactoryImpl extends EFactoryImpl implements PrivacyMode
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+		case PrivacyModelPackage.DATA_ORIGIN:
+			return convertDataOriginToString(eDataType, instanceValue);
 		case PrivacyModelPackage.DATA_TYPE:
 			return convertDataTypeToString(eDataType, instanceValue);
 		case PrivacyModelPackage.DOCUMENT_TYPE:
@@ -442,6 +446,28 @@ public class PrivacyModelFactoryImpl extends EFactoryImpl implements PrivacyMode
 	public ComplaintBasedOnAction createComplaintBasedOnAction() {
 		ComplaintBasedOnActionImpl complaintBasedOnAction = new ComplaintBasedOnActionImpl();
 		return complaintBasedOnAction;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataOrigin createDataOriginFromString(EDataType eDataType, String initialValue) {
+		DataOrigin result = DataOrigin.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertDataOriginToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

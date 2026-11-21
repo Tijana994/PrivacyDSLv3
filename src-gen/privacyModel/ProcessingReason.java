@@ -155,7 +155,25 @@ public enum ProcessingReason implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LEGAL_OBLIGATION(13, "LegalObligation", "LegalObligation");
+	LEGAL_OBLIGATION(13, "LegalObligation", "LegalObligation"),
+	/**
+	* The '<em><b>Not For Profit Body Activity</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #NOT_FOR_PROFIT_BODY_ACTIVITY_VALUE
+	* @generated
+	* @ordered
+	*/
+	NOT_FOR_PROFIT_BODY_ACTIVITY(14, "NotForProfitBodyActivity", "NotForProfitBodyActivity"),
+	/**
+	* The '<em><b>Health Care</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #HEALTH_CARE_VALUE
+	* @generated
+	* @ordered
+	*/
+	HEALTH_CARE(15, "HealthCare", "HealthCare");
 
 	/**
 	 * The '<em><b>Research</b></em>' literal value.
@@ -312,6 +330,28 @@ public enum ProcessingReason implements Enumerator {
 	public static final int LEGAL_OBLIGATION_VALUE = 13;
 
 	/**
+	 * The '<em><b>Not For Profit Body Activity</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #NOT_FOR_PROFIT_BODY_ACTIVITY
+	 * @model name="NotForProfitBodyActivity"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int NOT_FOR_PROFIT_BODY_ACTIVITY_VALUE = 14;
+
+	/**
+	 * The '<em><b>Health Care</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #HEALTH_CARE
+	 * @model name="HealthCare"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int HEALTH_CARE_VALUE = 15;
+
+	/**
 	 * An array of all the '<em><b>Processing Reason</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -320,7 +360,7 @@ public enum ProcessingReason implements Enumerator {
 	private static final ProcessingReason[] VALUES_ARRAY = new ProcessingReason[] { RESEARCH, PUBLIC_HEALTH,
 			OUT_OF_SCOPE, PUBLIC_INTEREST, STATISTICAL_PURPOSES, EXERCISING_SPECIFIC_RIGHTS, MARKETING, TESTING,
 			PROFILING, PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT, LEGITIMATE_INTERESTS, STOP_PROCESSING,
-			CONTRACT_PERFORMANCE, LEGAL_OBLIGATION, };
+			CONTRACT_PERFORMANCE, LEGAL_OBLIGATION, NOT_FOR_PROFIT_BODY_ACTIVITY, HEALTH_CARE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Processing Reason</b></em>' enumerators.
@@ -404,6 +444,10 @@ public enum ProcessingReason implements Enumerator {
 			return CONTRACT_PERFORMANCE;
 		case LEGAL_OBLIGATION_VALUE:
 			return LEGAL_OBLIGATION;
+		case NOT_FOR_PROFIT_BODY_ACTIVITY_VALUE:
+			return NOT_FOR_PROFIT_BODY_ACTIVITY;
+		case HEALTH_CARE_VALUE:
+			return HEALTH_CARE;
 		}
 		return null;
 	}

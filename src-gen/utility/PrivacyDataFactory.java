@@ -5,6 +5,7 @@ import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
 
+import privacyModel.DataOrigin;
 import privacyModel.DataType;
 import privacyModel.DocumentType;
 import privacyModel.LocationType;
@@ -31,7 +32,7 @@ public class PrivacyDataFactory {
 		}
 		
 		public static void addSharedPrivacyData(String name, String privacyDataId, 
-				Boolean collectedFromSubject, String privacyDataSource, List<String> additionalProtectionControls)
+				DataOrigin origin, String privacyDataSource, List<String> additionalProtectionControls)
 		{
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
@@ -46,7 +47,7 @@ public class PrivacyDataFactory {
 			}
 			var sharedPrivacyDataObject = repo.getFactory().createSharedPrivacyData();
 			sharedPrivacyDataObject.setName(name);
-			sharedPrivacyDataObject.setCollectedFromSubject(collectedFromSubject);
+			sharedPrivacyDataObject.setOrigin(origin);
 			sharedPrivacyDataObject.setDataSource(privacyDataSource);
 			sharedPrivacyDataObject.setPrivacydata(privacyDataOptional.get());
 			if(additionalProtectionControls != null)
@@ -59,7 +60,7 @@ public class PrivacyDataFactory {
 		}
 		
 		public static void addPrivacyDataWithSharedPrivacyData(String name, DataType type,
-				Boolean collectedFromSubject, String privacyDataSource, List<String> additionalProtectionControls)
+				DataOrigin origin, String privacyDataSource, List<String> additionalProtectionControls)
 		{
 			var repo = new PrivacyModelRepository();
 			var model = repo.getModel();
@@ -69,7 +70,7 @@ public class PrivacyDataFactory {
 			model.getAllDatas().add(privacyDataObject);
 			var sharedPrivacyDataObject = repo.getFactory().createSharedPrivacyData();
 			sharedPrivacyDataObject.setName(name);
-			sharedPrivacyDataObject.setCollectedFromSubject(collectedFromSubject);
+			sharedPrivacyDataObject.setOrigin(origin);
 			sharedPrivacyDataObject.setDataSource(privacyDataSource);
 			sharedPrivacyDataObject.setPrivacydata(privacyDataObject);
 			if(additionalProtectionControls != null)

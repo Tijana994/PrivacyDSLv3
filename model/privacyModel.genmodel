@@ -20,6 +20,7 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/Religious"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/Health"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/Judicial"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DataType/TradeUnionMembership"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//DocumentType">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//DocumentType/ChildCustody"/>
@@ -233,6 +234,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/processingReasonSubtype"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Purpose/subPurposes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/details"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/erasureDate"/>
       <genOperations ecoreOperation="privacyModel.ecore#//Purpose/isValid">
         <genParameters ecoreParameter="privacyModel.ecore#//Purpose/isValid/purpose"/>
       </genOperations>
@@ -304,6 +306,9 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/isDateInInterval">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isDateInInterval/time"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isDateInInterval/date"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/legalAgeLimitFor">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/legalAgeLimitFor/principal"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Where">

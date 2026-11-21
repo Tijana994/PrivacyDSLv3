@@ -117,13 +117,13 @@ public enum DataType implements Enumerator {
 	 */
 	JUDICIAL(9, "Judicial", "Judicial"),
 	/**
-	* The '<em><b>Trade Union Membership</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Trade Union Membership</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #TRADE_UNION_MEMBERSHIP_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #TRADE_UNION_MEMBERSHIP_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	TRADE_UNION_MEMBERSHIP(10, "TradeUnionMembership", "TradeUnionMembership");
 
 	/**
