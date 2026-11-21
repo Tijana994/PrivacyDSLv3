@@ -8334,7 +8334,17 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			 *                   not (self.how.consent = null
 			 *                   ) and self.how.consent.type = ConsentType::Explicit or
 			 *                   self.hasProcessingReason(ProcessingReason::ExercisingSpecificRights) or
-			 *                   self.hasProcessingReason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject) or
+			 *                   not (self.why = null
+			 *                   ) and
+			 *                   (
+			 *                     self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,
+			 *                       Sequence{ProcessingReasonSubtype::PhysicallyIncapable, ProcessingReasonSubtype::LegallyIncapable
+			 *                       }) or
+			 *                     self.why.subPurposes->exists(sub |
+			 *                       sub.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,
+			 *                         Sequence{ProcessingReasonSubtype::PhysicallyIncapable, ProcessingReasonSubtype::LegallyIncapable
+			 *                         }))
+			 *                   ) or
 			 *                   self.hasProcessingReason(ProcessingReason::PublicInterest) or
 			 *                   self.hasProcessingReason(ProcessingReason::PublicHealth) or
 			 *                   self.hasProcessingReason(ProcessingReason::Research) or
@@ -8487,7 +8497,17 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 							 *     not (self.how.consent = null
 							 *     ) and self.how.consent.type = ConsentType::Explicit or
 							 *     self.hasProcessingReason(ProcessingReason::ExercisingSpecificRights) or
-							 *     self.hasProcessingReason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject) or
+							 *     not (self.why = null
+							 *     ) and
+							 *     (
+							 *       self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,
+							 *         Sequence{ProcessingReasonSubtype::PhysicallyIncapable, ProcessingReasonSubtype::LegallyIncapable
+							 *         }) or
+							 *       self.why.subPurposes->exists(sub |
+							 *         sub.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,
+							 *           Sequence{ProcessingReasonSubtype::PhysicallyIncapable, ProcessingReasonSubtype::LegallyIncapable
+							 *           }))
+							 *     ) or
 							 *     self.hasProcessingReason(ProcessingReason::PublicInterest) or
 							 *     self.hasProcessingReason(ProcessingReason::PublicHealth) or
 							 *     self.hasProcessingReason(ProcessingReason::Research) or
@@ -8508,21 +8528,21 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 										.evaluate(PrivacyModelTables.specialCategories, BOXED_type).booleanValue();
 								/*@Thrown*/ Boolean local_0;
 								if (includes) {
-									/*@Caught*/ Object CAUGHT_or_10;
+									/*@Caught*/ Object CAUGHT_or_11;
 									try {
-										/*@Caught*/ Object CAUGHT_or_9;
+										/*@Caught*/ Object CAUGHT_or_10;
 										try {
-											/*@Caught*/ Object CAUGHT_or_8;
+											/*@Caught*/ Object CAUGHT_or_9;
 											try {
-												/*@Caught*/ Object CAUGHT_or_7;
+												/*@Caught*/ Object CAUGHT_or_8;
 												try {
-													/*@Caught*/ Object CAUGHT_or_6;
+													/*@Caught*/ Object CAUGHT_or_7;
 													try {
-														/*@Caught*/ Object CAUGHT_or_5;
+														/*@Caught*/ Object CAUGHT_or_6;
 														try {
-															/*@Caught*/ Object CAUGHT_or_4;
+															/*@Caught*/ Object CAUGHT_or_5;
 															try {
-																/*@Caught*/ Object CAUGHT_or_3;
+																/*@Caught*/ Object CAUGHT_or_4;
 																try {
 																	/*@Caught*/ Object CAUGHT_or_2;
 																	try {
@@ -8682,238 +8702,341 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 																	} catch (Exception e) {
 																		CAUGHT_or_2 = ValueUtil.createInvalidValue(e);
 																	}
-																	final /*@Thrown*/ Boolean or_3;
+																	final /*@Thrown*/ Boolean or_4;
 																	if (CAUGHT_or_2 == ValueUtil.TRUE_VALUE) {
-																		or_3 = ValueUtil.TRUE_VALUE;
+																		or_4 = ValueUtil.TRUE_VALUE;
 																	} else {
-																		final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject = (ProcessingReason) idResolver
-																				.ecoreValueOf(Enumerator.class,
-																						PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject);
-																		final /*@NonInvalid*/ boolean hasProcessingReason_0 = this
-																				.hasProcessingReason(
-																						ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject);
-																		if (hasProcessingReason_0) {
-																			or_3 = ValueUtil.TRUE_VALUE;
+																		/*@Caught*/ Object CAUGHT_and_1;
+																		try {
+																			final /*@NonInvalid*/ Boolean not_1 = ValueUtil.TRUE_VALUE;
+																			final /*@Thrown*/ Boolean and_1;
+																			if (not_1 == ValueUtil.FALSE_VALUE) {
+																				and_1 = ValueUtil.FALSE_VALUE;
+																			} else {
+																				/*@Caught*/ Object CAUGHT_or_3;
+																				try {
+																					final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject = (ProcessingReason) idResolver
+																							.ecoreValueOf(
+																									Enumerator.class,
+																									PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject);
+																					final /*@NonInvalid*/ Purpose why = this
+																							.getWhy();
+																					final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence = ((IdResolverExtension) idResolver)
+																							.ecoreValueOfAll(
+																									ProcessingReasonSubtype.class,
+																									PrivacyModelTables.Sequence);
+																					final /*@NonInvalid*/ boolean containsAllowedPurposeReasonAndSubreason = why
+																							.containsAllowedPurposeReasonAndSubreason(
+																									ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject,
+																									(EList<ProcessingReasonSubtype>) ECORE_Sequence);
+																					final /*@Thrown*/ Boolean or_3;
+																					if (containsAllowedPurposeReasonAndSubreason) {
+																						or_3 = ValueUtil.TRUE_VALUE;
+																					} else {
+																						final /*@NonInvalid*/ List<Purpose> subPurposes = why
+																								.getSubPurposes();
+																						final /*@NonInvalid*/ OrderedSetValue BOXED_subPurposes = idResolver
+																								.createOrderedSetOfAll(
+																										PrivacyModelTables.ORD_CLSSid_Purpose,
+																										subPurposes);
+																						/*@Thrown*/ Object accumulator_1 = ValueUtil.FALSE_VALUE;
+																						Iterator<Object> ITERATOR_sub = BOXED_subPurposes
+																								.iterator();
+																						/*@NonInvalid*/ Boolean exists_0;
+																						while (true) {
+																							if (!ITERATOR_sub
+																									.hasNext()) {
+																								if (accumulator_1 == ValueUtil.FALSE_VALUE) {
+																									exists_0 = ValueUtil.FALSE_VALUE;
+																								} else {
+																									throw (InvalidValueException) accumulator_1;
+																								}
+																								break;
+																							}
+																							/*@NonInvalid*/ Purpose sub = (Purpose) ITERATOR_sub
+																									.next();
+																							/**
+																							 *
+																							 * sub.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,
+																							 *   Sequence{ProcessingReasonSubtype::PhysicallyIncapable, ProcessingReasonSubtype::LegallyIncapable
+																							 *   })
+																							 */
+																							final /*@NonInvalid*/ boolean containsAllowedPurposeReasonAndSubreason_0 = sub
+																									.containsAllowedPurposeReasonAndSubreason(
+																											ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject,
+																											(EList<ProcessingReasonSubtype>) ECORE_Sequence);
+																							//
+																							if (containsAllowedPurposeReasonAndSubreason_0) { // Normal successful body evaluation result
+																								exists_0 = ValueUtil.TRUE_VALUE;
+																								break; // Stop immediately
+																							} else if (!containsAllowedPurposeReasonAndSubreason_0) { // Normal unsuccessful body evaluation result
+																								; // Carry on
+																							} else { // Impossible badly typed result
+																								accumulator_1 = new InvalidValueException(
+																										PivotMessages.NonBooleanBody,
+																										"exists");
+																							}
+																						}
+																						if (exists_0 == ValueUtil.TRUE_VALUE) {
+																							or_3 = ValueUtil.TRUE_VALUE;
+																						} else {
+																							if (exists_0 == null) {
+																								or_3 = null;
+																							} else {
+																								or_3 = ValueUtil.FALSE_VALUE;
+																							}
+																						}
+																					}
+																					CAUGHT_or_3 = or_3;
+																				} catch (Exception e) {
+																					CAUGHT_or_3 = ValueUtil
+																							.createInvalidValue(e);
+																				}
+																				if (CAUGHT_or_3 == ValueUtil.FALSE_VALUE) {
+																					and_1 = ValueUtil.FALSE_VALUE;
+																				} else {
+																					if (CAUGHT_or_3 instanceof InvalidValueException) {
+																						throw (InvalidValueException) CAUGHT_or_3;
+																					}
+																					if ((not_1 == null)
+																							|| (CAUGHT_or_3 == null)) {
+																						and_1 = null;
+																					} else {
+																						and_1 = ValueUtil.TRUE_VALUE;
+																					}
+																				}
+																			}
+																			CAUGHT_and_1 = and_1;
+																		} catch (Exception e) {
+																			CAUGHT_and_1 = ValueUtil
+																					.createInvalidValue(e);
+																		}
+																		if (CAUGHT_and_1 == ValueUtil.TRUE_VALUE) {
+																			or_4 = ValueUtil.TRUE_VALUE;
 																		} else {
 																			if (CAUGHT_or_2 instanceof InvalidValueException) {
 																				throw (InvalidValueException) CAUGHT_or_2;
 																			}
-																			if (CAUGHT_or_2 == null) {
-																				or_3 = null;
+																			if (CAUGHT_and_1 instanceof InvalidValueException) {
+																				throw (InvalidValueException) CAUGHT_and_1;
+																			}
+																			if ((CAUGHT_or_2 == null)
+																					|| (CAUGHT_and_1 == null)) {
+																				or_4 = null;
 																			} else {
-																				or_3 = ValueUtil.FALSE_VALUE;
+																				or_4 = ValueUtil.FALSE_VALUE;
 																			}
 																		}
 																	}
-																	CAUGHT_or_3 = or_3;
+																	CAUGHT_or_4 = or_4;
 																} catch (Exception e) {
-																	CAUGHT_or_3 = ValueUtil.createInvalidValue(e);
+																	CAUGHT_or_4 = ValueUtil.createInvalidValue(e);
 																}
-																final /*@Thrown*/ Boolean or_4;
-																if (CAUGHT_or_3 == ValueUtil.TRUE_VALUE) {
-																	or_4 = ValueUtil.TRUE_VALUE;
+																final /*@Thrown*/ Boolean or_5;
+																if (CAUGHT_or_4 == ValueUtil.TRUE_VALUE) {
+																	or_5 = ValueUtil.TRUE_VALUE;
 																} else {
 																	final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_PublicInterest = (ProcessingReason) idResolver
 																			.ecoreValueOf(Enumerator.class,
 																					PrivacyModelTables.ELITid_PublicInterest);
-																	final /*@NonInvalid*/ boolean hasProcessingReason_1 = this
+																	final /*@NonInvalid*/ boolean hasProcessingReason_0 = this
 																			.hasProcessingReason(
 																					ECORE_ELITid_PublicInterest);
-																	if (hasProcessingReason_1) {
-																		or_4 = ValueUtil.TRUE_VALUE;
+																	if (hasProcessingReason_0) {
+																		or_5 = ValueUtil.TRUE_VALUE;
 																	} else {
-																		if (CAUGHT_or_3 instanceof InvalidValueException) {
-																			throw (InvalidValueException) CAUGHT_or_3;
+																		if (CAUGHT_or_4 instanceof InvalidValueException) {
+																			throw (InvalidValueException) CAUGHT_or_4;
 																		}
-																		if (CAUGHT_or_3 == null) {
-																			or_4 = null;
+																		if (CAUGHT_or_4 == null) {
+																			or_5 = null;
 																		} else {
-																			or_4 = ValueUtil.FALSE_VALUE;
+																			or_5 = ValueUtil.FALSE_VALUE;
 																		}
 																	}
 																}
-																CAUGHT_or_4 = or_4;
+																CAUGHT_or_5 = or_5;
 															} catch (Exception e) {
-																CAUGHT_or_4 = ValueUtil.createInvalidValue(e);
+																CAUGHT_or_5 = ValueUtil.createInvalidValue(e);
 															}
-															final /*@Thrown*/ Boolean or_5;
-															if (CAUGHT_or_4 == ValueUtil.TRUE_VALUE) {
-																or_5 = ValueUtil.TRUE_VALUE;
+															final /*@Thrown*/ Boolean or_6;
+															if (CAUGHT_or_5 == ValueUtil.TRUE_VALUE) {
+																or_6 = ValueUtil.TRUE_VALUE;
 															} else {
 																final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_PublicHealth = (ProcessingReason) idResolver
 																		.ecoreValueOf(Enumerator.class,
 																				PrivacyModelTables.ELITid_PublicHealth);
-																final /*@NonInvalid*/ boolean hasProcessingReason_2 = this
+																final /*@NonInvalid*/ boolean hasProcessingReason_1 = this
 																		.hasProcessingReason(ECORE_ELITid_PublicHealth);
-																if (hasProcessingReason_2) {
-																	or_5 = ValueUtil.TRUE_VALUE;
+																if (hasProcessingReason_1) {
+																	or_6 = ValueUtil.TRUE_VALUE;
 																} else {
-																	if (CAUGHT_or_4 instanceof InvalidValueException) {
-																		throw (InvalidValueException) CAUGHT_or_4;
+																	if (CAUGHT_or_5 instanceof InvalidValueException) {
+																		throw (InvalidValueException) CAUGHT_or_5;
 																	}
-																	if (CAUGHT_or_4 == null) {
-																		or_5 = null;
+																	if (CAUGHT_or_5 == null) {
+																		or_6 = null;
 																	} else {
-																		or_5 = ValueUtil.FALSE_VALUE;
+																		or_6 = ValueUtil.FALSE_VALUE;
 																	}
 																}
 															}
-															CAUGHT_or_5 = or_5;
+															CAUGHT_or_6 = or_6;
 														} catch (Exception e) {
-															CAUGHT_or_5 = ValueUtil.createInvalidValue(e);
+															CAUGHT_or_6 = ValueUtil.createInvalidValue(e);
 														}
-														final /*@Thrown*/ Boolean or_6;
-														if (CAUGHT_or_5 == ValueUtil.TRUE_VALUE) {
-															or_6 = ValueUtil.TRUE_VALUE;
+														final /*@Thrown*/ Boolean or_7;
+														if (CAUGHT_or_6 == ValueUtil.TRUE_VALUE) {
+															or_7 = ValueUtil.TRUE_VALUE;
 														} else {
 															final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_Research = (ProcessingReason) idResolver
 																	.ecoreValueOf(Enumerator.class,
 																			PrivacyModelTables.ELITid_Research);
-															final /*@NonInvalid*/ boolean hasProcessingReason_3 = this
+															final /*@NonInvalid*/ boolean hasProcessingReason_2 = this
 																	.hasProcessingReason(ECORE_ELITid_Research);
-															if (hasProcessingReason_3) {
-																or_6 = ValueUtil.TRUE_VALUE;
+															if (hasProcessingReason_2) {
+																or_7 = ValueUtil.TRUE_VALUE;
 															} else {
-																if (CAUGHT_or_5 instanceof InvalidValueException) {
-																	throw (InvalidValueException) CAUGHT_or_5;
+																if (CAUGHT_or_6 instanceof InvalidValueException) {
+																	throw (InvalidValueException) CAUGHT_or_6;
 																}
-																if (CAUGHT_or_5 == null) {
-																	or_6 = null;
+																if (CAUGHT_or_6 == null) {
+																	or_7 = null;
 																} else {
-																	or_6 = ValueUtil.FALSE_VALUE;
+																	or_7 = ValueUtil.FALSE_VALUE;
 																}
 															}
 														}
-														CAUGHT_or_6 = or_6;
+														CAUGHT_or_7 = or_7;
 													} catch (Exception e) {
-														CAUGHT_or_6 = ValueUtil.createInvalidValue(e);
+														CAUGHT_or_7 = ValueUtil.createInvalidValue(e);
 													}
-													final /*@Thrown*/ Boolean or_7;
-													if (CAUGHT_or_6 == ValueUtil.TRUE_VALUE) {
-														or_7 = ValueUtil.TRUE_VALUE;
+													final /*@Thrown*/ Boolean or_8;
+													if (CAUGHT_or_7 == ValueUtil.TRUE_VALUE) {
+														or_8 = ValueUtil.TRUE_VALUE;
 													} else {
 														final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_StatisticalPurposes = (ProcessingReason) idResolver
 																.ecoreValueOf(Enumerator.class,
 																		PrivacyModelTables.ELITid_StatisticalPurposes);
-														final /*@NonInvalid*/ boolean hasProcessingReason_4 = this
+														final /*@NonInvalid*/ boolean hasProcessingReason_3 = this
 																.hasProcessingReason(ECORE_ELITid_StatisticalPurposes);
-														if (hasProcessingReason_4) {
-															or_7 = ValueUtil.TRUE_VALUE;
+														if (hasProcessingReason_3) {
+															or_8 = ValueUtil.TRUE_VALUE;
 														} else {
-															if (CAUGHT_or_6 instanceof InvalidValueException) {
-																throw (InvalidValueException) CAUGHT_or_6;
+															if (CAUGHT_or_7 instanceof InvalidValueException) {
+																throw (InvalidValueException) CAUGHT_or_7;
 															}
-															if (CAUGHT_or_6 == null) {
-																or_7 = null;
+															if (CAUGHT_or_7 == null) {
+																or_8 = null;
 															} else {
-																or_7 = ValueUtil.FALSE_VALUE;
+																or_8 = ValueUtil.FALSE_VALUE;
 															}
 														}
 													}
-													CAUGHT_or_7 = or_7;
+													CAUGHT_or_8 = or_8;
 												} catch (Exception e) {
-													CAUGHT_or_7 = ValueUtil.createInvalidValue(e);
+													CAUGHT_or_8 = ValueUtil.createInvalidValue(e);
 												}
-												final /*@Thrown*/ Boolean or_8;
-												if (CAUGHT_or_7 == ValueUtil.TRUE_VALUE) {
-													or_8 = ValueUtil.TRUE_VALUE;
+												final /*@Thrown*/ Boolean or_9;
+												if (CAUGHT_or_8 == ValueUtil.TRUE_VALUE) {
+													or_9 = ValueUtil.TRUE_VALUE;
 												} else {
 													final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_NotForProfitBodyActivity = (ProcessingReason) idResolver
 															.ecoreValueOf(Enumerator.class,
 																	PrivacyModelTables.ELITid_NotForProfitBodyActivity);
-													final /*@NonInvalid*/ boolean hasProcessingReason_5 = this
+													final /*@NonInvalid*/ boolean hasProcessingReason_4 = this
 															.hasProcessingReason(ECORE_ELITid_NotForProfitBodyActivity);
-													if (hasProcessingReason_5) {
-														or_8 = ValueUtil.TRUE_VALUE;
+													if (hasProcessingReason_4) {
+														or_9 = ValueUtil.TRUE_VALUE;
 													} else {
-														if (CAUGHT_or_7 instanceof InvalidValueException) {
-															throw (InvalidValueException) CAUGHT_or_7;
+														if (CAUGHT_or_8 instanceof InvalidValueException) {
+															throw (InvalidValueException) CAUGHT_or_8;
 														}
-														if (CAUGHT_or_7 == null) {
-															or_8 = null;
+														if (CAUGHT_or_8 == null) {
+															or_9 = null;
 														} else {
-															or_8 = ValueUtil.FALSE_VALUE;
+															or_9 = ValueUtil.FALSE_VALUE;
 														}
 													}
 												}
-												CAUGHT_or_8 = or_8;
+												CAUGHT_or_9 = or_9;
 											} catch (Exception e) {
-												CAUGHT_or_8 = ValueUtil.createInvalidValue(e);
+												CAUGHT_or_9 = ValueUtil.createInvalidValue(e);
 											}
-											final /*@Thrown*/ Boolean or_9;
-											if (CAUGHT_or_8 == ValueUtil.TRUE_VALUE) {
-												or_9 = ValueUtil.TRUE_VALUE;
+											final /*@Thrown*/ Boolean or_10;
+											if (CAUGHT_or_9 == ValueUtil.TRUE_VALUE) {
+												or_10 = ValueUtil.TRUE_VALUE;
 											} else {
 												final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_HealthCare = (ProcessingReason) idResolver
 														.ecoreValueOf(Enumerator.class,
 																PrivacyModelTables.ELITid_HealthCare);
-												final /*@NonInvalid*/ boolean hasProcessingReason_6 = this
+												final /*@NonInvalid*/ boolean hasProcessingReason_5 = this
 														.hasProcessingReason(ECORE_ELITid_HealthCare);
-												if (hasProcessingReason_6) {
-													or_9 = ValueUtil.TRUE_VALUE;
+												if (hasProcessingReason_5) {
+													or_10 = ValueUtil.TRUE_VALUE;
 												} else {
-													if (CAUGHT_or_8 instanceof InvalidValueException) {
-														throw (InvalidValueException) CAUGHT_or_8;
+													if (CAUGHT_or_9 instanceof InvalidValueException) {
+														throw (InvalidValueException) CAUGHT_or_9;
 													}
-													if (CAUGHT_or_8 == null) {
-														or_9 = null;
+													if (CAUGHT_or_9 == null) {
+														or_10 = null;
 													} else {
-														or_9 = ValueUtil.FALSE_VALUE;
+														or_10 = ValueUtil.FALSE_VALUE;
 													}
 												}
 											}
-											CAUGHT_or_9 = or_9;
+											CAUGHT_or_10 = or_10;
 										} catch (Exception e) {
-											CAUGHT_or_9 = ValueUtil.createInvalidValue(e);
+											CAUGHT_or_10 = ValueUtil.createInvalidValue(e);
 										}
-										final /*@Thrown*/ Boolean or_10;
-										if (CAUGHT_or_9 == ValueUtil.TRUE_VALUE) {
-											or_10 = ValueUtil.TRUE_VALUE;
+										final /*@Thrown*/ Boolean or_11;
+										if (CAUGHT_or_10 == ValueUtil.TRUE_VALUE) {
+											or_11 = ValueUtil.TRUE_VALUE;
 										} else {
 											final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_LegalClaims = (ProcessingReason) idResolver
 													.ecoreValueOf(Enumerator.class,
 															PrivacyModelTables.ELITid_LegalClaims);
-											final /*@NonInvalid*/ boolean hasProcessingReason_7 = this
+											final /*@NonInvalid*/ boolean hasProcessingReason_6 = this
 													.hasProcessingReason(ECORE_ELITid_LegalClaims);
-											if (hasProcessingReason_7) {
-												or_10 = ValueUtil.TRUE_VALUE;
+											if (hasProcessingReason_6) {
+												or_11 = ValueUtil.TRUE_VALUE;
 											} else {
-												if (CAUGHT_or_9 instanceof InvalidValueException) {
-													throw (InvalidValueException) CAUGHT_or_9;
+												if (CAUGHT_or_10 instanceof InvalidValueException) {
+													throw (InvalidValueException) CAUGHT_or_10;
 												}
-												if (CAUGHT_or_9 == null) {
-													or_10 = null;
+												if (CAUGHT_or_10 == null) {
+													or_11 = null;
 												} else {
-													or_10 = ValueUtil.FALSE_VALUE;
+													or_11 = ValueUtil.FALSE_VALUE;
 												}
 											}
 										}
-										CAUGHT_or_10 = or_10;
+										CAUGHT_or_11 = or_11;
 									} catch (Exception e) {
-										CAUGHT_or_10 = ValueUtil.createInvalidValue(e);
+										CAUGHT_or_11 = ValueUtil.createInvalidValue(e);
 									}
-									final /*@Thrown*/ Boolean or_11;
-									if (CAUGHT_or_10 == ValueUtil.TRUE_VALUE) {
-										or_11 = ValueUtil.TRUE_VALUE;
+									final /*@Thrown*/ Boolean or_12;
+									if (CAUGHT_or_11 == ValueUtil.TRUE_VALUE) {
+										or_12 = ValueUtil.TRUE_VALUE;
 									} else {
 										final /*@NonInvalid*/ DataOrigin origin = data.getOrigin();
 										final /*@NonInvalid*/ EnumerationLiteralId BOXED_origin = PrivacyModelTables.ENUMid_DataOrigin
 												.getEnumerationLiteralId(ClassUtil.nonNullState(origin.getName()));
 										final /*@NonInvalid*/ boolean eq_5 = BOXED_origin == PrivacyModelTables.ELITid_MadePublicByDataSubject;
 										if (eq_5) {
-											or_11 = ValueUtil.TRUE_VALUE;
+											or_12 = ValueUtil.TRUE_VALUE;
 										} else {
-											if (CAUGHT_or_10 instanceof InvalidValueException) {
-												throw (InvalidValueException) CAUGHT_or_10;
+											if (CAUGHT_or_11 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_or_11;
 											}
-											if (CAUGHT_or_10 == null) {
-												or_11 = null;
+											if (CAUGHT_or_11 == null) {
+												or_12 = null;
 											} else {
-												or_11 = ValueUtil.FALSE_VALUE;
+												or_12 = ValueUtil.FALSE_VALUE;
 											}
 										}
 									}
-									local_0 = or_11;
+									local_0 = or_12;
 								} else {
 									local_0 = ValueUtil.TRUE_VALUE;
 								}
@@ -9119,22 +9242,22 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 						} else {
 							final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_PublicInterest = (ProcessingReason) idResolver
 									.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_PublicInterest);
-							final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence = ((IdResolverExtension) idResolver)
-									.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
+							final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_1 = ((IdResolverExtension) idResolver)
+									.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_6);
 							final /*@NonInvalid*/ boolean containsAllowedPurposeReasonAndSubreason = why_0
 									.containsAllowedPurposeReasonAndSubreason(ECORE_ELITid_PublicInterest,
-											(EList<ProcessingReasonSubtype>) ECORE_Sequence);
+											(EList<ProcessingReasonSubtype>) ECORE_Sequence_1);
 							final /*@NonInvalid*/ Boolean or;
 							if (containsAllowedPurposeReasonAndSubreason) {
 								or = ValueUtil.TRUE_VALUE;
 							} else {
 								final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_Research = (ProcessingReason) idResolver
 										.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_Research);
-								final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_0 = ((IdResolverExtension) idResolver)
-										.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_0);
+								final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_2 = ((IdResolverExtension) idResolver)
+										.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_2);
 								final /*@NonInvalid*/ boolean containsAllowedPurposeReasonAndSubreason_0 = why_0
 										.containsAllowedPurposeReasonAndSubreason(ECORE_ELITid_Research,
-												(EList<ProcessingReasonSubtype>) ECORE_Sequence_0);
+												(EList<ProcessingReasonSubtype>) ECORE_Sequence_2);
 								if (containsAllowedPurposeReasonAndSubreason_0) {
 									or = ValueUtil.TRUE_VALUE;
 								} else {
@@ -12122,12 +12245,12 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 										final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_PublicInterest = (ProcessingReason) idResolver
 												.ecoreValueOf(Enumerator.class,
 														PrivacyModelTables.ELITid_PublicInterest);
-										final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_1 = ((IdResolverExtension) idResolver)
+										final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_3 = ((IdResolverExtension) idResolver)
 												.ecoreValueOfAll(ProcessingReasonSubtype.class,
-														PrivacyModelTables.Sequence_6);
+														PrivacyModelTables.Sequence_8);
 										final /*@NonInvalid*/ boolean containsAllowedPurposeReasonAndSubreason = why_0
 												.containsAllowedPurposeReasonAndSubreason(ECORE_ELITid_PublicInterest,
-														(EList<ProcessingReasonSubtype>) ECORE_Sequence_1);
+														(EList<ProcessingReasonSubtype>) ECORE_Sequence_3);
 										final /*@NonInvalid*/ Boolean or_4;
 										if (containsAllowedPurposeReasonAndSubreason) {
 											or_4 = ValueUtil.TRUE_VALUE;
@@ -12135,13 +12258,13 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 											final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject = (ProcessingReason) idResolver
 													.ecoreValueOf(Enumerator.class,
 															PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject);
-											final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_2 = ((IdResolverExtension) idResolver)
+											final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_4 = ((IdResolverExtension) idResolver)
 													.ecoreValueOfAll(ProcessingReasonSubtype.class,
-															PrivacyModelTables.Sequence_2);
+															PrivacyModelTables.Sequence_4);
 											final /*@NonInvalid*/ boolean containsAllowedPurposeReasonAndSubreason_0 = why_0
 													.containsAllowedPurposeReasonAndSubreason(
 															ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject,
-															(EList<ProcessingReasonSubtype>) ECORE_Sequence_2);
+															(EList<ProcessingReasonSubtype>) ECORE_Sequence_4);
 											if (containsAllowedPurposeReasonAndSubreason_0) {
 												or_4 = ValueUtil.TRUE_VALUE;
 											} else {

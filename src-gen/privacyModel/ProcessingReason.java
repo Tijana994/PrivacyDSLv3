@@ -175,13 +175,13 @@ public enum ProcessingReason implements Enumerator {
 	 */
 	HEALTH_CARE(15, "HealthCare", "HealthCare"),
 	/**
-	* The '<em><b>Legal Claims</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Legal Claims</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #LEGAL_CLAIMS_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #LEGAL_CLAIMS_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LEGAL_CLAIMS(16, "LegalClaims", "LegalClaims");
 
 	/**

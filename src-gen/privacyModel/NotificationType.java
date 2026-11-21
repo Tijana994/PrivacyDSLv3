@@ -98,22 +98,22 @@ public enum NotificationType implements Enumerator {
 	 */
 	EXECUTED_ERASURE(7, "ExecutedErasure", "ExecutedErasure"),
 	/**
-	* The '<em><b>Restriction</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Restriction</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #RESTRICTION_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #RESTRICTION_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	RESTRICTION(8, "Restriction", "Restriction"),
 	/**
-	* The '<em><b>Restriction Lifted</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Restriction Lifted</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #RESTRICTION_LIFTED_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #RESTRICTION_LIFTED_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	RESTRICTION_LIFTED(9, "RestrictionLifted", "RestrictionLifted");
 
 	/**

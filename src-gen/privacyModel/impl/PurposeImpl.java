@@ -667,10 +667,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_PublicInterest = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_PublicInterest);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_6 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_6);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_8 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_8);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_PublicInterest,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_6);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_8);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -720,10 +720,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_PublicHealth = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_PublicHealth);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_4 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_6 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_6);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_PublicHealth,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_4);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_6);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -773,10 +773,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_OutOfScope = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_OutOfScope);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_5 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_5);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_7 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_7);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_OutOfScope,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_5);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_7);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -826,10 +826,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_Profiling = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_Profiling);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_11 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_13 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_6);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_Profiling,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_11);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_13);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -879,10 +879,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ContractPerformance = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_ContractPerformance);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_15 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_15);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_17 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_17);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_ContractPerformance,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_15);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_17);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -932,10 +932,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_LegalObligation = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_LegalObligation);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_16 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_18 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_6);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_LegalObligation,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_16);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_18);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -985,10 +985,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_StopProcessing_0 = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_StopProcessing_0);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_14 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_16 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_6);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_StopProcessing_0,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_14);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_16);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -1038,10 +1038,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_Marketing = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_Marketing);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_9 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_11 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_6);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_Marketing,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_9);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_11);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -1091,10 +1091,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ExercisingSpecificRights = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_ExercisingSpecificRights);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_8 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_8);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_10 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_10);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_ExercisingSpecificRights,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_8);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_10);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -1145,11 +1145,11 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class,
 								PrivacyModelTables.ELITid_ProtectTheVitalInterestsOfTheDataSubject);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_12 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_12);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_14 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_14);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(
 						ECORE_ELITid_ProtectTheVitalInterestsOfTheDataSubject,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_12);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_14);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -1199,10 +1199,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_LegitimateInterests = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_LegitimateInterests);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_13 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_15 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_6);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_LegitimateInterests,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_13);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_15);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -1252,10 +1252,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_LegalClaims = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_LegalClaims);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_17 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_17);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_19 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_19);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_LegalClaims,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_17);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_19);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -1305,10 +1305,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_Research = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_Research);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_3 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_3);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_5 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_5);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_Research,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_3);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_5);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -1358,10 +1358,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_StatisticalPurposes = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_StatisticalPurposes);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_7 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_9 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_6);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_StatisticalPurposes,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_7);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_9);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
@@ -1411,10 +1411,10 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			} else {
 				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_Testing = (ProcessingReason) idResolver
 						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_Testing);
-				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_10 = ((IdResolverExtension) idResolver)
-						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_4);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_12 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_6);
 				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_Testing,
-						(EList<ProcessingReasonSubtype>) ECORE_Sequence_10);
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_12);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, PrivacyModelTables.INT_0)

@@ -206,13 +206,13 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	 */
 	PRE_CONTRACTUAL(18, "PreContractual", "PreContractual"),
 	/**
-	* The '<em><b>Protection Of Rights Of Others</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Protection Of Rights Of Others</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #PROTECTION_OF_RIGHTS_OF_OTHERS_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #PROTECTION_OF_RIGHTS_OF_OTHERS_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	PROTECTION_OF_RIGHTS_OF_OTHERS(19, "ProtectionOfRightsOfOthers", "ProtectionOfRightsOfOthers");
 
 	/**

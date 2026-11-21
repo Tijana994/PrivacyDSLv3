@@ -107,22 +107,22 @@ public enum Action implements Enumerator {
 	 */
 	DATA_PORTABILITY(8, "DataPortability", "DataPortability"),
 	/**
-	* The '<em><b>Restrict Processing</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Restrict Processing</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #RESTRICT_PROCESSING_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #RESTRICT_PROCESSING_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	RESTRICT_PROCESSING(9, "RestrictProcessing", "RestrictProcessing"),
 	/**
-	* The '<em><b>Lift Restriction</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>Lift Restriction</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #LIFT_RESTRICTION_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #LIFT_RESTRICTION_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LIFT_RESTRICTION(10, "LiftRestriction", "LiftRestriction");
 
 	/**
