@@ -3,8 +3,6 @@
 package privacyModel;
 
 import java.util.Date;
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -26,7 +24,8 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getPurpose()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ResearchShouldNotContainThisSubReason PublicHealthShouldNotContainSubReason OutOfScopeShouldNotContainThisSubReason PublicInterestShouldNotContainThisSubReason StatisticalPurposesShouldNotContainSubReason ExercisingSpecificRightsPurposesCannotContainThisSubReason MarketingShouldNotContainSubReason TestingShouldNotContainSubReason ProfilingShouldNotContainSubReason ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason LegitimateInterestsShouldNotContainThisSubReason StopProcessingShouldNotContainSubReason ContractPerformanceCannotContainThisSubReason LegalObligationShouldNotContainSubReason LegalClaimsShouldNotContainThisSubReason'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ResearchShouldNotContainThisSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::Research, \n\t\t\t\tSequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::Scientific, ProcessingReasonSubtype::Historical,\n\t\t\t\t\tProcessingReasonSubtype::Statistical\n\t\t\t\t})' PublicHealthShouldNotContainSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::PublicHealth, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})' OutOfScopeShouldNotContainThisSubReason='\n\t\t\tisSubPurposeValid(ProcessingReason::OutOfScope, \n\t\t\t\tSequence{ProcessingReasonSubtype::OutOfEU,\n\t\t\t\t\tProcessingReasonSubtype::PersonalActivity, ProcessingReasonSubtype::SpecialScopeOfActivity, ProcessingReasonSubtype::None,\n\t\t\t\t\tProcessingReasonSubtype::Other\n\t\t\t\t})' PublicInterestShouldNotContainThisSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::PublicInterest, \n\t\t\t\tSequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})' StatisticalPurposesShouldNotContainSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::StatisticalPurposes, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})' ExercisingSpecificRightsPurposesCannotContainThisSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::ExercisingSpecificRights, \n\t\t\t\tSequence{ProcessingReasonSubtype::Employment, ProcessingReasonSubtype::SocialSecurity,ProcessingReasonSubtype::SocialProtection, \n\t\t\t\tProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})' MarketingShouldNotContainSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::Marketing, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})' TestingShouldNotContainSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::Testing, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})' ProfilingShouldNotContainSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::Profiling, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})' ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason='\n\t\t\tisSubPurposeValid(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, \n\t\t\t\tSequence{ProcessingReasonSubtype::PhysicallyIncapable,ProcessingReasonSubtype::LegallyIncapable, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::None})' LegitimateInterestsShouldNotContainThisSubReason='\n\t\t\tisSubPurposeValid(ProcessingReason::LegitimateInterests, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})' StopProcessingShouldNotContainSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::StopProcessing, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})' ContractPerformanceCannotContainThisSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::ContractPerformance, \n\t\t\t\tSequence{ProcessingReasonSubtype::PreContractual, \n\t\t\t\tProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})' LegalObligationShouldNotContainSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::LegalObligation, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})' LegalClaimsShouldNotContainThisSubReason='\n\t\t\t\tisSubPurposeValid(ProcessingReason::LegalClaims, \n\t\t\t\tSequence{ProcessingReasonSubtype::ProtectionOfRightsOfOthers, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})'"
  * @generated
  */
 public interface Purpose extends EObject {
@@ -163,127 +162,5 @@ public interface Purpose extends EObject {
 	 */
 	boolean containsAllowedPurposeReasonAndSubreason(ProcessingReason allowedReason,
 			EList<ProcessingReasonSubtype> allowedSubreasons);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::PublicInterest, \n\t\t\t\tSequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})'"
-	 * @generated
-	 */
-	boolean PublicInterestShouldNotContainThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::PublicHealth, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})'"
-	 * @generated
-	 */
-	boolean PublicHealthShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tisSubPurposeValid(ProcessingReason::OutOfScope, \n\t\t\t\tSequence{ProcessingReasonSubtype::OutOfEU,\n\t\t\t\t\tProcessingReasonSubtype::PersonalActivity, ProcessingReasonSubtype::SpecialScopeOfActivity, ProcessingReasonSubtype::None,\n\t\t\t\t\tProcessingReasonSubtype::Other\n\t\t\t\t})'"
-	 * @generated
-	 */
-	boolean OutOfScopeShouldNotContainThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::Profiling, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})'"
-	 * @generated
-	 */
-	boolean ProfilingShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::ContractPerformance, \n\t\t\t\tSequence{ProcessingReasonSubtype::PreContractual, \n\t\t\t\tProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})'"
-	 * @generated
-	 */
-	boolean ContractPerformanceCannotContainThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::LegalObligation, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})'"
-	 * @generated
-	 */
-	boolean LegalObligationShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::StopProcessing, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})'"
-	 * @generated
-	 */
-	boolean StopProcessingShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::Marketing, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})'"
-	 * @generated
-	 */
-	boolean MarketingShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::ExercisingSpecificRights, \n\t\t\t\tSequence{ProcessingReasonSubtype::Employment, ProcessingReasonSubtype::SocialSecurity,ProcessingReasonSubtype::SocialProtection, \n\t\t\t\tProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})'"
-	 * @generated
-	 */
-	boolean ExercisingSpecificRightsPurposesCannotContainThisSubReason(DiagnosticChain diagnostics,
-			Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tisSubPurposeValid(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, \n\t\t\t\tSequence{ProcessingReasonSubtype::PhysicallyIncapable,ProcessingReasonSubtype::LegallyIncapable, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::None})'"
-	 * @generated
-	 */
-	boolean ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason(DiagnosticChain diagnostics,
-			Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tisSubPurposeValid(ProcessingReason::LegitimateInterests, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})'"
-	 * @generated
-	 */
-	boolean LegitimateInterestsShouldNotContainThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::LegalClaims, \n\t\t\t\tSequence{ProcessingReasonSubtype::ProtectionOfRightsOfOthers, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})'"
-	 * @generated
-	 */
-	boolean LegalClaimsShouldNotContainThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::Research, \n\t\t\t\tSequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::Scientific, ProcessingReasonSubtype::Historical,\n\t\t\t\t\tProcessingReasonSubtype::Statistical\n\t\t\t\t})'"
-	 * @generated
-	 */
-	boolean ResearchShouldNotContainThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::StatisticalPurposes, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})'"
-	 * @generated
-	 */
-	boolean StatisticalPurposesShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::Testing, \n\t\t\t\tSequence{ProcessingReasonSubtype::None})'"
-	 * @generated
-	 */
-	boolean TestingShouldNotContainSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Purpose

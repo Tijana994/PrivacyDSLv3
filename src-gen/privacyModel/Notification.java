@@ -3,9 +3,6 @@
 package privacyModel;
 
 import java.util.Date;
-
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -25,7 +22,8 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getNotification()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ShouldDefineCausedByAsRestriction'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ShouldDefineCausedByAsWithdraw ShouldDefineCausedByAsErasure ShouldDefineCausedByAsRectification ShouldDefineCausedByAsPrivacyPolicy ShouldDefineCausedByAsRestriction'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ShouldDefineCausedByAsWithdraw='Tuple {\n\tmessage : String = \'NotifyAboutWithdraw should contain causedBy with complaint Withdraw\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Withdraw) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tcomplaint.action.oclIsKindOf(Withdraw)\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status' ShouldDefineCausedByAsErasure='Tuple {\n\tmessage : String = \'NotifyAboutErasure should contain causedBy with complaint Erasure\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Erasure) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then\n\t\t\t\t\t\tlet basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\t\t\tbasedOnData.type = ComplaintBasedOnDataType::Erasure\n\t\t\t\t\telse\n\t\t\t\t\t\tfalse\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status' ShouldDefineCausedByAsRectification='Tuple {\n\tmessage : String = \'NotifyAboutRectification should contain causedBy with complaint Rectification\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Rectification) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then\n\t\t\t\t\t\tlet basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\t\t\tbasedOnData.type = ComplaintBasedOnDataType::Rectification\n\t\t\t\t\telse\n\t\t\t\t\t\tfalse\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status' ShouldDefineCausedByAsPrivacyPolicy='Tuple {\n\tmessage : String = \'NotifyAboutCollecting or StopProcessing should contain causedBy with policy statement\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::DataCollecting or type = NotificationType::StopProcessing \n\t\t\t\tor type = NotificationType::ExecutedRectification or type = NotificationType::ExecutedErasure\n\t\t\t\tor type = NotificationType::RestrictionLifted\n\t\t\t) then\n\t\t\t\tcausedBy.oclIsKindOf(PolicyStatement)\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status' ShouldDefineCausedByAsRestriction='Tuple {\n\tmessage : String = \'NotifyAboutRestriction should contain causedBy with complaint Restriction\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Restriction) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnAction)) then\n\t\t\t\t\t\tcomplaint.action.oclAsType(ComplaintBasedOnAction).type = ComplaintBasedOnActionType::Restriction\n\t\t\t\t\telse\n\t\t\t\t\t\tfalse\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
  * @generated
  */
 public interface Notification extends NamedElement {
@@ -121,45 +119,5 @@ public interface Notification extends NamedElement {
 	 * @generated
 	 */
 	void setWhen(Date value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'NotifyAboutErasure should contain causedBy with complaint Erasure\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Erasure) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then\n\t\t\t\t\t\tlet basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\t\t\tbasedOnData.type = ComplaintBasedOnDataType::Erasure\n\t\t\t\t\telse\n\t\t\t\t\t\tfalse\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean ShouldDefineCausedByAsErasure(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'NotifyAboutCollecting or StopProcessing should contain causedBy with policy statement\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::DataCollecting or type = NotificationType::StopProcessing \n\t\t\t\tor type = NotificationType::ExecutedRectification or type = NotificationType::ExecutedErasure\n\t\t\t\tor type = NotificationType::RestrictionLifted\n\t\t\t) then\n\t\t\t\tcausedBy.oclIsKindOf(PolicyStatement)\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean ShouldDefineCausedByAsPrivacyPolicy(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'NotifyAboutRestriction should contain causedBy with complaint Restriction\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Restriction) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnAction)) then\n\t\t\t\t\t\tcomplaint.action.oclAsType(ComplaintBasedOnAction).type = ComplaintBasedOnActionType::Restriction\n\t\t\t\t\telse\n\t\t\t\t\t\tfalse\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean ShouldDefineCausedByAsRestriction(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'NotifyAboutWithdraw should contain causedBy with complaint Withdraw\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Withdraw) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tcomplaint.action.oclIsKindOf(Withdraw)\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean ShouldDefineCausedByAsWithdraw(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'NotifyAboutRectification should contain causedBy with complaint Rectification\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Rectification) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then\n\t\t\t\t\t\tlet basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\t\t\tbasedOnData.type = ComplaintBasedOnDataType::Rectification\n\t\t\t\t\telse\n\t\t\t\t\t\tfalse\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean ShouldDefineCausedByAsRectification(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Notification

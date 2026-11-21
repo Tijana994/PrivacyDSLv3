@@ -3,8 +3,6 @@
 package privacyModel;
 
 import java.util.Date;
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +20,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getComplaint()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UserDoesNotHavePermissionToWithdrawConsent'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UserDoesNotHavePermissionToWithdrawConsent ConsentWithdrawalShouldBeExecutedAsSoonAsPossible SubjectShouldBeNotifiedAboutWithdrawal SubjectShouldBeNotifiedAboutExistingComplaintForRectification SubjectShouldBeNotifiedAboutExistingComplaintForErasure CannotIdentifyDataFromComplaint RectificationShouldBeExecutedAsSoonAsPossible ErasureShouldBeExecutedAsSoonAsPossible InvalidTypeOfPurposeForAnObject UserDoesNotHavePermissionToComplain StopProcessingShouldBeExecutedAsSoonAsPossible RestrictionShouldBeExecutedAsSoonAsPossible RecipientsShouldBeNotifiedAboutRestriction'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot UserDoesNotHavePermissionToWithdrawConsent='Tuple {\n\tmessage : String = \'Based on Art7\',\n\tstatus : Boolean = \n\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n\t\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tlet withdraw : Withdraw = self.action.oclAsType(Withdraw) in\n\t\t\t\t\tself.who = withdraw.subject.providedBy or  withdraw.subject.providedBy.responsiblePersons-&gt;exists(rp| rp = self.who)\n\t\t\tendif\n}.status' ConsentWithdrawalShouldBeExecutedAsSoonAsPossible='Tuple {\n\tmessage : String = \'Based on Art7\',\n\tstatus : Boolean = \n\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tprivacyPolicy.policyStatements-&gt;exists(stmt| stmt.what.actions-&gt;exists(action| action = Action::StopProcessing) and \n\t\t\t\t\t\t\tnot(stmt.whose = null) and stmt.whose = self.who and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) \n\t\t\t\t\t\t\tand not(stmt.causedBy = null) and stmt.causedBy = self)\n\t\t\t  endif\n}.status' SubjectShouldBeNotifiedAboutWithdrawal='Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(self.action.oclIsKindOf(Withdraw)) then\n\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().notifications-&gt;exists(notification| notification.causedBy = self and \n\t\t\t\t\t\tnotification.type = NotificationType::Withdraw\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status' SubjectShouldBeNotifiedAboutExistingComplaintForRectification='Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(self.action.oclIsKindOf(ComplaintBasedOnData)) then\n\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Rectification)then\n\t\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().notifications-&gt;exists(notification| notification.causedBy = self and\n\t\t\t\t\t\t\tnotification.type = NotificationType::Rectification\n\t\t\t\t\t\t)\n\t\t\t\t\telse\n\t\t\t\t\t\ttrue\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status' SubjectShouldBeNotifiedAboutExistingComplaintForErasure='Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(self.action.oclIsKindOf(ComplaintBasedOnData)) then\n\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Erasure)then\n\t\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().notifications-&gt;exists(notification| notification.causedBy = self and\n\t\t\t\t\t\t\tnotification.type = NotificationType::Erasure\n\t\t\t\t\t\t)\n\t\t\t\t\telse\n\t\t\t\t\t\ttrue\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status' CannotIdentifyDataFromComplaint='Tuple {\n\tmessage : String = \'Based on Art11\',\n\tstatus : Boolean = \n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnData))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\t\tbasedOnData.subject-&gt;forAll(data: PrivacyData|\n\t\t\t\t\tprivacyPolicy.policyStatements-&gt;exists(stmt| stmt.what.actions-&gt;exists(action| action = Action::Collecting) and \n\t\t\t\t\t\tnot(stmt.whose = null) and (stmt.whose = self.who or stmt.whose.responsiblePersons-&gt;exists(rp| rp = self.who))\n\t\t\t\t\t\tand privacyPolicy.privacyPolicyHelper.isDateAfterInterval(stmt.when, self.when) \n\t\t\t\t\t\tand stmt.what.datas-&gt;exists(selectedData| selectedData.privacydata = data)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t  endif\n}.status' RectificationShouldBeExecutedAsSoonAsPossible='Tuple {\n\tmessage : String = \'Based on Art16\',\n\tstatus : Boolean = \n\t\t\tdoesPolicyStatementExists(Action::Rectification,ComplaintBasedOnDataType::Rectification)\n}.status' ErasureShouldBeExecutedAsSoonAsPossible='Tuple {\n\tmessage : String = \'Based on Art17\',\n\tstatus : Boolean = \n\t\t\tdoesPolicyStatementExists(Action::Erasure,ComplaintBasedOnDataType::Erasure)\n}.status' InvalidTypeOfPurposeForAnObject='Tuple {\n\tmessage : String = \'Based on Art21\',\n\tstatus : Boolean = \n\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\tif(basedOnAction.statement.why = null or not(basedOnAction.denialReason = null) or basedOnAction.type = ComplaintBasedOnActionType::Restriction) then\n\t\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\t\t(not(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,\n\t\t\t\t\tSequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}))) \n\t\t\t\t\tand\n\t\t\t\t\t(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Marketing,Sequence{ProcessingReasonSubtype::None})\n\t\t\t\t\tor\n\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Profiling,Sequence{ProcessingReasonSubtype::None}))\n\t\t\t\tendif\n\t\t\tendif\n}.status' UserDoesNotHavePermissionToComplain='Tuple {\n\tmessage : String = \'Based on Art18 and Art21\',\n\tstatus : Boolean = \n\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\t\tnot(basedOnAction.statement.whose = null) \n\t\t\t\t\tand \n\t\t\t\t\t(basedOnAction.statement.whose = self.who or basedOnAction.statement.whose.responsiblePersons-&gt;exists(rp| rp = self.who))\n\t\t\tendif\n}.status' StopProcessingShouldBeExecutedAsSoonAsPossible='Tuple {\n\tmessage : String = \'Based on Art21\',\n\tstatus : Boolean = \n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\t\tif(not(basedOnAction.denialReason = null) or basedOnAction.type = ComplaintBasedOnActionType::Restriction) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\t\tprivacyPolicy.policyStatements-&gt;exists(stmt| stmt.what.actions-&gt;exists(action| action = Action::StopProcessing) and \n\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self)\n\t\t\t\t\tendif\n\t\t\t  endif\n}.status' RestrictionShouldBeExecutedAsSoonAsPossible='Tuple {\n\tmessage : String = \'Based on Art18\',\n\tstatus : Boolean = \n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\t\tprivacyPolicy.policyStatements-&gt;exists(stmt| not(stmt.what = null) and stmt.what.actions-&gt;exists(action| action = Action::RestrictProcessing) and \n\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self)\n\t\t\t\t\tendif\n\t\t\t  endif\n}.status' RecipientsShouldBeNotifiedAboutRestriction='Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().notifications-&gt;exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::Restriction)\n\t\t\t\tendif\n\t\t\tendif\n}.status'"
  * @generated
  */
 public interface Complaint extends NotificationInfo {
@@ -122,111 +121,5 @@ public interface Complaint extends NotificationInfo {
 	 * @generated
 	 */
 	boolean doesPolicyStatementExists(Action actionType, ComplaintBasedOnDataType type);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().notifications-&gt;exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::Restriction)\n\t\t\t\tendif\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean RecipientsShouldBeNotifiedAboutRestriction(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art11\',\n\tstatus : Boolean = \n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnData))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\t\tbasedOnData.subject-&gt;forAll(data: PrivacyData|\n\t\t\t\t\tprivacyPolicy.policyStatements-&gt;exists(stmt| stmt.what.actions-&gt;exists(action| action = Action::Collecting) and \n\t\t\t\t\t\tnot(stmt.whose = null) and (stmt.whose = self.who or stmt.whose.responsiblePersons-&gt;exists(rp| rp = self.who))\n\t\t\t\t\t\tand privacyPolicy.privacyPolicyHelper.isDateAfterInterval(stmt.when, self.when) \n\t\t\t\t\t\tand stmt.what.datas-&gt;exists(selectedData| selectedData.privacydata = data)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t  endif\n}.status'"
-	 * @generated
-	 */
-	boolean CannotIdentifyDataFromComplaint(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art18\',\n\tstatus : Boolean = \n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\t\tprivacyPolicy.policyStatements-&gt;exists(stmt| not(stmt.what = null) and stmt.what.actions-&gt;exists(action| action = Action::RestrictProcessing) and \n\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self)\n\t\t\t\t\tendif\n\t\t\t  endif\n}.status'"
-	 * @generated
-	 */
-	boolean RestrictionShouldBeExecutedAsSoonAsPossible(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art18 and Art21\',\n\tstatus : Boolean = \n\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\t\tnot(basedOnAction.statement.whose = null) \n\t\t\t\t\tand \n\t\t\t\t\t(basedOnAction.statement.whose = self.who or basedOnAction.statement.whose.responsiblePersons-&gt;exists(rp| rp = self.who))\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean UserDoesNotHavePermissionToComplain(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(self.action.oclIsKindOf(Withdraw)) then\n\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().notifications-&gt;exists(notification| notification.causedBy = self and \n\t\t\t\t\t\tnotification.type = NotificationType::Withdraw\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean SubjectShouldBeNotifiedAboutWithdrawal(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art21\',\n\tstatus : Boolean = \n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\t\tif(not(basedOnAction.denialReason = null) or basedOnAction.type = ComplaintBasedOnActionType::Restriction) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\t\tprivacyPolicy.policyStatements-&gt;exists(stmt| stmt.what.actions-&gt;exists(action| action = Action::StopProcessing) and \n\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self)\n\t\t\t\t\tendif\n\t\t\t  endif\n}.status'"
-	 * @generated
-	 */
-	boolean StopProcessingShouldBeExecutedAsSoonAsPossible(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art17\',\n\tstatus : Boolean = \n\t\t\tdoesPolicyStatementExists(Action::Erasure,ComplaintBasedOnDataType::Erasure)\n}.status'"
-	 * @generated
-	 */
-	boolean ErasureShouldBeExecutedAsSoonAsPossible(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(self.action.oclIsKindOf(ComplaintBasedOnData)) then\n\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Erasure)then\n\t\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().notifications-&gt;exists(notification| notification.causedBy = self and\n\t\t\t\t\t\t\tnotification.type = NotificationType::Erasure\n\t\t\t\t\t\t)\n\t\t\t\t\telse\n\t\t\t\t\t\ttrue\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean SubjectShouldBeNotifiedAboutExistingComplaintForErasure(DiagnosticChain diagnostics,
-			Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art7\',\n\tstatus : Boolean = \n\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n\t\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tlet withdraw : Withdraw = self.action.oclAsType(Withdraw) in\n\t\t\t\t\tself.who = withdraw.subject.providedBy or  withdraw.subject.providedBy.responsiblePersons-&gt;exists(rp| rp = self.who)\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean UserDoesNotHavePermissionToWithdrawConsent(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art7\',\n\tstatus : Boolean = \n\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first() in\n\t\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tprivacyPolicy.policyStatements-&gt;exists(stmt| stmt.what.actions-&gt;exists(action| action = Action::StopProcessing) and \n\t\t\t\t\t\t\tnot(stmt.whose = null) and stmt.whose = self.who and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) \n\t\t\t\t\t\t\tand not(stmt.causedBy = null) and stmt.causedBy = self)\n\t\t\t  endif\n}.status'"
-	 * @generated
-	 */
-	boolean ConsentWithdrawalShouldBeExecutedAsSoonAsPossible(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art16\',\n\tstatus : Boolean = \n\t\t\tdoesPolicyStatementExists(Action::Rectification,ComplaintBasedOnDataType::Rectification)\n}.status'"
-	 * @generated
-	 */
-	boolean RectificationShouldBeExecutedAsSoonAsPossible(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art21\',\n\tstatus : Boolean = \n\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\tif(basedOnAction.statement.why = null or not(basedOnAction.denialReason = null) or basedOnAction.type = ComplaintBasedOnActionType::Restriction) then\n\t\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\t\t(not(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,\n\t\t\t\t\tSequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}))) \n\t\t\t\t\tand\n\t\t\t\t\t(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Marketing,Sequence{ProcessingReasonSubtype::None})\n\t\t\t\t\tor\n\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Profiling,Sequence{ProcessingReasonSubtype::None}))\n\t\t\t\tendif\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean InvalidTypeOfPurposeForAnObject(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(self.action.oclIsKindOf(ComplaintBasedOnData)) then\n\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Rectification)then\n\t\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().notifications-&gt;exists(notification| notification.causedBy = self and\n\t\t\t\t\t\t\tnotification.type = NotificationType::Rectification\n\t\t\t\t\t\t)\n\t\t\t\t\telse\n\t\t\t\t\t\ttrue\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status'"
-	 * @generated
-	 */
-	boolean SubjectShouldBeNotifiedAboutExistingComplaintForRectification(DiagnosticChain diagnostics,
-			Map<Object, Object> context);
 
 } // Complaint

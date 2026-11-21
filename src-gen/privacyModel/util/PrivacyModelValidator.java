@@ -3,6 +3,7 @@
 package privacyModel.util;
 
 import java.util.Map;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
@@ -38,764 +39,12 @@ public class PrivacyModelValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "privacyModel";
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Provider Name' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_PROVIDER_NAME = 4;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Consent Name' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_CONSENT_NAME = 9;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Service Name' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_SERVICE_NAME = 3;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Owner Should Have Defined Inhabits' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__OWNER_SHOULD_HAVE_DEFINED_INHABITS = 6;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Policy Statement Name' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_POLICY_STATEMENT_NAME = 1;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Privacy Data Name' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_PRIVACY_DATA_NAME = 2;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Document Name' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_DOCUMENT_NAME = 12;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Protection Control Should Exist In Configuration' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION = 13;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Location Per Type' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_LOCATION_PER_TYPE = 11;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Principal Name Per Type' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_PRINCIPAL_NAME_PER_TYPE = 5;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Shared Privacy Data Name' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_SHARED_PRIVACY_DATA_NAME = 10;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Complaint Name' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_COMPLAINT_NAME = 7;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Contract Name' of 'Privacy Policy'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRIVACY_POLICY__UNIQUE_CONTRACT_NAME = 8;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Transfer To Third Country' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY = 22;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Processing During Restriction' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__PROCESSING_DURING_RESTRICTION = 23;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Executed Rectification' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION = 17;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Expired Contract' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__EXPIRED_CONTRACT = 27;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Restriction Should Not Be Lifted Before Objection Decision' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__RESTRICTION_SHOULD_NOT_BE_LIFTED_BEFORE_OBJECTION_DECISION = 28;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Legal Provision Is Needed For Legal Obligation Purpose' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__LEGAL_PROVISION_IS_NEEDED_FOR_LEGAL_OBLIGATION_PURPOSE = 36;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Processing Of Criminal Conviction Data' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__PROCESSING_OF_CRIMINAL_CONVICTION_DATA = 18;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Not For Profit Body Data Should Not Be Transferred' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__NOT_FOR_PROFIT_BODY_DATA_SHOULD_NOT_BE_TRANSFERRED = 45;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Stop Processing' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING = 20;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Missing Consent For Collecting' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__MISSING_CONSENT_FOR_COLLECTING = 30;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Undefined Purpose For Action Or User Does Not Have Permission' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOES_NOT_HAVE_PERMISSION = 16;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Erasure Date Should Be Defined For Collecting' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__ERASURE_DATE_SHOULD_BE_DEFINED_FOR_COLLECTING = 32;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Expired Consent' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__EXPIRED_CONSENT = 42;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Stop Processing Purpose For Action Stop Processing' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING = 41;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Processing Of Special Categories' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__PROCESSING_OF_SPECIAL_CATEGORIES = 44;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Collecting' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING = 47;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Expired Consent For Collecting' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__EXPIRED_CONSENT_FOR_COLLECTING = 29;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Caused By Should Be Defined For Stop Processing Action' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION = 35;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Missing Contract For Contract Performance' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__MISSING_CONTRACT_FOR_CONTRACT_PERFORMANCE = 34;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Juvenile Data Should Be Used With Document Of Type Child Custody Provided By Responsible Person' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON = 26;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Withdrawn Consent' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__WITHDRAWN_CONSENT = 21;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Natural Person Cannot Contain Sub Principals' of 'Principal'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRINCIPAL__NATURAL_PERSON_CANNOT_CONTAIN_SUB_PRINCIPALS = 51;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Missing Consent Or Transfer Certificate' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__MISSING_CONSENT_OR_TRANSFER_CERTIFICATE = 49;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Controller Approval Is Needed For Protect The Vital Interests Of The Data Subject Purpose' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE = 50;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Controller Approval Is Needed For Legitimate Interests Purpose' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE = 24;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Date Should Be Defined For Access Action' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION = 48;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Date Should Be Defined For Store Action' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION = 39;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Caused By And Date Should Be Defined For Restriction' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__CAUSED_BY_AND_DATE_SHOULD_BE_DEFINED_FOR_RESTRICTION = 40;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Where Should Be Defined For Transfer Action' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION = 14;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Caused By Should Be Defined For Rectification Action' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION = 43;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Court Approval Is Needed For Public Interest Purpose' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE = 46;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Expired Document' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__EXPIRED_DOCUMENT = 37;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified Before Lifting Restriction' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_BEFORE_LIFTING_RESTRICTION = 38;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Missing Consent Or Contract For Data Portability' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__MISSING_CONSENT_OR_CONTRACT_FOR_DATA_PORTABILITY = 25;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Caused By Should Be Defined For Erasure Action' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION = 15;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Executed Erasure' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE = 19;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Processing After Erasure Date' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__PROCESSING_AFTER_ERASURE_DATE = 33;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Whom Should Be Defined For Transfer' of 'Policy Statement'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int POLICY_STATEMENT__WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER = 31;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Juvenile Should Have Responsible Person' of 'Principal'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PRINCIPAL__JUVENILE_SHOULD_HAVE_RESPONSIBLE_PERSON = 52;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'After Statement Before Before Statement' of 'Time Interval'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int TIME_INTERVAL__AFTER_STATEMENT_BEFORE_BEFORE_STATEMENT = 53;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Until Type Should Be Defined Alone' of 'Time Interval'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int TIME_INTERVAL__UNTIL_TYPE_SHOULD_BE_DEFINED_ALONE = 54;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'From Statement Before To Statement' of 'Time Interval'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int TIME_INTERVAL__FROM_STATEMENT_BEFORE_TO_STATEMENT = 55;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Only From Or From With To' of 'Time Interval'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int TIME_INTERVAL__ONLY_FROM_OR_FROM_WITH_TO = 56;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Only After Or After With Before' of 'Time Interval'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int TIME_INTERVAL__ONLY_AFTER_OR_AFTER_WITH_BEFORE = 57;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'At Type Should Be Defined Alone' of 'Time Interval'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int TIME_INTERVAL__AT_TYPE_SHOULD_BE_DEFINED_ALONE = 58;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Public Interest Should Not Contain This Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 64;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Public Health Should Not Contain Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON = 66;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Out Of Scope Should Not Contain This Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 59;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Profiling Should Not Contain Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON = 72;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Contract Performance Cannot Contain This Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__CONTRACT_PERFORMANCE_CANNOT_CONTAIN_THIS_SUB_REASON = 61;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Legal Obligation Should Not Contain Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__LEGAL_OBLIGATION_SHOULD_NOT_CONTAIN_SUB_REASON = 71;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Stop Processing Should Not Contain Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON = 70;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Marketing Should Not Contain Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON = 67;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Exercising Specific Rights Purposes Cannot Contain This Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAIN_THIS_SUB_REASON = 62;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Protect The Vital Interests Of The Data Subject Should Not Contain This Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 73;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Recipients Should Be Notified About Restriction' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__RECIPIENTS_SHOULD_BE_NOTIFIED_ABOUT_RESTRICTION = 74;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Legitimate Interests Should Not Contain This Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 68;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Legal Claims Should Not Contain This Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__LEGAL_CLAIMS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 69;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Research Should Not Contain This Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__RESEARCH_SHOULD_NOT_CONTAIN_THIS_SUB_REASON = 63;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Statistical Purposes Should Not Contain Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON = 65;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Testing Should Not Contain Sub Reason' of 'Purpose'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int PURPOSE__TESTING_SHOULD_NOT_CONTAIN_SUB_REASON = 60;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Cannot Identify Data From Complaint' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__CANNOT_IDENTIFY_DATA_FROM_COMPLAINT = 76;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Restriction Should Be Executed As Soon As Possible' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__RESTRICTION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 77;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'User Does Not Have Permission To Complain' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__USER_DOES_NOT_HAVE_PERMISSION_TO_COMPLAIN = 78;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Withdrawal' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL = 81;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Stop Processing Should Be Executed As Soon As Possible' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__STOP_PROCESSING_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 75;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Erasure Should Be Executed As Soon As Possible' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 79;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Existing Complaint For Erasure' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE = 80;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'User Does Not Have Permission To Withdraw Consent' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__USER_DOES_NOT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT = 86;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Consent Withdrawal Should Be Executed As Soon As Possible' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__CONSENT_WITHDRAWAL_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 83;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Rectification Should Be Executed As Soon As Possible' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__RECTIFICATION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE = 85;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Invalid Type Of Purpose For An Object' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__INVALID_TYPE_OF_PURPOSE_FOR_AN_OBJECT = 82;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Subject Should Be Notified About Existing Complaint For Rectification' of 'Complaint'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_RECTIFICATION = 84;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Start Date Should Be Before Termination Date' of 'Abstract Paper'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int ABSTRACT_PAPER__START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE = 87;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Data Source Should Exist In Configuration' of 'Shared Privacy Data'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int SHARED_PRIVACY_DATA__DATA_SOURCE_SHOULD_EXIST_IN_CONFIGURATION = 88;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Protection Control Should Exist In Configuration' of 'Shared Privacy Data'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int SHARED_PRIVACY_DATA__PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION = 89;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Should Define Caused By As Erasure' of 'Notification'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_ERASURE = 90;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Should Define Caused By As Privacy Policy' of 'Notification'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY = 93;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Should Define Caused By As Restriction' of 'Notification'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_RESTRICTION = 94;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Should Define Caused By As Withdraw' of 'Notification'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW = 92;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Should Define Caused By As Rectification' of 'Notification'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION = 91;
-
-	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 94;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -970,34 +219,45 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(privacyPolicy, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePrivacyPolicy_ProtectionControlShouldExistInConfiguration(privacyPolicy, diagnostics,
-					context);
-		if (result || diagnostics != null)
 			result &= validatePrivacyPolicy_UniquePolicyStatementName(privacyPolicy, diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validatePrivacyPolicy_UniquePrincipalNamePerType(privacyPolicy, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= validatePrivacyPolicy_UniquePrivacyDataName(privacyPolicy, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePrivacyPolicy_UniqueSharedPrivacyDataName(privacyPolicy, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePrivacyPolicy_UniqueServiceName(privacyPolicy, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePrivacyPolicy_UniqueProviderName(privacyPolicy, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePrivacyPolicy_UniquePrincipalNamePerType(privacyPolicy, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePrivacyPolicy_OwnerShouldHaveDefinedInhabits(privacyPolicy, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePrivacyPolicy_UniqueComplaintName(privacyPolicy, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePrivacyPolicy_UniqueContractName(privacyPolicy, diagnostics, context);
+			result &= validatePrivacyPolicy_UniqueDocumentName(privacyPolicy, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePrivacyPolicy_UniqueConsentName(privacyPolicy, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePrivacyPolicy_UniqueSharedPrivacyDataName(privacyPolicy, diagnostics, context);
+			result &= validatePrivacyPolicy_UniqueContractName(privacyPolicy, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePrivacyPolicy_UniqueComplaintName(privacyPolicy, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePrivacyPolicy_UniqueLocationPerType(privacyPolicy, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePrivacyPolicy_UniqueDocumentName(privacyPolicy, diagnostics, context);
+			result &= validatePrivacyPolicy_ProtectionControlShouldExistInConfiguration(privacyPolicy, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validatePrivacyPolicy_OwnerShouldHaveDefinedInhabits(privacyPolicy, diagnostics, context);
 		return result;
 	}
+
+	/**
+	 * The cached validation expression for the UniquePolicyStatementName constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_POLICY_STATEMENT_NAME__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'PolicyStatement name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.policyStatements->forAll(st1:PolicyStatement,st2:PolicyStatement| st1.name = st2.name implies st1 = st2)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the ProtectionControlShouldExistInConfiguration constraint of '<em>Privacy Policy</em>'.
@@ -1007,8 +267,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_ProtectionControlShouldExistInConfiguration(PrivacyPolicy privacyPolicy,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return privacyPolicy.ProtectionControlShouldExistInConfiguration(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ProtectionControlShouldExistInConfiguration",
+				PRIVACY_POLICY__PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the OwnerShouldHaveDefinedInhabits constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__OWNER_SHOULD_HAVE_DEFINED_INHABITS__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art 3',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tnot(self.owner = null) and not(self.owner.inhabits = null)\n" + "}.status";
 
 	/**
 	 * Validates the UniquePolicyStatementName constraint of '<em>Privacy Policy</em>'.
@@ -1018,8 +291,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniquePolicyStatementName(PrivacyPolicy privacyPolicy,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return privacyPolicy.UniquePolicyStatementName(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniquePolicyStatementName",
+				PRIVACY_POLICY__UNIQUE_POLICY_STATEMENT_NAME__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UniquePrincipalNamePerType constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_PRINCIPAL_NAME_PER_TYPE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Principal name per type is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.allPrincipals->forAll(pr1:Principal,pr2:Principal| \n" + "\t\t\tif(pr1.type = pr2.type) then \n"
+			+ "\t\t\tpr1.name = pr2.name implies pr1 = pr2\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n"
+			+ "\t\t)\n" + "}.status";
 
 	/**
 	 * Validates the UniquePrincipalNamePerType constraint of '<em>Privacy Policy</em>'.
@@ -1029,8 +316,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniquePrincipalNamePerType(PrivacyPolicy privacyPolicy,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return privacyPolicy.UniquePrincipalNamePerType(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniquePrincipalNamePerType",
+				PRIVACY_POLICY__UNIQUE_PRINCIPAL_NAME_PER_TYPE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UniquePrivacyDataName constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_PRIVACY_DATA_NAME__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'PrivacyData name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.allDatas->forAll(pd1:PrivacyData,pd2:PrivacyData| pd1.name = pd2.name implies pd1 = pd2)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the UniqueSharedPrivacyDataName constraint of '<em>Privacy Policy</em>'.
@@ -1040,8 +340,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniqueSharedPrivacyDataName(PrivacyPolicy privacyPolicy,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return privacyPolicy.UniqueSharedPrivacyDataName(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniqueSharedPrivacyDataName",
+				PRIVACY_POLICY__UNIQUE_SHARED_PRIVACY_DATA_NAME__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UniqueServiceName constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_SERVICE_NAME__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Service name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.allServices->forAll(service1:Service,service2:Service| service1.name = service2.name implies service1 = service2)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the UniquePrivacyDataName constraint of '<em>Privacy Policy</em>'.
@@ -1051,8 +364,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniquePrivacyDataName(PrivacyPolicy privacyPolicy, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return privacyPolicy.UniquePrivacyDataName(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniquePrivacyDataName",
+				PRIVACY_POLICY__UNIQUE_PRIVACY_DATA_NAME__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UniqueSharedPrivacyDataName constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_SHARED_PRIVACY_DATA_NAME__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'SharedPrivacyData name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.allSharedPrivacyData->forAll(sd1:SharedPrivacyData,sd2:SharedPrivacyData| sd1.name = sd2.name implies sd1 = sd2)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the UniqueServiceName constraint of '<em>Privacy Policy</em>'.
@@ -1062,8 +388,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniqueServiceName(PrivacyPolicy privacyPolicy, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return privacyPolicy.UniqueServiceName(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniqueServiceName",
+				PRIVACY_POLICY__UNIQUE_SERVICE_NAME__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UniqueProviderName constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_PROVIDER_NAME__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Provider name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.allProviders->forAll(provider1:Provider,provider2:Provider| provider1.name = provider2.name implies provider1 = provider2)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the UniqueProviderName constraint of '<em>Privacy Policy</em>'.
@@ -1073,8 +412,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniqueProviderName(PrivacyPolicy privacyPolicy, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return privacyPolicy.UniqueProviderName(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniqueProviderName",
+				PRIVACY_POLICY__UNIQUE_PROVIDER_NAME__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UniqueDocumentName constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_DOCUMENT_NAME__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Document name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.allDocuments->forAll(document1:Document,document2:Document| document1.name = document2.name implies document1 = document2)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the UniqueDocumentName constraint of '<em>Privacy Policy</em>'.
@@ -1084,8 +436,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniqueDocumentName(PrivacyPolicy privacyPolicy, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return privacyPolicy.UniqueDocumentName(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniqueDocumentName",
+				PRIVACY_POLICY__UNIQUE_DOCUMENT_NAME__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UniqueConsentName constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_CONSENT_NAME__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Consent name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.allConsents->forAll(consent1:Consent,consent2:Consent| consent1.name = consent2.name implies consent1 = consent2)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the UniqueConsentName constraint of '<em>Privacy Policy</em>'.
@@ -1095,8 +460,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniqueConsentName(PrivacyPolicy privacyPolicy, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return privacyPolicy.UniqueConsentName(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniqueConsentName",
+				PRIVACY_POLICY__UNIQUE_CONSENT_NAME__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UniqueContractName constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_CONTRACT_NAME__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Contract name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.allContracts->forAll(contract1:Contract,contract2:Contract| contract1.name = contract2.name implies contract1 = contract2)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the UniqueComplaintName constraint of '<em>Privacy Policy</em>'.
@@ -1106,8 +484,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniqueComplaintName(PrivacyPolicy privacyPolicy, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return privacyPolicy.UniqueComplaintName(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniqueComplaintName",
+				PRIVACY_POLICY__UNIQUE_COMPLAINT_NAME__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UniqueLocationPerType constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_LOCATION_PER_TYPE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Location name per type is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.locations->forAll(loc1:Location,loc2:Location| \n" + "\t\t\tif(loc1.type = loc2.type) then \n"
+			+ "\t\t\t\tloc1.name = loc2.name implies loc1 = loc2\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\tendif\n" + "\t\t)\n" + "}.status";
 
 	/**
 	 * Validates the UniqueContractName constraint of '<em>Privacy Policy</em>'.
@@ -1117,8 +509,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniqueContractName(PrivacyPolicy privacyPolicy, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return privacyPolicy.UniqueContractName(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniqueContractName",
+				PRIVACY_POLICY__UNIQUE_CONTRACT_NAME__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UniqueComplaintName constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__UNIQUE_COMPLAINT_NAME__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Complaint name is unique',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tself.allComplaints->forAll(complaint1:Complaint,complaint2:Complaint| complaint1.name = complaint2.name implies complaint1 = complaint2)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the UniqueLocationPerType constraint of '<em>Privacy Policy</em>'.
@@ -1128,8 +533,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_UniqueLocationPerType(PrivacyPolicy privacyPolicy, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return privacyPolicy.UniqueLocationPerType(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UniqueLocationPerType",
+				PRIVACY_POLICY__UNIQUE_LOCATION_PER_TYPE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ProtectionControlShouldExistInConfiguration constraint of '<em>Privacy Policy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRIVACY_POLICY__PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Protection controls should be defined in configuration.',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tself.defaultProtectionControls->forAll(protectionControl:String|\n"
+			+ "\t\t\t\tself.privacyPolicyHelper.isPolicyControlValid(protectionControl)\n" + "\t\t\t)\n" + "}.status";
 
 	/**
 	 * Validates the OwnerShouldHaveDefinedInhabits constraint of '<em>Privacy Policy</em>'.
@@ -1139,7 +557,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrivacyPolicy_OwnerShouldHaveDefinedInhabits(PrivacyPolicy privacyPolicy,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return privacyPolicy.OwnerShouldHaveDefinedInhabits(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRIVACY_POLICY, privacyPolicy, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "OwnerShouldHaveDefinedInhabits",
+				PRIVACY_POLICY__OWNER_SHOULD_HAVE_DEFINED_INHABITS__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
 	}
 
 	/**
@@ -1167,105 +588,115 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose(
-					policyStatement, diagnostics, context);
+			result &= validatePolicyStatement_DateShouldBeDefinedForAccessAction(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_DateShouldBeDefinedForStoreAction(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_WhereShouldBeDefinedForTransferAction(policyStatement, diagnostics,
 					context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_CausedByShouldBeDefinedForErasureAction(policyStatement, diagnostics,
+			result &= validatePolicyStatement_CourtApprovalIsNeededForPublicInterestPurpose(policyStatement,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ControllerApprovalIsNeededForLegitimateInterestsPurpose(policyStatement,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose(
+					policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_StopProcessingPurposeForActionStopProcessing(policyStatement, diagnostics,
 					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ExpiredDocument(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_MissingConsentForCollecting(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_UndefinedPurposeForActionOrUserDoesNotHavePermission(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ExpiredConsent(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ExpiredConsentForCollecting(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_WithdrawnConsent(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson(
+					policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ProcessingOfSpecialCategories(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutCollecting(policyStatement, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutTransferToThirdCountry(policyStatement,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_CausedByShouldBeDefinedForRectificationAction(policyStatement,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_CausedByShouldBeDefinedForErasureAction(policyStatement, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutExecutedErasure(policyStatement, diagnostics,
+					context);
+		if (result || diagnostics != null)
 			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutExecutedRectification(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ProcessingOfCriminalConvictionData(policyStatement, diagnostics, context);
+			result &= validatePolicyStatement_WhomShouldBeDefinedForTransfer(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutExecutedErasure(policyStatement, diagnostics,
+			result &= validatePolicyStatement_MissingConsentOrContractForDataPortability(policyStatement, diagnostics,
 					context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutStopProcessing(policyStatement, diagnostics,
 					context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_WithdrawnConsent(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutTransferToThirdCountry(policyStatement,
+			result &= validatePolicyStatement_CausedByShouldBeDefinedForStopProcessingAction(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ProcessingDuringRestriction(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ControllerApprovalIsNeededForLegitimateInterestsPurpose(policyStatement,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_MissingConsentOrContractForDataPortability(policyStatement, diagnostics,
+			result &= validatePolicyStatement_MissingConsentOrTransferCertificate(policyStatement, diagnostics,
 					context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson(
-					policyStatement, diagnostics, context);
+			result &= validatePolicyStatement_MissingContractForContractPerformance(policyStatement, diagnostics,
+					context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_ExpiredContract(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_RestrictionShouldNotBeLiftedBeforeObjectionDecision(policyStatement,
+			result &= validatePolicyStatement_LegalProvisionIsNeededForLegalObligationPurpose(policyStatement,
 					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ExpiredConsentForCollecting(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_MissingConsentForCollecting(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_WhomShouldBeDefinedForTransfer(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_ErasureDateShouldBeDefinedForCollecting(policyStatement, diagnostics,
 					context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_ProcessingAfterErasureDate(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_MissingContractForContractPerformance(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_CausedByShouldBeDefinedForStopProcessingAction(policyStatement,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_LegalProvisionIsNeededForLegalObligationPurpose(policyStatement,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ExpiredDocument(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_SubjectShouldBeNotifiedBeforeLiftingRestriction(policyStatement,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_DateShouldBeDefinedForStoreAction(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_CausedByAndDateShouldBeDefinedForRestriction(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_StopProcessingPurposeForActionStopProcessing(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ExpiredConsent(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_CausedByShouldBeDefinedForRectificationAction(policyStatement,
-					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ProcessingOfSpecialCategories(policyStatement, diagnostics, context);
+			result &= validatePolicyStatement_ProcessingOfCriminalConvictionData(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_NotForProfitBodyDataShouldNotBeTransferred(policyStatement, diagnostics,
 					context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_CourtApprovalIsNeededForPublicInterestPurpose(policyStatement,
+			result &= validatePolicyStatement_CausedByAndDateShouldBeDefinedForRestriction(policyStatement, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_ProcessingDuringRestriction(policyStatement, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_SubjectShouldBeNotifiedBeforeLiftingRestriction(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutCollecting(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_DateShouldBeDefinedForAccessAction(policyStatement, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_MissingConsentOrTransferCertificate(policyStatement, diagnostics,
-					context);
+			result &= validatePolicyStatement_RestrictionShouldNotBeLiftedBeforeObjectionDecision(policyStatement,
+					diagnostics, context);
 		return result;
 	}
+
+	/**
+	 * The cached validation expression for the DateShouldBeDefinedForAccessAction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Date should be defined',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tdateShouldBeDefinedForType(Action::Access)\n" + "}.status";
 
 	/**
 	 * Validates the StopProcessingPurposeForActionStopProcessing constraint of '<em>Policy Statement</em>'.
@@ -1275,8 +706,28 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_StopProcessingPurposeForActionStopProcessing(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.StopProcessingPurposeForActionStopProcessing(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "StopProcessingPurposeForActionStopProcessing",
+				POLICY_STATEMENT__STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ExpiredDocument constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__EXPIRED_DOCUMENT__EEXPRESSION = "\n"
+			+ "\t\t\tif(self.how = null or not(self.how.documents->notEmpty())) then\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tself.how.documents->forAll(document|\n"
+			+ "\t\t\t\t\t(privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, document.startDate) or \n"
+			+ "\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, document.startDate))\n"
+			+ "\t\t\t\t\tand\n"
+			+ "\t\t\t\t\t(document.terminationDate = null or (not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, document.terminationDate))))\n"
+			+ "\t\t\t\t)\n" + "\t\t\tendif";
 
 	/**
 	 * Validates the ExpiredDocument constraint of '<em>Policy Statement</em>'.
@@ -1286,8 +737,34 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ExpiredDocument(PolicyStatement policyStatement, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return policyStatement.ExpiredDocument(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ExpiredDocument",
+				POLICY_STATEMENT__EXPIRED_DOCUMENT__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the MissingConsentForCollecting constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__MISSING_CONSENT_FOR_COLLECTING__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art6',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::Collecting))) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse if(self.hasProcessingReason(ProcessingReason::LegalObligation)) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse if(self.hasProcessingReason(ProcessingReason::PublicInterest)) then\n"
+			+ "\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::CourtApproval)\n"
+			+ "\t\t\telse if(self.hasProcessingReason(ProcessingReason::LegitimateInterests) or\n"
+			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject)) then\n"
+			+ "\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::ControllerApproval)\n"
+			+ "\t\t\telse if(self.hasProcessingReason(ProcessingReason::ContractPerformance)) then\n"
+			+ "\t\t\t\tself.isContractProvidedBySubject()\n"
+			+ "\t\t\telse if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.legalAgeLimitFor(self.whose)) then\n"
+			+ "\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n"
+			+ "\t\t\telse \n"
+			+ "\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person))\n"
+			+ "\t\t\tendif\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedBeforeLiftingRestriction constraint of '<em>Policy Statement</em>'.
@@ -1297,8 +774,31 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_SubjectShouldBeNotifiedBeforeLiftingRestriction(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.SubjectShouldBeNotifiedBeforeLiftingRestriction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "SubjectShouldBeNotifiedBeforeLiftingRestriction",
+				POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_BEFORE_LIFTING_RESTRICTION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the RestrictionShouldNotBeLiftedBeforeObjectionDecision constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__RESTRICTION_SHOULD_NOT_BE_LIFTED_BEFORE_OBJECTION_DECISION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art18',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or self.what = null or not(self.what.actions->exists(act| act = Action::LiftRestriction))) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tnot(privacyPolicy.allComplaints->exists(c| c.action.oclIsKindOf(ComplaintBasedOnAction) and\n"
+			+ "\t\t\t\t\tlet objection : ComplaintBasedOnAction = c.action.oclAsType(ComplaintBasedOnAction) in\n"
+			+ "\t\t\t\t\t\tobjection.type = ComplaintBasedOnActionType::Objection and objection.denialReason = null and\n"
+			+ "\t\t\t\t\t\tnot(objection.statement = null) and objection.statement.whose = self.whose and not(objection.statement.what = null) and\n"
+			+ "\t\t\t\t\t\tobjection.statement.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n"
+			+ "\t\t\t\t\t\tnot(privacyPolicy.policyStatements->exists(stop| not(stop.what = null) and\n"
+			+ "\t\t\t\t\t\t\tstop.what.actions->exists(a| a = Action::StopProcessing) and stop.causedBy = c))))\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the MissingConsentOrContractForDataPortability constraint of '<em>Policy Statement</em>'.
@@ -1308,8 +808,24 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_MissingConsentOrContractForDataPortability(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.MissingConsentOrContractForDataPortability(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "MissingConsentOrContractForDataPortability",
+				POLICY_STATEMENT__MISSING_CONSENT_OR_CONTRACT_FOR_DATA_PORTABILITY__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the SubjectShouldBeNotifiedAboutStopProcessing constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art21',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(what.actions->exists(action| action = Action::StopProcessing)) then\n"
+			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::StopProcessing and \n"
+			+ "\t\t\t\t\t\tnotification.causedBy = self\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the MissingConsentForCollecting constraint of '<em>Policy Statement</em>'.
@@ -1319,8 +835,39 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_MissingConsentForCollecting(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.MissingConsentForCollecting(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "MissingConsentForCollecting",
+				POLICY_STATEMENT__MISSING_CONSENT_FOR_COLLECTING__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UndefinedPurposeForActionOrUserDoesNotHavePermission constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOES_NOT_HAVE_PERMISSION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art6 and Art9',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction)) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tself.what.datas->forAll(data|\n"
+			+ "\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st| \n"
+			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose  \n"
+			+ "\t\t\t\t\t\tand st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n"
+			+ "\t\t\t\t\t\tin \n" + "\t\t\t\t\t\tif(statements->isEmpty()) then \n" + "\t\t\t\t\t\t\ttrue\n"
+			+ "\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\tstatements -> forAll(st|\n"
+			+ "\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n"
+			+ "\t\t\t\t\t\t\t\t\tif(self.why = null) then\n" + "\t\t\t\t\t\t\t\t\t\tfalse\n"
+			+ "\t\t\t\t\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\t\t\t\t\t(not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals->exists(subprincipal| subprincipal = self.who) \n"
+			+ "\t\t\t\t\t\t\t\t\t\tor self.who.equals(st.whose) or st.whose.responsiblePersons->exists(responsiblePerson| responsiblePerson = self.who)))\n"
+			+ "\t\t\t\t\t\t\t\t\t\tand (st.why.isValid(self.why) or \n"
+			+ "\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth, ProcessingReason::LegalObligation} in\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)))\n"
+			+ "\t\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\t\t\tfalse\n"
+			+ "\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t)\n" + "\t\t\t\t\t\tendif\n" + "\t\t\t\t)\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the UndefinedPurposeForActionOrUserDoesNotHavePermission constraint of '<em>Policy Statement</em>'.
@@ -1330,8 +877,40 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_UndefinedPurposeForActionOrUserDoesNotHavePermission(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.UndefinedPurposeForActionOrUserDoesNotHavePermission(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"UndefinedPurposeForActionOrUserDoesNotHavePermission",
+				POLICY_STATEMENT__UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOES_NOT_HAVE_PERMISSION__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ExpiredConsent constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__EXPIRED_CONSENT__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art6',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction)) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tself.what.datas->forAll(data |\n"
+			+ "\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st| \n"
+			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and self.who.equals(st.who) and st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n"
+			+ "\t\t\t\t\t\tin \n" + "\t\t\t\t\t\tif(statements->isEmpty()) then \n" + "\t\t\t\t\t\t\ttrue\n"
+			+ "\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\tstatements -> exists(st|\n"
+			+ "\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n"
+			+ "\t\t\t\t\t\t\t\t\tif(self.why = null \n" + "\t\t\t\t\t\t\t\t\t\tor \n"
+			+ "\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n"
+			+ "\t\t\t\t\t\t\t\t\t)) then\n" + "\t\t\t\t\t\t\t\t\t\ttrue\n" + "\t\t\t\t\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, st.how.consent.startDate)) and\n"
+			+ "\t\t\t\t\t\t\t\t\t\t(st.how.consent.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, st.how.consent.terminationDate)))\n"
+			+ "\t\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\t\t\tfalse\n"
+			+ "\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t)\n" + "\t\t\t\t\t\tendif\n" + "\t\t\t\t)\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the ErasureDateShouldBeDefinedForCollecting constraint of '<em>Policy Statement</em>'.
@@ -1341,8 +920,34 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ErasureDateShouldBeDefinedForCollecting(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.ErasureDateShouldBeDefinedForCollecting(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ErasureDateShouldBeDefinedForCollecting",
+				POLICY_STATEMENT__ERASURE_DATE_SHOULD_BE_DEFINED_FOR_COLLECTING__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ProcessingAfterErasureDate constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__PROCESSING_AFTER_ERASURE_DATE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art5',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or self.what = null or self.when = null or\n"
+			+ "\t\t\t\tself.what.actions->forAll(act| act = Action::Collecting or act = Action::Erasure or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction) or\n"
+			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::Research) or\n"
+			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::StatisticalPurposes)) then\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tself.what.datas->forAll(data |\n"
+			+ "\t\t\t\t\tlet collectingStatements : Sequence(PolicyStatement) = privacyPolicy.policyStatements->select(st|\n"
+			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and not(st.what = null) and\n"
+			+ "\t\t\t\t\t\tst.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data) and\n"
+			+ "\t\t\t\t\t\tnot(st.why = null) and not(st.why.erasureDate = null))->asSequence() in\n"
+			+ "\t\t\t\t\t\tcollectingStatements->isEmpty() or\n"
+			+ "\t\t\t\t\t\tcollectingStatements->exists(st| not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, st.why.erasureDate)))\n"
+			+ "\t\t\t\t)\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ExpiredConsent constraint of '<em>Policy Statement</em>'.
@@ -1352,8 +957,32 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ExpiredConsent(PolicyStatement policyStatement, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return policyStatement.ExpiredConsent(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ExpiredConsent",
+				POLICY_STATEMENT__EXPIRED_CONSENT__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ExpiredConsentForCollecting constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__EXPIRED_CONSENT_FOR_COLLECTING__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art6',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or not(self.what.actions->exists(act| act = Action::Collecting)) or self.how = null or self.how.consent = null) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tif(self.why = null \n" + "\t\t\t\t\tor \n"
+			+ "\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
+			+ "\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n"
+			+ "\t\t\t\t)) then\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\t(privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, self.how.consent.startDate) or\n"
+			+ "\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.consent.startDate))\n"
+			+ "\t\t\t\t\tand\n"
+			+ "\t\t\t\t\t(self.how.consent.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.consent.terminationDate)))\n"
+			+ "\t\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ExpiredConsentForCollecting constraint of '<em>Policy Statement</em>'.
@@ -1363,8 +992,45 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ExpiredConsentForCollecting(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.ExpiredConsentForCollecting(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ExpiredConsentForCollecting",
+				POLICY_STATEMENT__EXPIRED_CONSENT_FOR_COLLECTING__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the WithdrawnConsent constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__WITHDRAWN_CONSENT__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art7',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting)) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tself.what.datas->forAll(data|\n"
+			+ "\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st: PolicyStatement| \n"
+			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and self.who.equals(st.who) and st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n"
+			+ "\t\t\t\t\t\tin \n" + "\t\t\t\t\t\tif(statements->isEmpty()) then \n" + "\t\t\t\t\t\t\ttrue\n"
+			+ "\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\tstatements -> forAll(st|\n"
+			+ "\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n"
+			+ "\t\t\t\t\t\t\t\t\tif(self.why = null \n" + "\t\t\t\t\t\t\t\t\t\tor \n"
+			+ "\t\t\t\t\t\t\t\t\t\tlet reasons  = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n"
+			+ "\t\t\t\t\t\t\t\t\t)) then\n" + "\t\t\t\t\t\t\t\t\t\ttrue\n" + "\t\t\t\t\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.allComplaints->exists(complaint| complaint.action.oclIsTypeOf(Withdraw) and \n"
+			+ "\t\t\t\t\t\t\t\t\t\t\tlet withdrawal: Withdraw = complaint.action.oclAsType(Withdraw) in\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\t\twithdrawal.subject = st.how.consent\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\t\tand (privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, complaint.when) \n"
+			+ "\t\t\t\t\t\t\t\t\t\t\t\tor privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when))\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\tand not(privacyPolicy.policyStatements->exists(stopStatement| \n"
+			+ "\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.what.actions->exists(act| act = Action::StopProcessing) and \n"
+			+ "\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.what.datas->exists(d| d = data) and not(stopStatement.causedBy = null) and \n"
+			+ "\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.causedBy.action= withdrawal))\n" + "\t\t\t\t\t\t\t\t\t\t))\n"
+			+ "\t\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\t\t\tfalse\n"
+			+ "\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t)\n" + "\t\t\t\t\t\tendif\n" + "\t\t\t\t)\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson constraint of '<em>Policy Statement</em>'.
@@ -1374,9 +1040,42 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson(
-				diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson",
+				POLICY_STATEMENT__JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ProcessingOfSpecialCategories constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__PROCESSING_OF_SPECIAL_CATEGORIES__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art9',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.what = null or self.what.actions->exists(action | action = Action::StopProcessing or action = Action::RestrictProcessing or action = Action::LiftRestriction)) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n" + "\t\t\tself.what.datas->forAll(data| \n"
+			+ "\t\t\t\tlet specialCategories : Sequence(DataType) = Sequence{DataType::Biometric, DataType::Genetic, DataType::Health, DataType::PoliticalOpinion, \n"
+			+ "\t\t\t\t\tDataType::RacialOrEthnicOrigin, DataType::Beliefs, DataType::Religious, DataType::SexLife, DataType::TradeUnionMembership\n"
+			+ "\t\t\t\t} in\n" + "\t\t\t\tif(specialCategories->includes(data.privacydata.type)) then\n"
+			+ "\t\t\t\t\t(not(self.how = null) and not(self.how.consent = null) and self.how.consent.type = ConsentType::Explicit)\n"
+			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::ExercisingSpecificRights)\n"
+			+ "\t\t\t\t\tor (not(self.why = null) and\n"
+			+ "\t\t\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
+			+ "\t\t\t\t\t\t\tSequence{ProcessingReasonSubtype::PhysicallyIncapable, ProcessingReasonSubtype::LegallyIncapable}) or\n"
+			+ "\t\t\t\t\t\tself.why.subPurposes->exists(sub| sub.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
+			+ "\t\t\t\t\t\t\tSequence{ProcessingReasonSubtype::PhysicallyIncapable, ProcessingReasonSubtype::LegallyIncapable}))))\n"
+			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::PublicInterest)\n"
+			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::PublicHealth)\n"
+			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::Research)\n"
+			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::StatisticalPurposes)\n"
+			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::NotForProfitBodyActivity)\n"
+			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::HealthCare)\n"
+			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::LegalClaims)\n"
+			+ "\t\t\t\t\tor data.origin = DataOrigin::MadePublicByDataSubject\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n"
+			+ "\t\t\t\tendif\n" + "\t\t\t)\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the WithdrawnConsent constraint of '<em>Policy Statement</em>'.
@@ -1386,8 +1085,26 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_WithdrawnConsent(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.WithdrawnConsent(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "WithdrawnConsent",
+				POLICY_STATEMENT__WITHDRAWN_CONSENT__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__JUVENILE_DATA_SHOULD_BE_USED_WITH_DOCUMENT_OF_TYPE_CHILD_CUSTODY_PROVIDED_BY_RESPONSIBLE_PERSON__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art8 and national law',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::Collecting))) then\n"
+			+ "\t\t\t\ttrue\n"
+			+ "\t\t\telse if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.legalAgeLimitFor(self.whose)) then\n"
+			+ "\t\t\t\tif(self.how = null or self.whose.responsiblePersons->isEmpty() or self.how.documents->isEmpty() or \n"
+			+ "\t\t\t\t\tnot(self.how.documents->exists(document| document.documentType = DocumentType::ChildCustody and self.whose.responsiblePersons->exists(p|p=document.providedBy)))\n"
+			+ "\t\t\t\t) then \n" + "\t\t\t\t\tfalse\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\tendif\n"
+			+ "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ProcessingOfSpecialCategories constraint of '<em>Policy Statement</em>'.
@@ -1397,8 +1114,29 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ProcessingOfSpecialCategories(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.ProcessingOfSpecialCategories(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ProcessingOfSpecialCategories",
+				POLICY_STATEMENT__PROCESSING_OF_SPECIAL_CATEGORIES__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
 	}
+
+	/**
+	 * The cached validation expression for the SubjectShouldBeNotifiedAboutCollecting constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art14',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.what.actions->exists(action| action = Action::Collecting) and self.what.datas->exists(data| data.origin <> DataOrigin::DataSubject)) then\n"
+			+ "\t\t\t\tif(not(self.why = null) and \n"
+			+ "\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::None}) or\n"
+			+ "\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Research,Sequence{ProcessingReasonSubtype::Statistical, \n"
+			+ "\t\t\t\t\t\tProcessingReasonSubtype::Historical,ProcessingReasonSubtype::Scientific}))\n"
+			+ "\t\t\t\t)then\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::DataCollecting \n"
+			+ "\t\t\t\t\t\tand notification.causedBy = self\n" + "\t\t\t\t\t)\n" + "\t\t\t\tendif\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutCollecting constraint of '<em>Policy Statement</em>'.
@@ -1408,8 +1146,26 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_SubjectShouldBeNotifiedAboutCollecting(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.SubjectShouldBeNotifiedAboutCollecting(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "SubjectShouldBeNotifiedAboutCollecting",
+				POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the SubjectShouldBeNotifiedAboutTransferToThirdCountry constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art13(1)(f) and Art14(1)(f)',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.what.actions->exists(action| action = Action::Transfer) and not(self.where = null) and\n"
+			+ "\t\t\t\tnot(self.where.destination = null) and self.where.destination.isEUMember = false\n"
+			+ "\t\t\t) then\n"
+			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer \n"
+			+ "\t\t\t\t\t\tand notification.causedBy = self\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutTransferToThirdCountry constraint of '<em>Policy Statement</em>'.
@@ -1419,8 +1175,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_SubjectShouldBeNotifiedAboutTransferToThirdCountry(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.SubjectShouldBeNotifiedAboutTransferToThirdCountry(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "SubjectShouldBeNotifiedAboutTransferToThirdCountry",
+				POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the CausedByShouldBeDefinedForRectificationAction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art16',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tcausedByShouldBeDefinedForType(Action::Rectification)\n" + "}.status";
 
 	/**
 	 * Validates the ProcessingDuringRestriction constraint of '<em>Policy Statement</em>'.
@@ -1430,8 +1199,26 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ProcessingDuringRestriction(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.ProcessingDuringRestriction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ProcessingDuringRestriction",
+				POLICY_STATEMENT__PROCESSING_DURING_RESTRICTION__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the SubjectShouldBeNotifiedBeforeLiftingRestriction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_BEFORE_LIFTING_RESTRICTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art18',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.what = null or not(self.what.actions->exists(act| act = Action::LiftRestriction))) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tprivacyPolicy.notifications->exists(notification| notification.type = NotificationType::RestrictionLifted and\n"
+			+ "\t\t\t\t\tnotification.causedBy = self and not(notification.when = null) and\n"
+			+ "\t\t\t\t\t(self.when = null or not(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, notification.when))))\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the CausedByShouldBeDefinedForRectificationAction constraint of '<em>Policy Statement</em>'.
@@ -1441,8 +1228,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_CausedByShouldBeDefinedForRectificationAction(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.CausedByShouldBeDefinedForRectificationAction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "CausedByShouldBeDefinedForRectificationAction",
+				POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_RECTIFICATION_ACTION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the CausedByShouldBeDefinedForErasureAction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art17',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tcausedByShouldBeDefinedForType(Action::Erasure)\n" + "}.status";
 
 	/**
 	 * Validates the CourtApprovalIsNeededForPublicInterestPurpose constraint of '<em>Policy Statement</em>'.
@@ -1452,8 +1252,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_CourtApprovalIsNeededForPublicInterestPurpose(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.CourtApprovalIsNeededForPublicInterestPurpose(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "CourtApprovalIsNeededForPublicInterestPurpose",
+				POLICY_STATEMENT__COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ControllerApprovalIsNeededForLegitimateInterestsPurpose constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art6(1)(f)',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tdocumentIsNeededForPurpose(DocumentType::ControllerApproval,ProcessingReason::LegitimateInterests)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the CausedByShouldBeDefinedForErasureAction constraint of '<em>Policy Statement</em>'.
@@ -1463,8 +1277,24 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_CausedByShouldBeDefinedForErasureAction(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.CausedByShouldBeDefinedForErasureAction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "CausedByShouldBeDefinedForErasureAction",
+				POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the SubjectShouldBeNotifiedAboutExecutedErasure constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(what.actions->exists(action| action = Action::Erasure)) then\n"
+			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
+			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedErasure\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutExecutedErasure constraint of '<em>Policy Statement</em>'.
@@ -1474,8 +1304,24 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_SubjectShouldBeNotifiedAboutExecutedErasure(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.SubjectShouldBeNotifiedAboutExecutedErasure(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "SubjectShouldBeNotifiedAboutExecutedErasure",
+				POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the SubjectShouldBeNotifiedAboutExecutedRectification constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(what.actions->exists(action| action = Action::Rectification)) then\n"
+			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
+			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification\n" + "\t\t\t\t\t)\n"
+			+ "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ProcessingAfterErasureDate constraint of '<em>Policy Statement</em>'.
@@ -1485,8 +1331,28 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ProcessingAfterErasureDate(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.ProcessingAfterErasureDate(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ProcessingAfterErasureDate",
+				POLICY_STATEMENT__PROCESSING_AFTER_ERASURE_DATE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ProcessingOfCriminalConvictionData constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__PROCESSING_OF_CRIMINAL_CONVICTION_DATA__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art10',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.what = null or self.what.actions->exists(action | action = Action::StopProcessing or action = Action::RestrictProcessing or action = Action::LiftRestriction) or\n"
+			+ "\t\t\t\tnot(self.what.datas->exists(data| data.privacydata.type = DataType::Judicial))) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\t\t(self.hasProcessingReason(ProcessingReason::PublicInterest) and not(self.how = null) and\n"
+			+ "\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::CourtApproval))\n"
+			+ "\t\t\t\tor\n"
+			+ "\t\t\t\t(self.hasProcessingReason(ProcessingReason::LegalObligation) and not(self.how = null) and\n"
+			+ "\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision))\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutExecutedRectification constraint of '<em>Policy Statement</em>'.
@@ -1496,8 +1362,23 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_SubjectShouldBeNotifiedAboutExecutedRectification(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.SubjectShouldBeNotifiedAboutExecutedRectification(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "SubjectShouldBeNotifiedAboutExecutedRectification",
+				POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the WhomShouldBeDefinedForTransfer constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Arts44-50',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(what.actions->exists(action| action = Action::Transfer)) then\n"
+			+ "\t\t\t\t\tnot(self.whom = null)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the ExpiredContract constraint of '<em>Policy Statement</em>'.
@@ -1507,8 +1388,23 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ExpiredContract(PolicyStatement policyStatement, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return policyStatement.ExpiredContract(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ExpiredContract",
+				POLICY_STATEMENT__EXPIRED_CONTRACT__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the LegalProvisionIsNeededForLegalObligationPurpose constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__LEGAL_PROVISION_IS_NEEDED_FOR_LEGAL_OBLIGATION_PURPOSE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art6',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(not(self.hasProcessingReason(ProcessingReason::LegalObligation))) then\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\telse\n"
+			+ "\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision)\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the RestrictionShouldNotBeLiftedBeforeObjectionDecision constraint of '<em>Policy Statement</em>'.
@@ -1518,7 +1414,11 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_RestrictionShouldNotBeLiftedBeforeObjectionDecision(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.RestrictionShouldNotBeLiftedBeforeObjectionDecision(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"RestrictionShouldNotBeLiftedBeforeObjectionDecision",
+				POLICY_STATEMENT__RESTRICTION_SHOULD_NOT_BE_LIFTED_BEFORE_OBJECTION_DECISION__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -1529,8 +1429,24 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_LegalProvisionIsNeededForLegalObligationPurpose(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.LegalProvisionIsNeededForLegalObligationPurpose(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "LegalProvisionIsNeededForLegalObligationPurpose",
+				POLICY_STATEMENT__LEGAL_PROVISION_IS_NEEDED_FOR_LEGAL_OBLIGATION_PURPOSE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ErasureDateShouldBeDefinedForCollecting constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__ERASURE_DATE_SHOULD_BE_DEFINED_FOR_COLLECTING__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art5 and Art13',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.what = null or self.why = null or not(self.what.actions->exists(act| act = Action::Collecting)) or\n"
+			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::Research) or\n"
+			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::StatisticalPurposes)) then\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\telse\n" + "\t\t\t\tnot(self.why.erasureDate = null)\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ProcessingOfCriminalConvictionData constraint of '<em>Policy Statement</em>'.
@@ -1540,8 +1456,25 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ProcessingOfCriminalConvictionData(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.ProcessingOfCriminalConvictionData(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ProcessingOfCriminalConvictionData",
+				POLICY_STATEMENT__PROCESSING_OF_CRIMINAL_CONVICTION_DATA__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the NotForProfitBodyDataShouldNotBeTransferred constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__NOT_FOR_PROFIT_BODY_DATA_SHOULD_NOT_BE_TRANSFERRED__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art9',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.what = null or not(self.hasProcessingReason(ProcessingReason::NotForProfitBodyActivity))) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\t\tnot(self.what.actions->exists(action| action = Action::Transfer)) or\n"
+			+ "\t\t\t\t(not(self.how = null) and not(self.how.consent = null) and self.how.consent.type = ConsentType::Explicit)\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the NotForProfitBodyDataShouldNotBeTransferred constraint of '<em>Policy Statement</em>'.
@@ -1551,8 +1484,23 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_NotForProfitBodyDataShouldNotBeTransferred(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.NotForProfitBodyDataShouldNotBeTransferred(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "NotForProfitBodyDataShouldNotBeTransferred",
+				POLICY_STATEMENT__NOT_FOR_PROFIT_BODY_DATA_SHOULD_NOT_BE_TRANSFERRED__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the CausedByAndDateShouldBeDefinedForRestriction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__CAUSED_BY_AND_DATE_SHOULD_BE_DEFINED_FOR_RESTRICTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art18',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tcausedByShouldBeDefinedForType(Action::RestrictProcessing) and causedByShouldBeDefinedForType(Action::LiftRestriction) and\n"
+			+ "\t\t\tdateShouldBeDefinedForType(Action::RestrictProcessing) and dateShouldBeDefinedForType(Action::LiftRestriction)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the WhomShouldBeDefinedForTransfer constraint of '<em>Policy Statement</em>'.
@@ -1562,8 +1510,27 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_WhomShouldBeDefinedForTransfer(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.WhomShouldBeDefinedForTransfer(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "WhomShouldBeDefinedForTransfer",
+				POLICY_STATEMENT__WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
 	}
+
+	/**
+	 * The cached validation expression for the MissingConsentOrContractForDataPortability constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__MISSING_CONSENT_OR_CONTRACT_FOR_DATA_PORTABILITY__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art20 and Art6',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::DataPortability))) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse if(self.isContractProvidedBySubject()) then\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\telse if(self.whose.type= PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.legalAgeLimitFor(self.whose)) then\n"
+			+ "\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n"
+			+ "\t\t\telse \n"
+			+ "\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person))\n"
+			+ "\t\t\tendif\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutStopProcessing constraint of '<em>Policy Statement</em>'.
@@ -1573,8 +1540,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_SubjectShouldBeNotifiedAboutStopProcessing(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.SubjectShouldBeNotifiedAboutStopProcessing(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "SubjectShouldBeNotifiedAboutStopProcessing",
+				POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the CausedByShouldBeDefinedForStopProcessingAction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art21',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tcausedByShouldBeDefinedForType(Action::StopProcessing)\n" + "}.status";
 
 	/**
 	 * Validates the CausedByShouldBeDefinedForStopProcessingAction constraint of '<em>Policy Statement</em>'.
@@ -1584,8 +1564,31 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_CausedByShouldBeDefinedForStopProcessingAction(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.CausedByShouldBeDefinedForStopProcessingAction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "CausedByShouldBeDefinedForStopProcessingAction",
+				POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_STOP_PROCESSING_ACTION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the MissingConsentOrTransferCertificate constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Arts 44-50 and Art 49(1)(b)',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(not(self.what.actions->exists(action| action = Action::Transfer))or self.where = null or self.where.destination = null or self.where.destination.isEUMember = true) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\t\tif((not(self.where.destination = null)) and self.where.destination.isEUMember = false) then\n"
+			+ "\t\t\t\t\t(not(self.how = null) and (self.how.documents->exists(doc| doc.documentType = DocumentType::TransferCertificate) or (not(self.how = null) and not(self.how.consent = null)))) or\n"
+			+ "\t\t\t\t\t(self.hasProcessingReason(ProcessingReason::ContractPerformance) and self.isContractProvidedBySubject()) or\n"
+			+ "\t\t\t\t\t(not(self.why = null) and \n"
+			+ "\t\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) or\n"
+			+ "\t\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,Sequence{ProcessingReasonSubtype::PhysicallyIncapable, \n"
+			+ "\t\t\t\t\t\t\tProcessingReasonSubtype::Other,ProcessingReasonSubtype::None})))\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\ttrue\n" + "\t\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the MissingContractForContractPerformance constraint of '<em>Policy Statement</em>'.
@@ -1595,8 +1598,29 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_MissingContractForContractPerformance(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.MissingContractForContractPerformance(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "MissingContractForContractPerformance",
+				POLICY_STATEMENT__MISSING_CONTRACT_FOR_CONTRACT_PERFORMANCE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ExpiredContract constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__EXPIRED_CONTRACT__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art6',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(not(self.hasProcessingReason(ProcessingReason::ContractPerformance)) or self.how = null or self.how.contract = null) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\t(self.why.processingReasonSubtype = ProcessingReasonSubtype::PreContractual or\n"
+			+ "\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, self.how.contract.startDate) or\n"
+			+ "\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.contract.startDate))\n"
+			+ "\t\t\t\tand\n"
+			+ "\t\t\t\t(self.how.contract.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.contract.terminationDate)))\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the MissingConsentOrTransferCertificate constraint of '<em>Policy Statement</em>'.
@@ -1606,8 +1630,23 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_MissingConsentOrTransferCertificate(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.MissingConsentOrTransferCertificate(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "MissingConsentOrTransferCertificate",
+				POLICY_STATEMENT__MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the MissingContractForContractPerformance constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__MISSING_CONTRACT_FOR_CONTRACT_PERFORMANCE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art6',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or not(self.hasProcessingReason(ProcessingReason::ContractPerformance))) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n" + "\t\t\t\tself.isContractProvidedBySubject()\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose constraint of '<em>Policy Statement</em>'.
@@ -1617,9 +1656,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose(diagnostics,
-				context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose",
+				POLICY_STATEMENT__CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the StopProcessingPurposeForActionStopProcessing constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING__EEXPRESSION = "\n"
+			+ "\t\t\tif(not(self.what.actions->exists(act| act = Action::StopProcessing))) then\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\telse\n" + "\t\t\t\tself.why.processingReason = ProcessingReason::StopProcessing\n" + "\t\t\tendif";
 
 	/**
 	 * Validates the ControllerApprovalIsNeededForLegitimateInterestsPurpose constraint of '<em>Policy Statement</em>'.
@@ -1629,8 +1681,23 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_ControllerApprovalIsNeededForLegitimateInterestsPurpose(
 			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.ControllerApprovalIsNeededForLegitimateInterestsPurpose(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"ControllerApprovalIsNeededForLegitimateInterestsPurpose",
+				POLICY_STATEMENT__CONTROLLER_APPROVAL_IS_NEEDED_FOR_LEGITIMATE_INTERESTS_PURPOSE__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__CONTROLLER_APPROVAL_IS_NEEDED_FOR_PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_PURPOSE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art6(1)(d)',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tdocumentIsNeededForPurpose(DocumentType::ControllerApproval,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the DateShouldBeDefinedForAccessAction constraint of '<em>Policy Statement</em>'.
@@ -1640,8 +1707,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_DateShouldBeDefinedForAccessAction(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.DateShouldBeDefinedForAccessAction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "DateShouldBeDefinedForAccessAction",
+				POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_ACCESS_ACTION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the DateShouldBeDefinedForStoreAction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Date should be defined',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tdateShouldBeDefinedForType(Action::Store)\n" + "}.status";
 
 	/**
 	 * Validates the DateShouldBeDefinedForStoreAction constraint of '<em>Policy Statement</em>'.
@@ -1651,8 +1731,23 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_DateShouldBeDefinedForStoreAction(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.DateShouldBeDefinedForStoreAction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "DateShouldBeDefinedForStoreAction",
+				POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_STORE_ACTION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the WhereShouldBeDefinedForTransferAction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Where should be defined',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.what.actions->exists(action| action = Action::Transfer)) then\n"
+			+ "\t\t\t\t\tnot(self.where = null)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the CausedByAndDateShouldBeDefinedForRestriction constraint of '<em>Policy Statement</em>'.
@@ -1662,8 +1757,38 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_CausedByAndDateShouldBeDefinedForRestriction(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.CausedByAndDateShouldBeDefinedForRestriction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "CausedByAndDateShouldBeDefinedForRestriction",
+				POLICY_STATEMENT__CAUSED_BY_AND_DATE_SHOULD_BE_DEFINED_FOR_RESTRICTION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ProcessingDuringRestriction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__PROCESSING_DURING_RESTRICTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art18',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or self.what = null or self.when = null or\n"
+			+ "\t\t\t\tself.what.actions->forAll(act| act = Action::Store or act = Action::Erasure or act = Action::Rectification or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction) or\n"
+			+ "\t\t\t\t(not(self.how = null) and not(self.how.consent = null)) or\n"
+			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::PublicInterest) or\n"
+			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::LegalClaims)) then\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tprivacyPolicy.policyStatements->select(restriction|\n"
+			+ "\t\t\t\t\tnot(restriction.what = null) and not(restriction.when = null) and not(restriction.causedBy = null) and\n"
+			+ "\t\t\t\t\trestriction.what.actions->exists(act| act = Action::RestrictProcessing) and restriction.whose = self.whose and\n"
+			+ "\t\t\t\t\trestriction.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)))\n"
+			+ "\t\t\t\t->forAll(restriction|\n"
+			+ "\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(restriction.when, self.when)) or\n"
+			+ "\t\t\t\t\tprivacyPolicy.policyStatements->exists(lift|\n"
+			+ "\t\t\t\t\t\tnot(lift.what = null) and not(lift.when = null) and lift.what.actions->exists(act| act = Action::LiftRestriction) and\n"
+			+ "\t\t\t\t\t\tlift.causedBy = restriction.causedBy and\n"
+			+ "\t\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(lift.when, self.when)))\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the WhereShouldBeDefinedForTransferAction constraint of '<em>Policy Statement</em>'.
@@ -1673,8 +1798,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePolicyStatement_WhereShouldBeDefinedForTransferAction(PolicyStatement policyStatement,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return policyStatement.WhereShouldBeDefinedForTransferAction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "WhereShouldBeDefinedForTransferAction",
+				POLICY_STATEMENT__WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the CourtApprovalIsNeededForPublicInterestPurpose constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art6(1)(e) and Art6(3)',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tdocumentIsNeededForPurpose(DocumentType::CourtApproval,ProcessingReason::PublicInterest)\n"
+			+ "}.status";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1728,11 +1867,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(principal, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePrincipal_JuvenileShouldHaveResponsiblePerson(principal, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validatePrincipal_NaturalPersonCannotContainSubPrincipals(principal, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePrincipal_JuvenileShouldHaveResponsiblePerson(principal, diagnostics, context);
 		return result;
 	}
+
+	/**
+	 * The cached validation expression for the NaturalPersonCannotContainSubPrincipals constraint of '<em>Principal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRINCIPAL__NATURAL_PERSON_CANNOT_CONTAIN_SUB_PRINCIPALS__EEXPRESSION = "\n"
+			+ "\t\t\tif(self.type = PrincipalType::NaturalPerson) then\n" + "\t\t\t\tself.subPrincipals->isEmpty()\n"
+			+ "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif";
 
 	/**
 	 * Validates the JuvenileShouldHaveResponsiblePerson constraint of '<em>Principal</em>'.
@@ -1742,7 +1891,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrincipal_JuvenileShouldHaveResponsiblePerson(Principal principal,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return principal.JuvenileShouldHaveResponsiblePerson(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRINCIPAL, principal, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "JuvenileShouldHaveResponsiblePerson",
+				PRINCIPAL__JUVENILE_SHOULD_HAVE_RESPONSIBLE_PERSON__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
 	}
 
 	/**
@@ -1753,8 +1905,23 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePrincipal_NaturalPersonCannotContainSubPrincipals(Principal principal,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return principal.NaturalPersonCannotContainSubPrincipals(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PRINCIPAL, principal, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "NaturalPersonCannotContainSubPrincipals",
+				PRINCIPAL__NATURAL_PERSON_CANNOT_CONTAIN_SUB_PRINCIPALS__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the JuvenileShouldHaveResponsiblePerson constraint of '<em>Principal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PRINCIPAL__JUVENILE_SHOULD_HAVE_RESPONSIBLE_PERSON__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art8 and national law',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tif(self.type = PrincipalType::NaturalPerson and self.age < PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.legalAgeLimitFor(self)) then\n"
+			+ "\t\t\t\tnot(self.responsiblePersons->isEmpty())\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1800,19 +1967,30 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(timeInterval, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateTimeInterval_AtTypeShouldBeDefinedAlone(timeInterval, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateTimeInterval_AfterStatementBeforeBeforeStatement(timeInterval, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateTimeInterval_UntilTypeShouldBeDefinedAlone(timeInterval, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateTimeInterval_FromStatementBeforeToStatement(timeInterval, diagnostics, context);
+			result &= validateTimeInterval_OnlyAfterOrAfterWithBefore(timeInterval, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateTimeInterval_OnlyFromOrFromWithTo(timeInterval, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateTimeInterval_OnlyAfterOrAfterWithBefore(timeInterval, diagnostics, context);
+			result &= validateTimeInterval_AtTypeShouldBeDefinedAlone(timeInterval, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateTimeInterval_UntilTypeShouldBeDefinedAlone(timeInterval, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateTimeInterval_AfterStatementBeforeBeforeStatement(timeInterval, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateTimeInterval_FromStatementBeforeToStatement(timeInterval, diagnostics, context);
 		return result;
 	}
+
+	/**
+	 * The cached validation expression for the OnlyAfterOrAfterWithBefore constraint of '<em>Time Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String TIME_INTERVAL__ONLY_AFTER_OR_AFTER_WITH_BEFORE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'After interval should be defined alone or with before interval',\n"
+			+ "\tstatus : Boolean = \n"
+			+ "\t\t\tself.isTypeDefinedWithOtherType(TimePreposition::after, TimePreposition::before)\n" + "}.status";
 
 	/**
 	 * Validates the OnlyAfterOrAfterWithBefore constraint of '<em>Time Interval</em>'.
@@ -1822,8 +2000,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateTimeInterval_OnlyAfterOrAfterWithBefore(TimeInterval timeInterval,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return timeInterval.OnlyAfterOrAfterWithBefore(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.TIME_INTERVAL, timeInterval, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "OnlyAfterOrAfterWithBefore",
+				TIME_INTERVAL__ONLY_AFTER_OR_AFTER_WITH_BEFORE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the OnlyFromOrFromWithTo constraint of '<em>Time Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String TIME_INTERVAL__ONLY_FROM_OR_FROM_WITH_TO__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'From interval should be defined alone or with to interval',\n"
+			+ "\tstatus : Boolean = \n"
+			+ "\t\t\tself.isTypeDefinedWithOtherType(TimePreposition::from, TimePreposition::to)\n" + "}.status";
 
 	/**
 	 * Validates the OnlyFromOrFromWithTo constraint of '<em>Time Interval</em>'.
@@ -1833,8 +2024,20 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateTimeInterval_OnlyFromOrFromWithTo(TimeInterval timeInterval, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return timeInterval.OnlyFromOrFromWithTo(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.TIME_INTERVAL, timeInterval, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "OnlyFromOrFromWithTo",
+				TIME_INTERVAL__ONLY_FROM_OR_FROM_WITH_TO__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the AtTypeShouldBeDefinedAlone constraint of '<em>Time Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String TIME_INTERVAL__AT_TYPE_SHOULD_BE_DEFINED_ALONE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'At statement should be defined alone',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.isTypeForbidden(TimePreposition::at)\n" + "}.status";
 
 	/**
 	 * Validates the AtTypeShouldBeDefinedAlone constraint of '<em>Time Interval</em>'.
@@ -1844,8 +2047,20 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateTimeInterval_AtTypeShouldBeDefinedAlone(TimeInterval timeInterval,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return timeInterval.AtTypeShouldBeDefinedAlone(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.TIME_INTERVAL, timeInterval, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "AtTypeShouldBeDefinedAlone",
+				TIME_INTERVAL__AT_TYPE_SHOULD_BE_DEFINED_ALONE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UntilTypeShouldBeDefinedAlone constraint of '<em>Time Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String TIME_INTERVAL__UNTIL_TYPE_SHOULD_BE_DEFINED_ALONE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Until statement should be defined alone',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.isTypeForbidden(TimePreposition::until)\n" + "}.status";
 
 	/**
 	 * Validates the UntilTypeShouldBeDefinedAlone constraint of '<em>Time Interval</em>'.
@@ -1855,8 +2070,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateTimeInterval_UntilTypeShouldBeDefinedAlone(TimeInterval timeInterval,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return timeInterval.UntilTypeShouldBeDefinedAlone(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.TIME_INTERVAL, timeInterval, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UntilTypeShouldBeDefinedAlone",
+				TIME_INTERVAL__UNTIL_TYPE_SHOULD_BE_DEFINED_ALONE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the AfterStatementBeforeBeforeStatement constraint of '<em>Time Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String TIME_INTERVAL__AFTER_STATEMENT_BEFORE_BEFORE_STATEMENT__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'After interval should be defined before before interval',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tself.isValid(TimePreposition::after, TimePreposition::before)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the AfterStatementBeforeBeforeStatement constraint of '<em>Time Interval</em>'.
@@ -1866,8 +2094,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateTimeInterval_AfterStatementBeforeBeforeStatement(TimeInterval timeInterval,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return timeInterval.AfterStatementBeforeBeforeStatement(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.TIME_INTERVAL, timeInterval, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "AfterStatementBeforeBeforeStatement",
+				TIME_INTERVAL__AFTER_STATEMENT_BEFORE_BEFORE_STATEMENT__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the FromStatementBeforeToStatement constraint of '<em>Time Interval</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String TIME_INTERVAL__FROM_STATEMENT_BEFORE_TO_STATEMENT__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'From interval should be defined before to interval',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.isValid(TimePreposition::from, TimePreposition::to)\n" + "}.status";
 
 	/**
 	 * Validates the FromStatementBeforeToStatement constraint of '<em>Time Interval</em>'.
@@ -1877,7 +2118,9 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateTimeInterval_FromStatementBeforeToStatement(TimeInterval timeInterval,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return timeInterval.FromStatementBeforeToStatement(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.TIME_INTERVAL, timeInterval, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "FromStatementBeforeToStatement",
+				TIME_INTERVAL__FROM_STATEMENT_BEFORE_TO_STATEMENT__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -1914,39 +2157,50 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(purpose, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePurpose_ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason(purpose,
-					diagnostics, context);
+			result &= validatePurpose_ResearchShouldNotContainThisSubReason(purpose, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePurpose_PublicHealthShouldNotContainSubReason(purpose, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePurpose_OutOfScopeShouldNotContainThisSubReason(purpose, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePurpose_TestingShouldNotContainSubReason(purpose, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePurpose_ContractPerformanceCannotContainThisSubReason(purpose, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePurpose_ExercisingSpecificRightsPurposesCannotContainThisSubReason(purpose, diagnostics,
-					context);
-		if (result || diagnostics != null)
-			result &= validatePurpose_ResearchShouldNotContainThisSubReason(purpose, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePurpose_PublicInterestShouldNotContainThisSubReason(purpose, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePurpose_StatisticalPurposesShouldNotContainSubReason(purpose, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePurpose_PublicHealthShouldNotContainSubReason(purpose, diagnostics, context);
+			result &= validatePurpose_ExercisingSpecificRightsPurposesCannotContainThisSubReason(purpose, diagnostics,
+					context);
 		if (result || diagnostics != null)
 			result &= validatePurpose_MarketingShouldNotContainSubReason(purpose, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePurpose_LegitimateInterestsShouldNotContainThisSubReason(purpose, diagnostics, context);
+			result &= validatePurpose_TestingShouldNotContainSubReason(purpose, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePurpose_LegalClaimsShouldNotContainThisSubReason(purpose, diagnostics, context);
+			result &= validatePurpose_ProfilingShouldNotContainSubReason(purpose, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePurpose_ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason(purpose,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePurpose_LegitimateInterestsShouldNotContainThisSubReason(purpose, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePurpose_StopProcessingShouldNotContainSubReason(purpose, diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validatePurpose_ContractPerformanceCannotContainThisSubReason(purpose, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= validatePurpose_LegalObligationShouldNotContainSubReason(purpose, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePurpose_ProfilingShouldNotContainSubReason(purpose, diagnostics, context);
+			result &= validatePurpose_LegalClaimsShouldNotContainThisSubReason(purpose, diagnostics, context);
 		return result;
 	}
+
+	/**
+	 * The cached validation expression for the ResearchShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__RESEARCH_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::Research, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::Scientific, ProcessingReasonSubtype::Historical,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::Statistical\n" + "\t\t\t\t})";
 
 	/**
 	 * Validates the PublicHealthShouldNotContainSubReason constraint of '<em>Purpose</em>'.
@@ -1956,8 +2210,23 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_PublicHealthShouldNotContainSubReason(Purpose purpose, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return purpose.PublicHealthShouldNotContainSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "PublicHealthShouldNotContainSubReason",
+				PURPOSE__PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
 	}
+
+	/**
+	 * The cached validation expression for the OutOfScopeShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\tisSubPurposeValid(ProcessingReason::OutOfScope, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::OutOfEU,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::PersonalActivity, ProcessingReasonSubtype::SpecialScopeOfActivity, ProcessingReasonSubtype::None,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::Other\n" + "\t\t\t\t})";
 
 	/**
 	 * Validates the OutOfScopeShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
@@ -1967,8 +2236,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_OutOfScopeShouldNotContainThisSubReason(Purpose purpose, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return purpose.OutOfScopeShouldNotContainThisSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "OutOfScopeShouldNotContainThisSubReason",
+				PURPOSE__OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the PublicInterestShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::PublicInterest, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})";
 
 	/**
 	 * Validates the StatisticalPurposesShouldNotContainSubReason constraint of '<em>Purpose</em>'.
@@ -1978,8 +2261,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_StatisticalPurposesShouldNotContainSubReason(Purpose purpose,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return purpose.StatisticalPurposesShouldNotContainSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "StatisticalPurposesShouldNotContainSubReason",
+				PURPOSE__STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ExercisingSpecificRightsPurposesCannotContainThisSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::ExercisingSpecificRights, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::Employment, ProcessingReasonSubtype::SocialSecurity,ProcessingReasonSubtype::SocialProtection, \n"
+			+ "\t\t\t\tProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})";
 
 	/**
 	 * Validates the MarketingShouldNotContainSubReason constraint of '<em>Purpose</em>'.
@@ -1989,8 +2286,20 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_MarketingShouldNotContainSubReason(Purpose purpose, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return purpose.MarketingShouldNotContainSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "MarketingShouldNotContainSubReason",
+				PURPOSE__MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the TestingShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__TESTING_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::Testing, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
 
 	/**
 	 * Validates the ExercisingSpecificRightsPurposesCannotContainThisSubReason constraint of '<em>Purpose</em>'.
@@ -2000,8 +2309,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_ExercisingSpecificRightsPurposesCannotContainThisSubReason(Purpose purpose,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return purpose.ExercisingSpecificRightsPurposesCannotContainThisSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"ExercisingSpecificRightsPurposesCannotContainThisSubReason",
+				PURPOSE__EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the MarketingShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::Marketing, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
 
 	/**
 	 * Validates the ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
@@ -2011,8 +2334,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason(
 			Purpose purpose, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return purpose.ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason",
+				PURPOSE__PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the LegitimateInterestsShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\tisSubPurposeValid(ProcessingReason::LegitimateInterests, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
 
 	/**
 	 * Validates the LegitimateInterestsShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
@@ -2022,8 +2359,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_LegitimateInterestsShouldNotContainThisSubReason(Purpose purpose,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return purpose.LegitimateInterestsShouldNotContainThisSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "LegitimateInterestsShouldNotContainThisSubReason",
+				PURPOSE__LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the StopProcessingShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::StopProcessing, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
 
 	/**
 	 * Validates the LegalClaimsShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
@@ -2033,7 +2383,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_LegalClaimsShouldNotContainThisSubReason(Purpose purpose,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return purpose.LegalClaimsShouldNotContainThisSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "LegalClaimsShouldNotContainThisSubReason",
+				PURPOSE__LEGAL_CLAIMS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -2044,8 +2397,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_ResearchShouldNotContainThisSubReason(Purpose purpose, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return purpose.ResearchShouldNotContainThisSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ResearchShouldNotContainThisSubReason",
+				PURPOSE__RESEARCH_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
 	}
+
+	/**
+	 * The cached validation expression for the PublicHealthShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::PublicHealth, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
 
 	/**
 	 * Validates the TestingShouldNotContainSubReason constraint of '<em>Purpose</em>'.
@@ -2055,8 +2421,20 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_TestingShouldNotContainSubReason(Purpose purpose, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return purpose.TestingShouldNotContainSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "TestingShouldNotContainSubReason",
+				PURPOSE__TESTING_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ProfilingShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::Profiling, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
 
 	/**
 	 * Validates the PublicInterestShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
@@ -2066,8 +2444,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_PublicInterestShouldNotContainThisSubReason(Purpose purpose,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return purpose.PublicInterestShouldNotContainThisSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "PublicInterestShouldNotContainThisSubReason",
+				PURPOSE__PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the StatisticalPurposesShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::StatisticalPurposes, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
 
 	/**
 	 * Validates the ProfilingShouldNotContainSubReason constraint of '<em>Purpose</em>'.
@@ -2077,8 +2468,20 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_ProfilingShouldNotContainSubReason(Purpose purpose, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return purpose.ProfilingShouldNotContainSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ProfilingShouldNotContainSubReason",
+				PURPOSE__PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\tisSubPurposeValid(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::PhysicallyIncapable,ProcessingReasonSubtype::LegallyIncapable, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::None})";
 
 	/**
 	 * Validates the ContractPerformanceCannotContainThisSubReason constraint of '<em>Purpose</em>'.
@@ -2088,8 +2491,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_ContractPerformanceCannotContainThisSubReason(Purpose purpose,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return purpose.ContractPerformanceCannotContainThisSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ContractPerformanceCannotContainThisSubReason",
+				PURPOSE__CONTRACT_PERFORMANCE_CANNOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the LegalObligationShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__LEGAL_OBLIGATION_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::LegalObligation, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
 
 	/**
 	 * Validates the LegalObligationShouldNotContainSubReason constraint of '<em>Purpose</em>'.
@@ -2099,8 +2515,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_LegalObligationShouldNotContainSubReason(Purpose purpose,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return purpose.LegalObligationShouldNotContainSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "LegalObligationShouldNotContainSubReason",
+				PURPOSE__LEGAL_OBLIGATION_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the LegalClaimsShouldNotContainThisSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__LEGAL_CLAIMS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::LegalClaims, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::ProtectionOfRightsOfOthers, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})";
 
 	/**
 	 * Validates the StopProcessingShouldNotContainSubReason constraint of '<em>Purpose</em>'.
@@ -2110,8 +2539,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validatePurpose_StopProcessingShouldNotContainSubReason(Purpose purpose, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return purpose.StopProcessingShouldNotContainSubReason(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "StopProcessingShouldNotContainSubReason",
+				PURPOSE__STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ContractPerformanceCannotContainThisSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__CONTRACT_PERFORMANCE_CANNOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::ContractPerformance, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::PreContractual, \n"
+			+ "\t\t\t\tProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2223,34 +2666,47 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validateComplaint_UserDoesNotHavePermissionToWithdrawConsent(complaint, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateComplaint_RecipientsShouldBeNotifiedAboutRestriction(complaint, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateComplaint_StopProcessingShouldBeExecutedAsSoonAsPossible(complaint, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateComplaint_CannotIdentifyDataFromComplaint(complaint, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateComplaint_RestrictionShouldBeExecutedAsSoonAsPossible(complaint, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateComplaint_UserDoesNotHavePermissionToComplain(complaint, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateComplaint_ErasureShouldBeExecutedAsSoonAsPossible(complaint, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateComplaint_SubjectShouldBeNotifiedAboutExistingComplaintForErasure(complaint, diagnostics,
+			result &= validateComplaint_ConsentWithdrawalShouldBeExecutedAsSoonAsPossible(complaint, diagnostics,
 					context);
 		if (result || diagnostics != null)
 			result &= validateComplaint_SubjectShouldBeNotifiedAboutWithdrawal(complaint, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateComplaint_InvalidTypeOfPurposeForAnObject(complaint, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateComplaint_ConsentWithdrawalShouldBeExecutedAsSoonAsPossible(complaint, diagnostics,
-					context);
-		if (result || diagnostics != null)
 			result &= validateComplaint_SubjectShouldBeNotifiedAboutExistingComplaintForRectification(complaint,
 					diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validateComplaint_SubjectShouldBeNotifiedAboutExistingComplaintForErasure(complaint, diagnostics,
+					context);
+		if (result || diagnostics != null)
+			result &= validateComplaint_CannotIdentifyDataFromComplaint(complaint, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= validateComplaint_RectificationShouldBeExecutedAsSoonAsPossible(complaint, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateComplaint_ErasureShouldBeExecutedAsSoonAsPossible(complaint, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateComplaint_InvalidTypeOfPurposeForAnObject(complaint, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateComplaint_UserDoesNotHavePermissionToComplain(complaint, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateComplaint_StopProcessingShouldBeExecutedAsSoonAsPossible(complaint, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateComplaint_RestrictionShouldBeExecutedAsSoonAsPossible(complaint, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateComplaint_RecipientsShouldBeNotifiedAboutRestriction(complaint, diagnostics, context);
 		return result;
 	}
+
+	/**
+	 * The cached validation expression for the UserDoesNotHavePermissionToWithdrawConsent constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__USER_DOES_NOT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art7',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n" + "\t\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\t\tlet withdraw : Withdraw = self.action.oclAsType(Withdraw) in\n"
+			+ "\t\t\t\t\tself.who = withdraw.subject.providedBy or  withdraw.subject.providedBy.responsiblePersons->exists(rp| rp = self.who)\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutExistingComplaintForRectification constraint of '<em>Complaint</em>'.
@@ -2260,8 +2716,28 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_SubjectShouldBeNotifiedAboutExistingComplaintForRectification(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.SubjectShouldBeNotifiedAboutExistingComplaintForRectification(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"SubjectShouldBeNotifiedAboutExistingComplaintForRectification",
+				COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_RECTIFICATION__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the SubjectShouldBeNotifiedAboutExistingComplaintForErasure constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
+			+ "\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n"
+			+ "\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Erasure)then\n"
+			+ "\t\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
+			+ "\t\t\t\t\t\t\tnotification.type = NotificationType::Erasure\n" + "\t\t\t\t\t\t)\n" + "\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\ttrue\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutExistingComplaintForErasure constraint of '<em>Complaint</em>'.
@@ -2271,8 +2747,30 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_SubjectShouldBeNotifiedAboutExistingComplaintForErasure(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.SubjectShouldBeNotifiedAboutExistingComplaintForErasure(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"SubjectShouldBeNotifiedAboutExistingComplaintForErasure",
+				COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the CannotIdentifyDataFromComplaint constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__CANNOT_IDENTIFY_DATA_FROM_COMPLAINT__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art11',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnData))) then\n" + "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n"
+			+ "\t\t\t\t\tbasedOnData.subject->forAll(data: PrivacyData|\n"
+			+ "\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::Collecting) and \n"
+			+ "\t\t\t\t\t\tnot(stmt.whose = null) and (stmt.whose = self.who or stmt.whose.responsiblePersons->exists(rp| rp = self.who))\n"
+			+ "\t\t\t\t\t\tand privacyPolicy.privacyPolicyHelper.isDateAfterInterval(stmt.when, self.when) \n"
+			+ "\t\t\t\t\t\tand stmt.what.datas->exists(selectedData| selectedData.privacydata = data)\n"
+			+ "\t\t\t\t\t)\n" + "\t\t\t\t)\n" + "\t\t  endif\n" + "}.status";
 
 	/**
 	 * Validates the UserDoesNotHavePermissionToWithdrawConsent constraint of '<em>Complaint</em>'.
@@ -2282,8 +2780,26 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_UserDoesNotHavePermissionToWithdrawConsent(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.UserDoesNotHavePermissionToWithdrawConsent(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UserDoesNotHavePermissionToWithdrawConsent",
+				COMPLAINT__USER_DOES_NOT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ConsentWithdrawalShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__CONSENT_WITHDRAWAL_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art7',\n" + "\tstatus : Boolean = \n"
+			+ "\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::StopProcessing) and \n"
+			+ "\t\t\t\t\t\t\tnot(stmt.whose = null) and stmt.whose = self.who and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) \n"
+			+ "\t\t\t\t\t\t\tand not(stmt.causedBy = null) and stmt.causedBy = self)\n" + "\t\t\t  endif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the RecipientsShouldBeNotifiedAboutRestriction constraint of '<em>Complaint</em>'.
@@ -2293,7 +2809,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_RecipientsShouldBeNotifiedAboutRestriction(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.RecipientsShouldBeNotifiedAboutRestriction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "RecipientsShouldBeNotifiedAboutRestriction",
+				COMPLAINT__RECIPIENTS_SHOULD_BE_NOTIFIED_ABOUT_RESTRICTION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -2304,8 +2823,24 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_ConsentWithdrawalShouldBeExecutedAsSoonAsPossible(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.ConsentWithdrawalShouldBeExecutedAsSoonAsPossible(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ConsentWithdrawalShouldBeExecutedAsSoonAsPossible",
+				COMPLAINT__CONSENT_WITHDRAWAL_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the SubjectShouldBeNotifiedAboutWithdrawal constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.action.oclIsKindOf(Withdraw)) then\n"
+			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and \n"
+			+ "\t\t\t\t\t\tnotification.type = NotificationType::Withdraw\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the CannotIdentifyDataFromComplaint constraint of '<em>Complaint</em>'.
@@ -2315,8 +2850,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_CannotIdentifyDataFromComplaint(Complaint complaint, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return complaint.CannotIdentifyDataFromComplaint(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "CannotIdentifyDataFromComplaint",
+				COMPLAINT__CANNOT_IDENTIFY_DATA_FROM_COMPLAINT__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the RectificationShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__RECTIFICATION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art16',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tdoesPolicyStatementExists(Action::Rectification,ComplaintBasedOnDataType::Rectification)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the RestrictionShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.
@@ -2326,8 +2874,28 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_RestrictionShouldBeExecutedAsSoonAsPossible(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.RestrictionShouldBeExecutedAsSoonAsPossible(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "RestrictionShouldBeExecutedAsSoonAsPossible",
+				COMPLAINT__RESTRICTION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the RecipientsShouldBeNotifiedAboutRestriction constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__RECIPIENTS_SHOULD_BE_NOTIFIED_ABOUT_RESTRICTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\telse\n"
+			+ "\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
+			+ "\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n"
+			+ "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
+			+ "\t\t\t\t\t\tnotification.type = NotificationType::Restriction)\n" + "\t\t\t\tendif\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the UserDoesNotHavePermissionToComplain constraint of '<em>Complaint</em>'.
@@ -2337,8 +2905,29 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_UserDoesNotHavePermissionToComplain(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.UserDoesNotHavePermissionToComplain(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "UserDoesNotHavePermissionToComplain",
+				COMPLAINT__USER_DOES_NOT_HAVE_PERMISSION_TO_COMPLAIN__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
 	}
+
+	/**
+	 * The cached validation expression for the StopProcessingShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__STOP_PROCESSING_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art21',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n" + "\t\t\t\t\ttrue\n"
+			+ "\t\t\t\telse\n"
+			+ "\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
+			+ "\t\t\t\t\tif(not(basedOnAction.denialReason = null) or basedOnAction.type = ComplaintBasedOnActionType::Restriction) then\n"
+			+ "\t\t\t\t\t\ttrue\n" + "\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::StopProcessing) and \n"
+			+ "\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self)\n" + "\t\t\t\t\tendif\n"
+			+ "\t\t\t  endif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutWithdrawal constraint of '<em>Complaint</em>'.
@@ -2348,8 +2937,27 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_SubjectShouldBeNotifiedAboutWithdrawal(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.SubjectShouldBeNotifiedAboutWithdrawal(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "SubjectShouldBeNotifiedAboutWithdrawal",
+				COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the SubjectShouldBeNotifiedAboutExistingComplaintForRectification constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_RECTIFICATION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
+			+ "\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n"
+			+ "\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Rectification)then\n"
+			+ "\t\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
+			+ "\t\t\t\t\t\t\tnotification.type = NotificationType::Rectification\n" + "\t\t\t\t\t\t)\n"
+			+ "\t\t\t\t\telse\n" + "\t\t\t\t\t\ttrue\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the RectificationShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.
@@ -2359,8 +2967,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_RectificationShouldBeExecutedAsSoonAsPossible(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.RectificationShouldBeExecutedAsSoonAsPossible(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "RectificationShouldBeExecutedAsSoonAsPossible",
+				COMPLAINT__RECTIFICATION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ErasureShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art17',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tdoesPolicyStatementExists(Action::Erasure,ComplaintBasedOnDataType::Erasure)\n" + "}.status";
 
 	/**
 	 * Validates the ErasureShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.
@@ -2370,8 +2991,33 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_ErasureShouldBeExecutedAsSoonAsPossible(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.ErasureShouldBeExecutedAsSoonAsPossible(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ErasureShouldBeExecutedAsSoonAsPossible",
+				COMPLAINT__ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the InvalidTypeOfPurposeForAnObject constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__INVALID_TYPE_OF_PURPOSE_FOR_AN_OBJECT__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art21',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n" + "\t\t\t\t\ttrue\n"
+			+ "\t\t\telse\n"
+			+ "\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
+			+ "\t\t\t\tif(basedOnAction.statement.why = null or not(basedOnAction.denialReason = null) or basedOnAction.type = ComplaintBasedOnActionType::Restriction) then\n"
+			+ "\t\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\t(not(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,\n"
+			+ "\t\t\t\t\tSequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}))) \n"
+			+ "\t\t\t\t\tand\n"
+			+ "\t\t\t\t\t(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Marketing,Sequence{ProcessingReasonSubtype::None})\n"
+			+ "\t\t\t\t\tor\n"
+			+ "\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Profiling,Sequence{ProcessingReasonSubtype::None}))\n"
+			+ "\t\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the InvalidTypeOfPurposeForAnObject constraint of '<em>Complaint</em>'.
@@ -2381,8 +3027,25 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_InvalidTypeOfPurposeForAnObject(Complaint complaint, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
-		return complaint.InvalidTypeOfPurposeForAnObject(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "InvalidTypeOfPurposeForAnObject",
+				COMPLAINT__INVALID_TYPE_OF_PURPOSE_FOR_AN_OBJECT__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the UserDoesNotHavePermissionToComplain constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__USER_DOES_NOT_HAVE_PERMISSION_TO_COMPLAIN__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art18 and Art21',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n" + "\t\t\t\t\ttrue\n"
+			+ "\t\t\telse\n"
+			+ "\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
+			+ "\t\t\t\t\tnot(basedOnAction.statement.whose = null) \n" + "\t\t\t\t\tand \n"
+			+ "\t\t\t\t\t(basedOnAction.statement.whose = self.who or basedOnAction.statement.whose.responsiblePersons->exists(rp| rp = self.who))\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the StopProcessingShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.
@@ -2392,8 +3055,29 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateComplaint_StopProcessingShouldBeExecutedAsSoonAsPossible(Complaint complaint,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return complaint.StopProcessingShouldBeExecutedAsSoonAsPossible(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "StopProcessingShouldBeExecutedAsSoonAsPossible",
+				COMPLAINT__STOP_PROCESSING_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the RestrictionShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__RESTRICTION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art18',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n" + "\t\t\t\t\ttrue\n"
+			+ "\t\t\t\telse\n"
+			+ "\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
+			+ "\t\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n"
+			+ "\t\t\t\t\t\ttrue\n" + "\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| not(stmt.what = null) and stmt.what.actions->exists(action| action = Action::RestrictProcessing) and \n"
+			+ "\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self)\n" + "\t\t\t\t\tendif\n"
+			+ "\t\t\t  endif\n" + "}.status";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2472,6 +3156,16 @@ public class PrivacyModelValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the StartDateShouldBeBeforeTerminationDate constraint of '<em>Abstract Paper</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String ABSTRACT_PAPER__START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Termination date is before start date',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.terminationDate = null or (not(self.startDate > self.terminationDate))\n" + "}.status";
+
+	/**
 	 * Validates the StartDateShouldBeBeforeTerminationDate constraint of '<em>Abstract Paper</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2479,7 +3173,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateAbstractPaper_StartDateShouldBeBeforeTerminationDate(AbstractPaper abstractPaper,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return abstractPaper.StartDateShouldBeBeforeTerminationDate(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.ABSTRACT_PAPER, abstractPaper, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "StartDateShouldBeBeforeTerminationDate",
+				ABSTRACT_PAPER__START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -2545,6 +3242,18 @@ public class PrivacyModelValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the ProtectionControlShouldExistInConfiguration constraint of '<em>Shared Privacy Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SHARED_PRIVACY_DATA__PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Protection controls should be defined in configuration.',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tself.additionalProtectionControls->forAll(protectionControl:String|\n"
+			+ "\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isPolicyControlValid(protectionControl)\n"
+			+ "\t\t\t)\n" + "}.status";
+
+	/**
 	 * Validates the ProtectionControlShouldExistInConfiguration constraint of '<em>Shared Privacy Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2552,8 +3261,22 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateSharedPrivacyData_ProtectionControlShouldExistInConfiguration(
 			SharedPrivacyData sharedPrivacyData, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return sharedPrivacyData.ProtectionControlShouldExistInConfiguration(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA, sharedPrivacyData, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ProtectionControlShouldExistInConfiguration",
+				SHARED_PRIVACY_DATA__PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the DataSourceShouldExistInConfiguration constraint of '<em>Shared Privacy Data</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String SHARED_PRIVACY_DATA__DATA_SOURCE_SHOULD_EXIST_IN_CONFIGURATION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Data source should be defined in configuration.',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tself.dataSource = null or PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isDataSourceValid(self.dataSource)\n"
+			+ "}.status";
 
 	/**
 	 * Validates the DataSourceShouldExistInConfiguration constraint of '<em>Shared Privacy Data</em>'.
@@ -2563,7 +3286,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateSharedPrivacyData_DataSourceShouldExistInConfiguration(SharedPrivacyData sharedPrivacyData,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return sharedPrivacyData.DataSourceShouldExistInConfiguration(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA, sharedPrivacyData, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "DataSourceShouldExistInConfiguration",
+				SHARED_PRIVACY_DATA__DATA_SOURCE_SHOULD_EXIST_IN_CONFIGURATION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -2600,17 +3326,31 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(notification, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateNotification_ShouldDefineCausedByAsRestriction(notification, diagnostics, context);
+			result &= validateNotification_ShouldDefineCausedByAsWithdraw(notification, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateNotification_ShouldDefineCausedByAsErasure(notification, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateNotification_ShouldDefineCausedByAsRectification(notification, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateNotification_ShouldDefineCausedByAsWithdraw(notification, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validateNotification_ShouldDefineCausedByAsPrivacyPolicy(notification, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateNotification_ShouldDefineCausedByAsRestriction(notification, diagnostics, context);
 		return result;
 	}
+
+	/**
+	 * The cached validation expression for the ShouldDefineCausedByAsWithdraw constraint of '<em>Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'NotifyAboutWithdraw should contain causedBy with complaint Withdraw',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tif(type = NotificationType::Withdraw) then\n"
+			+ "\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n"
+			+ "\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n"
+			+ "\t\t\t\t\tcomplaint.action.oclIsKindOf(Withdraw)\n" + "\t\t\t\telse\n" + "\t\t\t\t\tfalse\n"
+			+ "\t\t\t\tendif\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ShouldDefineCausedByAsRestriction constraint of '<em>Notification</em>'.
@@ -2620,7 +3360,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateNotification_ShouldDefineCausedByAsRestriction(Notification notification,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return notification.ShouldDefineCausedByAsRestriction(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.NOTIFICATION, notification, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ShouldDefineCausedByAsRestriction",
+				NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_RESTRICTION__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
 	}
 
 	/**
@@ -2631,8 +3374,27 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateNotification_ShouldDefineCausedByAsWithdraw(Notification notification,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return notification.ShouldDefineCausedByAsWithdraw(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.NOTIFICATION, notification, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ShouldDefineCausedByAsWithdraw",
+				NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_WITHDRAW__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ShouldDefineCausedByAsErasure constraint of '<em>Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_ERASURE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'NotifyAboutErasure should contain causedBy with complaint Erasure',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tif(type = NotificationType::Erasure) then\n"
+			+ "\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n"
+			+ "\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n"
+			+ "\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
+			+ "\t\t\t\t\t\tlet basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in\n"
+			+ "\t\t\t\t\t\tbasedOnData.type = ComplaintBasedOnDataType::Erasure\n" + "\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\tfalse\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\tfalse\n" + "\t\t\t\tendif\n"
+			+ "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ShouldDefineCausedByAsErasure constraint of '<em>Notification</em>'.
@@ -2642,8 +3404,27 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateNotification_ShouldDefineCausedByAsErasure(Notification notification,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return notification.ShouldDefineCausedByAsErasure(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.NOTIFICATION, notification, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ShouldDefineCausedByAsErasure",
+				NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_ERASURE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ShouldDefineCausedByAsRectification constraint of '<em>Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'NotifyAboutRectification should contain causedBy with complaint Rectification',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tif(type = NotificationType::Rectification) then\n"
+			+ "\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n"
+			+ "\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n"
+			+ "\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
+			+ "\t\t\t\t\t\tlet basedOnData : ComplaintBasedOnData = complaint.action.oclAsType(ComplaintBasedOnData) in\n"
+			+ "\t\t\t\t\t\tbasedOnData.type = ComplaintBasedOnDataType::Rectification\n" + "\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\tfalse\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\tfalse\n" + "\t\t\t\tendif\n"
+			+ "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ShouldDefineCausedByAsRectification constraint of '<em>Notification</em>'.
@@ -2653,8 +3434,26 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateNotification_ShouldDefineCausedByAsRectification(Notification notification,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return notification.ShouldDefineCausedByAsRectification(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.NOTIFICATION, notification, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ShouldDefineCausedByAsRectification",
+				NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_RECTIFICATION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ShouldDefineCausedByAsPrivacyPolicy constraint of '<em>Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'NotifyAboutCollecting or StopProcessing should contain causedBy with policy statement',\n"
+			+ "\tstatus : Boolean = \n"
+			+ "\t\t\tif(type = NotificationType::DataCollecting or type = NotificationType::StopProcessing \n"
+			+ "\t\t\t\tor type = NotificationType::ExecutedRectification or type = NotificationType::ExecutedErasure\n"
+			+ "\t\t\t\tor type = NotificationType::RestrictionLifted\n" + "\t\t\t) then\n"
+			+ "\t\t\t\tcausedBy.oclIsKindOf(PolicyStatement)\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the ShouldDefineCausedByAsPrivacyPolicy constraint of '<em>Notification</em>'.
@@ -2664,8 +3463,27 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	public boolean validateNotification_ShouldDefineCausedByAsPrivacyPolicy(Notification notification,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return notification.ShouldDefineCausedByAsPrivacyPolicy(diagnostics, context);
+		return validate(PrivacyModelPackage.Literals.NOTIFICATION, notification, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ShouldDefineCausedByAsPrivacyPolicy",
+				NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_PRIVACY_POLICY__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
+
+	/**
+	 * The cached validation expression for the ShouldDefineCausedByAsRestriction constraint of '<em>Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String NOTIFICATION__SHOULD_DEFINE_CAUSED_BY_AS_RESTRICTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'NotifyAboutRestriction should contain causedBy with complaint Restriction',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tif(type = NotificationType::Restriction) then\n"
+			+ "\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n"
+			+ "\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n"
+			+ "\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnAction)) then\n"
+			+ "\t\t\t\t\t\tcomplaint.action.oclAsType(ComplaintBasedOnAction).type = ComplaintBasedOnActionType::Restriction\n"
+			+ "\t\t\t\t\telse\n" + "\t\t\t\t\t\tfalse\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\tfalse\n"
+			+ "\t\t\t\tendif\n" + "\t\t\telse\n" + "\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * <!-- begin-user-doc -->

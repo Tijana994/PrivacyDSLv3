@@ -2,9 +2,6 @@
  */
 package privacyModel;
 
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Time Interval</b></em>'.
@@ -19,7 +16,8 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getTimeInterval()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AtTypeShouldBeDefinedAlone'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='OnlyAfterOrAfterWithBefore OnlyFromOrFromWithTo AtTypeShouldBeDefinedAlone UntilTypeShouldBeDefinedAlone AfterStatementBeforeBeforeStatement FromStatementBeforeToStatement'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot OnlyAfterOrAfterWithBefore='Tuple {\n\tmessage : String = \'After interval should be defined alone or with before interval\',\n\tstatus : Boolean = \n\t\t\tself.isTypeDefinedWithOtherType(TimePreposition::after, TimePreposition::before)\n}.status' OnlyFromOrFromWithTo='Tuple {\n\tmessage : String = \'From interval should be defined alone or with to interval\',\n\tstatus : Boolean = \n\t\t\tself.isTypeDefinedWithOtherType(TimePreposition::from, TimePreposition::to)\n}.status' AtTypeShouldBeDefinedAlone='Tuple {\n\tmessage : String = \'At statement should be defined alone\',\n\tstatus : Boolean = \n\t\t\tself.isTypeForbidden(TimePreposition::at)\n}.status' UntilTypeShouldBeDefinedAlone='Tuple {\n\tmessage : String = \'Until statement should be defined alone\',\n\tstatus : Boolean = \n\t\t\tself.isTypeForbidden(TimePreposition::until)\n}.status' AfterStatementBeforeBeforeStatement='Tuple {\n\tmessage : String = \'After interval should be defined before before interval\',\n\tstatus : Boolean = \n\t\t\tself.isValid(TimePreposition::after, TimePreposition::before)\n}.status' FromStatementBeforeToStatement='Tuple {\n\tmessage : String = \'From interval should be defined before to interval\',\n\tstatus : Boolean = \n\t\t\tself.isValid(TimePreposition::from, TimePreposition::to)\n}.status'"
  * @generated
  */
 public interface TimeInterval extends AbstractTime {
@@ -93,53 +91,5 @@ public interface TimeInterval extends AbstractTime {
 	 * @generated
 	 */
 	boolean isValid(TimePreposition firstPrepositionType, TimePreposition secondPrepositionType);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'After interval should be defined before before interval\',\n\tstatus : Boolean = \n\t\t\tself.isValid(TimePreposition::after, TimePreposition::before)\n}.status'"
-	 * @generated
-	 */
-	boolean AfterStatementBeforeBeforeStatement(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Until statement should be defined alone\',\n\tstatus : Boolean = \n\t\t\tself.isTypeForbidden(TimePreposition::until)\n}.status'"
-	 * @generated
-	 */
-	boolean UntilTypeShouldBeDefinedAlone(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'From interval should be defined before to interval\',\n\tstatus : Boolean = \n\t\t\tself.isValid(TimePreposition::from, TimePreposition::to)\n}.status'"
-	 * @generated
-	 */
-	boolean FromStatementBeforeToStatement(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'From interval should be defined alone or with to interval\',\n\tstatus : Boolean = \n\t\t\tself.isTypeDefinedWithOtherType(TimePreposition::from, TimePreposition::to)\n}.status'"
-	 * @generated
-	 */
-	boolean OnlyFromOrFromWithTo(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'After interval should be defined alone or with before interval\',\n\tstatus : Boolean = \n\t\t\tself.isTypeDefinedWithOtherType(TimePreposition::after, TimePreposition::before)\n}.status'"
-	 * @generated
-	 */
-	boolean OnlyAfterOrAfterWithBefore(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'At statement should be defined alone\',\n\tstatus : Boolean = \n\t\t\tself.isTypeForbidden(TimePreposition::at)\n}.status'"
-	 * @generated
-	 */
-	boolean AtTypeShouldBeDefinedAlone(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // TimeInterval
