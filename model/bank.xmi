@@ -252,6 +252,39 @@
       <actions>LiftRestriction</actions>
     </what>
   </policyStatements>
+  <policyStatements
+      name="Credit check for Bob"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.6">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2022-06-01T00:00:00.000+0200"/>
+    <why details="Creditworthiness assessment"
+        processingReason="LegalObligation"
+        erasureDate="2040-01-01T00:00:00.000+0100"/>
+    <what datas="//@allSharedPrivacyData.4">
+      <actions>Store</actions>
+      <actions>Collecting</actions>
+    </what>
+    <how documents="//@allDocuments.3"/>
+  </policyStatements>
+  <policyStatements
+      name="Grant loan for Bob"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.6"
+      whom="//@allPrincipals.0">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2022-06-03T00:00:00.000+0200"/>
+    <why details="Loan agreement"
+        processingReason="ContractPerformance"
+        erasureDate="2040-01-01T00:00:00.000+0100"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1">
+      <actions>Store</actions>
+      <actions>Collecting</actions>
+    </what>
+    <how contract="//@allContracts.0"/>
+  </policyStatements>
   <allPrincipals
       name="Green bank"
       subPrincipals="//@allPrincipals.1 //@allPrincipals.2"
@@ -292,6 +325,9 @@
   <allPrincipals
       name="Budapest court"
       scope="Out"/>
+  <allPrincipals
+      name="Hungarian Parliament"
+      scope="Out"/>
   <locations
       name="Hungary"
       isEUMember="true"
@@ -324,6 +360,7 @@
     <dataSources>PubliclyAccessibleSources</dataSources>
     <dataSources>Identity document</dataSources>
     <dataSources>Internal</dataSources>
+    <dataSources>Credit bureau</dataSources>
     <protectionControlMethods>OriginalData</protectionControlMethods>
     <protectionControlMethods>Pseudonymisation</protectionControlMethods>
     <protectionControlMethods>Encryption</protectionControlMethods>
@@ -338,6 +375,9 @@
       name="identity number"/>
   <allDatas
       name="email"
+      type="General"/>
+  <allDatas
+      name="credit history"
       type="General"/>
   <allComplaints
       name="Rectification of email"
@@ -437,6 +477,17 @@
       startDate="2021-04-17T01:00:00.000+0200"
       location="Budapest court"
       documentType="CourtApproval"/>
+  <allDocuments
+      name="Consumer credit act - creditworthiness assessment"
+      providedBy="//@allPrincipals.9"
+      startDate="2010-01-01T00:00:00.000+0100"
+      location="Hungary"
+      documentType="LegalProvision"/>
+  <allContracts
+      name="Loan contract - Bob"
+      providedBy="//@allPrincipals.6"
+      startDate="2022-06-02T00:00:00.000+0200"
+      location="Budapest"/>
   <notifications
       name="Notify Eve about transfer"
       type="ThirdPartyTransfer"
@@ -506,6 +557,13 @@
       receivers="//@allPrincipals.5"
       causedBy="//@policyStatements.15"
       when="2022-02-04T00:00:00.000+0100"/>
+  <notifications
+      name="Notify Bob about collecting credit history"
+      type="DataCollecting"
+      notifiers="//@allPrincipals.0"
+      receivers="//@allPrincipals.6"
+      causedBy="//@policyStatements.16"
+      when="2022-06-01T00:00:00.000+0200"/>
   <allSharedPrivacyData
       name="name"
       privacydata="//@allDatas.0"
@@ -524,4 +582,9 @@
   <allSharedPrivacyData
       name="email"
       privacydata="//@allDatas.3"/>
+  <allSharedPrivacyData
+      name="credit history"
+      privacydata="//@allDatas.4"
+      dataSource="Credit bureau"
+      origin="ThirdParty"/>
 </privacyModel:PrivacyPolicy>
