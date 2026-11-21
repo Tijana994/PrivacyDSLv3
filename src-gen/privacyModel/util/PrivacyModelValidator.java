@@ -595,8 +595,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			result &= validatePolicyStatement_WhereShouldBeDefinedForTransferAction(policyStatement, diagnostics,
 					context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_CourtApprovalIsNeededForPublicInterestPurpose(policyStatement,
-					diagnostics, context);
+			result &= validatePolicyStatement_CourtApprovalOrLegalProvisionIsNeededForPublicInterestPurpose(
+					policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_ControllerApprovalIsNeededForLegitimateInterestsPurpose(policyStatement,
 					diagnostics, context);
@@ -685,6 +685,9 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_RestrictionShouldNotBeLiftedBeforeObjectionDecision(policyStatement,
 					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_DateShouldBeDefinedForCollectingAction(policyStatement, diagnostics,
+					context);
 		return result;
 	}
 
@@ -753,7 +756,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::Collecting))) then\n"
 			+ "\t\t\t\ttrue\n" + "\t\t\telse if(self.hasProcessingReason(ProcessingReason::LegalObligation)) then\n"
 			+ "\t\t\t\ttrue\n" + "\t\t\telse if(self.hasProcessingReason(ProcessingReason::PublicInterest)) then\n"
-			+ "\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::CourtApproval)\n"
+			+ "\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::CourtApproval or doc.documentType = DocumentType::LegalProvision)\n"
 			+ "\t\t\telse if(self.hasProcessingReason(ProcessingReason::LegitimateInterests) or\n"
 			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject)) then\n"
 			+ "\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::ControllerApproval)\n"
@@ -821,7 +824,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art21',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art12(3) and Art21',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(what.actions->exists(action| action = Action::StopProcessing)) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::StopProcessing and \n"
 			+ "\t\t\t\t\t\tnotification.causedBy = self\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n"
@@ -848,26 +851,25 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOES_NOT_HAVE_PERMISSION__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art6 and Art9',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction)) then\n"
-			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction)) then\n"
+			+ "\t\t\ttrue\n" + "\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
-			+ "\t\t\t\tself.what.datas->forAll(data|\n"
-			+ "\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st| \n"
-			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose  \n"
-			+ "\t\t\t\t\t\tand st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n"
-			+ "\t\t\t\t\t\tin \n" + "\t\t\t\t\t\tif(statements->isEmpty()) then \n" + "\t\t\t\t\t\t\ttrue\n"
-			+ "\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\tstatements -> forAll(st|\n"
-			+ "\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n"
-			+ "\t\t\t\t\t\t\t\t\tif(self.why = null) then\n" + "\t\t\t\t\t\t\t\t\t\tfalse\n"
-			+ "\t\t\t\t\t\t\t\t\telse\n"
-			+ "\t\t\t\t\t\t\t\t\t\t(not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals->exists(subprincipal| subprincipal = self.who) \n"
-			+ "\t\t\t\t\t\t\t\t\t\tor self.who.equals(st.whose) or st.whose.responsiblePersons->exists(responsiblePerson| responsiblePerson = self.who)))\n"
-			+ "\t\t\t\t\t\t\t\t\t\tand (st.why.isValid(self.why) or \n"
-			+ "\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, ProcessingReason::PublicHealth, ProcessingReason::LegalObligation} in\n"
-			+ "\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)))\n"
-			+ "\t\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\t\t\tfalse\n"
-			+ "\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t)\n" + "\t\t\t\t\t\tendif\n" + "\t\t\t\t)\n" + "\t\t\tendif\n"
-			+ "}.status";
+			+ "\t\t\tself.what.datas->forAll(data|\n"
+			+ "\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st| \n"
+			+ "\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose \n"
+			+ "\t\t\t\t\tand st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n"
+			+ "\t\t\t\tin \n" + "\t\t\t\tif(statements->isEmpty()) then \n" + "\t\t\t\t\ttrue\n"
+			+ "\t\t\t\telse if(self.why = null) then\n" + "\t\t\t\t\tfalse\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\tstatements->exists(st|\n"
+			+ "\t\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)\n"
+			+ "\t\t\t\t\t\tand (not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals->exists(subprincipal| subprincipal = self.who) \n"
+			+ "\t\t\t\t\t\t\tor self.who.equals(st.whose) or st.whose.responsiblePersons->exists(responsiblePerson| responsiblePerson = self.who)))\n"
+			+ "\t\t\t\t\t\tand ((not(st.why = null) and st.why.isValid(self.why)) or \n"
+			+ "\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
+			+ "\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance, ProcessingReason::PublicHealth,\n"
+			+ "\t\t\t\t\t\t\t\tProcessingReason::Research, ProcessingReason::StatisticalPurposes} in\n"
+			+ "\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)))\n"
+			+ "\t\t\t\t\t)\n" + "\t\t\t\tendif\n" + "\t\t\t\tendif\n" + "\t\t\t)\n" + "\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the UndefinedPurposeForActionOrUserDoesNotHavePermission constraint of '<em>Policy Statement</em>'.
@@ -897,7 +899,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\t\tself.what.datas->forAll(data |\n"
 			+ "\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st| \n"
-			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and self.who.equals(st.who) and st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n"
+			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and \n"
+			+ "\t\t\t\t\t\t(self.who.equals(st.who) or (not(st.who = null) and st.who.equals(self.who)) or \n"
+			+ "\t\t\t\t\t\t(not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals->exists(subprincipal| subprincipal = self.who)))) and \n"
+			+ "\t\t\t\t\t\tst.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n"
 			+ "\t\t\t\t\t\tin \n" + "\t\t\t\t\t\tif(statements->isEmpty()) then \n" + "\t\t\t\t\t\t\ttrue\n"
 			+ "\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\tstatements -> exists(st|\n"
 			+ "\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n"
@@ -906,6 +911,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
 			+ "\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n"
 			+ "\t\t\t\t\t\t\t\t\t)) then\n" + "\t\t\t\t\t\t\t\t\t\ttrue\n" + "\t\t\t\t\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\t\t\t\t\tnot(st.how = null) and not(st.how.consent = null) and\n"
 			+ "\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, st.how.consent.startDate)) and\n"
 			+ "\t\t\t\t\t\t\t\t\t\t(st.how.consent.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, st.how.consent.terminationDate)))\n"
 			+ "\t\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\t\t\tfalse\n"
@@ -1005,32 +1011,34 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__WITHDRAWN_CONSENT__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art7',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting)) then\n"
-			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\tif(self.whose = null or self.when = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction or act = Action::Erasure)) then\n"
+			+ "\t\t\ttrue\n" + "\t\telse if(self.why = null \n" + "\t\t\tor \n"
+			+ "\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
+			+ "\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
+			+ "\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason))\n"
+			+ "\t\t\t) then\n" + "\t\t\ttrue\n" + "\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
-			+ "\t\t\t\tself.what.datas->forAll(data|\n"
-			+ "\t\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st: PolicyStatement| \n"
-			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and self.who.equals(st.who) and st.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n"
-			+ "\t\t\t\t\t\tin \n" + "\t\t\t\t\t\tif(statements->isEmpty()) then \n" + "\t\t\t\t\t\t\ttrue\n"
-			+ "\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\tstatements -> forAll(st|\n"
-			+ "\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n"
-			+ "\t\t\t\t\t\t\t\t\tif(self.why = null \n" + "\t\t\t\t\t\t\t\t\t\tor \n"
-			+ "\t\t\t\t\t\t\t\t\t\tlet reasons  = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
-			+ "\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
-			+ "\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n"
-			+ "\t\t\t\t\t\t\t\t\t)) then\n" + "\t\t\t\t\t\t\t\t\t\ttrue\n" + "\t\t\t\t\t\t\t\t\telse\n"
-			+ "\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.allComplaints->exists(complaint| complaint.action.oclIsTypeOf(Withdraw) and \n"
-			+ "\t\t\t\t\t\t\t\t\t\t\tlet withdrawal: Withdraw = complaint.action.oclAsType(Withdraw) in\n"
-			+ "\t\t\t\t\t\t\t\t\t\t\t\twithdrawal.subject = st.how.consent\n"
-			+ "\t\t\t\t\t\t\t\t\t\t\t\tand (privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, complaint.when) \n"
-			+ "\t\t\t\t\t\t\t\t\t\t\t\tor privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when))\n"
-			+ "\t\t\t\t\t\t\t\t\t\t\tand not(privacyPolicy.policyStatements->exists(stopStatement| \n"
-			+ "\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.what.actions->exists(act| act = Action::StopProcessing) and \n"
-			+ "\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.what.datas->exists(d| d = data) and not(stopStatement.causedBy = null) and \n"
-			+ "\t\t\t\t\t\t\t\t\t\t\t\tstopStatement.causedBy.action= withdrawal))\n" + "\t\t\t\t\t\t\t\t\t\t))\n"
-			+ "\t\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\t\t\tfalse\n"
-			+ "\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t)\n" + "\t\t\t\t\t\tendif\n" + "\t\t\t\t)\n" + "\t\t\tendif\n"
-			+ "}.status";
+			+ "\t\t\tself.what.datas->forAll(data|\n"
+			+ "\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st: PolicyStatement| \n"
+			+ "\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and \n"
+			+ "\t\t\t\t\t(self.who.equals(st.who) or (not(st.who = null) and st.who.equals(self.who)) or \n"
+			+ "\t\t\t\t\t(not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals->exists(subprincipal| subprincipal = self.who)))) and \n"
+			+ "\t\t\t\t\tst.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data) and\n"
+			+ "\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when))\n" + "\t\t\t\tin \n"
+			+ "\t\t\t\tstatements->isEmpty() or\n" + "\t\t\t\tstatements->exists(st|\n"
+			+ "\t\t\t\t\tst.how = null or st.how.consent = null or\n"
+			+ "\t\t\t\t\tnot(privacyPolicy.allComplaints->exists(complaint| complaint.action.oclIsTypeOf(Withdraw) and \n"
+			+ "\t\t\t\t\t\tlet withdrawal : Withdraw = complaint.action.oclAsType(Withdraw) in\n"
+			+ "\t\t\t\t\t\twithdrawal.subject = st.how.consent\n"
+			+ "\t\t\t\t\t\tand (privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, complaint.when) \n"
+			+ "\t\t\t\t\t\t\tor privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when))\n"
+			+ "\t\t\t\t\t\tand not(privacyPolicy.policyStatements->exists(stopStatement| \n"
+			+ "\t\t\t\t\t\t\tnot(stopStatement.when = null) and\n"
+			+ "\t\t\t\t\t\t\tstopStatement.what.actions->exists(act| act = Action::StopProcessing) and \n"
+			+ "\t\t\t\t\t\t\tstopStatement.what.datas->exists(d| d = data) and not(stopStatement.causedBy = null) and \n"
+			+ "\t\t\t\t\t\t\tstopStatement.causedBy.action = withdrawal and\n"
+			+ "\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(stopStatement.when, self.when))))\n"
+			+ "\t\t\t\t\t))\n" + "\t\t\t\t)\n" + "\t\t\t)\n" + "\t\tendif\n" + "\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson constraint of '<em>Policy Statement</em>'.
@@ -1055,7 +1063,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__PROCESSING_OF_SPECIAL_CATEGORIES__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art9',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.what = null or self.what.actions->exists(action | action = Action::StopProcessing or action = Action::RestrictProcessing or action = Action::LiftRestriction)) then\n"
+			+ "\t\t\tif(self.what = null or self.what.actions->exists(action | action = Action::StopProcessing or action = Action::RestrictProcessing or action = Action::LiftRestriction or action = Action::Erasure)) then\n"
 			+ "\t\t\t\ttrue\n" + "\t\t\telse\n" + "\t\t\tself.what.datas->forAll(data| \n"
 			+ "\t\t\t\tlet specialCategories : Sequence(DataType) = Sequence{DataType::Biometric, DataType::Genetic, DataType::Health, DataType::PoliticalOpinion, \n"
 			+ "\t\t\t\t\tDataType::RacialOrEthnicOrigin, DataType::Beliefs, DataType::Religious, DataType::SexLife, DataType::TradeUnionMembership\n"
@@ -1129,10 +1137,13 @@ public class PrivacyModelValidator extends EObjectValidator {
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art14',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.what.actions->exists(action| action = Action::Collecting) and self.what.datas->exists(data| data.origin <> DataOrigin::DataSubject)) then\n"
-			+ "\t\t\t\tif(not(self.why = null) and \n"
+			+ "\t\t\t\tif((not(self.why = null) and \n"
 			+ "\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::None}) or\n"
 			+ "\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Research,Sequence{ProcessingReasonSubtype::Statistical, \n"
-			+ "\t\t\t\t\t\tProcessingReasonSubtype::Historical,ProcessingReasonSubtype::Scientific}))\n"
+			+ "\t\t\t\t\t\tProcessingReasonSubtype::Historical,ProcessingReasonSubtype::Scientific})))\n"
+			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::StatisticalPurposes)\n"
+			+ "\t\t\t\t\tor (self.hasProcessingReason(ProcessingReason::LegalObligation) and not(self.how = null) and\n"
+			+ "\t\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision))\n"
 			+ "\t\t\t\t)then\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::DataCollecting \n"
 			+ "\t\t\t\t\t\tand notification.causedBy = self\n" + "\t\t\t\t\t)\n" + "\t\t\t\tendif\n" + "\t\t\t\telse\n"
@@ -1245,20 +1256,6 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tcausedByShouldBeDefinedForType(Action::Erasure)\n" + "}.status";
 
 	/**
-	 * Validates the CourtApprovalIsNeededForPublicInterestPurpose constraint of '<em>Policy Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validatePolicyStatement_CourtApprovalIsNeededForPublicInterestPurpose(
-			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "CourtApprovalIsNeededForPublicInterestPurpose",
-				POLICY_STATEMENT__COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__EEXPRESSION, Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE, 0);
-	}
-
-	/**
 	 * The cached validation expression for the ControllerApprovalIsNeededForLegitimateInterestsPurpose constraint of '<em>Policy Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1290,7 +1287,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art12(3) and Art19',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(what.actions->exists(action| action = Action::Erasure)) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
 			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedErasure\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n"
@@ -1317,7 +1314,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art12(3) and Art19',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(what.actions->exists(action| action = Action::Rectification)) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
 			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification\n" + "\t\t\t\t\t)\n"
@@ -1344,11 +1341,11 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__PROCESSING_OF_CRIMINAL_CONVICTION_DATA__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art10',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.what = null or self.what.actions->exists(action | action = Action::StopProcessing or action = Action::RestrictProcessing or action = Action::LiftRestriction) or\n"
+			+ "\t\t\tif(self.what = null or self.what.actions->exists(action | action = Action::StopProcessing or action = Action::RestrictProcessing or action = Action::LiftRestriction or action = Action::Erasure) or\n"
 			+ "\t\t\t\tnot(self.what.datas->exists(data| data.privacydata.type = DataType::Judicial))) then\n"
 			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\t\t(self.hasProcessingReason(ProcessingReason::PublicInterest) and not(self.how = null) and\n"
-			+ "\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::CourtApproval))\n"
+			+ "\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::CourtApproval or doc.documentType = DocumentType::LegalProvision))\n"
 			+ "\t\t\t\tor\n"
 			+ "\t\t\t\t(self.hasProcessingReason(ProcessingReason::LegalObligation) and not(self.how = null) and\n"
 			+ "\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision))\n"
@@ -1375,7 +1372,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String POLICY_STATEMENT__WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Arts44-50',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Arts 44-50',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(what.actions->exists(action| action = Action::Transfer)) then\n"
 			+ "\t\t\t\t\tnot(self.whom = null)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n"
 			+ "}.status";
@@ -1419,6 +1416,30 @@ public class PrivacyModelValidator extends EObjectValidator {
 				"RestrictionShouldNotBeLiftedBeforeObjectionDecision",
 				POLICY_STATEMENT__RESTRICTION_SHOULD_NOT_BE_LIFTED_BEFORE_OBJECTION_DECISION__EEXPRESSION,
 				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the DateShouldBeDefinedForCollectingAction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_COLLECTING_ACTION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Date should be defined',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tdateShouldBeDefinedForType(Action::Collecting)\n" + "}.status";
+
+	/**
+	 * Validates the DateShouldBeDefinedForCollectingAction constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePolicyStatement_DateShouldBeDefinedForCollectingAction(PolicyStatement policyStatement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "DateShouldBeDefinedForCollectingAction",
+				POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_COLLECTING_ACTION__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -1805,15 +1826,31 @@ public class PrivacyModelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the CourtApprovalIsNeededForPublicInterestPurpose constraint of '<em>Policy Statement</em>'.
+	 * The cached validation expression for the CourtApprovalOrLegalProvisionIsNeededForPublicInterestPurpose constraint of '<em>Policy Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String POLICY_STATEMENT__COURT_APPROVAL_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__EEXPRESSION = "Tuple {\n"
+	protected static final String POLICY_STATEMENT__COURT_APPROVAL_OR_LEGAL_PROVISION_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art6(1)(e) and Art6(3)',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tdocumentIsNeededForPurpose(DocumentType::CourtApproval,ProcessingReason::PublicInterest)\n"
+			+ "\t\t\tdocumentIsNeededForPurpose(DocumentType::CourtApproval,ProcessingReason::PublicInterest) or\n"
+			+ "\t\t\tdocumentIsNeededForPurpose(DocumentType::LegalProvision,ProcessingReason::PublicInterest)\n"
 			+ "}.status";
+
+	/**
+	 * Validates the CourtApprovalOrLegalProvisionIsNeededForPublicInterestPurpose constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePolicyStatement_CourtApprovalOrLegalProvisionIsNeededForPublicInterestPurpose(
+			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"CourtApprovalOrLegalProvisionIsNeededForPublicInterestPurpose",
+				POLICY_STATEMENT__COURT_APPROVAL_OR_LEGAL_PROVISION_IS_NEEDED_FOR_PUBLIC_INTEREST_PURPOSE__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2188,6 +2225,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 			result &= validatePurpose_LegalObligationShouldNotContainSubReason(purpose, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validatePurpose_LegalClaimsShouldNotContainThisSubReason(purpose, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePurpose_HealthCareShouldNotContainSubReason(purpose, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePurpose_NotForProfitBodyActivityShouldNotContainSubReason(purpose, diagnostics, context);
 		return result;
 	}
 
@@ -2386,6 +2427,54 @@ public class PrivacyModelValidator extends EObjectValidator {
 		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
 				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "LegalClaimsShouldNotContainThisSubReason",
 				PURPOSE__LEGAL_CLAIMS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the HealthCareShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__HEALTH_CARE_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::HealthCare, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
+
+	/**
+	 * Validates the HealthCareShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePurpose_HealthCareShouldNotContainSubReason(Purpose purpose, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "HealthCareShouldNotContainSubReason",
+				PURPOSE__HEALTH_CARE_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
+	}
+
+	/**
+	 * The cached validation expression for the NotForProfitBodyActivityShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String PURPOSE__NOT_FOR_PROFIT_BODY_ACTIVITY_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION = "\n"
+			+ "\t\t\t\tisSubPurposeValid(ProcessingReason::NotForProfitBodyActivity, \n"
+			+ "\t\t\t\tSequence{ProcessingReasonSubtype::None})";
+
+	/**
+	 * Validates the NotForProfitBodyActivityShouldNotContainSubReason constraint of '<em>Purpose</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePurpose_NotForProfitBodyActivityShouldNotContainSubReason(Purpose purpose,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(PrivacyModelPackage.Literals.PURPOSE, purpose, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "NotForProfitBodyActivityShouldNotContainSubReason",
+				PURPOSE__NOT_FOR_PROFIT_BODY_ACTIVITY_SHOULD_NOT_CONTAIN_SUB_REASON__EEXPRESSION, Diagnostic.ERROR,
 				DIAGNOSTIC_SOURCE, 0);
 	}
 
@@ -2730,7 +2819,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art12(3)',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
 			+ "\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n"
 			+ "\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Erasure)then\n"
@@ -2797,7 +2886,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
 			+ "\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::StopProcessing) and \n"
-			+ "\t\t\t\t\t\t\tnot(stmt.whose = null) and stmt.whose = self.who and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) \n"
+			+ "\t\t\t\t\t\t\tnot(stmt.whose = null) and (stmt.whose = self.who or stmt.whose.responsiblePersons->exists(rp| rp = self.who)) and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) \n"
 			+ "\t\t\t\t\t\t\tand not(stmt.causedBy = null) and stmt.causedBy = self)\n" + "\t\t\t  endif\n"
 			+ "}.status";
 
@@ -2836,7 +2925,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art7',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.action.oclIsKindOf(Withdraw)) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and \n"
 			+ "\t\t\t\t\t\tnotification.type = NotificationType::Withdraw\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n"
@@ -2950,7 +3039,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_RECTIFICATION__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art12(3)',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
 			+ "\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n"
 			+ "\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Rectification)then\n"
@@ -3010,13 +3099,18 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
 			+ "\t\t\t\tif(basedOnAction.statement.why = null or not(basedOnAction.denialReason = null) or basedOnAction.type = ComplaintBasedOnActionType::Restriction) then\n"
 			+ "\t\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
-			+ "\t\t\t\t\t(not(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,\n"
-			+ "\t\t\t\t\tSequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n"
-			+ "\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}))) \n"
-			+ "\t\t\t\t\tand\n"
-			+ "\t\t\t\t\t(basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Marketing,Sequence{ProcessingReasonSubtype::None})\n"
+			+ "\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Marketing, Sequence{ProcessingReasonSubtype::None})\n"
 			+ "\t\t\t\t\tor\n"
-			+ "\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Profiling,Sequence{ProcessingReasonSubtype::None}))\n"
+			+ "\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Profiling, Sequence{ProcessingReasonSubtype::None})\n"
+			+ "\t\t\t\t\tor\n"
+			+ "\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::LegitimateInterests, Sequence{ProcessingReasonSubtype::None})\n"
+			+ "\t\t\t\t\tor\n"
+			+ "\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest, Sequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})\n"
+			+ "\t\t\t\t\tor\n"
+			+ "\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Research, Sequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other,\n"
+			+ "\t\t\t\t\t\tProcessingReasonSubtype::Scientific, ProcessingReasonSubtype::Historical, ProcessingReasonSubtype::Statistical})\n"
+			+ "\t\t\t\t\tor\n"
+			+ "\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::StatisticalPurposes, Sequence{ProcessingReasonSubtype::None})\n"
 			+ "\t\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
