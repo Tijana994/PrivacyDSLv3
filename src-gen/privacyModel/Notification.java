@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getNotification()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ShouldDefineCausedByAsRectification'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ShouldDefineCausedByAsRestriction'"
  * @generated
  */
 public interface Notification extends NamedElement {
@@ -133,10 +133,18 @@ public interface Notification extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'NotifyAboutCollecting or StopProcessing should contain causedBy with policy statement\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::DataCollecting or type = NotificationType::StopProcessing \n\t\t\t\tor type = NotificationType::ExecutedRectification or type = NotificationType::ExecutedErasure\n\t\t\t) then\n\t\t\t\tcausedBy.oclIsKindOf(PolicyStatement)\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'NotifyAboutCollecting or StopProcessing should contain causedBy with policy statement\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::DataCollecting or type = NotificationType::StopProcessing \n\t\t\t\tor type = NotificationType::ExecutedRectification or type = NotificationType::ExecutedErasure\n\t\t\t\tor type = NotificationType::RestrictionLifted\n\t\t\t) then\n\t\t\t\tcausedBy.oclIsKindOf(PolicyStatement)\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
 	 * @generated
 	 */
 	boolean ShouldDefineCausedByAsPrivacyPolicy(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'NotifyAboutRestriction should contain causedBy with complaint Restriction\',\n\tstatus : Boolean = \n\t\t\tif(type = NotificationType::Restriction) then\n\t\t\t\tif(causedBy.oclIsKindOf(Complaint)) then\n\t\t\t\t\tlet complaint : Complaint = causedBy.oclAsType(Complaint) in\n\t\t\t\t\tif(complaint.action.oclIsKindOf(ComplaintBasedOnAction)) then\n\t\t\t\t\t\tcomplaint.action.oclAsType(ComplaintBasedOnAction).type = ComplaintBasedOnActionType::Restriction\n\t\t\t\t\telse\n\t\t\t\t\t\tfalse\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\tfalse\n\t\t\t\tendif\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif\n}.status'"
+	 * @generated
+	 */
+	boolean ShouldDefineCausedByAsRestriction(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

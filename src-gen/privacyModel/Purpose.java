@@ -257,6 +257,14 @@ public interface Purpose extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::LegalClaims, \n\t\t\t\tSequence{ProcessingReasonSubtype::ProtectionOfRightsOfOthers, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other})'"
+	 * @generated
+	 */
+	boolean LegalClaimsShouldNotContainThisSubReason(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tisSubPurposeValid(ProcessingReason::Research, \n\t\t\t\tSequence{ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other, ProcessingReasonSubtype::Scientific, ProcessingReasonSubtype::Historical,\n\t\t\t\t\tProcessingReasonSubtype::Statistical\n\t\t\t\t})'"
 	 * @generated
 	 */

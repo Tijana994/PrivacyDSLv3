@@ -105,7 +105,25 @@ public enum Action implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DATA_PORTABILITY(8, "DataPortability", "DataPortability");
+	DATA_PORTABILITY(8, "DataPortability", "DataPortability"),
+	/**
+	* The '<em><b>Restrict Processing</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #RESTRICT_PROCESSING_VALUE
+	* @generated
+	* @ordered
+	*/
+	RESTRICT_PROCESSING(9, "RestrictProcessing", "RestrictProcessing"),
+	/**
+	* The '<em><b>Lift Restriction</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #LIFT_RESTRICTION_VALUE
+	* @generated
+	* @ordered
+	*/
+	LIFT_RESTRICTION(10, "LiftRestriction", "LiftRestriction");
 
 	/**
 	 * The '<em><b>Store</b></em>' literal value.
@@ -207,13 +225,35 @@ public enum Action implements Enumerator {
 	public static final int DATA_PORTABILITY_VALUE = 8;
 
 	/**
+	 * The '<em><b>Restrict Processing</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RESTRICT_PROCESSING
+	 * @model name="RestrictProcessing"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RESTRICT_PROCESSING_VALUE = 9;
+
+	/**
+	 * The '<em><b>Lift Restriction</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LIFT_RESTRICTION
+	 * @model name="LiftRestriction"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LIFT_RESTRICTION_VALUE = 10;
+
+	/**
 	 * An array of all the '<em><b>Action</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final Action[] VALUES_ARRAY = new Action[] { STORE, ACCESS, COLLECTING, PROFILING, ERASURE,
-			RECTIFICATION, TRANSFER, STOP_PROCESSING, DATA_PORTABILITY, };
+			RECTIFICATION, TRANSFER, STOP_PROCESSING, DATA_PORTABILITY, RESTRICT_PROCESSING, LIFT_RESTRICTION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Action</b></em>' enumerators.
@@ -287,6 +327,10 @@ public enum Action implements Enumerator {
 			return STOP_PROCESSING;
 		case DATA_PORTABILITY_VALUE:
 			return DATA_PORTABILITY;
+		case RESTRICT_PROCESSING_VALUE:
+			return RESTRICT_PROCESSING;
+		case LIFT_RESTRICTION_VALUE:
+			return LIFT_RESTRICTION;
 		}
 		return null;
 	}

@@ -204,7 +204,16 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PRE_CONTRACTUAL(18, "PreContractual", "PreContractual");
+	PRE_CONTRACTUAL(18, "PreContractual", "PreContractual"),
+	/**
+	* The '<em><b>Protection Of Rights Of Others</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #PROTECTION_OF_RIGHTS_OF_OTHERS_VALUE
+	* @generated
+	* @ordered
+	*/
+	PROTECTION_OF_RIGHTS_OF_OTHERS(19, "ProtectionOfRightsOfOthers", "ProtectionOfRightsOfOthers");
 
 	/**
 	 * The '<em><b>None</b></em>' literal value.
@@ -416,6 +425,17 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	public static final int PRE_CONTRACTUAL_VALUE = 18;
 
 	/**
+	 * The '<em><b>Protection Of Rights Of Others</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PROTECTION_OF_RIGHTS_OF_OTHERS
+	 * @model name="ProtectionOfRightsOfOthers"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PROTECTION_OF_RIGHTS_OF_OTHERS_VALUE = 19;
+
+	/**
 	 * An array of all the '<em><b>Processing Reason Subtype</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -424,7 +444,8 @@ public enum ProcessingReasonSubtype implements Enumerator {
 	private static final ProcessingReasonSubtype[] VALUES_ARRAY = new ProcessingReasonSubtype[] { NONE, PREVENTION,
 			INVESTIGATION, DETECTION, PROSECUTION, PREVENTION_OF_THREATS, OUT_OF_EU, PERSONAL_ACTIVITY,
 			SPECIAL_SCOPE_OF_ACTIVITY, EMPLOYMENT, SOCIAL_SECURITY, SOCIAL_PROTECTION, PHYSICALLY_INCAPABLE,
-			LEGALLY_INCAPABLE, STATISTICAL, HISTORICAL, SCIENTIFIC, OTHER, PRE_CONTRACTUAL, };
+			LEGALLY_INCAPABLE, STATISTICAL, HISTORICAL, SCIENTIFIC, OTHER, PRE_CONTRACTUAL,
+			PROTECTION_OF_RIGHTS_OF_OTHERS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Processing Reason Subtype</b></em>' enumerators.
@@ -519,6 +540,8 @@ public enum ProcessingReasonSubtype implements Enumerator {
 			return OTHER;
 		case PRE_CONTRACTUAL_VALUE:
 			return PRE_CONTRACTUAL;
+		case PROTECTION_OF_RIGHTS_OF_OTHERS_VALUE:
+			return PROTECTION_OF_RIGHTS_OF_OTHERS;
 		}
 		return null;
 	}

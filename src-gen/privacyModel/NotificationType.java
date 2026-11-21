@@ -96,7 +96,25 @@ public enum NotificationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXECUTED_ERASURE(7, "ExecutedErasure", "ExecutedErasure");
+	EXECUTED_ERASURE(7, "ExecutedErasure", "ExecutedErasure"),
+	/**
+	* The '<em><b>Restriction</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #RESTRICTION_VALUE
+	* @generated
+	* @ordered
+	*/
+	RESTRICTION(8, "Restriction", "Restriction"),
+	/**
+	* The '<em><b>Restriction Lifted</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #RESTRICTION_LIFTED_VALUE
+	* @generated
+	* @ordered
+	*/
+	RESTRICTION_LIFTED(9, "RestrictionLifted", "RestrictionLifted");
 
 	/**
 	 * The '<em><b>Erasure</b></em>' literal value.
@@ -187,13 +205,36 @@ public enum NotificationType implements Enumerator {
 	public static final int EXECUTED_ERASURE_VALUE = 7;
 
 	/**
+	 * The '<em><b>Restriction</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RESTRICTION
+	 * @model name="Restriction"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RESTRICTION_VALUE = 8;
+
+	/**
+	 * The '<em><b>Restriction Lifted</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #RESTRICTION_LIFTED
+	 * @model name="RestrictionLifted"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int RESTRICTION_LIFTED_VALUE = 9;
+
+	/**
 	 * An array of all the '<em><b>Notification Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final NotificationType[] VALUES_ARRAY = new NotificationType[] { ERASURE, WITHDRAW, RECTIFICATION,
-			DATA_COLLECTING, STOP_PROCESSING, THIRD_PARTY_TRANSFER, EXECUTED_RECTIFICATION, EXECUTED_ERASURE, };
+			DATA_COLLECTING, STOP_PROCESSING, THIRD_PARTY_TRANSFER, EXECUTED_RECTIFICATION, EXECUTED_ERASURE,
+			RESTRICTION, RESTRICTION_LIFTED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Notification Type</b></em>' enumerators.
@@ -265,6 +306,10 @@ public enum NotificationType implements Enumerator {
 			return EXECUTED_RECTIFICATION;
 		case EXECUTED_ERASURE_VALUE:
 			return EXECUTED_ERASURE;
+		case RESTRICTION_VALUE:
+			return RESTRICTION;
+		case RESTRICTION_LIFTED_VALUE:
+			return RESTRICTION_LIFTED;
 		}
 		return null;
 	}

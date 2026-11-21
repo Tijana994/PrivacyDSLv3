@@ -1220,6 +1220,59 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean LegalClaimsShouldNotContainThisSubReason(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Purpose::LegalClaimsShouldNotContainThisSubReason";
+		try {
+			/**
+			 *
+			 * inv LegalClaimsShouldNotContainThisSubReason:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : Boolean[1] = isSubPurposeValid(ProcessingReason::LegalClaims,
+			 *           Sequence{ProcessingReasonSubtype::ProtectionOfRightsOfOthers, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other
+			 *           })
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.PURPOSE___LEGAL_CLAIMS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_0;
+			if (le) {
+				local_0 = true;
+			} else {
+				final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_LegalClaims = (ProcessingReason) idResolver
+						.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_LegalClaims);
+				final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_17 = ((IdResolverExtension) idResolver)
+						.ecoreValueOfAll(ProcessingReasonSubtype.class, PrivacyModelTables.Sequence_17);
+				final /*@NonInvalid*/ boolean result = this.isSubPurposeValid(ECORE_ELITid_LegalClaims,
+						(EList<ProcessingReasonSubtype>) ECORE_Sequence_17);
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, result, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_0 = logDiagnostic;
+			}
+			return local_0;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean ResearchShouldNotContainThisSubReason(final DiagnosticChain diagnostics,
 			final Map<Object, Object> context) {
 		final String constraintName = "Purpose::ResearchShouldNotContainThisSubReason";
@@ -1505,17 +1558,14 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		case PrivacyModelPackage.PURPOSE___CONTAINS_ALLOWED_PURPOSE_REASON_AND_SUBREASON__PROCESSINGREASON_ELIST:
 			return containsAllowedPurposeReasonAndSubreason((ProcessingReason) arguments.get(0),
 					(EList<ProcessingReasonSubtype>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return LegitimateInterestsShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return StopProcessingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return MarketingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.PURPOSE___OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return OutOfScopeShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PURPOSE___TESTING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return TestingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___CONTRACT_PERFORMANCE_CANNOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return ContractPerformanceCannotContainThisSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PURPOSE___EXERCISING_SPECIFIC_RIGHTS_PURPOSES_CANNOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return ExercisingSpecificRightsPurposesCannotContainThisSubReason((DiagnosticChain) arguments.get(0),
@@ -1523,26 +1573,32 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		case PrivacyModelPackage.PURPOSE___RESEARCH_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return ResearchShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return PublicInterestShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return StatisticalPurposesShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PURPOSE___PUBLIC_HEALTH_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return PublicHealthShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return ProfilingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.PURPOSE___MARKETING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return MarketingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___CONTRACT_PERFORMANCE_CANNOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return ContractPerformanceCannotContainThisSubReason((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.PURPOSE___LEGITIMATE_INTERESTS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return LegitimateInterestsShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___LEGAL_CLAIMS_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return LegalClaimsShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___STOP_PROCESSING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return StopProcessingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PURPOSE___LEGAL_OBLIGATION_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return LegalObligationShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___PUBLIC_INTEREST_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return PublicInterestShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___OUT_OF_SCOPE_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return OutOfScopeShouldNotContainThisSubReason((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.PURPOSE___STATISTICAL_PURPOSES_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
-			return StatisticalPurposesShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.PURPOSE___PROFILING_SHOULD_NOT_CONTAIN_SUB_REASON__DIAGNOSTICCHAIN_MAP:
+			return ProfilingShouldNotContainSubReason((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.PURPOSE___PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT_SHOULD_NOT_CONTAIN_THIS_SUB_REASON__DIAGNOSTICCHAIN_MAP:
 			return ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason(

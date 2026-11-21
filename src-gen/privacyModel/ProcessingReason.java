@@ -173,7 +173,16 @@ public enum ProcessingReason implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HEALTH_CARE(15, "HealthCare", "HealthCare");
+	HEALTH_CARE(15, "HealthCare", "HealthCare"),
+	/**
+	* The '<em><b>Legal Claims</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #LEGAL_CLAIMS_VALUE
+	* @generated
+	* @ordered
+	*/
+	LEGAL_CLAIMS(16, "LegalClaims", "LegalClaims");
 
 	/**
 	 * The '<em><b>Research</b></em>' literal value.
@@ -352,6 +361,17 @@ public enum ProcessingReason implements Enumerator {
 	public static final int HEALTH_CARE_VALUE = 15;
 
 	/**
+	 * The '<em><b>Legal Claims</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #LEGAL_CLAIMS
+	 * @model name="LegalClaims"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int LEGAL_CLAIMS_VALUE = 16;
+
+	/**
 	 * An array of all the '<em><b>Processing Reason</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -360,7 +380,7 @@ public enum ProcessingReason implements Enumerator {
 	private static final ProcessingReason[] VALUES_ARRAY = new ProcessingReason[] { RESEARCH, PUBLIC_HEALTH,
 			OUT_OF_SCOPE, PUBLIC_INTEREST, STATISTICAL_PURPOSES, EXERCISING_SPECIFIC_RIGHTS, MARKETING, TESTING,
 			PROFILING, PROTECT_THE_VITAL_INTERESTS_OF_THE_DATA_SUBJECT, LEGITIMATE_INTERESTS, STOP_PROCESSING,
-			CONTRACT_PERFORMANCE, LEGAL_OBLIGATION, NOT_FOR_PROFIT_BODY_ACTIVITY, HEALTH_CARE, };
+			CONTRACT_PERFORMANCE, LEGAL_OBLIGATION, NOT_FOR_PROFIT_BODY_ACTIVITY, HEALTH_CARE, LEGAL_CLAIMS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Processing Reason</b></em>' enumerators.
@@ -448,6 +468,8 @@ public enum ProcessingReason implements Enumerator {
 			return NOT_FOR_PROFIT_BODY_ACTIVITY;
 		case HEALTH_CARE_VALUE:
 			return HEALTH_CARE;
+		case LEGAL_CLAIMS_VALUE:
+			return LEGAL_CLAIMS;
 		}
 		return null;
 	}

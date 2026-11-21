@@ -144,6 +144,8 @@ public class PrivacyModelFactoryImpl extends EFactoryImpl implements PrivacyMode
 			return createConsentFormatFromString(eDataType, initialValue);
 		case PrivacyModelPackage.CONSENT_TYPE:
 			return createConsentTypeFromString(eDataType, initialValue);
+		case PrivacyModelPackage.COMPLAINT_BASED_ON_ACTION_TYPE:
+			return createComplaintBasedOnActionTypeFromString(eDataType, initialValue);
 		case PrivacyModelPackage.COMPLAINT_BASED_ON_DATA_TYPE:
 			return createComplaintBasedOnDataTypeFromString(eDataType, initialValue);
 		case PrivacyModelPackage.NOTIFICATION_TYPE:
@@ -187,6 +189,8 @@ public class PrivacyModelFactoryImpl extends EFactoryImpl implements PrivacyMode
 			return convertConsentFormatToString(eDataType, instanceValue);
 		case PrivacyModelPackage.CONSENT_TYPE:
 			return convertConsentTypeToString(eDataType, instanceValue);
+		case PrivacyModelPackage.COMPLAINT_BASED_ON_ACTION_TYPE:
+			return convertComplaintBasedOnActionTypeToString(eDataType, instanceValue);
 		case PrivacyModelPackage.COMPLAINT_BASED_ON_DATA_TYPE:
 			return convertComplaintBasedOnDataTypeToString(eDataType, instanceValue);
 		case PrivacyModelPackage.NOTIFICATION_TYPE:
@@ -709,6 +713,29 @@ public class PrivacyModelFactoryImpl extends EFactoryImpl implements PrivacyMode
 	 * @generated
 	 */
 	public String convertConsentTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComplaintBasedOnActionType createComplaintBasedOnActionTypeFromString(EDataType eDataType,
+			String initialValue) {
+		ComplaintBasedOnActionType result = ComplaintBasedOnActionType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertComplaintBasedOnActionTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

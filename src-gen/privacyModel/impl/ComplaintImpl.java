@@ -47,6 +47,7 @@ import privacyModel.AbstractTime;
 import privacyModel.Action;
 import privacyModel.Complaint;
 import privacyModel.ComplaintBasedOnAction;
+import privacyModel.ComplaintBasedOnActionType;
 import privacyModel.ComplaintBasedOnData;
 import privacyModel.ComplaintBasedOnDataType;
 import privacyModel.ComplaintStatus;
@@ -850,6 +851,281 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean RecipientsShouldBeNotifiedAboutRestriction(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Complaint::RecipientsShouldBeNotifiedAboutRestriction";
+		try {
+			/**
+			 *
+			 * inv RecipientsShouldBeNotifiedAboutRestriction:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = if
+			 *             not self.action.oclIsKindOf(ComplaintBasedOnAction)
+			 *           then true
+			 *           else
+			 *             let
+			 *               basedOnAction : ComplaintBasedOnAction[1] = self.action.oclAsType(ComplaintBasedOnAction)
+			 *             in
+			 *               if
+			 *                 not (basedOnAction.type = ComplaintBasedOnActionType::Restriction
+			 *                 ) or
+			 *                 not (basedOnAction.denialReason = null
+			 *                 )
+			 *               then true
+			 *               else
+			 *                 PrivacyPolicy.allInstances()
+			 *                 ->asSequence()
+			 *                 ->first()
+			 *                 .notifications->exists(notification | notification.causedBy = self and notification.type = NotificationType::Restriction)
+			 *               endif
+			 *           endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Based on Art19', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.COMPLAINT___RECIPIENTS_SHOULD_BE_NOTIFIED_ABOUT_RESTRICTION__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_3;
+			if (le) {
+				local_3 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_2;
+				try {
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_ComplaintBasedOnAction_0 = idResolver
+							.getClass(PrivacyModelTables.CLSSid_ComplaintBasedOnAction, null);
+					final /*@NonInvalid*/ AbstractComplaintAction action = this.getAction();
+					final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
+							.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction_0).booleanValue();
+					final /*@NonInvalid*/ Boolean not;
+					if (!oclIsKindOf) {
+						not = ValueUtil.TRUE_VALUE;
+					} else {
+						if (oclIsKindOf) {
+							not = ValueUtil.FALSE_VALUE;
+						} else {
+							not = null;
+						}
+					}
+					if (not == null) {
+						throw new InvalidValueException("Null if condition");
+					}
+					/*@Thrown*/ Boolean status;
+					if (not) {
+						status = ValueUtil.TRUE_VALUE;
+					} else {
+						/*@Caught*/ Object CAUGHT_basedOnAction;
+						try {
+							final /*@Thrown*/ ComplaintBasedOnAction basedOnAction = (ComplaintBasedOnAction) OclAnyOclAsTypeOperation.INSTANCE
+									.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction_0);
+							CAUGHT_basedOnAction = basedOnAction;
+						} catch (Exception e) {
+							CAUGHT_basedOnAction = ValueUtil.createInvalidValue(e);
+						}
+						/*@Caught*/ Object CAUGHT_not_0;
+						try {
+							/*@Caught*/ Object CAUGHT_eq;
+							try {
+								if (CAUGHT_basedOnAction instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_basedOnAction;
+								}
+								final /*@Thrown*/ ComplaintBasedOnActionType type = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+										.getType();
+								final /*@Thrown*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_ComplaintBasedOnActionType
+										.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
+								final /*@Thrown*/ boolean eq = BOXED_type == PrivacyModelTables.ELITid_Restriction;
+								CAUGHT_eq = eq;
+							} catch (Exception e) {
+								CAUGHT_eq = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_eq instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_eq;
+							}
+							final /*@Thrown*/ Boolean not_0;
+							if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+								not_0 = ValueUtil.TRUE_VALUE;
+							} else {
+								if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
+									not_0 = ValueUtil.FALSE_VALUE;
+								} else {
+									not_0 = null;
+								}
+							}
+							CAUGHT_not_0 = not_0;
+						} catch (Exception e) {
+							CAUGHT_not_0 = ValueUtil.createInvalidValue(e);
+						}
+						final /*@Thrown*/ Boolean or;
+						if (CAUGHT_not_0 == ValueUtil.TRUE_VALUE) {
+							or = ValueUtil.TRUE_VALUE;
+						} else {
+							/*@Caught*/ Object CAUGHT_not_1;
+							try {
+								/*@Caught*/ Object CAUGHT_eq_0;
+								try {
+									if (CAUGHT_basedOnAction instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_basedOnAction;
+									}
+									final /*@Thrown*/ Denial denialReason = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+											.getDenialReason();
+									final /*@Thrown*/ boolean eq_0 = denialReason == null;
+									CAUGHT_eq_0 = eq_0;
+								} catch (Exception e) {
+									CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+								}
+								if (CAUGHT_eq_0 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_eq_0;
+								}
+								final /*@Thrown*/ Boolean not_1;
+								if (CAUGHT_eq_0 == ValueUtil.FALSE_VALUE) {
+									not_1 = ValueUtil.TRUE_VALUE;
+								} else {
+									if (CAUGHT_eq_0 == ValueUtil.TRUE_VALUE) {
+										not_1 = ValueUtil.FALSE_VALUE;
+									} else {
+										not_1 = null;
+									}
+								}
+								CAUGHT_not_1 = not_1;
+							} catch (Exception e) {
+								CAUGHT_not_1 = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_not_1 == ValueUtil.TRUE_VALUE) {
+								or = ValueUtil.TRUE_VALUE;
+							} else {
+								if (CAUGHT_not_0 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_not_0;
+								}
+								if (CAUGHT_not_1 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_not_1;
+								}
+								if ((CAUGHT_not_0 == null) || (CAUGHT_not_1 == null)) {
+									or = null;
+								} else {
+									or = ValueUtil.FALSE_VALUE;
+								}
+							}
+						}
+						if (or == null) {
+							throw new InvalidValueException("Null if condition");
+						}
+						/*@Thrown*/ Boolean local_0;
+						if (or) {
+							local_0 = ValueUtil.TRUE_VALUE;
+						} else {
+							final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
+									.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
+							final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
+									.evaluate(executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
+											TYP_privacyModel_c_c_PrivacyPolicy_0);
+							final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
+									.evaluate(allInstances);
+							final /*@Thrown*/ PrivacyPolicy first = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
+									.evaluate(asSequence);
+							if (first == null) {
+								throw new InvalidValueException(
+										"Null source for \'\'http://privacymodel\'::PrivacyPolicy::notifications\'");
+							}
+							final /*@Thrown*/ List<privacyModel.Notification> notifications = first.getNotifications();
+							final /*@Thrown*/ OrderedSetValue BOXED_notifications = idResolver
+									.createOrderedSetOfAll(PrivacyModelTables.ORD_CLSSid_Notification, notifications);
+							/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+							Iterator<Object> ITERATOR_notification = BOXED_notifications.iterator();
+							/*@Thrown*/ Boolean exists;
+							while (true) {
+								if (!ITERATOR_notification.hasNext()) {
+									if (accumulator == null) {
+										exists = null;
+									} else if (accumulator == ValueUtil.FALSE_VALUE) {
+										exists = ValueUtil.FALSE_VALUE;
+									} else {
+										throw (InvalidValueException) accumulator;
+									}
+									break;
+								}
+								/*@NonInvalid*/ privacyModel.Notification notification = (privacyModel.Notification) ITERATOR_notification
+										.next();
+								/**
+								 * notification.causedBy = self and notification.type = NotificationType::Restriction
+								 */
+								final /*@NonInvalid*/ NotificationInfo causedBy = notification.getCausedBy();
+								final /*@NonInvalid*/ boolean eq_1 = causedBy.equals(this);
+								final /*@NonInvalid*/ Boolean and;
+								if (!eq_1) {
+									and = ValueUtil.FALSE_VALUE;
+								} else {
+									final /*@NonInvalid*/ NotificationType type_0 = notification.getType();
+									final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_0 = PrivacyModelTables.ENUMid_NotificationType
+											.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
+									final /*@NonInvalid*/ boolean eq_2 = BOXED_type_0 == PrivacyModelTables.ELITid_Restriction_0;
+									if (!eq_2) {
+										and = ValueUtil.FALSE_VALUE;
+									} else {
+										and = ValueUtil.TRUE_VALUE;
+									}
+								}
+								//
+								if (and == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+									exists = ValueUtil.TRUE_VALUE;
+									break; // Stop immediately
+								} else if (and == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+									; // Carry on
+								} else if (and == null) { // Abnormal null body evaluation result
+									if (accumulator == ValueUtil.FALSE_VALUE) {
+										accumulator = null; // Cache a null failure
+									}
+								} else { // Impossible badly typed result
+									accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+								}
+							}
+							local_0 = exists;
+						}
+						status = local_0;
+					}
+					final /*@Thrown*/ boolean eq_3 = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_2;
+					if (eq_3) {
+						local_2 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_1 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Based_32_on_32_Art19, status);
+						local_2 = local_1;
+					}
+					CAUGHT_local_2 = local_2;
+				} catch (Exception e) {
+					CAUGHT_local_2 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_2, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_3 = logDiagnostic;
+			}
+			return local_3;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean CannotIdentifyDataFromComplaint(final DiagnosticChain diagnostics,
 			final Map<Object, Object> context) {
 		final String constraintName = "Complaint::CannotIdentifyDataFromComplaint";
@@ -1346,6 +1622,393 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean RestrictionShouldBeExecutedAsSoonAsPossible(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "Complaint::RestrictionShouldBeExecutedAsSoonAsPossible";
+		try {
+			/**
+			 *
+			 * inv RestrictionShouldBeExecutedAsSoonAsPossible:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = let
+			 *             privacyPolicy : PrivacyPolicy[1] = PrivacyPolicy.allInstances()
+			 *             ->asSequence()
+			 *             ->first()
+			 *           in
+			 *             if
+			 *               not self.action.oclIsKindOf(ComplaintBasedOnAction)
+			 *             then true
+			 *             else
+			 *               let
+			 *                 basedOnAction : ComplaintBasedOnAction[1] = self.action.oclAsType(ComplaintBasedOnAction)
+			 *               in
+			 *                 if
+			 *                   not (basedOnAction.type = ComplaintBasedOnActionType::Restriction
+			 *                   ) or
+			 *                   not (basedOnAction.denialReason = null
+			 *                   )
+			 *                 then true
+			 *                 else
+			 *                   privacyPolicy.policyStatements->exists(stmt |
+			 *                     not (stmt.what = null
+			 *                     ) and
+			 *                     stmt.what.actions->exists(action | action = Action::RestrictProcessing) and
+			 *                     not (stmt.causedBy = null
+			 *                     ) and stmt.causedBy = self)
+			 *                 endif
+			 *             endif
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else Tuple{message = 'Based on Art18', status = status}
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					PrivacyModelPackage.Literals.COMPLAINT___RESTRICTION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, PrivacyModelTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_4;
+			if (le) {
+				local_4 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_3;
+				try {
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_PrivacyPolicy_0 = idResolver
+							.getClass(PrivacyModelTables.CLSSid_PrivacyPolicy, null);
+					final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(
+							executor, PrivacyModelTables.SET_CLSSid_PrivacyPolicy,
+							TYP_privacyModel_c_c_PrivacyPolicy_0);
+					final /*@NonInvalid*/ SequenceValue asSequence = CollectionAsSequenceOperation.INSTANCE
+							.evaluate(allInstances);
+					final /*@Thrown*/ PrivacyPolicy privacyPolicy = (PrivacyPolicy) OrderedCollectionFirstOperation.INSTANCE
+							.evaluate(asSequence);
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_ComplaintBasedOnAction_0 = idResolver
+							.getClass(PrivacyModelTables.CLSSid_ComplaintBasedOnAction, null);
+					final /*@NonInvalid*/ AbstractComplaintAction action = this.getAction();
+					final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
+							.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction_0).booleanValue();
+					final /*@NonInvalid*/ Boolean not;
+					if (!oclIsKindOf) {
+						not = ValueUtil.TRUE_VALUE;
+					} else {
+						if (oclIsKindOf) {
+							not = ValueUtil.FALSE_VALUE;
+						} else {
+							not = null;
+						}
+					}
+					if (not == null) {
+						throw new InvalidValueException("Null if condition");
+					}
+					/*@Thrown*/ Boolean local_1;
+					if (not) {
+						local_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						/*@Caught*/ Object CAUGHT_basedOnAction;
+						try {
+							final /*@Thrown*/ ComplaintBasedOnAction basedOnAction = (ComplaintBasedOnAction) OclAnyOclAsTypeOperation.INSTANCE
+									.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction_0);
+							CAUGHT_basedOnAction = basedOnAction;
+						} catch (Exception e) {
+							CAUGHT_basedOnAction = ValueUtil.createInvalidValue(e);
+						}
+						/*@Caught*/ Object CAUGHT_not_0;
+						try {
+							/*@Caught*/ Object CAUGHT_eq;
+							try {
+								if (CAUGHT_basedOnAction instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_basedOnAction;
+								}
+								final /*@Thrown*/ ComplaintBasedOnActionType type = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+										.getType();
+								final /*@Thrown*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_ComplaintBasedOnActionType
+										.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
+								final /*@Thrown*/ boolean eq = BOXED_type == PrivacyModelTables.ELITid_Restriction;
+								CAUGHT_eq = eq;
+							} catch (Exception e) {
+								CAUGHT_eq = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_eq instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_eq;
+							}
+							final /*@Thrown*/ Boolean not_0;
+							if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+								not_0 = ValueUtil.TRUE_VALUE;
+							} else {
+								if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
+									not_0 = ValueUtil.FALSE_VALUE;
+								} else {
+									not_0 = null;
+								}
+							}
+							CAUGHT_not_0 = not_0;
+						} catch (Exception e) {
+							CAUGHT_not_0 = ValueUtil.createInvalidValue(e);
+						}
+						final /*@Thrown*/ Boolean or;
+						if (CAUGHT_not_0 == ValueUtil.TRUE_VALUE) {
+							or = ValueUtil.TRUE_VALUE;
+						} else {
+							/*@Caught*/ Object CAUGHT_not_1;
+							try {
+								/*@Caught*/ Object CAUGHT_eq_0;
+								try {
+									if (CAUGHT_basedOnAction instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_basedOnAction;
+									}
+									final /*@Thrown*/ Denial denialReason = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+											.getDenialReason();
+									final /*@Thrown*/ boolean eq_0 = denialReason == null;
+									CAUGHT_eq_0 = eq_0;
+								} catch (Exception e) {
+									CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+								}
+								if (CAUGHT_eq_0 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_eq_0;
+								}
+								final /*@Thrown*/ Boolean not_1;
+								if (CAUGHT_eq_0 == ValueUtil.FALSE_VALUE) {
+									not_1 = ValueUtil.TRUE_VALUE;
+								} else {
+									if (CAUGHT_eq_0 == ValueUtil.TRUE_VALUE) {
+										not_1 = ValueUtil.FALSE_VALUE;
+									} else {
+										not_1 = null;
+									}
+								}
+								CAUGHT_not_1 = not_1;
+							} catch (Exception e) {
+								CAUGHT_not_1 = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_not_1 == ValueUtil.TRUE_VALUE) {
+								or = ValueUtil.TRUE_VALUE;
+							} else {
+								if (CAUGHT_not_0 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_not_0;
+								}
+								if (CAUGHT_not_1 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_not_1;
+								}
+								if ((CAUGHT_not_0 == null) || (CAUGHT_not_1 == null)) {
+									or = null;
+								} else {
+									or = ValueUtil.FALSE_VALUE;
+								}
+							}
+						}
+						if (or == null) {
+							throw new InvalidValueException("Null if condition");
+						}
+						/*@Thrown*/ Boolean local_0;
+						if (or) {
+							local_0 = ValueUtil.TRUE_VALUE;
+						} else {
+							if (privacyPolicy == null) {
+								throw new InvalidValueException(
+										"Null source for \'\'http://privacymodel\'::PrivacyPolicy::policyStatements\'");
+							}
+							final /*@Thrown*/ List<PolicyStatement> policyStatements = privacyPolicy
+									.getPolicyStatements();
+							final /*@Thrown*/ OrderedSetValue BOXED_policyStatements = idResolver.createOrderedSetOfAll(
+									PrivacyModelTables.ORD_CLSSid_PolicyStatement, policyStatements);
+							/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+							Iterator<Object> ITERATOR_stmt = BOXED_policyStatements.iterator();
+							/*@Thrown*/ Boolean exists;
+							while (true) {
+								if (!ITERATOR_stmt.hasNext()) {
+									if (accumulator == null) {
+										exists = null;
+									} else if (accumulator == ValueUtil.FALSE_VALUE) {
+										exists = ValueUtil.FALSE_VALUE;
+									} else {
+										throw (InvalidValueException) accumulator;
+									}
+									break;
+								}
+								/*@NonInvalid*/ PolicyStatement stmt = (PolicyStatement) ITERATOR_stmt.next();
+								/**
+								 *
+								 * not (stmt.what = null
+								 * ) and
+								 * stmt.what.actions->exists(action | action = Action::RestrictProcessing) and
+								 * not (stmt.causedBy = null
+								 * ) and stmt.causedBy = self
+								 */
+								/*@Caught*/ Object CAUGHT_and_1;
+								try {
+									final /*@NonInvalid*/ Complaint causedBy_0 = stmt.getCausedBy();
+									/*@Caught*/ Object CAUGHT_and_0;
+									try {
+										/*@Caught*/ Object CAUGHT_and;
+										try {
+											final /*@NonInvalid*/ Boolean not_2 = ValueUtil.TRUE_VALUE;
+											final /*@Thrown*/ Boolean and;
+											if (not_2 == ValueUtil.FALSE_VALUE) {
+												and = ValueUtil.FALSE_VALUE;
+											} else {
+												final /*@NonInvalid*/ What what = stmt.getWhat();
+												final /*@NonInvalid*/ List<Action> actions = what.getActions();
+												final /*@NonInvalid*/ OrderedSetValue BOXED_actions = idResolver
+														.createOrderedSetOfAll(PrivacyModelTables.ORD_ENUMid_Action,
+																actions);
+												/*@Thrown*/ Object accumulator_0 = ValueUtil.FALSE_VALUE;
+												Iterator<Object> ITERATOR_action_1 = BOXED_actions.iterator();
+												/*@NonInvalid*/ Boolean exists_0;
+												while (true) {
+													if (!ITERATOR_action_1.hasNext()) {
+														if (accumulator_0 == ValueUtil.FALSE_VALUE) {
+															exists_0 = ValueUtil.FALSE_VALUE;
+														} else {
+															throw (InvalidValueException) accumulator_0;
+														}
+														break;
+													}
+													/*@NonInvalid*/ EnumerationLiteralId action_1 = (EnumerationLiteralId) ITERATOR_action_1
+															.next();
+													/**
+													 * action = Action::RestrictProcessing
+													 */
+													final /*@NonInvalid*/ boolean eq_1 = action_1 == PrivacyModelTables.ELITid_RestrictProcessing;
+													//
+													if (eq_1) { // Normal successful body evaluation result
+														exists_0 = ValueUtil.TRUE_VALUE;
+														break; // Stop immediately
+													} else if (!eq_1) { // Normal unsuccessful body evaluation result
+														; // Carry on
+													} else { // Impossible badly typed result
+														accumulator_0 = new InvalidValueException(
+																PivotMessages.NonBooleanBody, "exists");
+													}
+												}
+												if (exists_0 == ValueUtil.FALSE_VALUE) {
+													and = ValueUtil.FALSE_VALUE;
+												} else {
+													if ((not_2 == null) || (exists_0 == null)) {
+														and = null;
+													} else {
+														and = ValueUtil.TRUE_VALUE;
+													}
+												}
+											}
+											CAUGHT_and = and;
+										} catch (Exception e) {
+											CAUGHT_and = ValueUtil.createInvalidValue(e);
+										}
+										final /*@Thrown*/ Boolean and_0;
+										if (CAUGHT_and == ValueUtil.FALSE_VALUE) {
+											and_0 = ValueUtil.FALSE_VALUE;
+										} else {
+											final /*@NonInvalid*/ boolean eq_2 = causedBy_0 == null;
+											final /*@NonInvalid*/ Boolean not_3;
+											if (!eq_2) {
+												not_3 = ValueUtil.TRUE_VALUE;
+											} else {
+												if (eq_2) {
+													not_3 = ValueUtil.FALSE_VALUE;
+												} else {
+													not_3 = null;
+												}
+											}
+											if (not_3 == ValueUtil.FALSE_VALUE) {
+												and_0 = ValueUtil.FALSE_VALUE;
+											} else {
+												if (CAUGHT_and instanceof InvalidValueException) {
+													throw (InvalidValueException) CAUGHT_and;
+												}
+												if ((CAUGHT_and == null) || (not_3 == null)) {
+													and_0 = null;
+												} else {
+													and_0 = ValueUtil.TRUE_VALUE;
+												}
+											}
+										}
+										CAUGHT_and_0 = and_0;
+									} catch (Exception e) {
+										CAUGHT_and_0 = ValueUtil.createInvalidValue(e);
+									}
+									final /*@Thrown*/ Boolean and_1;
+									if (CAUGHT_and_0 == ValueUtil.FALSE_VALUE) {
+										and_1 = ValueUtil.FALSE_VALUE;
+									} else {
+										final /*@NonInvalid*/ boolean eq_3 = this.equals(causedBy_0);
+										if (!eq_3) {
+											and_1 = ValueUtil.FALSE_VALUE;
+										} else {
+											if (CAUGHT_and_0 instanceof InvalidValueException) {
+												throw (InvalidValueException) CAUGHT_and_0;
+											}
+											if (CAUGHT_and_0 == null) {
+												and_1 = null;
+											} else {
+												and_1 = ValueUtil.TRUE_VALUE;
+											}
+										}
+									}
+									CAUGHT_and_1 = and_1;
+								} catch (Exception e) {
+									CAUGHT_and_1 = ValueUtil.createInvalidValue(e);
+								}
+								//
+								if (CAUGHT_and_1 == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+									exists = ValueUtil.TRUE_VALUE;
+									break; // Stop immediately
+								} else if (CAUGHT_and_1 == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+									; // Carry on
+								} else if (CAUGHT_and_1 == null) { // Abnormal null body evaluation result
+									if (accumulator == ValueUtil.FALSE_VALUE) {
+										accumulator = null; // Cache a null failure
+									}
+								} else if (CAUGHT_and_1 instanceof InvalidValueException) { // Abnormal exception evaluation result
+									accumulator = CAUGHT_and_1; // Cache an exception failure
+								} else { // Impossible badly typed result
+									accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+								}
+							}
+							local_0 = exists;
+						}
+						local_1 = local_0;
+					}
+					final /*@Thrown*/ boolean eq_4 = local_1 == Boolean.TRUE;
+					/*@Thrown*/ Object local_3;
+					if (eq_4) {
+						local_3 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_2 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
+								PrivacyModelTables.STR_Based_32_on_32_Art18, local_1);
+						local_3 = local_2;
+					}
+					CAUGHT_local_3 = local_3;
+				} catch (Exception e) {
+					CAUGHT_local_3 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_3, PrivacyModelTables.INT_0)
+						.booleanValue();
+				local_4 = logDiagnostic;
+			}
+			return local_4;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean UserDoesNotHavePermissionToComplain(final DiagnosticChain diagnostics,
 			final Map<Object, Object> context) {
 		final String constraintName = "Complaint::UserDoesNotHavePermissionToComplain";
@@ -1376,7 +2039,7 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 			 *         in
 			 *           if status = true
 			 *           then true
-			 *           else Tuple{message = 'Based on Art21', status = status}
+			 *           else Tuple{message = 'Based on Art18 and Art21', status = status}
 			 *           endif
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -1574,7 +2237,7 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 						local_1 = ValueUtil.TRUE_VALUE;
 					} else {
 						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
-								PrivacyModelTables.STR_Based_32_on_32_Art21, status);
+								PrivacyModelTables.STR_Based_32_on_32_Art18_32_and_32_Art21, status);
 						local_1 = local_0;
 					}
 					CAUGHT_local_1 = local_1;
@@ -1775,7 +2438,7 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 			 *               in
 			 *                 if
 			 *                   not (basedOnAction.denialReason = null
-			 *                   )
+			 *                   ) or basedOnAction.type = ComplaintBasedOnActionType::Restriction
 			 *                 then true
 			 *                 else
 			 *                   privacyPolicy.policyStatements->exists(stmt |
@@ -1844,36 +2507,76 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 						} catch (Exception e) {
 							CAUGHT_basedOnAction = ValueUtil.createInvalidValue(e);
 						}
-						/*@Caught*/ Object CAUGHT_eq;
+						/*@Caught*/ Object CAUGHT_not_0;
 						try {
-							if (CAUGHT_basedOnAction instanceof InvalidValueException) {
-								throw (InvalidValueException) CAUGHT_basedOnAction;
+							/*@Caught*/ Object CAUGHT_eq;
+							try {
+								if (CAUGHT_basedOnAction instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_basedOnAction;
+								}
+								final /*@Thrown*/ Denial denialReason = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+										.getDenialReason();
+								final /*@Thrown*/ boolean eq = denialReason == null;
+								CAUGHT_eq = eq;
+							} catch (Exception e) {
+								CAUGHT_eq = ValueUtil.createInvalidValue(e);
 							}
-							final /*@Thrown*/ Denial denialReason = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
-									.getDenialReason();
-							final /*@Thrown*/ boolean eq = denialReason == null;
-							CAUGHT_eq = eq;
-						} catch (Exception e) {
-							CAUGHT_eq = ValueUtil.createInvalidValue(e);
-						}
-						if (CAUGHT_eq instanceof InvalidValueException) {
-							throw (InvalidValueException) CAUGHT_eq;
-						}
-						final /*@Thrown*/ Boolean not_0;
-						if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
-							not_0 = ValueUtil.TRUE_VALUE;
-						} else {
-							if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
-								not_0 = ValueUtil.FALSE_VALUE;
+							if (CAUGHT_eq instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_eq;
+							}
+							final /*@Thrown*/ Boolean not_0;
+							if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+								not_0 = ValueUtil.TRUE_VALUE;
 							} else {
-								not_0 = null;
+								if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
+									not_0 = ValueUtil.FALSE_VALUE;
+								} else {
+									not_0 = null;
+								}
+							}
+							CAUGHT_not_0 = not_0;
+						} catch (Exception e) {
+							CAUGHT_not_0 = ValueUtil.createInvalidValue(e);
+						}
+						final /*@Thrown*/ Boolean or;
+						if (CAUGHT_not_0 == ValueUtil.TRUE_VALUE) {
+							or = ValueUtil.TRUE_VALUE;
+						} else {
+							/*@Caught*/ Object CAUGHT_eq_0;
+							try {
+								if (CAUGHT_basedOnAction instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_basedOnAction;
+								}
+								final /*@Thrown*/ ComplaintBasedOnActionType type = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+										.getType();
+								final /*@Thrown*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_ComplaintBasedOnActionType
+										.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
+								final /*@Thrown*/ boolean eq_0 = BOXED_type == PrivacyModelTables.ELITid_Restriction;
+								CAUGHT_eq_0 = eq_0;
+							} catch (Exception e) {
+								CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_eq_0 == ValueUtil.TRUE_VALUE) {
+								or = ValueUtil.TRUE_VALUE;
+							} else {
+								if (CAUGHT_not_0 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_not_0;
+								}
+								if (CAUGHT_eq_0 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_eq_0;
+								}
+								if (CAUGHT_not_0 == null) {
+									or = null;
+								} else {
+									or = ValueUtil.FALSE_VALUE;
+								}
 							}
 						}
-						if (not_0 == null) {
+						if (or == null) {
 							throw new InvalidValueException("Null if condition");
 						}
 						/*@Thrown*/ Boolean local_0;
-						if (not_0) {
+						if (or) {
 							local_0 = ValueUtil.TRUE_VALUE;
 						} else {
 							if (privacyPolicy == null) {
@@ -1931,12 +2634,12 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 											/**
 											 * action = Action::StopProcessing
 											 */
-											final /*@NonInvalid*/ boolean eq_0 = action_1 == PrivacyModelTables.ELITid_StopProcessing;
+											final /*@NonInvalid*/ boolean eq_1 = action_1 == PrivacyModelTables.ELITid_StopProcessing;
 											//
-											if (eq_0) { // Normal successful body evaluation result
+											if (eq_1) { // Normal successful body evaluation result
 												exists_0 = ValueUtil.TRUE_VALUE;
 												break; // Stop immediately
-											} else if (!eq_0) { // Normal unsuccessful body evaluation result
+											} else if (!eq_1) { // Normal unsuccessful body evaluation result
 												; // Carry on
 											} else { // Impossible badly typed result
 												accumulator_0 = new InvalidValueException(PivotMessages.NonBooleanBody,
@@ -1947,12 +2650,12 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 										if (exists_0 == ValueUtil.FALSE_VALUE) {
 											and = ValueUtil.FALSE_VALUE;
 										} else {
-											final /*@NonInvalid*/ boolean eq_1 = causedBy_0 == null;
+											final /*@NonInvalid*/ boolean eq_2 = causedBy_0 == null;
 											final /*@NonInvalid*/ Boolean not_1;
-											if (!eq_1) {
+											if (!eq_2) {
 												not_1 = ValueUtil.TRUE_VALUE;
 											} else {
-												if (eq_1) {
+												if (eq_2) {
 													not_1 = ValueUtil.FALSE_VALUE;
 												} else {
 													not_1 = null;
@@ -1976,8 +2679,8 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 									if (CAUGHT_and == ValueUtil.FALSE_VALUE) {
 										and_0 = ValueUtil.FALSE_VALUE;
 									} else {
-										final /*@NonInvalid*/ boolean eq_2 = this.equals(causedBy_0);
-										if (!eq_2) {
+										final /*@NonInvalid*/ boolean eq_3 = this.equals(causedBy_0);
+										if (!eq_3) {
 											and_0 = ValueUtil.FALSE_VALUE;
 										} else {
 											if (CAUGHT_and instanceof InvalidValueException) {
@@ -2014,9 +2717,9 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 						}
 						local_1 = local_0;
 					}
-					final /*@Thrown*/ boolean eq_3 = local_1 == Boolean.TRUE;
+					final /*@Thrown*/ boolean eq_4 = local_1 == Boolean.TRUE;
 					/*@Thrown*/ Object local_3;
-					if (eq_3) {
+					if (eq_4) {
 						local_3 = ValueUtil.TRUE_VALUE;
 					} else {
 						final /*@Thrown*/ TupleValue local_2 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
@@ -2908,7 +3611,7 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 			 *             in
 			 *               if basedOnAction.statement.why = null or
 			 *                 not (basedOnAction.denialReason = null
-			 *                 )
+			 *                 ) or basedOnAction.type = ComplaintBasedOnActionType::Restriction
 			 *               then true
 			 *               else
 			 *                 not basedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,
@@ -2945,11 +3648,11 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 			} else {
 				/*@Caught*/ Object CAUGHT_local_2;
 				try {
-					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_ComplaintBasedOnAction = idResolver
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_privacyModel_c_c_ComplaintBasedOnAction_0 = idResolver
 							.getClass(PrivacyModelTables.CLSSid_ComplaintBasedOnAction, null);
 					final /*@NonInvalid*/ AbstractComplaintAction action = this.getAction();
 					final /*@NonInvalid*/ boolean oclIsKindOf = OclAnyOclIsKindOfOperation.INSTANCE
-							.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction).booleanValue();
+							.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction_0).booleanValue();
 					final /*@NonInvalid*/ Boolean not;
 					if (!oclIsKindOf) {
 						not = ValueUtil.TRUE_VALUE;
@@ -2970,52 +3673,92 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 						/*@Caught*/ Object CAUGHT_basedOnAction;
 						try {
 							final /*@Thrown*/ ComplaintBasedOnAction basedOnAction = (ComplaintBasedOnAction) OclAnyOclAsTypeOperation.INSTANCE
-									.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction);
+									.evaluate(executor, action, TYP_privacyModel_c_c_ComplaintBasedOnAction_0);
 							CAUGHT_basedOnAction = basedOnAction;
 						} catch (Exception e) {
 							CAUGHT_basedOnAction = ValueUtil.createInvalidValue(e);
 						}
-						final /*@Thrown*/ Boolean or;
-						/*@Caught*/ Object CAUGHT_not_0;
+						/*@Caught*/ Object CAUGHT_or;
 						try {
-							/*@Caught*/ Object CAUGHT_eq;
+							final /*@Thrown*/ Boolean or;
+							/*@Caught*/ Object CAUGHT_not_0;
+							try {
+								/*@Caught*/ Object CAUGHT_eq;
+								try {
+									if (CAUGHT_basedOnAction instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_basedOnAction;
+									}
+									final /*@Thrown*/ Denial denialReason = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+											.getDenialReason();
+									final /*@Thrown*/ boolean eq = denialReason == null;
+									CAUGHT_eq = eq;
+								} catch (Exception e) {
+									CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								}
+								if (CAUGHT_eq instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_eq;
+								}
+								final /*@Thrown*/ Boolean not_0;
+								if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
+									not_0 = ValueUtil.TRUE_VALUE;
+								} else {
+									if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
+										not_0 = ValueUtil.FALSE_VALUE;
+									} else {
+										not_0 = null;
+									}
+								}
+								CAUGHT_not_0 = not_0;
+							} catch (Exception e) {
+								CAUGHT_not_0 = ValueUtil.createInvalidValue(e);
+							}
+							if (CAUGHT_not_0 instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_not_0;
+							}
+							or = (Boolean) CAUGHT_not_0;
+							CAUGHT_or = or;
+						} catch (Exception e) {
+							CAUGHT_or = ValueUtil.createInvalidValue(e);
+						}
+						final /*@Thrown*/ Boolean or_0;
+						if (CAUGHT_or == ValueUtil.TRUE_VALUE) {
+							or_0 = ValueUtil.TRUE_VALUE;
+						} else {
+							/*@Caught*/ Object CAUGHT_eq_0;
 							try {
 								if (CAUGHT_basedOnAction instanceof InvalidValueException) {
 									throw (InvalidValueException) CAUGHT_basedOnAction;
 								}
-								final /*@Thrown*/ Denial denialReason = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
-										.getDenialReason();
-								final /*@Thrown*/ boolean eq = denialReason == null;
-								CAUGHT_eq = eq;
+								final /*@Thrown*/ ComplaintBasedOnActionType type = ((ComplaintBasedOnAction) CAUGHT_basedOnAction)
+										.getType();
+								final /*@Thrown*/ EnumerationLiteralId BOXED_type = PrivacyModelTables.ENUMid_ComplaintBasedOnActionType
+										.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
+								final /*@Thrown*/ boolean eq_0 = BOXED_type == PrivacyModelTables.ELITid_Restriction;
+								CAUGHT_eq_0 = eq_0;
 							} catch (Exception e) {
-								CAUGHT_eq = ValueUtil.createInvalidValue(e);
+								CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
 							}
-							if (CAUGHT_eq instanceof InvalidValueException) {
-								throw (InvalidValueException) CAUGHT_eq;
-							}
-							final /*@Thrown*/ Boolean not_0;
-							if (CAUGHT_eq == ValueUtil.FALSE_VALUE) {
-								not_0 = ValueUtil.TRUE_VALUE;
+							if (CAUGHT_eq_0 == ValueUtil.TRUE_VALUE) {
+								or_0 = ValueUtil.TRUE_VALUE;
 							} else {
-								if (CAUGHT_eq == ValueUtil.TRUE_VALUE) {
-									not_0 = ValueUtil.FALSE_VALUE;
+								if (CAUGHT_or instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_or;
+								}
+								if (CAUGHT_eq_0 instanceof InvalidValueException) {
+									throw (InvalidValueException) CAUGHT_eq_0;
+								}
+								if (CAUGHT_or == null) {
+									or_0 = null;
 								} else {
-									not_0 = null;
+									or_0 = ValueUtil.FALSE_VALUE;
 								}
 							}
-							CAUGHT_not_0 = not_0;
-						} catch (Exception e) {
-							CAUGHT_not_0 = ValueUtil.createInvalidValue(e);
 						}
-						if (CAUGHT_not_0 instanceof InvalidValueException) {
-							throw (InvalidValueException) CAUGHT_not_0;
-						}
-						or = (Boolean) CAUGHT_not_0;
-						if (or == null) {
+						if (or_0 == null) {
 							throw new InvalidValueException("Null if condition");
 						}
 						/*@Thrown*/ Boolean local_0;
-						if (or) {
+						if (or_0) {
 							local_0 = ValueUtil.TRUE_VALUE;
 						} else {
 							/*@Caught*/ Object CAUGHT_not_1;
@@ -3030,12 +3773,12 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 									final /*@Thrown*/ Purpose why = statement.getWhy();
 									final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_PublicInterest = (ProcessingReason) idResolver
 											.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_PublicInterest);
-									final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_17 = ((IdResolverExtension) idResolver)
+									final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_18 = ((IdResolverExtension) idResolver)
 											.ecoreValueOfAll(ProcessingReasonSubtype.class,
 													PrivacyModelTables.Sequence_6);
 									final /*@Thrown*/ boolean containsAllowedPurposeReasonAndSubreason = why
 											.containsAllowedPurposeReasonAndSubreason(ECORE_ELITid_PublicInterest,
-													(EList<ProcessingReasonSubtype>) ECORE_Sequence_17);
+													(EList<ProcessingReasonSubtype>) ECORE_Sequence_18);
 									CAUGHT_containsAllowedPurposeReasonAndSubreason = containsAllowedPurposeReasonAndSubreason;
 								} catch (Exception e) {
 									CAUGHT_containsAllowedPurposeReasonAndSubreason = ValueUtil.createInvalidValue(e);
@@ -3061,7 +3804,7 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 							if (CAUGHT_not_1 == ValueUtil.FALSE_VALUE) {
 								and = ValueUtil.FALSE_VALUE;
 							} else {
-								/*@Caught*/ Object CAUGHT_or_0;
+								/*@Caught*/ Object CAUGHT_or_1;
 								try {
 									/*@Caught*/ Object CAUGHT_containsAllowedPurposeReasonAndSubreason_0;
 									try {
@@ -3073,20 +3816,20 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 										final /*@Thrown*/ Purpose why_0 = statement_0.getWhy();
 										final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_Marketing = (ProcessingReason) idResolver
 												.ecoreValueOf(Enumerator.class, PrivacyModelTables.ELITid_Marketing);
-										final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_18 = ((IdResolverExtension) idResolver)
+										final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_19 = ((IdResolverExtension) idResolver)
 												.ecoreValueOfAll(ProcessingReasonSubtype.class,
 														PrivacyModelTables.Sequence_4);
 										final /*@Thrown*/ boolean containsAllowedPurposeReasonAndSubreason_0 = why_0
 												.containsAllowedPurposeReasonAndSubreason(ECORE_ELITid_Marketing,
-														(EList<ProcessingReasonSubtype>) ECORE_Sequence_18);
+														(EList<ProcessingReasonSubtype>) ECORE_Sequence_19);
 										CAUGHT_containsAllowedPurposeReasonAndSubreason_0 = containsAllowedPurposeReasonAndSubreason_0;
 									} catch (Exception e) {
 										CAUGHT_containsAllowedPurposeReasonAndSubreason_0 = ValueUtil
 												.createInvalidValue(e);
 									}
-									final /*@Thrown*/ Boolean or_0;
+									final /*@Thrown*/ Boolean or_1;
 									if (CAUGHT_containsAllowedPurposeReasonAndSubreason_0 == ValueUtil.TRUE_VALUE) {
-										or_0 = ValueUtil.TRUE_VALUE;
+										or_1 = ValueUtil.TRUE_VALUE;
 									} else {
 										/*@Caught*/ Object CAUGHT_containsAllowedPurposeReasonAndSubreason_1;
 										try {
@@ -3099,19 +3842,19 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 											final /*@NonInvalid*/ ProcessingReason ECORE_ELITid_Profiling = (ProcessingReason) idResolver
 													.ecoreValueOf(Enumerator.class,
 															PrivacyModelTables.ELITid_Profiling);
-											final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_19 = ((IdResolverExtension) idResolver)
+											final /*@NonInvalid*/ List<ProcessingReasonSubtype> ECORE_Sequence_20 = ((IdResolverExtension) idResolver)
 													.ecoreValueOfAll(ProcessingReasonSubtype.class,
 															PrivacyModelTables.Sequence_4);
 											final /*@Thrown*/ boolean containsAllowedPurposeReasonAndSubreason_1 = why_1
 													.containsAllowedPurposeReasonAndSubreason(ECORE_ELITid_Profiling,
-															(EList<ProcessingReasonSubtype>) ECORE_Sequence_19);
+															(EList<ProcessingReasonSubtype>) ECORE_Sequence_20);
 											CAUGHT_containsAllowedPurposeReasonAndSubreason_1 = containsAllowedPurposeReasonAndSubreason_1;
 										} catch (Exception e) {
 											CAUGHT_containsAllowedPurposeReasonAndSubreason_1 = ValueUtil
 													.createInvalidValue(e);
 										}
 										if (CAUGHT_containsAllowedPurposeReasonAndSubreason_1 == ValueUtil.TRUE_VALUE) {
-											or_0 = ValueUtil.TRUE_VALUE;
+											or_1 = ValueUtil.TRUE_VALUE;
 										} else {
 											if (CAUGHT_containsAllowedPurposeReasonAndSubreason_0 instanceof InvalidValueException) {
 												throw (InvalidValueException) CAUGHT_containsAllowedPurposeReasonAndSubreason_0;
@@ -3119,23 +3862,23 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 											if (CAUGHT_containsAllowedPurposeReasonAndSubreason_1 instanceof InvalidValueException) {
 												throw (InvalidValueException) CAUGHT_containsAllowedPurposeReasonAndSubreason_1;
 											}
-											or_0 = ValueUtil.FALSE_VALUE;
+											or_1 = ValueUtil.FALSE_VALUE;
 										}
 									}
-									CAUGHT_or_0 = or_0;
+									CAUGHT_or_1 = or_1;
 								} catch (Exception e) {
-									CAUGHT_or_0 = ValueUtil.createInvalidValue(e);
+									CAUGHT_or_1 = ValueUtil.createInvalidValue(e);
 								}
-								if (CAUGHT_or_0 == ValueUtil.FALSE_VALUE) {
+								if (CAUGHT_or_1 == ValueUtil.FALSE_VALUE) {
 									and = ValueUtil.FALSE_VALUE;
 								} else {
 									if (CAUGHT_not_1 instanceof InvalidValueException) {
 										throw (InvalidValueException) CAUGHT_not_1;
 									}
-									if (CAUGHT_or_0 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_or_0;
+									if (CAUGHT_or_1 instanceof InvalidValueException) {
+										throw (InvalidValueException) CAUGHT_or_1;
 									}
-									if ((CAUGHT_not_1 == null) || (CAUGHT_or_0 == null)) {
+									if ((CAUGHT_not_1 == null) || (CAUGHT_or_1 == null)) {
 										and = null;
 									} else {
 										and = ValueUtil.TRUE_VALUE;
@@ -3146,9 +3889,9 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 						}
 						status = local_0;
 					}
-					final /*@Thrown*/ boolean eq_0 = status == Boolean.TRUE;
+					final /*@Thrown*/ boolean eq_1 = status == Boolean.TRUE;
 					/*@Thrown*/ Object local_2;
-					if (eq_0) {
+					if (eq_1) {
 						local_2 = ValueUtil.TRUE_VALUE;
 					} else {
 						final /*@Thrown*/ TupleValue local_1 = ValueUtil.createTupleOfEach(PrivacyModelTables.TUPLid_,
@@ -3455,17 +4198,20 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 		switch (operationID) {
 		case PrivacyModelPackage.COMPLAINT___DOES_POLICY_STATEMENT_EXISTS__ACTION_COMPLAINTBASEDONDATATYPE:
 			return doesPolicyStatementExists((Action) arguments.get(0), (ComplaintBasedOnDataType) arguments.get(1));
-		case PrivacyModelPackage.COMPLAINT___INVALID_TYPE_OF_PURPOSE_FOR_AN_OBJECT__DIAGNOSTICCHAIN_MAP:
-			return InvalidTypeOfPurposeForAnObject((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.COMPLAINT___RECIPIENTS_SHOULD_BE_NOTIFIED_ABOUT_RESTRICTION__DIAGNOSTICCHAIN_MAP:
+			return RecipientsShouldBeNotifiedAboutRestriction((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.COMPLAINT___STOP_PROCESSING_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP:
+			return StopProcessingShouldBeExecutedAsSoonAsPossible((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.COMPLAINT___CANNOT_IDENTIFY_DATA_FROM_COMPLAINT__DIAGNOSTICCHAIN_MAP:
 			return CannotIdentifyDataFromComplaint((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.COMPLAINT___RESTRICTION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP:
+			return RestrictionShouldBeExecutedAsSoonAsPossible((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.COMPLAINT___USER_DOES_NOT_HAVE_PERMISSION_TO_COMPLAIN__DIAGNOSTICCHAIN_MAP:
 			return UserDoesNotHavePermissionToComplain((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL__DIAGNOSTICCHAIN_MAP:
-			return SubjectShouldBeNotifiedAboutWithdrawal((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.COMPLAINT___ERASURE_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP:
 			return ErasureShouldBeExecutedAsSoonAsPossible((DiagnosticChain) arguments.get(0),
@@ -3473,8 +4219,11 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 		case PrivacyModelPackage.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE__DIAGNOSTICCHAIN_MAP:
 			return SubjectShouldBeNotifiedAboutExistingComplaintForErasure((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.COMPLAINT___USER_DOES_NOT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT__DIAGNOSTICCHAIN_MAP:
-			return UserDoesNotHavePermissionToWithdrawConsent((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.COMPLAINT___SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL__DIAGNOSTICCHAIN_MAP:
+			return SubjectShouldBeNotifiedAboutWithdrawal((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case PrivacyModelPackage.COMPLAINT___INVALID_TYPE_OF_PURPOSE_FOR_AN_OBJECT__DIAGNOSTICCHAIN_MAP:
+			return InvalidTypeOfPurposeForAnObject((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case PrivacyModelPackage.COMPLAINT___CONSENT_WITHDRAWAL_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP:
 			return ConsentWithdrawalShouldBeExecutedAsSoonAsPossible((DiagnosticChain) arguments.get(0),
@@ -3485,8 +4234,8 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 		case PrivacyModelPackage.COMPLAINT___RECTIFICATION_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP:
 			return RectificationShouldBeExecutedAsSoonAsPossible((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case PrivacyModelPackage.COMPLAINT___STOP_PROCESSING_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__DIAGNOSTICCHAIN_MAP:
-			return StopProcessingShouldBeExecutedAsSoonAsPossible((DiagnosticChain) arguments.get(0),
+		case PrivacyModelPackage.COMPLAINT___USER_DOES_NOT_HAVE_PERMISSION_TO_WITHDRAW_CONSENT__DIAGNOSTICCHAIN_MAP:
+			return UserDoesNotHavePermissionToWithdrawConsent((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);

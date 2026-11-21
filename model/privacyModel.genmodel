@@ -61,6 +61,8 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//Action/Transfer"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//Action/StopProcessing"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//Action/DataPortability"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//Action/RestrictProcessing"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//Action/LiftRestriction"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//LocationType">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//LocationType/Union"/>
@@ -84,6 +86,7 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/LegalObligation"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/NotForProfitBodyActivity"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/HealthCare"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReason/LegalClaims"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ProcessingReasonSubtype">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/None"/>
@@ -105,6 +108,7 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/Scientific"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/Other"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/PreContractual"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ProcessingReasonSubtype/ProtectionOfRightsOfOthers"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ConsentFormat">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ConsentFormat/Written"/>
@@ -117,6 +121,10 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ConsentType/Informed"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ConsentType/Unanimous"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ConsentType/Substituted"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ComplaintBasedOnActionType">
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ComplaintBasedOnActionType/Objection"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ComplaintBasedOnActionType/Restriction"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ComplaintBasedOnDataType">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ComplaintBasedOnDataType/Erasure"/>
@@ -131,6 +139,8 @@
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/ThirdPartyTransfer"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/ExecutedRectification"/>
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/ExecutedErasure"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/Restriction"/>
+      <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//NotificationType/RestrictionLifted"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="privacyModel.ecore#//ComplaintStatus">
       <genEnumLiterals ecoreEnumLiteral="privacyModel.ecore#//ComplaintStatus/Pending"/>
@@ -370,6 +380,7 @@
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//ComplaintBasedOnAction">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//ComplaintBasedOnAction/statement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//ComplaintBasedOnAction/type"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

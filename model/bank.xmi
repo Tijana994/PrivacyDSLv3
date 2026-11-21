@@ -210,6 +210,48 @@
     </what>
     <how documents="//@allDocuments.2"/>
   </policyStatements>
+  <policyStatements
+      name="Restrict processing of email for John"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.5"
+      causedBy="//@allComplaints.4">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2022-02-01T00:00:00.000+0100"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.3">
+      <actions>RestrictProcessing</actions>
+    </what>
+  </policyStatements>
+  <policyStatements
+      name="Data rectification for John"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.5"
+      causedBy="//@allComplaints.4">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2022-02-03T00:00:00.000+0100"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.3">
+      <actions>Rectification</actions>
+    </what>
+  </policyStatements>
+  <policyStatements
+      name="Lift restriction of email for John"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.5"
+      causedBy="//@allComplaints.4">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2022-02-05T00:00:00.000+0100"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.3">
+      <actions>LiftRestriction</actions>
+    </what>
+  </policyStatements>
   <allPrincipals
       name="Green bank"
       subPrincipals="//@allPrincipals.1 //@allPrincipals.2"
@@ -332,6 +374,16 @@
         xsi:type="privacyModel:Withdraw"
         subject="//@allConsents.3"/>
   </allComplaints>
+  <allComplaints
+      name="Restriction of email - John"
+      who="//@allPrincipals.5"
+      when="2022-02-01T00:00:00.000+0100"
+      reason="John contests the accuracy of his email">
+    <action
+        xsi:type="privacyModel:ComplaintBasedOnAction"
+        statement="//@policyStatements.6"
+        type="Restriction"/>
+  </allComplaints>
   <privacyPolicyHelper/>
   <allDenials
       name="Erasure cannot be done - need parent persmission"
@@ -433,6 +485,27 @@
       receivers="//@allPrincipals.5"
       causedBy="//@policyStatements.10"
       when="2022-04-15T01:00:00.000+0200"/>
+  <notifications
+      name="Notify John and Patti about restriction"
+      type="Restriction"
+      notifiers="//@allPrincipals.0"
+      receivers="//@allPrincipals.2 //@allPrincipals.5"
+      causedBy="//@allComplaints.4"
+      when="2022-02-01T00:00:00.000+0100"/>
+  <notifications
+      name="Notify John about rectified email"
+      type="ExecutedRectification"
+      notifiers="//@allPrincipals.0"
+      receivers="//@allPrincipals.5"
+      causedBy="//@policyStatements.14"
+      when="2022-02-03T00:00:00.000+0100"/>
+  <notifications
+      name="Notify John about lifting restriction"
+      type="RestrictionLifted"
+      notifiers="//@allPrincipals.0"
+      receivers="//@allPrincipals.5"
+      causedBy="//@policyStatements.15"
+      when="2022-02-04T00:00:00.000+0100"/>
   <allSharedPrivacyData
       name="name"
       privacydata="//@allDatas.0"
