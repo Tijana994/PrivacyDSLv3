@@ -1577,18 +1577,18 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String POLICY_STATEMENT__MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Arts 44-50 and Art 49(1)(b)',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(not(self.what.actions->exists(action| action = Action::Transfer))or self.where = null or self.where.destination = null or self.where.destination.isEUMember = true) then\n"
+			+ "\tmessage : String = 'Based on Art45, Art46, Art47 and Art49(1)',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(not(self.what.actions->exists(action| action = Action::Transfer)) or self.where = null or self.where.destination = null or self.where.destination.isEUMember = true) then\n"
 			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
-			+ "\t\t\t\tif((not(self.where.destination = null)) and self.where.destination.isEUMember = false) then\n"
-			+ "\t\t\t\t\t(not(self.how = null) and (self.how.documents->exists(doc| doc.documentType = DocumentType::TransferCertificate) or (not(self.how = null) and not(self.how.consent = null)))) or\n"
-			+ "\t\t\t\t\t(self.hasProcessingReason(ProcessingReason::ContractPerformance) and self.isContractProvidedBySubject()) or\n"
-			+ "\t\t\t\t\t(not(self.why = null) and \n"
-			+ "\t\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::Prevention,ProcessingReasonSubtype::Investigation,ProcessingReasonSubtype::Detection,\n"
-			+ "\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats,ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) or\n"
-			+ "\t\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,Sequence{ProcessingReasonSubtype::PhysicallyIncapable, \n"
-			+ "\t\t\t\t\t\t\tProcessingReasonSubtype::Other,ProcessingReasonSubtype::None})))\n" + "\t\t\t\telse\n"
-			+ "\t\t\t\t\ttrue\n" + "\t\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t(not(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::TransferCertificate)) or\n"
+			+ "\t\t\t\t(not(self.how = null) and not(self.how.consent = null) and self.how.consent.type = ConsentType::Explicit) or\n"
+			+ "\t\t\t\t(self.hasProcessingReason(ProcessingReason::ContractPerformance) and self.isContractProvidedBySubject()) or\n"
+			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::LegalClaims) or\n"
+			+ "\t\t\t\t(not(self.why = null) and\n"
+			+ "\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest, Sequence{ProcessingReasonSubtype::Prevention, ProcessingReasonSubtype::Investigation, ProcessingReasonSubtype::Detection,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) or\n"
+			+ "\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, Sequence{ProcessingReasonSubtype::PhysicallyIncapable,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::LegallyIncapable})))\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the MissingContractForContractPerformance constraint of '<em>Policy Statement</em>'.
