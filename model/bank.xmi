@@ -337,11 +337,13 @@
       name="Hungary"
       isEUMember="true"
       type="Country"
-      subLocations="//@locations.1"/>
+      subLocations="//@locations.1"
+      legalAgeLimit="18"/>
   <locations
       name="Budapest"
       isEUMember="true"
-      type="Region"/>
+      type="Region"
+      legalAgeLimit="18"/>
   <locations
       name="Serbia"
       type="Country"
