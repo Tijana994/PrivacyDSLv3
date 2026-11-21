@@ -253,9 +253,9 @@
     </what>
   </policyStatements>
   <policyStatements
-      name="Credit check for Bob"
+      name="Credit check for Carol"
       who="//@allPrincipals.1"
-      whose="//@allPrincipals.6">
+      whose="//@allPrincipals.10">
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2022-06-01T00:00:00.000+0200"/>
@@ -269,9 +269,9 @@
     <how documents="//@allDocuments.3"/>
   </policyStatements>
   <policyStatements
-      name="Grant loan for Bob"
+      name="Grant loan for Carol"
       who="//@allPrincipals.1"
-      whose="//@allPrincipals.6"
+      whose="//@allPrincipals.10"
       whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
@@ -328,6 +328,11 @@
   <allPrincipals
       name="Hungarian Parliament"
       scope="Out"/>
+  <allPrincipals
+      name="Carol"
+      type="NaturalPerson"
+      scope="Out"
+      age="35"/>
   <locations
       name="Hungary"
       isEUMember="true"
@@ -484,8 +489,8 @@
       location="Hungary"
       documentType="LegalProvision"/>
   <allContracts
-      name="Loan contract - Bob"
-      providedBy="//@allPrincipals.6"
+      name="Loan contract - Carol"
+      providedBy="//@allPrincipals.10"
       startDate="2022-06-02T00:00:00.000+0200"
       location="Budapest"/>
   <notifications
@@ -558,10 +563,10 @@
       causedBy="//@policyStatements.15"
       when="2022-02-04T00:00:00.000+0100"/>
   <notifications
-      name="Notify Bob about collecting credit history"
+      name="Notify Carol about collecting credit history"
       type="DataCollecting"
       notifiers="//@allPrincipals.0"
-      receivers="//@allPrincipals.6"
+      receivers="//@allPrincipals.10"
       causedBy="//@policyStatements.16"
       when="2022-06-01T00:00:00.000+0200"/>
   <allSharedPrivacyData
