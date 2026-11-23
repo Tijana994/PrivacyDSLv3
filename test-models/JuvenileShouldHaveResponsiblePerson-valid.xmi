@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A 12-year-old has a responsible person (legal age limit is 18). -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <allPrincipals name="Company" inhabits="//@locations.0"/>
+  <allPrincipals name="Adam" type="NaturalPerson" scope="Out" age="12" responsiblePersons="//@allPrincipals.2"/>
+  <allPrincipals name="Sam" type="NaturalPerson" scope="Out" age="40"/>
+  <locations name="Serbia" type="Country" legalAgeLimit="18"/>
+  <configurationManager/>
+  <privacyPolicyHelper/>
+</privacyModel:PrivacyPolicy>

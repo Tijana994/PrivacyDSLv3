@@ -1,5 +1,7 @@
 # PrivacyDSLv3
 
+[![Tests](https://github.com/Tijana994/PrivacyDSLv3/actions/workflows/tests.yml/badge.svg)](https://github.com/Tijana994/PrivacyDSLv3/actions/workflows/tests.yml) ![OCL rules](.github/badges/ocl-rules.svg)
+
 This project represents meta-model of TeMDA - DSL based on aspect oriented language.
 
 # TeMDA

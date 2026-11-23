@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A natural person (Ana) contains another natural person as sub-principal. -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <allPrincipals name="Company" inhabits="//@locations.0"/>
+  <allPrincipals name="Ana" type="NaturalPerson" scope="Out" age="30" subPrincipals="//@allPrincipals.2"/>
+  <allPrincipals name="Marko" type="NaturalPerson" scope="Out" age="30"/>
+  <locations name="Serbia" type="Country" legalAgeLimit="18"/>
+  <configurationManager/>
+  <privacyPolicyHelper/>
+</privacyModel:PrivacyPolicy>

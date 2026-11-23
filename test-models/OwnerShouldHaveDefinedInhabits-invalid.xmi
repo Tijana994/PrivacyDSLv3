@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Owner of the policy has no location (inhabits is missing). -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <allPrincipals name="Company"/>
+  <locations name="Serbia" type="Country" legalAgeLimit="18"/>
+  <configurationManager/>
+  <privacyPolicyHelper/>
+</privacyModel:PrivacyPolicy>
