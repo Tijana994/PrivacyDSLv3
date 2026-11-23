@@ -688,6 +688,12 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_DateShouldBeDefinedForCollectingAction(policyStatement, diagnostics,
 					context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_RecipientsShouldBeNotifiedAboutExecutedErasure(policyStatement,
+					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_RecipientsShouldBeNotifiedAboutExecutedRectification(policyStatement,
+					diagnostics, context);
 		return result;
 	}
 
@@ -824,7 +830,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art12(3) and Art21',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art12 and Art21',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(what.actions->exists(action| action = Action::StopProcessing)) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::StopProcessing and \n"
 			+ "\t\t\t\t\t\tnotification.causedBy = self\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n"
@@ -1287,11 +1293,12 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art12(3) and Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art12',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(what.actions->exists(action| action = Action::Erasure)) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
-			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedErasure\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n"
-			+ "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedErasure and\n"
+			+ "\t\t\t\t\t\t(self.whose = null or notification.receivers->includes(self.whose))\n" + "\t\t\t\t\t)\n"
+			+ "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutExecutedErasure constraint of '<em>Policy Statement</em>'.
@@ -1314,10 +1321,11 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art12(3) and Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art12',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(what.actions->exists(action| action = Action::Rectification)) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
-			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification\n" + "\t\t\t\t\t)\n"
+			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification and\n"
+			+ "\t\t\t\t\t\t(self.whose = null or notification.receivers->includes(self.whose))\n" + "\t\t\t\t\t)\n"
 			+ "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
@@ -1440,6 +1448,75 @@ public class PrivacyModelValidator extends EObjectValidator {
 				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "DateShouldBeDefinedForCollectingAction",
 				POLICY_STATEMENT__DATE_SHOULD_BE_DEFINED_FOR_COLLECTING_ACTION__EEXPRESSION, Diagnostic.ERROR,
 				DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the RecipientsShouldBeNotifiedAboutExecutedErasure constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__RECIPIENTS_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or self.what = null or not(self.what.actions->exists(act| act = Action::Erasure))) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tprivacyPolicy.policyStatements->select(tr| not(tr.what = null) and\n"
+			+ "\t\t\t\t\ttr.what.actions->exists(act| act = Action::Transfer) and\n"
+			+ "\t\t\t\t\tnot(tr.whose = null) and tr.whose = self.whose and not(tr.whom = null) and\n"
+			+ "\t\t\t\t\ttr.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n"
+			+ "\t\t\t\t\t(tr.when = null or self.when = null or privacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(tr.when, self.when)))\n"
+			+ "\t\t\t\t->forAll(tr| privacyPolicy.notifications->exists(notification| notification.causedBy = self and\n"
+			+ "\t\t\t\t\tnotification.type = NotificationType::ExecutedErasure and notification.receivers->includes(tr.whom)))\n"
+			+ "\t\t\tendif\n" + "}.status";
+
+	/**
+	 * Validates the RecipientsShouldBeNotifiedAboutExecutedErasure constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePolicyStatement_RecipientsShouldBeNotifiedAboutExecutedErasure(
+			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "RecipientsShouldBeNotifiedAboutExecutedErasure",
+				POLICY_STATEMENT__RECIPIENTS_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the RecipientsShouldBeNotifiedAboutExecutedRectification constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__RECIPIENTS_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art19',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.whose = null or self.what = null or not(self.what.actions->exists(act| act = Action::Rectification))) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tprivacyPolicy.policyStatements->select(tr| not(tr.what = null) and\n"
+			+ "\t\t\t\t\ttr.what.actions->exists(act| act = Action::Transfer) and\n"
+			+ "\t\t\t\t\tnot(tr.whose = null) and tr.whose = self.whose and not(tr.whom = null) and\n"
+			+ "\t\t\t\t\ttr.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n"
+			+ "\t\t\t\t\t(tr.when = null or self.when = null or privacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(tr.when, self.when)))\n"
+			+ "\t\t\t\t->forAll(tr| privacyPolicy.notifications->exists(notification| notification.causedBy = self and\n"
+			+ "\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification and notification.receivers->includes(tr.whom)))\n"
+			+ "\t\t\tendif\n" + "}.status";
+
+	/**
+	 * Validates the RecipientsShouldBeNotifiedAboutExecutedRectification constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePolicyStatement_RecipientsShouldBeNotifiedAboutExecutedRectification(
+			PolicyStatement policyStatement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"RecipientsShouldBeNotifiedAboutExecutedRectification",
+				POLICY_STATEMENT__RECIPIENTS_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_RECTIFICATION__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -2819,7 +2896,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_ERASURE__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art12(3)',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art12',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
 			+ "\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n"
 			+ "\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Erasure)then\n"
@@ -2982,9 +3059,18 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
 			+ "\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n"
 			+ "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
-			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
-			+ "\t\t\t\t\t\tnotification.type = NotificationType::Restriction)\n" + "\t\t\t\tendif\n" + "\t\t\tendif\n"
-			+ "}.status";
+			+ "\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\t\tprivacyPolicy.notifications->exists(notification| notification.causedBy = self and\n"
+			+ "\t\t\t\t\t\tnotification.type = NotificationType::Restriction) and\n"
+			+ "\t\t\t\t\t(basedOnAction.statement = null or basedOnAction.statement.whose = null or basedOnAction.statement.what = null or\n"
+			+ "\t\t\t\t\tprivacyPolicy.policyStatements->select(tr| not(tr.what = null) and\n"
+			+ "\t\t\t\t\t\ttr.what.actions->exists(act| act = Action::Transfer) and\n"
+			+ "\t\t\t\t\t\tnot(tr.whose = null) and tr.whose = basedOnAction.statement.whose and not(tr.whom = null) and\n"
+			+ "\t\t\t\t\t\ttr.what.datas->exists(d| basedOnAction.statement.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n"
+			+ "\t\t\t\t\t\t(tr.when = null or self.when = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(tr.when, self.when))))\n"
+			+ "\t\t\t\t\t->forAll(tr| privacyPolicy.notifications->exists(notification| notification.causedBy = self and\n"
+			+ "\t\t\t\t\t\tnotification.type = NotificationType::Restriction and notification.receivers->includes(tr.whom))))\n"
+			+ "\t\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the UserDoesNotHavePermissionToComplain constraint of '<em>Complaint</em>'.
@@ -3039,7 +3125,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXISTING_COMPLAINT_FOR_RECTIFICATION__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art12(3)',\n" + "\tstatus : Boolean = \n"
+			+ "\tmessage : String = 'Based on Art12',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.action.oclIsKindOf(ComplaintBasedOnData)) then\n"
 			+ "\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n"
 			+ "\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Rectification)then\n"
@@ -3327,7 +3413,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(sharedPrivacyData, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateSharedPrivacyData_ProtectionControlShouldExistInConfiguration(sharedPrivacyData,
+			result &= validateSharedPrivacyData_AdditionalProtectionControlShouldExistInConfiguration(sharedPrivacyData,
 					diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateSharedPrivacyData_DataSourceShouldExistInConfiguration(sharedPrivacyData, diagnostics,
@@ -3336,29 +3422,30 @@ public class PrivacyModelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the ProtectionControlShouldExistInConfiguration constraint of '<em>Shared Privacy Data</em>'.
+	 * The cached validation expression for the AdditionalProtectionControlShouldExistInConfiguration constraint of '<em>Shared Privacy Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SHARED_PRIVACY_DATA__PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Protection controls should be defined in configuration.',\n"
+	protected static final String SHARED_PRIVACY_DATA__ADDITIONAL_PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Additional protection controls should be defined in configuration.',\n"
 			+ "\tstatus : Boolean = \n" + "\t\t\tself.additionalProtectionControls->forAll(protectionControl:String|\n"
 			+ "\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isPolicyControlValid(protectionControl)\n"
 			+ "\t\t\t)\n" + "}.status";
 
 	/**
-	 * Validates the ProtectionControlShouldExistInConfiguration constraint of '<em>Shared Privacy Data</em>'.
+	 * Validates the AdditionalProtectionControlShouldExistInConfiguration constraint of '<em>Shared Privacy Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSharedPrivacyData_ProtectionControlShouldExistInConfiguration(
+	public boolean validateSharedPrivacyData_AdditionalProtectionControlShouldExistInConfiguration(
 			SharedPrivacyData sharedPrivacyData, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate(PrivacyModelPackage.Literals.SHARED_PRIVACY_DATA, sharedPrivacyData, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ProtectionControlShouldExistInConfiguration",
-				SHARED_PRIVACY_DATA__PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__EEXPRESSION, Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE, 0);
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				"AdditionalProtectionControlShouldExistInConfiguration",
+				SHARED_PRIVACY_DATA__ADDITIONAL_PROTECTION_CONTROL_SHOULD_EXIST_IN_CONFIGURATION__EEXPRESSION,
+				Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**

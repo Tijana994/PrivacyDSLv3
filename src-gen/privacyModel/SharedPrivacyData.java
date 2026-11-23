@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getSharedPrivacyData()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ProtectionControlShouldExistInConfiguration DataSourceShouldExistInConfiguration'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot ProtectionControlShouldExistInConfiguration='Tuple {\n\tmessage : String = \'Protection controls should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.additionalProtectionControls-&gt;forAll(protectionControl:String|\n\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().privacyPolicyHelper.isPolicyControlValid(protectionControl)\n\t\t\t)\n}.status' DataSourceShouldExistInConfiguration='Tuple {\n\tmessage : String = \'Data source should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.dataSource = null or PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().privacyPolicyHelper.isDataSourceValid(self.dataSource)\n}.status'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AdditionalProtectionControlShouldExistInConfiguration DataSourceShouldExistInConfiguration'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot AdditionalProtectionControlShouldExistInConfiguration='Tuple {\n\tmessage : String = \'Additional protection controls should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.additionalProtectionControls-&gt;forAll(protectionControl:String|\n\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().privacyPolicyHelper.isPolicyControlValid(protectionControl)\n\t\t\t)\n}.status' DataSourceShouldExistInConfiguration='Tuple {\n\tmessage : String = \'Data source should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.dataSource = null or PrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().privacyPolicyHelper.isDataSourceValid(self.dataSource)\n}.status'"
  * @generated
  */
 public interface SharedPrivacyData extends NamedElement {
