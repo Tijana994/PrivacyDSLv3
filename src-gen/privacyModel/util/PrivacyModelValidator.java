@@ -1683,8 +1683,9 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t(self.hasProcessingReason(ProcessingReason::ContractPerformance) and self.isContractProvidedBySubject()) or\n"
 			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::LegalClaims) or\n"
 			+ "\t\t\t\t(not(self.why = null) and\n"
-			+ "\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest, Sequence{ProcessingReasonSubtype::Prevention, ProcessingReasonSubtype::Investigation, ProcessingReasonSubtype::Detection,\n"
-			+ "\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) or\n"
+			+ "\t\t\t\t((self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest, Sequence{ProcessingReasonSubtype::Prevention, ProcessingReasonSubtype::Investigation, ProcessingReasonSubtype::Detection,\n"
+			+ "\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) and\n"
+			+ "\t\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision)) or\n"
 			+ "\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, Sequence{ProcessingReasonSubtype::PhysicallyIncapable,\n"
 			+ "\t\t\t\t\tProcessingReasonSubtype::LegallyIncapable})))\n" + "\t\t\tendif\n" + "}.status";
 
