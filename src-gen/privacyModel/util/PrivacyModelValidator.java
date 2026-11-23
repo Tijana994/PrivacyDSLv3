@@ -1143,11 +1143,12 @@ public class PrivacyModelValidator extends EObjectValidator {
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art14',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.what.actions->exists(action| action = Action::Collecting) and self.what.datas->exists(data| data.origin <> DataOrigin::DataSubject)) then\n"
-			+ "\t\t\t\tif((not(self.why = null) and \n"
+			+ "\t\t\t\tif((((not(self.why = null) and \n"
 			+ "\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::None}) or\n"
 			+ "\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Research,Sequence{ProcessingReasonSubtype::Statistical, \n"
 			+ "\t\t\t\t\t\tProcessingReasonSubtype::Historical,ProcessingReasonSubtype::Scientific})))\n"
-			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::StatisticalPurposes)\n"
+			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::StatisticalPurposes))\n"
+			+ "\t\t\t\t\tand not(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::ControllerApproval))\n"
 			+ "\t\t\t\t\tor (self.hasProcessingReason(ProcessingReason::LegalObligation) and not(self.how = null) and\n"
 			+ "\t\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision))\n"
 			+ "\t\t\t\t)then\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
@@ -1259,7 +1260,16 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art17',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tcausedByShouldBeDefinedForType(Action::Erasure)\n" + "}.status";
+			+ "\t\t\tif(self.what = null or not(self.what.actions->exists(act| act = Action::Erasure)) or not(self.causedBy = null)) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tnot(self.whose = null) and\n"
+			+ "\t\t\t\tprivacyPolicy.policyStatements->exists(col| not(col.what = null) and\n"
+			+ "\t\t\t\t\tcol.what.actions->exists(act| act = Action::Collecting) and\n"
+			+ "\t\t\t\t\tcol.whose = self.whose and not(col.why = null) and not(col.why.erasureDate = null) and\n"
+			+ "\t\t\t\t\tcol.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n"
+			+ "\t\t\t\t\t(self.when = null or not(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, col.why.erasureDate))))\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * The cached validation expression for the ControllerApprovalIsNeededForLegitimateInterestsPurpose constraint of '<em>Policy Statement</em>'.
@@ -1623,12 +1633,14 @@ public class PrivacyModelValidator extends EObjectValidator {
 	protected static final String POLICY_STATEMENT__MISSING_CONSENT_OR_CONTRACT_FOR_DATA_PORTABILITY__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art20 and Art6',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::DataPortability))) then\n"
-			+ "\t\t\t\ttrue\n" + "\t\t\telse if(self.isContractProvidedBySubject()) then\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\t\ttrue\n"
+			+ "\t\t\telse if(not(self.what.datas->forAll(d| d.origin = DataOrigin::DataSubject))) then\n"
+			+ "\t\t\t\tfalse\n" + "\t\t\telse if(self.isContractProvidedBySubject()) then\n" + "\t\t\t\ttrue\n"
 			+ "\t\t\telse if(self.whose.type= PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.legalAgeLimitFor(self.whose)) then\n"
 			+ "\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n"
 			+ "\t\t\telse \n"
 			+ "\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person))\n"
-			+ "\t\t\tendif\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\tendif\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutStopProcessing constraint of '<em>Policy Statement</em>'.
@@ -2873,7 +2885,9 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\tmessage : String = 'Based on Art7',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n" + "\t\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\t\tlet withdraw : Withdraw = self.action.oclAsType(Withdraw) in\n"
-			+ "\t\t\t\t\tself.who = withdraw.subject.providedBy or  withdraw.subject.providedBy.responsiblePersons->exists(rp| rp = self.who)\n"
+			+ "\t\t\t\t\tself.who = withdraw.subject.providedBy or withdraw.subject.providedBy.responsiblePersons->exists(rp| rp = self.who) or\n"
+			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().policyStatements->exists(st| not(st.how = null) and st.how.consent = withdraw.subject and\n"
+			+ "\t\t\t\t\t\tnot(st.whose = null) and (st.whose = self.who or st.whose.responsiblePersons->exists(rp| rp = self.who)))\n"
 			+ "\t\t\tendif\n" + "}.status";
 
 	/**
