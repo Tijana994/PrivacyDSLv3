@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A legal entity and a natural person share the name 'Ana' (different types). -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <allPrincipals name="Company" inhabits="//@locations.0"/>
+  <allPrincipals name="Ana" type="NaturalPerson" scope="Out" age="30"/>
+  <allPrincipals name="Ana" inhabits="//@locations.0"/>
+  <locations name="Serbia" type="Country" legalAgeLimit="18"/>
+  <configurationManager/>
+  <privacyPolicyHelper/>
+</privacyModel:PrivacyPolicy>

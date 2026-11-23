@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Interval 'from January ... before June': 'from' must be combined with 'to'. -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <policyStatements name="Access in interval" who="//@allPrincipals.0">
+    <when xsi:type="privacyModel:TimeInterval">
+      <start preposition="from" dateTime="2024-01-01T00:00:00.000+0100"/>
+      <end preposition="before" dateTime="2024-06-01T00:00:00.000+0200"/>
+    </when>
+    <why processingReason="Research"/>
+    <what><actions>Access</actions></what>
+  </policyStatements>
+  <allPrincipals name="Company" inhabits="//@locations.0"/>
+  <locations name="Serbia" type="Country" legalAgeLimit="18"/>
+  <configurationManager/>
+  <privacyPolicyHelper/>
+</privacyModel:PrivacyPolicy>

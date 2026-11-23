@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Default protection control 'Anonymisation' is not defined in the configuration (only 'Encryption' is). -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <allPrincipals name="Company" inhabits="//@locations.0"/>
+  <locations name="Serbia" type="Country" legalAgeLimit="18"/>
+  <defaultProtectionControls>Anonymisation</defaultProtectionControls>
+  <configurationManager>
+    <dataSources>Internal</dataSources>
+    <protectionControlMethods>Encryption</protectionControlMethods>
+  </configurationManager>
+  <privacyPolicyHelper/>
+</privacyModel:PrivacyPolicy>

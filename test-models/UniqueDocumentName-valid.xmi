@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Two documents with different names. -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <allPrincipals name="Company" inhabits="//@locations.0"/>
+  <locations name="Serbia" type="Country" legalAgeLimit="18"/>
+  <configurationManager/>
+  <privacyPolicyHelper/>
+  <allDocuments name="Court approval 1" providedBy="//@allPrincipals.0" startDate="2023-01-01T00:00:00.000+0100" location="Belgrade"/>
+  <allDocuments name="Court approval 2" providedBy="//@allPrincipals.0" startDate="2023-01-01T00:00:00.000+0100" location="Belgrade"/>
+</privacyModel:PrivacyPolicy>
