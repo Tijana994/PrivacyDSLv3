@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Access to protect the vital interests of the data subject with a controller approval. -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <policyStatements name="Collect Eve email" who="//@allPrincipals.0" whose="//@allPrincipals.1" whom="//@allPrincipals.0">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-02-01T00:00:00.000+0100"/>
+    <why processingReason="Marketing" processingReasonSubtype="None" erasureDate="2026-02-01T00:00:00.000+0100"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Collecting</actions><actions>Store</actions></what>
+    <how consent="//@allConsents.0"/>
+  </policyStatements>
+  <policyStatements name="Access Eve email" who="//@allPrincipals.0" whose="//@allPrincipals.1">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-06-01T00:00:00.000+0200"/>
+    <why processingReason="ProtectTheVitalInterestsOfTheDataSubject" processingReasonSubtype="PhysicallyIncapable"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Access</actions></what>
+    <how documents="//@allDocuments.1"/>
+  </policyStatements>
+  <policyStatements name="Collect Adam email" who="//@allPrincipals.0" whose="//@allPrincipals.2" whom="//@allPrincipals.0">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-02-01T00:00:00.000+0100"/>
+    <why processingReason="Marketing" processingReasonSubtype="None" erasureDate="2026-02-01T00:00:00.000+0100"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Collecting</actions><actions>Store</actions></what>
+    <how documents="//@allDocuments.0" consent="//@allConsents.1"/>
+  </policyStatements>
+  <policyStatements name="Access Adam email" who="//@allPrincipals.0" whose="//@allPrincipals.2">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-06-01T00:00:00.000+0200"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Access</actions></what>
+  </policyStatements>
+  <allPrincipals name="Bank" type="LegalEntity" scope="In" inhabits="//@locations.0"/>
+  <allPrincipals name="Eve" type="NaturalPerson" scope="Out" age="30" inhabits="//@locations.0"/>
+  <allPrincipals name="Adam" type="NaturalPerson" scope="Out" age="12" inhabits="//@locations.0" responsiblePersons="//@allPrincipals.3"/>
+  <allPrincipals name="Sam" type="NaturalPerson" scope="Out" age="40" inhabits="//@locations.0"/>
+  <locations name="Hungary" isEUMember="true" type="Country" legalAgeLimit="16"/>
+  <configurationManager/>
+  <allDatas name="email" type="General"/>
+  <privacyPolicyHelper/>
+  <allConsents name="Eve marketing consent" providedBy="//@allPrincipals.1" startDate="2024-01-15T00:00:00.000+0100" location="Budapest" type="Explicit"/>
+  <allConsents name="Adam marketing consent" providedBy="//@allPrincipals.3" startDate="2024-01-15T00:00:00.000+0100" location="Budapest" type="Explicit"/>
+  <allDocuments name="Adam custody" providedBy="//@allPrincipals.3" startDate="2020-01-01T00:00:00.000+0100" location="Budapest" documentType="ChildCustody"/>
+  <allDocuments name="Emergency assessment" providedBy="//@allPrincipals.0" startDate="2023-01-01T00:00:00.000+0100" location="Budapest" documentType="ControllerApproval"/>
+  <allSharedPrivacyData name="email" privacydata="//@allDatas.0"/>
+</privacyModel:PrivacyPolicy>

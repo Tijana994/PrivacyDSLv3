@@ -480,13 +480,31 @@ public interface PrivacyModelPackage extends EPackage {
 	int POLICY_STATEMENT___IS_CONTRACT_PROVIDED_BY_SUBJECT = NOTIFICATION_INFO_OPERATION_COUNT + 4;
 
 	/**
+	 * The operation id for the '<em>Processing Of Data Ends By</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___PROCESSING_OF_DATA_ENDS_BY__SHAREDPRIVACYDATA_DATE = NOTIFICATION_INFO_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Processing Ends By</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___PROCESSING_ENDS_BY__DATE = NOTIFICATION_INFO_OPERATION_COUNT + 6;
+
+	/**
 	 * The number of operations of the '<em>Policy Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 5;
+	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
@@ -1696,13 +1714,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int PRIVACY_POLICY_HELPER___DOES_TIME_END_AFTER_DATE__ABSTRACTTIME_DATE = 7;
 
 	/**
+	 * The operation id for the '<em>Does Time Start Before Date</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_POLICY_HELPER___DOES_TIME_START_BEFORE_DATE__ABSTRACTTIME_DATE = 8;
+
+	/**
 	 * The operation id for the '<em>Is Date In Interval</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_HELPER___IS_DATE_IN_INTERVAL__ABSTRACTTIME_DATE = 8;
+	int PRIVACY_POLICY_HELPER___IS_DATE_IN_INTERVAL__ABSTRACTTIME_DATE = 9;
 
 	/**
 	 * The operation id for the '<em>Legal Age Limit For</em>' operation.
@@ -1711,7 +1738,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL = 9;
+	int PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL = 10;
 
 	/**
 	 * The number of operations of the '<em>Privacy Policy Helper</em>' class.
@@ -1720,7 +1747,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_HELPER_OPERATION_COUNT = 10;
+	int PRIVACY_POLICY_HELPER_OPERATION_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.WhereImpl <em>Where</em>}' class.
@@ -2882,6 +2909,26 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__IsContractProvidedBySubject();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#processingOfDataEndsBy(privacyModel.SharedPrivacyData, java.util.Date) <em>Processing Of Data Ends By</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Processing Of Data Ends By</em>' operation.
+	 * @see privacyModel.PolicyStatement#processingOfDataEndsBy(privacyModel.SharedPrivacyData, java.util.Date)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__ProcessingOfDataEndsBy__SharedPrivacyData_Date();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#processingEndsBy(java.util.Date) <em>Processing Ends By</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Processing Ends By</em>' operation.
+	 * @see privacyModel.PolicyStatement#processingEndsBy(java.util.Date)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__ProcessingEndsBy__Date();
+
+	/**
 	 * Returns the meta object for class '{@link privacyModel.PrivacyData <em>Privacy Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3628,6 +3675,16 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getPrivacyPolicyHelper__DoesTimeEndAfterDate__AbstractTime_Date();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PrivacyPolicyHelper#doesTimeStartBeforeDate(privacyModel.AbstractTime, java.util.Date) <em>Does Time Start Before Date</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Does Time Start Before Date</em>' operation.
+	 * @see privacyModel.PrivacyPolicyHelper#doesTimeStartBeforeDate(privacyModel.AbstractTime, java.util.Date)
+	 * @generated
+	 */
+	EOperation getPrivacyPolicyHelper__DoesTimeStartBeforeDate__AbstractTime_Date();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.PrivacyPolicyHelper#isDateInInterval(privacyModel.AbstractTime, java.util.Date) <em>Is Date In Interval</em>}' operation.
@@ -4573,6 +4630,23 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPolicyStatement__IsContractProvidedBySubject();
 
 		/**
+		 * The meta object literal for the '<em><b>Processing Of Data Ends By</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___PROCESSING_OF_DATA_ENDS_BY__SHAREDPRIVACYDATA_DATE = eINSTANCE
+				.getPolicyStatement__ProcessingOfDataEndsBy__SharedPrivacyData_Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Processing Ends By</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___PROCESSING_ENDS_BY__DATE = eINSTANCE.getPolicyStatement__ProcessingEndsBy__Date();
+
+		/**
 		 * The meta object literal for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5186,6 +5260,15 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation PRIVACY_POLICY_HELPER___DOES_TIME_END_AFTER_DATE__ABSTRACTTIME_DATE = eINSTANCE
 				.getPrivacyPolicyHelper__DoesTimeEndAfterDate__AbstractTime_Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Does Time Start Before Date</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PRIVACY_POLICY_HELPER___DOES_TIME_START_BEFORE_DATE__ABSTRACTTIME_DATE = eINSTANCE
+				.getPrivacyPolicyHelper__DoesTimeStartBeforeDate__AbstractTime_Date();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Date In Interval</b></em>' operation.

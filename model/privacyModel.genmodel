@@ -194,6 +194,13 @@
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/hasProcessingReason/processingReason"/>
       </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/isContractProvidedBySubject"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/processingOfDataEndsBy">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/processingOfDataEndsBy/data"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/processingOfDataEndsBy/date"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/processingEndsBy">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/processingEndsBy/date"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PrivacyData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//PrivacyData/type"/>
@@ -319,6 +326,14 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/isDateAfterInterval">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isDateAfterInterval/time"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isDateAfterInterval/date"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/doesTimeEndAfterDate">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/doesTimeEndAfterDate/time"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/doesTimeEndAfterDate/date"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/doesTimeStartBeforeDate">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/doesTimeStartBeforeDate/time"/>
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/doesTimeStartBeforeDate/date"/>
       </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/isDateInInterval">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isDateInInterval/time"/>

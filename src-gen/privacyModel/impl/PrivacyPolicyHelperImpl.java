@@ -245,6 +245,31 @@ public class PrivacyPolicyHelperImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #doesTimeStartBeforeDate(privacyModel.AbstractTime, java.util.Date) <em>Does Time Start Before Date</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #doesTimeStartBeforeDate(privacyModel.AbstractTime, java.util.Date)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate DOES_TIME_START_BEFORE_DATE_ABSTRACT_TIME_DATE__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.PRIVACY_POLICY_HELPER___DOES_TIME_START_BEFORE_DATE__ABSTRACTTIME_DATE)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean doesTimeStartBeforeDate(AbstractTime time, Date date) {
+		try {
+			return (Boolean) DOES_TIME_START_BEFORE_DATE_ABSTRACT_TIME_DATE__EINVOCATION_DELEGATE.dynamicInvoke(this,
+					new BasicEList.UnmodifiableEList<Object>(2, new Object[] { time, date }));
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #isDateInInterval(privacyModel.AbstractTime, java.util.Date) <em>Is Date In Interval</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -318,6 +343,8 @@ public class PrivacyPolicyHelperImpl extends MinimalEObjectImpl.Container implem
 			return isDateAfterInterval((AbstractTime) arguments.get(0), (Date) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___DOES_TIME_END_AFTER_DATE__ABSTRACTTIME_DATE:
 			return doesTimeEndAfterDate((AbstractTime) arguments.get(0), (Date) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___DOES_TIME_START_BEFORE_DATE__ABSTRACTTIME_DATE:
+			return doesTimeStartBeforeDate((AbstractTime) arguments.get(0), (Date) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___IS_DATE_IN_INTERVAL__ABSTRACTTIME_DATE:
 			return isDateInInterval((AbstractTime) arguments.get(0), (Date) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL:

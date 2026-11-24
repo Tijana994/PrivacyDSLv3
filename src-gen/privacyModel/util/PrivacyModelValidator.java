@@ -728,14 +728,13 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String POLICY_STATEMENT__EXPIRED_DOCUMENT__EEXPRESSION = "\n"
-			+ "\t\t\tif(self.how = null or not(self.how.documents->notEmpty())) then\n" + "\t\t\t\ttrue\n"
-			+ "\t\t\telse\n"
+			+ "\t\t\tif(self.how = null or self.when = null or not(self.how.documents->notEmpty())) then\n"
+			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\t\tself.how.documents->forAll(document|\n"
-			+ "\t\t\t\t\t(privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, document.startDate) or \n"
-			+ "\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, document.startDate))\n"
+			+ "\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, document.startDate))\n"
 			+ "\t\t\t\t\tand\n"
-			+ "\t\t\t\t\t(document.terminationDate = null or (not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, document.terminationDate))))\n"
+			+ "\t\t\t\t\t(document.terminationDate = null or self.processingEndsBy(document.terminationDate))\n"
 			+ "\t\t\t\t)\n" + "\t\t\tendif";
 
 	/**
@@ -766,8 +765,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\telse if(self.hasProcessingReason(ProcessingReason::LegitimateInterests) or\n"
 			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject)) then\n"
 			+ "\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::ControllerApproval)\n"
-			+ "\t\t\telse if(self.hasProcessingReason(ProcessingReason::ContractPerformance)) then\n"
-			+ "\t\t\t\tself.isContractProvidedBySubject()\n"
+			+ "\t\t\telse if(self.hasProcessingReason(ProcessingReason::ContractPerformance)) then\n" + "\t\t\t\ttrue\n"
 			+ "\t\t\telse if(self.whose.type = PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.legalAgeLimitFor(self.whose)) then\n"
 			+ "\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n"
 			+ "\t\t\telse \n"
@@ -900,7 +898,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__EXPIRED_CONSENT__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art6',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction)) then\n"
+			+ "\t\t\tif(self.whose = null or self.when = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction)) then\n"
 			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\t\tself.what.datas->forAll(data |\n"
@@ -909,20 +907,20 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\t\t(self.who.equals(st.who) or (not(st.who = null) and st.who.equals(self.who)) or \n"
 			+ "\t\t\t\t\t\t(not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals->exists(subprincipal| subprincipal = self.who)))) and \n"
 			+ "\t\t\t\t\t\tst.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data))\n"
-			+ "\t\t\t\t\t\tin \n" + "\t\t\t\t\t\tif(statements->isEmpty()) then \n" + "\t\t\t\t\t\t\ttrue\n"
-			+ "\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\tstatements -> exists(st|\n"
-			+ "\t\t\t\t\t\t\t\tif(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) then\n"
-			+ "\t\t\t\t\t\t\t\t\tif(self.why = null \n" + "\t\t\t\t\t\t\t\t\t\tor \n"
+			+ "\t\t\t\t\t\tin \n"
+			+ "\t\t\t\t\t\tlet overlapping = statements->select(st| privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)) in\n"
+			+ "\t\t\t\t\t\tif(overlapping->isEmpty()) then\n" + "\t\t\t\t\t\t\ttrue\n" + "\t\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\t\toverlapping->exists(st|\n" + "\t\t\t\t\t\t\t\t\tif(self.why = null \n"
+			+ "\t\t\t\t\t\t\t\t\t\tor \n"
 			+ "\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
 			+ "\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
 			+ "\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n"
 			+ "\t\t\t\t\t\t\t\t\t)) then\n" + "\t\t\t\t\t\t\t\t\t\ttrue\n" + "\t\t\t\t\t\t\t\t\telse\n"
 			+ "\t\t\t\t\t\t\t\t\t\tnot(st.how = null) and not(st.how.consent = null) and\n"
-			+ "\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, st.how.consent.startDate)) and\n"
-			+ "\t\t\t\t\t\t\t\t\t\t(st.how.consent.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, st.how.consent.terminationDate)))\n"
-			+ "\t\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t\telse\n" + "\t\t\t\t\t\t\t\t\tfalse\n"
-			+ "\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t)\n" + "\t\t\t\t\t\tendif\n" + "\t\t\t\t)\n" + "\t\t\tendif\n"
-			+ "}.status";
+			+ "\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, st.how.consent.startDate)) and\n"
+			+ "\t\t\t\t\t\t\t\t\t\t(st.how.consent.terminationDate = null or self.processingOfDataEndsBy(data, st.how.consent.terminationDate))\n"
+			+ "\t\t\t\t\t\t\t\t\tendif\n" + "\t\t\t\t\t\t\t)\n" + "\t\t\t\t\t\tendif\n" + "\t\t\t\t)\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ErasureDateShouldBeDefinedForCollecting constraint of '<em>Policy Statement</em>'.
@@ -962,17 +960,9 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and not(st.what = null) and\n"
 			+ "\t\t\t\t\t\tst.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data) and\n"
 			+ "\t\t\t\t\t\tnot(st.why = null) and not(st.why.erasureDate = null))->asSequence() in\n"
-			+ "\t\t\t\t\t\tcollectingStatements->isEmpty() or\n" + "\t\t\t\t\t\tcollectingStatements->exists(st|\n"
-			+ "\t\t\t\t\t\t\tif(openEnded) then\n"
-			+ "\t\t\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stop| not(stop.whose = null) and stop.whose = self.whose and\n"
-			+ "\t\t\t\t\t\t\t\t\tnot(stop.what = null) and not(stop.when = null) and\n"
-			+ "\t\t\t\t\t\t\t\t\tstop.what.actions->exists(act| act = Action::StopProcessing or act = Action::Erasure) and\n"
-			+ "\t\t\t\t\t\t\t\t\tstop.what.datas->exists(d| d = data) and\n"
-			+ "\t\t\t\t\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(self.when, stop.when) and\n"
-			+ "\t\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeEndAfterDate(stop.when, st.why.erasureDate)))\n"
-			+ "\t\t\t\t\t\t\telse\n"
-			+ "\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeEndAfterDate(self.when, st.why.erasureDate))\n"
-			+ "\t\t\t\t\t\t\tendif)\n" + "\t\t\t\t)\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\tcollectingStatements->isEmpty() or\n"
+			+ "\t\t\t\t\t\tcollectingStatements->exists(st| self.processingOfDataEndsBy(data, st.why.erasureDate))\n"
+			+ "\t\t\t\t)\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ExpiredConsent constraint of '<em>Policy Statement</em>'.
@@ -995,7 +985,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__EXPIRED_CONSENT_FOR_COLLECTING__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art6',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.whose = null or not(self.what.actions->exists(act| act = Action::Collecting)) or self.how = null or self.how.consent = null) then\n"
+			+ "\t\t\tif(self.whose = null or self.when = null or not(self.what.actions->exists(act| act = Action::Collecting)) or self.how = null or self.how.consent = null) then\n"
 			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\t\tif(self.why = null \n" + "\t\t\t\t\tor \n"
@@ -1003,10 +993,9 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
 			+ "\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n"
 			+ "\t\t\t\t)) then\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
-			+ "\t\t\t\t\t(privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, self.how.consent.startDate) or\n"
-			+ "\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.consent.startDate))\n"
+			+ "\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, self.how.consent.startDate))\n"
 			+ "\t\t\t\t\tand\n"
-			+ "\t\t\t\t\t(self.how.consent.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.consent.terminationDate)))\n"
+			+ "\t\t\t\t\t(self.how.consent.terminationDate = null or self.processingEndsBy(self.how.consent.terminationDate))\n"
 			+ "\t\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
@@ -1736,14 +1725,13 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__EXPIRED_CONTRACT__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art6',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(not(self.hasProcessingReason(ProcessingReason::ContractPerformance)) or self.how = null or self.how.contract = null) then\n"
+			+ "\t\t\tif(not(self.hasProcessingReason(ProcessingReason::ContractPerformance)) or self.when = null or self.how = null or self.how.contract = null) then\n"
 			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\t\t(self.why.processingReasonSubtype = ProcessingReasonSubtype::PreContractual or\n"
-			+ "\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, self.how.contract.startDate) or\n"
-			+ "\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.contract.startDate))\n"
+			+ "\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, self.how.contract.startDate)))\n"
 			+ "\t\t\t\tand\n"
-			+ "\t\t\t\t(self.how.contract.terminationDate = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, self.how.contract.terminationDate)))\n"
+			+ "\t\t\t\t(self.how.contract.terminationDate = null or self.processingEndsBy(self.how.contract.terminationDate))\n"
 			+ "\t\t\tendif\n" + "}.status";
 
 	/**

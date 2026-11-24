@@ -3,6 +3,7 @@
 package privacyModel.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -23,6 +24,7 @@ import privacyModel.Principal;
 import privacyModel.PrivacyModelPackage;
 import privacyModel.ProcessingReason;
 import privacyModel.Purpose;
+import privacyModel.SharedPrivacyData;
 import privacyModel.What;
 import privacyModel.Where;
 
@@ -693,6 +695,56 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #processingOfDataEndsBy(privacyModel.SharedPrivacyData, java.util.Date) <em>Processing Of Data Ends By</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #processingOfDataEndsBy(privacyModel.SharedPrivacyData, java.util.Date)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate PROCESSING_OF_DATA_ENDS_BY_SHARED_PRIVACY_DATA_DATE__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.POLICY_STATEMENT___PROCESSING_OF_DATA_ENDS_BY__SHAREDPRIVACYDATA_DATE)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean processingOfDataEndsBy(SharedPrivacyData data, Date date) {
+		try {
+			return (Boolean) PROCESSING_OF_DATA_ENDS_BY_SHARED_PRIVACY_DATA_DATE__EINVOCATION_DELEGATE
+					.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[] { data, date }));
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #processingEndsBy(java.util.Date) <em>Processing Ends By</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #processingEndsBy(java.util.Date)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate PROCESSING_ENDS_BY_DATE__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.POLICY_STATEMENT___PROCESSING_ENDS_BY__DATE)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean processingEndsBy(Date date) {
+		try {
+			return (Boolean) PROCESSING_ENDS_BY_DATE__EINVOCATION_DELEGATE.dynamicInvoke(this,
+					new BasicEList.UnmodifiableEList<Object>(1, new Object[] { date }));
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -879,6 +931,10 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			return hasProcessingReason((ProcessingReason) arguments.get(0));
 		case PrivacyModelPackage.POLICY_STATEMENT___IS_CONTRACT_PROVIDED_BY_SUBJECT:
 			return isContractProvidedBySubject();
+		case PrivacyModelPackage.POLICY_STATEMENT___PROCESSING_OF_DATA_ENDS_BY__SHAREDPRIVACYDATA_DATE:
+			return processingOfDataEndsBy((SharedPrivacyData) arguments.get(0), (Date) arguments.get(1));
+		case PrivacyModelPackage.POLICY_STATEMENT___PROCESSING_ENDS_BY__DATE:
+			return processingEndsBy((Date) arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

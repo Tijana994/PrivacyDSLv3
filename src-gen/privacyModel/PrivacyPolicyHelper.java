@@ -93,7 +93,16 @@ public interface PrivacyPolicyHelper extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" timeRequired="true" dateRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif(time.oclIsKindOf(TimeStatement)) then\n\t\t\t\t\tlet timestmt : TimeStatement = time.oclAsType(TimeStatement) in \n\t\t\t\t\tif(timestmt.preposition = TimePreposition::at) then\n\t\t\t\t\t\ttimestmt.dateTime = date\n\t\t\t\t\telse\n\t\t\t\t\t\tnot(timestmt.dateTime &lt; date)\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\tlet interval : TimeInterval = time.oclAsType(TimeInterval) in \n\t\t\t\t\tif(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then\n\t\t\t\t\t\tif(interval.start.dateTime &lt; interval.end.dateTime) then\n\t\t\t\t\t\t\tnot(interval.start.dateTime &lt; date) and not(interval.end.dateTime &gt; date)\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tnot(date &lt; interval.end.dateTime) and not(date &gt; interval.start.dateTime)\n\t\t\t\t\t\tendif\n\t\t\t\t\telse \n\t\t\t\t\t\tif(interval.end.dateTime &lt; interval.start.dateTime) then\n\t\t\t\t\t\t\tnot(interval.end.dateTime &lt; date) and not(interval.start.dateTime &gt; date)\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tnot(date &lt; interval.start.dateTime) and not(date &gt; interval.end.dateTime)\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif(time.oclIsKindOf(TimeStatement)) then\n\t\t\t\t\tlet timestmt : TimeStatement = time.oclAsType(TimeStatement) in\n\t\t\t\t\ttimestmt.dateTime &lt; date\n\t\t\t\telse\n\t\t\t\t\tlet interval : TimeInterval = time.oclAsType(TimeInterval) in\n\t\t\t\t\tinterval.start.dateTime &lt; date or interval.end.dateTime &lt; date\n\t\t\t\tendif'"
+	 * @generated
+	 */
+	boolean doesTimeStartBeforeDate(AbstractTime time, Date date);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" timeRequired="true" dateRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif(time.oclIsKindOf(TimeStatement)) then\n\t\t\t\t\tlet timestmt : TimeStatement = time.oclAsType(TimeStatement) in \n\t\t\t\t\tif(timestmt.preposition = TimePreposition::at) then\n\t\t\t\t\t\ttimestmt.dateTime = date\n\t\t\t\t\telse\n\t\t\t\t\t\tnot(timestmt.dateTime &lt; date)\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\tlet interval : TimeInterval = time.oclAsType(TimeInterval) in \n\t\t\t\t\tif(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then\n\t\t\t\t\t\tif(interval.start.dateTime &lt; interval.end.dateTime) then\n\t\t\t\t\t\t\tnot(date &lt; interval.start.dateTime) and not(date &gt; interval.end.dateTime)\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tnot(date &lt; interval.end.dateTime) and not(date &gt; interval.start.dateTime)\n\t\t\t\t\t\tendif\n\t\t\t\t\telse \n\t\t\t\t\t\tif(interval.end.dateTime &lt; interval.start.dateTime) then\n\t\t\t\t\t\t\tnot(date &lt; interval.end.dateTime) and not(date &gt; interval.start.dateTime)\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tnot(date &lt; interval.start.dateTime) and not(date &gt; interval.end.dateTime)\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif'"
 	 * @generated
 	 */
 	boolean isDateInInterval(AbstractTime time, Date date);
