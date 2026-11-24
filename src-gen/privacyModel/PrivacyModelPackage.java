@@ -1687,13 +1687,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int PRIVACY_POLICY_HELPER___IS_DATE_AFTER_INTERVAL__ABSTRACTTIME_DATE = 6;
 
 	/**
+	 * The operation id for the '<em>Does Time End After Date</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_POLICY_HELPER___DOES_TIME_END_AFTER_DATE__ABSTRACTTIME_DATE = 7;
+
+	/**
 	 * The operation id for the '<em>Is Date In Interval</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_HELPER___IS_DATE_IN_INTERVAL__ABSTRACTTIME_DATE = 7;
+	int PRIVACY_POLICY_HELPER___IS_DATE_IN_INTERVAL__ABSTRACTTIME_DATE = 8;
 
 	/**
 	 * The operation id for the '<em>Legal Age Limit For</em>' operation.
@@ -1702,7 +1711,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL = 8;
+	int PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL = 9;
 
 	/**
 	 * The number of operations of the '<em>Privacy Policy Helper</em>' class.
@@ -1711,7 +1720,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_HELPER_OPERATION_COUNT = 9;
+	int PRIVACY_POLICY_HELPER_OPERATION_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.WhereImpl <em>Where</em>}' class.
@@ -3611,6 +3620,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPrivacyPolicyHelper__IsDateAfterInterval__AbstractTime_Date();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PrivacyPolicyHelper#doesTimeEndAfterDate(privacyModel.AbstractTime, java.util.Date) <em>Does Time End After Date</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Does Time End After Date</em>' operation.
+	 * @see privacyModel.PrivacyPolicyHelper#doesTimeEndAfterDate(privacyModel.AbstractTime, java.util.Date)
+	 * @generated
+	 */
+	EOperation getPrivacyPolicyHelper__DoesTimeEndAfterDate__AbstractTime_Date();
+
+	/**
 	 * Returns the meta object for the '{@link privacyModel.PrivacyPolicyHelper#isDateInInterval(privacyModel.AbstractTime, java.util.Date) <em>Is Date In Interval</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5158,6 +5177,15 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation PRIVACY_POLICY_HELPER___IS_DATE_AFTER_INTERVAL__ABSTRACTTIME_DATE = eINSTANCE
 				.getPrivacyPolicyHelper__IsDateAfterInterval__AbstractTime_Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Does Time End After Date</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PRIVACY_POLICY_HELPER___DOES_TIME_END_AFTER_DATE__ABSTRACTTIME_DATE = eINSTANCE
+				.getPrivacyPolicyHelper__DoesTimeEndAfterDate__AbstractTime_Date();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Date In Interval</b></em>' operation.

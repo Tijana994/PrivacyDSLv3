@@ -1421,7 +1421,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPrivacyPolicyHelper__IsDateInInterval__AbstractTime_Date() {
+	public EOperation getPrivacyPolicyHelper__DoesTimeEndAfterDate__AbstractTime_Date() {
 		return privacyPolicyHelperEClass.getEOperations().get(7);
 	}
 
@@ -1430,8 +1430,17 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPrivacyPolicyHelper__LegalAgeLimitFor__Principal() {
+	public EOperation getPrivacyPolicyHelper__IsDateInInterval__AbstractTime_Date() {
 		return privacyPolicyHelperEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPrivacyPolicyHelper__LegalAgeLimitFor__Principal() {
+		return privacyPolicyHelperEClass.getEOperations().get(9);
 	}
 
 	/**
@@ -2113,6 +2122,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				PRIVACY_POLICY_HELPER___DOES_INTERVAL_START_BEFORE_INTERVAL__ABSTRACTTIME_ABSTRACTTIME);
 		createEOperation(privacyPolicyHelperEClass, PRIVACY_POLICY_HELPER___IS_DATE_BEFORE_INTERVAL__ABSTRACTTIME_DATE);
 		createEOperation(privacyPolicyHelperEClass, PRIVACY_POLICY_HELPER___IS_DATE_AFTER_INTERVAL__ABSTRACTTIME_DATE);
+		createEOperation(privacyPolicyHelperEClass,
+				PRIVACY_POLICY_HELPER___DOES_TIME_END_AFTER_DATE__ABSTRACTTIME_DATE);
 		createEOperation(privacyPolicyHelperEClass, PRIVACY_POLICY_HELPER___IS_DATE_IN_INTERVAL__ABSTRACTTIME_DATE);
 		createEOperation(privacyPolicyHelperEClass, PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL);
 
@@ -2567,6 +2578,11 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addEParameter(op, this.getAbstractTime(), "time", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDate(), "date", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getPrivacyPolicyHelper__DoesTimeEndAfterDate__AbstractTime_Date(),
+				ecorePackage.getEBoolean(), "doesTimeEndAfterDate", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getAbstractTime(), "time", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDate(), "date", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		op = initEOperation(getPrivacyPolicyHelper__IsDateInInterval__AbstractTime_Date(), ecorePackage.getEBoolean(),
 				"isDateInInterval", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getAbstractTime(), "time", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -2988,7 +3004,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				"ErasureDateShouldBeDefinedForCollecting",
 				"Tuple {\n\tmessage : String = \'Based on Art5 and Art13\',\n\tstatus : Boolean = \n\t\t\tif(self.what = null or self.why = null or not(self.what.actions->exists(act| act = Action::Collecting)) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::Research) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::StatisticalPurposes)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tnot(self.why.erasureDate = null)\n\t\t\tendif\n}.status",
 				"ProcessingAfterErasureDate",
-				"Tuple {\n\tmessage : String = \'Based on Art5\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what = null or self.when = null or\n\t\t\t\tself.what.actions->forAll(act| act = Action::Collecting or act = Action::Erasure or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::Research) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::StatisticalPurposes)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tself.what.datas->forAll(data |\n\t\t\t\t\tlet collectingStatements : Sequence(PolicyStatement) = privacyPolicy.policyStatements->select(st|\n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and not(st.what = null) and\n\t\t\t\t\t\tst.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data) and\n\t\t\t\t\t\tnot(st.why = null) and not(st.why.erasureDate = null))->asSequence() in\n\t\t\t\t\t\tcollectingStatements->isEmpty() or\n\t\t\t\t\t\tcollectingStatements->exists(st| not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, st.why.erasureDate)))\n\t\t\t\t)\n\t\t\tendif\n}.status",
+				"Tuple {\n\tmessage : String = \'Based on Art5\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what = null or self.when = null or\n\t\t\t\tself.what.actions->forAll(act| act = Action::Erasure or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::Research) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::StatisticalPurposes)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\tlet openEnded : Boolean = self.when.oclIsKindOf(TimeStatement) and\n\t\t\t\t(self.when.oclAsType(TimeStatement).preposition = TimePreposition::from or self.when.oclAsType(TimeStatement).preposition = TimePreposition::after) in\n\t\t\tif(self.what.actions->exists(act| act = Action::Collecting)) then\n\t\t\t\tself.why = null or self.why.erasureDate = null or openEnded or\n\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeEndAfterDate(self.when, self.why.erasureDate))\n\t\t\telse\n\t\t\t\tself.what.datas->forAll(data |\n\t\t\t\t\tlet collectingStatements : Sequence(PolicyStatement) = privacyPolicy.policyStatements->select(st|\n\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and not(st.what = null) and\n\t\t\t\t\t\tst.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data) and\n\t\t\t\t\t\tnot(st.why = null) and not(st.why.erasureDate = null))->asSequence() in\n\t\t\t\t\t\tcollectingStatements->isEmpty() or\n\t\t\t\t\t\tcollectingStatements->exists(st|\n\t\t\t\t\t\t\tif(openEnded) then\n\t\t\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stop| not(stop.whose = null) and stop.whose = self.whose and\n\t\t\t\t\t\t\t\t\tnot(stop.what = null) and not(stop.when = null) and\n\t\t\t\t\t\t\t\t\tstop.what.actions->exists(act| act = Action::StopProcessing or act = Action::Erasure) and\n\t\t\t\t\t\t\t\t\tstop.what.datas->exists(d| d = data) and\n\t\t\t\t\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(self.when, stop.when) and\n\t\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeEndAfterDate(stop.when, st.why.erasureDate)))\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeEndAfterDate(self.when, st.why.erasureDate))\n\t\t\t\t\t\t\tendif)\n\t\t\t\t)\n\t\t\tendif\n\t\t\tendif\n}.status",
 				"ProcessingOfCriminalConvictionData",
 				"Tuple {\n\tmessage : String = \'Based on Art10\',\n\tstatus : Boolean = \n\t\t\tif(self.what = null or self.what.actions->exists(action | action = Action::StopProcessing or action = Action::RestrictProcessing or action = Action::LiftRestriction or action = Action::Erasure) or\n\t\t\t\tnot(self.what.datas->exists(data| data.privacydata.type = DataType::Judicial))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\t(self.hasProcessingReason(ProcessingReason::PublicInterest) and not(self.how = null) and\n\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::CourtApproval or doc.documentType = DocumentType::LegalProvision))\n\t\t\t\tor\n\t\t\t\t(self.hasProcessingReason(ProcessingReason::LegalObligation) and not(self.how = null) and\n\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision))\n\t\t\tendif\n}.status",
 				"NotForProfitBodyDataShouldNotBeTransferred",
@@ -3131,6 +3147,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				"\n\t\t\t\tif(time.oclIsKindOf(TimeStatement)) then\n\t\t\t\tlet timestmt : TimeStatement = time.oclAsType(TimeStatement) in \n\t\t\t\t\t(date < timestmt.dateTime)\n\t\t\t\telse\n\t\t\t\t\tlet interval : TimeInterval = time.oclAsType(TimeInterval) in\n\t\t\t\t\tif(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then\n\t\t\t\t\t\tif(interval.start.dateTime < interval.end.dateTime) then\n\t\t\t\t\t\t\tinterval.start.dateTime > date and interval.end.dateTime > date\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\tendif\n\t\t\t\t\telse \n\t\t\t\t\t\tif(interval.end.dateTime < interval.start.dateTime) then\n\t\t\t\t\t\t\tinterval.start.dateTime > date and interval.end.dateTime > date\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif" });
 		addAnnotation(getPrivacyPolicyHelper__IsDateAfterInterval__AbstractTime_Date(), source, new String[] { "body",
 				"\n\t\t\t\tif(time.oclIsKindOf(TimeStatement)) then\n\t\t\t\t\tlet timestmt : TimeStatement = time.oclAsType(TimeStatement) in \n\t\t\t\t\t(timestmt.dateTime < date)\n\t\t\t\telse\n\t\t\t\t\tlet interval : TimeInterval = time.oclAsType(TimeInterval) in\n\t\t\t\t\tif(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then\n\t\t\t\t\t\tif(interval.start.dateTime < interval.end.dateTime) then\n\t\t\t\t\t\t\tinterval.start.dateTime < date and interval.end.dateTime < date\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\tendif\n\t\t\t\t\telse \n\t\t\t\t\t\tif(interval.end.dateTime < interval.start.dateTime) then\n\t\t\t\t\t\t\tinterval.start.dateTime < date and interval.end.dateTime < date\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif" });
+		addAnnotation(getPrivacyPolicyHelper__DoesTimeEndAfterDate__AbstractTime_Date(), source, new String[] { "body",
+				"\n\t\t\t\tif(time.oclIsKindOf(TimeStatement)) then\n\t\t\t\t\tlet timestmt : TimeStatement = time.oclAsType(TimeStatement) in\n\t\t\t\t\ttimestmt.dateTime > date\n\t\t\t\telse\n\t\t\t\t\tlet interval : TimeInterval = time.oclAsType(TimeInterval) in\n\t\t\t\t\tinterval.start.dateTime > date or interval.end.dateTime > date\n\t\t\t\tendif" });
 		addAnnotation(getPrivacyPolicyHelper__IsDateInInterval__AbstractTime_Date(), source, new String[] { "body",
 				"\n\t\t\t\tif(time.oclIsKindOf(TimeStatement)) then\n\t\t\t\t\tlet timestmt : TimeStatement = time.oclAsType(TimeStatement) in \n\t\t\t\t\tif(timestmt.preposition = TimePreposition::at) then\n\t\t\t\t\t\ttimestmt.dateTime = date\n\t\t\t\t\telse\n\t\t\t\t\t\tnot(timestmt.dateTime < date)\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\tlet interval : TimeInterval = time.oclAsType(TimeInterval) in \n\t\t\t\t\tif(interval.start.preposition = TimePreposition::from or interval.start.preposition = TimePreposition::after) then\n\t\t\t\t\t\tif(interval.start.dateTime < interval.end.dateTime) then\n\t\t\t\t\t\t\tnot(interval.start.dateTime < date) and not(interval.end.dateTime > date)\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tnot(date < interval.end.dateTime) and not(date > interval.start.dateTime)\n\t\t\t\t\t\tendif\n\t\t\t\t\telse \n\t\t\t\t\t\tif(interval.end.dateTime < interval.start.dateTime) then\n\t\t\t\t\t\t\tnot(interval.end.dateTime < date) and not(interval.start.dateTime > date)\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tnot(date < interval.start.dateTime) and not(date > interval.end.dateTime)\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif\n\t\t\t\tendif" });
 		addAnnotation(getPrivacyPolicyHelper__LegalAgeLimitFor__Principal(), source, new String[] { "body",

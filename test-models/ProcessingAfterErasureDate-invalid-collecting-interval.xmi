@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Collecting and storing until 2026-08-30 with the erasure date 2026-05-25. -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <policyStatements name="Collect email" who="//@allPrincipals.0" whose="//@allPrincipals.1" whom="//@allPrincipals.0">
+    <when xsi:type="privacyModel:TimeInterval"><start preposition="from" dateTime="2025-05-05T00:00:00.000+0100"/><end preposition="to" dateTime="2026-08-30T00:00:00.000+0100"/></when>
+    <why processingReason="Marketing" processingReasonSubtype="None" erasureDate="2026-05-25T00:00:00.000+0100"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Collecting</actions><actions>Store</actions></what>
+    <how consent="//@allConsents.0"/>
+  </policyStatements>
+  <policyStatements name="Access email" who="//@allPrincipals.0" whose="//@allPrincipals.1">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2025-06-01T00:00:00.000+0100"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Access</actions></what>
+  </policyStatements>
+  <allPrincipals name="Bank" type="LegalEntity" scope="In" inhabits="//@locations.0"/>
+  <allPrincipals name="Eve" type="NaturalPerson" scope="Out" age="30" inhabits="//@locations.0"/>
+  <locations name="Hungary" isEUMember="true" type="Country" legalAgeLimit="16"/>
+  <configurationManager/>
+  <allDatas name="email" type="General"/>
+  <privacyPolicyHelper/>
+  <allConsents name="Eve marketing consent" providedBy="//@allPrincipals.1" startDate="2024-01-15T00:00:00.000+0100" location="Budapest" type="Explicit"/>
+  <allSharedPrivacyData name="email" privacydata="//@allDatas.0"/>
+</privacyModel:PrivacyPolicy>
