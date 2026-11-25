@@ -2873,6 +2873,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			result &= validateComplaint_RestrictionShouldBeExecutedAsSoonAsPossible(complaint, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateComplaint_RecipientsShouldBeNotifiedAboutRestriction(complaint, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateComplaint_RequestShouldBeHandledWithinDeadline(complaint, diagnostics, context);
 		return result;
 	}
 
@@ -2996,6 +2998,43 @@ public class PrivacyModelValidator extends EObjectValidator {
 				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "RecipientsShouldBeNotifiedAboutRestriction",
 				COMPLAINT__RECIPIENTS_SHOULD_BE_NOTIFIED_ABOUT_RESTRICTION__EEXPRESSION, Diagnostic.ERROR,
 				DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the RequestShouldBeHandledWithinDeadline constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__REQUEST_SHOULD_BE_HANDLED_WITHIN_DEADLINE__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art12',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.responseDeadline = null or self.action.oclIsKindOf(Withdraw)) then\n" + "\t\t\t\ttrue\n"
+			+ "\t\t\telse\n"
+			+ "\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tlet executions : Sequence(PolicyStatement) = privacyPolicy.policyStatements->select(st| not(st.causedBy = null) and st.causedBy = self and\n"
+			+ "\t\t\t\t\tnot(st.what = null) and not(st.what.actions->exists(act| act = Action::LiftRestriction)))->asSequence() in\n"
+			+ "\t\t\t\tnot(self.responseDeadline < self.when)\n" + "\t\t\t\tand\n"
+			+ "\t\t\t\texecutions->forAll(st| st.when = null or not(privacyPolicy.privacyPolicyHelper.doesTimeEndAfterDate(st.when, self.responseDeadline)))\n"
+			+ "\t\t\t\tand\n"
+			+ "\t\t\t\tprivacyPolicy.notifications->select(n| (n.causedBy = self or executions->includes(n.causedBy)) and n.receivers->includes(self.who) and\n"
+			+ "\t\t\t\t\tnot(n.type = NotificationType::RestrictionLifted))->forAll(n| not(n.when > self.responseDeadline))\n"
+			+ "\t\t\t\tand\n"
+			+ "\t\t\t\t(not(self.action.oclIsKindOf(AbstractComplaint)) or self.action.oclAsType(AbstractComplaint).denialReason = null or\n"
+			+ "\t\t\t\t\tnot(self.action.oclAsType(AbstractComplaint).denialReason.when > self.responseDeadline))\n"
+			+ "\t\t\tendif\n" + "}.status";
+
+	/**
+	 * Validates the RequestShouldBeHandledWithinDeadline constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComplaint_RequestShouldBeHandledWithinDeadline(Complaint complaint,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "RequestShouldBeHandledWithinDeadline",
+				COMPLAINT__REQUEST_SHOULD_BE_HANDLED_WITHIN_DEADLINE__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+				0);
 	}
 
 	/**

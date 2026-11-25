@@ -33,6 +33,7 @@ import privacyModel.PrivacyModelPackage;
  *   <li>{@link privacyModel.impl.ComplaintImpl#getWho <em>Who</em>}</li>
  *   <li>{@link privacyModel.impl.ComplaintImpl#getWhen <em>When</em>}</li>
  *   <li>{@link privacyModel.impl.ComplaintImpl#getReason <em>Reason</em>}</li>
+ *   <li>{@link privacyModel.impl.ComplaintImpl#getResponseDeadline <em>Response Deadline</em>}</li>
  *   <li>{@link privacyModel.impl.ComplaintImpl#getAction <em>Action</em>}</li>
  * </ul>
  *
@@ -88,6 +89,26 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 	 * @ordered
 	 */
 	protected String reason = REASON_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getResponseDeadline() <em>Response Deadline</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResponseDeadline()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Date RESPONSE_DEADLINE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getResponseDeadline() <em>Response Deadline</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResponseDeadline()
+	 * @generated
+	 * @ordered
+	 */
+	protected Date responseDeadline = RESPONSE_DEADLINE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getAction() <em>Action</em>}' containment reference.
@@ -205,6 +226,28 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Date getResponseDeadline() {
+		return responseDeadline;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResponseDeadline(Date newResponseDeadline) {
+		Date oldResponseDeadline = responseDeadline;
+		responseDeadline = newResponseDeadline;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PrivacyModelPackage.COMPLAINT__RESPONSE_DEADLINE,
+					oldResponseDeadline, responseDeadline));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public AbstractComplaintAction getAction() {
 		return action;
 	}
@@ -306,6 +349,8 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 			return getWhen();
 		case PrivacyModelPackage.COMPLAINT__REASON:
 			return getReason();
+		case PrivacyModelPackage.COMPLAINT__RESPONSE_DEADLINE:
+			return getResponseDeadline();
 		case PrivacyModelPackage.COMPLAINT__ACTION:
 			return getAction();
 		}
@@ -328,6 +373,9 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 			return;
 		case PrivacyModelPackage.COMPLAINT__REASON:
 			setReason((String) newValue);
+			return;
+		case PrivacyModelPackage.COMPLAINT__RESPONSE_DEADLINE:
+			setResponseDeadline((Date) newValue);
 			return;
 		case PrivacyModelPackage.COMPLAINT__ACTION:
 			setAction((AbstractComplaintAction) newValue);
@@ -353,6 +401,9 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 		case PrivacyModelPackage.COMPLAINT__REASON:
 			setReason(REASON_EDEFAULT);
 			return;
+		case PrivacyModelPackage.COMPLAINT__RESPONSE_DEADLINE:
+			setResponseDeadline(RESPONSE_DEADLINE_EDEFAULT);
+			return;
 		case PrivacyModelPackage.COMPLAINT__ACTION:
 			setAction((AbstractComplaintAction) null);
 			return;
@@ -374,6 +425,9 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 			return WHEN_EDEFAULT == null ? when != null : !WHEN_EDEFAULT.equals(when);
 		case PrivacyModelPackage.COMPLAINT__REASON:
 			return REASON_EDEFAULT == null ? reason != null : !REASON_EDEFAULT.equals(reason);
+		case PrivacyModelPackage.COMPLAINT__RESPONSE_DEADLINE:
+			return RESPONSE_DEADLINE_EDEFAULT == null ? responseDeadline != null
+					: !RESPONSE_DEADLINE_EDEFAULT.equals(responseDeadline);
 		case PrivacyModelPackage.COMPLAINT__ACTION:
 			return action != null;
 		}
@@ -410,6 +464,8 @@ public class ComplaintImpl extends NotificationInfoImpl implements Complaint {
 		result.append(when);
 		result.append(", reason: ");
 		result.append(reason);
+		result.append(", responseDeadline: ");
+		result.append(responseDeadline);
 		result.append(')');
 		return result.toString();
 	}

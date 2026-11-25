@@ -1586,13 +1586,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int COMPLAINT__REASON = NOTIFICATION_INFO_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Response Deadline</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLAINT__RESPONSE_DEADLINE = NOTIFICATION_INFO_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Action</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLAINT__ACTION = NOTIFICATION_INFO_FEATURE_COUNT + 3;
+	int COMPLAINT__ACTION = NOTIFICATION_INFO_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Complaint</em>' class.
@@ -1601,7 +1610,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLAINT_FEATURE_COUNT = NOTIFICATION_INFO_FEATURE_COUNT + 4;
+	int COMPLAINT_FEATURE_COUNT = NOTIFICATION_INFO_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Does Policy Statement Exists</em>' operation.
@@ -3566,6 +3575,17 @@ public interface PrivacyModelPackage extends EPackage {
 	EAttribute getComplaint_Reason();
 
 	/**
+	 * Returns the meta object for the attribute '{@link privacyModel.Complaint#getResponseDeadline <em>Response Deadline</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Response Deadline</em>'.
+	 * @see privacyModel.Complaint#getResponseDeadline()
+	 * @see #getComplaint()
+	 * @generated
+	 */
+	EAttribute getComplaint_ResponseDeadline();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link privacyModel.Complaint#getAction <em>Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5161,6 +5181,14 @@ public interface PrivacyModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute COMPLAINT__REASON = eINSTANCE.getComplaint_Reason();
+
+		/**
+		 * The meta object literal for the '<em><b>Response Deadline</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPLAINT__RESPONSE_DEADLINE = eINSTANCE.getComplaint_ResponseDeadline();
 
 		/**
 		 * The meta object literal for the '<em><b>Action</b></em>' containment reference feature.

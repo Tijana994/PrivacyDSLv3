@@ -294,6 +294,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Complaint/who"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Complaint/when"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Complaint/reason"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Complaint/responseDeadline"/>
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Complaint/action"/>
       <genOperations ecoreOperation="privacyModel.ecore#//Complaint/doesPolicyStatementExists">
         <genParameters ecoreParameter="privacyModel.ecore#//Complaint/doesPolicyStatementExists/actionType"/>

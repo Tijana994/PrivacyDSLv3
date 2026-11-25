@@ -1349,8 +1349,17 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getComplaint_ResponseDeadline() {
+		return (EAttribute) complaintEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getComplaint_Action() {
-		return (EReference) complaintEClass.getEStructuralFeatures().get(3);
+		return (EReference) complaintEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -2138,6 +2147,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		createEReference(complaintEClass, COMPLAINT__WHO);
 		createEAttribute(complaintEClass, COMPLAINT__WHEN);
 		createEAttribute(complaintEClass, COMPLAINT__REASON);
+		createEAttribute(complaintEClass, COMPLAINT__RESPONSE_DEADLINE);
 		createEReference(complaintEClass, COMPLAINT__ACTION);
 		createEOperation(complaintEClass, COMPLAINT___DOES_POLICY_STATEMENT_EXISTS__ACTION_COMPLAINTBASEDONDATATYPE);
 
@@ -2573,6 +2583,9 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComplaint_Reason(), ecorePackage.getEString(), "reason", null, 0, 1, Complaint.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComplaint_ResponseDeadline(), ecorePackage.getEDate(), "responseDeadline", null, 0, 1,
+				Complaint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 		initEReference(getComplaint_Action(), this.getAbstractComplaintAction(), null, "action", null, 1, 1,
 				Complaint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2945,7 +2958,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addAnnotation(purposeEClass, source, new String[] { "constraints",
 				"ResearchShouldNotContainThisSubReason PublicHealthShouldNotContainSubReason OutOfScopeShouldNotContainThisSubReason PublicInterestShouldNotContainThisSubReason StatisticalPurposesShouldNotContainSubReason ExercisingSpecificRightsPurposesCannotContainThisSubReason MarketingShouldNotContainSubReason TestingShouldNotContainSubReason ProfilingShouldNotContainSubReason ProtectTheVitalInterestsOfTheDataSubjectShouldNotContainThisSubReason LegitimateInterestsShouldNotContainThisSubReason StopProcessingShouldNotContainSubReason ContractPerformanceCannotContainThisSubReason LegalObligationShouldNotContainSubReason LegalClaimsShouldNotContainThisSubReason HealthCareShouldNotContainSubReason NotForProfitBodyActivityShouldNotContainSubReason" });
 		addAnnotation(complaintEClass, source, new String[] { "constraints",
-				"UserDoesNotHavePermissionToWithdrawConsent ConsentWithdrawalShouldBeExecutedAsSoonAsPossible SubjectShouldBeNotifiedAboutWithdrawal SubjectShouldBeNotifiedAboutExistingComplaintForRectification SubjectShouldBeNotifiedAboutExistingComplaintForErasure CannotIdentifyDataFromComplaint RectificationShouldBeExecutedAsSoonAsPossible ErasureShouldBeExecutedAsSoonAsPossible InvalidTypeOfPurposeForAnObject UserDoesNotHavePermissionToComplain StopProcessingShouldBeExecutedAsSoonAsPossible RestrictionShouldBeExecutedAsSoonAsPossible RecipientsShouldBeNotifiedAboutRestriction" });
+				"UserDoesNotHavePermissionToWithdrawConsent ConsentWithdrawalShouldBeExecutedAsSoonAsPossible SubjectShouldBeNotifiedAboutWithdrawal SubjectShouldBeNotifiedAboutExistingComplaintForRectification SubjectShouldBeNotifiedAboutExistingComplaintForErasure CannotIdentifyDataFromComplaint RectificationShouldBeExecutedAsSoonAsPossible ErasureShouldBeExecutedAsSoonAsPossible InvalidTypeOfPurposeForAnObject UserDoesNotHavePermissionToComplain StopProcessingShouldBeExecutedAsSoonAsPossible RestrictionShouldBeExecutedAsSoonAsPossible RecipientsShouldBeNotifiedAboutRestriction RequestShouldBeHandledWithinDeadline" });
 		addAnnotation(abstractPaperEClass, source,
 				new String[] { "constraints", "StartDateShouldBeBeforeTerminationDate" });
 		addAnnotation(sharedPrivacyDataEClass, source, new String[] { "constraints",
@@ -3177,7 +3190,9 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				"RestrictionShouldBeExecutedAsSoonAsPossible",
 				"Tuple {\n\tmessage : String = \'Based on Art18\',\n\tstatus : Boolean = \n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| not(stmt.what = null) and stmt.what.actions->exists(action| action = Action::RestrictProcessing) and \n\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self)\n\t\t\t\t\tendif\n\t\t\t  endif\n}.status",
 				"RecipientsShouldBeNotifiedAboutRestriction",
-				"Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\t\tprivacyPolicy.notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::Restriction) and\n\t\t\t\t\t(basedOnAction.statement = null or basedOnAction.statement.whose = null or basedOnAction.statement.what = null or\n\t\t\t\t\tprivacyPolicy.policyStatements->select(tr| not(tr.what = null) and\n\t\t\t\t\t\ttr.what.actions->exists(act| act = Action::Transfer) and\n\t\t\t\t\t\tnot(tr.whose = null) and tr.whose = basedOnAction.statement.whose and not(tr.whom = null) and\n\t\t\t\t\t\ttr.what.datas->exists(d| basedOnAction.statement.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n\t\t\t\t\t\t(tr.when = null or self.when = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(tr.when, self.when))))\n\t\t\t\t\t->forAll(tr| privacyPolicy.notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::Restriction and notification.receivers->includes(tr.whom))))\n\t\t\t\tendif\n\t\t\tendif\n}.status" });
+				"Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\t\tprivacyPolicy.notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::Restriction) and\n\t\t\t\t\t(basedOnAction.statement = null or basedOnAction.statement.whose = null or basedOnAction.statement.what = null or\n\t\t\t\t\tprivacyPolicy.policyStatements->select(tr| not(tr.what = null) and\n\t\t\t\t\t\ttr.what.actions->exists(act| act = Action::Transfer) and\n\t\t\t\t\t\tnot(tr.whose = null) and tr.whose = basedOnAction.statement.whose and not(tr.whom = null) and\n\t\t\t\t\t\ttr.what.datas->exists(d| basedOnAction.statement.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n\t\t\t\t\t\t(tr.when = null or self.when = null or not(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(tr.when, self.when))))\n\t\t\t\t\t->forAll(tr| privacyPolicy.notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\t\tnotification.type = NotificationType::Restriction and notification.receivers->includes(tr.whom))))\n\t\t\t\tendif\n\t\t\tendif\n}.status",
+				"RequestShouldBeHandledWithinDeadline",
+				"Tuple {\n\tmessage : String = \'Based on Art12\',\n\tstatus : Boolean = \n\t\t\tif(self.responseDeadline = null or self.action.oclIsKindOf(Withdraw)) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tlet executions : Sequence(PolicyStatement) = privacyPolicy.policyStatements->select(st| not(st.causedBy = null) and st.causedBy = self and\n\t\t\t\t\tnot(st.what = null) and not(st.what.actions->exists(act| act = Action::LiftRestriction)))->asSequence() in\n\t\t\t\tnot(self.responseDeadline < self.when)\n\t\t\t\tand\n\t\t\t\texecutions->forAll(st| st.when = null or not(privacyPolicy.privacyPolicyHelper.doesTimeEndAfterDate(st.when, self.responseDeadline)))\n\t\t\t\tand\n\t\t\t\tprivacyPolicy.notifications->select(n| (n.causedBy = self or executions->includes(n.causedBy)) and n.receivers->includes(self.who) and\n\t\t\t\t\tnot(n.type = NotificationType::RestrictionLifted))->forAll(n| not(n.when > self.responseDeadline))\n\t\t\t\tand\n\t\t\t\t(not(self.action.oclIsKindOf(AbstractComplaint)) or self.action.oclAsType(AbstractComplaint).denialReason = null or\n\t\t\t\t\tnot(self.action.oclAsType(AbstractComplaint).denialReason.when > self.responseDeadline))\n\t\t\tendif\n}.status" });
 		addAnnotation(getComplaint__DoesPolicyStatementExists__Action_ComplaintBasedOnDataType(), source, new String[] {
 				"body",
 				"\t\t \t\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnData))) then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n\t\t\t\tif(basedOnData.type = type) then\n\t\t\t\t\tif(not(basedOnData.denialReason = null) or not(basedOnData.status = ComplaintStatus::Pending)) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\tbasedOnData.subject->forAll(data: PrivacyData|\n\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = actionType) and \n\t\t\t\t\t\t\tnot(stmt.whose = null) and (stmt.whose = self.who or stmt.whose.responsiblePersons->exists(rp| rp = self.who)) and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) \n\t\t\t\t\t\t\tand stmt.what.datas->exists(selectedData| selectedData.privacydata = data) and not(stmt.causedBy = null) and stmt.causedBy = self)\n\t\t\t\t\t)\n\t\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\t\tendif\n\t\t\t  endif" });
