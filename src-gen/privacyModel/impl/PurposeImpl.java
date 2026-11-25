@@ -5,8 +5,6 @@ package privacyModel.impl;
 import java.lang.reflect.InvocationTargetException;
 
 import java.util.Collection;
-
-import java.util.Date;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -38,7 +36,6 @@ import privacyModel.Purpose;
  *   <li>{@link privacyModel.impl.PurposeImpl#getProcessingReasonSubtype <em>Processing Reason Subtype</em>}</li>
  *   <li>{@link privacyModel.impl.PurposeImpl#getSubPurposes <em>Sub Purposes</em>}</li>
  *   <li>{@link privacyModel.impl.PurposeImpl#getDetails <em>Details</em>}</li>
- *   <li>{@link privacyModel.impl.PurposeImpl#getErasureDate <em>Erasure Date</em>}</li>
  * </ul>
  *
  * @generated
@@ -113,26 +110,6 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 	 * @ordered
 	 */
 	protected String details = DETAILS_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getErasureDate() <em>Erasure Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getErasureDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Date ERASURE_DATE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getErasureDate() <em>Erasure Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getErasureDate()
-	 * @generated
-	 * @ordered
-	 */
-	protected Date erasureDate = ERASURE_DATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -232,28 +209,6 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PrivacyModelPackage.PURPOSE__DETAILS, oldDetails,
 					details));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Date getErasureDate() {
-		return erasureDate;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setErasureDate(Date newErasureDate) {
-		Date oldErasureDate = erasureDate;
-		erasureDate = newErasureDate;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PrivacyModelPackage.PURPOSE__ERASURE_DATE,
-					oldErasureDate, erasureDate));
 	}
 
 	/**
@@ -363,8 +318,6 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			return getSubPurposes();
 		case PrivacyModelPackage.PURPOSE__DETAILS:
 			return getDetails();
-		case PrivacyModelPackage.PURPOSE__ERASURE_DATE:
-			return getErasureDate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -391,9 +344,6 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		case PrivacyModelPackage.PURPOSE__DETAILS:
 			setDetails((String) newValue);
 			return;
-		case PrivacyModelPackage.PURPOSE__ERASURE_DATE:
-			setErasureDate((Date) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -418,9 +368,6 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		case PrivacyModelPackage.PURPOSE__DETAILS:
 			setDetails(DETAILS_EDEFAULT);
 			return;
-		case PrivacyModelPackage.PURPOSE__ERASURE_DATE:
-			setErasureDate(ERASURE_DATE_EDEFAULT);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -441,8 +388,6 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 			return subPurposes != null && !subPurposes.isEmpty();
 		case PrivacyModelPackage.PURPOSE__DETAILS:
 			return DETAILS_EDEFAULT == null ? details != null : !DETAILS_EDEFAULT.equals(details);
-		case PrivacyModelPackage.PURPOSE__ERASURE_DATE:
-			return ERASURE_DATE_EDEFAULT == null ? erasureDate != null : !ERASURE_DATE_EDEFAULT.equals(erasureDate);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -485,8 +430,6 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		result.append(processingReasonSubtype);
 		result.append(", details: ");
 		result.append(details);
-		result.append(", erasureDate: ");
-		result.append(erasureDate);
 		result.append(')');
 		return result.toString();
 	}

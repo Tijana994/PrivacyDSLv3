@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Access for marketing after the erasure date. -->
+<!-- The email is collected and stored from 2024-02-01 to 2026-02-01. Access in an interval that starts within the period and ends after it. -->
 <privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
     name="Test policy" owner="//@allPrincipals.0">
   <policyStatements name="Collect email" who="//@allPrincipals.0" whose="//@allPrincipals.1" whom="//@allPrincipals.0">
-    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-02-01T00:00:00.000+0100"/>
-    <why processingReason="Marketing" processingReasonSubtype="None" erasureDate="2026-02-01T00:00:00.000+0100"/>
+    <when xsi:type="privacyModel:TimeInterval"><start preposition="from" dateTime="2024-02-01T00:00:00.000+0100"/><end preposition="to" dateTime="2026-02-01T00:00:00.000+0100"/></when>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
     <what datas="//@allSharedPrivacyData.0"><actions>Collecting</actions><actions>Store</actions></what>
     <how consent="//@allConsents.0"/>
   </policyStatements>
   <policyStatements name="Access email" who="//@allPrincipals.0" whose="//@allPrincipals.1">
-    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2026-06-01T00:00:00.000+0100"/>
+    <when xsi:type="privacyModel:TimeInterval"><start preposition="from" dateTime="2025-06-01T00:00:00.000+0100"/><end preposition="to" dateTime="2026-06-01T00:00:00.000+0100"/></when>
     <why processingReason="Marketing" processingReasonSubtype="None"/>
     <what datas="//@allSharedPrivacyData.0"><actions>Access</actions></what>
   </policyStatements>

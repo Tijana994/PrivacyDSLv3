@@ -4,7 +4,7 @@
     name="Test policy" owner="//@allPrincipals.0">
   <policyStatements name="Collect Eve email" who="//@allPrincipals.0" whose="//@allPrincipals.1" whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeInterval"><start preposition="from" dateTime="2024-01-01T00:00:00.000+0100"/><end preposition="to" dateTime="2024-03-01T00:00:00.000+0100"/></when>
-    <why processingReason="Marketing" processingReasonSubtype="None" erasureDate="2026-02-01T00:00:00.000+0100"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
     <what datas="//@allSharedPrivacyData.0"><actions>Collecting</actions><actions>Store</actions></what>
     <how consent="//@allConsents.0"/>
   </policyStatements>
@@ -15,7 +15,7 @@
   </policyStatements>
   <policyStatements name="Collect Adam email" who="//@allPrincipals.0" whose="//@allPrincipals.2" whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-02-01T00:00:00.000+0100"/>
-    <why processingReason="Marketing" processingReasonSubtype="None" erasureDate="2026-02-01T00:00:00.000+0100"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
     <what datas="//@allSharedPrivacyData.0"><actions>Collecting</actions><actions>Store</actions></what>
     <how documents="//@allDocuments.0" consent="//@allConsents.1"/>
   </policyStatements>

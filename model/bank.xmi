@@ -15,8 +15,7 @@
         preposition="at"
         dateTime="2020-10-25T01:00:00.000+0200"/>
     <why processingReason="OutOfScope"
-        processingReasonSubtype="PersonalActivity"
-        erasureDate="2030-10-25T01:00:00.000+0200"/>
+        processingReasonSubtype="PersonalActivity"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2 //@allSharedPrivacyData.3">
       <actions>Store</actions>
       <actions>Collecting</actions>
@@ -67,8 +66,7 @@
         preposition="at"
         dateTime="2021-05-12T01:00:00.000+0200"/>
     <why processingReason="OutOfScope"
-        processingReasonSubtype="PersonalActivity"
-        erasureDate="2031-05-12T01:00:00.000+0200"/>
+        processingReasonSubtype="PersonalActivity"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2 //@allSharedPrivacyData.3">
       <actions>Store</actions>
       <actions>Collecting</actions>
@@ -112,8 +110,7 @@
         preposition="at"
         dateTime="2021-05-12T01:00:00.000+0200"/>
     <why processingReason="OutOfScope"
-        processingReasonSubtype="PersonalActivity"
-        erasureDate="2031-05-12T01:00:00.000+0200">
+        processingReasonSubtype="PersonalActivity">
       <subPurposes
           processingReason="Marketing"/>
     </why>
@@ -184,8 +181,7 @@
         preposition="at"
         dateTime="2021-04-17T01:00:00.000+0200"/>
     <why processingReason="OutOfScope"
-        processingReasonSubtype="PersonalActivity"
-        erasureDate="2031-04-17T01:00:00.000+0200"/>
+        processingReasonSubtype="PersonalActivity"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2">
       <actions>Store</actions>
       <actions>Collecting</actions>
@@ -260,8 +256,7 @@
         preposition="at"
         dateTime="2022-06-01T00:00:00.000+0200"/>
     <why details="Creditworthiness assessment"
-        processingReason="LegalObligation"
-        erasureDate="2040-01-01T00:00:00.000+0100"/>
+        processingReason="LegalObligation"/>
     <what datas="//@allSharedPrivacyData.4">
       <actions>Store</actions>
       <actions>Collecting</actions>
@@ -277,8 +272,7 @@
         preposition="at"
         dateTime="2022-06-03T00:00:00.000+0200"/>
     <why details="Loan agreement"
-        processingReason="ContractPerformance"
-        erasureDate="2040-01-01T00:00:00.000+0100"/>
+        processingReason="ContractPerformance"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1">
       <actions>Store</actions>
       <actions>Collecting</actions>

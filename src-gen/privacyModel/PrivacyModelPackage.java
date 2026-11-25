@@ -1039,22 +1039,13 @@ public interface PrivacyModelPackage extends EPackage {
 	int PURPOSE__DETAILS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Erasure Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PURPOSE__ERASURE_DATE = 4;
-
-	/**
 	 * The number of structural features of the '<em>Purpose</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PURPOSE_FEATURE_COUNT = 5;
+	int PURPOSE_FEATURE_COUNT = 4;
 
 	/**
 	 * The operation id for the '<em>Is Valid</em>' operation.
@@ -1732,13 +1723,31 @@ public interface PrivacyModelPackage extends EPackage {
 	int PRIVACY_POLICY_HELPER___DOES_TIME_START_BEFORE_DATE__ABSTRACTTIME_DATE = 8;
 
 	/**
+	 * The operation id for the '<em>Has Defined End</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_POLICY_HELPER___HAS_DEFINED_END__ABSTRACTTIME = 9;
+
+	/**
+	 * The operation id for the '<em>End Of Time</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_POLICY_HELPER___END_OF_TIME__ABSTRACTTIME = 10;
+
+	/**
 	 * The operation id for the '<em>Is Date In Interval</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_HELPER___IS_DATE_IN_INTERVAL__ABSTRACTTIME_DATE = 9;
+	int PRIVACY_POLICY_HELPER___IS_DATE_IN_INTERVAL__ABSTRACTTIME_DATE = 11;
 
 	/**
 	 * The operation id for the '<em>Legal Age Limit For</em>' operation.
@@ -1747,7 +1756,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL = 10;
+	int PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL = 12;
 
 	/**
 	 * The number of operations of the '<em>Privacy Policy Helper</em>' class.
@@ -1756,7 +1765,7 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_HELPER_OPERATION_COUNT = 11;
+	int PRIVACY_POLICY_HELPER_OPERATION_COUNT = 13;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.WhereImpl <em>Where</em>}' class.
@@ -3331,17 +3340,6 @@ public interface PrivacyModelPackage extends EPackage {
 	EAttribute getPurpose_Details();
 
 	/**
-	 * Returns the meta object for the attribute '{@link privacyModel.Purpose#getErasureDate <em>Erasure Date</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Erasure Date</em>'.
-	 * @see privacyModel.Purpose#getErasureDate()
-	 * @see #getPurpose()
-	 * @generated
-	 */
-	EAttribute getPurpose_ErasureDate();
-
-	/**
 	 * Returns the meta object for the '{@link privacyModel.Purpose#isValid(privacyModel.Purpose) <em>Is Valid</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3705,6 +3703,26 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getPrivacyPolicyHelper__DoesTimeStartBeforeDate__AbstractTime_Date();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PrivacyPolicyHelper#hasDefinedEnd(privacyModel.AbstractTime) <em>Has Defined End</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has Defined End</em>' operation.
+	 * @see privacyModel.PrivacyPolicyHelper#hasDefinedEnd(privacyModel.AbstractTime)
+	 * @generated
+	 */
+	EOperation getPrivacyPolicyHelper__HasDefinedEnd__AbstractTime();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PrivacyPolicyHelper#endOfTime(privacyModel.AbstractTime) <em>End Of Time</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>End Of Time</em>' operation.
+	 * @see privacyModel.PrivacyPolicyHelper#endOfTime(privacyModel.AbstractTime)
+	 * @generated
+	 */
+	EOperation getPrivacyPolicyHelper__EndOfTime__AbstractTime();
 
 	/**
 	 * Returns the meta object for the '{@link privacyModel.PrivacyPolicyHelper#isDateInInterval(privacyModel.AbstractTime, java.util.Date) <em>Is Date In Interval</em>}' operation.
@@ -4984,14 +5002,6 @@ public interface PrivacyModelPackage extends EPackage {
 		EAttribute PURPOSE__DETAILS = eINSTANCE.getPurpose_Details();
 
 		/**
-		 * The meta object literal for the '<em><b>Erasure Date</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PURPOSE__ERASURE_DATE = eINSTANCE.getPurpose_ErasureDate();
-
-		/**
 		 * The meta object literal for the '<em><b>Is Valid</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5297,6 +5307,24 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation PRIVACY_POLICY_HELPER___DOES_TIME_START_BEFORE_DATE__ABSTRACTTIME_DATE = eINSTANCE
 				.getPrivacyPolicyHelper__DoesTimeStartBeforeDate__AbstractTime_Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Has Defined End</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PRIVACY_POLICY_HELPER___HAS_DEFINED_END__ABSTRACTTIME = eINSTANCE
+				.getPrivacyPolicyHelper__HasDefinedEnd__AbstractTime();
+
+		/**
+		 * The meta object literal for the '<em><b>End Of Time</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PRIVACY_POLICY_HELPER___END_OF_TIME__ABSTRACTTIME = eINSTANCE
+				.getPrivacyPolicyHelper__EndOfTime__AbstractTime();
 
 		/**
 		 * The meta object literal for the '<em><b>Is Date In Interval</b></em>' operation.

@@ -13,8 +13,7 @@
       whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         dateTime="2020-10-25T01:00:00.000+0200"/>
-    <why processingReason="HealthCare"
-        erasureDate="2030-10-25T01:00:00.000+0200"/>
+    <why processingReason="HealthCare"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1">
       <actions>Store</actions>
       <actions>Collecting</actions>
@@ -28,8 +27,7 @@
       whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         dateTime="2020-10-25T01:00:00.000+0200"/>
-    <why processingReason="HealthCare"
-        erasureDate="2030-10-25T01:00:00.000+0200"/>
+    <why processingReason="HealthCare"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.2">
       <actions>Access</actions>
       <actions>Store</actions>
@@ -61,8 +59,7 @@
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2020-10-30T00:00:00.000+0100"/>
-    <why processingReason="HealthCare"
-        erasureDate="2030-10-30T00:00:00.000+0100"/>
+    <why processingReason="HealthCare"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1">
       <actions>Store</actions>
       <actions>Collecting</actions>
@@ -78,8 +75,7 @@
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2020-10-30T00:00:00.000+0100"/>
-    <why processingReason="HealthCare"
-        erasureDate="2030-10-30T00:00:00.000+0100"/>
+    <why processingReason="HealthCare"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2">
       <actions>Store</actions>
       <actions>Access</actions>
@@ -95,8 +91,7 @@
       whom="//@allPrincipals.0">
     <when xsi:type="privacyModel:TimeStatement"
         dateTime="2020-10-31T00:00:00.000+0100"/>
-    <why processingReason="HealthCare"
-        erasureDate="2030-10-31T00:00:00.000+0100"/>
+    <why processingReason="HealthCare"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1">
       <actions>Store</actions>
       <actions>Collecting</actions>
@@ -111,8 +106,7 @@
     <when xsi:type="privacyModel:TimeStatement"
         preposition="at"
         dateTime="2020-11-01T00:00:00.000+0100"/>
-    <why processingReason="HealthCare"
-        erasureDate="2030-11-01T00:00:00.000+0100"/>
+    <why processingReason="HealthCare"/>
     <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2">
       <actions>Store</actions>
       <actions>Access</actions>

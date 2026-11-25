@@ -270,6 +270,56 @@ public class PrivacyPolicyHelperImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #hasDefinedEnd(privacyModel.AbstractTime) <em>Has Defined End</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #hasDefinedEnd(privacyModel.AbstractTime)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate HAS_DEFINED_END_ABSTRACT_TIME__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.PRIVACY_POLICY_HELPER___HAS_DEFINED_END__ABSTRACTTIME)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean hasDefinedEnd(AbstractTime time) {
+		try {
+			return (Boolean) HAS_DEFINED_END_ABSTRACT_TIME__EINVOCATION_DELEGATE.dynamicInvoke(this,
+					new BasicEList.UnmodifiableEList<Object>(1, new Object[] { time }));
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #endOfTime(privacyModel.AbstractTime) <em>End Of Time</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #endOfTime(privacyModel.AbstractTime)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate END_OF_TIME_ABSTRACT_TIME__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.PRIVACY_POLICY_HELPER___END_OF_TIME__ABSTRACTTIME)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date endOfTime(AbstractTime time) {
+		try {
+			return (Date) END_OF_TIME_ABSTRACT_TIME__EINVOCATION_DELEGATE.dynamicInvoke(this,
+					new BasicEList.UnmodifiableEList<Object>(1, new Object[] { time }));
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #isDateInInterval(privacyModel.AbstractTime, java.util.Date) <em>Is Date In Interval</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -345,6 +395,10 @@ public class PrivacyPolicyHelperImpl extends MinimalEObjectImpl.Container implem
 			return doesTimeEndAfterDate((AbstractTime) arguments.get(0), (Date) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___DOES_TIME_START_BEFORE_DATE__ABSTRACTTIME_DATE:
 			return doesTimeStartBeforeDate((AbstractTime) arguments.get(0), (Date) arguments.get(1));
+		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___HAS_DEFINED_END__ABSTRACTTIME:
+			return hasDefinedEnd((AbstractTime) arguments.get(0));
+		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___END_OF_TIME__ABSTRACTTIME:
+			return endOfTime((AbstractTime) arguments.get(0));
 		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___IS_DATE_IN_INTERVAL__ABSTRACTTIME_DATE:
 			return isDateInInterval((AbstractTime) arguments.get(0), (Date) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL:

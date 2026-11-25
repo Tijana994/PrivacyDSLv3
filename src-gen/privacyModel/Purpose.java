@@ -2,7 +2,6 @@
  */
 package privacyModel;
 
-import java.util.Date;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -20,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link privacyModel.Purpose#getProcessingReasonSubtype <em>Processing Reason Subtype</em>}</li>
  *   <li>{@link privacyModel.Purpose#getSubPurposes <em>Sub Purposes</em>}</li>
  *   <li>{@link privacyModel.Purpose#getDetails <em>Details</em>}</li>
- *   <li>{@link privacyModel.Purpose#getErasureDate <em>Erasure Date</em>}</li>
  * </ul>
  *
  * @see privacyModel.PrivacyModelPackage#getPurpose()
@@ -112,28 +110,6 @@ public interface Purpose extends EObject {
 	 * @generated
 	 */
 	void setDetails(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Erasure Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Erasure Date</em>' attribute.
-	 * @see #setErasureDate(Date)
-	 * @see privacyModel.PrivacyModelPackage#getPurpose_ErasureDate()
-	 * @model
-	 * @generated
-	 */
-	Date getErasureDate();
-
-	/**
-	 * Sets the value of the '{@link privacyModel.Purpose#getErasureDate <em>Erasure Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Erasure Date</em>' attribute.
-	 * @see #getErasureDate()
-	 * @generated
-	 */
-	void setErasureDate(Date value);
 
 	/**
 	 * <!-- begin-user-doc -->

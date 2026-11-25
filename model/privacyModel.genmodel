@@ -258,7 +258,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/processingReasonSubtype"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Purpose/subPurposes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/details"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Purpose/erasureDate"/>
       <genOperations ecoreOperation="privacyModel.ecore#//Purpose/isValid">
         <genParameters ecoreParameter="privacyModel.ecore#//Purpose/isValid/purpose"/>
       </genOperations>
@@ -335,6 +334,12 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/doesTimeStartBeforeDate">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/doesTimeStartBeforeDate/time"/>
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/doesTimeStartBeforeDate/date"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/hasDefinedEnd">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/hasDefinedEnd/time"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/endOfTime">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/endOfTime/time"/>
       </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/isDateInInterval">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isDateInInterval/time"/>

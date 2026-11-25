@@ -634,9 +634,6 @@ public class PrivacyModelValidator extends EObjectValidator {
 			result &= validatePolicyStatement_CausedByShouldBeDefinedForRectificationAction(policyStatement,
 					diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validatePolicyStatement_CausedByShouldBeDefinedForErasureAction(policyStatement, diagnostics,
-					context);
-		if (result || diagnostics != null)
 			result &= validatePolicyStatement_SubjectShouldBeNotifiedAboutExecutedErasure(policyStatement, diagnostics,
 					context);
 		if (result || diagnostics != null)
@@ -664,9 +661,6 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_LegalProvisionIsNeededForLegalObligationPurpose(policyStatement,
 					diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validatePolicyStatement_ErasureDateShouldBeDefinedForCollecting(policyStatement, diagnostics,
-					context);
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_ProcessingAfterErasureDate(policyStatement, diagnostics, context);
 		if (result || diagnostics != null)
@@ -865,7 +859,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\tin \n" + "\t\t\t\tif(statements->isEmpty()) then \n" + "\t\t\t\t\ttrue\n"
 			+ "\t\t\t\telse if(self.why = null) then\n" + "\t\t\t\t\tfalse\n" + "\t\t\t\telse\n"
 			+ "\t\t\t\t\tstatements->exists(st|\n"
-			+ "\t\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when)\n"
+			+ "\t\t\t\t\t\t(privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when) or\n"
+			+ "\t\t\t\t\t\t\t((self.what.actions->exists(act| act = Action::Erasure) or self.hasProcessingReason(ProcessingReason::Research) or\n"
+			+ "\t\t\t\t\t\t\t\tself.hasProcessingReason(ProcessingReason::StatisticalPurposes)) and privacyPolicy.privacyPolicyHelper.hasDefinedEnd(st.when) and\n"
+			+ "\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, privacyPolicy.privacyPolicyHelper.endOfTime(st.when)))))\n"
 			+ "\t\t\t\t\t\tand (not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals->exists(subprincipal| subprincipal = self.who) \n"
 			+ "\t\t\t\t\t\t\tor self.who.equals(st.whose) or st.whose.responsiblePersons->exists(responsiblePerson| responsiblePerson = self.who)))\n"
 			+ "\t\t\t\t\t\tand ((not(st.why = null) and st.why.isValid(self.why)) or \n"
@@ -923,20 +920,6 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tendif\n" + "}.status";
 
 	/**
-	 * Validates the ErasureDateShouldBeDefinedForCollecting constraint of '<em>Policy Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validatePolicyStatement_ErasureDateShouldBeDefinedForCollecting(PolicyStatement policyStatement,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "ErasureDateShouldBeDefinedForCollecting",
-				POLICY_STATEMENT__ERASURE_DATE_SHOULD_BE_DEFINED_FOR_COLLECTING__EEXPRESSION, Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE, 0);
-	}
-
-	/**
 	 * The cached validation expression for the ProcessingAfterErasureDate constraint of '<em>Policy Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -945,24 +928,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 	protected static final String POLICY_STATEMENT__PROCESSING_AFTER_ERASURE_DATE__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art5',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.whose = null or self.what = null or self.when = null or\n"
+			+ "\t\t\t\tself.what.actions->exists(act| act = Action::Collecting) or\n"
 			+ "\t\t\t\tself.what.actions->forAll(act| act = Action::Erasure or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction) or\n"
 			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::Research) or\n"
 			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::StatisticalPurposes)) then\n" + "\t\t\t\ttrue\n"
 			+ "\t\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
-			+ "\t\t\tlet openEnded : Boolean = self.when.oclIsKindOf(TimeStatement) and\n"
-			+ "\t\t\t\t(self.when.oclAsType(TimeStatement).preposition = TimePreposition::from or self.when.oclAsType(TimeStatement).preposition = TimePreposition::after) in\n"
-			+ "\t\t\tif(self.what.actions->exists(act| act = Action::Collecting)) then\n"
-			+ "\t\t\t\tself.why = null or self.why.erasureDate = null or openEnded or\n"
-			+ "\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeEndAfterDate(self.when, self.why.erasureDate))\n"
-			+ "\t\t\telse\n" + "\t\t\t\tself.what.datas->forAll(data |\n"
+			+ "\t\t\t\tself.what.datas->forAll(data |\n"
 			+ "\t\t\t\t\tlet collectingStatements : Sequence(PolicyStatement) = privacyPolicy.policyStatements->select(st|\n"
-			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and not(st.what = null) and\n"
+			+ "\t\t\t\t\t\tnot(st.whose = null) and st.whose = self.whose and not(st.what = null) and not(st.when = null) and\n"
 			+ "\t\t\t\t\t\tst.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data) and\n"
-			+ "\t\t\t\t\t\tnot(st.why = null) and not(st.why.erasureDate = null))->asSequence() in\n"
+			+ "\t\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when))->asSequence() in\n"
 			+ "\t\t\t\t\t\tcollectingStatements->isEmpty() or\n"
-			+ "\t\t\t\t\t\tcollectingStatements->exists(st| self.processingOfDataEndsBy(data, st.why.erasureDate))\n"
-			+ "\t\t\t\t)\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\tcollectingStatements->exists(st| not(privacyPolicy.privacyPolicyHelper.hasDefinedEnd(st.when)) or\n"
+			+ "\t\t\t\t\t\t\tself.processingOfDataEndsBy(data, privacyPolicy.privacyPolicyHelper.endOfTime(st.when)))\n"
+			+ "\t\t\t\t)\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ExpiredConsent constraint of '<em>Policy Statement</em>'.
@@ -1255,25 +1235,6 @@ public class PrivacyModelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * The cached validation expression for the CausedByShouldBeDefinedForErasureAction constraint of '<em>Policy Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art17',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.what = null or not(self.what.actions->exists(act| act = Action::Erasure)) or not(self.causedBy = null)) then\n"
-			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
-			+ "\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
-			+ "\t\t\t\tnot(self.whose = null) and\n"
-			+ "\t\t\t\tprivacyPolicy.policyStatements->exists(col| not(col.what = null) and\n"
-			+ "\t\t\t\t\tcol.what.actions->exists(act| act = Action::Collecting) and\n"
-			+ "\t\t\t\t\tcol.whose = self.whose and not(col.why = null) and not(col.why.erasureDate = null) and\n"
-			+ "\t\t\t\t\tcol.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n"
-			+ "\t\t\t\t\t(self.when = null or not(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, col.why.erasureDate))))\n"
-			+ "\t\t\tendif\n" + "}.status";
-
-	/**
 	 * The cached validation expression for the ControllerApprovalIsNeededForLegitimateInterestsPurpose constraint of '<em>Policy Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1285,20 +1246,6 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "}.status";
 
 	/**
-	 * Validates the CausedByShouldBeDefinedForErasureAction constraint of '<em>Policy Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validatePolicyStatement_CausedByShouldBeDefinedForErasureAction(PolicyStatement policyStatement,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "CausedByShouldBeDefinedForErasureAction",
-				POLICY_STATEMENT__CAUSED_BY_SHOULD_BE_DEFINED_FOR_ERASURE_ACTION__EEXPRESSION, Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE, 0);
-	}
-
-	/**
 	 * The cached validation expression for the SubjectShouldBeNotifiedAboutExecutedErasure constraint of '<em>Policy Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1306,7 +1253,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_EXECUTED_ERASURE__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art12',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(what.actions->exists(action| action = Action::Erasure)) then\n"
+			+ "\t\t\tif(what.actions->exists(action| action = Action::Erasure) and not(self.causedBy = null)) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
 			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedErasure and\n"
 			+ "\t\t\t\t\t\t(self.whose = null or notification.receivers->includes(self.whose))\n" + "\t\t\t\t\t)\n"
@@ -1544,19 +1491,6 @@ public class PrivacyModelValidator extends EObjectValidator {
 				POLICY_STATEMENT__LEGAL_PROVISION_IS_NEEDED_FOR_LEGAL_OBLIGATION_PURPOSE__EEXPRESSION, Diagnostic.ERROR,
 				DIAGNOSTIC_SOURCE, 0);
 	}
-
-	/**
-	 * The cached validation expression for the ErasureDateShouldBeDefinedForCollecting constraint of '<em>Policy Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String POLICY_STATEMENT__ERASURE_DATE_SHOULD_BE_DEFINED_FOR_COLLECTING__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art5 and Art13',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.what = null or self.why = null or not(self.what.actions->exists(act| act = Action::Collecting)) or\n"
-			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::Research) or\n"
-			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::StatisticalPurposes)) then\n" + "\t\t\t\ttrue\n"
-			+ "\t\t\telse\n" + "\t\t\t\tnot(self.why.erasureDate = null)\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ProcessingOfCriminalConvictionData constraint of '<em>Policy Statement</em>'.
