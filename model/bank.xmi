@@ -39,7 +39,7 @@
       name="Transfer account to other country"
       who="//@allPrincipals.1"
       whose="//@allPrincipals.3"
-      whom="//@allPrincipals.0">
+      whom="//@allPrincipals.11">
     <when xsi:type="privacyModel:TimeInterval">
       <start
           dateTime="2021-01-01T00:00:00.000+0100"/>
@@ -340,6 +340,9 @@
       type="NaturalPerson"
       scope="Out"
       age="35"/>
+  <allPrincipals
+      name="Novi Sad bank"
+      scope="Out"/>
   <locations
       name="Hungary"
       isEUMember="true"
