@@ -1017,16 +1017,21 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\tconsentStatements->isEmpty() or\n" + "\t\t\t\tconsentStatements->exists(st|\n"
 			+ "\t\t\t\t\tnot(privacyPolicy.allComplaints->exists(complaint| complaint.action.oclIsTypeOf(Withdraw) and \n"
 			+ "\t\t\t\t\t\tlet withdrawal : Withdraw = complaint.action.oclAsType(Withdraw) in\n"
-			+ "\t\t\t\t\t\twithdrawal.subject = st.how.consent\n"
-			+ "\t\t\t\t\t\tand (privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, complaint.when) \n"
-			+ "\t\t\t\t\t\t\tor privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when))\n"
-			+ "\t\t\t\t\t\tand not(privacyPolicy.policyStatements->exists(stopStatement| \n"
-			+ "\t\t\t\t\t\t\tnot(stopStatement.when = null) and\n"
-			+ "\t\t\t\t\t\t\tstopStatement.what.actions->exists(act| act = Action::StopProcessing) and \n"
-			+ "\t\t\t\t\t\t\tstopStatement.what.datas->exists(d| d = data) and not(stopStatement.causedBy = null) and \n"
-			+ "\t\t\t\t\t\t\tstopStatement.causedBy.action = withdrawal and\n"
-			+ "\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(stopStatement.when, self.when))))\n"
-			+ "\t\t\t\t\t))\n" + "\t\t\t\t)\n" + "\t\t\t)\n" + "\t\tendif\n" + "\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\twithdrawal.subject = st.how.consent and\n"
+			+ "\t\t\t\t\t\tif(self.when.oclIsKindOf(TimeStatement) and (self.when.oclAsType(TimeStatement).preposition = TimePreposition::from or\n"
+			+ "\t\t\t\t\t\t\tself.when.oclAsType(TimeStatement).preposition = TimePreposition::after)) then\n"
+			+ "\t\t\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.isDateBeforeInterval(self.when, complaint.when) or\n"
+			+ "\t\t\t\t\t\t\t(privacyPolicy.privacyPolicyHelper.isDateInInterval(self.when, complaint.when) and\n"
+			+ "\t\t\t\t\t\t\tnot(privacyPolicy.policyStatements->exists(stopStatement| \n"
+			+ "\t\t\t\t\t\t\t\tnot(stopStatement.when = null) and\n"
+			+ "\t\t\t\t\t\t\t\tstopStatement.what.actions->exists(act| act = Action::StopProcessing) and \n"
+			+ "\t\t\t\t\t\t\t\tstopStatement.what.datas->exists(d| d = data) and not(stopStatement.causedBy = null) and \n"
+			+ "\t\t\t\t\t\t\t\tstopStatement.causedBy.action = withdrawal and\n"
+			+ "\t\t\t\t\t\t\t\tself.processingOfDataEndsBy(data, privacyPolicy.privacyPolicyHelper.endOfTime(stopStatement.when)))))\n"
+			+ "\t\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.doesTimeEndAfterDate(self.when, complaint.when)\n"
+			+ "\t\t\t\t\t\tendif\n" + "\t\t\t\t\t))\n" + "\t\t\t\t)\n" + "\t\t\t)\n" + "\t\tendif\n" + "\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson constraint of '<em>Policy Statement</em>'.
@@ -2784,8 +2789,6 @@ public class PrivacyModelValidator extends EObjectValidator {
 			result &= validateComplaint_ConsentWithdrawalShouldBeExecutedAsSoonAsPossible(complaint, diagnostics,
 					context);
 		if (result || diagnostics != null)
-			result &= validateComplaint_SubjectShouldBeNotifiedAboutWithdrawal(complaint, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validateComplaint_SubjectShouldBeNotifiedAboutExistingComplaintForRectification(complaint,
 					diagnostics, context);
 		if (result || diagnostics != null)
@@ -2809,6 +2812,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			result &= validateComplaint_RecipientsShouldBeNotifiedAboutRestriction(complaint, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateComplaint_RequestShouldBeHandledWithinDeadline(complaint, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateComplaint_DataShouldBeErasedAfterConsentWithdrawal(complaint, diagnostics, context);
 		return result;
 	}
 
@@ -2915,8 +2920,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\tmessage : String = 'Based on Art7',\n" + "\tstatus : Boolean = \n"
 			+ "\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
-			+ "\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::StopProcessing) and \n"
-			+ "\t\t\t\t\t\t\tnot(stmt.whose = null) and (stmt.whose = self.who or stmt.whose.responsiblePersons->exists(rp| rp = self.who)) and privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when) \n"
+			+ "\t\t\t\tlet withdraw : Withdraw = self.action.oclAsType(Withdraw) in\n"
+			+ "\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| not(stmt.what = null) and stmt.what.actions->exists(action| action = Action::StopProcessing) and \n"
+			+ "\t\t\t\t\t\t\tnot(stmt.whose = null) and privacyPolicy.policyStatements->exists(st| not(st.how = null) and st.how.consent = withdraw.subject and st.whose = stmt.whose) and\n"
+			+ "\t\t\t\t\t\t\tnot(stmt.when = null) and not(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(stmt.when, self.when)) \n"
 			+ "\t\t\t\t\t\t\tand not(stmt.causedBy = null) and stmt.causedBy = self)\n" + "\t\t\t  endif\n"
 			+ "}.status";
 
@@ -2972,6 +2979,49 @@ public class PrivacyModelValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the DataShouldBeErasedAfterConsentWithdrawal constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String COMPLAINT__DATA_SHOULD_BE_ERASED_AFTER_CONSENT_WITHDRAWAL__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art17',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(not(self.action.oclIsKindOf(Withdraw))) then\n" + "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tlet withdraw : Withdraw = self.action.oclAsType(Withdraw) in\n"
+			+ "\t\t\t\tlet retentionReasons = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
+			+ "\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance, ProcessingReason::LegalClaims, ProcessingReason::PublicHealth,\n"
+			+ "\t\t\t\t\tProcessingReason::Research, ProcessingReason::StatisticalPurposes} in\n"
+			+ "\t\t\t\tprivacyPolicy.policyStatements->select(st| not(st.how = null) and st.how.consent = withdraw.subject and not(st.whose = null) and\n"
+			+ "\t\t\t\t\tnot(st.what = null) and st.what.actions->exists(act| act = Action::Collecting))\n"
+			+ "\t\t\t\t->forAll(st| st.what.datas->forAll(data|\n"
+			+ "\t\t\t\t\tprivacyPolicy.policyStatements->exists(er| not(er.what = null) and er.what.actions->exists(act| act = Action::Erasure) and\n"
+			+ "\t\t\t\t\t\tnot(er.whose = null) and er.whose = st.whose and er.what.datas->exists(d| d = data))\n"
+			+ "\t\t\t\t\tor\n"
+			+ "\t\t\t\t\tprivacyPolicy.policyStatements->exists(other| not(other = st) and not(other.whose = null) and other.whose = st.whose and\n"
+			+ "\t\t\t\t\t\tnot(other.what = null) and other.what.datas->exists(d| d = data) and\n"
+			+ "\t\t\t\t\t\tother.what.actions->exists(act| act = Action::Collecting or act = Action::Store) and\n"
+			+ "\t\t\t\t\t\t((not(other.how = null) and not(other.how.consent = null) and not(other.how.consent = withdraw.subject) and\n"
+			+ "\t\t\t\t\t\t\tother.what.actions->exists(act| act = Action::Collecting)) or\n"
+			+ "\t\t\t\t\t\t(not(other.why = null) and (retentionReasons->includes(other.why.processingReason) or\n"
+			+ "\t\t\t\t\t\t\tother.why.subPurposes->exists(sp| retentionReasons->includes(sp.processingReason))))))\n"
+			+ "\t\t\t\t))\n" + "\t\t\tendif\n" + "}.status";
+
+	/**
+	 * Validates the DataShouldBeErasedAfterConsentWithdrawal constraint of '<em>Complaint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComplaint_DataShouldBeErasedAfterConsentWithdrawal(Complaint complaint,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "DataShouldBeErasedAfterConsentWithdrawal",
+				COMPLAINT__DATA_SHOULD_BE_ERASED_AFTER_CONSENT_WITHDRAWAL__EEXPRESSION, Diagnostic.ERROR,
+				DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
 	 * Validates the ConsentWithdrawalShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2984,19 +3034,6 @@ public class PrivacyModelValidator extends EObjectValidator {
 				COMPLAINT__CONSENT_WITHDRAWAL_SHOULD_BE_EXECUTED_AS_SOON_AS_POSSIBLE__EEXPRESSION, Diagnostic.ERROR,
 				DIAGNOSTIC_SOURCE, 0);
 	}
-
-	/**
-	 * The cached validation expression for the SubjectShouldBeNotifiedAboutWithdrawal constraint of '<em>Complaint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL__EEXPRESSION = "Tuple {\n"
-			+ "\tmessage : String = 'Based on Art7',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.action.oclIsKindOf(Withdraw)) then\n"
-			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and \n"
-			+ "\t\t\t\t\t\tnotification.type = NotificationType::Withdraw\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n"
-			+ "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the CannotIdentifyDataFromComplaint constraint of '<em>Complaint</em>'.
@@ -3095,20 +3132,6 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::StopProcessing) and \n"
 			+ "\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self)\n" + "\t\t\t\t\tendif\n"
 			+ "\t\t\t  endif\n" + "}.status";
-
-	/**
-	 * Validates the SubjectShouldBeNotifiedAboutWithdrawal constraint of '<em>Complaint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateComplaint_SubjectShouldBeNotifiedAboutWithdrawal(Complaint complaint,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(PrivacyModelPackage.Literals.COMPLAINT, complaint, diagnostics, context,
-				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "SubjectShouldBeNotifiedAboutWithdrawal",
-				COMPLAINT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_WITHDRAWAL__EEXPRESSION, Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE, 0);
-	}
 
 	/**
 	 * The cached validation expression for the SubjectShouldBeNotifiedAboutExistingComplaintForRectification constraint of '<em>Complaint</em>'.

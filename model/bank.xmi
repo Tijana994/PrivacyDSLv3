@@ -279,6 +279,19 @@
     </what>
     <how contract="//@allContracts.0"/>
   </policyStatements>
+  <policyStatements
+      name="Erase John account data"
+      who="//@allPrincipals.1"
+      whose="//@allPrincipals.5">
+    <when xsi:type="privacyModel:TimeStatement"
+        preposition="at"
+        dateTime="2022-04-16T01:00:00.000+0200"/>
+    <why processingReason="OutOfScope"
+        processingReasonSubtype="PersonalActivity"/>
+    <what datas="//@allSharedPrivacyData.0 //@allSharedPrivacyData.1 //@allSharedPrivacyData.2 //@allSharedPrivacyData.3">
+      <actions>Erasure</actions>
+    </what>
+  </policyStatements>
   <allPrincipals
       name="Green bank"
       subPrincipals="//@allPrincipals.1 //@allPrincipals.2"
