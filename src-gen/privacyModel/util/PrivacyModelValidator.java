@@ -3016,7 +3016,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\t\tother.what.actions->exists(act| act = Action::Collecting or act = Action::Store) and\n"
 			+ "\t\t\t\t\t\t((not(other.how = null) and not(other.how.consent = null) and not(other.how.consent = withdraw.subject) and\n"
 			+ "\t\t\t\t\t\t\tother.what.actions->exists(act| act = Action::Collecting)) or\n"
-			+ "\t\t\t\t\t\t(not(other.why = null) and other.why.allPurposes()->exists(p| retentionReasons->includes(p.processingReason)))))\n"
+			+ "\t\t\t\t\t\t(not(other.why = null) and other.why.allPurposes()->exists(p| retentionReasons->includes(p.processingReason)) and\n"
+			+ "\t\t\t\t\t\t\t(st.when = null or (not(other.when = null) and privacyPolicy.privacyPolicyHelper.areIntervalsOverlap(st.when, other.when))))))\n"
 			+ "\t\t\t\t))\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
