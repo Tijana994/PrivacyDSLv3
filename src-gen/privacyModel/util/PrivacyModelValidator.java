@@ -855,7 +855,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__UNDEFINED_PURPOSE_FOR_ACTION_OR_USER_DOES_NOT_HAVE_PERMISSION__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art6 and Art9',\n" + "\tstatus : Boolean = \n"
-			+ "\t\tif(self.whose = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction)) then\n"
+			+ "\t\tif(self.whose = null or self.when = null or self.what.actions->exists(act| act = Action::Collecting or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction)) then\n"
 			+ "\t\t\ttrue\n" + "\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\tself.what.datas->forAll(data|\n"
