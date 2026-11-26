@@ -1315,10 +1315,9 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\tnot(self.what.datas->exists(data| data.privacydata.type = DataType::Judicial))) then\n"
 			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\t\t(self.hasProcessingReason(ProcessingReason::PublicInterest) and not(self.how = null) and\n"
-			+ "\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::CourtApproval or doc.documentType = DocumentType::LegalProvision))\n"
+			+ "\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::CourtApproval))\n"
 			+ "\t\t\t\tor\n"
-			+ "\t\t\t\t(self.hasProcessingReason(ProcessingReason::LegalObligation) and not(self.how = null) and\n"
-			+ "\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision))\n"
+			+ "\t\t\t\t(not(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision))\n"
 			+ "\t\t\tendif\n" + "}.status";
 
 	/**
@@ -2889,10 +2888,14 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnData))) then\n" + "\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n"
+			+ "\t\t\t\t\tnot(basedOnData.denialReason = null) or\n"
 			+ "\t\t\t\t\tbasedOnData.subject->forAll(data: PrivacyData|\n"
-			+ "\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::Collecting) and \n"
+			+ "\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| not(stmt.what = null) and stmt.what.actions->exists(action| action = Action::Collecting) and \n"
 			+ "\t\t\t\t\t\tnot(stmt.whose = null) and (stmt.whose = self.who or stmt.whose.responsiblePersons->exists(rp| rp = self.who))\n"
-			+ "\t\t\t\t\t\tand privacyPolicy.privacyPolicyHelper.isDateAfterInterval(stmt.when, self.when) \n"
+			+ "\t\t\t\t\t\tand (stmt.when = null or\n"
+			+ "\t\t\t\t\t\t\t(stmt.when.oclIsKindOf(TimeStatement) and (stmt.when.oclAsType(TimeStatement).preposition = TimePreposition::until or\n"
+			+ "\t\t\t\t\t\t\t\tstmt.when.oclAsType(TimeStatement).preposition = TimePreposition::before)) or\n"
+			+ "\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.isDateBeforeInterval(stmt.when, self.when)))\n"
 			+ "\t\t\t\t\t\tand stmt.what.datas->exists(selectedData| selectedData.privacydata = data)\n"
 			+ "\t\t\t\t\t)\n" + "\t\t\t\t)\n" + "\t\t  endif\n" + "}.status";
 
