@@ -507,13 +507,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int POLICY_STATEMENT___HAS_EXPLICIT_CONSENT_FOR__SHAREDPRIVACYDATA = NOTIFICATION_INFO_OPERATION_COUNT + 7;
 
 	/**
+	 * The operation id for the '<em>Informs Data Subject</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___INFORMS_DATA_SUBJECT__NOTIFICATION = NOTIFICATION_INFO_OPERATION_COUNT + 8;
+
+	/**
 	 * The number of operations of the '<em>Policy Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 8;
+	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
@@ -2975,6 +2984,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__HasExplicitConsentFor__SharedPrivacyData();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#informsDataSubject(privacyModel.Notification) <em>Informs Data Subject</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Informs Data Subject</em>' operation.
+	 * @see privacyModel.PolicyStatement#informsDataSubject(privacyModel.Notification)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__InformsDataSubject__Notification();
+
+	/**
 	 * Returns the meta object for class '{@link privacyModel.PrivacyData <em>Privacy Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4730,6 +4749,15 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation POLICY_STATEMENT___HAS_EXPLICIT_CONSENT_FOR__SHAREDPRIVACYDATA = eINSTANCE
 				.getPolicyStatement__HasExplicitConsentFor__SharedPrivacyData();
+
+		/**
+		 * The meta object literal for the '<em><b>Informs Data Subject</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___INFORMS_DATA_SUBJECT__NOTIFICATION = eINSTANCE
+				.getPolicyStatement__InformsDataSubject__Notification();
 
 		/**
 		 * The meta object literal for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.

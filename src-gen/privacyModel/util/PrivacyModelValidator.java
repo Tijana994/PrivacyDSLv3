@@ -823,10 +823,11 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_STOP_PROCESSING__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art12 and Art21',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(what.actions->exists(action| action = Action::StopProcessing)) then\n"
+			+ "\t\t\tif(what.actions->exists(action| action = Action::StopProcessing) and not(self.causedBy = null) and\n"
+			+ "\t\t\t\tnot(self.causedBy.action.oclIsKindOf(Withdraw))) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::StopProcessing and \n"
-			+ "\t\t\t\t\t\tnotification.causedBy = self\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n"
-			+ "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\tnotification.causedBy = self and self.informsDataSubject(notification)\n" + "\t\t\t\t\t)\n"
+			+ "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the MissingConsentForCollecting constraint of '<em>Policy Statement</em>'.
@@ -1127,7 +1128,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_COLLECTING__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art14',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.what.actions->exists(action| action = Action::Collecting) and self.what.datas->exists(data| data.origin <> DataOrigin::DataSubject)) then\n"
+			+ "\t\t\tif(not(self.what = null) and self.what.actions->exists(action| action = Action::Collecting) and self.what.datas->exists(data| data.origin <> DataOrigin::DataSubject)) then\n"
 			+ "\t\t\t\tif((((not(self.why = null) and \n"
 			+ "\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::None}) or\n"
 			+ "\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Research,Sequence{ProcessingReasonSubtype::Statistical, \n"
@@ -1138,8 +1139,9 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision))\n"
 			+ "\t\t\t\t)then\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::DataCollecting \n"
-			+ "\t\t\t\t\t\tand notification.causedBy = self\n" + "\t\t\t\t\t)\n" + "\t\t\t\tendif\n" + "\t\t\t\telse\n"
-			+ "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\tand notification.causedBy = self and self.informsDataSubject(notification)\n"
+			+ "\t\t\t\t\t)\n" + "\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n"
+			+ "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutCollecting constraint of '<em>Policy Statement</em>'.
@@ -1163,12 +1165,13 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art13(1)(f) and Art14(1)(f)',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.what.actions->exists(action| action = Action::Transfer) and not(self.where = null) and\n"
+			+ "\t\t\tif(not(self.what = null) and self.what.actions->exists(action| action = Action::Transfer) and not(self.where = null) and\n"
 			+ "\t\t\t\tnot(self.where.destination = null) and self.where.destination.isEUMember = false\n"
 			+ "\t\t\t) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer \n"
-			+ "\t\t\t\t\t\tand notification.causedBy = self\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n"
-			+ "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\tand notification.causedBy = self and self.informsDataSubject(notification) and\n"
+			+ "\t\t\t\t\t\t(self.when = null or not(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.doesTimeStartBeforeDate(self.when, notification.when)))\n"
+			+ "\t\t\t\t\t)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutTransferToThirdCountry constraint of '<em>Policy Statement</em>'.
@@ -1259,8 +1262,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tif(what.actions->exists(action| action = Action::Erasure) and not(self.causedBy = null)) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
 			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedErasure and\n"
-			+ "\t\t\t\t\t\t(self.whose = null or notification.receivers->includes(self.whose))\n" + "\t\t\t\t\t)\n"
-			+ "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\tself.informsDataSubject(notification)\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutExecutedErasure constraint of '<em>Policy Statement</em>'.
@@ -1287,8 +1290,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tif(what.actions->exists(action| action = Action::Rectification)) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
 			+ "\t\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification and\n"
-			+ "\t\t\t\t\t\t(self.whose = null or notification.receivers->includes(self.whose))\n" + "\t\t\t\t\t)\n"
-			+ "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\tself.informsDataSubject(notification)\n" + "\t\t\t\t\t)\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the ProcessingAfterErasureDate constraint of '<em>Policy Statement</em>'.
@@ -2858,9 +2861,9 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n"
 			+ "\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Erasure)then\n"
 			+ "\t\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
-			+ "\t\t\t\t\t\t\tnotification.type = NotificationType::Erasure\n" + "\t\t\t\t\t\t)\n" + "\t\t\t\t\telse\n"
-			+ "\t\t\t\t\t\ttrue\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n"
-			+ "}.status";
+			+ "\t\t\t\t\t\t\tnotification.type = NotificationType::Erasure and notification.receivers->includes(self.who)\n"
+			+ "\t\t\t\t\t\t)\n" + "\t\t\t\t\telse\n" + "\t\t\t\t\t\ttrue\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutExistingComplaintForErasure constraint of '<em>Complaint</em>'.
@@ -3147,9 +3150,9 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\tlet basedOnData : ComplaintBasedOnData = self.action.oclAsType(ComplaintBasedOnData) in\n"
 			+ "\t\t\t\t\tif(basedOnData.type = ComplaintBasedOnDataType::Rectification)then\n"
 			+ "\t\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.causedBy = self and\n"
-			+ "\t\t\t\t\t\t\tnotification.type = NotificationType::Rectification\n" + "\t\t\t\t\t\t)\n"
-			+ "\t\t\t\t\telse\n" + "\t\t\t\t\t\ttrue\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n"
-			+ "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\t\tnotification.type = NotificationType::Rectification and notification.receivers->includes(self.who)\n"
+			+ "\t\t\t\t\t\t)\n" + "\t\t\t\t\telse\n" + "\t\t\t\t\t\ttrue\n" + "\t\t\t\t\tendif\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the RectificationShouldBeExecutedAsSoonAsPossible constraint of '<em>Complaint</em>'.

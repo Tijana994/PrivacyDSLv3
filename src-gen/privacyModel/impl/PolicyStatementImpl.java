@@ -770,6 +770,31 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #informsDataSubject(privacyModel.Notification) <em>Informs Data Subject</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #informsDataSubject(privacyModel.Notification)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate INFORMS_DATA_SUBJECT_NOTIFICATION__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.POLICY_STATEMENT___INFORMS_DATA_SUBJECT__NOTIFICATION)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean informsDataSubject(privacyModel.Notification notification) {
+		try {
+			return (Boolean) INFORMS_DATA_SUBJECT_NOTIFICATION__EINVOCATION_DELEGATE.dynamicInvoke(this,
+					new BasicEList.UnmodifiableEList<Object>(1, new Object[] { notification }));
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -962,6 +987,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			return processingEndsBy((Date) arguments.get(0));
 		case PrivacyModelPackage.POLICY_STATEMENT___HAS_EXPLICIT_CONSENT_FOR__SHAREDPRIVACYDATA:
 			return hasExplicitConsentFor((SharedPrivacyData) arguments.get(0));
+		case PrivacyModelPackage.POLICY_STATEMENT___INFORMS_DATA_SUBJECT__NOTIFICATION:
+			return informsDataSubject((privacyModel.Notification) arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
