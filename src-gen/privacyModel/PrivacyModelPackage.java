@@ -1075,13 +1075,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int PURPOSE___CONTAINS_ALLOWED_PURPOSE_REASON_AND_SUBREASON__PROCESSINGREASON_ELIST = 2;
 
 	/**
+	 * The operation id for the '<em>All Purposes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PURPOSE___ALL_PURPOSES = 3;
+
+	/**
 	 * The number of operations of the '<em>Purpose</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PURPOSE_OPERATION_COUNT = 3;
+	int PURPOSE_OPERATION_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.WhatImpl <em>What</em>}' class.
@@ -3370,6 +3379,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPurpose__ContainsAllowedPurposeReasonAndSubreason__ProcessingReason_EList();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.Purpose#allPurposes() <em>All Purposes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>All Purposes</em>' operation.
+	 * @see privacyModel.Purpose#allPurposes()
+	 * @generated
+	 */
+	EOperation getPurpose__AllPurposes();
+
+	/**
 	 * Returns the meta object for class '{@link privacyModel.What <em>What</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5026,6 +5045,14 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation PURPOSE___CONTAINS_ALLOWED_PURPOSE_REASON_AND_SUBREASON__PROCESSINGREASON_ELIST = eINSTANCE
 				.getPurpose__ContainsAllowedPurposeReasonAndSubreason__ProcessingReason_EList();
+
+		/**
+		 * The meta object literal for the '<em><b>All Purposes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PURPOSE___ALL_PURPOSES = eINSTANCE.getPurpose__AllPurposes();
 
 		/**
 		 * The meta object literal for the '{@link privacyModel.impl.WhatImpl <em>What</em>}' class.

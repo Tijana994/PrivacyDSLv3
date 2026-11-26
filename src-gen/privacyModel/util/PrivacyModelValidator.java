@@ -865,11 +865,11 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, privacyPolicy.privacyPolicyHelper.endOfTime(st.when)))))\n"
 			+ "\t\t\t\t\t\tand (not(st.whom = null) and (self.who.equals(st.whom) or st.whom.subPrincipals->exists(subprincipal| subprincipal = self.who) \n"
 			+ "\t\t\t\t\t\t\tor self.who.equals(st.whose) or st.whose.responsiblePersons->exists(responsiblePerson| responsiblePerson = self.who)))\n"
-			+ "\t\t\t\t\t\tand ((not(st.why = null) and st.why.isValid(self.why)) or \n"
-			+ "\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
+			+ "\t\t\t\t\t\tand (let reasons = Sequence{ProcessingReason::PublicInterest, ProcessingReason::LegitimateInterests, ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
 			+ "\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance, ProcessingReason::PublicHealth,\n"
 			+ "\t\t\t\t\t\t\t\tProcessingReason::Research, ProcessingReason::StatisticalPurposes} in\n"
-			+ "\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)))\n"
+			+ "\t\t\t\t\t\t\tself.why.allPurposes()->exists(p| reasons->includes(p.processingReason)) or\n"
+			+ "\t\t\t\t\t\t\t(not(st.why = null) and self.why.allPurposes()->forAll(p| st.why.isValid(p))))\n"
 			+ "\t\t\t\t\t)\n" + "\t\t\t\tendif\n" + "\t\t\t\tendif\n" + "\t\t\t)\n" + "\t\tendif\n" + "}.status";
 
 	/**
@@ -911,8 +911,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\t\t\t\t\t\tor \n"
 			+ "\t\t\t\t\t\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
 			+ "\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
-			+ "\t\t\t\t\t\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n"
-			+ "\t\t\t\t\t\t\t\t\t)) then\n" + "\t\t\t\t\t\t\t\t\t\ttrue\n" + "\t\t\t\t\t\t\t\t\telse\n"
+			+ "\t\t\t\t\t\t\t\t\t\t\tself.why.allPurposes()->exists(p| reasons->includes(p.processingReason))) then\n"
+			+ "\t\t\t\t\t\t\t\t\t\ttrue\n" + "\t\t\t\t\t\t\t\t\telse\n"
 			+ "\t\t\t\t\t\t\t\t\t\tnot(st.how = null) and not(st.how.consent = null) and\n"
 			+ "\t\t\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, st.how.consent.startDate)) and\n"
 			+ "\t\t\t\t\t\t\t\t\t\t(st.how.consent.terminationDate = null or self.processingOfDataEndsBy(data, st.how.consent.terminationDate))\n"
@@ -971,8 +971,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\tif(self.why = null \n" + "\t\t\t\t\tor \n"
 			+ "\t\t\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
 			+ "\t\t\t\t\t\t\t\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
-			+ "\t\t\t\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason)\n"
-			+ "\t\t\t\t)) then\n" + "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
+			+ "\t\t\t\t\t\tself.why.allPurposes()->exists(p| reasons->includes(p.processingReason))) then\n"
+			+ "\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
 			+ "\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, self.how.consent.startDate))\n"
 			+ "\t\t\t\t\tand\n"
 			+ "\t\t\t\t\t(self.how.consent.terminationDate = null or self.processingEndsBy(self.how.consent.terminationDate))\n"
@@ -1003,8 +1003,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\ttrue\n" + "\t\telse if(self.why = null \n" + "\t\t\tor \n"
 			+ "\t\t\tlet reasons = Sequence{ProcessingReason::PublicInterest,ProcessingReason::LegitimateInterests,ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
 			+ "\t\t\t\tProcessingReason::LegalObligation, ProcessingReason::ContractPerformance} in\n"
-			+ "\t\t\treasons->includes(self.why.processingReason) or self.why.subPurposes->exists(subpurpose| reasons->includes(subpurpose.processingReason))\n"
-			+ "\t\t\t) then\n" + "\t\t\ttrue\n" + "\t\telse\n"
+			+ "\t\t\tself.why.allPurposes()->exists(p| reasons->includes(p.processingReason))\n" + "\t\t\t) then\n"
+			+ "\t\t\ttrue\n" + "\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\tself.what.datas->forAll(data|\n"
 			+ "\t\t\t\tlet statements = privacyPolicy.policyStatements->select(st: PolicyStatement| \n"
@@ -1063,11 +1063,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t} in\n" + "\t\t\t\tif(specialCategories->includes(data.privacydata.type)) then\n"
 			+ "\t\t\t\t\t(not(self.how = null) and not(self.how.consent = null) and self.how.consent.type = ConsentType::Explicit)\n"
 			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::ExercisingSpecificRights)\n"
-			+ "\t\t\t\t\tor (not(self.why = null) and\n"
-			+ "\t\t\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
-			+ "\t\t\t\t\t\t\tSequence{ProcessingReasonSubtype::PhysicallyIncapable, ProcessingReasonSubtype::LegallyIncapable}) or\n"
-			+ "\t\t\t\t\t\tself.why.subPurposes->exists(sub| sub.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
-			+ "\t\t\t\t\t\t\tSequence{ProcessingReasonSubtype::PhysicallyIncapable, ProcessingReasonSubtype::LegallyIncapable}))))\n"
+			+ "\t\t\t\t\tor (not(self.why = null) and self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject,\n"
+			+ "\t\t\t\t\t\tSequence{ProcessingReasonSubtype::PhysicallyIncapable, ProcessingReasonSubtype::LegallyIncapable}))\n"
 			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::PublicInterest)\n"
 			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::PublicHealth)\n"
 			+ "\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::Research)\n"
@@ -1667,7 +1664,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tif(not(self.hasProcessingReason(ProcessingReason::ContractPerformance)) or self.when = null or self.how = null or self.how.contract = null) then\n"
 			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
-			+ "\t\t\t\t(self.why.processingReasonSubtype = ProcessingReasonSubtype::PreContractual or\n"
+			+ "\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ContractPerformance, Sequence{ProcessingReasonSubtype::PreContractual}) or\n"
 			+ "\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, self.how.contract.startDate)))\n"
 			+ "\t\t\t\tand\n"
 			+ "\t\t\t\t(self.how.contract.terminationDate = null or self.processingEndsBy(self.how.contract.terminationDate))\n"
@@ -1722,7 +1719,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__STOP_PROCESSING_PURPOSE_FOR_ACTION_STOP_PROCESSING__EEXPRESSION = "\n"
 			+ "\t\t\tif(not(self.what.actions->exists(act| act = Action::StopProcessing))) then\n" + "\t\t\t\ttrue\n"
-			+ "\t\t\telse\n" + "\t\t\t\tself.why.processingReason = ProcessingReason::StopProcessing\n" + "\t\t\tendif";
+			+ "\t\t\telse\n" + "\t\t\t\tself.hasProcessingReason(ProcessingReason::StopProcessing)\n" + "\t\t\tendif";
 
 	/**
 	 * Validates the ControllerApprovalIsNeededForLegitimateInterestsPurpose constraint of '<em>Policy Statement</em>'.
@@ -3003,8 +3000,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\t\tother.what.actions->exists(act| act = Action::Collecting or act = Action::Store) and\n"
 			+ "\t\t\t\t\t\t((not(other.how = null) and not(other.how.consent = null) and not(other.how.consent = withdraw.subject) and\n"
 			+ "\t\t\t\t\t\t\tother.what.actions->exists(act| act = Action::Collecting)) or\n"
-			+ "\t\t\t\t\t\t(not(other.why = null) and (retentionReasons->includes(other.why.processingReason) or\n"
-			+ "\t\t\t\t\t\t\tother.why.subPurposes->exists(sp| retentionReasons->includes(sp.processingReason))))))\n"
+			+ "\t\t\t\t\t\t(not(other.why = null) and other.why.allPurposes()->exists(p| retentionReasons->includes(p.processingReason)))))\n"
 			+ "\t\t\t\t))\n" + "\t\t\tendif\n" + "}.status";
 
 	/**

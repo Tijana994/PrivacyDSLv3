@@ -133,10 +133,19 @@ public interface Purpose extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" allowedReasonRequired="true" allowedSubreasonsUnique="false" allowedSubreasonsMany="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='allowedReason = self.processingReason and allowedSubreasons-&gt;exists(r| r = self.processingReasonSubtype)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.allPurposes()-&gt;exists(p| p.processingReason = allowedReason and allowedSubreasons-&gt;includes(p.processingReasonSubtype))'"
 	 * @generated
 	 */
 	boolean containsAllowedPurposeReasonAndSubreason(ProcessingReason allowedReason,
 			EList<ProcessingReasonSubtype> allowedSubreasons);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self-&gt;closure(subPurposes)'"
+	 * @generated
+	 */
+	EList<Purpose> allPurposes();
 
 } // Purpose

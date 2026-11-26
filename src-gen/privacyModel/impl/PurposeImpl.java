@@ -289,6 +289,31 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #allPurposes() <em>All Purposes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #allPurposes()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate ALL_PURPOSES__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.PURPOSE___ALL_PURPOSES)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<Purpose> allPurposes() {
+		try {
+			return (EList<Purpose>) ALL_PURPOSES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -409,6 +434,8 @@ public class PurposeImpl extends MinimalEObjectImpl.Container implements Purpose
 		case PrivacyModelPackage.PURPOSE___CONTAINS_ALLOWED_PURPOSE_REASON_AND_SUBREASON__PROCESSINGREASON_ELIST:
 			return containsAllowedPurposeReasonAndSubreason((ProcessingReason) arguments.get(0),
 					(EList<ProcessingReasonSubtype>) arguments.get(1));
+		case PrivacyModelPackage.PURPOSE___ALL_PURPOSES:
+			return allPurposes();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

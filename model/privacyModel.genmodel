@@ -269,6 +269,7 @@
         <genParameters ecoreParameter="privacyModel.ecore#//Purpose/containsAllowedPurposeReasonAndSubreason/allowedReason"/>
         <genParameters ecoreParameter="privacyModel.ecore#//Purpose/containsAllowedPurposeReasonAndSubreason/allowedSubreasons"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//Purpose/allPurposes"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//What">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//What/actions"/>
