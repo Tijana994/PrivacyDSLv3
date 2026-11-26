@@ -794,11 +794,16 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\t\tnot(privacyPolicy.allComplaints->exists(c| c.action.oclIsKindOf(ComplaintBasedOnAction) and\n"
 			+ "\t\t\t\t\tlet objection : ComplaintBasedOnAction = c.action.oclAsType(ComplaintBasedOnAction) in\n"
-			+ "\t\t\t\t\t\tobjection.type = ComplaintBasedOnActionType::Objection and objection.denialReason = null and\n"
+			+ "\t\t\t\t\t\tobjection.type = ComplaintBasedOnActionType::Objection and\n"
 			+ "\t\t\t\t\t\tnot(objection.statement = null) and objection.statement.whose = self.whose and not(objection.statement.what = null) and\n"
 			+ "\t\t\t\t\t\tobjection.statement.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n"
+			+ "\t\t\t\t\t\t(self.when = null or c.when = null or not(c.when > privacyPolicy.privacyPolicyHelper.endOfTime(self.when))) and\n"
+			+ "\t\t\t\t\t\tnot(not(objection.denialReason = null) and\n"
+			+ "\t\t\t\t\t\t\t(self.when = null or not(objection.denialReason.when > privacyPolicy.privacyPolicyHelper.endOfTime(self.when)))) and\n"
 			+ "\t\t\t\t\t\tnot(privacyPolicy.policyStatements->exists(stop| not(stop.what = null) and\n"
-			+ "\t\t\t\t\t\t\tstop.what.actions->exists(a| a = Action::StopProcessing) and stop.causedBy = c))))\n"
+			+ "\t\t\t\t\t\t\tstop.what.actions->exists(a| a = Action::StopProcessing) and stop.causedBy = c and\n"
+			+ "\t\t\t\t\t\t\t(self.when = null or stop.when = null or\n"
+			+ "\t\t\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeEndAfterDate(stop.when, privacyPolicy.privacyPolicyHelper.endOfTime(self.when))))))))\n"
 			+ "\t\t\tendif\n" + "}.status";
 
 	/**
@@ -1222,7 +1227,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
 			+ "\t\t\t\tprivacyPolicy.notifications->exists(notification| notification.type = NotificationType::RestrictionLifted and\n"
-			+ "\t\t\t\t\tnotification.causedBy = self and not(notification.when = null) and\n"
+			+ "\t\t\t\t\tnotification.causedBy = self and self.informsDataSubject(notification) and not(notification.when = null) and\n"
 			+ "\t\t\t\t\t(self.when = null or not(privacyPolicy.privacyPolicyHelper.isDateAfterInterval(self.when, notification.when))))\n"
 			+ "\t\t\tendif\n" + "}.status";
 
@@ -1822,8 +1827,14 @@ public class PrivacyModelValidator extends EObjectValidator {
 	protected static final String POLICY_STATEMENT__PROCESSING_DURING_RESTRICTION__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art18',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.whose = null or self.what = null or self.when = null or\n"
-			+ "\t\t\t\tself.what.actions->forAll(act| act = Action::Store or act = Action::Erasure or act = Action::Rectification or act = Action::StopProcessing or act = Action::RestrictProcessing or act = Action::LiftRestriction) or\n"
-			+ "\t\t\t\t(not(self.how = null) and not(self.how.consent = null)) or\n"
+			+ "\t\t\t\tself.what.actions->forAll(act| act = Action::Store or act = Action::Rectification or act = Action::StopProcessing or\n"
+			+ "\t\t\t\t\tact = Action::RestrictProcessing or act = Action::LiftRestriction or\n"
+			+ "\t\t\t\t\t(act = Action::Erasure and not(self.causedBy = null) and\n"
+			+ "\t\t\t\t\t\t(self.causedBy.who = self.whose or self.whose.responsiblePersons->includes(self.causedBy.who)) and\n"
+			+ "\t\t\t\t\t\tself.causedBy.action.oclIsKindOf(ComplaintBasedOnData) and\n"
+			+ "\t\t\t\t\t\tself.causedBy.action.oclAsType(ComplaintBasedOnData).type = ComplaintBasedOnDataType::Erasure)) or\n"
+			+ "\t\t\t\t(not(self.how = null) and not(self.how.consent = null) and\n"
+			+ "\t\t\t\t\t(self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->includes(self.how.consent.providedBy))) or\n"
 			+ "\t\t\t\t(self.hasProcessingReason(ProcessingReason::PublicInterest) and not(self.how = null) and\n"
 			+ "\t\t\t\t\tself.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision)) or\n"
 			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::LegalClaims)) then\n" + "\t\t\t\ttrue\n"
@@ -1834,11 +1845,12 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\trestriction.what.actions->exists(act| act = Action::RestrictProcessing) and restriction.whose = self.whose and\n"
 			+ "\t\t\t\t\trestriction.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)))\n"
 			+ "\t\t\t\t->forAll(restriction|\n"
-			+ "\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(restriction.when, self.when)) or\n"
+			+ "\t\t\t\t\tnot(self.what.datas->exists(sd| restriction.what.datas->exists(d| d.privacydata = sd.privacydata) and\n"
+			+ "\t\t\t\t\t\tnot(self.processingOfDataEndsBy(sd, privacyPolicy.privacyPolicyHelper.endOfTime(restriction.when))))) or\n"
 			+ "\t\t\t\t\tprivacyPolicy.policyStatements->exists(lift|\n"
 			+ "\t\t\t\t\t\tnot(lift.what = null) and not(lift.when = null) and lift.what.actions->exists(act| act = Action::LiftRestriction) and\n"
 			+ "\t\t\t\t\t\tlift.causedBy = restriction.causedBy and\n"
-			+ "\t\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(lift.when, self.when)))\n"
+			+ "\t\t\t\t\t\tnot(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, privacyPolicy.privacyPolicyHelper.endOfTime(lift.when)))))\n"
 			+ "\t\t\tendif\n" + "}.status";
 
 	/**
@@ -3129,11 +3141,13 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
 			+ "\t\t\t\tlet directMarketing : Boolean = not(basedOnAction.statement = null) and not(basedOnAction.statement.why = null) and\n"
 			+ "\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Marketing, Sequence{ProcessingReasonSubtype::None}) in\n"
-			+ "\t\t\t\t\tif((not(basedOnAction.denialReason = null) and not(directMarketing)) or basedOnAction.type = ComplaintBasedOnActionType::Restriction) then\n"
+			+ "\t\t\t\t\tif(((not(basedOnAction.denialReason = null) or basedOnAction.status = ComplaintStatus::Denied) and not(directMarketing)) or\n"
+			+ "\t\t\t\t\tbasedOnAction.type = ComplaintBasedOnActionType::Restriction or basedOnAction.status = ComplaintStatus::Executed) then\n"
 			+ "\t\t\t\t\t\ttrue\n" + "\t\t\t\t\telse\n"
-			+ "\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| stmt.what.actions->exists(action| action = Action::StopProcessing) and \n"
-			+ "\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self)\n" + "\t\t\t\t\tendif\n"
-			+ "\t\t\t  endif\n" + "}.status";
+			+ "\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| not(stmt.what = null) and stmt.what.actions->exists(action| action = Action::StopProcessing) and \n"
+			+ "\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self and\n"
+			+ "\t\t\t\t\t\t(stmt.when = null or not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(stmt.when, self.when))))\n"
+			+ "\t\t\t\t\tendif\n" + "\t\t\t  endif\n" + "}.status";
 
 	/**
 	 * The cached validation expression for the SubjectShouldBeNotifiedAboutExistingComplaintForRectification constraint of '<em>Complaint</em>'.
@@ -3200,7 +3214,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n" + "\t\t\t\t\ttrue\n"
 			+ "\t\t\telse\n"
 			+ "\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
-			+ "\t\t\t\tif(basedOnAction.statement.why = null or not(basedOnAction.denialReason = null) or basedOnAction.type = ComplaintBasedOnActionType::Restriction) then\n"
+			+ "\t\t\t\tif(basedOnAction.statement = null or basedOnAction.statement.why = null or not(basedOnAction.denialReason = null) or basedOnAction.type = ComplaintBasedOnActionType::Restriction) then\n"
 			+ "\t\t\t\t\t\ttrue\n" + "\t\t\t\telse\n"
 			+ "\t\t\t\t\tbasedOnAction.statement.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Marketing, Sequence{ProcessingReasonSubtype::None})\n"
 			+ "\t\t\t\t\tor\n"
@@ -3240,7 +3254,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n" + "\t\t\t\t\ttrue\n"
 			+ "\t\t\telse\n"
 			+ "\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
-			+ "\t\t\t\t\tnot(basedOnAction.statement.whose = null) \n" + "\t\t\t\t\tand \n"
+			+ "\t\t\t\t\tnot(basedOnAction.statement = null) and not(basedOnAction.statement.whose = null) \n"
+			+ "\t\t\t\t\tand \n"
 			+ "\t\t\t\t\t(basedOnAction.statement.whose = self.who or basedOnAction.statement.whose.responsiblePersons->exists(rp| rp = self.who))\n"
 			+ "\t\t\tendif\n" + "}.status";
 
@@ -3270,11 +3285,13 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\tif(not(self.action.oclIsKindOf(ComplaintBasedOnAction))) then\n" + "\t\t\t\t\ttrue\n"
 			+ "\t\t\t\telse\n"
 			+ "\t\t\t\tlet basedOnAction : ComplaintBasedOnAction = self.action.oclAsType(ComplaintBasedOnAction) in\n"
-			+ "\t\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null)) then\n"
+			+ "\t\t\t\t\tif(not(basedOnAction.type = ComplaintBasedOnActionType::Restriction) or not(basedOnAction.denialReason = null) or\n"
+			+ "\t\t\t\t\tbasedOnAction.status = ComplaintStatus::Denied or basedOnAction.status = ComplaintStatus::Executed) then\n"
 			+ "\t\t\t\t\t\ttrue\n" + "\t\t\t\t\telse\n"
 			+ "\t\t\t\t\t\tprivacyPolicy.policyStatements->exists(stmt| not(stmt.what = null) and stmt.what.actions->exists(action| action = Action::RestrictProcessing) and \n"
-			+ "\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self)\n" + "\t\t\t\t\tendif\n"
-			+ "\t\t\t  endif\n" + "}.status";
+			+ "\t\t\t\t\t\t\tnot(stmt.causedBy = null) and stmt.causedBy = self and\n"
+			+ "\t\t\t\t\t\t(stmt.when = null or not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(stmt.when, self.when))))\n"
+			+ "\t\t\t\t\tendif\n" + "\t\t\t  endif\n" + "}.status";
 
 	/**
 	 * <!-- begin-user-doc -->
