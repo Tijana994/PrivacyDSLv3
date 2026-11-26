@@ -207,6 +207,9 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/informsDataSubject">
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/informsDataSubject/notification"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/isBasedOnConsentOrContract">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/isBasedOnConsentOrContract/data"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PrivacyData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//PrivacyData/type"/>

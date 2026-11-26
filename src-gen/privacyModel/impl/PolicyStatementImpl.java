@@ -795,6 +795,31 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #isBasedOnConsentOrContract(privacyModel.SharedPrivacyData) <em>Is Based On Consent Or Contract</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isBasedOnConsentOrContract(privacyModel.SharedPrivacyData)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_BASED_ON_CONSENT_OR_CONTRACT_SHARED_PRIVACY_DATA__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.POLICY_STATEMENT___IS_BASED_ON_CONSENT_OR_CONTRACT__SHAREDPRIVACYDATA)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isBasedOnConsentOrContract(SharedPrivacyData data) {
+		try {
+			return (Boolean) IS_BASED_ON_CONSENT_OR_CONTRACT_SHARED_PRIVACY_DATA__EINVOCATION_DELEGATE
+					.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { data }));
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -989,6 +1014,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			return hasExplicitConsentFor((SharedPrivacyData) arguments.get(0));
 		case PrivacyModelPackage.POLICY_STATEMENT___INFORMS_DATA_SUBJECT__NOTIFICATION:
 			return informsDataSubject((privacyModel.Notification) arguments.get(0));
+		case PrivacyModelPackage.POLICY_STATEMENT___IS_BASED_ON_CONSENT_OR_CONTRACT__SHAREDPRIVACYDATA:
+			return isBasedOnConsentOrContract((SharedPrivacyData) arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

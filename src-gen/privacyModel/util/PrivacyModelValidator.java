@@ -1575,15 +1575,12 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__MISSING_CONSENT_OR_CONTRACT_FOR_DATA_PORTABILITY__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art20 and Art6',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.whose = null or not(self.what.actions->exists(action| action = Action::DataPortability))) then\n"
+			+ "\t\t\tif(self.whose = null or self.what = null or not(self.what.actions->exists(action| action = Action::DataPortability))) then\n"
 			+ "\t\t\t\ttrue\n"
 			+ "\t\t\telse if(not(self.what.datas->forAll(d| d.origin = DataOrigin::DataSubject))) then\n"
-			+ "\t\t\t\tfalse\n" + "\t\t\telse if(self.isContractProvidedBySubject()) then\n" + "\t\t\t\ttrue\n"
-			+ "\t\t\telse if(self.whose.type= PrincipalType::NaturalPerson and self.whose.age < PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.legalAgeLimitFor(self.whose)) then\n"
-			+ "\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n"
-			+ "\t\t\telse \n"
-			+ "\t\t\t\tnot(self.how = null) and not(self.how.consent = null) and (self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person))\n"
-			+ "\t\t\tendif\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\tfalse\n" + "\t\t\telse\n"
+			+ "\t\t\t\tself.what.datas->forAll(data| self.isBasedOnConsentOrContract(data))\n" + "\t\t\tendif\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutStopProcessing constraint of '<em>Policy Statement</em>'.
