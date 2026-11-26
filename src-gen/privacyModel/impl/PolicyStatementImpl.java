@@ -844,6 +844,30 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #isResearchWithSafeguards() <em>Is Research With Safeguards</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isResearchWithSafeguards()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_RESEARCH_WITH_SAFEGUARDS__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.POLICY_STATEMENT___IS_RESEARCH_WITH_SAFEGUARDS)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isResearchWithSafeguards() {
+		try {
+			return (Boolean) IS_RESEARCH_WITH_SAFEGUARDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1042,6 +1066,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			return isBasedOnConsentOrContract((SharedPrivacyData) arguments.get(0));
 		case PrivacyModelPackage.POLICY_STATEMENT___IS_TRANSFER_TO_THIRD_COUNTRY:
 			return isTransferToThirdCountry();
+		case PrivacyModelPackage.POLICY_STATEMENT___IS_RESEARCH_WITH_SAFEGUARDS:
+			return isResearchWithSafeguards();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

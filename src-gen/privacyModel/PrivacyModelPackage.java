@@ -534,13 +534,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int POLICY_STATEMENT___IS_TRANSFER_TO_THIRD_COUNTRY = NOTIFICATION_INFO_OPERATION_COUNT + 10;
 
 	/**
+	 * The operation id for the '<em>Is Research With Safeguards</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___IS_RESEARCH_WITH_SAFEGUARDS = NOTIFICATION_INFO_OPERATION_COUNT + 11;
+
+	/**
 	 * The number of operations of the '<em>Policy Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 11;
+	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 12;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
@@ -3041,6 +3050,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__IsTransferToThirdCountry();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#isResearchWithSafeguards() <em>Is Research With Safeguards</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Research With Safeguards</em>' operation.
+	 * @see privacyModel.PolicyStatement#isResearchWithSafeguards()
+	 * @generated
+	 */
+	EOperation getPolicyStatement__IsResearchWithSafeguards();
+
+	/**
 	 * Returns the meta object for class '{@link privacyModel.PrivacyData <em>Privacy Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4833,6 +4852,15 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation POLICY_STATEMENT___IS_TRANSFER_TO_THIRD_COUNTRY = eINSTANCE
 				.getPolicyStatement__IsTransferToThirdCountry();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Research With Safeguards</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___IS_RESEARCH_WITH_SAFEGUARDS = eINSTANCE
+				.getPolicyStatement__IsResearchWithSafeguards();
 
 		/**
 		 * The meta object literal for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.

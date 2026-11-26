@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The email is collected and stored from 2024-02-01 to 2026-02-01. Access for scientific research after the storage period (Article 5(1)(e)). -->
+<!-- The email is collected and stored from 2024-02-01 to 2026-02-01. Access for scientific research after the storage period (Article 5(1)(e)). The email is pseudonymised as a safeguard. -->
 <privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
     name="Test policy" owner="//@allPrincipals.0">
   <policyStatements name="Collect email" who="//@allPrincipals.0" whose="//@allPrincipals.1" whom="//@allPrincipals.0">
@@ -16,9 +16,13 @@
   <allPrincipals name="Bank" type="LegalEntity" scope="In" inhabits="//@locations.0"/>
   <allPrincipals name="Eve" type="NaturalPerson" scope="Out" age="30" inhabits="//@locations.0"/>
   <locations name="Hungary" isEUMember="true" type="Country" legalAgeLimit="16"/>
-  <configurationManager/>
+  <configurationManager>
+    <protectionControlMethods>Pseudonymisation</protectionControlMethods>
+  </configurationManager>
   <allDatas name="email" type="General"/>
   <privacyPolicyHelper/>
   <allConsents name="Eve marketing consent" providedBy="//@allPrincipals.1" startDate="2024-01-15T00:00:00.000+0100" location="Budapest" type="Explicit"/>
-  <allSharedPrivacyData name="email" privacydata="//@allDatas.0"/>
+  <allSharedPrivacyData name="email" privacydata="//@allDatas.0">
+    <additionalProtectionControls>Pseudonymisation</additionalProtectionControls>
+  </allSharedPrivacyData>
 </privacyModel:PrivacyPolicy>
