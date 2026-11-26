@@ -566,7 +566,7 @@
     </eOperations>
     <eOperations name="legalAgeLimitFor" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;if(principal.inhabits = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits.legalAgeLimit&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;principal.inhabits.legalAgeLimit&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;let location : Location = if(principal.inhabits = null) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;PrivacyPolicy.allInstances()->asSequence()->first().owner.inhabits&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;principal.inhabits&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif in&#xA;&#x9;&#x9;&#x9;&#x9;if(location.type = LocationType::Country) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;location.legalAgeLimit&#xA;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;let countries : Sequence(Location) = Location.allInstances()->select(l| l.type = LocationType::Country and&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;l.subLocations->closure(subLocations)->includes(location))->asSequence() in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(countries->isEmpty()) then&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;location.legalAgeLimit&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;countries->first().legalAgeLimit&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;endif&#xA;&#x9;&#x9;&#x9;&#x9;endif"/>
       </eAnnotations>
       <eParameters name="principal" lowerBound="1" eType="#//Principal"/>
     </eOperations>

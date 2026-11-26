@@ -129,7 +129,7 @@ public interface PrivacyPolicyHelper extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true" principalRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tif(principal.inhabits = null) then\n\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().owner.inhabits.legalAgeLimit\n\t\t\t\telse\n\t\t\t\t\tprincipal.inhabits.legalAgeLimit\n\t\t\t\tendif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tlet location : Location = if(principal.inhabits = null) then\n\t\t\t\t\t\tPrivacyPolicy.allInstances()-&gt;asSequence()-&gt;first().owner.inhabits\n\t\t\t\t\telse\n\t\t\t\t\t\tprincipal.inhabits\n\t\t\t\t\tendif in\n\t\t\t\tif(location.type = LocationType::Country) then\n\t\t\t\t\tlocation.legalAgeLimit\n\t\t\t\telse\n\t\t\t\t\tlet countries : Sequence(Location) = Location.allInstances()-&gt;select(l| l.type = LocationType::Country and\n\t\t\t\t\t\tl.subLocations-&gt;closure(subLocations)-&gt;includes(location))-&gt;asSequence() in\n\t\t\t\t\tif(countries-&gt;isEmpty()) then\n\t\t\t\t\t\tlocation.legalAgeLimit\n\t\t\t\t\telse\n\t\t\t\t\t\tcountries-&gt;first().legalAgeLimit\n\t\t\t\t\tendif\n\t\t\t\tendif'"
 	 * @generated
 	 */
 	int legalAgeLimitFor(Principal principal);
