@@ -498,13 +498,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int POLICY_STATEMENT___PROCESSING_ENDS_BY__DATE = NOTIFICATION_INFO_OPERATION_COUNT + 6;
 
 	/**
+	 * The operation id for the '<em>Has Explicit Consent For</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___HAS_EXPLICIT_CONSENT_FOR__SHAREDPRIVACYDATA = NOTIFICATION_INFO_OPERATION_COUNT + 7;
+
+	/**
 	 * The number of operations of the '<em>Policy Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 7;
+	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
@@ -2956,6 +2965,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__ProcessingEndsBy__Date();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#hasExplicitConsentFor(privacyModel.SharedPrivacyData) <em>Has Explicit Consent For</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has Explicit Consent For</em>' operation.
+	 * @see privacyModel.PolicyStatement#hasExplicitConsentFor(privacyModel.SharedPrivacyData)
+	 * @generated
+	 */
+	EOperation getPolicyStatement__HasExplicitConsentFor__SharedPrivacyData();
+
+	/**
 	 * Returns the meta object for class '{@link privacyModel.PrivacyData <em>Privacy Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4702,6 +4721,15 @@ public interface PrivacyModelPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation POLICY_STATEMENT___PROCESSING_ENDS_BY__DATE = eINSTANCE.getPolicyStatement__ProcessingEndsBy__Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Has Explicit Consent For</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___HAS_EXPLICIT_CONSENT_FOR__SHAREDPRIVACYDATA = eINSTANCE
+				.getPolicyStatement__HasExplicitConsentFor__SharedPrivacyData();
 
 		/**
 		 * The meta object literal for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.

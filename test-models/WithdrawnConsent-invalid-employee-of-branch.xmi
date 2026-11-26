@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Eve withdraws her marketing consent on 2024-07-01, the bank stops the processing on 2024-07-05 and erases her email on 2024-09-30. Ned, an employee of a branch of the bank, accesses her email for marketing on 2024-08-01. -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <policyStatements name="Collect Eve email" who="//@allPrincipals.0" whose="//@allPrincipals.1" whom="//@allPrincipals.0">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-02-01T00:00:00.000+0100"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Collecting</actions><actions>Store</actions></what>
+    <how consent="//@allConsents.0"/>
+  </policyStatements>
+  <policyStatements name="Access Eve email" who="//@allPrincipals.6" whose="//@allPrincipals.1">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-08-01T00:00:00.000+0100"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Access</actions></what>
+  </policyStatements>
+  <policyStatements name="Collect Adam email" who="//@allPrincipals.0" whose="//@allPrincipals.2" whom="//@allPrincipals.0">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-02-01T00:00:00.000+0100"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Collecting</actions><actions>Store</actions></what>
+    <how documents="//@allDocuments.0" consent="//@allConsents.1"/>
+  </policyStatements>
+  <policyStatements name="Access Adam email" who="//@allPrincipals.0" whose="//@allPrincipals.2">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-06-01T00:00:00.000+0200"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Access</actions></what>
+  </policyStatements>
+  <policyStatements name="Stop Eve marketing" who="//@allPrincipals.0" whose="//@allPrincipals.1" causedBy="//@allComplaints.0">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-07-05T00:00:00.000+0100"/>
+    <why processingReason="StopProcessing" processingReasonSubtype="None"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>StopProcessing</actions></what>
+  </policyStatements>
+  <policyStatements name="Erase Eve email" who="//@allPrincipals.0" whose="//@allPrincipals.1">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-09-30T00:00:00.000+0100"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Erasure</actions></what>
+  </policyStatements>
+  <allPrincipals name="Bank" type="LegalEntity" scope="In" subPrincipals="//@allPrincipals.5" inhabits="//@locations.0"/>
+  <allPrincipals name="Eve" type="NaturalPerson" scope="Out" age="30" inhabits="//@locations.0"/>
+  <allPrincipals name="Adam" type="NaturalPerson" scope="Out" age="12" inhabits="//@locations.0" responsiblePersons="//@allPrincipals.3"/>
+  <allPrincipals name="Sam" type="NaturalPerson" scope="Out" age="40" inhabits="//@locations.0"/>
+  <allPrincipals name="Mallory" type="NaturalPerson" scope="Out" age="35" inhabits="//@locations.0"/>
+  <allPrincipals name="Budapest branch" type="LegalEntity" scope="In" inhabits="//@locations.0" subPrincipals="//@allPrincipals.6"/>
+  <allPrincipals name="Ned" type="NaturalPerson" scope="In" age="35" inhabits="//@locations.0"/>
+  <locations name="Hungary" isEUMember="true" type="Country" legalAgeLimit="16"/>
+  <configurationManager/>
+  <allDatas name="email" type="General"/>
+  <allComplaints name="Eve withdraws consent" who="//@allPrincipals.1" when="2024-07-01T00:00:00.000+0100">
+    <action xsi:type="privacyModel:Withdraw" subject="//@allConsents.0"/>
+  </allComplaints>
+  <privacyPolicyHelper/>
+  <allConsents name="Eve marketing consent" providedBy="//@allPrincipals.1" startDate="2024-01-15T00:00:00.000+0100" location="Budapest" type="Explicit"/>
+  <allConsents name="Adam marketing consent" providedBy="//@allPrincipals.3" startDate="2024-01-15T00:00:00.000+0100" location="Budapest" type="Explicit"/>
+  <allDocuments name="Adam custody" providedBy="//@allPrincipals.3" startDate="2020-01-01T00:00:00.000+0100" location="Budapest" documentType="ChildCustody"/>
+  <notifications name="Notify about stopped processing" type="StopProcessing" notifiers="//@allPrincipals.0" receivers="//@allPrincipals.1" causedBy="//@policyStatements.4" when="2024-07-05T00:00:00.000+0100"/>
+  <allSharedPrivacyData name="email" privacydata="//@allDatas.0"/>
+</privacyModel:PrivacyPolicy>

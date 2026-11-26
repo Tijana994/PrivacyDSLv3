@@ -745,6 +745,31 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #hasExplicitConsentFor(privacyModel.SharedPrivacyData) <em>Has Explicit Consent For</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #hasExplicitConsentFor(privacyModel.SharedPrivacyData)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate HAS_EXPLICIT_CONSENT_FOR_SHARED_PRIVACY_DATA__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.POLICY_STATEMENT___HAS_EXPLICIT_CONSENT_FOR__SHAREDPRIVACYDATA)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean hasExplicitConsentFor(SharedPrivacyData data) {
+		try {
+			return (Boolean) HAS_EXPLICIT_CONSENT_FOR_SHARED_PRIVACY_DATA__EINVOCATION_DELEGATE.dynamicInvoke(this,
+					new BasicEList.UnmodifiableEList<Object>(1, new Object[] { data }));
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -935,6 +960,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			return processingOfDataEndsBy((SharedPrivacyData) arguments.get(0), (Date) arguments.get(1));
 		case PrivacyModelPackage.POLICY_STATEMENT___PROCESSING_ENDS_BY__DATE:
 			return processingEndsBy((Date) arguments.get(0));
+		case PrivacyModelPackage.POLICY_STATEMENT___HAS_EXPLICIT_CONSENT_FOR__SHAREDPRIVACYDATA:
+			return hasExplicitConsentFor((SharedPrivacyData) arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

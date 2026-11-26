@@ -201,6 +201,9 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/processingEndsBy">
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/processingEndsBy/date"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/hasExplicitConsentFor">
+        <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/hasExplicitConsentFor/data"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PrivacyData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//PrivacyData/type"/>
