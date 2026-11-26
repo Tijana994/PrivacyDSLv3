@@ -820,6 +820,30 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #isTransferToThirdCountry() <em>Is Transfer To Third Country</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isTransferToThirdCountry()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_TRANSFER_TO_THIRD_COUNTRY__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.POLICY_STATEMENT___IS_TRANSFER_TO_THIRD_COUNTRY)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isTransferToThirdCountry() {
+		try {
+			return (Boolean) IS_TRANSFER_TO_THIRD_COUNTRY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1016,6 +1040,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			return informsDataSubject((privacyModel.Notification) arguments.get(0));
 		case PrivacyModelPackage.POLICY_STATEMENT___IS_BASED_ON_CONSENT_OR_CONTRACT__SHAREDPRIVACYDATA:
 			return isBasedOnConsentOrContract((SharedPrivacyData) arguments.get(0));
+		case PrivacyModelPackage.POLICY_STATEMENT___IS_TRANSFER_TO_THIRD_COUNTRY:
+			return isTransferToThirdCountry();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

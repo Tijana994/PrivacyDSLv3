@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import privacyModel.AbstractTime;
+import privacyModel.Location;
 import privacyModel.Principal;
 import privacyModel.PrivacyModelPackage;
 import privacyModel.PrivacyPolicyHelper;
@@ -370,6 +371,31 @@ public class PrivacyPolicyHelperImpl extends MinimalEObjectImpl.Container implem
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #isInEEA(privacyModel.Location) <em>Is In EEA</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isInEEA(privacyModel.Location)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_IN_EEA_LOCATION__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.PRIVACY_POLICY_HELPER___IS_IN_EEA__LOCATION)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isInEEA(Location location) {
+		try {
+			return (Boolean) IS_IN_EEA_LOCATION__EINVOCATION_DELEGATE.dynamicInvoke(this,
+					new BasicEList.UnmodifiableEList<Object>(1, new Object[] { location }));
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -403,6 +429,8 @@ public class PrivacyPolicyHelperImpl extends MinimalEObjectImpl.Container implem
 			return isDateInInterval((AbstractTime) arguments.get(0), (Date) arguments.get(1));
 		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL:
 			return legalAgeLimitFor((Principal) arguments.get(0));
+		case PrivacyModelPackage.PRIVACY_POLICY_HELPER___IS_IN_EEA__LOCATION:
+			return isInEEA((Location) arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

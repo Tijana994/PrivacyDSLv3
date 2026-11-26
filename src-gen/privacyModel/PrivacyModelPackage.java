@@ -525,13 +525,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int POLICY_STATEMENT___IS_BASED_ON_CONSENT_OR_CONTRACT__SHAREDPRIVACYDATA = NOTIFICATION_INFO_OPERATION_COUNT + 9;
 
 	/**
+	 * The operation id for the '<em>Is Transfer To Third Country</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___IS_TRANSFER_TO_THIRD_COUNTRY = NOTIFICATION_INFO_OPERATION_COUNT + 10;
+
+	/**
 	 * The number of operations of the '<em>Policy Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 10;
+	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
@@ -1795,13 +1804,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL = 12;
 
 	/**
+	 * The operation id for the '<em>Is In EEA</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVACY_POLICY_HELPER___IS_IN_EEA__LOCATION = 13;
+
+	/**
 	 * The number of operations of the '<em>Privacy Policy Helper</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVACY_POLICY_HELPER_OPERATION_COUNT = 13;
+	int PRIVACY_POLICY_HELPER_OPERATION_COUNT = 14;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.WhereImpl <em>Where</em>}' class.
@@ -3013,6 +3031,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__IsBasedOnConsentOrContract__SharedPrivacyData();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#isTransferToThirdCountry() <em>Is Transfer To Third Country</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Transfer To Third Country</em>' operation.
+	 * @see privacyModel.PolicyStatement#isTransferToThirdCountry()
+	 * @generated
+	 */
+	EOperation getPolicyStatement__IsTransferToThirdCountry();
+
+	/**
 	 * Returns the meta object for class '{@link privacyModel.PrivacyData <em>Privacy Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3819,6 +3847,16 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getPrivacyPolicyHelper__LegalAgeLimitFor__Principal();
+
+	/**
+	 * Returns the meta object for the '{@link privacyModel.PrivacyPolicyHelper#isInEEA(privacyModel.Location) <em>Is In EEA</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is In EEA</em>' operation.
+	 * @see privacyModel.PrivacyPolicyHelper#isInEEA(privacyModel.Location)
+	 * @generated
+	 */
+	EOperation getPrivacyPolicyHelper__IsInEEA__Location();
 
 	/**
 	 * Returns the meta object for class '{@link privacyModel.Where <em>Where</em>}'.
@@ -4788,6 +4826,15 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPolicyStatement__IsBasedOnConsentOrContract__SharedPrivacyData();
 
 		/**
+		 * The meta object literal for the '<em><b>Is Transfer To Third Country</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___IS_TRANSFER_TO_THIRD_COUNTRY = eINSTANCE
+				.getPolicyStatement__IsTransferToThirdCountry();
+
+		/**
 		 * The meta object literal for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5454,6 +5501,14 @@ public interface PrivacyModelPackage extends EPackage {
 		 */
 		EOperation PRIVACY_POLICY_HELPER___LEGAL_AGE_LIMIT_FOR__PRINCIPAL = eINSTANCE
 				.getPrivacyPolicyHelper__LegalAgeLimitFor__Principal();
+
+		/**
+		 * The meta object literal for the '<em><b>Is In EEA</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PRIVACY_POLICY_HELPER___IS_IN_EEA__LOCATION = eINSTANCE.getPrivacyPolicyHelper__IsInEEA__Location();
 
 		/**
 		 * The meta object literal for the '{@link privacyModel.impl.WhereImpl <em>Where</em>}' class.

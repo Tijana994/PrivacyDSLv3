@@ -1170,9 +1170,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art13(1)(f) and Art14(1)(f)',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(not(self.what = null) and self.what.actions->exists(action| action = Action::Transfer) and not(self.where = null) and\n"
-			+ "\t\t\t\tnot(self.where.destination = null) and self.where.destination.isEUMember = false\n"
-			+ "\t\t\t) then\n"
+			+ "\t\t\tif(self.isTransferToThirdCountry()) then\n"
 			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer \n"
 			+ "\t\t\t\t\t\tand notification.causedBy = self and self.informsDataSubject(notification) and\n"
 			+ "\t\t\t\t\t\t(self.when = null or not(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.doesTimeStartBeforeDate(self.when, notification.when)))\n"
@@ -1350,7 +1348,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__WHOM_SHOULD_BE_DEFINED_FOR_TRANSFER__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Arts 44-50',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(what.actions->exists(action| action = Action::Transfer)) then\n"
+			+ "\t\t\tif(not(self.what = null) and self.what.actions->exists(action| action = Action::Transfer)) then\n"
 			+ "\t\t\t\t\tnot(self.whom = null)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n"
 			+ "}.status";
 
@@ -1633,10 +1631,10 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__MISSING_CONSENT_OR_TRANSFER_CERTIFICATE__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art45, Art46, Art47 and Art49(1)',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(not(self.what.actions->exists(action| action = Action::Transfer)) or self.where = null or self.where.destination = null or self.where.destination.isEUMember = true) then\n"
-			+ "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\tif(not(self.isTransferToThirdCountry())) then\n" + "\t\t\t\ttrue\n" + "\t\t\telse\n"
 			+ "\t\t\t\t(not(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::TransferCertificate)) or\n"
-			+ "\t\t\t\t(not(self.how = null) and not(self.how.consent = null) and self.how.consent.type = ConsentType::Explicit) or\n"
+			+ "\t\t\t\t(not(self.how = null) and not(self.how.consent = null) and self.how.consent.type = ConsentType::Explicit and not(self.whose = null) and\n"
+			+ "\t\t\t\t\t(self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->includes(self.how.consent.providedBy))) or\n"
 			+ "\t\t\t\t(self.hasProcessingReason(ProcessingReason::ContractPerformance) and self.isContractProvidedBySubject()) or\n"
 			+ "\t\t\t\tself.hasProcessingReason(ProcessingReason::LegalClaims) or\n"
 			+ "\t\t\t\t(not(self.why = null) and\n"
@@ -1800,7 +1798,7 @@ public class PrivacyModelValidator extends EObjectValidator {
 	 */
 	protected static final String POLICY_STATEMENT__WHERE_SHOULD_BE_DEFINED_FOR_TRANSFER_ACTION__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Where should be defined',\n" + "\tstatus : Boolean = \n"
-			+ "\t\t\tif(self.what.actions->exists(action| action = Action::Transfer)) then\n"
+			+ "\t\t\tif(not(self.what = null) and self.what.actions->exists(action| action = Action::Transfer)) then\n"
 			+ "\t\t\t\t\tnot(self.where = null)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n"
 			+ "}.status";
 

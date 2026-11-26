@@ -210,6 +210,7 @@
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/isBasedOnConsentOrContract">
         <genParameters ecoreParameter="privacyModel.ecore#//PolicyStatement/isBasedOnConsentOrContract/data"/>
       </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/isTransferToThirdCountry"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PrivacyData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//PrivacyData/type"/>
@@ -357,6 +358,9 @@
       </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/legalAgeLimitFor">
         <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/legalAgeLimitFor/principal"/>
+      </genOperations>
+      <genOperations ecoreOperation="privacyModel.ecore#//PrivacyPolicyHelper/isInEEA">
+        <genParameters ecoreParameter="privacyModel.ecore#//PrivacyPolicyHelper/isInEEA/location"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//Where">

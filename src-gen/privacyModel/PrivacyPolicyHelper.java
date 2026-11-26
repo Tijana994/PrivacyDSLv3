@@ -134,4 +134,13 @@ public interface PrivacyPolicyHelper extends EObject {
 	 */
 	int legalAgeLimitFor(Principal principal);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" locationRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\t\tif(location.type = LocationType::Country) then\n\t\t\t\t\t\tlocation.isEUMember\n\t\t\t\t\telse\n\t\t\t\t\t\tlet countries : Sequence(Location) = Location.allInstances()-&gt;select(l| l.type = LocationType::Country and\n\t\t\t\t\t\t\tl.subLocations-&gt;closure(subLocations)-&gt;includes(location))-&gt;asSequence() in\n\t\t\t\t\t\tif(countries-&gt;isEmpty()) then location.isEUMember else countries-&gt;first().isEUMember endif\n\t\t\t\t\tendif'"
+	 * @generated
+	 */
+	boolean isInEEA(Location location);
+
 } // PrivacyPolicyHelper
