@@ -110,7 +110,7 @@ public interface Location extends NamedElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='if(self = observed) then\n\t\t\t\t\t\ttrue\n\t\t\t\t  else \n\t\t\t\t  \tself.subLocations-&gt;notEmpty() and self.subLocations-&gt;exists(s| s.equals(observed))\n\t\t\t\t  endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self = observed or self.subLocations-&gt;closure(subLocations)-&gt;includes(observed)'"
 	 * @generated
 	 */
 	boolean equals(Location observed);

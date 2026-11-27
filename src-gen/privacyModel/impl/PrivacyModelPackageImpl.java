@@ -3221,7 +3221,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addAnnotation(getPrincipal__Equals__Principal(), source, new String[] { "body",
 				"if(self = null) then\n\t\t\t\t\tfalse\n\t\t\t\telse\n\t\t\t\t\tself = observed or self.subPrincipals->closure(subPrincipals)->includes(observed)\n\t\t\t\tendif" });
 		addAnnotation(getLocation__Equals__Location(), source, new String[] { "body",
-				"if(self = observed) then\n\t\t\t\t\t\ttrue\n\t\t\t\t  else \n\t\t\t\t  \tself.subLocations->notEmpty() and self.subLocations->exists(s| s.equals(observed))\n\t\t\t\t  endif" });
+				"self = observed or self.subLocations->closure(subLocations)->includes(observed)" });
 		addAnnotation(timeIntervalEClass, source, new String[] { "OnlyAfterOrAfterWithBefore",
 				"Tuple {\n\tmessage : String = \'After interval should be defined alone or with before interval\',\n\tstatus : Boolean = \n\t\t\tself.isTypeDefinedWithOtherType(TimePreposition::after, TimePreposition::before)\n}.status",
 				"OnlyFromOrFromWithTo",
