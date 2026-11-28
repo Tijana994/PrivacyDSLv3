@@ -41,7 +41,7 @@ public class PrivacyModelRepository {
     	    PrivacyPolicy policy = (PrivacyPolicy)resource.getContents().get(0);
     	    return policy;
     	} catch (Exception e){
- 		   System.out.print("Problem with loading model. Exception " + e );
+ 		   TemdaLog.log("Problem with loading model. Exception " + e);
  		   return null;
  		 } 
 	}
@@ -62,12 +62,12 @@ public class PrivacyModelRepository {
 		 try{
 		    res.save(m);
 		 } catch (IOException e){
-		   System.out.print("Problem with saving. Exception " + e );
+		   TemdaLog.log("Problem with saving. Exception " + e);
 		   return false;
 		 } 
 		 
 		 var validationResult = validationHelper.validateModel(Configuration.getXmlPath());
-	     System.out.println(validationResult.ValidationMessage);
+	     TemdaLog.log(validationResult.ValidationMessage);
 		 return true;
 	}
 	
@@ -85,7 +85,7 @@ public class PrivacyModelRepository {
 	    	} 
 	    catch (Exception e) {
 	        // TODO: handle exception
-	    	System.out.println("Cannot find class.");
+	    	TemdaLog.log("Cannot find class.");
 	        }
 	 }
 }

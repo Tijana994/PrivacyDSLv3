@@ -11,6 +11,8 @@ public class ProjectConfiguration {
 		
 		private static String xmlPath = "model/test.xmi";
 		private static Boolean fromDisc = false;
+		private static LogOutput logOutput = LogOutput.CONSOLE;
+		private static String logFilePath = "temda-validation.log";
 		
 		public static String getXmlPath(){
 		    return xmlPath;
@@ -26,6 +28,24 @@ public class ProjectConfiguration {
 
 		public static Boolean getFromDisc() {
 			return fromDisc;
+		}
+		
+		public static LogOutput getLogOutput() {
+			return logOutput;
+		}
+		
+		/** Sets whether TeMDA messages are written to the console (default) or to the log file. */
+		public static void setLogOutput(LogOutput newLogOutput) {
+			logOutput = newLogOutput == null ? LogOutput.CONSOLE : newLogOutput;
+		}
+		
+		public static String getLogFilePath() {
+			return logFilePath;
+		}
+		
+		/** Sets the file to which TeMDA messages are appended when the output is LogOutput.FILE. */
+		public static void setLogFilePath(String newLogFilePath) {
+			logFilePath = newLogFilePath;
 		}
 		
 		public static Boolean createDefaultConfiguration()

@@ -22,6 +22,7 @@ import org.eclipse.ocl.xtext.essentialocl.EssentialOCLStandaloneSetup;
 
 import privacyModel.PrivacyModelPackage;
 import privacyModel.PrivacyPolicy;
+import utility.TemdaLog;
 
 public class Validation {
 	
@@ -80,7 +81,7 @@ public class Validation {
         if (diagnostic.getSeverity() == Diagnostic.ERROR || 
 	    		diagnostic.getSeverity() == Diagnostic.WARNING)
             {
-            	System.err.println(diagnostic.getMessage());
+            	TemdaLog.log(diagnostic.getMessage());
                 for (Iterator i=diagnostic.getChildren().iterator(); i.hasNext();)
                 {
                 	Diagnostic childDiagnostic = (Diagnostic)i.next();

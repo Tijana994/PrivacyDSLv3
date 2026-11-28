@@ -42,7 +42,7 @@ public class PrivacyDataFactory {
 			
 			if(privacyDataOptional.isEmpty())
 			{
-				System.out.println("There is no privacy data with id " + privacyDataId);
+				TemdaLog.log("There is no privacy data with id " + privacyDataId);
 				return;
 			}
 			var sharedPrivacyDataObject = repo.getFactory().createSharedPrivacyData();
@@ -92,7 +92,7 @@ public class PrivacyDataFactory {
 			var parentObj = model.getLocations().stream().filter(location -> location.getName().equals(parentId)).findFirst();
 			if(parentObj.isEmpty())
 			{
-				System.out.println("There is no location with id " + parentId);
+				TemdaLog.log("There is no location with id " + parentId);
 				return;
 			}
 			parentObj.get().getSubLocations().add(locationObject);
@@ -126,7 +126,7 @@ public class PrivacyDataFactory {
 				var parentObj = model.getAllServices().stream().filter(service -> service.getName().equals(parentServiceId)).findFirst();
 				if(parentObj.isEmpty())
 				{
-					System.out.println("There is no service with id " + parentServiceId);
+					TemdaLog.log("There is no service with id " + parentServiceId);
 					return;
 				}
 				parentObj.get().getSubservices().add(serviceObject);
@@ -142,7 +142,7 @@ public class PrivacyDataFactory {
 			var locationObj = model.getLocations().stream().filter(location -> location.getName().equals(locationId)).findFirst();
 			if(locationObj.isEmpty())
 			{
-				System.out.println("There is no location with id " + locationId);
+				TemdaLog.log("There is no location with id " + locationId);
 				return;
 			}
 			var providerObject = repo.getFactory().createProvider();
@@ -177,7 +177,7 @@ public class PrivacyDataFactory {
 			var providerObj = model.getAllProviders().stream().filter(provider -> provider.getName().equals(providerId)).findFirst();
 			if(providerObj.isEmpty())
 			{
-				System.out.println("There is no provider with id " + providerId);
+				TemdaLog.log("There is no provider with id " + providerId);
 				return;
 			}
 			var startDate = Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC));
@@ -190,7 +190,7 @@ public class PrivacyDataFactory {
 			{
 				if(model.getOwner() == null)
 				{
-					System.out.println("The owner of the privacy policy must be defined before a transfer certificate is added");
+					TemdaLog.log("The owner of the privacy policy must be defined before a transfer certificate is added");
 					return;
 				}
 				var documentObject = repo.getFactory().createDocument();
@@ -213,13 +213,13 @@ public class PrivacyDataFactory {
 			var childObj = model.getAllPrincipals().stream().filter(principal -> principal.getName().equals(childId)).findFirst();
 			if(childObj.isEmpty())
 			{
-				System.out.println("There is no principal with id " + childId);
+				TemdaLog.log("There is no principal with id " + childId);
 				return;
 			}
 			var parentObj = model.getAllPrincipals().stream().filter(principal -> principal.getName().equals(parentId)).findFirst();
 			if(parentObj.isEmpty())
 			{
-				System.out.println("There is no principal with id " + parentId);
+				TemdaLog.log("There is no principal with id " + parentId);
 				return;
 			}
 			parentObj.get().getSubPrincipals().add(childObj.get());
@@ -244,7 +244,7 @@ public class PrivacyDataFactory {
 			var childObj = model.getAllPrincipals().stream().filter(principal -> principal.getName().equals(childId)).findFirst();
 			if(childObj.isEmpty())
 			{
-				System.out.println("There is no principal with id " + childId);
+				TemdaLog.log("There is no principal with id " + childId);
 				return;
 			}
 			Principal parent = null;
@@ -264,7 +264,7 @@ public class PrivacyDataFactory {
 				var parentObj = model.getAllPrincipals().stream().filter(principal -> principal.getName().equals(parentId)).findFirst();
 				if(parentObj.isEmpty())
 				{
-					System.out.println("There is no principal with id " + parentId);
+					TemdaLog.log("There is no principal with id " + parentId);
 					return;
 				}
 				parent = parentObj.get();
