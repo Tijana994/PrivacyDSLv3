@@ -543,13 +543,22 @@ public interface PrivacyModelPackage extends EPackage {
 	int POLICY_STATEMENT___IS_RESEARCH_WITH_SAFEGUARDS = NOTIFICATION_INFO_OPERATION_COUNT + 11;
 
 	/**
+	 * The operation id for the '<em>Uses Provider Outside EEA</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POLICY_STATEMENT___USES_PROVIDER_OUTSIDE_EEA = NOTIFICATION_INFO_OPERATION_COUNT + 12;
+
+	/**
 	 * The number of operations of the '<em>Policy Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 12;
+	int POLICY_STATEMENT_OPERATION_COUNT = NOTIFICATION_INFO_OPERATION_COUNT + 13;
 
 	/**
 	 * The meta object id for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
@@ -1521,13 +1530,31 @@ public interface PrivacyModelPackage extends EPackage {
 	int CONTRACT__DESCRIPTION = ABSTRACT_PAPER__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Provider</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRACT__PROVIDER = ABSTRACT_PAPER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Documents</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTRACT__DOCUMENTS = ABSTRACT_PAPER_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Contract</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTRACT_FEATURE_COUNT = ABSTRACT_PAPER_FEATURE_COUNT + 0;
+	int CONTRACT_FEATURE_COUNT = ABSTRACT_PAPER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Contract</em>' class.
@@ -3060,6 +3087,16 @@ public interface PrivacyModelPackage extends EPackage {
 	EOperation getPolicyStatement__IsResearchWithSafeguards();
 
 	/**
+	 * Returns the meta object for the '{@link privacyModel.PolicyStatement#usesProviderOutsideEEA() <em>Uses Provider Outside EEA</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Uses Provider Outside EEA</em>' operation.
+	 * @see privacyModel.PolicyStatement#usesProviderOutsideEEA()
+	 * @generated
+	 */
+	EOperation getPolicyStatement__UsesProviderOutsideEEA();
+
+	/**
 	 * Returns the meta object for class '{@link privacyModel.PrivacyData <em>Privacy Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3619,6 +3656,28 @@ public interface PrivacyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getContract();
+
+	/**
+	 * Returns the meta object for the reference '{@link privacyModel.Contract#getProvider <em>Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Provider</em>'.
+	 * @see privacyModel.Contract#getProvider()
+	 * @see #getContract()
+	 * @generated
+	 */
+	EReference getContract_Provider();
+
+	/**
+	 * Returns the meta object for the reference list '{@link privacyModel.Contract#getDocuments <em>Documents</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Documents</em>'.
+	 * @see privacyModel.Contract#getDocuments()
+	 * @see #getContract()
+	 * @generated
+	 */
+	EReference getContract_Documents();
 
 	/**
 	 * Returns the meta object for class '{@link privacyModel.ConfigurationManager <em>Configuration Manager</em>}'.
@@ -4863,6 +4922,15 @@ public interface PrivacyModelPackage extends EPackage {
 				.getPolicyStatement__IsResearchWithSafeguards();
 
 		/**
+		 * The meta object literal for the '<em><b>Uses Provider Outside EEA</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation POLICY_STATEMENT___USES_PROVIDER_OUTSIDE_EEA = eINSTANCE
+				.getPolicyStatement__UsesProviderOutsideEEA();
+
+		/**
 		 * The meta object literal for the '{@link privacyModel.impl.PrivacyDataImpl <em>Privacy Data</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5316,6 +5384,22 @@ public interface PrivacyModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONTRACT = eINSTANCE.getContract();
+
+		/**
+		 * The meta object literal for the '<em><b>Provider</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTRACT__PROVIDER = eINSTANCE.getContract_Provider();
+
+		/**
+		 * The meta object literal for the '<em><b>Documents</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTRACT__DOCUMENTS = eINSTANCE.getContract_Documents();
 
 		/**
 		 * The meta object literal for the '{@link privacyModel.impl.ConfigurationManagerImpl <em>Configuration Manager</em>}' class.

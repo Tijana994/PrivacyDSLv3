@@ -115,6 +115,97 @@ public class PrivacyDataFactory {
 			repo.saveModel(model);
 		}
 		
+		public static void addService(String name, String parentServiceId)
+		{
+			var repo = new PrivacyModelRepository();
+			var model = repo.getModel();
+			var serviceObject = repo.getFactory().createService();
+			serviceObject.setName(name);
+			if(parentServiceId != null && !parentServiceId.isEmpty())
+			{
+				var parentObj = model.getAllServices().stream().filter(service -> service.getName().equals(parentServiceId)).findFirst();
+				if(parentObj.isEmpty())
+				{
+					System.out.println("There is no service with id " + parentServiceId);
+					return;
+				}
+				parentObj.get().getSubservices().add(serviceObject);
+			}
+			model.getAllServices().add(serviceObject);
+			repo.saveModel(model);
+		}
+		
+		public static void addProvider(String name, String locationId, List<String> serviceIds)
+		{
+			var repo = new PrivacyModelRepository();
+			var model = repo.getModel();
+			var locationObj = model.getLocations().stream().filter(location -> location.getName().equals(locationId)).findFirst();
+			if(locationObj.isEmpty())
+			{
+				System.out.println("There is no location with id " + locationId);
+				return;
+			}
+			var providerObject = repo.getFactory().createProvider();
+			providerObject.setName(name);
+			providerObject.setLocated(locationObj.get());
+			if(serviceIds != null)
+			{
+				for(var serviceId : serviceIds)
+				{
+					var serviceObj = model.getAllServices().stream().filter(service -> service.getName().equals(serviceId)).findFirst();
+					if(serviceObj.isPresent())
+					{
+						providerObject.getProvide().add(serviceObj.get());
+					}
+					else
+					{
+						var serviceObject = repo.getFactory().createService();
+						serviceObject.setName(serviceId);
+						model.getAllServices().add(serviceObject);
+						providerObject.getProvide().add(serviceObject);
+					}
+				}
+			}
+			model.getAllProviders().add(providerObject);
+			repo.saveModel(model);
+		}
+		
+		public static void addProviderContract(String name, String providerId, String location, String transferCertificateName)
+		{
+			var repo = new PrivacyModelRepository();
+			var model = repo.getModel();
+			var providerObj = model.getAllProviders().stream().filter(provider -> provider.getName().equals(providerId)).findFirst();
+			if(providerObj.isEmpty())
+			{
+				System.out.println("There is no provider with id " + providerId);
+				return;
+			}
+			var startDate = Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC));
+			var contractObject = repo.getFactory().createContract();
+			contractObject.setName(name);
+			contractObject.setProvider(providerObj.get());
+			contractObject.setStartDate(startDate);
+			contractObject.setLocation(location);
+			if(transferCertificateName != null && !transferCertificateName.isEmpty())
+			{
+				if(model.getOwner() == null)
+				{
+					System.out.println("The owner of the privacy policy must be defined before a transfer certificate is added");
+					return;
+				}
+				var documentObject = repo.getFactory().createDocument();
+				documentObject.setName(transferCertificateName);
+				documentObject.setDocumentType(DocumentType.TRANSFER_CERTIFICATE);
+				documentObject.setProvidedBy(model.getOwner());
+				documentObject.setStartDate(startDate);
+				documentObject.setLocation(location);
+				model.getAllDocuments().add(documentObject);
+				contractObject.getDocuments().add(documentObject);
+			}
+			model.getAllContracts().add(contractObject);
+			repo.saveModel(model);
+		}
+		
 		public static void addSubPrincipal(String childId, String parentId)
 		{
 			var repo = new PrivacyModelRepository();

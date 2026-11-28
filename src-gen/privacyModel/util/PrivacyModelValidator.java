@@ -688,6 +688,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validatePolicyStatement_RecipientsShouldBeNotifiedAboutExecutedRectification(policyStatement,
 					diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validatePolicyStatement_MissingContractWithProcessor(policyStatement, diagnostics, context);
 		return result;
 	}
 
@@ -1176,10 +1178,20 @@ public class PrivacyModelValidator extends EObjectValidator {
 	protected static final String POLICY_STATEMENT__SUBJECT_SHOULD_BE_NOTIFIED_ABOUT_TRANSFER_TO_THIRD_COUNTRY__EEXPRESSION = "Tuple {\n"
 			+ "\tmessage : String = 'Based on Art13(1)(f) and Art14(1)(f)',\n" + "\tstatus : Boolean = \n"
 			+ "\t\t\tif(self.isTransferToThirdCountry()) then\n"
-			+ "\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer \n"
+			+ "\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\t\tprivacyPolicy.notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer \n"
 			+ "\t\t\t\t\t\tand notification.causedBy = self and self.informsDataSubject(notification) and\n"
-			+ "\t\t\t\t\t\t(self.when = null or not(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.doesTimeStartBeforeDate(self.when, notification.when)))\n"
-			+ "\t\t\t\t\t)\n" + "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\t\t(self.when = null or not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, notification.when)))\n"
+			+ "\t\t\t\t\t)\n" + "\t\t\t\t\tor\n" + "\t\t\t\t\t(not(self.whose = null) and\n"
+			+ "\t\t\t\t\tnot(self.what.actions->exists(act| act = Action::Transfer) and not(self.where = null) and not(self.where.destination = null)) and\n"
+			+ "\t\t\t\t\tself.what.providers->select(p| not(p.located = null) and not(privacyPolicy.privacyPolicyHelper.isInEEA(p.located)))->forAll(p|\n"
+			+ "\t\t\t\t\t\tprivacyPolicy.notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer\n"
+			+ "\t\t\t\t\t\t\tand not(notification.causedBy = null) and notification.causedBy.oclIsKindOf(PolicyStatement) and self.informsDataSubject(notification) and\n"
+			+ "\t\t\t\t\t\t\t(let statement : PolicyStatement = notification.causedBy.oclAsType(PolicyStatement) in\n"
+			+ "\t\t\t\t\t\t\t\tstatement.whose = self.whose and not(statement.what = null) and statement.what.providers->includes(p) and\n"
+			+ "\t\t\t\t\t\t\t\tstatement.what.datas->includesAll(self.what.datas)) and\n"
+			+ "\t\t\t\t\t\t\t(self.when = null or not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, notification.when))))))\n"
+			+ "\t\t\t\telse\n" + "\t\t\t\t\ttrue\n" + "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the SubjectShouldBeNotifiedAboutTransferToThirdCountry constraint of '<em>Policy Statement</em>'.
@@ -1492,6 +1504,34 @@ public class PrivacyModelValidator extends EObjectValidator {
 	}
 
 	/**
+	 * The cached validation expression for the MissingContractWithProcessor constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String POLICY_STATEMENT__MISSING_CONTRACT_WITH_PROCESSOR__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'Based on Art28',\n" + "\tstatus : Boolean = \n"
+			+ "\t\t\tif(self.what = null or self.what.providers->isEmpty()) then\n" + "\t\t\t\ttrue\n" + "\t\t\telse\n"
+			+ "\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tself.what.providers->forAll(p| privacyPolicy.allContracts->exists(contract| contract.provider = p and\n"
+			+ "\t\t\t\t\t(self.when = null or (not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, contract.startDate)) and\n"
+			+ "\t\t\t\t\t(contract.terminationDate = null or self.processingEndsBy(contract.terminationDate))))))\n"
+			+ "\t\t\tendif\n" + "}.status";
+
+	/**
+	 * Validates the MissingContractWithProcessor constraint of '<em>Policy Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePolicyStatement_MissingContractWithProcessor(PolicyStatement policyStatement,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate(PrivacyModelPackage.Literals.POLICY_STATEMENT, policyStatement, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "MissingContractWithProcessor",
+				POLICY_STATEMENT__MISSING_CONTRACT_WITH_PROCESSOR__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
 	 * Validates the LegalProvisionIsNeededForLegalObligationPurpose constraint of '<em>Policy Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1647,7 +1687,17 @@ public class PrivacyModelValidator extends EObjectValidator {
 			+ "\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) and\n"
 			+ "\t\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision)) or\n"
 			+ "\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, Sequence{ProcessingReasonSubtype::PhysicallyIncapable,\n"
-			+ "\t\t\t\t\tProcessingReasonSubtype::LegallyIncapable})))\n" + "\t\t\tendif\n" + "}.status";
+			+ "\t\t\t\t\tProcessingReasonSubtype::LegallyIncapable}))) or\n"
+			+ "\t\t\t\t(not(self.what.actions->exists(act| act = Action::Transfer) and not(self.where = null) and not(self.where.destination = null)) and\n"
+			+ "\t\t\t\t(let privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n"
+			+ "\t\t\t\tself.what.providers->select(p| not(p.located = null) and not(privacyPolicy.privacyPolicyHelper.isInEEA(p.located)))->forAll(p|\n"
+			+ "\t\t\t\t\tprivacyPolicy.allContracts->exists(contract| contract.provider = p and\n"
+			+ "\t\t\t\t\t\t(self.when = null or (not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, contract.startDate)) and\n"
+			+ "\t\t\t\t\t\t(contract.terminationDate = null or self.processingEndsBy(contract.terminationDate)))) and\n"
+			+ "\t\t\t\t\t\tcontract.documents->exists(doc| doc.documentType = DocumentType::TransferCertificate and\n"
+			+ "\t\t\t\t\t\t\t(self.when = null or (not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, doc.startDate)) and\n"
+			+ "\t\t\t\t\t\t\t(doc.terminationDate = null or self.processingEndsBy(doc.terminationDate)))))))))\n"
+			+ "\t\t\tendif\n" + "}.status";
 
 	/**
 	 * Validates the MissingContractForContractPerformance constraint of '<em>Policy Statement</em>'.
@@ -2733,6 +2783,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			result &= validate_EveryMapEntryUnique(consent, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateAbstractPaper_StartDateShouldBeBeforeTerminationDate(consent, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateAbstractPaper_PaperShouldHaveParty(consent, diagnostics, context);
 		return result;
 	}
 
@@ -2761,6 +2813,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			result &= validate_EveryMapEntryUnique(contract, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateAbstractPaper_StartDateShouldBeBeforeTerminationDate(contract, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateAbstractPaper_PaperShouldHaveParty(contract, diagnostics, context);
 		return result;
 	}
 
@@ -3341,6 +3395,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			result &= validate_EveryMapEntryUnique(document, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateAbstractPaper_StartDateShouldBeBeforeTerminationDate(document, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateAbstractPaper_PaperShouldHaveParty(document, diagnostics, context);
 		return result;
 	}
 
@@ -3370,6 +3426,8 @@ public class PrivacyModelValidator extends EObjectValidator {
 			result &= validate_EveryMapEntryUnique(abstractPaper, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateAbstractPaper_StartDateShouldBeBeforeTerminationDate(abstractPaper, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateAbstractPaper_PaperShouldHaveParty(abstractPaper, diagnostics, context);
 		return result;
 	}
 
@@ -3395,6 +3453,31 @@ public class PrivacyModelValidator extends EObjectValidator {
 				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "StartDateShouldBeBeforeTerminationDate",
 				ABSTRACT_PAPER__START_DATE_SHOULD_BE_BEFORE_TERMINATION_DATE__EEXPRESSION, Diagnostic.ERROR,
 				DIAGNOSTIC_SOURCE, 0);
+	}
+
+	/**
+	 * The cached validation expression for the PaperShouldHaveParty constraint of '<em>Abstract Paper</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final String ABSTRACT_PAPER__PAPER_SHOULD_HAVE_PARTY__EEXPRESSION = "Tuple {\n"
+			+ "\tmessage : String = 'A consent or a document must be provided by a principal, and a contract must have a principal or a provider as a party',\n"
+			+ "\tstatus : Boolean = \n" + "\t\t\tif(self.oclIsKindOf(Contract)) then\n"
+			+ "\t\t\t\tnot(self.providedBy = null) or not(self.oclAsType(Contract).provider = null)\n" + "\t\t\telse\n"
+			+ "\t\t\t\tnot(self.providedBy = null)\n" + "\t\t\tendif\n" + "}.status";
+
+	/**
+	 * Validates the PaperShouldHaveParty constraint of '<em>Abstract Paper</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAbstractPaper_PaperShouldHaveParty(AbstractPaper abstractPaper, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return validate(PrivacyModelPackage.Literals.ABSTRACT_PAPER, abstractPaper, diagnostics, context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", "PaperShouldHaveParty",
+				ABSTRACT_PAPER__PAPER_SHOULD_HAVE_PARTY__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**

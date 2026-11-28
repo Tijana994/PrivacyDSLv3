@@ -868,6 +868,30 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #usesProviderOutsideEEA() <em>Uses Provider Outside EEA</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #usesProviderOutsideEEA()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate USES_PROVIDER_OUTSIDE_EEA__EINVOCATION_DELEGATE = ((EOperation.Internal) PrivacyModelPackage.Literals.POLICY_STATEMENT___USES_PROVIDER_OUTSIDE_EEA)
+			.getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean usesProviderOutsideEEA() {
+		try {
+			return (Boolean) USES_PROVIDER_OUTSIDE_EEA__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		} catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1068,6 +1092,8 @@ public class PolicyStatementImpl extends NotificationInfoImpl implements PolicyS
 			return isTransferToThirdCountry();
 		case PrivacyModelPackage.POLICY_STATEMENT___IS_RESEARCH_WITH_SAFEGUARDS:
 			return isResearchWithSafeguards();
+		case PrivacyModelPackage.POLICY_STATEMENT___USES_PROVIDER_OUTSIDE_EEA:
+			return usesProviderOutsideEEA();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

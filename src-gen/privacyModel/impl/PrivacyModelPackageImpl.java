@@ -854,6 +854,15 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getPolicyStatement__UsesProviderOutsideEEA() {
+		return policyStatementEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPrivacyData() {
 		return privacyDataEClass;
 	}
@@ -1324,6 +1333,24 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 	 */
 	public EClass getContract() {
 		return contractEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContract_Provider() {
+		return (EReference) contractEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getContract_Documents() {
+		return (EReference) contractEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2147,6 +2174,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		createEOperation(policyStatementEClass, POLICY_STATEMENT___IS_BASED_ON_CONSENT_OR_CONTRACT__SHAREDPRIVACYDATA);
 		createEOperation(policyStatementEClass, POLICY_STATEMENT___IS_TRANSFER_TO_THIRD_COUNTRY);
 		createEOperation(policyStatementEClass, POLICY_STATEMENT___IS_RESEARCH_WITH_SAFEGUARDS);
+		createEOperation(policyStatementEClass, POLICY_STATEMENT___USES_PROVIDER_OUTSIDE_EEA);
 
 		privacyDataEClass = createEClass(PRIVACY_DATA);
 		createEAttribute(privacyDataEClass, PRIVACY_DATA__TYPE);
@@ -2215,6 +2243,8 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		createEAttribute(consentEClass, CONSENT__TYPE);
 
 		contractEClass = createEClass(CONTRACT);
+		createEReference(contractEClass, CONTRACT__PROVIDER);
+		createEReference(contractEClass, CONTRACT__DOCUMENTS);
 
 		configurationManagerEClass = createEClass(CONFIGURATION_MANAGER);
 		createEAttribute(configurationManagerEClass, CONFIGURATION_MANAGER__DATA_SOURCES);
@@ -2510,6 +2540,9 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		initEOperation(getPolicyStatement__IsResearchWithSafeguards(), ecorePackage.getEBoolean(),
 				"isResearchWithSafeguards", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEOperation(getPolicyStatement__UsesProviderOutsideEEA(), ecorePackage.getEBoolean(),
+				"usesProviderOutsideEEA", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(privacyDataEClass, PrivacyData.class, "PrivacyData", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPrivacyData_Type(), this.getDataType(), "type", "General", 1, 1, PrivacyData.class,
@@ -2662,6 +2695,12 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 
 		initEClass(contractEClass, Contract.class, "Contract", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getContract_Provider(), this.getProvider(), null, "provider", null, 0, 1, Contract.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContract_Documents(), this.getDocument(), null, "documents", null, 0, -1, Contract.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(configurationManagerEClass, ConfigurationManager.class, "ConfigurationManager", !IS_ABSTRACT,
 				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2779,7 +2818,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 
 		initEClass(abstractPaperEClass, AbstractPaper.class, "AbstractPaper", IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAbstractPaper_ProvidedBy(), this.getPrincipal(), null, "providedBy", null, 1, 1,
+		initEReference(getAbstractPaper_ProvidedBy(), this.getPrincipal(), null, "providedBy", null, 0, 1,
 				AbstractPaper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractPaper_TerminationExplanation(), ecorePackage.getEString(), "terminationExplanation",
@@ -3060,7 +3099,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addAnnotation(privacyPolicyEClass, source, new String[] { "constraints",
 				"UniquePolicyStatementName UniquePrincipalNamePerType UniquePrivacyDataName UniqueSharedPrivacyDataName UniqueServiceName UniqueProviderName UniqueDocumentName UniqueConsentName UniqueContractName UniqueComplaintName UniqueLocationPerType ProtectionControlShouldExistInConfiguration OwnerShouldHaveDefinedInhabits" });
 		addAnnotation(policyStatementEClass, source, new String[] { "constraints",
-				"DateShouldBeDefinedForAccessAction DateShouldBeDefinedForStoreAction WhereShouldBeDefinedForTransferAction CourtApprovalOrLegalProvisionIsNeededForPublicInterestPurpose ControllerApprovalIsNeededForLegitimateInterestsPurpose ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose StopProcessingPurposeForActionStopProcessing ExpiredDocument MissingConsentForCollecting UndefinedPurposeForActionOrUserDoesNotHavePermission ExpiredConsent ExpiredConsentForCollecting WithdrawnConsent JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson ProcessingOfSpecialCategories SubjectShouldBeNotifiedAboutCollecting SubjectShouldBeNotifiedAboutTransferToThirdCountry CausedByShouldBeDefinedForRectificationAction SubjectShouldBeNotifiedAboutExecutedErasure SubjectShouldBeNotifiedAboutExecutedRectification WhomShouldBeDefinedForTransfer MissingConsentOrContractForDataPortability SubjectShouldBeNotifiedAboutStopProcessing CausedByShouldBeDefinedForStopProcessingAction MissingConsentOrTransferCertificate MissingContractForContractPerformance ExpiredContract LegalProvisionIsNeededForLegalObligationPurpose ProcessingAfterErasureDate ProcessingOfCriminalConvictionData NotForProfitBodyDataShouldNotBeTransferred CausedByAndDateShouldBeDefinedForRestriction ProcessingDuringRestriction SubjectShouldBeNotifiedBeforeLiftingRestriction RestrictionShouldNotBeLiftedBeforeObjectionDecision DateShouldBeDefinedForCollectingAction RecipientsShouldBeNotifiedAboutExecutedErasure RecipientsShouldBeNotifiedAboutExecutedRectification" });
+				"DateShouldBeDefinedForAccessAction DateShouldBeDefinedForStoreAction WhereShouldBeDefinedForTransferAction CourtApprovalOrLegalProvisionIsNeededForPublicInterestPurpose ControllerApprovalIsNeededForLegitimateInterestsPurpose ControllerApprovalIsNeededForProtectTheVitalInterestsOfTheDataSubjectPurpose StopProcessingPurposeForActionStopProcessing ExpiredDocument MissingConsentForCollecting UndefinedPurposeForActionOrUserDoesNotHavePermission ExpiredConsent ExpiredConsentForCollecting WithdrawnConsent JuvenileDataShouldBeUsedWithDocumentOfTypeChildCustodyProvidedByResponsiblePerson ProcessingOfSpecialCategories SubjectShouldBeNotifiedAboutCollecting SubjectShouldBeNotifiedAboutTransferToThirdCountry CausedByShouldBeDefinedForRectificationAction SubjectShouldBeNotifiedAboutExecutedErasure SubjectShouldBeNotifiedAboutExecutedRectification WhomShouldBeDefinedForTransfer MissingConsentOrContractForDataPortability SubjectShouldBeNotifiedAboutStopProcessing CausedByShouldBeDefinedForStopProcessingAction MissingConsentOrTransferCertificate MissingContractForContractPerformance ExpiredContract LegalProvisionIsNeededForLegalObligationPurpose ProcessingAfterErasureDate ProcessingOfCriminalConvictionData NotForProfitBodyDataShouldNotBeTransferred CausedByAndDateShouldBeDefinedForRestriction ProcessingDuringRestriction SubjectShouldBeNotifiedBeforeLiftingRestriction RestrictionShouldNotBeLiftedBeforeObjectionDecision DateShouldBeDefinedForCollectingAction RecipientsShouldBeNotifiedAboutExecutedErasure RecipientsShouldBeNotifiedAboutExecutedRectification MissingContractWithProcessor" });
 		addAnnotation(principalEClass, source, new String[] { "constraints",
 				"NaturalPersonCannotContainSubPrincipals JuvenileShouldHaveResponsiblePerson" });
 		addAnnotation(timeIntervalEClass, source, new String[] { "constraints",
@@ -3070,7 +3109,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addAnnotation(complaintEClass, source, new String[] { "constraints",
 				"UserDoesNotHavePermissionToWithdrawConsent ConsentWithdrawalShouldBeExecutedAsSoonAsPossible SubjectShouldBeNotifiedAboutExistingComplaintForRectification SubjectShouldBeNotifiedAboutExistingComplaintForErasure CannotIdentifyDataFromComplaint RectificationShouldBeExecutedAsSoonAsPossible ErasureShouldBeExecutedAsSoonAsPossible InvalidTypeOfPurposeForAnObject UserDoesNotHavePermissionToComplain StopProcessingShouldBeExecutedAsSoonAsPossible RestrictionShouldBeExecutedAsSoonAsPossible RecipientsShouldBeNotifiedAboutRestriction RequestShouldBeHandledWithinDeadline DataShouldBeErasedAfterConsentWithdrawal" });
 		addAnnotation(abstractPaperEClass, source,
-				new String[] { "constraints", "StartDateShouldBeBeforeTerminationDate" });
+				new String[] { "constraints", "StartDateShouldBeBeforeTerminationDate PaperShouldHaveParty" });
 		addAnnotation(sharedPrivacyDataEClass, source, new String[] { "constraints",
 				"AdditionalProtectionControlShouldExistInConfiguration DataSourceShouldExistInConfiguration" });
 		addAnnotation(notificationEClass, source, new String[] { "constraints",
@@ -3144,7 +3183,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				"SubjectShouldBeNotifiedAboutCollecting",
 				"Tuple {\n\tmessage : String = \'Based on Art14\',\n\tstatus : Boolean = \n\t\t\tif(not(self.what = null) and self.what.actions->exists(action| action = Action::Collecting) and self.what.datas->exists(data| data.origin <> DataOrigin::DataSubject)) then\n\t\t\t\tif((((not(self.why = null) and \n\t\t\t\t(self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest,Sequence{ProcessingReasonSubtype::None}) or\n\t\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::Research,Sequence{ProcessingReasonSubtype::Statistical, \n\t\t\t\t\t\tProcessingReasonSubtype::Historical,ProcessingReasonSubtype::Scientific})))\n\t\t\t\t\tor self.hasProcessingReason(ProcessingReason::StatisticalPurposes))\n\t\t\t\t\tand not(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::ControllerApproval))\n\t\t\t\t\tor (not(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision))\n\t\t\t\t)then\n\t\t\t\t\ttrue\n\t\t\t\telse\n\t\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\t\tprivacyPolicy.notifications->exists(notification| notification.type = NotificationType::DataCollecting \n\t\t\t\t\t\tand self.informsDataSubject(notification) and\n\t\t\t\t\t\t(notification.causedBy = self or\n\t\t\t\t\t\t(not(notification.when = null) and notification.causedBy.oclIsKindOf(PolicyStatement) and not(self.why = null) and\n\t\t\t\t\t\t\tlet earlier : PolicyStatement = notification.causedBy.oclAsType(PolicyStatement) in\n\t\t\t\t\t\t\tnot(earlier.whose = null) and earlier.whose = self.whose and not(earlier.what = null) and not(earlier.why = null) and\n\t\t\t\t\t\t\tearlier.what.actions->exists(action| action = Action::Collecting) and\n\t\t\t\t\t\t\tearlier.what.datas->includesAll(self.what.datas->select(data| data.origin <> DataOrigin::DataSubject)) and\n\t\t\t\t\t\t\tearlier.why.allPurposes()->collect(p| p.processingReason)->includesAll(self.why.allPurposes()->collect(p| p.processingReason)) and\n\t\t\t\t\t\t\t(self.when = null or privacyPolicy.privacyPolicyHelper.areDatesOverlap(self.when, notification.when))))\n\t\t\t\t\t)\n\t\t\t\tendif\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status",
 				"SubjectShouldBeNotifiedAboutTransferToThirdCountry",
-				"Tuple {\n\tmessage : String = \'Based on Art13(1)(f) and Art14(1)(f)\',\n\tstatus : Boolean = \n\t\t\tif(self.isTransferToThirdCountry()) then\n\t\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer \n\t\t\t\t\t\tand notification.causedBy = self and self.informsDataSubject(notification) and\n\t\t\t\t\t\t(self.when = null or not(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.doesTimeStartBeforeDate(self.when, notification.when)))\n\t\t\t\t\t)\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status",
+				"Tuple {\n\tmessage : String = \'Based on Art13(1)(f) and Art14(1)(f)\',\n\tstatus : Boolean = \n\t\t\tif(self.isTransferToThirdCountry()) then\n\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\t\tprivacyPolicy.notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer \n\t\t\t\t\t\tand notification.causedBy = self and self.informsDataSubject(notification) and\n\t\t\t\t\t\t(self.when = null or not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, notification.when)))\n\t\t\t\t\t)\n\t\t\t\t\tor\n\t\t\t\t\t(not(self.whose = null) and\n\t\t\t\t\tnot(self.what.actions->exists(act| act = Action::Transfer) and not(self.where = null) and not(self.where.destination = null)) and\n\t\t\t\t\tself.what.providers->select(p| not(p.located = null) and not(privacyPolicy.privacyPolicyHelper.isInEEA(p.located)))->forAll(p|\n\t\t\t\t\t\tprivacyPolicy.notifications->exists(notification| notification.type = NotificationType::ThirdPartyTransfer\n\t\t\t\t\t\t\tand not(notification.causedBy = null) and notification.causedBy.oclIsKindOf(PolicyStatement) and self.informsDataSubject(notification) and\n\t\t\t\t\t\t\t(let statement : PolicyStatement = notification.causedBy.oclAsType(PolicyStatement) in\n\t\t\t\t\t\t\t\tstatement.whose = self.whose and not(statement.what = null) and statement.what.providers->includes(p) and\n\t\t\t\t\t\t\t\tstatement.what.datas->includesAll(self.what.datas)) and\n\t\t\t\t\t\t\t(self.when = null or not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, notification.when))))))\n\t\t\t\telse\n\t\t\t\t\ttrue\n\t\t\tendif\n}.status",
 				"CausedByShouldBeDefinedForRectificationAction",
 				"Tuple {\n\tmessage : String = \'Based on Art16\',\n\tstatus : Boolean = \n\t\t\tcausedByShouldBeDefinedForType(Action::Rectification)\n}.status",
 				"SubjectShouldBeNotifiedAboutExecutedErasure",
@@ -3160,7 +3199,7 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				"CausedByShouldBeDefinedForStopProcessingAction",
 				"Tuple {\n\tmessage : String = \'Based on Art21\',\n\tstatus : Boolean = \n\t\t\tcausedByShouldBeDefinedForType(Action::StopProcessing)\n}.status",
 				"MissingConsentOrTransferCertificate",
-				"Tuple {\n\tmessage : String = \'Based on Art45, Art46, Art47 and Art49(1)\',\n\tstatus : Boolean = \n\t\t\tif(not(self.isTransferToThirdCountry())) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\t(not(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::TransferCertificate)) or\n\t\t\t\t(not(self.how = null) and not(self.how.consent = null) and self.how.consent.type = ConsentType::Explicit and not(self.whose = null) and\n\t\t\t\t\t(self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->includes(self.how.consent.providedBy))) or\n\t\t\t\t(self.hasProcessingReason(ProcessingReason::ContractPerformance) and self.isContractProvidedBySubject()) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::LegalClaims) or\n\t\t\t\t(not(self.why = null) and\n\t\t\t\t((self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest, Sequence{ProcessingReasonSubtype::Prevention, ProcessingReasonSubtype::Investigation, ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) and\n\t\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision)) or\n\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, Sequence{ProcessingReasonSubtype::PhysicallyIncapable,\n\t\t\t\t\tProcessingReasonSubtype::LegallyIncapable})))\n\t\t\tendif\n}.status",
+				"Tuple {\n\tmessage : String = \'Based on Art45, Art46, Art47 and Art49(1)\',\n\tstatus : Boolean = \n\t\t\tif(not(self.isTransferToThirdCountry())) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\t(not(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::TransferCertificate)) or\n\t\t\t\t(not(self.how = null) and not(self.how.consent = null) and self.how.consent.type = ConsentType::Explicit and not(self.whose = null) and\n\t\t\t\t\t(self.how.consent.providedBy = self.whose or self.whose.responsiblePersons->includes(self.how.consent.providedBy))) or\n\t\t\t\t(self.hasProcessingReason(ProcessingReason::ContractPerformance) and self.isContractProvidedBySubject()) or\n\t\t\t\tself.hasProcessingReason(ProcessingReason::LegalClaims) or\n\t\t\t\t(not(self.why = null) and\n\t\t\t\t((self.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::PublicInterest, Sequence{ProcessingReasonSubtype::Prevention, ProcessingReasonSubtype::Investigation, ProcessingReasonSubtype::Detection,\n\t\t\t\t\tProcessingReasonSubtype::Prosecution, ProcessingReasonSubtype::PreventionOfThreats, ProcessingReasonSubtype::None, ProcessingReasonSubtype::Other}) and\n\t\t\t\t\tnot(self.how = null) and self.how.documents->exists(doc| doc.documentType = DocumentType::LegalProvision)) or\n\t\t\t\tself.why.containsAllowedPurposeReasonAndSubreason(ProcessingReason::ProtectTheVitalInterestsOfTheDataSubject, Sequence{ProcessingReasonSubtype::PhysicallyIncapable,\n\t\t\t\t\tProcessingReasonSubtype::LegallyIncapable}))) or\n\t\t\t\t(not(self.what.actions->exists(act| act = Action::Transfer) and not(self.where = null) and not(self.where.destination = null)) and\n\t\t\t\t(let privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tself.what.providers->select(p| not(p.located = null) and not(privacyPolicy.privacyPolicyHelper.isInEEA(p.located)))->forAll(p|\n\t\t\t\t\tprivacyPolicy.allContracts->exists(contract| contract.provider = p and\n\t\t\t\t\t\t(self.when = null or (not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, contract.startDate)) and\n\t\t\t\t\t\t(contract.terminationDate = null or self.processingEndsBy(contract.terminationDate)))) and\n\t\t\t\t\t\tcontract.documents->exists(doc| doc.documentType = DocumentType::TransferCertificate and\n\t\t\t\t\t\t\t(self.when = null or (not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, doc.startDate)) and\n\t\t\t\t\t\t\t(doc.terminationDate = null or self.processingEndsBy(doc.terminationDate)))))))))\n\t\t\tendif\n}.status",
 				"MissingContractForContractPerformance",
 				"Tuple {\n\tmessage : String = \'Based on Art6\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or not(self.hasProcessingReason(ProcessingReason::ContractPerformance))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tself.isContractProvidedBySubject()\n\t\t\tendif\n}.status",
 				"ExpiredContract",
@@ -3186,7 +3225,9 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				"RecipientsShouldBeNotifiedAboutExecutedErasure",
 				"Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what = null or not(self.what.actions->exists(act| act = Action::Erasure))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tprivacyPolicy.policyStatements->select(tr| not(tr.what = null) and\n\t\t\t\t\ttr.what.actions->exists(act| act = Action::Transfer) and\n\t\t\t\t\tnot(tr.whose = null) and tr.whose = self.whose and not(tr.whom = null) and\n\t\t\t\t\ttr.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n\t\t\t\t\t(tr.when = null or self.when = null or privacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(tr.when, self.when)))\n\t\t\t\t->forAll(tr| privacyPolicy.notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\tnotification.type = NotificationType::ExecutedErasure and notification.receivers->includes(tr.whom)))\n\t\t\tendif\n}.status",
 				"RecipientsShouldBeNotifiedAboutExecutedRectification",
-				"Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what = null or not(self.what.actions->exists(act| act = Action::Rectification))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tprivacyPolicy.policyStatements->select(tr| not(tr.what = null) and\n\t\t\t\t\ttr.what.actions->exists(act| act = Action::Transfer) and\n\t\t\t\t\tnot(tr.whose = null) and tr.whose = self.whose and not(tr.whom = null) and\n\t\t\t\t\ttr.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n\t\t\t\t\t(tr.when = null or self.when = null or privacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(tr.when, self.when)))\n\t\t\t\t->forAll(tr| privacyPolicy.notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification and notification.receivers->includes(tr.whom)))\n\t\t\tendif\n}.status" });
+				"Tuple {\n\tmessage : String = \'Based on Art19\',\n\tstatus : Boolean = \n\t\t\tif(self.whose = null or self.what = null or not(self.what.actions->exists(act| act = Action::Rectification))) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tprivacyPolicy.policyStatements->select(tr| not(tr.what = null) and\n\t\t\t\t\ttr.what.actions->exists(act| act = Action::Transfer) and\n\t\t\t\t\tnot(tr.whose = null) and tr.whose = self.whose and not(tr.whom = null) and\n\t\t\t\t\ttr.what.datas->exists(d| self.what.datas->exists(sd| sd.privacydata = d.privacydata)) and\n\t\t\t\t\t(tr.when = null or self.when = null or privacyPolicy.privacyPolicyHelper.doesIntervalStartBeforeInterval(tr.when, self.when)))\n\t\t\t\t->forAll(tr| privacyPolicy.notifications->exists(notification| notification.causedBy = self and\n\t\t\t\t\tnotification.type = NotificationType::ExecutedRectification and notification.receivers->includes(tr.whom)))\n\t\t\tendif\n}.status",
+				"MissingContractWithProcessor",
+				"Tuple {\n\tmessage : String = \'Based on Art28\',\n\tstatus : Boolean = \n\t\t\tif(self.what = null or self.what.providers->isEmpty()) then\n\t\t\t\ttrue\n\t\t\telse\n\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\tself.what.providers->forAll(p| privacyPolicy.allContracts->exists(contract| contract.provider = p and\n\t\t\t\t\t(self.when = null or (not(privacyPolicy.privacyPolicyHelper.doesTimeStartBeforeDate(self.when, contract.startDate)) and\n\t\t\t\t\t(contract.terminationDate = null or self.processingEndsBy(contract.terminationDate))))))\n\t\t\tendif\n}.status" });
 		addAnnotation(getPolicyStatement__DateShouldBeDefinedForType__Action(), source, new String[] { "body",
 				"\n\t\t\t\t\tif(self.what = null) then\n\t\t\t\t\t\ttrue\n\t\t\t\t\telse\n\t\t\t\t\t\tif(self.what.actions->exists(act| act = actionType)) then\n\t\t\t\t\t\t\tnot(self.when = null)\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif" });
 		addAnnotation(getPolicyStatement__CausedByShouldBeDefinedForType__Action(), source, new String[] { "body",
@@ -3211,9 +3252,11 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 				"body",
 				"\n\t\t\t\t\tlet privacyPolicy : PrivacyPolicy = PrivacyPolicy.allInstances()->asSequence()->first() in\n\t\t\t\t\tlet consentOfSubject : Boolean = not(self.how = null) and not(self.how.consent = null) and\n\t\t\t\t\t\tif(self.whose.type = PrincipalType::NaturalPerson and self.whose.age < privacyPolicy.privacyPolicyHelper.legalAgeLimitFor(self.whose)) then\n\t\t\t\t\t\t\tself.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tself.how.consent.providedBy = self.whose or self.whose.responsiblePersons->exists(person| self.how.consent.providedBy = person)\n\t\t\t\t\t\tendif in\n\t\t\t\t\tconsentOfSubject or self.isContractProvidedBySubject() or\n\t\t\t\t\t(not(self.when = null) and\n\t\t\t\t\tprivacyPolicy.policyStatements->exists(st| not(st.whose = null) and st.whose = self.whose and\n\t\t\t\t\t\tnot(st.what = null) and not(st.when = null) and\n\t\t\t\t\t\tst.what.actions->exists(act| act = Action::Collecting) and st.what.datas->exists(d| d = data) and\n\t\t\t\t\t\tprivacyPolicy.privacyPolicyHelper.areIntervalsOverlap(self.when, st.when) and\n\t\t\t\t\t\t((not(st.how = null) and not(st.how.consent = null)) or st.isContractProvidedBySubject())))" });
 		addAnnotation(getPolicyStatement__IsTransferToThirdCountry(), source, new String[] { "body",
-				"\n\t\t\t\t\tnot(self.what = null) and self.what.actions->exists(act| act = Action::Transfer) and\n\t\t\t\t\tnot(self.where = null) and not(self.where.destination = null) and\n\t\t\t\t\tnot(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isInEEA(self.where.destination)) and\n\t\t\t\t\tnot(not(self.whom = null) and\n\t\t\t\t\t\t((not(self.whose = null) and (self.whom = self.whose or self.whose.responsiblePersons->includes(self.whom))) or\n\t\t\t\t\t\t(self.whom.type = PrincipalType::NaturalPerson and\n\t\t\t\t\t\t\t(let owner : Principal = PrivacyPolicy.allInstances()->asSequence()->first().owner in not(owner = null) and owner.equals(self.whom)))))" });
+				"\n\t\t\t\t\t(not(self.what = null) and self.what.actions->exists(act| act = Action::Transfer) and\n\t\t\t\t\tnot(self.where = null) and not(self.where.destination = null) and\n\t\t\t\t\tnot(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isInEEA(self.where.destination)) and\n\t\t\t\t\tnot(not(self.whom = null) and\n\t\t\t\t\t\t((not(self.whose = null) and (self.whom = self.whose or self.whose.responsiblePersons->includes(self.whom))) or\n\t\t\t\t\t\t(self.whom.type = PrincipalType::NaturalPerson and\n\t\t\t\t\t\t\t(let owner : Principal = PrivacyPolicy.allInstances()->asSequence()->first().owner in not(owner = null) and owner.equals(self.whom))))))\n\t\t\t\t\tor self.usesProviderOutsideEEA()" });
 		addAnnotation(getPolicyStatement__IsResearchWithSafeguards(), source, new String[] { "body",
 				"(self.hasProcessingReason(ProcessingReason::Research) or self.hasProcessingReason(ProcessingReason::StatisticalPurposes)) and\n\t\t\t\tnot(self.what = null) and self.what.datas->forAll(data| data.additionalProtectionControls->notEmpty())" });
+		addAnnotation(getPolicyStatement__UsesProviderOutsideEEA(), source, new String[] { "body",
+				"not(self.what = null) and self.what.providers->exists(p| not(p.located = null) and\n\t\t\t\tnot(PrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isInEEA(p.located)))" });
 		addAnnotation(principalEClass, source, new String[] { "NaturalPersonCannotContainSubPrincipals",
 				"\n\t\t\tif(self.type = PrincipalType::NaturalPerson) then\n\t\t\t\tself.subPrincipals->isEmpty()\n\t\t\telse\n\t\t\t\ttrue\n\t\t\tendif",
 				"JuvenileShouldHaveResponsiblePerson",
@@ -3348,7 +3391,9 @@ public class PrivacyModelPackageImpl extends EPackageImpl implements PrivacyMode
 		addAnnotation(getWhere__Equals__Where(), source, new String[] { "body",
 				"\n\t\t\t\t\tif(self.source = null) then\n\t\t\t\t\t\tif(self.destination = null) then\n\t\t\t\t\t\t\ttrue\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tif(observed.destination = null) then\n\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tself.destination.equals(observed.destination)\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t\tendif\n\t\t\t\t\t\n\t\t\t\t\telse\n\t\t\t\t\t\tif(self.destination = null) then\n\t\t\t\t\t\t\tif(observed.source = null) then\n\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tself.source.equals(observed.source)\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t\telse\n\t\t\t\t\t\t\tif(observed.destination = null) then\n\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tif(observed.source = null) then\n\t\t\t\t\t\t\t\tfalse\n\t\t\t\t\t\t\telse\n\t\t\t\t\t\t\t\tself.source.equals(observed.source) and self.destination.equals(observed.destination)\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t\t\tendif\n\t\t\t\t\t\tendif\n\t\t\t\t\tendif" });
 		addAnnotation(abstractPaperEClass, source, new String[] { "StartDateShouldBeBeforeTerminationDate",
-				"Tuple {\n\tmessage : String = \'Termination date is before start date\',\n\tstatus : Boolean = \n\t\t\tself.terminationDate = null or (not(self.startDate > self.terminationDate))\n}.status" });
+				"Tuple {\n\tmessage : String = \'Termination date is before start date\',\n\tstatus : Boolean = \n\t\t\tself.terminationDate = null or (not(self.startDate > self.terminationDate))\n}.status",
+				"PaperShouldHaveParty",
+				"Tuple {\n\tmessage : String = \'A consent or a document must be provided by a principal, and a contract must have a principal or a provider as a party\',\n\tstatus : Boolean = \n\t\t\tif(self.oclIsKindOf(Contract)) then\n\t\t\t\tnot(self.providedBy = null) or not(self.oclAsType(Contract).provider = null)\n\t\t\telse\n\t\t\t\tnot(self.providedBy = null)\n\t\t\tendif\n}.status" });
 		addAnnotation(sharedPrivacyDataEClass, source, new String[] {
 				"AdditionalProtectionControlShouldExistInConfiguration",
 				"Tuple {\n\tmessage : String = \'Additional protection controls should be defined in configuration.\',\n\tstatus : Boolean = \n\t\t\tself.additionalProtectionControls->forAll(protectionControl:String|\n\t\t\t\tPrivacyPolicy.allInstances()->asSequence()->first().privacyPolicyHelper.isPolicyControlValid(protectionControl)\n\t\t\t)\n}.status",

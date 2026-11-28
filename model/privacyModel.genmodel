@@ -212,6 +212,7 @@
       </genOperations>
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/isTransferToThirdCountry"/>
       <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/isResearchWithSafeguards"/>
+      <genOperations ecoreOperation="privacyModel.ecore#//PolicyStatement/usesProviderOutsideEEA"/>
     </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//PrivacyData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//PrivacyData/type"/>
@@ -296,7 +297,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Consent/format"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//Consent/type"/>
     </genClasses>
-    <genClasses ecoreClass="privacyModel.ecore#//Contract"/>
+    <genClasses ecoreClass="privacyModel.ecore#//Contract">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Contract/provider"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference privacyModel.ecore#//Contract/documents"/>
+    </genClasses>
     <genClasses ecoreClass="privacyModel.ecore#//ConfigurationManager">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//ConfigurationManager/dataSources"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute privacyModel.ecore#//ConfigurationManager/protectionControlMethods"/>

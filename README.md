@@ -65,7 +65,7 @@ If you use TeMDA in your research, please cite:
 
 ## OCL rules
 
-The meta-model contains 99 OCL rules. They are defined in [`model/privacyModel.ecore`](model/privacyModel.ecore)
+The meta-model contains 100 OCL rules. They are defined in [`model/privacyModel.ecore`](model/privacyModel.ecore)
 and fall into two groups:
 
 - **GDPR rules**, each based on a GDPR article, on policy statements (lawful basis, consents,
@@ -81,6 +81,7 @@ and fall into two groups:
 | `model/privacyModel.ecore` | The meta-model with the OCL rules |
 | `model/privacyModel.genmodel`, `model/privacyModel.aird` | EMF generator model and Sirius diagram |
 | `model/bank.xmi`, `model/hospital.xmi` | Example models of complete privacy policies |
+| `model/witness.xmi` | The bank model extended so that every concrete class has an instance; it shows that all rules can hold together |
 | `src-gen` | Java code generated from the meta-model, and validation utilities |
 | `test`, `test-models` | Tests of the OCL rules |
 | `ci` | Builds and tests the project without Eclipse (used by GitHub Actions) |

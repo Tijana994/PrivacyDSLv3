@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<!-- Witness model: the Green Bank policy (bank.xmi) extended with a hosting provider and the services it provides, so that
+<!-- Witness model: the Green Bank policy (bank.xmi) extended with a hosting provider, the services it provides and the processing contract with it, so that
      every concrete class of the meta-model has at least one instance. The model must satisfy all OCL rules. -->
 <privacyModel:PrivacyPolicy
     xmi:version="2.0"
@@ -503,11 +503,23 @@
       startDate="2010-01-01T00:00:00.000+0100"
       location="Hungary"
       documentType="LegalProvision"/>
+  <allDocuments
+      name="Standard contractual clauses - EU cloud provider"
+      providedBy="//@allPrincipals.0"
+      startDate="2020-01-01T00:00:00.000+0100"
+      location="Budapest"
+      documentType="TransferCertificate"/>
   <allContracts
       name="Loan contract - Carol"
       providedBy="//@allPrincipals.10"
       startDate="2022-06-02T00:00:00.000+0200"
       location="Budapest"/>
+  <allContracts
+      name="Hosting agreement - EU cloud provider"
+      startDate="2020-01-01T00:00:00.000+0100"
+      location="Budapest"
+      provider="//@allProviders.0"
+      documents="//@allDocuments.4"/>
   <notifications
       name="Notify Eve about transfer"
       type="ThirdPartyTransfer"

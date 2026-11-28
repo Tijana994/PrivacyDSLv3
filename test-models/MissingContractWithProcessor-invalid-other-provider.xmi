@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The bank has a contract only with another provider, not with the provider that stores the email of Eve. -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <policyStatements name="Collect Eve email" who="//@allPrincipals.0" whose="//@allPrincipals.1" whom="//@allPrincipals.0">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-02-01T00:00:00.000+0100"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
+    <what datas="//@allSharedPrivacyData.0" providers="//@allProviders.0"><actions>Collecting</actions><actions>Store</actions></what>
+    <how consent="//@allConsents.0"/>
+  </policyStatements>
+  <policyStatements name="Access Eve email" who="//@allPrincipals.0" whose="//@allPrincipals.1">
+    <when xsi:type="privacyModel:TimeStatement" preposition="at" dateTime="2024-06-01T00:00:00.000+0200"/>
+    <why processingReason="Marketing" processingReasonSubtype="None"/>
+    <what datas="//@allSharedPrivacyData.0"><actions>Access</actions></what>
+  </policyStatements>
+  <allPrincipals name="Bank" type="LegalEntity" scope="In" inhabits="//@locations.0"/>
+  <allPrincipals name="Eve" type="NaturalPerson" scope="Out" age="30" inhabits="//@locations.0"/>
+  <locations name="Hungary" isEUMember="true" type="Country" legalAgeLimit="16"/>
+  <locations name="United States" isEUMember="false" type="Country" legalAgeLimit="18"/>
+  <configurationManager/>
+  <allDatas name="email" type="General"/>
+  <privacyPolicyHelper/>
+  <allConsents name="Eve marketing consent" providedBy="//@allPrincipals.1" startDate="2024-01-15T00:00:00.000+0100" location="Budapest" type="Explicit"/>
+  <allContracts name="Backup agreement" startDate="2023-01-01T00:00:00.000+0100" location="Budapest" provider="//@allProviders.1"/>
+  <allSharedPrivacyData name="email" privacydata="//@allDatas.0"/>
+  <allProviders name="EU cloud" located="//@locations.0"/>
+  <allProviders name="EU backup" located="//@locations.0"/>
+</privacyModel:PrivacyPolicy>

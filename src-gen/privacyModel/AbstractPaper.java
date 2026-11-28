@@ -23,8 +23,8 @@ import java.util.Date;
  *
  * @see privacyModel.PrivacyModelPackage#getAbstractPaper()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='StartDateShouldBeBeforeTerminationDate'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot StartDateShouldBeBeforeTerminationDate='Tuple {\n\tmessage : String = \'Termination date is before start date\',\n\tstatus : Boolean = \n\t\t\tself.terminationDate = null or (not(self.startDate &gt; self.terminationDate))\n}.status'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='StartDateShouldBeBeforeTerminationDate PaperShouldHaveParty'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot StartDateShouldBeBeforeTerminationDate='Tuple {\n\tmessage : String = \'Termination date is before start date\',\n\tstatus : Boolean = \n\t\t\tself.terminationDate = null or (not(self.startDate &gt; self.terminationDate))\n}.status' PaperShouldHaveParty='Tuple {\n\tmessage : String = \'A consent or a document must be provided by a principal, and a contract must have a principal or a provider as a party\',\n\tstatus : Boolean = \n\t\t\tif(self.oclIsKindOf(Contract)) then\n\t\t\t\tnot(self.providedBy = null) or not(self.oclAsType(Contract).provider = null)\n\t\t\telse\n\t\t\t\tnot(self.providedBy = null)\n\t\t\tendif\n}.status'"
  * @generated
  */
 public interface AbstractPaper extends NamedElement {
@@ -35,7 +35,7 @@ public interface AbstractPaper extends NamedElement {
 	 * @return the value of the '<em>Provided By</em>' reference.
 	 * @see #setProvidedBy(Principal)
 	 * @see privacyModel.PrivacyModelPackage#getAbstractPaper_ProvidedBy()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Principal getProvidedBy();

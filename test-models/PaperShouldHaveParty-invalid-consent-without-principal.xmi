@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A consent that is not provided by any principal. -->
+<privacyModel:PrivacyPolicy xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:privacyModel="http://privacymodel"
+    name="Test policy" owner="//@allPrincipals.0">
+  <allPrincipals name="Company" type="LegalEntity" scope="In" inhabits="//@locations.0"/>
+  <allPrincipals name="Eve" type="NaturalPerson" scope="Out" age="30" inhabits="//@locations.0"/>
+  <locations name="Serbia" type="Country" legalAgeLimit="18"/>
+  <configurationManager/>
+  <privacyPolicyHelper/>
+  <allConsents name="Eve consent" startDate="2024-01-15T00:00:00.000+0100" location="Belgrade" type="Explicit"/>
+</privacyModel:PrivacyPolicy>
